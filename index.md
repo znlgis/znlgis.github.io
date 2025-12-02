@@ -35,6 +35,20 @@ title: 首页
 - [开发扩展与定制](gis/tutorial/geoserver-cloud/第09章-开发扩展与定制)
 - [最佳实践与案例分析](gis/tutorial/geoserver-cloud/第10章-最佳实践与案例分析)
 
+#### OpenGIS Utils for Java 系列
+- [框架概述与设计理念](gis/tutorial/opengis-utils-for-java/第01章-框架概述与设计理念)
+- [快速入门与环境配置](gis/tutorial/opengis-utils-for-java/第02章-快速入门与环境配置)
+- [核心架构解析](gis/tutorial/opengis-utils-for-java/第03章-核心架构解析)
+- [统一图层模型详解](gis/tutorial/opengis-utils-for-java/第04章-统一图层模型详解)
+- [双引擎架构设计](gis/tutorial/opengis-utils-for-java/第05章-双引擎架构设计)
+- [数据格式转换实战](gis/tutorial/opengis-utils-for-java/第06章-数据格式转换实战)
+- [几何处理与空间分析](gis/tutorial/opengis-utils-for-java/第07章-几何处理与空间分析)
+- [坐标系管理与转换](gis/tutorial/opengis-utils-for-java/第08章-坐标系管理与转换)
+- [异常处理体系](gis/tutorial/opengis-utils-for-java/第09章-异常处理体系)
+- [实用工具类详解](gis/tutorial/opengis-utils-for-java/第10章-实用工具类详解)
+- [开发实战案例](gis/tutorial/opengis-utils-for-java/第11章-开发实战案例)
+- [扩展开发指南](gis/tutorial/opengis-utils-for-java/第12章-扩展开发指南)
+
 ### GIS 基础
 
 #### 数据格式
