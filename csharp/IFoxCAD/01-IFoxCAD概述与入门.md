@@ -523,7 +523,7 @@ ent.Color = Color.FromColorIndex(ColorMethod.ByAci, 1);
 
 IFoxCAD的官方文档是学习的首选资源：
 - 项目文档：《IFoxCAD类库从入门到精通》
-- API文档：IFoxCAD API文档（需要科学上网）
+- API文档：IFoxCAD API文档
 
 **GitHub仓库**
 
