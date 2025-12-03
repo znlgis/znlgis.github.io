@@ -49,6 +49,20 @@ title: 首页
 - [开发实战案例](gis/tutorial/opengis-utils-for-java/第11章-开发实战案例)
 - [扩展开发指南](gis/tutorial/opengis-utils-for-java/第12章-扩展开发指南)
 
+#### Esri Geometry API for Java 系列
+- [框架概述与设计理念](gis/tutorial/geometry-api-java/第01章-框架概述与设计理念)
+- [快速入门与环境配置](gis/tutorial/geometry-api-java/第02章-快速入门与环境配置)
+- [几何对象详解](gis/tutorial/geometry-api-java/第03章-几何对象详解)
+- [空间操作详解](gis/tutorial/geometry-api-java/第04章-空间操作详解)
+- [空间关系判断](gis/tutorial/geometry-api-java/第05章-空间关系判断)
+- [数据格式转换](gis/tutorial/geometry-api-java/第06章-数据格式转换)
+- [坐标系与空间参考](gis/tutorial/geometry-api-java/第07章-坐标系与空间参考)
+- [OGC兼容开发](gis/tutorial/geometry-api-java/第08章-OGC兼容开发)
+- [性能优化与加速](gis/tutorial/geometry-api-java/第09章-性能优化与加速)
+- [大数据集成](gis/tutorial/geometry-api-java/第10章-大数据集成)
+- [开发实战案例](gis/tutorial/geometry-api-java/第11章-开发实战案例)
+- [扩展开发指南](gis/tutorial/geometry-api-java/第12章-扩展开发指南)
+
 ### GIS 基础
 
 #### 数据格式
