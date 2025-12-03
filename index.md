@@ -77,6 +77,20 @@ title: 首页
 - [开发实战案例](gis/tutorial/geometry-api-java/第11章-开发实战案例)
 - [扩展开发指南](gis/tutorial/geometry-api-java/第12章-扩展开发指南)
 
+#### Esri Geometry API for .NET 系列
+- [项目概述与框架理念](gis/tutorial/geometry-api-net/01-项目概述与框架理念)
+- [快速开始指南](gis/tutorial/geometry-api-net/02-快速开始指南)
+- [核心几何类型详解](gis/tutorial/geometry-api-net/03-核心几何类型详解)
+- [空间关系操作符](gis/tutorial/geometry-api-net/04-空间关系操作符)
+- [几何运算操作符](gis/tutorial/geometry-api-net/05-几何运算操作符)
+- [集合操作符](gis/tutorial/geometry-api-net/06-集合操作符)
+- [数据格式导入导出](gis/tutorial/geometry-api-net/07-数据格式导入导出)
+- [空间参考系统](gis/tutorial/geometry-api-net/08-空间参考系统)
+- [邻近分析与位置服务](gis/tutorial/geometry-api-net/09-邻近分析与位置服务)
+- [高级应用与性能优化](gis/tutorial/geometry-api-net/10-高级应用与性能优化)
+- [实战案例](gis/tutorial/geometry-api-net/11-实战案例)
+- [API参考手册](gis/tutorial/geometry-api-net/12-API参考手册)
+
 ### GIS 基础
 
 #### 数据格式
