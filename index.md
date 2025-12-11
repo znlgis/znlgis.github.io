@@ -23,6 +23,26 @@ title: 首页
 - [REST API与自动化](gis/tutorial/geoserver/07-REST-API与自动化)
 - [性能优化与高级配置](gis/tutorial/geoserver/08-性能优化与高级配置)
 
+#### GeoServer REST API 系列
+- [GeoServer REST API 概述与架构设计](gis/tutorial/geoserver-rest-api/第01章-GeoServer-REST-API概述与架构设计)
+- [环境准备与客户端配置](gis/tutorial/geoserver-rest-api/第02章-环境准备与客户端配置)
+- [HTTP客户端基础设施详解](gis/tutorial/geoserver-rest-api/第03章-HTTP客户端基础设施详解)
+- [工作空间管理API实战](gis/tutorial/geoserver-rest-api/第04章-工作空间管理API实战)
+- [数据存储管理API详解](gis/tutorial/geoserver-rest-api/第05章-数据存储管理API详解)
+- [要素类型与图层管理](gis/tutorial/geoserver-rest-api/第06章-要素类型与图层管理)
+- [样式管理与SLD配置](gis/tutorial/geoserver-rest-api/第07章-样式管理与SLD配置)
+- [图层组管理API](gis/tutorial/geoserver-rest-api/第08章-图层组管理API)
+- [命名空间管理](gis/tutorial/geoserver-rest-api/第09章-命名空间管理)
+- [服务设置与配置管理](gis/tutorial/geoserver-rest-api/第10章-服务设置与配置管理)
+- [安全与权限管理API](gis/tutorial/geoserver-rest-api/第11章-安全与权限管理API)
+- [覆盖范围与栅格数据管理](gis/tutorial/geoserver-rest-api/第12章-覆盖范围与栅格数据管理)
+- [GeoWebCache集成与缓存管理](gis/tutorial/geoserver-rest-api/第13章-GeoWebCache集成与缓存管理)
+- [资源与模板管理](gis/tutorial/geoserver-rest-api/第14章-资源与模板管理)
+- [系统管理与监控API](gis/tutorial/geoserver-rest-api/第15章-系统管理与监控API)
+- [高级功能与扩展服务](gis/tutorial/geoserver-rest-api/第16章-高级功能与扩展服务)
+- [错误处理与最佳实践](gis/tutorial/geoserver-rest-api/第17章-错误处理与最佳实践)
+- [综合实战案例](gis/tutorial/geoserver-rest-api/第18章-综合实战案例)
+
 #### GeoServer Cloud 系列
 - [概述与架构](gis/tutorial/geoserver-cloud/第01章-概述与架构)
 - [环境准备与安装部署](gis/tutorial/geoserver-cloud/第02章-环境准备与安装部署)
