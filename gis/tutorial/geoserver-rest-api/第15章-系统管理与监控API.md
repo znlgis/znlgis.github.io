@@ -1,61 +1,135 @@
 # 第15章：系统管理与监控API
 
-## 15.1 概述
+## 15.1 系统管理概述
 
-本章介绍 系统管理与监控API 的详细内容。
+GeoServer提供了完善的系统管理API，用于监控服务器状态、管理配置、查看日志等。
 
-## 15.2 核心概念
-
-### 15.2.1 基本原理
-
-详细介绍相关原理和概念。
-
-## 15.3 API 使用
-
-### 15.3.1 基本操作
+## 15.2 AboutService - 系统信息
 
 ```csharp
-// 示例代码
-using GeoServerDesktop.GeoServerClient.Configuration;
-using GeoServerDesktop.GeoServerClient.Services;
+var aboutService = factory.CreateAboutService();
 
-var options = new GeoServerClientOptions
-{
-    BaseUrl = "http://localhost:8080/geoserver",
-    Username = "admin",
-    Password = "geoserver"
-};
+// 获取版本信息
+var version = await aboutService.GetVersionAsync();
+Console.WriteLine($"GeoServer 版本: {version.Version}");
+Console.WriteLine($"Git 版本: {version.GitRevision}");
 
-using var factory = new GeoServerClientFactory(options);
-// 使用相关服务
+// 获取系统状态
+var status = await aboutService.GetStatusAsync();
+Console.WriteLine($"JVM 版本: {status.JVM.Version}");
+Console.WriteLine($"内存使用: {status.JVM.UsedMemory}/{status.JVM.TotalMemory}");
 ```
 
-## 15.4 实战示例
+## 15.3 ReloadService - 配置重载
 
-### 15.4.1 完整示例
+```csharp
+var reloadService = factory.CreateReloadService();
 
-提供完整的代码示例和说明。
+// 重载配置
+await reloadService.ReloadAsync();
 
-## 15.5 最佳实践
+// 重置缓存
+await reloadService.ResetAsync();
+```
 
-### 15.5.1 性能优化
+## 15.4 LoggingService - 日志管理
 
-相关的性能优化建议。
+```csharp
+var loggingService = factory.CreateLoggingService();
 
-### 15.5.2 安全建议
+// 获取日志配置
+var loggingConfig = await loggingService.GetLoggingConfigAsync();
 
-安全方面的最佳实践。
+// 设置日志级别
+loggingConfig.Level = "DEBUG";
+loggingConfig.Location = "/var/log/geoserver/geoserver.log";
+loggingConfig.StdOutLogging = true;
 
-## 15.6 本章小结
+await loggingService.UpdateLoggingConfigAsync(loggingConfig);
 
-本章学习了 系统管理与监控API 的核心内容：
-1. 基本概念和原理
-2. API 使用方法
-3. 实战示例
-4. 最佳实践
+// 获取日志内容
+var logs = await loggingService.GetLogsAsync(1000); // 最后1000行
+Console.WriteLine(logs);
+```
+
+## 15.5 MonitoringService - 监控服务
+
+```csharp
+var monitoringService = factory.CreateMonitoringService();
+
+// 获取请求统计
+var stats = await monitoringService.GetRequestStatsAsync();
+Console.WriteLine($"总请求数: {stats.TotalRequests}");
+Console.WriteLine($"成功请求: {stats.SuccessfulRequests}");
+Console.WriteLine($"失败请求: {stats.FailedRequests}");
+Console.WriteLine($"平均响应时间: {stats.AverageResponseTime}ms");
+```
+
+## 15.6 系统健康检查
+
+```csharp
+public class SystemHealthChecker
+{
+    public async Task<HealthReport> CheckHealthAsync()
+    {
+        var report = new HealthReport();
+        
+        // 检查服务器响应
+        try
+        {
+            var version = await _aboutService.GetVersionAsync();
+            report.IsOnline = true;
+            report.Version = version.Version;
+        }
+        catch
+        {
+            report.IsOnline = false;
+            return report;
+        }
+        
+        // 检查内存使用
+        var status = await _aboutService.GetStatusAsync();
+        report.MemoryUsagePercent = 
+            (double)status.JVM.UsedMemory / status.JVM.TotalMemory * 100;
+        
+        if (report.MemoryUsagePercent > 90)
+        {
+            report.Warnings.Add("内存使用率超过90%");
+        }
+        
+        // 检查数据存储连接
+        var dataStores = await _dataStoreService.GetDataStoresAsync("*");
+        foreach (var ds in dataStores)
+        {
+            try
+            {
+                await _dataStoreService.ResetDataStoreAsync("workspace", ds.Name);
+            }
+            catch
+            {
+                report.Errors.Add($"数据存储 {ds.Name} 连接失败");
+            }
+        }
+        
+        return report;
+    }
+}
+
+public class HealthReport
+{
+    public bool IsOnline { get; set; }
+    public string Version { get; set; }
+    public double MemoryUsagePercent { get; set; }
+    public List<string> Warnings { get; set; } = new();
+    public List<string> Errors { get; set; } = new();
+}
+```
+
+## 15.7 本章小结
+
+本章学习了系统管理和监控API，包括版本信息获取、配置重载、日志管理和监控服务的使用。
 
 ---
 
 **相关资源**：
-- [GeoServer 官方文档](https://docs.geoserver.org/)
-- [GeoServer REST API 参考](https://docs.geoserver.org/latest/en/api/)
+- [GeoServer 监控文档](https://docs.geoserver.org/latest/en/user/community/monitoring/index.html)
