@@ -193,6 +193,18 @@ title: 首页
 
 ### 其他教程
 
+#### BillionMail 系列
+- [BillionMail概述与入门](others/BillionMail/第01章-BillionMail概述与入门)
+- [系统架构与技术栈详解](others/BillionMail/第02章-系统架构与技术栈详解)
+- [环境准备与安装部署](others/BillionMail/第03章-环境准备与安装部署)
+- [核心功能与配置管理](others/BillionMail/第04章-核心功能与配置管理)
+- [邮件服务器配置详解](others/BillionMail/第05章-邮件服务器配置详解)
+- [邮件营销功能实战](others/BillionMail/第06章-邮件营销功能实战)
+- [API集成与开发指南](others/BillionMail/第07章-API集成与开发指南)
+- [高级功能与性能优化](others/BillionMail/第08章-高级功能与性能优化)
+- [运维监控与故障排除](others/BillionMail/第09章-运维监控与故障排除)
+- [实战案例与最佳实践](others/BillionMail/第10章-实战案例与最佳实践)
+
 #### Chili3D 系列
 - [概述与入门](others/chili3d/01-概述与入门)
 - [核心架构解析](others/chili3d/02-核心架构解析)
