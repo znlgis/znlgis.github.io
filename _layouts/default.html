@@ -17,6 +17,7 @@
     
     <!-- Feed -->
     {% feed_meta %}
+    
     <style>
         :root {
             --text-color: #333;
@@ -200,6 +201,9 @@
             }
         }
     </style>
+    
+    <!-- 自定义样式 -->
+    <link rel="stylesheet" href="{{ '/assets/css/custom.css' | relative_url }}">
 </head>
 <body>
     <header>
@@ -235,5 +239,8 @@
     <footer>
         <p>&copy; {{ site.time | date: '%Y' }} {{ site.author }}. 使用 <a href="https://pages.github.com/" target="_blank">GitHub Pages</a> 托管.</p>
     </footer>
+    
+    <!-- JavaScript -->
+    <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
 </body>
 </html>
