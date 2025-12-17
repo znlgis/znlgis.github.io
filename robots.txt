@@ -3,7 +3,8 @@ User-agent: *
 Allow: /
 
 # 禁止抓取这些路径
-Disallow: /assets/
+Disallow: /assets/css/
+Disallow: /assets/js/
 Disallow: /.git/
 Disallow: /.github/
 

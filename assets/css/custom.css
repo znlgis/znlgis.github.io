@@ -144,7 +144,8 @@ main img {
     header nav,
     footer,
     .breadcrumb,
-    .back-to-top {
+    .back-to-top,
+    .copy-code-button {
         display: none;
     }
     

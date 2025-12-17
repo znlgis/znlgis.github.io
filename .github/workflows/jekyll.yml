@@ -30,7 +30,7 @@ jobs:
       - name: 设置 Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.2'
+          ruby-version: '3.2.0'
           bundler-cache: true # 运行 'bundle install' 并缓存已安装的 gems
       
       - name: 设置 Pages

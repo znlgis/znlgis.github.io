@@ -142,11 +142,16 @@
         const links = document.querySelectorAll('a[href^="http"]');
         
         links.forEach(function(link) {
-            const url = new URL(link.href);
-            // 如果不是当前域名，添加 target="_blank"
-            if (url.hostname !== window.location.hostname) {
-                link.setAttribute('target', '_blank');
-                link.setAttribute('rel', 'noopener noreferrer');
+            try {
+                const url = new URL(link.href);
+                // 如果不是当前域名，添加 target="_blank"
+                if (url.hostname !== window.location.hostname) {
+                    link.setAttribute('target', '_blank');
+                    link.setAttribute('rel', 'noopener noreferrer');
+                }
+            } catch (e) {
+                // 忽略无效的 URL
+                console.warn('Invalid URL:', link.href);
             }
         });
     });
@@ -156,12 +161,15 @@
 (function() {
     'use strict';
     
+    // 配置：需要至少多少个标题才生成目录
+    const MIN_HEADINGS_FOR_TOC = 3;
+    
     document.addEventListener('DOMContentLoaded', function() {
         const content = document.querySelector('main');
         if (!content) return;
         
         const headings = content.querySelectorAll('h2, h3');
-        if (headings.length < 3) return; // 少于3个标题不生成目录
+        if (headings.length < MIN_HEADINGS_FOR_TOC) return;
         
         // 创建目录容器
         const toc = document.createElement('div');
