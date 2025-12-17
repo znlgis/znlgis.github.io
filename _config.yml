@@ -42,7 +42,7 @@ collections:
     permalink: /:title/
 
 # 性能优化
-safe: true
+# safe: true  # GitHub Pages 默认启用安全模式，无需显式设置
 profile: false
 lsi: false
 

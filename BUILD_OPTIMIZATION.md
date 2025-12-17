@@ -73,9 +73,23 @@ exclude:
 
 ## 注意事项
 
-1. **GitHub Pages 限制**: GitHub Pages 可能会覆盖某些配置（如 `quiet`）
-2. **首次构建**: 增量构建在首次构建时不会有速度提升
-3. **日志级别**: GitHub Pages 的日志级别由平台控制，用户无法直接修改
+### GitHub Pages vs 本地构建
+
+某些配置在 GitHub Pages 和本地构建中表现不同：
+
+| 配置项 | 本地构建 | GitHub Pages |
+|--------|---------|-------------|
+| `quiet: true` | ✅ 有效 | ⚠️ 可能被覆盖 |
+| `incremental: true` | ✅ 有效 | ✅ 有效 |
+| `safe: true` | ✅ 有效 | ℹ️ 默认启用 |
+| Kramdown 配置 | ✅ 完全控制 | ✅ 大部分有效 |
+| `lsi: false` | ✅ 有效 | ✅ 有效 |
+
+### 其他注意事项
+
+1. **首次构建**: 增量构建在首次构建时不会有速度提升
+2. **日志级别**: GitHub Pages 的日志级别由平台控制，用户无法直接修改
+3. **插件限制**: GitHub Pages 只支持[有限的插件列表](https://pages.github.com/versions/)
 
 ## 验证方法
 
