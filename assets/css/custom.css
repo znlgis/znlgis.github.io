@@ -1,0 +1,165 @@
+/* 自定义样式 */
+
+/* 改进的代码块样式 */
+.highlight {
+    margin: 1rem 0;
+}
+
+/* 表格优化 */
+table {
+    border-spacing: 0;
+}
+
+table thead {
+    background: #f6f8fa;
+    font-weight: 600;
+}
+
+table tbody tr:hover {
+    background: #f6f8fa;
+}
+
+/* 图片居中和阴影 */
+main img {
+    display: block;
+    margin: 1.5rem auto;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+}
+
+/* 目录样式 */
+.toc {
+    background: #f6f8fa;
+    border-left: 3px solid #0366d6;
+    padding: 1rem 1.5rem;
+    margin: 1.5rem 0;
+}
+
+.toc h2 {
+    margin-top: 0;
+    font-size: 1rem;
+}
+
+.toc ul {
+    margin-bottom: 0;
+}
+
+/* 提示框样式 */
+.note {
+    border-left: 4px solid #0366d6;
+    background: #f1f8ff;
+    padding: 1rem;
+    margin: 1rem 0;
+}
+
+.warning {
+    border-left: 4px solid #f9826c;
+    background: #ffe8e6;
+    padding: 1rem;
+    margin: 1rem 0;
+}
+
+.tip {
+    border-left: 4px solid #34d058;
+    background: #f0fff4;
+    padding: 1rem;
+    margin: 1rem 0;
+}
+
+/* 按钮样式 */
+.btn {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: #0366d6;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background 0.2s;
+}
+
+.btn:hover {
+    background: #0256c2;
+    text-decoration: none;
+    color: white;
+}
+
+/* 标签样式 */
+.tags {
+    margin: 1rem 0;
+}
+
+.tag {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    background: #e1e4e8;
+    color: #586069;
+    border-radius: 3px;
+    font-size: 0.85rem;
+    margin-right: 0.5rem;
+    text-decoration: none;
+}
+
+.tag:hover {
+    background: #d1d5db;
+    text-decoration: none;
+}
+
+/* 文章元信息 */
+.post-info {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #eee;
+}
+
+.post-info .date,
+.post-info .category {
+    margin-right: 1rem;
+}
+
+/* 返回顶部按钮 */
+.back-to-top {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    display: none;
+    padding: 0.5rem 1rem;
+    background: #0366d6;
+    color: white;
+    border-radius: 4px;
+    text-decoration: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s;
+}
+
+.back-to-top:hover {
+    background: #0256c2;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* 打印样式 */
+@media print {
+    header nav,
+    footer,
+    .breadcrumb,
+    .back-to-top,
+    .copy-code-button {
+        display: none;
+    }
+    
+    body {
+        max-width: 100%;
+        font-size: 12pt;
+    }
+    
+    a {
+        text-decoration: none;
+        color: black;
+    }
+    
+    pre, code {
+        border: 1px solid #ccc;
+    }
+}
