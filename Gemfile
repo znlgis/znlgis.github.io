@@ -1,9 +1,9 @@
 source "https://rubygems.org"
 
-# GitHub Pages gem - 使用 GitHub Pages 依赖版本
-gem "github-pages", group: :jekyll_plugins
+# GitHub Pages gem - 管理所有 GitHub Pages 依赖
+gem "github-pages"
 
-# 如果需要本地测试
+# Jekyll 插件（已包含在 github-pages gem 中，但可以显式声明）
 group :jekyll_plugins do
   gem "jekyll-feed"
   gem "jekyll-seo-tag"
