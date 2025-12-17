@@ -42,8 +42,9 @@ collections:
     permalink: /:title/
 
 # 性能优化
-# 注意: safe 模式在 GitHub Pages 上默认启用，本地开发时可能需要禁用以使用自定义插件
-# safe: true  
+# Note: safe mode is enabled by default on GitHub Pages (disables custom plugins)
+# For local development with custom plugins, set: safe: false
+# safe: false  # Uncomment for local development with custom plugins
 profile: false
 lsi: false
 
