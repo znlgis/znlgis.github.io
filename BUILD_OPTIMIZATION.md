@@ -33,7 +33,8 @@ kramdown:
       line_numbers: false       # 禁用行号以减少处理时间
 
 # 性能优化
-safe: true         # 安全模式，禁用自定义插件
+# Note: safe mode is enabled by default on GitHub Pages, no need to set explicitly
+# safe: true       # Uncomment for local development if needed
 profile: false     # 禁用性能分析
 lsi: false         # 禁用相关文章索引（耗时操作）
 ```
