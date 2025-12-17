@@ -2,19 +2,74 @@
 title: znlgis 博客
 description: GIS开发与技术分享
 author: znlgis
+email: znlgis@example.com
 baseurl: ""
 url: "https://znlgis.github.io"
+lang: zh-CN
 
-# 主题配置
+# 构建配置
 markdown: kramdown
 highlighter: rouge
+encoding: utf-8
+timezone: Asia/Shanghai
+
+# Markdown 配置
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    default_lang: text
+    css_class: 'highlight'
+
+# 插件配置
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-optional-front-matter
+  - jekyll-titles-from-headings
+  - jekyll-relative-links
+
+# 可选 front matter 配置
+optional_front_matter:
+  remove_originals: true
+
+# 从标题提取配置
+titles_from_headings:
+  enabled: true
+  strip_title: true
+  collections: true
+
+# 相对链接配置
+relative_links:
+  enabled: true
+  collections: true
+
+# Permalink 配置
+permalink: /:categories/:title/
 
 # 排除文件
 exclude:
   - README.md
   - LICENSE
   - .gitignore
+  - Gemfile
+  - Gemfile.lock
+  - vendor/
+  - .bundle/
+  - node_modules/
+  - package.json
+  - package-lock.json
   - gis/basic/pom
+  - .idea/
+  - .vscode/
+  - "*.gem"
+  - "*.gemspec"
+
+# 包含文件
+include:
+  - .htaccess
+  - _pages
 
 # 集合配置
 collections:
@@ -24,7 +79,61 @@ collections:
 
 # 默认值
 defaults:
+  # 所有文件
   - scope:
       path: ""
     values:
       layout: default
+  # GIS 教程
+  - scope:
+      path: "gis/tutorial"
+    values:
+      layout: default
+      category: gis-tutorial
+  # GIS 基础
+  - scope:
+      path: "gis/basic"
+    values:
+      layout: default
+      category: gis-basic
+  # C# 开发
+  - scope:
+      path: "csharp"
+    values:
+      layout: default
+      category: csharp
+  # AI 系列
+  - scope:
+      path: "ai"
+    values:
+      layout: default
+      category: ai
+  # 其他教程
+  - scope:
+      path: "others"
+    values:
+      layout: default
+      category: others
+  # 项目演示
+  - scope:
+      path: "demos"
+    values:
+      layout: default
+      category: demos
+
+# Feed 配置
+feed:
+  path: feed.xml
+
+# SEO 配置
+twitter:
+  username: znlgis
+  card: summary
+
+social:
+  name: znlgis
+  links:
+    - https://github.com/znlgis
+    - https://gitee.com/znlgis
+    - https://space.bilibili.com/161342702
+    - https://www.cnblogs.com/znlgis

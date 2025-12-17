@@ -1,0 +1,11 @@
+# robots.txt for znlgis.github.io
+User-agent: *
+Allow: /
+
+# 禁止抓取这些路径
+Disallow: /assets/
+Disallow: /.git/
+Disallow: /.github/
+
+# 站点地图
+Sitemap: https://znlgis.github.io/sitemap.xml
