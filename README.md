@@ -2,6 +2,12 @@
 
 一个极简风格的 GitHub Pages 个人博客，分享 GIS 开发与技术内容。
 
+## 📖 快速导航
+
+- **[快速开始](QUICK_START.md)** - 5分钟入门指南
+- **[贡献指南](CONTRIBUTING.md)** - 如何参与贡献
+- **[Front Matter 说明](FRONT_MATTER.md)** - 文章元数据使用
+
 ## 🔗 链接
 
 - **网站**: [https://znlgis.github.io](https://znlgis.github.io)

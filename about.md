@@ -26,3 +26,29 @@ title: 关于
 这个博客使用 [Jekyll](https://jekyllrb.com/) 构建，托管在 [GitHub Pages](https://pages.github.com/) 上。
 
 采用极简设计风格，专注于内容本身。
+
+### 技术栈
+
+- **静态网站生成器**: Jekyll 4.3
+- **Markdown 解析器**: Kramdown
+- **代码高亮**: Rouge
+- **托管服务**: GitHub Pages
+- **CI/CD**: GitHub Actions
+
+### 文档资源
+
+- [快速开始指南](QUICK_START) - 5分钟入门
+- [贡献指南](CONTRIBUTING) - 如何参与贡献
+- [Front Matter 说明](FRONT_MATTER) - 文章元数据使用指南
+- [完整文档](README) - 详细的项目文档
+
+### 特色功能
+
+- ✨ 自动提取文章标题
+- 🗂️ 自动分类管理
+- 🔍 SEO 优化
+- 📱 响应式设计
+- 📋 代码一键复制
+- 🔝 返回顶部
+- 📑 自动生成目录
+- 🔗 智能链接处理
