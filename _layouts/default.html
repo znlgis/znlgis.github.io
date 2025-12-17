@@ -1,23 +1,13 @@
 <!DOCTYPE html>
-<html lang="{{ site.lang | default: 'zh-CN' }}">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    
     <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
-    
-    <!-- SEO 标签 -->
-    {% seo %}
-    
-    <!-- 字体预加载 -->
+    <meta name="description" content="{{ site.description }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Feed -->
-    {% feed_meta %}
-    
     <style>
         :root {
             --text-color: #333;
@@ -172,38 +162,14 @@
             border-bottom: 1px solid var(--border-color);
             padding-bottom: 0.5rem;
         }
-        /* 面包屑导航 */
-        .breadcrumb {
-            padding: 0.5rem 0;
-            font-size: 0.85rem;
-            color: #666;
-            margin-bottom: 1rem;
-        }
-        .breadcrumb a {
-            color: var(--link-color);
-            text-decoration: none;
-        }
-        .breadcrumb a:hover {
-            text-decoration: underline;
-        }
-        .breadcrumb .separator {
-            margin: 0 0.5rem;
-            color: #999;
-        }
         @media (max-width: 600px) {
             body {
                 padding: 1rem;
             }
             h1 { font-size: 1.5rem; }
             h2 { font-size: 1.2rem; }
-            .breadcrumb {
-                font-size: 0.75rem;
-            }
         }
     </style>
-    
-    <!-- 自定义样式 -->
-    <link rel="stylesheet" href="{{ '/assets/css/custom.css' | relative_url }}">
 </head>
 <body>
     <header>
@@ -217,30 +183,10 @@
         </nav>
     </header>
     <main>
-        {% if page.url != "/" and page.url != "/index.html" %}
-        <nav class="breadcrumb" aria-label="breadcrumb">
-            <a href="{{ '/' | relative_url }}">首页</a>
-            {% assign crumbs = page.url | remove:'/index.html' | split: '/' %}
-            {% assign crumb_path = '' %}
-            {% for crumb in crumbs offset: 1 %}
-                {% if forloop.last and crumb != 'index.html' %}
-                    <span class="separator">/</span>
-                    <span>{{ page.title | default: crumb | replace: '.html', '' | replace: '-', ' ' | replace: '_', ' ' }}</span>
-                {% elsif crumb != '' and crumb != 'index.html' %}
-                    {% assign crumb_path = crumb_path | append: '/' | append: crumb %}
-                    <span class="separator">/</span>
-                    <a href="{{ crumb_path | relative_url }}">{{ crumb | replace: '-', ' ' | replace: '_', ' ' | capitalize }}</a>
-                {% endif %}
-            {% endfor %}
-        </nav>
-        {% endif %}
         {{ content }}
     </main>
     <footer>
         <p>&copy; {{ site.time | date: '%Y' }} {{ site.author }}. 使用 <a href="https://pages.github.com/" target="_blank">GitHub Pages</a> 托管.</p>
     </footer>
-    
-    <!-- JavaScript -->
-    <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
 </body>
 </html>
