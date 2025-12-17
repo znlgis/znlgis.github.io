@@ -33,9 +33,9 @@ kramdown:
       line_numbers: false       # 禁用行号以减少处理时间
 
 # 性能优化
-# Note: safe mode is enabled by default on GitHub Pages (disables custom plugins)
-# For local development with custom plugins, use: safe: false
-# safe: false      # Uncomment and set to false for local development with custom plugins
+# Note: GitHub Pages enforces safe mode (disables custom plugins)
+# Set to false for local development with custom plugins
+# safe: false
 profile: false     # 禁用性能分析
 lsi: false         # 禁用相关文章索引（耗时操作）
 ```
