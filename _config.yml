@@ -9,18 +9,44 @@ url: "https://znlgis.github.io"
 markdown: kramdown
 highlighter: rouge
 
+# 构建优化
+incremental: true
+quiet: true
+
+# Kramdown 配置
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+  syntax_highlighter_opts:
+    block:
+      line_numbers: false
+
 # 排除文件
 exclude:
   - README.md
   - LICENSE
   - .gitignore
   - gis/basic/pom
+  - vendor
+  - .bundle
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - package.json
+  - package-lock.json
 
 # 集合配置
 collections:
   posts:
     output: true
     permalink: /:title/
+
+# 性能优化
+# 注意: GitHub Pages 默认启用 safe 模式（禁用自定义插件）
+# 本地开发如需使用自定义插件，取消注释并设为 false
+# safe: false  # 本地开发使用自定义插件时取消注释
+profile: false
+lsi: false
 
 # 默认值
 defaults:
