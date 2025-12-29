@@ -14,9 +14,6 @@ title: 首页
 ### GIS 教程
 
 #### GDAL 完整教程系列
-
-[📖 查看完整教程目录](gis/tutorial/gdal/README)
-
 - [GDAL概述与基础知识](gis/tutorial/gdal/第01章-GDAL概述与基础知识)
 - [GDAL安装与环境配置](gis/tutorial/gdal/第02章-GDAL安装与环境配置)
 - [GDAL核心架构与数据模型](gis/tutorial/gdal/第03章-GDAL核心架构与数据模型)
@@ -260,9 +257,6 @@ title: 首页
 - [常见问题解答](csharp/.NET%20Reactor/第15章-常见问题解答)
 
 #### NPOI 系列
-
-[📖 查看完整教程目录](csharp/npoi/README)
-
 - [NPOI概述与入门](csharp/npoi/第01章-NPOI概述与入门)
 - [环境搭建与项目配置](csharp/npoi/第02章-环境搭建与项目配置)
 - [Excel基础操作-工作簿与工作表](csharp/npoi/第03章-Excel基础操作-工作簿与工作表)
