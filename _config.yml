@@ -9,6 +9,12 @@ url: "https://znlgis.github.io"
 markdown: kramdown
 highlighter: rouge
 
+# Jekyll 插件
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
 # 构建优化
 incremental: true
 quiet: true
