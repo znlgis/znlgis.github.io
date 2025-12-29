@@ -6,7 +6,7 @@
     <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
     <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
     <meta name="author" content="{{ site.author }}">
-    <meta name="keywords" content="GIS,GDAL,GeoServer,PostGIS,C#,.NET,地理信息系统,空间数据,教程">
+    <meta name="keywords" content="{% if page.keywords %}{{ page.keywords }}{% else %}GIS,GDAL,GeoServer,PostGIS,C#,.NET,地理信息系统,空间数据,教程{% endif %}">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">

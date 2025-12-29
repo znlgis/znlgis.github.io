@@ -67,7 +67,8 @@ sudo apt-get install gdal-bin python3-gdal
 brew install gdal
 
 # Windows
-# 下载 OSGeo4W 安装器
+# 下载并安装 OSGeo4W: https://trac.osgeo.org/osgeo4w/
+# 或使用 conda: conda install -c conda-forge gdal
 ```
 
 ### 第一个 GDAL 程序
