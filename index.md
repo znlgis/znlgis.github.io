@@ -256,6 +256,26 @@ title: 首页
 - [最佳实践与优化](csharp/.NET%20Reactor/第14章-最佳实践与优化)
 - [常见问题解答](csharp/.NET%20Reactor/第15章-常见问题解答)
 
+#### NPOI 系列
+- [NPOI概述与入门](csharp/npoi/第01章-NPOI概述与入门)
+- [环境搭建与项目配置](csharp/npoi/第02章-环境搭建与项目配置)
+- [Excel基础操作-工作簿与工作表](csharp/npoi/第03章-Excel基础操作-工作簿与工作表)
+- [Excel单元格操作与数据类型](csharp/npoi/第04章-Excel单元格操作与数据类型)
+- [Excel样式与格式化](csharp/npoi/第05章-Excel样式与格式化)
+- [Excel公式与函数](csharp/npoi/第06章-Excel公式与函数)
+- [Excel数据验证与保护](csharp/npoi/第07章-Excel数据验证与保护)
+- [Excel图表与图形](csharp/npoi/第08章-Excel图表与图形)
+- [Excel高级功能-合并单元格与冻结窗格](csharp/npoi/第09章-Excel高级功能-合并单元格与冻结窗格)
+- [Word文档基础操作](csharp/npoi/第10章-Word文档基础操作)
+- [Word段落与文本样式](csharp/npoi/第11章-Word段落与文本样式)
+- [Word表格操作](csharp/npoi/第12章-Word表格操作)
+- [Word图片与多媒体](csharp/npoi/第13章-Word图片与多媒体)
+- [Word页眉页脚与页面设置](csharp/npoi/第14章-Word页眉页脚与页面设置)
+- [PowerPoint演示文稿操作](csharp/npoi/第15章-PowerPoint演示文稿操作)
+- [大文件处理与性能优化](csharp/npoi/第16章-大文件处理与性能优化)
+- [企业级应用最佳实践](csharp/npoi/第17章-企业级应用最佳实践)
+- [实战案例与综合应用](csharp/npoi/第18章-实战案例与综合应用)
+
 ### AI 系列
 
 #### Dify 平台
