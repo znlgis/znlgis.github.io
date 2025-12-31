@@ -32,17 +32,18 @@
 | JTS TestBuilder GUI | 2019年8月 | [2019-JTS-TestBuilder-GUI.md](2019-JTS-TestBuilder-GUI.md) |
 | PreparedGeometry 性能优化 | 2012年11月 | [2012-PreparedGeometry-Performance.md](2012-PreparedGeometry-Performance.md) |
 | Java 在 OSCON 重新火热 | 2011年6月 | [2011-Java-Reheated-OSCON.md](2011-Java-Reheated-OSCON.md) |
+| 2012 年度回顾 | 2013年1月 | [2013-Year-In-Review-2012.md](2013-Year-In-Review-2012.md) |
+| JTS 中的约束 Delaunay 三角剖分 | 2014年 | [2014-Constrained-Delaunay-Triangulation.md](2014-Constrained-Delaunay-Triangulation.md) |
+| JTS 中的距离度量与形状相似性 | 2016年 | [2016-Distance-Metrics-Shape-Similarity.md](2016-Distance-Metrics-Shape-Similarity.md) |
+| JTS 精度模型与数值鲁棒性 | 2017年 | [2017-Precision-Model-Robustness.md](2017-Precision-Model-Robustness.md) |
 
 ## 已知但未翻译的文章 📋
 
-以下文章已从博客归档中识别，但尚未翻译：
-
-### 2013年
-- 2012年度回顾
+目前已翻译所有可搜索到的主要技术文章。
 
 ## 翻译状态
 
-**已完成翻译**: 24 篇核心技术文章
+**已完成翻译**: 28 篇核心技术文章
 
 剩余的主要是年度回顾等非技术性文章。
 
@@ -84,6 +85,7 @@
 
 ## 更新日志
 
+- **2025-12-31**: 第五批翻译，新增 4 篇文章（2012 年度回顾、约束 Delaunay 三角剖分、距离度量与形状相似性、精度模型与鲁棒性）
 - **2025-12-31**: 第四批翻译，新增 4 篇文章（修复无效几何、TestBuilder GUI、PreparedGeometry 性能、Java/JVM 在 OSCON）
 - **2025-12-31**: 第三批翻译，新增 4 篇文章（可变距离缓冲区、JTS 设计原则、随机点生成、均匀分布随机点）
 - **2025-12-31**: 第二批翻译，新增 5 篇文章（OverlayNG 节点化策略、KD 树优化、级联并集、性能改进、FOSS4G 回顾）

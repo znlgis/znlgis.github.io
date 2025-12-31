@@ -46,6 +46,12 @@
 ### 2018年文章
 - [Shapefile：好、坏与丑](2018-Shapefiles-Good-Bad-Ugly.md) - Shapefile 格式深度分析
 
+### 2014年文章
+- [JTS 中的约束 Delaunay 三角剖分](2014-Constrained-Delaunay-Triangulation.md) - 三角剖分与 Voronoi 图
+
+### 2013年文章
+- [2012 年度回顾](2013-Year-In-Review-2012.md) - JTS 年度发展总结
+
 ### 2012年文章
 - [JTS 性能改进 - 空间索引优化](2012-JTS-Performance-Improvements.md) - 矩形相交测试优化
 - [FOSS4G 北美 2012 回顾](2012-FOSS4G-NA-Review.md) - 开源地理空间大会见闻
@@ -53,6 +59,12 @@
 
 ### 2011年文章
 - [Java 在 OSCON 重新火热](2011-Java-Reheated-OSCON.md) - Java/JVM 在开源社区的复兴
+
+### 2017年文章
+- [JTS 精度模型与数值鲁棒性](2017-Precision-Model-Robustness.md) - 精度控制与 Snap Rounding
+
+### 2016年文章
+- [JTS 中的距离度量与形状相似性](2016-Distance-Metrics-Shape-Similarity.md) - Hausdorff 距离和形状比较
 
 ### 2015年文章
 - [JTS 中的均匀分布随机点生成](2015-Evenly-Distributed-Random-Points.md) - 使用 KD 树生成均匀分布的点
