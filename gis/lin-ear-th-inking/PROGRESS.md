@@ -9,6 +9,7 @@
 | 文章标题 | 原文日期 | 翻译文件 |
 |---------|---------|---------|
 | JTS Overlay - 下一代 (OverlayNG) | 2020年5月 | [2020-JTS-Overlay-Next-Generation.md](2020-JTS-Overlay-Next-Generation.md) |
+| JTS OverlayNG - 节点化策略 | 2020年6月 | [2020-JTS-OverlayNG-Noding-Strategies.md](2020-JTS-OverlayNG-Noding-Strategies.md) |
 | JTS 中的 Alpha Shapes | 2023年1月 | [2023-Alpha-Shapes-in-JTS.md](2023-Alpha-Shapes-in-JTS.md) |
 | JTS 拓扑关系 - 下一代 (RelateNG) | 2024年5月 | [2024-JTS-Topological-Relationships-RelateNG.md](2024-JTS-Topological-Relationships-RelateNG.md) |
 | JTS 中的 Coverage 清理 | 2025年4月 | [2025-Coverage-Cleaning-in-JTS.md](2025-Coverage-Cleaning-in-JTS.md) |
@@ -19,17 +20,17 @@
 | DE-9IM 空间谓词的关系属性 | 2022年10月 | [2022-DE-9IM-Spatial-Predicates.md](2022-DE-9IM-Spatial-Predicates.md) |
 | Shapefile：好、坏与丑 | 2018年4月 | [2018-Shapefiles-Good-Bad-Ugly.md](2018-Shapefiles-Good-Bad-Ugly.md) |
 | JTS 中的单侧缓冲区 | 2010年11月 | [2010-Single-Sided-Buffers-in-JTS.md](2010-Single-Sided-Buffers-in-JTS.md) |
+| KD 树查询优化 | 2021年10月 | [2021-KdTree-Query-Optimization.md](2021-KdTree-Query-Optimization.md) |
+| JTS 中使用级联并集快速合并多边形 | 2007年11月 | [2007-Fast-Polygon-Merging-Cascaded-Union.md](2007-Fast-Polygon-Merging-Cascaded-Union.md) |
+| JTS 性能改进 | 2012年4月 | [2012-JTS-Performance-Improvements.md](2012-JTS-Performance-Improvements.md) |
+| FOSS4G 北美 2012 回顾 | 2012年4月 | [2012-FOSS4G-NA-Review.md](2012-FOSS4G-NA-Review.md) |
 
 ## 已知但未翻译的文章 📋
 
 以下文章已从博客归档中识别，但尚未翻译：
 
 ### 2021年
-- KdTree 和不平衡树（2021年10月）
 - JTS Buffer Predicates（2021年5月）
-
-### 2020年
-- JTS OverlayNG - Noding Strategies（2020年6月）
 
 ### 2019年
 - 缓冲区泛化相关文章
@@ -41,36 +42,25 @@
 ### 2013年
 - 2012年度回顾
 
-### 2012年
-- FOSS4G North America 2012
-- 性能改进（RectangleIntersects, RandomPointsInGridBuilder, AbstractSTRtree）
-- JEQL 扩展和代码清晰度
-- 美国选举地图可视化
-
 ### 2011年
 - Java/JVM 开源开发评论
 
 ### 2010年
 - 随机点密度图生成
 
-### 2007年
-- JTS 中使用级联并集快速合并多边形
-
 ## 翻译优先级建议
 
 ### 高优先级（技术重要性高）
-1. JTS OverlayNG - Noding Strategies
-2. JTS Buffer Predicates
-3. 快速多边形合并
+1. JTS Buffer Predicates
 
 ### 中优先级
-1. KdTree 相关文章
-2. 性能改进系列
+1. 随机点密度图生成
 
 ### 低优先级
 1. 年度回顾文章
 2. 可视化和展示类文章
 3. 非技术性评论文章
+4. JEQL 相关文章（已较少使用）
 
 ## 翻译说明
 
@@ -110,4 +100,5 @@
 
 ## 更新日志
 
-- **2024-xx-xx**: 初始翻译，完成 10 篇核心文章
+- **2024-xx-xx**: 第二批翻译，新增 5 篇文章（OverlayNG 节点化策略、KD 树优化、级联并集、性能改进、FOSS4G 回顾）
+- **2024-xx-xx**: 初始翻译，完成 11 篇核心文章

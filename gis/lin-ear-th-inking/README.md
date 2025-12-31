@@ -30,14 +30,25 @@
 - [多边形的外部和内部包络](2022-Outer-Inner-Polygon-Hulls.md) - 凹包的高级应用
 - [DE-9IM 空间谓词的关系属性](2022-DE-9IM-Spatial-Predicates.md) - 空间关系的数学理论
 
+### 2021年文章
+- [KD 树查询优化 - 100 倍速度提升](2021-KdTree-Query-Optimization.md) - 不平衡 KD 树的查询优化技巧
+
 ### 2020年文章
 - [JTS Overlay - 下一代 (OverlayNG)](2020-JTS-Overlay-Next-Generation.md) - 改进的叠加分析算法
+- [JTS OverlayNG - 节点化策略](2020-JTS-OverlayNG-Noding-Strategies.md) - 可插拔的节点化系统详解
 
 ### 2018年文章
 - [Shapefile：好、坏与丑](2018-Shapefiles-Good-Bad-Ugly.md) - Shapefile 格式深度分析
 
+### 2012年文章
+- [JTS 性能改进 - 空间索引优化](2012-JTS-Performance-Improvements.md) - 矩形相交测试优化
+- [FOSS4G 北美 2012 回顾](2012-FOSS4G-NA-Review.md) - 开源地理空间大会见闻
+
 ### 2010年文章
 - [JTS 中的单侧缓冲区](2010-Single-Sided-Buffers-in-JTS.md) - 单侧缓冲区功能介绍
+
+### 2007年文章
+- [JTS 中使用级联并集快速合并多边形](2007-Fast-Polygon-Merging-Cascaded-Union.md) - 高效多边形合并算法
 
 ## 原文链接
 
