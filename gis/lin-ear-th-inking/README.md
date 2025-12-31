@@ -32,6 +32,7 @@
 
 ### 2021年文章
 - [KD 树查询优化 - 100 倍速度提升](2021-KdTree-Query-Optimization.md) - 不平衡 KD 树的查询优化技巧
+- [JTS 中修复无效几何图形](2021-Fixing-Invalid-Geometry-JTS.md) - 几何验证与自动修复功能
 
 ### 2020年文章
 - [JTS Overlay - 下一代 (OverlayNG)](2020-JTS-Overlay-Next-Generation.md) - 改进的叠加分析算法
@@ -40,6 +41,7 @@
 ### 2019年文章
 - [JTS 中的可变距离缓冲区](2019-Variable-Distance-Buffering.md) - 沿几何图形变化的缓冲距离
 - [JTS 设计原则](2019-JTS-Design-Principles.md) - 几何统一性与"无意外"原则
+- [JTS TestBuilder - 几何图形的多功能工具](2019-JTS-TestBuilder-GUI.md) - 可视化测试和调试工具
 
 ### 2018年文章
 - [Shapefile：好、坏与丑](2018-Shapefiles-Good-Bad-Ugly.md) - Shapefile 格式深度分析
@@ -47,6 +49,10 @@
 ### 2012年文章
 - [JTS 性能改进 - 空间索引优化](2012-JTS-Performance-Improvements.md) - 矩形相交测试优化
 - [FOSS4G 北美 2012 回顾](2012-FOSS4G-NA-Review.md) - 开源地理空间大会见闻
+- [PreparedGeometry 性能优化](2012-PreparedGeometry-Performance.md) - 几何裁剪大赛与缓存拓扑
+
+### 2011年文章
+- [Java 在 OSCON 重新火热](2011-Java-Reheated-OSCON.md) - Java/JVM 在开源社区的复兴
 
 ### 2015年文章
 - [JTS 中的均匀分布随机点生成](2015-Evenly-Distributed-Random-Points.md) - 使用 KD 树生成均匀分布的点

@@ -28,28 +28,23 @@
 | JTS 设计原则 | 2019年2月 | [2019-JTS-Design-Principles.md](2019-JTS-Design-Principles.md) |
 | JTS 中的随机点生成 | 2010年5月 | [2010-Random-Points-in-JTS.md](2010-Random-Points-in-JTS.md) |
 | JTS 中的均匀分布随机点生成 | 2015年7月 | [2015-Evenly-Distributed-Random-Points.md](2015-Evenly-Distributed-Random-Points.md) |
+| JTS 中修复无效几何图形 | 2021年5月 | [2021-Fixing-Invalid-Geometry-JTS.md](2021-Fixing-Invalid-Geometry-JTS.md) |
+| JTS TestBuilder GUI | 2019年8月 | [2019-JTS-TestBuilder-GUI.md](2019-JTS-TestBuilder-GUI.md) |
+| PreparedGeometry 性能优化 | 2012年11月 | [2012-PreparedGeometry-Performance.md](2012-PreparedGeometry-Performance.md) |
+| Java 在 OSCON 重新火热 | 2011年6月 | [2011-Java-Reheated-OSCON.md](2011-Java-Reheated-OSCON.md) |
 
 ## 已知但未翻译的文章 📋
 
 以下文章已从博客归档中识别，但尚未翻译：
 
-### 2021年
-- JTS Buffer Predicates（2021年5月）
-
 ### 2013年
 - 2012年度回顾
 
-### 2011年
-- Java/JVM 开源开发评论
+## 翻译状态
 
-## 翻译优先级建议
+**已完成翻译**: 24 篇核心技术文章
 
-### 高优先级（技术重要性高）
-1. JTS Buffer Predicates
-
-### 低优先级
-1. 年度回顾文章
-2. 非技术性评论文章
+剩余的主要是年度回顾等非技术性文章。
 
 ## 翻译说明
 
@@ -89,6 +84,7 @@
 
 ## 更新日志
 
+- **2025-12-31**: 第四批翻译，新增 4 篇文章（修复无效几何、TestBuilder GUI、PreparedGeometry 性能、Java/JVM 在 OSCON）
 - **2025-12-31**: 第三批翻译，新增 4 篇文章（可变距离缓冲区、JTS 设计原则、随机点生成、均匀分布随机点）
 - **2025-12-31**: 第二批翻译，新增 5 篇文章（OverlayNG 节点化策略、KD 树优化、级联并集、性能改进、FOSS4G 回顾）
 - **2025-12-31**: 初始翻译，完成 11 篇核心文章
