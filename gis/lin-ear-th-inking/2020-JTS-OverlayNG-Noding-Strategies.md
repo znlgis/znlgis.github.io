@@ -84,7 +84,7 @@ Geometry result = OverlayNGRobust.overlay(geomA, geomB, OverlayNG.INTERSECTION);
 4. **分阶段增加容差**并重复
 5. **最后**：使用缩放到最大输入精度的快速舍入节点化器
 
-```
+```text
 步骤 1: 快速浮点精度
     ↓ 失败
 步骤 2: 自动容差捕捉

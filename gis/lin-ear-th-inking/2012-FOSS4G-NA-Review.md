@@ -67,7 +67,7 @@ JTS（Java Topology Suite）作为许多 FOSS4G 项目的基础，在大会上�
 
 **JTS 的影响范围：**
 
-```
+```text
 JTS (Java)
    ├── GEOS (C++ 移植)
    │      ├── PostGIS

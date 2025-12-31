@@ -49,7 +49,7 @@ List<Object> results = tree.query(searchEnv);
 
 Martin Davis 在博客中展示了一个具有 10,552 个顶点的多边形构建的 KD 树：
 
-```
+```text
 树深度: 282
 但大部分深度集中在单个子树中
 ```
