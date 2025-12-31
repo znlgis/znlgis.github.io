@@ -206,6 +206,42 @@ title: 首页
 #### 开发技巧
 - [GIS开发的基础优化策略](gis/basic/dev/GIS开发的基础优化策略)
 
+### 技术博客翻译
+
+#### Lin.ear th.inking 博客（Martin Davis）
+JTS Topology Suite 创始人 Martin Davis 的技术博客翻译，涵盖计算几何和空间算法。
+
+- [博客目录](gis/lin-ear-th-inking/README)
+- [JTS Overlay - 下一代 (OverlayNG)](gis/lin-ear-th-inking/2020-JTS-Overlay-Next-Generation)
+- [JTS OverlayNG - 节点化策略](gis/lin-ear-th-inking/2020-JTS-OverlayNG-Noding-Strategies)
+- [JTS 中的 Alpha Shapes（凹包算法）](gis/lin-ear-th-inking/2023-Alpha-Shapes-in-JTS)
+- [JTS 拓扑关系 - 下一代 (RelateNG)](gis/lin-ear-th-inking/2024-JTS-Topological-Relationships-RelateNG)
+- [JTS 中的 Coverage 清理](gis/lin-ear-th-inking/2025-Coverage-Cleaning-in-JTS)
+- [使用 JTS 快速检测狭窄多边形](gis/lin-ear-th-inking/2025-Fast-Detection-Narrow-Polygons)
+- [使用 JTS 简化多边形覆盖](gis/lin-ear-th-inking/2023-Simplifying-Polygonal-Coverages)
+- [验证 JTS 中的多边形覆盖](gis/lin-ear-th-inking/2022-Validating-Polygonal-Coverages)
+- [多边形的外部和内部包络](gis/lin-ear-th-inking/2022-Outer-Inner-Polygon-Hulls)
+- [DE-9IM 空间谓词的关系属性](gis/lin-ear-th-inking/2022-DE-9IM-Spatial-Predicates)
+- [KD 树查询优化 - 100 倍速度提升](gis/lin-ear-th-inking/2021-KdTree-Query-Optimization)
+- [JTS 中修复无效几何图形](gis/lin-ear-th-inking/2021-Fixing-Invalid-Geometry-JTS)
+- [JTS 中的可变距离缓冲区](gis/lin-ear-th-inking/2019-Variable-Distance-Buffering)
+- [JTS 设计原则](gis/lin-ear-th-inking/2019-JTS-Design-Principles)
+- [JTS TestBuilder - 几何图形的多功能工具](gis/lin-ear-th-inking/2019-JTS-TestBuilder-GUI)
+- [Shapefile：好、坏与丑](gis/lin-ear-th-inking/2018-Shapefiles-Good-Bad-Ugly)
+- [JTS 精度模型与数值鲁棒性](gis/lin-ear-th-inking/2017-Precision-Model-Robustness)
+- [JTS 中的距离度量与形状相似性](gis/lin-ear-th-inking/2016-Distance-Metrics-Shape-Similarity)
+- [JTS 中的均匀分布随机点生成](gis/lin-ear-th-inking/2015-Evenly-Distributed-Random-Points)
+- [JTS 中的约束 Delaunay 三角剖分](gis/lin-ear-th-inking/2014-Constrained-Delaunay-Triangulation)
+- [2012 年度回顾](gis/lin-ear-th-inking/2013-Year-In-Review-2012)
+- [PreparedGeometry 性能优化](gis/lin-ear-th-inking/2012-PreparedGeometry-Performance)
+- [JTS 性能改进 - 空间索引优化](gis/lin-ear-th-inking/2012-JTS-Performance-Improvements)
+- [FOSS4G 北美 2012 回顾](gis/lin-ear-th-inking/2012-FOSS4G-NA-Review)
+- [Java 在 OSCON 重新火热](gis/lin-ear-th-inking/2011-Java-Reheated-OSCON)
+- [JTS 中的单侧缓冲区](gis/lin-ear-th-inking/2010-Single-Sided-Buffers-in-JTS)
+- [JTS 中的随机点生成](gis/lin-ear-th-inking/2010-Random-Points-in-JTS)
+- [JTS 中使用级联并集快速合并多边形](gis/lin-ear-th-inking/2007-Fast-Polygon-Merging-Cascaded-Union)
+- [翻译进度](gis/lin-ear-th-inking/PROGRESS)
+
 ### C# 开发
 
 #### Admin.NET 系列
