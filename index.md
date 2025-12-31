@@ -206,6 +206,25 @@ title: 首页
 #### 开发技巧
 - [GIS开发的基础优化策略](gis/basic/dev/GIS开发的基础优化策略)
 
+### 技术博客翻译
+
+#### Lin.ear th.inking 博客（Martin Davis）
+JTS Topology Suite 创始人 Martin Davis 的技术博客翻译，涵盖计算几何和空间算法。
+
+- [博客目录](gis/lin-ear-th-inking/README)
+- [JTS Overlay - 下一代 (OverlayNG)](gis/lin-ear-th-inking/2020-JTS-Overlay-Next-Generation)
+- [JTS 中的 Alpha Shapes（凹包算法）](gis/lin-ear-th-inking/2023-Alpha-Shapes-in-JTS)
+- [JTS 拓扑关系 - 下一代 (RelateNG)](gis/lin-ear-th-inking/2024-JTS-Topological-Relationships-RelateNG)
+- [JTS 中的 Coverage 清理](gis/lin-ear-th-inking/2025-Coverage-Cleaning-in-JTS)
+- [使用 JTS 快速检测狭窄多边形](gis/lin-ear-th-inking/2025-Fast-Detection-Narrow-Polygons)
+- [使用 JTS 简化多边形覆盖](gis/lin-ear-th-inking/2023-Simplifying-Polygonal-Coverages)
+- [验证 JTS 中的多边形覆盖](gis/lin-ear-th-inking/2022-Validating-Polygonal-Coverages)
+- [多边形的外部和内部包络](gis/lin-ear-th-inking/2022-Outer-Inner-Polygon-Hulls)
+- [DE-9IM 空间谓词的关系属性](gis/lin-ear-th-inking/2022-DE-9IM-Spatial-Predicates)
+- [Shapefile：好、坏与丑](gis/lin-ear-th-inking/2018-Shapefiles-Good-Bad-Ugly)
+- [JTS 中的单侧缓冲区](gis/lin-ear-th-inking/2010-Single-Sided-Buffers-in-JTS)
+- [翻译进度](gis/lin-ear-th-inking/PROGRESS)
+
 ### C# 开发
 
 #### Admin.NET 系列
