@@ -1,3 +1,9 @@
+#!/bin/bash
+
+# Generate comprehensive content for chapters 7-20
+
+# Chapter 7: Formula Engine
+cat > "第07章-公式与计算引擎.md" << 'CH7'
 # 第七章：公式与计算引擎
 
 ## 7.1 公式基础
@@ -347,3 +353,8 @@ public class FormulaErrors
 ---
 
 **继续学习第八章：数据验证与条件格式！**
+CH7
+
+echo "Chapter 7 created"
+chmod +x generate_chapters.sh
+bash generate_chapters.sh
