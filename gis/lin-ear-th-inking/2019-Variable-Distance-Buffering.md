@@ -90,6 +90,8 @@ public class VariableBufferBySegments {
 使用距离函数根据位置计算缓冲距离：
 
 ```java
+import org.locationtech.jts.linearref.LengthIndexedLine;
+
 public class InterpolatedVariableBuffer {
     
     /**
