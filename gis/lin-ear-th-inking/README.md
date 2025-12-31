@@ -37,6 +37,10 @@
 - [JTS Overlay - 下一代 (OverlayNG)](2020-JTS-Overlay-Next-Generation.md) - 改进的叠加分析算法
 - [JTS OverlayNG - 节点化策略](2020-JTS-OverlayNG-Noding-Strategies.md) - 可插拔的节点化系统详解
 
+### 2019年文章
+- [JTS 中的可变距离缓冲区](2019-Variable-Distance-Buffering.md) - 沿几何图形变化的缓冲距离
+- [JTS 设计原则](2019-JTS-Design-Principles.md) - 几何统一性与"无意外"原则
+
 ### 2018年文章
 - [Shapefile：好、坏与丑](2018-Shapefiles-Good-Bad-Ugly.md) - Shapefile 格式深度分析
 
@@ -44,8 +48,12 @@
 - [JTS 性能改进 - 空间索引优化](2012-JTS-Performance-Improvements.md) - 矩形相交测试优化
 - [FOSS4G 北美 2012 回顾](2012-FOSS4G-NA-Review.md) - 开源地理空间大会见闻
 
+### 2015年文章
+- [JTS 中的均匀分布随机点生成](2015-Evenly-Distributed-Random-Points.md) - 使用 KD 树生成均匀分布的点
+
 ### 2010年文章
 - [JTS 中的单侧缓冲区](2010-Single-Sided-Buffers-in-JTS.md) - 单侧缓冲区功能介绍
+- [JTS 中的随机点生成](2010-Random-Points-in-JTS.md) - 多边形内随机点与点密度图
 
 ### 2007年文章
 - [JTS 中使用级联并集快速合并多边形](2007-Fast-Polygon-Merging-Cascaded-Union.md) - 高效多边形合并算法

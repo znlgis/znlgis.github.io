@@ -24,6 +24,10 @@
 | JTS 中使用级联并集快速合并多边形 | 2007年11月 | [2007-Fast-Polygon-Merging-Cascaded-Union.md](2007-Fast-Polygon-Merging-Cascaded-Union.md) |
 | JTS 性能改进 | 2012年4月 | [2012-JTS-Performance-Improvements.md](2012-JTS-Performance-Improvements.md) |
 | FOSS4G 北美 2012 回顾 | 2012年4月 | [2012-FOSS4G-NA-Review.md](2012-FOSS4G-NA-Review.md) |
+| JTS 中的可变距离缓冲区 | 2019年11月 | [2019-Variable-Distance-Buffering.md](2019-Variable-Distance-Buffering.md) |
+| JTS 设计原则 | 2019年2月 | [2019-JTS-Design-Principles.md](2019-JTS-Design-Principles.md) |
+| JTS 中的随机点生成 | 2010年5月 | [2010-Random-Points-in-JTS.md](2010-Random-Points-in-JTS.md) |
+| JTS 中的均匀分布随机点生成 | 2015年7月 | [2015-Evenly-Distributed-Random-Points.md](2015-Evenly-Distributed-Random-Points.md) |
 
 ## 已知但未翻译的文章 📋
 
@@ -32,35 +36,20 @@
 ### 2021年
 - JTS Buffer Predicates（2021年5月）
 
-### 2019年
-- 缓冲区泛化相关文章
-
-### 2015年
-- SliceGraphs in JEQL
-- 人口网格数据可视化
-
 ### 2013年
 - 2012年度回顾
 
 ### 2011年
 - Java/JVM 开源开发评论
 
-### 2010年
-- 随机点密度图生成
-
 ## 翻译优先级建议
 
 ### 高优先级（技术重要性高）
 1. JTS Buffer Predicates
 
-### 中优先级
-1. 随机点密度图生成
-
 ### 低优先级
 1. 年度回顾文章
-2. 可视化和展示类文章
-3. 非技术性评论文章
-4. JEQL 相关文章（已较少使用）
+2. 非技术性评论文章
 
 ## 翻译说明
 
@@ -100,5 +89,6 @@
 
 ## 更新日志
 
+- **2025-12-31**: 第三批翻译，新增 4 篇文章（可变距离缓冲区、JTS 设计原则、随机点生成、均匀分布随机点）
 - **2025-12-31**: 第二批翻译，新增 5 篇文章（OverlayNG 节点化策略、KD 树优化、级联并集、性能改进、FOSS4G 回顾）
 - **2025-12-31**: 初始翻译，完成 11 篇核心文章
