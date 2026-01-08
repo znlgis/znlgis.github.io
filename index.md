@@ -60,6 +60,26 @@ title: 首页
 - [错误处理与最佳实践](gis/tutorial/geoserver-rest-api/第17章-错误处理与最佳实践)
 - [综合实战案例](gis/tutorial/geoserver-rest-api/第18章-综合实战案例)
 
+#### CesiumJS 系列
+- [CesiumJS概述与入门](gis/tutorial/cesium/第01章-CesiumJS概述与入门)
+- [环境搭建与快速开始](gis/tutorial/cesium/第02章-环境搭建与快速开始)
+- [核心架构与模块设计](gis/tutorial/cesium/第03章-核心架构与模块设计)
+- [Viewer与场景管理](gis/tutorial/cesium/第04章-Viewer与场景管理)
+- [相机系统与视角控制](gis/tutorial/cesium/第05章-相机系统与视角控制)
+- [Entity API实体管理](gis/tutorial/cesium/第06章-Entity-API实体管理)
+- [Primitive底层渲染](gis/tutorial/cesium/第07章-Primitive底层渲染)
+- [影像图层与地图服务](gis/tutorial/cesium/第08章-影像图层与地图服务)
+- [地形数据处理](gis/tutorial/cesium/第09章-地形数据处理)
+- [3D Tiles大规模数据](gis/tutorial/cesium/第10章-3D-Tiles大规模数据)
+- [数据格式与数据源](gis/tutorial/cesium/第11章-数据格式与数据源)
+- [空间分析与测量](gis/tutorial/cesium/第12章-空间分析与测量)
+- [动画与时间系统](gis/tutorial/cesium/第13章-动画与时间系统)
+- [交互与事件处理](gis/tutorial/cesium/第14章-交互与事件处理)
+- [样式与可视化效果](gis/tutorial/cesium/第15章-样式与可视化效果)
+- [粒子系统与特效](gis/tutorial/cesium/第16章-粒子系统与特效)
+- [性能优化与最佳实践](gis/tutorial/cesium/第17章-性能优化与最佳实践)
+- [实战案例与项目应用](gis/tutorial/cesium/第18章-实战案例与项目应用)
+
 #### GeoTools 系列
 - [GeoTools概述与入门](gis/tutorial/geotools/第01章-GeoTools概述与入门)
 - [环境搭建与快速开始](gis/tutorial/geotools/第02章-环境搭建与快速开始)
