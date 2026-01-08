@@ -410,6 +410,24 @@ JTS Topology Suite 创始人 Martin Davis 的技术博客翻译，涵盖计算�
 - [二次开发进阶](others/chili3d/06-二次开发进阶)
 - [实战案例与最佳实践](others/chili3d/07-实战案例与最佳实践)
 
+#### RuoYi-Cloud 微服务框架教程
+- [教程目录](others/RuoYi-Cloud/)
+- [RuoYi-Cloud概述与入门](others/RuoYi-Cloud/第01章-RuoYi-Cloud概述与入门)
+- [系统架构详解](others/RuoYi-Cloud/第02章-系统架构详解)
+- [环境准备与安装部署](others/RuoYi-Cloud/第03章-环境准备与安装部署)
+- [微服务模块详解](others/RuoYi-Cloud/第04章-微服务模块详解)
+- [认证与授权中心](others/RuoYi-Cloud/第05章-认证与授权中心)
+- [网关服务详解](others/RuoYi-Cloud/第06章-网关服务详解)
+- [系统管理模块](others/RuoYi-Cloud/第07章-系统管理模块)
+- [代码生成器使用](others/RuoYi-Cloud/第08章-代码生成器使用)
+- [定时任务模块](others/RuoYi-Cloud/第09章-定时任务模块)
+- [文件服务与存储](others/RuoYi-Cloud/第10章-文件服务与存储)
+- [前端Vue项目详解](others/RuoYi-Cloud/第11章-前端Vue项目详解)
+- [数据库设计与管理](others/RuoYi-Cloud/第12章-数据库设计与管理)
+- [Docker容器化部署](others/RuoYi-Cloud/第13章-Docker容器化部署)
+- [二次开发指南](others/RuoYi-Cloud/第14章-二次开发指南)
+- [最佳实践与常见问题](others/RuoYi-Cloud/第15章-最佳实践与常见问题)
+
 ### 项目演示
 
 #### GIS工具教程
