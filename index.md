@@ -469,7 +469,6 @@ JTS Topology Suite 创始人 Martin Davis 的技术博客翻译，涵盖计算�
 - [实战案例与最佳实践](others/chili3d/07-实战案例与最佳实践)
 
 #### RuoYi-Cloud 微服务框架教程
-- [教程目录](others/RuoYi-Cloud/)
 - [RuoYi-Cloud概述与入门](others/RuoYi-Cloud/第01章-RuoYi-Cloud概述与入门)
 - [系统架构详解](others/RuoYi-Cloud/第02章-系统架构详解)
 - [环境准备与安装部署](others/RuoYi-Cloud/第03章-环境准备与安装部署)
