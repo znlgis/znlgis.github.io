@@ -1,0 +1,1030 @@
+---
+layout: default
+title: 第07章 - Source数据源详解
+---
+
+# 第07章 - Source 数据源详解
+
+## 7.1 数据源概述
+
+### 7.1.1 数据源的作用
+
+Source（数据源）是 OpenLayers 中负责提供地理数据的组件。每个图层（Layer）都需要关联一个数据源，数据源决定了数据的来源、格式和加载方式。
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                     数据源层次结构                           │
+├─────────────────────────────────────────────────────────────┤
+│                                                             │
+│   Source (基类)                                             │
+│       │                                                     │
+│       ├── TileSource (瓦片源基类)                           │
+│       │       ├── XYZ                                       │
+│       │       ├── OSM                                       │
+│       │       ├── TileWMS                                   │
+│       │       ├── WMTS                                      │
+│       │       ├── TileArcGISRest                            │
+│       │       ├── BingMaps                                  │
+│       │       └── TileJSON                                  │
+│       │                                                     │
+│       ├── VectorSource (矢量源)                             │
+│       │                                                     │
+│       ├── VectorTileSource (矢量瓦片源)                     │
+│       │                                                     │
+│       ├── ImageSource (图像源基类)                          │
+│       │       ├── ImageWMS                                  │
+│       │       ├── ImageStatic                               │
+│       │       ├── ImageArcGISRest                           │
+│       │       └── ImageCanvas                               │
+│       │                                                     │
+│       └── ClusterSource (聚合源)                            │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
+```
+
+### 7.1.2 数据源类型
+
+| 类型 | 用途 | 典型应用 |
+|------|------|----------|
+| XYZ | 通用瓦片服务 | OSM、高德、天地图 |
+| TileWMS | WMS 瓦片服务 | GeoServer WMS |
+| WMTS | WMTS 服务 | 天地图 WMTS |
+| VectorSource | 矢量数据 | GeoJSON、KML |
+| VectorTileSource | 矢量瓦片 | Mapbox 矢量瓦片 |
+| ImageWMS | WMS 图像服务 | GeoServer 单图 |
+| Cluster | 点聚合 | 大量点数据 |
+
+## 7.2 XYZ 瓦片源
+
+### 7.2.1 基础配置
+
+```javascript
+import XYZ from 'ol/source/XYZ';
+import TileLayer from 'ol/layer/Tile';
+
+// 基础 XYZ 源
+const xyzSource = new XYZ({
+  url: 'https://tile.openstreetmap.org/{z}/{x}/{y}.png'
+});
+
+// 完整配置
+const fullXYZSource = new XYZ({
+  // 瓦片 URL 模板
+  url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+  
+  // 或使用 URL 数组（负载均衡）
+  // urls: [
+  //   'https://a.tile.openstreetmap.org/{z}/{x}/{y}.png',
+  //   'https://b.tile.openstreetmap.org/{z}/{x}/{y}.png',
+  //   'https://c.tile.openstreetmap.org/{z}/{x}/{y}.png'
+  // ],
+  
+  // 跨域设置
+  crossOrigin: 'anonymous',
+  
+  // 版权信息
+  attributions: '© <a href="https://www.esri.com/">Esri</a>',
+  
+  // 可折叠的版权
+  attributionsCollapsible: true,
+  
+  // 投影
+  projection: 'EPSG:3857',
+  
+  // 瓦片大小
+  tileSize: [256, 256],
+  
+  // 最大缩放级别
+  maxZoom: 19,
+  
+  // 最小缩放级别
+  minZoom: 0,
+  
+  // 缓存大小
+  cacheSize: 2048,
+  
+  // 瓦片像素比
+  tilePixelRatio: 1,
+  
+  // 是否不透明
+  opaque: true,
+  
+  // 重投影误差阈值
+  reprojectionErrorThreshold: 0.5,
+  
+  // 瓦片加载函数
+  tileLoadFunction: function(imageTile, src) {
+    imageTile.getImage().src = src;
+  },
+  
+  // URL 生成函数
+  tileUrlFunction: function(tileCoord, pixelRatio, projection) {
+    const z = tileCoord[0];
+    const x = tileCoord[1];
+    const y = tileCoord[2];
+    return `https://tile.example.com/${z}/${x}/${y}.png`;
+  },
+  
+  // 是否绕 X 轴包裹
+  wrapX: true
+});
+```
+
+### 7.2.2 常用瓦片服务配置
+
+```javascript
+// OpenStreetMap
+const osmSource = new XYZ({
+  url: 'https://{a-c}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+  maxZoom: 19
+});
+
+// 高德地图
+const gaodeVecSource = new XYZ({
+  url: 'https://webrd0{1-4}.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}',
+  maxZoom: 18
+});
+
+// 天地图（需要 key）
+const tdtVecSource = new XYZ({
+  url: `http://t{0-7}.tianditu.gov.cn/vec_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=vec&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}&tk=${tdtKey}`,
+  maxZoom: 18
+});
+
+// ArcGIS 在线服务
+const arcgisSource = new XYZ({
+  url: 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+  maxZoom: 19
+});
+
+// 腾讯地图
+const tencentSource = new XYZ({
+  url: 'https://rt{0-3}.map.gtimg.com/tile?z={z}&x={x}&y={-y-1}&type=vector&styleid=0',
+  maxZoom: 18
+});
+```
+
+### 7.2.3 自定义瓦片加载
+
+```javascript
+// 带认证的瓦片加载
+const authSource = new XYZ({
+  url: 'https://secure.example.com/tiles/{z}/{x}/{y}.png',
+  tileLoadFunction: function(imageTile, src) {
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', src);
+    xhr.setRequestHeader('Authorization', 'Bearer ' + token);
+    xhr.responseType = 'blob';
+    
+    xhr.onload = function() {
+      if (xhr.status === 200) {
+        const blob = xhr.response;
+        imageTile.getImage().src = URL.createObjectURL(blob);
+      }
+    };
+    
+    xhr.send();
+  }
+});
+
+// 带缓存的瓦片加载
+const cachedSource = new XYZ({
+  url: 'https://tile.example.com/{z}/{x}/{y}.png',
+  tileLoadFunction: async function(imageTile, src) {
+    const cache = await caches.open('tile-cache');
+    let response = await cache.match(src);
+    
+    if (!response) {
+      response = await fetch(src);
+      if (response.ok) {
+        cache.put(src, response.clone());
+      }
+    }
+    
+    const blob = await response.blob();
+    imageTile.getImage().src = URL.createObjectURL(blob);
+  }
+});
+
+// 瓦片 URL 添加时间戳
+const timestampSource = new XYZ({
+  url: 'https://tile.example.com/{z}/{x}/{y}.png',
+  tileUrlFunction: function(tileCoord) {
+    const z = tileCoord[0];
+    const x = tileCoord[1];
+    const y = tileCoord[2];
+    const timestamp = Date.now();
+    return `https://tile.example.com/${z}/${x}/${y}.png?t=${timestamp}`;
+  }
+});
+```
+
+## 7.3 TileWMS 源
+
+### 7.3.1 基础配置
+
+```javascript
+import TileWMS from 'ol/source/TileWMS';
+
+// 基础 TileWMS 源
+const wmsSource = new TileWMS({
+  url: 'http://localhost:8080/geoserver/wms',
+  params: {
+    'LAYERS': 'workspace:layer_name',
+    'TILED': true
+  }
+});
+
+// 完整配置
+const fullWMSSource = new TileWMS({
+  // WMS 服务 URL
+  url: 'http://localhost:8080/geoserver/wms',
+  
+  // WMS 参数
+  params: {
+    'LAYERS': 'workspace:layer_name',
+    'TILED': true,
+    'FORMAT': 'image/png',
+    'TRANSPARENT': true,
+    'STYLES': 'style_name',
+    'VERSION': '1.1.1',
+    'CQL_FILTER': "type = 'A'"
+  },
+  
+  // 服务器类型（优化性能）
+  serverType: 'geoserver', // 'geoserver' | 'mapserver' | 'qgis'
+  
+  // 跨域设置
+  crossOrigin: 'anonymous',
+  
+  // 投影
+  projection: 'EPSG:3857',
+  
+  // 瓦片网格
+  tileGrid: null, // 使用默认值
+  
+  // 是否瓦片化请求
+  hidpi: true,
+  
+  // 图像比例
+  ratio: 1,
+  
+  // 是否传递分辨率
+  serverType: 'geoserver'
+});
+```
+
+### 7.3.2 动态更新参数
+
+```javascript
+// 更新 WMS 参数
+function updateWMSParams(source, newParams) {
+  source.updateParams(newParams);
+}
+
+// 示例：更新过滤条件
+updateWMSParams(wmsSource, {
+  'CQL_FILTER': "status = 'active' AND type = 'commercial'"
+});
+
+// 示例：更新样式
+updateWMSParams(wmsSource, {
+  'STYLES': 'highlight_style'
+});
+
+// 示例：更新时间参数
+updateWMSParams(wmsSource, {
+  'TIME': '2024-01-01'
+});
+
+// 获取当前参数
+const params = wmsSource.getParams();
+console.log('当前参数:', params);
+
+// 强制刷新
+wmsSource.refresh();
+```
+
+### 7.3.3 获取要素信息
+
+```javascript
+// 使用 GetFeatureInfo 查询要素
+function getFeatureInfo(map, wmsSource, coordinate) {
+  const view = map.getView();
+  const resolution = view.getResolution();
+  const projection = view.getProjection();
+  
+  // 构建 GetFeatureInfo URL
+  const url = wmsSource.getFeatureInfoUrl(
+    coordinate,
+    resolution,
+    projection,
+    {
+      'INFO_FORMAT': 'application/json',
+      'FEATURE_COUNT': 10
+    }
+  );
+  
+  if (url) {
+    return fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        console.log('要素信息:', data);
+        return data;
+      });
+  }
+  
+  return Promise.resolve(null);
+}
+
+// 使用示例
+map.on('singleclick', async (event) => {
+  const info = await getFeatureInfo(map, wmsSource, event.coordinate);
+  if (info && info.features) {
+    showPopup(event.coordinate, info.features);
+  }
+});
+```
+
+## 7.4 WMTS 源
+
+### 7.4.1 基础配置
+
+```javascript
+import WMTS from 'ol/source/WMTS';
+import WMTSTileGrid from 'ol/tilegrid/WMTS';
+import { get as getProjection } from 'ol/proj';
+import { getTopLeft, getWidth } from 'ol/extent';
+
+// 创建 WMTS 瓦片网格
+const projection = getProjection('EPSG:3857');
+const projectionExtent = projection.getExtent();
+const size = getWidth(projectionExtent) / 256;
+const resolutions = [];
+const matrixIds = [];
+
+for (let z = 0; z < 19; z++) {
+  resolutions[z] = size / Math.pow(2, z);
+  matrixIds[z] = z.toString();
+}
+
+// 创建 WMTS 源
+const wmtsSource = new WMTS({
+  url: 'http://localhost:8080/geoserver/gwc/service/wmts',
+  layer: 'workspace:layer_name',
+  matrixSet: 'EPSG:3857',
+  format: 'image/png',
+  projection: projection,
+  tileGrid: new WMTSTileGrid({
+    origin: getTopLeft(projectionExtent),
+    resolutions: resolutions,
+    matrixIds: matrixIds
+  }),
+  style: 'default',
+  wrapX: true
+});
+```
+
+### 7.4.2 天地图 WMTS 配置
+
+```javascript
+import WMTS from 'ol/source/WMTS';
+import WMTSTileGrid from 'ol/tilegrid/WMTS';
+import { get as getProjection } from 'ol/proj';
+import { getTopLeft, getWidth } from 'ol/extent';
+
+function createTiandituSource(layerType, tdtKey) {
+  const projection = getProjection('EPSG:3857');
+  const projectionExtent = projection.getExtent();
+  const size = getWidth(projectionExtent) / 256;
+  
+  const resolutions = [];
+  const matrixIds = [];
+  for (let z = 1; z < 19; z++) {
+    resolutions.push(size / Math.pow(2, z));
+    matrixIds.push(z.toString());
+  }
+  
+  const layerConfig = {
+    vec: { layer: 'vec', matrixSet: 'w' },     // 矢量底图
+    cva: { layer: 'cva', matrixSet: 'w' },     // 矢量注记
+    img: { layer: 'img', matrixSet: 'w' },     // 影像底图
+    cia: { layer: 'cia', matrixSet: 'w' },     // 影像注记
+    ter: { layer: 'ter', matrixSet: 'w' },     // 地形底图
+    cta: { layer: 'cta', matrixSet: 'w' }      // 地形注记
+  };
+  
+  const config = layerConfig[layerType];
+  
+  return new WMTS({
+    url: `http://t{0-7}.tianditu.gov.cn/${config.layer}_w/wmts?tk=${tdtKey}`,
+    layer: config.layer,
+    matrixSet: config.matrixSet,
+    format: 'tiles',
+    projection: projection,
+    tileGrid: new WMTSTileGrid({
+      origin: getTopLeft(projectionExtent),
+      resolutions: resolutions,
+      matrixIds: matrixIds
+    }),
+    style: 'default',
+    wrapX: true
+  });
+}
+
+// 使用示例
+const tdtKey = 'YOUR_TIANDITU_KEY';
+const vecSource = createTiandituSource('vec', tdtKey);
+const cvaSource = createTiandituSource('cva', tdtKey);
+```
+
+## 7.5 VectorSource 矢量源
+
+### 7.5.1 基础配置
+
+```javascript
+import VectorSource from 'ol/source/Vector';
+import GeoJSON from 'ol/format/GeoJSON';
+import Feature from 'ol/Feature';
+import Point from 'ol/geom/Point';
+import { fromLonLat } from 'ol/proj';
+
+// 空矢量源
+const emptySource = new VectorSource();
+
+// 带要素的矢量源
+const featureSource = new VectorSource({
+  features: [
+    new Feature({
+      geometry: new Point(fromLonLat([116.4074, 39.9042])),
+      name: '北京'
+    })
+  ]
+});
+
+// 从 URL 加载
+const urlSource = new VectorSource({
+  url: '/data/points.geojson',
+  format: new GeoJSON()
+});
+
+// 完整配置
+const fullSource = new VectorSource({
+  // 初始要素
+  features: [],
+  
+  // 数据 URL
+  url: '/data/features.geojson',
+  
+  // 数据格式
+  format: new GeoJSON({
+    dataProjection: 'EPSG:4326',
+    featureProjection: 'EPSG:3857'
+  }),
+  
+  // 加载策略
+  strategy: bboxStrategy, // all, bbox, tile
+  
+  // 版权信息
+  attributions: '数据来源：xxx',
+  
+  // 是否叠加
+  overlaps: true,
+  
+  // 是否使用空间索引
+  useSpatialIndex: true,
+  
+  // 是否绕 X 轴包裹
+  wrapX: true
+});
+```
+
+### 7.5.2 数据加载策略
+
+```javascript
+import { all as allStrategy, bbox as bboxStrategy, tile as tileStrategy } from 'ol/loadingstrategy';
+import { createXYZ } from 'ol/tilegrid';
+
+// all 策略：一次加载所有数据
+const allSource = new VectorSource({
+  url: '/data/all_features.geojson',
+  format: new GeoJSON(),
+  strategy: allStrategy
+});
+
+// bbox 策略：按当前视口范围加载
+const bboxSource = new VectorSource({
+  format: new GeoJSON(),
+  url: function(extent) {
+    return '/api/features?bbox=' + extent.join(',') + '&srs=EPSG:3857';
+  },
+  strategy: bboxStrategy
+});
+
+// tile 策略：按瓦片加载
+const tileSource = new VectorSource({
+  format: new GeoJSON(),
+  url: function(extent, resolution, projection) {
+    return '/api/features?bbox=' + extent.join(',');
+  },
+  strategy: tileStrategy(createXYZ({ tileSize: 512 }))
+});
+
+// 自定义加载器
+const customSource = new VectorSource({
+  loader: function(extent, resolution, projection, success, failure) {
+    fetch(`/api/features?bbox=${extent.join(',')}`)
+      .then(response => response.json())
+      .then(data => {
+        const features = new GeoJSON().readFeatures(data, {
+          featureProjection: projection
+        });
+        this.addFeatures(features);
+        success(features);
+      })
+      .catch(error => {
+        console.error('加载失败:', error);
+        failure();
+      });
+  },
+  strategy: bboxStrategy
+});
+```
+
+### 7.5.3 要素操作
+
+```javascript
+// 添加要素
+source.addFeature(feature);
+source.addFeatures([feature1, feature2]);
+
+// 移除要素
+source.removeFeature(feature);
+
+// 清空所有要素
+source.clear();
+
+// 获取要素
+const allFeatures = source.getFeatures();
+const featureById = source.getFeatureById('feature_1');
+
+// 按坐标查询
+const featuresAtCoord = source.getFeaturesAtCoordinate(coordinate);
+
+// 按范围查询
+const featuresInExtent = source.getFeaturesInExtent(extent);
+
+// 获取最近要素
+const closestFeature = source.getClosestFeatureToCoordinate(coordinate);
+
+// 遍历要素
+source.forEachFeature((feature) => {
+  console.log(feature.getId());
+});
+
+// 按范围遍历
+source.forEachFeatureInExtent(extent, (feature) => {
+  console.log(feature.getId());
+});
+
+// 按范围遍历（可中断）
+source.forEachFeatureIntersectingExtent(extent, (feature) => {
+  if (feature.get('type') === 'target') {
+    return feature; // 返回值会停止遍历
+  }
+});
+
+// 获取范围
+const extent = source.getExtent();
+
+// 检查是否为空
+const isEmpty = source.isEmpty();
+```
+
+### 7.5.4 矢量源事件
+
+```javascript
+// 添加要素事件
+source.on('addfeature', (event) => {
+  console.log('添加要素:', event.feature.getId());
+});
+
+// 移除要素事件
+source.on('removefeature', (event) => {
+  console.log('移除要素:', event.feature.getId());
+});
+
+// 要素变化事件
+source.on('changefeature', (event) => {
+  console.log('要素变化:', event.feature.getId());
+});
+
+// 清空事件
+source.on('clear', () => {
+  console.log('数据源已清空');
+});
+
+// 数据变化事件
+source.on('change', () => {
+  console.log('数据源变化');
+});
+
+// 要素加载开始
+source.on('featuresloadstart', (event) => {
+  console.log('开始加载要素');
+});
+
+// 要素加载完成
+source.on('featuresloadend', (event) => {
+  console.log('加载完成，要素数量:', event.features.length);
+});
+
+// 要素加载失败
+source.on('featuresloaderror', (event) => {
+  console.error('加载失败');
+});
+```
+
+## 7.6 Cluster 聚合源
+
+### 7.6.1 基础配置
+
+```javascript
+import Cluster from 'ol/source/Cluster';
+import VectorSource from 'ol/source/Vector';
+import Feature from 'ol/Feature';
+import Point from 'ol/geom/Point';
+import { Style, Fill, Stroke, Circle, Text } from 'ol/style';
+
+// 原始点数据源
+const pointSource = new VectorSource();
+
+// 添加大量点
+for (let i = 0; i < 10000; i++) {
+  const lon = 116 + Math.random() * 2 - 1;
+  const lat = 39.5 + Math.random() * 1 - 0.5;
+  
+  pointSource.addFeature(new Feature({
+    geometry: new Point(fromLonLat([lon, lat])),
+    id: i,
+    value: Math.random() * 100
+  }));
+}
+
+// 创建聚合源
+const clusterSource = new Cluster({
+  source: pointSource,
+  distance: 40,    // 聚合距离（像素）
+  minDistance: 20  // 最小距离
+});
+
+// 创建聚合图层
+const clusterLayer = new VectorLayer({
+  source: clusterSource,
+  style: clusterStyleFunction
+});
+```
+
+### 7.6.2 聚合样式
+
+```javascript
+// 聚合样式函数
+function clusterStyleFunction(feature) {
+  const size = feature.get('features').length;
+  
+  if (size === 1) {
+    // 单个点样式
+    return new Style({
+      image: new Circle({
+        radius: 8,
+        fill: new Fill({ color: '#4285F4' }),
+        stroke: new Stroke({ color: '#fff', width: 2 })
+      })
+    });
+  }
+  
+  // 聚合点样式
+  let color, radius;
+  if (size <= 10) {
+    color = '#4285F4';
+    radius = 15;
+  } else if (size <= 100) {
+    color = '#FF9800';
+    radius = 20;
+  } else {
+    color = '#F44336';
+    radius = 25;
+  }
+  
+  return new Style({
+    image: new Circle({
+      radius: radius,
+      fill: new Fill({ color: color }),
+      stroke: new Stroke({ color: '#fff', width: 2 })
+    }),
+    text: new Text({
+      text: size.toString(),
+      font: 'bold 12px sans-serif',
+      fill: new Fill({ color: '#fff' })
+    })
+  });
+}
+
+// 带动画的聚合展开
+function expandCluster(map, feature, clusterSource) {
+  const features = feature.get('features');
+  const center = feature.getGeometry().getCoordinates();
+  
+  if (features.length <= 1) return;
+  
+  // 计算展开后的位置
+  const angle = 2 * Math.PI / features.length;
+  const radius = 50; // 像素
+  const resolution = map.getView().getResolution();
+  
+  features.forEach((f, i) => {
+    const offsetX = Math.cos(angle * i) * radius * resolution;
+    const offsetY = Math.sin(angle * i) * radius * resolution;
+    
+    const newCoord = [center[0] + offsetX, center[1] + offsetY];
+    
+    // 动画移动
+    const geometry = f.getGeometry();
+    const start = geometry.getCoordinates();
+    
+    map.once('postrender', animate);
+    
+    function animate(event) {
+      const progress = Math.min(1, (Date.now() - startTime) / 300);
+      const x = start[0] + (newCoord[0] - start[0]) * progress;
+      const y = start[1] + (newCoord[1] - start[1]) * progress;
+      geometry.setCoordinates([x, y]);
+      
+      if (progress < 1) {
+        map.render();
+        map.once('postrender', animate);
+      }
+    }
+    
+    const startTime = Date.now();
+    map.render();
+  });
+}
+```
+
+### 7.6.3 动态调整聚合距离
+
+```javascript
+// 根据缩放级别调整聚合距离
+map.getView().on('change:resolution', () => {
+  const zoom = map.getView().getZoom();
+  
+  let distance;
+  if (zoom < 8) {
+    distance = 80;
+  } else if (zoom < 12) {
+    distance = 50;
+  } else if (zoom < 15) {
+    distance = 30;
+  } else {
+    distance = 0; // 不聚合
+  }
+  
+  clusterSource.setDistance(distance);
+});
+
+// 聚合配置面板
+function createClusterControls(clusterSource) {
+  const distanceSlider = document.createElement('input');
+  distanceSlider.type = 'range';
+  distanceSlider.min = '0';
+  distanceSlider.max = '100';
+  distanceSlider.value = clusterSource.getDistance();
+  
+  distanceSlider.addEventListener('input', () => {
+    clusterSource.setDistance(parseInt(distanceSlider.value));
+  });
+  
+  const minDistanceSlider = document.createElement('input');
+  minDistanceSlider.type = 'range';
+  minDistanceSlider.min = '0';
+  minDistanceSlider.max = '50';
+  minDistanceSlider.value = clusterSource.getMinDistance();
+  
+  minDistanceSlider.addEventListener('input', () => {
+    clusterSource.setMinDistance(parseInt(minDistanceSlider.value));
+  });
+  
+  return { distanceSlider, minDistanceSlider };
+}
+```
+
+## 7.7 ImageWMS 源
+
+### 7.7.1 基础配置
+
+```javascript
+import ImageWMS from 'ol/source/ImageWMS';
+import ImageLayer from 'ol/layer/Image';
+
+// 基础 ImageWMS 源
+const imageWMSSource = new ImageWMS({
+  url: 'http://localhost:8080/geoserver/wms',
+  params: {
+    'LAYERS': 'workspace:layer_name'
+  }
+});
+
+// 完整配置
+const fullImageWMSSource = new ImageWMS({
+  url: 'http://localhost:8080/geoserver/wms',
+  
+  params: {
+    'LAYERS': 'workspace:layer_name',
+    'FORMAT': 'image/png',
+    'TRANSPARENT': true,
+    'STYLES': 'default',
+    'VERSION': '1.1.1'
+  },
+  
+  serverType: 'geoserver',
+  
+  crossOrigin: 'anonymous',
+  
+  // 图像加载比例
+  ratio: 1.5, // 请求比视口大 50% 的图像
+  
+  // 分辨率
+  resolutions: undefined,
+  
+  projection: 'EPSG:3857',
+  
+  // 图像加载函数
+  imageLoadFunction: function(image, src) {
+    image.getImage().src = src;
+  }
+});
+```
+
+### 7.7.2 WMS 查询
+
+```javascript
+// GetFeatureInfo 查询
+function queryWMS(map, source, coordinate) {
+  const view = map.getView();
+  const resolution = view.getResolution();
+  
+  const url = source.getFeatureInfoUrl(
+    coordinate,
+    resolution,
+    'EPSG:3857',
+    {
+      'INFO_FORMAT': 'application/json',
+      'FEATURE_COUNT': 50,
+      'QUERY_LAYERS': 'workspace:layer_name'
+    }
+  );
+  
+  return fetch(url).then(res => res.json());
+}
+
+// GetLegendGraphic 获取图例
+function getLegendUrl(source, layerName) {
+  const params = source.getParams();
+  const baseUrl = source.getUrl();
+  
+  return `${baseUrl}?` +
+    `SERVICE=WMS&` +
+    `VERSION=1.1.1&` +
+    `REQUEST=GetLegendGraphic&` +
+    `LAYER=${layerName}&` +
+    `FORMAT=image/png&` +
+    `SCALE=100000`;
+}
+```
+
+## 7.8 数据格式
+
+### 7.8.1 常用格式
+
+```javascript
+import GeoJSON from 'ol/format/GeoJSON';
+import KML from 'ol/format/KML';
+import GML from 'ol/format/GML';
+import GPX from 'ol/format/GPX';
+import WKT from 'ol/format/WKT';
+import TopoJSON from 'ol/format/TopoJSON';
+import EsriJSON from 'ol/format/EsriJSON';
+import MVT from 'ol/format/MVT';
+
+// GeoJSON
+const geojsonFormat = new GeoJSON({
+  dataProjection: 'EPSG:4326',
+  featureProjection: 'EPSG:3857'
+});
+
+// 读取 GeoJSON
+const features = geojsonFormat.readFeatures(geojsonData);
+
+// 写入 GeoJSON
+const geojsonStr = geojsonFormat.writeFeatures(features);
+
+// KML
+const kmlFormat = new KML({
+  extractStyles: true,
+  showPointNames: true
+});
+
+// GML
+const gmlFormat = new GML({
+  featureNS: 'http://example.com/features',
+  featureType: 'Feature'
+});
+
+// WKT
+const wktFormat = new WKT();
+const geometry = wktFormat.readGeometry('POINT (116.4074 39.9042)');
+const wktStr = wktFormat.writeGeometry(geometry);
+
+// GPX
+const gpxFormat = new GPX();
+```
+
+### 7.8.2 格式转换
+
+```javascript
+// 要素格式转换工具
+class FormatConverter {
+  constructor() {
+    this.formats = {
+      geojson: new GeoJSON(),
+      kml: new KML(),
+      gml: new GML(),
+      wkt: new WKT(),
+      gpx: new GPX()
+    };
+  }
+  
+  convert(features, fromFormat, toFormat) {
+    const sourceFormat = this.formats[fromFormat];
+    const targetFormat = this.formats[toFormat];
+    
+    if (!sourceFormat || !targetFormat) {
+      throw new Error('不支持的格式');
+    }
+    
+    return targetFormat.writeFeatures(features);
+  }
+  
+  read(data, format, projection = 'EPSG:3857') {
+    const formatHandler = this.formats[format];
+    
+    return formatHandler.readFeatures(data, {
+      featureProjection: projection
+    });
+  }
+  
+  write(features, format) {
+    const formatHandler = this.formats[format];
+    return formatHandler.writeFeatures(features);
+  }
+}
+
+const converter = new FormatConverter();
+
+// 从 GeoJSON 转为 KML
+const features = converter.read(geojsonData, 'geojson');
+const kmlData = converter.convert(features, 'geojson', 'kml');
+```
+
+## 7.9 本章小结
+
+本章详细介绍了 OpenLayers 的数据源体系：
+
+1. **数据源概述**：数据源类型、层次结构
+2. **XYZ 源**：配置、常用服务、自定义加载
+3. **TileWMS 源**：配置、参数更新、要素查询
+4. **WMTS 源**：配置、天地图集成
+5. **VectorSource**：配置、加载策略、要素操作
+6. **Cluster 源**：聚合配置、样式、动态调整
+7. **ImageWMS 源**：配置、查询
+8. **数据格式**：常用格式、格式转换
+
+### 关键要点
+
+- 理解不同数据源类型的适用场景
+- 掌握矢量数据的加载策略
+- 合理使用聚合提升大数据量性能
+- 熟悉常用数据格式的读写
+
+### 下一步
+
+在下一章中，我们将详细学习矢量数据与样式，包括：
+- 矢量要素详解
+- 几何对象操作
+- 样式系统
+- 动态样式
+
+---
+
+[← 上一章：Layer图层体系](第06章-Layer图层体系) | [返回目录](README) | [下一章：矢量数据与样式 →](第08章-矢量数据与样式)
