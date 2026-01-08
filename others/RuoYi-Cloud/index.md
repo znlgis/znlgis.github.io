@@ -18,7 +18,7 @@ title: RuoYi-Cloud 学习与使用教程
 | Spring Cloud Alibaba | 2021.x | 阿里巴巴微服务组件 |
 | Nacos | 2.x | 注册中心&配置中心 |
 | Sentinel | 1.8.x | 流量控制 |
-| Seata | 1.5.x | 分布式事务 |
+| Seata | 1.6.x | 分布式事务 |
 | MySQL | 5.7+ | 数据库 |
 | Redis | 6.x | 缓存 |
 | MyBatis | 3.5.x | ORM框架 |
