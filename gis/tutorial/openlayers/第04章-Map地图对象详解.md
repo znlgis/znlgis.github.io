@@ -1,0 +1,1404 @@
+---
+layout: default
+title: 第04章 - Map地图对象详解
+---
+
+# 第04章 - Map 地图对象详解
+
+## 4.1 Map 对象概述
+
+### 4.1.1 Map 的作用
+
+Map 是 OpenLayers 的核心对象，它承担着以下职责：
+
+- **管理图层（Layers）**：控制地图上显示的所有图层
+- **管理视图（View）**：控制地图的中心点、缩放级别、旋转等
+- **管理交互（Interactions）**：处理用户的鼠标、键盘和触摸操作
+- **管理控件（Controls）**：显示地图上的 UI 控件
+- **管理覆盖物（Overlays）**：在地图上显示弹出框等 HTML 元素
+- **协调渲染**：调度和执行地图的渲染操作
+- **事件分发**：接收并分发地图相关事件
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│                        Map 核心职责                          │
+├─────────────────────────────────────────────────────────────┤
+│                                                             │
+│   ┌─────────────────────────────────────────────────────┐  │
+│   │                      Map                             │  │
+│   │  ┌───────────┬───────────┬───────────┬───────────┐  │  │
+│   │  │  Layers   │   View    │ Controls  │Interactions│  │  │
+│   │  │  (图层)   │  (视图)   │  (控件)   │  (交互)    │  │  │
+│   │  └─────┬─────┴─────┬─────┴─────┬─────┴─────┬─────┘  │  │
+│   │        │           │           │           │         │  │
+│   │        ▼           ▼           ▼           ▼         │  │
+│   │  ┌─────────────────────────────────────────────────┐ │  │
+│   │  │              Renderer (渲染器)                  │ │  │
+│   │  └─────────────────────────────────────────────────┘ │  │
+│   │                        │                             │  │
+│   │                        ▼                             │  │
+│   │  ┌─────────────────────────────────────────────────┐ │  │
+│   │  │           Target Element (DOM 容器)             │ │  │
+│   │  └─────────────────────────────────────────────────┘ │  │
+│   └─────────────────────────────────────────────────────┘  │
+│                                                             │
+└─────────────────────────────────────────────────────────────┘
+```
+
+### 4.1.2 Map 的创建
+
+```javascript
+import Map from 'ol/Map';
+import View from 'ol/View';
+import TileLayer from 'ol/layer/Tile';
+import OSM from 'ol/source/OSM';
+import { defaults as defaultControls } from 'ol/control';
+import { defaults as defaultInteractions } from 'ol/interaction';
+import { fromLonLat } from 'ol/proj';
+
+// 完整配置示例
+const map = new Map({
+  // 必需参数：挂载目标
+  target: 'map', // DOM 元素 ID 或元素引用
+  
+  // 图层数组
+  layers: [
+    new TileLayer({
+      source: new OSM()
+    })
+  ],
+  
+  // 视图配置
+  view: new View({
+    center: fromLonLat([116.4074, 39.9042]),
+    zoom: 10,
+    minZoom: 2,
+    maxZoom: 18
+  }),
+  
+  // 控件配置（可选，有默认值）
+  controls: defaultControls({
+    attribution: true,
+    attributionOptions: {
+      collapsible: true
+    },
+    zoom: true,
+    rotate: true
+  }),
+  
+  // 交互配置（可选，有默认值）
+  interactions: defaultInteractions({
+    altShiftDragRotate: true,
+    doubleClickZoom: true,
+    keyboard: true,
+    mouseWheelZoom: true,
+    shiftDragZoom: true,
+    dragPan: true,
+    pinchRotate: true,
+    pinchZoom: true
+  }),
+  
+  // 覆盖物数组
+  overlays: [],
+  
+  // 设备像素比（默认使用 window.devicePixelRatio）
+  pixelRatio: window.devicePixelRatio,
+  
+  // 键盘事件目标
+  keyboardEventTarget: document,
+  
+  // 最大瓦片加载数
+  maxTilesLoading: 16,
+  
+  // 移动容差（像素）
+  moveTolerance: 1
+});
+```
+
+## 4.2 Map 配置详解
+
+### 4.2.1 target 配置
+
+```javascript
+// 方式1：使用元素 ID
+const map1 = new Map({
+  target: 'map-container',
+  // ...
+});
+
+// 方式2：使用 DOM 元素引用
+const mapElement = document.getElementById('map-container');
+const map2 = new Map({
+  target: mapElement,
+  // ...
+});
+
+// 方式3：延迟设置 target
+const map3 = new Map({
+  layers: [...],
+  view: new View({...})
+});
+
+// 稍后设置 target
+map3.setTarget('map-container');
+
+// 移除 target（清理地图）
+map3.setTarget(null);
+
+// 获取当前 target
+const target = map3.getTarget(); // 返回 ID 或元素
+const targetElement = map3.getTargetElement(); // 返回 DOM 元素
+```
+
+### 4.2.2 图层配置
+
+```javascript
+import Collection from 'ol/Collection';
+import LayerGroup from 'ol/layer/Group';
+
+// 使用数组配置图层
+const map = new Map({
+  layers: [
+    new TileLayer({ source: new OSM(), zIndex: 0 }),
+    new VectorLayer({ source: vectorSource, zIndex: 1 })
+  ]
+});
+
+// 使用 Collection 配置图层
+const layersCollection = new Collection([
+  new TileLayer({ source: new OSM() })
+]);
+
+const map2 = new Map({
+  layers: layersCollection
+});
+
+// 使用图层组
+const basemapGroup = new LayerGroup({
+  layers: [
+    new TileLayer({ source: new OSM(), visible: true }),
+    new TileLayer({ source: bingSource, visible: false })
+  ],
+  properties: { name: 'basemaps' }
+});
+
+const overlayGroup = new LayerGroup({
+  layers: [
+    new VectorLayer({ source: pointSource }),
+    new VectorLayer({ source: lineSource })
+  ],
+  properties: { name: 'overlays' }
+});
+
+const map3 = new Map({
+  layers: [basemapGroup, overlayGroup]
+});
+```
+
+### 4.2.3 控件配置
+
+```javascript
+import {
+  defaults as defaultControls,
+  Attribution,
+  FullScreen,
+  MousePosition,
+  OverviewMap,
+  Rotate,
+  ScaleLine,
+  Zoom,
+  ZoomSlider,
+  ZoomToExtent
+} from 'ol/control';
+import { createStringXY } from 'ol/coordinate';
+
+// 使用默认控件并扩展
+const controls = defaultControls({
+  attribution: true,
+  zoom: true,
+  rotate: false
+}).extend([
+  new ScaleLine({
+    units: 'metric',
+    bar: true,
+    steps: 4,
+    text: true,
+    minWidth: 140
+  }),
+  new MousePosition({
+    coordinateFormat: createStringXY(4),
+    projection: 'EPSG:4326',
+    className: 'custom-mouse-position',
+    target: document.getElementById('mouse-position'),
+    placeholder: '&nbsp;'
+  }),
+  new FullScreen({
+    tipLabel: '全屏显示'
+  }),
+  new OverviewMap({
+    collapsed: false,
+    layers: [
+      new TileLayer({
+        source: new OSM()
+      })
+    ]
+  }),
+  new ZoomSlider(),
+  new ZoomToExtent({
+    extent: [
+      12800000, 4700000,
+      13200000, 5000000
+    ]
+  })
+]);
+
+const map = new Map({
+  controls: controls
+});
+
+// 完全自定义控件配置
+const customControls = [
+  new Zoom({
+    zoomInTipLabel: '放大',
+    zoomOutTipLabel: '缩小',
+    delta: 1,
+    duration: 250
+  }),
+  new Attribution({
+    collapsible: true,
+    collapsed: true
+  }),
+  new ScaleLine()
+];
+
+const map2 = new Map({
+  controls: customControls
+});
+```
+
+### 4.2.4 交互配置
+
+```javascript
+import {
+  defaults as defaultInteractions,
+  DragPan,
+  DragRotate,
+  DragZoom,
+  KeyboardPan,
+  KeyboardZoom,
+  MouseWheelZoom,
+  PinchRotate,
+  PinchZoom,
+  DoubleClickZoom
+} from 'ol/interaction';
+import { platformModifierKeyOnly, shiftKeyOnly } from 'ol/events/condition';
+
+// 使用默认交互并配置
+const interactions = defaultInteractions({
+  altShiftDragRotate: false,  // 禁用 Alt+Shift+拖拽旋转
+  doubleClickZoom: true,
+  keyboard: true,
+  mouseWheelZoom: true,
+  shiftDragZoom: true,
+  dragPan: true,
+  pinchRotate: true,
+  pinchZoom: true
+});
+
+// 自定义交互配置
+const customInteractions = [
+  new DragPan({
+    condition: function(event) {
+      return event.originalEvent.buttons === 1; // 仅左键
+    }
+  }),
+  new MouseWheelZoom({
+    duration: 200,
+    useAnchor: true,
+    constrainResolution: true // 整数缩放级别
+  }),
+  new DragZoom({
+    condition: shiftKeyOnly
+  }),
+  new KeyboardPan({
+    pixelDelta: 128
+  }),
+  new KeyboardZoom({
+    delta: 1,
+    duration: 200
+  }),
+  new DoubleClickZoom({
+    delta: 1,
+    duration: 250
+  }),
+  new PinchZoom(),
+  new PinchRotate()
+];
+
+const map = new Map({
+  interactions: customInteractions
+});
+```
+
+## 4.3 Map 方法详解
+
+### 4.3.1 图层管理方法
+
+```javascript
+// 获取图层集合
+const layers = map.getLayers(); // 返回 Collection
+
+// 添加图层
+map.addLayer(newLayer);
+
+// 移除图层
+map.removeLayer(existingLayer);
+
+// 获取所有图层（包括嵌套的图层组）
+function getAllLayers(layerGroup) {
+  const layers = [];
+  layerGroup.getLayers().forEach(layer => {
+    layers.push(layer);
+    if (layer instanceof LayerGroup) {
+      layers.push(...getAllLayers(layer));
+    }
+  });
+  return layers;
+}
+
+const allLayers = getAllLayers(map);
+
+// 按名称查找图层
+function findLayerByName(map, name) {
+  let result = null;
+  map.getLayers().forEach(layer => {
+    if (layer.get('name') === name) {
+      result = layer;
+    }
+  });
+  return result;
+}
+
+// 调整图层顺序
+function moveLayerToTop(map, layer) {
+  const layers = map.getLayers();
+  layers.remove(layer);
+  layers.push(layer);
+}
+
+function moveLayerToBottom(map, layer) {
+  const layers = map.getLayers();
+  layers.remove(layer);
+  layers.insertAt(0, layer);
+}
+
+function moveLayerUp(map, layer) {
+  const layers = map.getLayers();
+  const index = layers.getArray().indexOf(layer);
+  if (index < layers.getLength() - 1) {
+    layers.removeAt(index);
+    layers.insertAt(index + 1, layer);
+  }
+}
+```
+
+### 4.3.2 视图管理方法
+
+```javascript
+// 获取视图
+const view = map.getView();
+
+// 设置新视图
+const newView = new View({
+  center: fromLonLat([121.4737, 31.2304]),
+  zoom: 12
+});
+map.setView(newView);
+
+// 视图动画
+view.animate({
+  center: fromLonLat([116.4074, 39.9042]),
+  zoom: 10,
+  duration: 2000
+});
+
+// 连续动画
+view.animate(
+  { center: fromLonLat([116.4074, 39.9042]), duration: 1000 },
+  { zoom: 15, duration: 500 },
+  { rotation: Math.PI / 4, duration: 500 }
+);
+
+// 适应范围
+const extent = [12800000, 4700000, 13200000, 5000000];
+view.fit(extent, {
+  size: map.getSize(),
+  padding: [50, 50, 50, 50],
+  duration: 1000
+});
+
+// 适应要素
+view.fit(feature.getGeometry(), {
+  padding: [100, 100, 100, 100],
+  maxZoom: 16
+});
+
+// 适应图层范围
+const vectorSource = vectorLayer.getSource();
+if (vectorSource.getFeatures().length > 0) {
+  view.fit(vectorSource.getExtent(), {
+    padding: [50, 50, 50, 50]
+  });
+}
+```
+
+### 4.3.3 控件管理方法
+
+```javascript
+// 获取控件集合
+const controls = map.getControls();
+
+// 添加控件
+map.addControl(new ScaleLine());
+
+// 移除控件
+map.removeControl(existingControl);
+
+// 查找特定类型的控件
+function findControlByType(map, ControlClass) {
+  let result = null;
+  map.getControls().forEach(control => {
+    if (control instanceof ControlClass) {
+      result = control;
+    }
+  });
+  return result;
+}
+
+const scaleLineControl = findControlByType(map, ScaleLine);
+
+// 移除所有控件
+map.getControls().clear();
+
+// 重新添加默认控件
+defaultControls().forEach(control => {
+  map.addControl(control);
+});
+```
+
+### 4.3.4 交互管理方法
+
+```javascript
+// 获取交互集合
+const interactions = map.getInteractions();
+
+// 添加交互
+const drawInteraction = new Draw({
+  source: vectorSource,
+  type: 'Polygon'
+});
+map.addInteraction(drawInteraction);
+
+// 移除交互
+map.removeInteraction(drawInteraction);
+
+// 查找特定类型的交互
+function findInteractionByType(map, InteractionClass) {
+  let result = null;
+  map.getInteractions().forEach(interaction => {
+    if (interaction instanceof InteractionClass) {
+      result = interaction;
+    }
+  });
+  return result;
+}
+
+// 禁用/启用特定交互
+const dragPan = findInteractionByType(map, DragPan);
+if (dragPan) {
+  dragPan.setActive(false); // 禁用拖拽平移
+}
+
+// 临时禁用所有交互
+function setInteractionsActive(map, active) {
+  map.getInteractions().forEach(interaction => {
+    interaction.setActive(active);
+  });
+}
+
+setInteractionsActive(map, false); // 禁用所有交互
+```
+
+### 4.3.5 覆盖物管理方法
+
+```javascript
+import Overlay from 'ol/Overlay';
+
+// 创建覆盖物
+const popup = new Overlay({
+  id: 'popup',
+  element: document.getElementById('popup'),
+  positioning: 'bottom-center',
+  offset: [0, -10],
+  autoPan: {
+    animation: {
+      duration: 250
+    }
+  }
+});
+
+// 添加覆盖物
+map.addOverlay(popup);
+
+// 获取覆盖物
+const overlay = map.getOverlayById('popup');
+
+// 获取所有覆盖物
+const overlays = map.getOverlays();
+
+// 移除覆盖物
+map.removeOverlay(popup);
+
+// 设置覆盖物位置
+popup.setPosition(fromLonLat([116.4074, 39.9042]));
+
+// 隐藏覆盖物
+popup.setPosition(undefined);
+```
+
+### 4.3.6 坐标转换方法
+
+```javascript
+// 像素坐标转地图坐标
+map.on('click', (event) => {
+  const pixel = event.pixel; // [x, y]
+  const coordinate = map.getCoordinateFromPixel(pixel);
+  console.log('地图坐标:', coordinate);
+});
+
+// 地图坐标转像素坐标
+const pixel = map.getPixelFromCoordinate(coordinate);
+console.log('像素坐标:', pixel);
+
+// 坐标转换（带小数）
+const coordinateFloat = map.getCoordinateFromPixelInternal([100.5, 200.5]);
+
+// 判断坐标是否在视口内
+function isCoordinateVisible(map, coordinate) {
+  const pixel = map.getPixelFromCoordinate(coordinate);
+  if (!pixel) return false;
+  
+  const size = map.getSize();
+  return pixel[0] >= 0 && pixel[0] <= size[0] &&
+         pixel[1] >= 0 && pixel[1] <= size[1];
+}
+```
+
+### 4.3.7 要素查询方法
+
+```javascript
+// 点击位置查询要素
+map.on('click', (event) => {
+  // 方式1：forEachFeatureAtPixel
+  map.forEachFeatureAtPixel(
+    event.pixel,
+    (feature, layer) => {
+      console.log('要素:', feature.get('name'));
+      console.log('图层:', layer?.get('name'));
+      return true; // 返回 true 停止遍历
+    },
+    {
+      // 配置选项
+      layerFilter: (layer) => layer.get('queryable') !== false,
+      hitTolerance: 5 // 容差像素
+    }
+  );
+  
+  // 方式2：getFeaturesAtPixel
+  const features = map.getFeaturesAtPixel(event.pixel, {
+    hitTolerance: 5
+  });
+  console.log('找到', features.length, '个要素');
+  
+  // 方式3：hasFeatureAtPixel
+  const hasFeature = map.hasFeatureAtPixel(event.pixel);
+  console.log('是否有要素:', hasFeature);
+});
+
+// 按图层查询要素
+map.on('click', (event) => {
+  const features = [];
+  
+  map.forEachFeatureAtPixel(
+    event.pixel,
+    (feature, layer) => {
+      features.push({ feature, layer });
+    },
+    {
+      layerFilter: (layer) => layer === targetLayer
+    }
+  );
+  
+  return features;
+});
+
+// 范围查询要素
+function getFeaturesInExtent(map, extent, layerFilter) {
+  const features = [];
+  
+  map.getLayers().forEach(layer => {
+    if (layerFilter && !layerFilter(layer)) return;
+    if (!(layer instanceof VectorLayer)) return;
+    
+    const source = layer.getSource();
+    source.forEachFeatureInExtent(extent, (feature) => {
+      features.push({ feature, layer });
+    });
+  });
+  
+  return features;
+}
+```
+
+### 4.3.8 渲染控制方法
+
+```javascript
+// 请求渲染
+map.render();
+
+// 同步渲染
+map.renderSync();
+
+// 获取地图尺寸
+const size = map.getSize(); // [width, height]
+
+// 更新地图尺寸（容器大小变化后调用）
+map.updateSize();
+
+// 监听窗口大小变化
+window.addEventListener('resize', () => {
+  map.updateSize();
+});
+
+// 使用 ResizeObserver 监听容器大小变化
+const resizeObserver = new ResizeObserver(() => {
+  map.updateSize();
+});
+resizeObserver.observe(map.getTargetElement());
+
+// 获取像素比
+const pixelRatio = map.getPixelRatio();
+
+// 获取视口范围
+const viewportExtent = map.getView().calculateExtent(map.getSize());
+```
+
+## 4.4 Map 事件详解
+
+### 4.4.1 指针事件
+
+```javascript
+// 点击事件（立即触发）
+map.on('click', (event) => {
+  console.log('点击', event.coordinate);
+});
+
+// 单击事件（等待确认不是双击后触发）
+map.on('singleclick', (event) => {
+  console.log('单击', event.coordinate);
+});
+
+// 双击事件
+map.on('dblclick', (event) => {
+  console.log('双击', event.coordinate);
+  // 阻止默认的双击缩放
+  event.preventDefault();
+});
+
+// 指针移动事件
+map.on('pointermove', (event) => {
+  // 性能敏感，避免复杂操作
+  if (event.dragging) {
+    // 拖拽中
+    return;
+  }
+  
+  // 悬停要素高亮
+  const feature = map.forEachFeatureAtPixel(event.pixel, (f) => f);
+  if (feature) {
+    map.getTargetElement().style.cursor = 'pointer';
+  } else {
+    map.getTargetElement().style.cursor = '';
+  }
+});
+
+// 指针拖拽事件
+map.on('pointerdrag', (event) => {
+  console.log('拖拽中', event.coordinate);
+});
+
+// 右键点击（需要监听原生事件）
+map.getTargetElement().addEventListener('contextmenu', (event) => {
+  event.preventDefault();
+  const pixel = map.getEventPixel(event);
+  const coordinate = map.getCoordinateFromPixel(pixel);
+  console.log('右键点击', coordinate);
+});
+```
+
+### 4.4.2 地图移动事件
+
+```javascript
+// 移动开始
+map.on('movestart', (event) => {
+  console.log('开始移动');
+});
+
+// 移动结束
+map.on('moveend', (event) => {
+  const view = map.getView();
+  console.log('移动结束');
+  console.log('当前中心:', view.getCenter());
+  console.log('当前缩放:', view.getZoom());
+  console.log('当前范围:', view.calculateExtent(map.getSize()));
+});
+
+// 组合使用：防抖处理
+let moveTimeout;
+map.on('movestart', () => {
+  if (moveTimeout) {
+    clearTimeout(moveTimeout);
+  }
+});
+
+map.on('moveend', () => {
+  moveTimeout = setTimeout(() => {
+    // 执行耗时操作
+    loadDataForCurrentExtent();
+  }, 300);
+});
+```
+
+### 4.4.3 渲染事件
+
+```javascript
+// 渲染前
+map.on('precompose', (event) => {
+  const ctx = event.context;
+  // 可以在渲染前修改 canvas 状态
+});
+
+// 渲染后（每帧）
+map.on('postcompose', (event) => {
+  const ctx = event.context;
+  // 可以在地图上叠加自定义绘制
+});
+
+// 完成一次渲染
+map.on('postrender', (event) => {
+  const frameState = event.frameState;
+  console.log('渲染完成');
+});
+
+// 所有图层渲染完成
+map.on('rendercomplete', () => {
+  console.log('所有图层渲染完成');
+});
+
+// 利用渲染事件实现自定义动画
+function animate() {
+  map.render();
+  requestAnimationFrame(animate);
+}
+
+map.on('postcompose', (event) => {
+  const ctx = event.context;
+  // 绘制动画内容
+  ctx.beginPath();
+  ctx.arc(100, 100, 50, 0, 2 * Math.PI);
+  ctx.stroke();
+});
+
+animate();
+```
+
+### 4.4.4 加载事件
+
+```javascript
+// 瓦片加载开始
+map.on('loadstart', () => {
+  console.log('开始加载');
+  showLoadingIndicator();
+});
+
+// 瓦片加载结束
+map.on('loadend', () => {
+  console.log('加载完成');
+  hideLoadingIndicator();
+});
+
+// 图层级别的加载事件
+tileLayer.getSource().on('tileloadstart', () => {
+  console.log('瓦片开始加载');
+});
+
+tileLayer.getSource().on('tileloadend', () => {
+  console.log('瓦片加载完成');
+});
+
+tileLayer.getSource().on('tileloaderror', (event) => {
+  console.error('瓦片加载失败:', event.tile.getTileCoord());
+});
+```
+
+### 4.4.5 属性变化事件
+
+```javascript
+// 监听地图属性变化
+map.on('change:target', () => {
+  console.log('target 已变化');
+});
+
+map.on('change:view', () => {
+  console.log('view 已变化');
+});
+
+map.on('change:layerGroup', () => {
+  console.log('图层组已变化');
+});
+
+map.on('change:size', () => {
+  console.log('地图尺寸已变化:', map.getSize());
+});
+
+// 监听视图属性变化
+const view = map.getView();
+
+view.on('change:center', () => {
+  console.log('中心点变化:', view.getCenter());
+});
+
+view.on('change:zoom', () => {
+  console.log('缩放变化:', view.getZoom());
+});
+
+view.on('change:resolution', () => {
+  console.log('分辨率变化:', view.getResolution());
+});
+
+view.on('change:rotation', () => {
+  console.log('旋转变化:', view.getRotation());
+});
+```
+
+## 4.5 地图导出与打印
+
+### 4.5.1 导出为图片
+
+```javascript
+// 导出为 PNG
+function exportMapAsPNG(map, filename = 'map.png') {
+  map.once('rendercomplete', () => {
+    const mapCanvas = document.createElement('canvas');
+    const size = map.getSize();
+    mapCanvas.width = size[0];
+    mapCanvas.height = size[1];
+    const mapContext = mapCanvas.getContext('2d');
+    
+    // 合成所有图层
+    document.querySelectorAll('.ol-layer canvas').forEach(canvas => {
+      if (canvas.width > 0) {
+        const opacity = canvas.parentNode.style.opacity || 1;
+        mapContext.globalAlpha = opacity;
+        
+        // 获取变换矩阵
+        const transform = canvas.style.transform;
+        const matrix = transform
+          .match(/^matrix\(([^\(]*)\)$/)[1]
+          .split(',')
+          .map(Number);
+        
+        CanvasRenderingContext2D.prototype.setTransform.apply(
+          mapContext,
+          matrix
+        );
+        
+        mapContext.drawImage(canvas, 0, 0);
+      }
+    });
+    
+    // 下载图片
+    const link = document.createElement('a');
+    link.download = filename;
+    link.href = mapCanvas.toDataURL('image/png');
+    link.click();
+  });
+  
+  map.renderSync();
+}
+
+// 导出高分辨率图片
+function exportHighResMap(map, scale = 2, filename = 'map-hires.png') {
+  const size = map.getSize();
+  const viewResolution = map.getView().getResolution();
+  
+  const mapCanvas = document.createElement('canvas');
+  mapCanvas.width = size[0] * scale;
+  mapCanvas.height = size[1] * scale;
+  
+  const originalPixelRatio = map.getPixelRatio();
+  
+  // 临时增加像素比
+  map.setSize([size[0] * scale, size[1] * scale]);
+  map.getView().setResolution(viewResolution);
+  
+  map.once('rendercomplete', () => {
+    const mapContext = mapCanvas.getContext('2d');
+    
+    document.querySelectorAll('.ol-layer canvas').forEach(canvas => {
+      if (canvas.width > 0) {
+        mapContext.drawImage(canvas, 0, 0);
+      }
+    });
+    
+    // 恢复原始尺寸
+    map.setSize(size);
+    map.getView().setResolution(viewResolution);
+    
+    // 下载
+    const link = document.createElement('a');
+    link.download = filename;
+    link.href = mapCanvas.toDataURL('image/png');
+    link.click();
+  });
+  
+  map.renderSync();
+}
+```
+
+### 4.5.2 打印功能
+
+```javascript
+// 打印地图
+function printMap(map) {
+  map.once('rendercomplete', () => {
+    const mapCanvas = document.createElement('canvas');
+    const size = map.getSize();
+    mapCanvas.width = size[0];
+    mapCanvas.height = size[1];
+    const mapContext = mapCanvas.getContext('2d');
+    
+    // 合成图层
+    document.querySelectorAll('.ol-layer canvas').forEach(canvas => {
+      if (canvas.width > 0) {
+        mapContext.drawImage(canvas, 0, 0);
+      }
+    });
+    
+    // 创建打印窗口
+    const printWindow = window.open('', '_blank');
+    printWindow.document.write(`
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <title>地图打印</title>
+        <style>
+          @media print {
+            body { margin: 0; }
+            img { width: 100%; height: auto; }
+          }
+        </style>
+      </head>
+      <body>
+        <img src="${mapCanvas.toDataURL('image/png')}" />
+        <script>
+          window.onload = function() {
+            window.print();
+            window.close();
+          };
+        </script>
+      </body>
+      </html>
+    `);
+  });
+  
+  map.renderSync();
+}
+
+// 带标题和图例的打印
+function printMapWithLegend(map, title, legendItems) {
+  map.once('rendercomplete', () => {
+    const canvas = document.createElement('canvas');
+    const size = map.getSize();
+    const legendHeight = 100;
+    const titleHeight = 50;
+    
+    canvas.width = size[0];
+    canvas.height = size[1] + legendHeight + titleHeight;
+    const ctx = canvas.getContext('2d');
+    
+    // 白色背景
+    ctx.fillStyle = 'white';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    // 绘制标题
+    ctx.fillStyle = 'black';
+    ctx.font = 'bold 24px Arial';
+    ctx.textAlign = 'center';
+    ctx.fillText(title, canvas.width / 2, 35);
+    
+    // 绘制地图
+    document.querySelectorAll('.ol-layer canvas').forEach(layerCanvas => {
+      if (layerCanvas.width > 0) {
+        ctx.drawImage(layerCanvas, 0, titleHeight);
+      }
+    });
+    
+    // 绘制图例
+    const legendY = titleHeight + size[1] + 20;
+    ctx.font = '14px Arial';
+    ctx.textAlign = 'left';
+    
+    legendItems.forEach((item, index) => {
+      const x = 20 + (index % 4) * 150;
+      const y = legendY + Math.floor(index / 4) * 25;
+      
+      // 图例符号
+      ctx.fillStyle = item.color;
+      ctx.fillRect(x, y, 20, 15);
+      
+      // 图例文字
+      ctx.fillStyle = 'black';
+      ctx.fillText(item.label, x + 25, y + 12);
+    });
+    
+    // 打印
+    const printWindow = window.open('', '_blank');
+    printWindow.document.write(`
+      <html>
+      <body style="margin:0">
+        <img src="${canvas.toDataURL()}" style="width:100%"/>
+        <script>window.onload=()=>{window.print();window.close()}</script>
+      </body>
+      </html>
+    `);
+  });
+  
+  map.renderSync();
+}
+```
+
+### 4.5.3 导出 PDF
+
+```javascript
+// 需要引入 jsPDF 库
+// npm install jspdf
+
+import { jsPDF } from 'jspdf';
+
+function exportMapAsPDF(map, filename = 'map.pdf') {
+  map.once('rendercomplete', () => {
+    const mapCanvas = document.createElement('canvas');
+    const size = map.getSize();
+    mapCanvas.width = size[0];
+    mapCanvas.height = size[1];
+    const mapContext = mapCanvas.getContext('2d');
+    
+    // 合成图层
+    document.querySelectorAll('.ol-layer canvas').forEach(canvas => {
+      if (canvas.width > 0) {
+        mapContext.drawImage(canvas, 0, 0);
+      }
+    });
+    
+    // 创建 PDF
+    const orientation = size[0] > size[1] ? 'landscape' : 'portrait';
+    const pdf = new jsPDF(orientation, 'mm', 'a4');
+    
+    const pageWidth = pdf.internal.pageSize.getWidth();
+    const pageHeight = pdf.internal.pageSize.getHeight();
+    
+    // 计算图片尺寸
+    const imgRatio = size[0] / size[1];
+    const pageRatio = pageWidth / pageHeight;
+    
+    let imgWidth, imgHeight;
+    if (imgRatio > pageRatio) {
+      imgWidth = pageWidth - 20;
+      imgHeight = imgWidth / imgRatio;
+    } else {
+      imgHeight = pageHeight - 20;
+      imgWidth = imgHeight * imgRatio;
+    }
+    
+    // 居中放置
+    const x = (pageWidth - imgWidth) / 2;
+    const y = (pageHeight - imgHeight) / 2;
+    
+    // 添加图片
+    const imgData = mapCanvas.toDataURL('image/jpeg', 0.95);
+    pdf.addImage(imgData, 'JPEG', x, y, imgWidth, imgHeight);
+    
+    // 保存 PDF
+    pdf.save(filename);
+  });
+  
+  map.renderSync();
+}
+```
+
+## 4.6 实战示例
+
+### 4.6.1 完整的地图应用
+
+```javascript
+import Map from 'ol/Map';
+import View from 'ol/View';
+import TileLayer from 'ol/layer/Tile';
+import VectorLayer from 'ol/layer/Vector';
+import VectorSource from 'ol/source/Vector';
+import OSM from 'ol/source/OSM';
+import GeoJSON from 'ol/format/GeoJSON';
+import { fromLonLat } from 'ol/proj';
+import { defaults as defaultControls, ScaleLine, MousePosition } from 'ol/control';
+import { createStringXY } from 'ol/coordinate';
+import { Style, Fill, Stroke, Circle } from 'ol/style';
+import Overlay from 'ol/Overlay';
+
+// 创建地图应用类
+class MapApplication {
+  constructor(targetId, options = {}) {
+    this.options = {
+      center: [116.4074, 39.9042],
+      zoom: 10,
+      ...options
+    };
+    
+    this.init(targetId);
+  }
+  
+  init(targetId) {
+    // 创建图层
+    this.baseLayer = this.createBaseLayer();
+    this.vectorLayer = this.createVectorLayer();
+    
+    // 创建控件
+    const controls = this.createControls();
+    
+    // 创建地图
+    this.map = new Map({
+      target: targetId,
+      layers: [this.baseLayer, this.vectorLayer],
+      view: new View({
+        center: fromLonLat(this.options.center),
+        zoom: this.options.zoom,
+        minZoom: 2,
+        maxZoom: 18
+      }),
+      controls: controls
+    });
+    
+    // 创建弹窗
+    this.popup = this.createPopup();
+    
+    // 绑定事件
+    this.bindEvents();
+  }
+  
+  createBaseLayer() {
+    return new TileLayer({
+      source: new OSM(),
+      properties: { name: 'basemap' }
+    });
+  }
+  
+  createVectorLayer() {
+    return new VectorLayer({
+      source: new VectorSource(),
+      style: new Style({
+        fill: new Fill({ color: 'rgba(66, 133, 244, 0.3)' }),
+        stroke: new Stroke({ color: '#4285F4', width: 2 }),
+        image: new Circle({
+          radius: 8,
+          fill: new Fill({ color: '#4285F4' }),
+          stroke: new Stroke({ color: '#fff', width: 2 })
+        })
+      }),
+      properties: { name: 'vector' }
+    });
+  }
+  
+  createControls() {
+    return defaultControls().extend([
+      new ScaleLine({ units: 'metric' }),
+      new MousePosition({
+        coordinateFormat: createStringXY(6),
+        projection: 'EPSG:4326',
+        className: 'mouse-position'
+      })
+    ]);
+  }
+  
+  createPopup() {
+    const container = document.createElement('div');
+    container.className = 'ol-popup';
+    container.innerHTML = `
+      <a href="#" class="ol-popup-closer">&times;</a>
+      <div class="ol-popup-content"></div>
+    `;
+    document.body.appendChild(container);
+    
+    const popup = new Overlay({
+      element: container,
+      positioning: 'bottom-center',
+      offset: [0, -10],
+      autoPan: { animation: { duration: 250 } }
+    });
+    
+    this.map.addOverlay(popup);
+    
+    // 关闭按钮
+    container.querySelector('.ol-popup-closer').addEventListener('click', (e) => {
+      e.preventDefault();
+      popup.setPosition(undefined);
+    });
+    
+    return popup;
+  }
+  
+  bindEvents() {
+    // 单击查询要素
+    this.map.on('singleclick', (event) => {
+      const feature = this.map.forEachFeatureAtPixel(event.pixel, (f) => f);
+      
+      if (feature) {
+        const content = this.popup.getElement().querySelector('.ol-popup-content');
+        content.innerHTML = this.getFeaturePopupContent(feature);
+        this.popup.setPosition(event.coordinate);
+      } else {
+        this.popup.setPosition(undefined);
+      }
+    });
+    
+    // 悬停效果
+    this.map.on('pointermove', (event) => {
+      if (event.dragging) return;
+      
+      const feature = this.map.forEachFeatureAtPixel(event.pixel, (f) => f);
+      this.map.getTargetElement().style.cursor = feature ? 'pointer' : '';
+    });
+    
+    // 地图移动事件
+    this.map.on('moveend', () => {
+      this.onMapMove();
+    });
+  }
+  
+  getFeaturePopupContent(feature) {
+    const properties = feature.getProperties();
+    let html = '<table class="feature-info">';
+    
+    for (const key in properties) {
+      if (key !== 'geometry') {
+        html += `<tr><td>${key}</td><td>${properties[key]}</td></tr>`;
+      }
+    }
+    
+    html += '</table>';
+    return html;
+  }
+  
+  onMapMove() {
+    const view = this.map.getView();
+    const center = view.getCenter();
+    const zoom = view.getZoom();
+    const extent = view.calculateExtent(this.map.getSize());
+    
+    console.log('地图状态:', { center, zoom, extent });
+  }
+  
+  // 公共方法
+  loadGeoJSON(url) {
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        const features = new GeoJSON().readFeatures(data, {
+          featureProjection: 'EPSG:3857'
+        });
+        this.vectorLayer.getSource().addFeatures(features);
+        
+        // 自动适应范围
+        const extent = this.vectorLayer.getSource().getExtent();
+        this.map.getView().fit(extent, { padding: [50, 50, 50, 50] });
+      });
+  }
+  
+  clearVector() {
+    this.vectorLayer.getSource().clear();
+  }
+  
+  zoomTo(center, zoom) {
+    this.map.getView().animate({
+      center: fromLonLat(center),
+      zoom: zoom,
+      duration: 1000
+    });
+  }
+  
+  exportImage(filename = 'map.png') {
+    exportMapAsPNG(this.map, filename);
+  }
+  
+  destroy() {
+    this.popup.setPosition(undefined);
+    this.map.setTarget(null);
+  }
+}
+
+// 使用示例
+const app = new MapApplication('map', {
+  center: [116.4074, 39.9042],
+  zoom: 10
+});
+
+// 加载数据
+app.loadGeoJSON('/data/points.geojson');
+
+// 定位到指定位置
+app.zoomTo([121.4737, 31.2304], 12);
+
+// 导出地图
+document.getElementById('export-btn').addEventListener('click', () => {
+  app.exportImage('my-map.png');
+});
+```
+
+## 4.7 本章小结
+
+本章详细介绍了 Map 地图对象：
+
+1. **Map 概述**：核心职责、创建方式
+2. **配置详解**：target、图层、控件、交互配置
+3. **方法详解**：图层管理、视图管理、坐标转换、要素查询
+4. **事件详解**：指针事件、移动事件、渲染事件、加载事件
+5. **导出打印**：PNG、高分辨率、PDF 导出
+6. **实战示例**：完整的地图应用类
+
+### 关键要点
+
+- Map 是 OpenLayers 的核心，管理所有地图组件
+- 使用 Collection 管理图层、控件、交互
+- 掌握常用事件的使用场景
+- 理解渲染机制，实现地图导出
+
+### 下一步
+
+在下一章中，我们将详细学习 View 视图与坐标系统，包括：
+- View 配置详解
+- 视图动画
+- 坐标系统与投影
+- 范围约束
+
+---
+
+[← 上一章：核心概念与架构设计](第03章-核心概念与架构设计) | [返回目录](README) | [下一章：View视图与坐标系统 →](第05章-View视图与坐标系统)
