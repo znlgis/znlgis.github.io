@@ -357,6 +357,20 @@ JTS Topology Suite 创始人 Martin Davis 的技术博客翻译，涵盖计算�
 - [二次开发进阶](cad/chili3d/06-二次开发进阶)
 - [实战案例与最佳实践](cad/chili3d/07-实战案例与最佳实践)
 
+#### Astral3D 系列
+- [Astral3D概述与入门](cad/Astral3D/第01章-Astral3D概述与入门)
+- [环境搭建与快速开始](cad/Astral3D/第02章-环境搭建与快速开始)
+- [核心架构与技术栈](cad/Astral3D/第03章-核心架构与技术栈)
+- [场景编辑与模型管理](cad/Astral3D/第04章-场景编辑与模型管理)
+- [BIM轻量化与CAD解析](cad/Astral3D/第05章-BIM轻量化与CAD解析)
+- [粒子系统与天气系统](cad/Astral3D/第06章-粒子系统与天气系统)
+- [动画编辑器](cad/Astral3D/第07章-动画编辑器)
+- [插件系统开发](cad/Astral3D/第08章-插件系统开发)
+- [脚本运行时开发](cad/Astral3D/第09章-脚本运行时开发)
+- [二次开发入门](cad/Astral3D/第10章-二次开发入门)
+- [二次开发进阶](cad/Astral3D/第11章-二次开发进阶)
+- [实战案例与最佳实践](cad/Astral3D/第12章-实战案例与最佳实践)
+
 ### C# 开发
 
 #### Admin.NET 系列
