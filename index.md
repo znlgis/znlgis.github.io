@@ -357,6 +357,17 @@ JTS Topology Suite 创始人 Martin Davis 的技术博客翻译，涵盖计算�
 - [二次开发进阶](cad/chili3d/06-二次开发进阶)
 - [实战案例与最佳实践](cad/chili3d/07-实战案例与最佳实践)
 
+#### CadQuery 系列
+- [CadQuery概述与入门](cad/cadquery/第01章-CadQuery概述与入门)
+- [Workplane与草图系统](cad/cadquery/第02章-Workplane与草图系统)
+- [3D建模操作](cad/cadquery/第03章-3D建模操作)
+- [选择器系统详解](cad/cadquery/第04章-选择器系统详解)
+- [装配体与约束系统](cad/cadquery/第05章-装配体与约束系统)
+- [数据导入导出](cad/cadquery/第06章-数据导入导出)
+- [高级建模技巧](cad/cadquery/第07章-高级建模技巧)
+- [二次开发基础](cad/cadquery/第08章-二次开发基础)
+- [二次开发进阶](cad/cadquery/第09章-二次开发进阶)
+- [实战案例与最佳实践](cad/cadquery/第10章-实战案例与最佳实践)
 #### LibreCAD 完整教程系列
 - [LibreCAD概述与入门](cad/LibreCAD/第01章-LibreCAD概述与入门)
 - [安装与环境配置](cad/LibreCAD/第02章-安装与环境配置)
