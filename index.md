@@ -320,6 +320,43 @@ JTS Topology Suite 创始人 Martin Davis 的技术博客翻译，涵盖计算�
 - [JTS 中使用级联并集快速合并多边形](gis/lin-ear-th-inking/2007-Fast-Polygon-Merging-Cascaded-Union)
 - [翻译进度](gis/lin-ear-th-inking/PROGRESS)
 
+### CAD 开发
+
+#### IFoxCAD 系列
+- [IFoxCAD概述与入门](cad/IFoxCAD/01-IFoxCAD概述与入门)
+- [DBTrans事务管理核心教程](cad/IFoxCAD/02-DBTrans事务管理核心教程)
+- [SymbolTable符号表操作教程](cad/IFoxCAD/03-SymbolTable符号表操作教程)
+- [选择集过滤器与图元选择教程](cad/IFoxCAD/04-选择集过滤器与图元选择教程)
+- [扩展数据与字典操作教程](cad/IFoxCAD/05-扩展数据与字典操作教程)
+- [扩展方法与实用工具教程](cad/IFoxCAD/06-扩展方法与实用工具教程)
+- [图元操作与几何处理教程](cad/IFoxCAD/07-图元操作与几何处理教程)
+- [IFoxCAD开发实战案例教程](cad/IFoxCAD/08-IFoxCAD开发实战案例教程)
+
+#### Clipper2 系列
+- [Clipper2概述与安装](cad/Clipper2/第1章_Clipper2概述与安装)
+- [核心数据结构](cad/Clipper2/第2章_核心数据结构)
+- [布尔运算操作](cad/Clipper2/第3章_布尔运算操作)
+- [多边形偏移操作](cad/Clipper2/第4章_多边形偏移操作)
+- [矩形裁剪与闵可夫斯基操作](cad/Clipper2/第5章_矩形裁剪与闵可夫斯基操作)
+- [高级应用与性能优化](cad/Clipper2/第6章_高级应用与性能优化)
+
+#### Clipper1 系列
+- [Clipper1概述与安装](cad/Clipper1/第1章_Clipper1概述与安装)
+- [核心数据结构](cad/Clipper1/第2章_核心数据结构)
+- [布尔运算操作](cad/Clipper1/第3章_布尔运算操作)
+- [多边形偏移操作](cad/Clipper1/第4章_多边形偏移操作)
+- [填充规则与高级特性](cad/Clipper1/第5章_填充规则与高级特性)
+- [实际应用案例与最佳实践](cad/Clipper1/第6章_实际应用案例与最佳实践)
+
+#### Chili3D 系列
+- [概述与入门](cad/chili3d/01-概述与入门)
+- [核心架构解析](cad/chili3d/02-核心架构解析)
+- [几何建模基础](cad/chili3d/03-几何建模基础)
+- [用户界面与交互系统](cad/chili3d/04-用户界面与交互系统)
+- [二次开发入门](cad/chili3d/05-二次开发入门)
+- [二次开发进阶](cad/chili3d/06-二次开发进阶)
+- [实战案例与最佳实践](cad/chili3d/07-实战案例与最佳实践)
+
 ### C# 开发
 
 #### Admin.NET 系列
@@ -333,32 +370,6 @@ JTS Topology Suite 创始人 Martin Davis 的技术博客翻译，涵盖计算�
 - [二次开发实战-业务功能扩展](csharp/Admin.NET/第八章-二次开发实战-业务功能扩展)
 - [系统部署与运维指南](csharp/Admin.NET/第九章-系统部署与运维指南)
 - [最佳实践与常见问题解答](csharp/Admin.NET/第十章-最佳实践与常见问题解答)
-
-#### IFoxCAD 系列
-- [IFoxCAD概述与入门](csharp/IFoxCAD/01-IFoxCAD概述与入门)
-- [DBTrans事务管理核心教程](csharp/IFoxCAD/02-DBTrans事务管理核心教程)
-- [SymbolTable符号表操作教程](csharp/IFoxCAD/03-SymbolTable符号表操作教程)
-- [选择集过滤器与图元选择教程](csharp/IFoxCAD/04-选择集过滤器与图元选择教程)
-- [扩展数据与字典操作教程](csharp/IFoxCAD/05-扩展数据与字典操作教程)
-- [扩展方法与实用工具教程](csharp/IFoxCAD/06-扩展方法与实用工具教程)
-- [图元操作与几何处理教程](csharp/IFoxCAD/07-图元操作与几何处理教程)
-- [IFoxCAD开发实战案例教程](csharp/IFoxCAD/08-IFoxCAD开发实战案例教程)
-
-#### Clipper2 系列
-- [Clipper2概述与安装](csharp/Clipper2/第1章_Clipper2概述与安装)
-- [核心数据结构](csharp/Clipper2/第2章_核心数据结构)
-- [布尔运算操作](csharp/Clipper2/第3章_布尔运算操作)
-- [多边形偏移操作](csharp/Clipper2/第4章_多边形偏移操作)
-- [矩形裁剪与闵可夫斯基操作](csharp/Clipper2/第5章_矩形裁剪与闵可夫斯基操作)
-- [高级应用与性能优化](csharp/Clipper2/第6章_高级应用与性能优化)
-
-#### Clipper1 系列
-- [Clipper1概述与安装](csharp/Clipper1/第1章_Clipper1概述与安装)
-- [核心数据结构](csharp/Clipper1/第2章_核心数据结构)
-- [布尔运算操作](csharp/Clipper1/第3章_布尔运算操作)
-- [多边形偏移操作](csharp/Clipper1/第4章_多边形偏移操作)
-- [填充规则与高级特性](csharp/Clipper1/第5章_填充规则与高级特性)
-- [实际应用案例与最佳实践](csharp/Clipper1/第6章_实际应用案例与最佳实践)
 
 #### SOD 框架系列
 - [框架概述与设计理念](csharp/sod/01-框架概述与设计理念)
@@ -458,15 +469,6 @@ JTS Topology Suite 创始人 Martin Davis 的技术博客翻译，涵盖计算�
 - [高级功能与性能优化](others/BillionMail/第08章-高级功能与性能优化)
 - [运维监控与故障排除](others/BillionMail/第09章-运维监控与故障排除)
 - [实战案例与最佳实践](others/BillionMail/第10章-实战案例与最佳实践)
-
-#### Chili3D 系列
-- [概述与入门](others/chili3d/01-概述与入门)
-- [核心架构解析](others/chili3d/02-核心架构解析)
-- [几何建模基础](others/chili3d/03-几何建模基础)
-- [用户界面与交互系统](others/chili3d/04-用户界面与交互系统)
-- [二次开发入门](others/chili3d/05-二次开发入门)
-- [二次开发进阶](others/chili3d/06-二次开发进阶)
-- [实战案例与最佳实践](others/chili3d/07-实战案例与最佳实践)
 
 #### RuoYi-Cloud 微服务框架教程
 - [RuoYi-Cloud概述与入门](others/RuoYi-Cloud/第01章-RuoYi-Cloud概述与入门)
