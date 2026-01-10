@@ -357,6 +357,24 @@ JTS Topology Suite 创始人 Martin Davis 的技术博客翻译，涵盖计算�
 - [二次开发进阶](cad/chili3d/06-二次开发进阶)
 - [实战案例与最佳实践](cad/chili3d/07-实战案例与最佳实践)
 
+#### LibreCAD 完整教程系列
+- [LibreCAD概述与入门](cad/LibreCAD/第01章-LibreCAD概述与入门)
+- [安装与环境配置](cad/LibreCAD/第02章-安装与环境配置)
+- [用户界面详解](cad/LibreCAD/第03章-用户界面详解)
+- [基础绘图工具](cad/LibreCAD/第04章-基础绘图工具)
+- [编辑与修改工具](cad/LibreCAD/第05章-编辑与修改工具)
+- [图层与属性管理](cad/LibreCAD/第06章-图层与属性管理)
+- [块与库管理](cad/LibreCAD/第07章-块与库管理)
+- [尺寸标注与文字](cad/LibreCAD/第08章-尺寸标注与文字)
+- [文件格式与数据交换](cad/LibreCAD/第09章-文件格式与数据交换)
+- [打印与输出](cad/LibreCAD/第10章-打印与输出)
+- [核心架构解析](cad/LibreCAD/第11章-核心架构解析)
+- [源码编译与开发环境搭建](cad/LibreCAD/第12章-源码编译与开发环境搭建)
+- [实体系统详解](cad/LibreCAD/第13章-实体系统详解)
+- [Action系统与命令开发](cad/LibreCAD/第14章-Action系统与命令开发)
+- [插件系统与开发实战](cad/LibreCAD/第15章-插件系统与开发实战)
+- [二次开发进阶与最佳实践](cad/LibreCAD/第16章-二次开发进阶与最佳实践)
+
 ### C# 开发
 
 #### Admin.NET 系列
