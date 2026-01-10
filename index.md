@@ -357,6 +357,21 @@ JTS Topology Suite 创始人 Martin Davis 的技术博客翻译，涵盖计算�
 - [二次开发进阶](cad/chili3d/06-二次开发进阶)
 - [实战案例与最佳实践](cad/chili3d/07-实战案例与最佳实践)
 
+#### LibreDWG 系列
+- [LibreDWG概述与入门](cad/libredwg/第01章-LibreDWG概述与入门)
+- [环境搭建与安装配置](cad/libredwg/第02章-环境搭建与安装配置)
+- [DWG文件格式详解](cad/libredwg/第03章-DWG文件格式详解)
+- [核心架构与数据结构](cad/libredwg/第04章-核心架构与数据结构)
+- [命令行工具详解](cad/libredwg/第05章-命令行工具详解)
+- [C语言API编程基础](cad/libredwg/第06章-C语言API编程基础)
+- [DWG文件读取与解析](cad/libredwg/第07章-DWG文件读取与解析)
+- [DWG文件创建与写入](cad/libredwg/第08章-DWG文件创建与写入)
+- [格式转换实战](cad/libredwg/第09章-格式转换实战)
+- [Python绑定开发指南](cad/libredwg/第10章-Python绑定开发指南)
+- [实体与对象操作详解](cad/libredwg/第11章-实体与对象操作详解)
+- [二次开发实战案例](cad/libredwg/第12章-二次开发实战案例)
+- [性能优化与最佳实践](cad/libredwg/第13章-性能优化与最佳实践)
+- [常见问题与故障排除](cad/libredwg/第14章-常见问题与故障排除)
 #### QCAD 系列
 开源2D CAD软件QCAD的完整学习、使用与二次开发教程。
 - [QCAD概述与入门](cad/qcad/第01章-QCAD概述与入门)
