@@ -357,6 +357,23 @@ JTS Topology Suite 创始人 Martin Davis 的技术博客翻译，涵盖计算�
 - [二次开发进阶](cad/chili3d/06-二次开发进阶)
 - [实战案例与最佳实践](cad/chili3d/07-实战案例与最佳实践)
 
+#### SolveSpace 系列
+- [SolveSpace概述与入门](cad/solvespace/第01章-SolveSpace概述与入门)
+- [安装与环境配置](cad/solvespace/第02章-安装与环境配置)
+- [用户界面详解](cad/solvespace/第03章-用户界面详解)
+- [草图绘制基础](cad/solvespace/第04章-草图绘制基础)
+- [约束系统详解](cad/solvespace/第05章-约束系统详解)
+- [三维建模基础](cad/solvespace/第06章-三维建模基础)
+- [高级建模技巧](cad/solvespace/第07章-高级建模技巧)
+- [装配与链接功能](cad/solvespace/第08章-装配与链接功能)
+- [导入导出与数据交换](cad/solvespace/第09章-导入导出与数据交换)
+- [约束求解器原理](cad/solvespace/第10章-约束求解器原理)
+- [命令行工具使用](cad/solvespace/第11章-命令行工具使用)
+- [C语言库API详解](cad/solvespace/第12章-C语言库API详解)
+- [Python绑定开发](cad/solvespace/第13章-Python绑定开发)
+- [源码架构分析](cad/solvespace/第14章-源码架构分析)
+- [二次开发实战](cad/solvespace/第15章-二次开发实战)
+
 ### C# 开发
 
 #### Admin.NET 系列
