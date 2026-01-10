@@ -368,6 +368,60 @@ JTS Topology Suite 创始人 Martin Davis 的技术博客翻译，涵盖计算�
 - [二次开发基础](cad/cadquery/第08章-二次开发基础)
 - [二次开发进阶](cad/cadquery/第09章-二次开发进阶)
 - [实战案例与最佳实践](cad/cadquery/第10章-实战案例与最佳实践)
+#### LibreCAD 完整教程系列
+- [LibreCAD概述与入门](cad/LibreCAD/第01章-LibreCAD概述与入门)
+- [安装与环境配置](cad/LibreCAD/第02章-安装与环境配置)
+- [用户界面详解](cad/LibreCAD/第03章-用户界面详解)
+- [基础绘图工具](cad/LibreCAD/第04章-基础绘图工具)
+- [编辑与修改工具](cad/LibreCAD/第05章-编辑与修改工具)
+- [图层与属性管理](cad/LibreCAD/第06章-图层与属性管理)
+- [块与库管理](cad/LibreCAD/第07章-块与库管理)
+- [尺寸标注与文字](cad/LibreCAD/第08章-尺寸标注与文字)
+- [文件格式与数据交换](cad/LibreCAD/第09章-文件格式与数据交换)
+- [打印与输出](cad/LibreCAD/第10章-打印与输出)
+- [核心架构解析](cad/LibreCAD/第11章-核心架构解析)
+- [源码编译与开发环境搭建](cad/LibreCAD/第12章-源码编译与开发环境搭建)
+- [实体系统详解](cad/LibreCAD/第13章-实体系统详解)
+- [Action系统与命令开发](cad/LibreCAD/第14章-Action系统与命令开发)
+- [插件系统与开发实战](cad/LibreCAD/第15章-插件系统与开发实战)
+- [二次开发进阶与最佳实践](cad/LibreCAD/第16章-二次开发进阶与最佳实践)
+#### FreeCAD 完整教程系列
+
+##### 学习教程（基础篇）
+- [FreeCAD概述与简介](cad/FreeCAD/第01章：FreeCAD概述与简介)
+- [安装与环境配置](cad/FreeCAD/第02章：安装与环境配置)
+- [用户界面详解](cad/FreeCAD/第03章：用户界面详解)
+- [基础建模入门](cad/FreeCAD/第04章：基础建模入门)
+- [草图绘制（Sketcher）](cad/FreeCAD/第05章：草图绘制（Sketcher）)
+- [Part设计工作台](cad/FreeCAD/第06章：Part设计工作台)
+- [参数化建模](cad/FreeCAD/第07章：参数化建模)
+- [装配设计](cad/FreeCAD/第08章：装配设计)
+- [工程图制作](cad/FreeCAD/第09章：工程图制作)
+- [曲面建模](cad/FreeCAD/第10章：曲面建模)
+
+##### 使用教程（进阶篇）
+- [Part工作台详解](cad/FreeCAD/第11章：Part工作台详解)
+- [PartDesign工作台详解](cad/FreeCAD/第12章：PartDesign工作台详解)
+- [Draft工作台详解](cad/FreeCAD/第13章：Draft工作台详解)
+- [Arch建筑设计工作台](cad/FreeCAD/第14章：Arch建筑设计工作台)
+- [Path数控加工](cad/FreeCAD/第15章：Path数控加工)
+- [渲染与可视化](cad/FreeCAD/第16章：渲染与可视化)
+- [数据导入导出](cad/FreeCAD/第17章：数据导入导出)
+- [高级建模技巧](cad/FreeCAD/第18章：高级建模技巧)
+- [仿真与分析](cad/FreeCAD/第19章：仿真与分析)
+- [实战案例分析](cad/FreeCAD/第20章：实战案例分析)
+
+##### 二次开发教程（开发篇）
+- [FreeCAD架构解析](cad/FreeCAD/第21章：FreeCAD架构解析)
+- [Python脚本基础](cad/FreeCAD/第22章：Python脚本基础)
+- [FreeCAD Python API](cad/FreeCAD/第23章：FreeCAD%20Python%20API)
+- [创建宏与脚本](cad/FreeCAD/第24章：创建宏与脚本)
+- [自定义工作台开发](cad/FreeCAD/第25章：自定义工作台开发)
+- [自定义对象开发](cad/FreeCAD/第26章：自定义对象开发)
+- [GUI界面开发](cad/FreeCAD/第27章：GUI界面开发)
+- [插件开发实战](cad/FreeCAD/第28章：插件开发实战)
+- [C++扩展开发](cad/FreeCAD/第29章：C++扩展开发)
+- [综合开发案例](cad/FreeCAD/第30章：综合开发案例)
 
 ### C# 开发
 
