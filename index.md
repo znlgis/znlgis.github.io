@@ -332,6 +332,21 @@ JTS Topology Suite 创始人 Martin Davis 的技术博客翻译，涵盖计算�
 - [图元操作与几何处理教程](cad/IFoxCAD/07-图元操作与几何处理教程)
 - [IFoxCAD开发实战案例教程](cad/IFoxCAD/08-IFoxCAD开发实战案例教程)
 
+#### FY_Layout 系列
+飞扬集成设计平台场布插件FY_Layout的完整学习教程与二次开发指南，基于LightCAD框架。
+- [FY_Layout概述与入门](cad/FY_Layout/01-FY_Layout概述与入门)
+- [开发环境搭建与项目配置](cad/FY_Layout/02-开发环境搭建与项目配置)
+- [核心架构与模块设计](cad/FY_Layout/03-核心架构与模块设计)
+- [插件开发基础](cad/FY_Layout/04-插件开发基础)
+- [元素类型系统详解](cad/FY_Layout/05-元素类型系统详解)
+- [场布元素实现详解](cad/FY_Layout/06-场布元素实现详解)
+- [板房系统开发详解](cad/FY_Layout/07-板房系统开发详解)
+- [二维绘图与交互操作](cad/FY_Layout/08-二维绘图与交互操作)
+- [三维渲染与模型生成](cad/FY_Layout/09-三维渲染与模型生成)
+- [Provider系统与参数化设计](cad/FY_Layout/10-Provider系统与参数化设计)
+- [UI界面开发与命令系统](cad/FY_Layout/11-UI界面开发与命令系统)
+- [二次开发实战案例](cad/FY_Layout/12-二次开发实战案例)
+
 #### Clipper2 系列
 - [Clipper2概述与安装](cad/Clipper2/第1章_Clipper2概述与安装)
 - [核心数据结构](cad/Clipper2/第2章_核心数据结构)
