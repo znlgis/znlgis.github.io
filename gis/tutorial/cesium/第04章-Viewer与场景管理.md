@@ -1,6 +1,9 @@
 ---
-layout: default
+layout: post
 title: 第04章 - Viewer与场景管理
+date: 2024-03-04 10:00:00 +0800
+categories: [GIS, CesiumJS]
+tags: [CesiumJS, Viewer, 场景管理]
 ---
 
 # 第04章：Viewer与场景管理

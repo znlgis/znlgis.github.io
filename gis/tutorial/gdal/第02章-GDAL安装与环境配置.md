@@ -1,6 +1,9 @@
 ---
-layout: default
+layout: post
 title: 第02章 - GDAL安装与环境配置
+date: 2024-01-16 10:00:00 +0800
+categories: [GIS, GDAL]
+tags: [GDAL, 环境配置, 安装]
 ---
 
 # 第02章：GDAL安装与环境配置

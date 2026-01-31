@@ -1,6 +1,9 @@
 ---
-layout: default
+layout: post
 title: 第16章 - OGC服务集成
+date: 2024-06-16 10:00:00 +0800
+categories: [GIS, OpenLayers]
+tags: [OpenLayers, OGC, 服务集成]
 ---
 
 # 第16章 - OGC 服务集成

@@ -1,3 +1,11 @@
+---
+layout: post
+title: 02 - Dify平台部署与环境配置
+date: 2024-10-02 10:00:00 +0800
+categories: [AI应用, Dify]
+tags: [Dify, 部署, Docker, 环境配置]
+---
+
 # 第二章：Dify 平台部署与环境配置
 
 ## 2.1 部署概述

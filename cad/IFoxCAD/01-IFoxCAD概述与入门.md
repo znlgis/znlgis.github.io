@@ -1,3 +1,11 @@
+---
+layout: post
+title: 01 - IFoxCAD概述与入门
+date: 2024-09-01 10:00:00 +0800
+categories: [CAD开发, IFoxCAD]
+tags: [IFoxCAD, AutoCAD, .NET, 二次开发]
+---
+
 # 第一章：IFoxCAD概述与入门
 
 ## 1.1 IFoxCAD简介

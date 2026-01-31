@@ -1,6 +1,9 @@
 ---
-layout: default
+layout: post
 title: 第03章 - GDAL核心架构与数据模型
+date: 2024-01-17 10:00:00 +0800
+categories: [GIS, GDAL]
+tags: [GDAL, 架构设计, 数据模型, API]
 ---
 
 # 第03章：GDAL核心架构与数据模型

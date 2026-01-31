@@ -1,3 +1,11 @@
+---
+layout: post
+title: 04 - OGC标准服务
+date: 2024-02-04 10:00:00 +0800
+categories: [GIS, GeoServer]
+tags: [GeoServer, OGC标准, WMS, WFS, WCS]
+---
+
 # 第4章 OGC标准服务
 
 ## 4.1 OGC标准概述

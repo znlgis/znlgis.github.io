@@ -1,3 +1,11 @@
+---
+layout: post
+title: 第10章 - Word文档基础操作
+date: 2024-07-10 10:00:00 +0800
+categories: [编程, CSharp, NPOI]
+tags: [NPOI, Word, 文档处理, XWPF]
+---
+
 # 第十章：Word文档基础操作
 
 ## 10.1 NPOI Word概述

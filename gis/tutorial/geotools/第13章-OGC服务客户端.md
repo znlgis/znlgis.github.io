@@ -1,6 +1,9 @@
 ---
-layout: default
+layout: post
 title: 第13章 - OGC服务客户端
+date: 2024-04-13 10:00:00 +0800
+categories: [GIS, GeoTools]
+tags: [GeoTools, OGC, WMS, WFS, Web服务]
 ---
 
 # 第13章 - OGC服务客户端

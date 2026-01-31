@@ -1,3 +1,11 @@
+---
+layout: post
+title: 05 - 地图样式与SLD
+date: 2024-02-05 10:00:00 +0800
+categories: [GIS, GeoServer]
+tags: [GeoServer, 地图样式, SLD, 符号化]
+---
+
 # 第5章 地图样式与SLD
 
 ## 5.1 SLD标准介绍

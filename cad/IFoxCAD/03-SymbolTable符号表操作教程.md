@@ -1,3 +1,11 @@
+---
+layout: post
+title: 03 - SymbolTable符号表操作教程
+date: 2024-09-03 10:00:00 +0800
+categories: [CAD开发, IFoxCAD]
+tags: [IFoxCAD, 符号表, 图层, 块表]
+---
+
 # 第三章：SymbolTable符号表操作教程
 
 ## 3.1 符号表基础概念

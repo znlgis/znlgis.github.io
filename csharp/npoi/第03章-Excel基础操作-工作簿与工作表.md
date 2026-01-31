@@ -1,3 +1,11 @@
+---
+layout: post
+title: 第03章 - Excel基础操作-工作簿与工作表
+date: 2024-07-03 10:00:00 +0800
+categories: [编程, CSharp, NPOI]
+tags: [NPOI, Excel, 工作簿, 工作表]
+---
+
 # 第三章：Excel基础操作-工作簿与工作表
 
 ## 3.1 工作簿（Workbook）操作

@@ -1,3 +1,11 @@
+---
+layout: post
+title: 第六章 - 前端Vue3开发指南
+date: 2024-08-06 10:00:00 +0800
+categories: [编程, CSharp, Admin.NET]
+tags: [Admin.NET, Vue3, 前端开发, Element Plus]
+---
+
 # 第六章：前端Vue3开发指南
 
 ## 目录

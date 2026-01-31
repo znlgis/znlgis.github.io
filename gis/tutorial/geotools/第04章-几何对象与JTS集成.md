@@ -1,6 +1,9 @@
 ---
-layout: default
+layout: post
 title: 第04章 - 几何对象与JTS集成
+date: 2024-04-04 10:00:00 +0800
+categories: [GIS, GeoTools]
+tags: [GeoTools, 几何对象, JTS, 空间几何]
 ---
 
 # 第04章 - 几何对象与JTS集成

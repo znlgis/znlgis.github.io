@@ -1,6 +1,9 @@
 ---
-layout: default
+layout: post
 title: 第08章 - Java绑定开发指南
+date: 2024-01-22 10:00:00 +0800
+categories: [GIS, GDAL]
+tags: [GDAL, Java, 编程开发, API绑定]
 ---
 
 # 第08章：Java绑定开发指南

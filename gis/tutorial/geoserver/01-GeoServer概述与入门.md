@@ -1,3 +1,11 @@
+---
+layout: post
+title: 01 - GeoServer概述与入门
+date: 2024-02-01 10:00:00 +0800
+categories: [GIS, GeoServer]
+tags: [GeoServer, 地图服务器, OGC标准]
+---
+
 # 第1章 GeoServer概述与入门
 
 ## 1.1 GeoServer简介

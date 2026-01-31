@@ -1,3 +1,11 @@
+---
+layout: post
+title: 第07章 - Excel数据验证与保护
+date: 2024-07-07 10:00:00 +0800
+categories: [编程, CSharp, NPOI]
+tags: [NPOI, Excel, 数据验证, 数据保护]
+---
+
 # 第七章：Excel数据验证与保护
 
 ## 7.1 数据验证基础

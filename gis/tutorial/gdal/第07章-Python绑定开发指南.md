@@ -1,6 +1,9 @@
 ---
-layout: default
+layout: post
 title: 第07章 - Python绑定开发指南
+date: 2024-01-21 10:00:00 +0800
+categories: [GIS, GDAL]
+tags: [GDAL, Python, 编程开发, API绑定]
 ---
 
 # 第07章：Python绑定开发指南

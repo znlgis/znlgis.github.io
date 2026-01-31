@@ -1,6 +1,9 @@
 ---
-layout: default
+layout: post
 title: 第04章 - Map地图对象详解
+date: 2024-06-04 10:00:00 +0800
+categories: [GIS, OpenLayers]
+tags: [OpenLayers, Map, 地图对象]
 ---
 
 # 第04章 - Map 地图对象详解

@@ -1,3 +1,11 @@
+---
+layout: post
+title: 第15章 - PowerPoint演示文稿操作
+date: 2024-07-15 10:00:00 +0800
+categories: [编程, CSharp, NPOI]
+tags: [NPOI, PowerPoint, 演示文稿, XSLF]
+---
+
 # 第十五章：PowerPoint演示文稿操作
 
 ## 15.1 NPOI PowerPoint概述

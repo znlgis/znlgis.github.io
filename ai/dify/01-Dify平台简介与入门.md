@@ -1,3 +1,11 @@
+---
+layout: post
+title: 01 - Dify平台简介与入门
+date: 2024-10-01 10:00:00 +0800
+categories: [AI应用, Dify]
+tags: [Dify, LLM, AI平台, 应用开发]
+---
+
 # 第一章：Dify 平台简介与入门
 
 ## 1.1 什么是 Dify
