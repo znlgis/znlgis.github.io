@@ -663,14 +663,14 @@ JTS Topology Suite 创始人 Martin Davis 的技术博客翻译，涵盖计算�
 - [WKT数据格式处理](demos/gistools-tutorial/10-WKT数据格式处理)
 
 #### Vue3+OpenLayers
-- [NVM及NODE开发环境搭建](demos/vue3+openlayers/NVM及NODE开发环境搭建)
-- [VUE3基础环境搭建](demos/vue3+openlayers/VUE3基础环境搭建)
-- [OpenLayers简介](demos/vue3+openlayers/OpenLayers简介)
-- [vue3-openlayers基础知识简介](demos/vue3+openlayers/vue3-openlayers基础知识简介)
-- [Demo工程代码创建说明](demos/vue3+openlayers/demo)
-- [功能需求](demos/vue3+openlayers/functional-requirement)
-- [前期准备](demos/vue3+openlayers/preparation)
-- [Docker部署](demos/vue3+openlayers/docker)
+- [NVM及NODE开发环境搭建](demos/vue3-openlayers/NVM及NODE开发环境搭建)
+- [VUE3基础环境搭建](demos/vue3-openlayers/VUE3基础环境搭建)
+- [OpenLayers简介](demos/vue3-openlayers/OpenLayers简介)
+- [vue3-openlayers基础知识简介](demos/vue3-openlayers/vue3-openlayers基础知识简介)
+- [Demo工程代码创建说明](demos/vue3-openlayers/demo)
+- [功能需求](demos/vue3-openlayers/functional-requirement)
+- [前期准备](demos/vue3-openlayers/preparation)
+- [Docker部署](demos/vue3-openlayers/docker)
 
 #### Vue3地图大屏
 - [项目概述](demos/vue3-map-dashboard/项目概述)

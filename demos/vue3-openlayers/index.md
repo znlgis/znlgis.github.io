@@ -1,9 +1,9 @@
 ---
 layout: default
-title: vue3+openlayers 演示项目
+title: vue3-openlayers 演示项目
 ---
 
-# vue3+openlayers 演示项目
+# vue3-openlayers 演示项目
 
 - [NVM及NODE开发环境搭建](NVM及NODE开发环境搭建)
 - [VUE3基础环境搭建](VUE3基础环境搭建)
