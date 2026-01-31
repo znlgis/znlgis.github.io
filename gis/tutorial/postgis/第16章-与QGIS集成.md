@@ -1,3 +1,11 @@
+---
+layout: post
+title: 第16章 - 与 QGIS 集成
+date: 2024-05-16 10:00:00 +0800
+categories: [GIS, PostGIS]
+tags: [PostGIS, QGIS, 桌面GIS, 数据可视化]
+---
+
 # 第16章：与 QGIS 集成
 
 ## 16.1 概述

@@ -1,3 +1,11 @@
+---
+layout: post
+title: 第15章 - 与 GeoServer 集成
+date: 2024-05-15 10:00:00 +0800
+categories: [GIS, PostGIS]
+tags: [PostGIS, GeoServer, 地图服务, WMS, WFS]
+---
+
 # 第15章：与 GeoServer 集成
 
 ## 15.1 概述

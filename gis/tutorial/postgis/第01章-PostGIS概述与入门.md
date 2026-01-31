@@ -1,3 +1,11 @@
+---
+layout: post
+title: 第01章 - PostGIS 概述与入门
+date: 2024-05-01 10:00:00 +0800
+categories: [GIS, PostGIS]
+tags: [PostGIS, PostgreSQL, 空间数据库]
+---
+
 # 第01章：PostGIS 概述与入门
 
 ## 1.1 PostGIS 简介
