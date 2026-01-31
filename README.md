@@ -13,4 +13,15 @@
 ## 🛠️ 技术栈
 
 - [Jekyll](https://jekyllrb.com/) - 静态网站生成器
+- [Jekyll Theme Chirpy](https://github.com/cotes2020/jekyll-theme-chirpy) - 主题
 - [GitHub Pages](https://pages.github.com/) - 托管服务
+
+## ⚙️ GitHub Pages 配置
+
+由于本博客使用 `jekyll-theme-chirpy` 主题（该主题不在 GitHub Pages 默认支持列表中），需要按以下步骤配置：
+
+1. 进入仓库 **Settings** → **Pages**
+2. 在 **Build and deployment** 部分，将 **Source** 改为 **GitHub Actions**
+3. 保存后，GitHub 将使用自定义工作流 (`.github/workflows/pages-deploy.yml`) 构建和部署网站
+
+> ⚠️ 如果使用默认的 "Deploy from a branch" 选项，会出现 `The jekyll-theme-chirpy theme could not be found` 错误。
