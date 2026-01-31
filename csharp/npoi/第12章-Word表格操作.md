@@ -1,3 +1,11 @@
+---
+layout: post
+title: 第12章 - Word表格操作
+date: 2024-07-12 10:00:00 +0800
+categories: [编程, CSharp, NPOI]
+tags: [NPOI, Word, 表格, 文档处理]
+---
+
 # 第十二章：Word表格操作
 
 ## 12.1 表格基础

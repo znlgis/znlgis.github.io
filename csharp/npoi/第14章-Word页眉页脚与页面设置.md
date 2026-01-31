@@ -1,3 +1,11 @@
+---
+layout: post
+title: 第14章 - Word页眉页脚与页面设置
+date: 2024-07-14 10:00:00 +0800
+categories: [编程, CSharp, NPOI]
+tags: [NPOI, Word, 页眉页脚, 页面设置]
+---
+
 # 第十四章：Word页眉页脚与页面设置
 
 ## 14.1 页面设置

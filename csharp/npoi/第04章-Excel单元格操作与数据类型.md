@@ -1,3 +1,11 @@
+---
+layout: post
+title: 第04章 - Excel单元格操作与数据类型
+date: 2024-07-04 10:00:00 +0800
+categories: [编程, CSharp, NPOI]
+tags: [NPOI, Excel, 单元格, 数据类型]
+---
+
 # 第四章：Excel单元格操作与数据类型
 
 ## 4.1 单元格基础操作
