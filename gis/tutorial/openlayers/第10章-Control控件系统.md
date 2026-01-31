@@ -1,6 +1,9 @@
 ---
-layout: default
+layout: post
 title: 第10章 - Control控件系统
+date: 2024-06-10 10:00:00 +0800
+categories: [GIS, OpenLayers]
+tags: [OpenLayers, Control, 控件系统]
 ---
 
 # 第10章 - Control 控件系统

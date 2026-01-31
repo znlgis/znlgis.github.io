@@ -1,6 +1,9 @@
 ---
-layout: default
+layout: post
 title: 第12章 - Overlay覆盖物
+date: 2024-06-12 10:00:00 +0800
+categories: [GIS, OpenLayers]
+tags: [OpenLayers, Overlay, 覆盖物]
 ---
 
 # 第12章 - Overlay 覆盖物

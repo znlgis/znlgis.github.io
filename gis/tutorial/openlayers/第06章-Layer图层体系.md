@@ -1,6 +1,9 @@
 ---
-layout: default
+layout: post
 title: 第06章 - Layer图层体系
+date: 2024-06-06 10:00:00 +0800
+categories: [GIS, OpenLayers]
+tags: [OpenLayers, Layer, 图层管理]
 ---
 
 # 第06章 - Layer 图层体系

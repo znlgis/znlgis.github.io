@@ -1,6 +1,9 @@
 ---
-layout: default
+layout: post
 title: 第05章 - View视图与坐标系统
+date: 2024-06-05 10:00:00 +0800
+categories: [GIS, OpenLayers]
+tags: [OpenLayers, View, 坐标系统]
 ---
 
 # 第05章 - View 视图与坐标系统
