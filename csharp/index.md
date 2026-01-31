@@ -5,7 +5,7 @@ title: C# 教程
 
 # C# 教程
 
-- [.NET Reactor 教程](.NET%20Reactor/)
+- [.NET Reactor 教程](dotnet-reactor/)
 - [Admin.NET 教程](Admin.NET/)
 - [npoi 教程](npoi/)
 - [ReoGrid 教程](ReoGrid/)
