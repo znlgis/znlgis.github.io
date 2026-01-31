@@ -763,3 +763,15 @@ public class UserEntity : BaseEntity
 ---
 
 > **下一章预告**：第五章将深入讲解OQL查询语言，包括基础查询、条件表达式、关联查询、分页等高级特性。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="03-快速入门与环境配置" style="text-decoration: none;">← 上一章</a>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="05-OQL查询语言详解" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

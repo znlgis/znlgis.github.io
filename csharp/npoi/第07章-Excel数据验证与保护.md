@@ -752,3 +752,15 @@ public class DataEntryTemplateExample
 ---
 
 > **下一章预告**：第八章将介绍Excel图表与图形功能，包括各种类型图表的创建、图片插入和形状绘制。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="第06章-Excel公式与函数" style="text-decoration: none;">← 上一章</a>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第08章-Excel图表与图形" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

@@ -865,3 +865,15 @@ public class SalesAnalysisExample
 ---
 
 > **下一章预告**：第七章将介绍Excel数据验证与保护功能，包括数据有效性设置、单元格保护和工作表保护。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="第05章-Excel样式与格式化" style="text-decoration: none;">← 上一章</a>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第07章-Excel数据验证与保护" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

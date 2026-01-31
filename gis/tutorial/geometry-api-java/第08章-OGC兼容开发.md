@@ -615,3 +615,15 @@ public class OGCGeometryValidator {
 ---
 
 [← 上一章：坐标系与空间参考](第07章-坐标系与空间参考) | [下一章：性能优化与加速 →](第09章-性能优化与加速)
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="第07章-坐标系与空间参考" style="text-decoration: none;">← 上一章</a>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第09章-性能优化与加速" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

@@ -696,3 +696,15 @@ FreeCAD提供多种渲染方式：
 2. 参数化建模在实际工程中有哪些具体应用？
 3. 开源软件模式对CAD行业有什么影响？
 4. 如何评估FreeCAD是否适合你的项目需求？
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <span></span>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第02章：安装与环境配置" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

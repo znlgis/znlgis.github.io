@@ -604,3 +604,15 @@ public class CityRepository : ISpatialRepository<City>
 
 - [EF Core 空间数据文档](https://learn.microsoft.com/en-us/ef/core/modeling/spatial)
 - [Npgsql EF Core 空间支持](https://www.npgsql.org/efcore/mapping/nts.html)
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="第09章-PostGIS数据库集成" style="text-decoration: none;">← 上一章</a>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第11章-坐标系转换与投影" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

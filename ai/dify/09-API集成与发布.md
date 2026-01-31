@@ -722,3 +722,15 @@ Page({
 ---
 
 **下一章预告**：第十章将介绍最佳实践与进阶技巧，包括提示词工程、性能优化和企业级部署方案。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="08-模型接入与配置" style="text-decoration: none;">← 上一章</a>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="10-最佳实践与进阶技巧" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

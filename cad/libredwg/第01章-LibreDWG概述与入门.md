@@ -371,3 +371,15 @@ if __name__ == "__main__":
 ---
 
 **下一章预告**：[第02章 - 环境搭建与安装配置](第02章-环境搭建与安装配置) - 详细介绍如何在不同操作系统上安装和配置LibreDWG开发环境。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <span></span>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第02章-环境搭建与安装配置" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

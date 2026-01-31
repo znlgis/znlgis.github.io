@@ -871,3 +871,15 @@ if (layer != null && layer.Color.ColorIndex != 1)
 7. **最佳实践**：学习了事务使用的各种最佳实践
 
 通过DBTrans，我们可以用简洁的代码完成复杂的数据库操作。下一章我们将深入学习SymbolTable类，进一步掌握符号表的高级操作技巧。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="01-IFoxCAD概述与入门" style="text-decoration: none;">← 上一章</a>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="03-SymbolTable符号表操作教程" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

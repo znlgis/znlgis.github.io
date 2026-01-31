@@ -774,3 +774,15 @@ kubectl get events -n geoserver --sort-by='.lastTimestamp'
 4. 在生产环境中，应该如何管理 Kubernetes Secrets？
 
 5. 如何实现 GeoServer Cloud 的蓝绿部署或金丝雀发布？
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="第06章-Docker-Compose部署实战" style="text-decoration: none;">← 上一章</a>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第08章-运维监控与故障排除" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

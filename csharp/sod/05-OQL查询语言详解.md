@@ -641,3 +641,15 @@ OQL是SOD框架的核心特性之一，熟练掌握OQL可以让你高效地进�
 ---
 
 > **下一章预告**：第六章将深入讲解SQL-MAP技术，包括XML配置、参数化查询、DAL代码生成等内容。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="04-实体类与ORM映射" style="text-decoration: none;">← 上一章</a>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="06-SQL-MAP技术深入" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

@@ -742,3 +742,15 @@ public class HelloGeoTools {
 ---
 
 [返回目录](README) | [下一章：环境搭建与快速开始 →](第02章-环境搭建与快速开始)
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <span></span>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第02章-环境搭建与快速开始" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

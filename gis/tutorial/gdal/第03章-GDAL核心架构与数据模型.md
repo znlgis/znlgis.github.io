@@ -954,3 +954,15 @@ ds = None
 5. 虚拟文件系统 /vsicurl/ 和 /vsis3/ 分别用于什么场景？
 6. 编写代码创建一个包含3个波段的内存栅格数据集。
 7. 编写代码将 WGS84 坐标转换为 Web Mercator 坐标。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="第02章-GDAL安装与环境配置" style="text-decoration: none;">← 上一章</a>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第04章-栅格数据处理基础" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

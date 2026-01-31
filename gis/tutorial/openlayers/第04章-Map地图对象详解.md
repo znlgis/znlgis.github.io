@@ -1402,3 +1402,15 @@ document.getElementById('export-btn').addEventListener('click', () => {
 ---
 
 [← 上一章：核心概念与架构设计](第03章-核心概念与架构设计) | [返回目录](README) | [下一章：View视图与坐标系统 →](第05章-View视图与坐标系统)
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="第03章-核心概念与架构设计" style="text-decoration: none;">← 上一章</a>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第05章-View视图与坐标系统" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

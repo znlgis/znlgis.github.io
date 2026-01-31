@@ -724,3 +724,15 @@ OGC标准服务是GeoServer的核心功能，深入理解这些服务对于有�
 4. 配置图层的WMTS缓存，预生成一定范围的瓦片。
 5. 使用WPS执行一个缓冲区分析操作。
 6. 比较WMS 1.1.1和1.3.0版本在坐标顺序上的差异。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="03-数据管理与发布" style="text-decoration: none;">← 上一章</a>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="05-地图样式与SLD" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

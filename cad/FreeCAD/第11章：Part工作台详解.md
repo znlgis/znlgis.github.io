@@ -217,3 +217,15 @@
 - 分享学习心得
 
 在下一章中，我们将学习更多高级功能，进一步提升FreeCAD的使用能力。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="第10章：曲面建模" style="text-decoration: none;">← 上一章</a>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第12章：PartDesign工作台详解" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

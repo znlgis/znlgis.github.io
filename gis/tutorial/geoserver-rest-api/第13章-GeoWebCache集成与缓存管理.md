@@ -578,3 +578,15 @@ public class CacheDeploymentManager
 **相关资源**：
 - [GeoWebCache 文档](https://www.geowebcache.org/)
 - [GeoServer 缓存文档](https://docs.geoserver.org/latest/en/user/geowebcache/index.html)
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="第12章-覆盖范围与栅格数据管理" style="text-decoration: none;">← 上一章</a>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第14章-资源与模板管理" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

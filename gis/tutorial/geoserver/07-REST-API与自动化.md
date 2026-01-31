@@ -765,3 +765,15 @@ REST API是实现GeoServer自动化运维的核心工具。通过合理使用API
 4. 设置定时任务，每天备份GeoServer配置。
 5. 通过REST API创建用户并分配角色。
 6. 实现一个简单的Web界面，调用REST API管理图层。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="06-安全管理与访问控制" style="text-decoration: none;">← 上一章</a>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="08-性能优化与高级配置" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

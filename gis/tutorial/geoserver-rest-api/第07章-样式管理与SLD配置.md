@@ -55,3 +55,15 @@ await layerService.UpdateLayerAsync("cities", layer);
 **相关资源**：
 - [SLD 规范](https://www.ogc.org/standards/sld)
 - [GeoServer 样式文档](https://docs.geoserver.org/latest/en/user/styling/)
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="第06章-要素类型与图层管理" style="text-decoration: none;">← 上一章</a>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第08章-图层组管理API" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

@@ -1168,3 +1168,15 @@ gdal.SetConfigOption('CPL_VSIL_CURL_CACHE_SIZE', '100000000')  # 100MB
 4. 如何处理 GDAL 操作中的内存溢出问题？
 5. 编写一个矢量数据转换器，支持多种输出格式。
 6. 实现并行处理 1000 个栅格文件的批处理脚本。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="第06章-坐标系统与投影转换" style="text-decoration: none;">← 上一章</a>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第08章-Java绑定开发指南" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

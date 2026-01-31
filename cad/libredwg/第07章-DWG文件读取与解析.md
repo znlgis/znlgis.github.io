@@ -1052,3 +1052,15 @@ void find_eed_by_appname(Dwg_Data *dwg, const char *appname)
 ---
 
 **下一章预告**：[第08章 - DWG文件创建与写入](第08章-DWG文件创建与写入) - 学习如何使用LibreDWG创建新的DWG文件。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="第06章-C语言API编程基础" style="text-decoration: none;">← 上一章</a>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第08章-DWG文件创建与写入" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

@@ -578,3 +578,15 @@ public class CompleteDocumentExample
 ---
 
 > **下一章预告**：第十五章将介绍PowerPoint演示文稿操作。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="第13章-Word图片与多媒体" style="text-decoration: none;">← 上一章</a>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第15章-PowerPoint演示文稿操作" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

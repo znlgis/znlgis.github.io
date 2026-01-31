@@ -554,3 +554,15 @@ public class PostGisService : IAsyncDisposable
 
 - [PostGIS 官方文档](https://postgis.net/docs/)
 - [Npgsql.NetTopologySuite](https://www.npgsql.org/doc/types/nts.html)
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="第08章-Shapefile文件操作" style="text-decoration: none;">← 上一章</a>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第10章-Entity-Framework-Core集成" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

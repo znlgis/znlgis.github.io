@@ -1041,3 +1041,15 @@ except Exception as e:
 3. 配置 GDAL 环境变量，并测试配置是否生效。
 4. 编写一个验证脚本，检查 GDAL 的所有主要功能是否可用。
 5. 尝试使用 Docker 运行 GDAL 命令，体会容器化部署的优势。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="第01章-GDAL概述与基础知识" style="text-decoration: none;">← 上一章</a>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第03章-GDAL核心架构与数据模型" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

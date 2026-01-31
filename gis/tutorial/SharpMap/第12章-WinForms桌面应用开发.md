@@ -535,3 +535,15 @@ public partial class MainForm : Form
 ---
 
 **下一章预告**：第13章将介绍 WPF 桌面应用开发。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="第11章-空间查询与分析" style="text-decoration: none;">← 上一章</a>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第13章-WPF桌面应用开发" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

@@ -801,3 +801,15 @@ public class ModifyDocumentExample
 ---
 
 > **下一章预告**：第十一章将介绍Word段落与文本样式的高级设置，包括标题样式、编号列表、项目符号等。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="第09章-Excel高级功能-合并单元格与冻结窗格" style="text-decoration: none;">← 上一章</a>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第11章-Word段落与文本样式" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

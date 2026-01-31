@@ -425,3 +425,15 @@ viewer.scene.debugShowFramesPerSecond = true;
 3. 开发点击建筑显示属性信息的功能。
 4. 优化大规模 3D Tiles 的加载性能。
 5. 实现 3D Tiles 的动态过滤（显示/隐藏特定类型）。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="第09章-地形数据处理" style="text-decoration: none;">← 上一章</a>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第11章-数据格式与数据源" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

@@ -865,3 +865,15 @@ class PropertyEditor {
 ---
 
 **下一章预告**：第六章将介绍Astral3D的粒子系统和天气系统，包括粒子效果创建、天气模拟、环境特效等功能的使用方法。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="第04章-场景编辑与模型管理" style="text-decoration: none;">← 上一章</a>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第06章-粒子系统与天气系统" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

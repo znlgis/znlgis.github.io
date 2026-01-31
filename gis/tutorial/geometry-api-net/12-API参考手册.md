@@ -600,3 +600,15 @@ public enum GeometryType
 ---
 
 本手册涵盖了 geometry-api-net 的所有公共 API。如需更多详细信息，请参阅源代码中的 XML 文档注释。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="11-实战案例" style="text-decoration: none;">← 上一章</a>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <span></span>
+</div>
+
+<!-- /NAVIGATION -->

@@ -1790,3 +1790,15 @@ const toggleTheme = () => {
 8. **国际化与主题**：多语言支持、主题切换
 
 掌握前端开发是完整掌握Admin.NET的重要一环。在下一章中，我们将进入二次开发实战，学习如何创建自定义业务模块。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="第三章-项目架构与核心模块解析" style="text-decoration: none;">← 上一章</a>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第八章-二次开发实战-业务功能扩展" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

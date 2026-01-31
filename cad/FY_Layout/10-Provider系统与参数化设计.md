@@ -737,3 +737,15 @@ private static void ValidateGeometry(GeometryData geometry)
 8. **调试技巧**：日志输出和几何验证
 
 Provider系统是实现参数化BIM组件的关键技术，掌握它可以创建真正可配置、可复用的设计构件。下一章我们将学习UI界面开发与命令系统。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="09-三维渲染与模型生成" style="text-decoration: none;">← 上一章</a>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="11-UI界面开发与命令系统" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

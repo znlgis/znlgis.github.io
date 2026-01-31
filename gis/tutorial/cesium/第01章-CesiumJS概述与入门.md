@@ -550,3 +550,15 @@ import { Timeline } from '@cesium/widgets';
 3. 3D Tiles 解决了什么问题？为什么需要它？
 4. 列举三个你能想到的 CesiumJS 应用场景。
 5. 访问 Sandcastle 官方示例，运行并理解一个基础示例。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <span></span>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第02章-环境搭建与快速开始" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

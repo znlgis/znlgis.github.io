@@ -828,3 +828,15 @@ Clipper1 拥有完善的官方文档：
 5. **实际问题**：思考在您的工作或学习领域中，哪些场景可以应用 Clipper1？列出至少3个具体的应用案例
 
 在下一章中，我们将深入学习 Clipper1 的核心数据结构，包括 IntPoint、Path、Paths、PolyTree 等，这些是理解和使用 Clipper1 的基础。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <span></span>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第2章_核心数据结构" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

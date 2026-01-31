@@ -694,3 +694,15 @@ SQL-MAP技术让开发者能够完全控制SQL语句，同时享受框架的便�
 ---
 
 > **下一章预告**：第七章将介绍SOD框架的数据窗体开发技术，包括WebForm和WinForm的数据控件使用。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="05-OQL查询语言详解" style="text-decoration: none;">← 上一章</a>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="07-数据窗体开发" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

@@ -1159,3 +1159,15 @@ public static class ExcelDataConverter
 ---
 
 > **下一章预告**：第五章将介绍Excel样式与格式化，包括字体、边框、背景色、对齐方式和数字格式等详细设置。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="第03章-Excel基础操作-工作簿与工作表" style="text-decoration: none;">← 上一章</a>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第05章-Excel样式与格式化" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

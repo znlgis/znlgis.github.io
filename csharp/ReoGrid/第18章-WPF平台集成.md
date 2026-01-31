@@ -122,3 +122,15 @@ public class WorksheetViewModel : INotifyPropertyChanged
 ### 📚 下一章预告
 
 第十九章将学习高级应用与扩展。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="第17章-性能优化与最佳实践" style="text-decoration: none;">← 上一章</a>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第19章-高级应用与扩展" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->
