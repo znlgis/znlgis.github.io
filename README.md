@@ -1,6 +1,6 @@
 # znlgis 博客
 
-一个极简风格的 GitHub Pages 个人博客，分享 GIS 开发与技术内容。
+一个极简风格的 GitHub Pages 个人博客，分享 GIS、CAD、C#、3D、AI等各种开发与技术内容。
 
 ## 🔗 链接
 
