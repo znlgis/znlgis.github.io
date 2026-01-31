@@ -112,7 +112,7 @@ defaults:
       layout: post
       comments: true
       toc: true
-      permalink: /posts/:title/
+      permalink: /posts/:year/:month/:day/:title/
   - scope:
       path: _drafts
     values:
@@ -123,38 +123,6 @@ defaults:
     values:
       layout: page
       permalink: /:title/
-  # GIS 教程配置
-  - scope:
-      path: "gis/tutorial"
-    values:
-      layout: post
-      comments: true
-      toc: true
-      categories: [GIS]
-  # C# 教程配置
-  - scope:
-      path: "csharp"
-    values:
-      layout: post
-      comments: true
-      toc: true
-      categories: [编程, CSharp]
-  # CAD 教程配置
-  - scope:
-      path: "cad"
-    values:
-      layout: post
-      comments: true
-      toc: true
-      categories: [CAD开发]
-  # AI 教程配置
-  - scope:
-      path: "ai"
-    values:
-      layout: post
-      comments: true
-      toc: true
-      categories: [AI应用]
 
 sass:
   style: compressed
@@ -182,6 +150,11 @@ exclude:
   - .bundle
   - Gemfile.lock
   - node_modules
+  - gis
+  - csharp
+  - cad
+  - ai
+  - others
 
 jekyll-archives:
   enabled: [categories, tags]
