@@ -1,6 +1,7 @@
 ---
-layout: default
-title: 关于
+# the default layout is 'page'
+icon: fas fa-info-circle
+order: 4
 ---
 
 # 关于我
@@ -53,11 +54,13 @@ title: 关于
 
 欢迎通过以下方式与我交流：
 
-- **QQ群**: `289280914` - GIS 开发技术交流
-- **B站**: [znlgis的空间](https://space.bilibili.com/161342702) - 视频教程和直播
-- **博客园**: [znlgis](https://www.cnblogs.com/znlgis) - 技术博客
-- **GitHub**: [znlgis](https://github.com/znlgis) - 开源项目
-- **Gitee**: [znlgis](https://gitee.com/znlgis) - 国内镜像
+| 平台 | 链接 |
+|------|------|
+| **QQ群** | `289280914` - GIS 开发技术交流 |
+| **B站** | [znlgis的空间](https://space.bilibili.com/161342702) - 视频教程和直播 |
+| **博客园** | [znlgis](https://www.cnblogs.com/znlgis) - 技术博客 |
+| **GitHub** | [znlgis](https://github.com/znlgis) - 开源项目 |
+| **Gitee** | [znlgis](https://gitee.com/znlgis) - 国内镜像 |
 
 ## 🌟 开源项目
 
@@ -67,24 +70,6 @@ title: 关于
 - OpenGIS Utils for .NET - .NET GIS 工具库
 - 以及其他 GIS 相关工具和示例项目
 
-## 📖 关于这个博客
-
-这个博客使用 [Jekyll](https://jekyllrb.com/) 构建，托管在 [GitHub Pages](https://pages.github.com/) 上。
-
-### 设计理念
-
-- **极简风格**：专注于内容本身，减少视觉干扰
-- **快速访问**：优化加载速度，提供流畅的阅读体验
-- **移动友好**：响应式设计，适配各种设备
-- **易于导航**：清晰的目录结构，快速找到所需内容
-
-### 技术特点
-
-- 静态网站生成，加载速度快
-- Markdown 编写，内容易于维护
-- 代码高亮支持，示例清晰易读
-- SEO 优化，便于搜索引擎收录
-
 ## 🎓 学习资源推荐
 
 如果你也对 GIS 开发感兴趣，推荐以下学习资源：
@@ -93,15 +78,6 @@ title: 关于
 - [GeoServer 用户指南](http://docs.geoserver.org/)
 - [PostGIS 文档](https://postgis.net/documentation/)
 - [OpenLayers 示例](https://openlayers.org/en/latest/examples/)
-
-## 🤝 合作与支持
-
-如果你有以下需求，欢迎联系我：
-
-- 技术咨询和顾问服务
-- 企业培训和技术分享
-- 项目合作和开发
-- 内容创作和宣传
 
 ## ⭐ 支持我的工作
 
@@ -113,7 +89,3 @@ title: 关于
 - 📢 向朋友推荐我的博客和视频
 
 感谢你的支持！
-
----
-
-**最后更新**：{{ site.time | date: '%Y 年 %m 月' }}
