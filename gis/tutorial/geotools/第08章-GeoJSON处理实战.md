@@ -1,6 +1,9 @@
 ---
-layout: default
+layout: post
 title: 第08章 - GeoJSON处理实战
+date: 2024-04-08 10:00:00 +0800
+categories: [GIS, GeoTools]
+tags: [GeoTools, GeoJSON, 数据交换, JSON]
 ---
 
 # 第08章 - GeoJSON处理实战

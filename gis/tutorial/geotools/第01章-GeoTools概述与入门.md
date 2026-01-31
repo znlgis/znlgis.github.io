@@ -1,6 +1,9 @@
 ---
-layout: default
+layout: post
 title: 第01章 - GeoTools 概述与入门
+date: 2024-04-01 10:00:00 +0800
+categories: [GIS, GeoTools]
+tags: [GeoTools, Java, GIS开发]
 ---
 
 # 第01章 - GeoTools 概述与入门
