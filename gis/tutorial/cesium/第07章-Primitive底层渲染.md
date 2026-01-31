@@ -1,6 +1,9 @@
 ---
-layout: default
+layout: post
 title: 第07章 - Primitive底层渲染
+date: 2024-03-07 10:00:00 +0800
+categories: [GIS, CesiumJS]
+tags: [CesiumJS, Primitive, 渲染]
 ---
 
 # 第07章：Primitive底层渲染

@@ -1,6 +1,9 @@
 ---
-layout: default
+layout: post
 title: 第06章 - Entity API实体管理
+date: 2024-03-06 10:00:00 +0800
+categories: [GIS, CesiumJS]
+tags: [CesiumJS, Entity, API]
 ---
 
 # 第06章：Entity API实体管理

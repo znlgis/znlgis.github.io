@@ -1,6 +1,9 @@
 ---
-layout: default
+layout: post
 title: 第01章 - CesiumJS概述与入门
+date: 2024-03-01 10:00:00 +0800
+categories: [GIS, CesiumJS]
+tags: [CesiumJS, 3D地球, WebGL]
 ---
 
 # 第01章：CesiumJS概述与入门
