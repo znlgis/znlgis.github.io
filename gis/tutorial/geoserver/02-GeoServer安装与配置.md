@@ -1,3 +1,11 @@
+---
+layout: post
+title: 02 - GeoServer安装与配置
+date: 2024-02-02 10:00:00 +0800
+categories: [GIS, GeoServer]
+tags: [GeoServer, 安装配置, Java, Tomcat]
+---
+
 # 第2章 GeoServer安装与配置
 
 ## 2.1 系统需求和环境准备
