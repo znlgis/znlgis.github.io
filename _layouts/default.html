@@ -30,6 +30,9 @@
             --link-color: #0366d6;
             --border-color: #eee;
             --code-bg: #f6f8fa;
+            --sidebar-width: 260px;
+            --sidebar-bg: #f8f9fa;
+            --sidebar-toggle-bottom: 5rem;
         }
         * {
             margin: 0;
@@ -41,9 +44,156 @@
             line-height: 1.8;
             color: var(--text-color);
             background: var(--bg-color);
+        }
+        /* 页面布局容器 */
+        .page-wrapper {
+            display: flex;
+            min-height: 100vh;
+        }
+        /* 左侧边栏 */
+        .sidebar {
+            width: var(--sidebar-width);
+            background: var(--sidebar-bg);
+            border-right: 1px solid var(--border-color);
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            overflow-y: auto;
+            padding: 1rem;
+            z-index: 100;
+            transition: transform 0.3s ease;
+        }
+        .sidebar-header {
+            padding-bottom: 0.75rem;
+            margin-bottom: 0.75rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .sidebar-header h2 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-color);
+            margin: 0;
+        }
+        /* 目录树样式 */
+        .dir-tree {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            font-size: 0.85rem;
+        }
+        .dir-tree ul {
+            list-style: none;
+            padding-left: 1rem;
+            margin: 0;
+        }
+        .dir-tree li {
+            margin: 0.2rem 0;
+        }
+        .dir-tree .tree-item {
+            display: flex;
+            align-items: center;
+            padding: 0.3rem 0.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.2s;
+            text-decoration: none;
+            color: var(--text-color);
+            width: 100%;
+            text-align: left;
+            font-size: inherit;
+            font-family: inherit;
+            border: none;
+            background: none;
+        }
+        .dir-tree button.tree-item:focus {
+            outline: 2px solid var(--link-color);
+            outline-offset: 1px;
+        }
+        .dir-tree .tree-item:hover {
+            background: rgba(0, 0, 0, 0.05);
+            text-decoration: none;
+        }
+        .dir-tree .tree-item.active {
+            background: rgba(3, 102, 214, 0.1);
+            color: var(--link-color);
+        }
+        .dir-tree .tree-toggle {
+            width: 16px;
+            height: 16px;
+            margin-right: 0.3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.7rem;
+            color: #666;
+            flex-shrink: 0;
+            transition: transform 0.2s;
+        }
+        .dir-tree .tree-toggle.expanded {
+            transform: rotate(90deg);
+        }
+        .dir-tree .tree-icon {
+            margin-right: 0.4rem;
+            font-size: 0.9rem;
+        }
+        .dir-tree .tree-label {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .dir-tree .tree-children {
+            display: none;
+        }
+        .dir-tree .tree-children.expanded {
+            display: block;
+        }
+        /* 主内容区域 */
+        .content-wrapper {
+            flex: 1;
+            margin-left: var(--sidebar-width);
+            max-width: calc(100% - var(--sidebar-width));
+        }
+        .content-inner {
             max-width: 800px;
             margin: 0 auto;
             padding: 2rem 1rem;
+        }
+        /* 移动端侧边栏切换按钮 */
+        .sidebar-toggle {
+            display: none;
+            position: fixed;
+            bottom: var(--sidebar-toggle-bottom);
+            left: 1rem;
+            background: var(--link-color);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            z-index: 1001;
+            border: none;
+            font-size: 1.2rem;
+        }
+        .sidebar-toggle:hover {
+            background: #024ea4;
+        }
+        /* 遮罩层 */
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 99;
+        }
+        .sidebar-overlay.show {
+            display: block;
         }
         header {
             margin-bottom: 3rem;
@@ -238,8 +388,24 @@
         .highlight {
             position: relative;
         }
+        /* 响应式设计 */
+        @media (max-width: 900px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+            .sidebar.show {
+                transform: translateX(0);
+            }
+            .content-wrapper {
+                margin-left: 0;
+                max-width: 100%;
+            }
+            .sidebar-toggle {
+                display: flex;
+            }
+        }
         @media (max-width: 600px) {
-            body {
+            .content-inner {
                 padding: 1rem;
             }
             h1 { font-size: 1.5rem; }
@@ -250,6 +416,11 @@
                 width: 36px;
                 height: 36px;
             }
+            .sidebar-toggle {
+                bottom: 4rem;
+                width: 36px;
+                height: 36px;
+            }
             table {
                 font-size: 0.85rem;
             }
@@ -257,24 +428,195 @@
     </style>
 </head>
 <body>
-    <header>
-        <h1><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
-        <p>{{ site.description }}</p>
-        <nav>
-            <a href="{{ '/' | relative_url }}">首页</a>
-            <a href="{{ '/about' | relative_url }}">关于</a>
-            <a href="https://space.bilibili.com/161342702" target="_blank">B站</a>
-            <a href="https://github.com/znlgis" target="_blank">GitHub</a>
-        </nav>
-    </header>
-    <main>
-        {{ content }}
-    </main>
+    <div class="page-wrapper">
+        <!-- 左侧目录树 -->
+        <aside class="sidebar" id="sidebar" role="navigation" aria-label="教程目录导航">
+            <div class="sidebar-header">
+                <h2>📚 教程目录</h2>
+            </div>
+            <ul class="dir-tree">
+                <!-- GIS 教程 -->
+                <li>
+                    <button class="tree-item" onclick="toggleTree(this)" aria-expanded="false" aria-label="展开/折叠 GIS 教程">
+                        <span class="tree-toggle">▶</span>
+                        <span class="tree-icon">🌍</span>
+                        <span class="tree-label">GIS 教程</span>
+                    </button>
+                    <ul class="tree-children">
+                        <li><a class="tree-item" href="{{ '/gis/tutorial/gdal/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">GDAL 教程</span></a></li>
+                        <li><a class="tree-item" href="{{ '/gis/tutorial/geoserver/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">GeoServer 教程</span></a></li>
+                        <li><a class="tree-item" href="{{ '/gis/tutorial/geoserver-rest-api/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">GeoServer REST API</span></a></li>
+                        <li><a class="tree-item" href="{{ '/gis/tutorial/cesium/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">CesiumJS 教程</span></a></li>
+                        <li><a class="tree-item" href="{{ '/gis/tutorial/geotools/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">GeoTools 教程</span></a></li>
+                        <li><a class="tree-item" href="{{ '/gis/tutorial/qgis/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">QGIS 教程</span></a></li>
+                        <li><a class="tree-item" href="{{ '/gis/tutorial/postgis/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">PostGIS 教程</span></a></li>
+                        <li><a class="tree-item" href="{{ '/gis/tutorial/geoserver-cloud/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">GeoServer Cloud</span></a></li>
+                        <li><a class="tree-item" href="{{ '/gis/tutorial/opengis-utils-for-java/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">OpenGIS Utils Java</span></a></li>
+                        <li><a class="tree-item" href="{{ '/gis/tutorial/opengis-utils-for-net/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">OpenGIS Utils .NET</span></a></li>
+                        <li><a class="tree-item" href="{{ '/gis/tutorial/geometry-api-java/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">Geometry API Java</span></a></li>
+                        <li><a class="tree-item" href="{{ '/gis/tutorial/geometry-api-net/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">Geometry API .NET</span></a></li>
+                        <li><a class="tree-item" href="{{ '/gis/tutorial/NetTopologySuite/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">NetTopologySuite</span></a></li>
+                        <li><a class="tree-item" href="{{ '/gis/tutorial/SharpMap/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">SharpMap</span></a></li>
+                        <li><a class="tree-item" href="{{ '/gis/tutorial/Mapsui/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">Mapsui</span></a></li>
+                        <li><a class="tree-item" href="{{ '/gis/tutorial/openlayers/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">OpenLayers</span></a></li>
+                    </ul>
+                </li>
+                <!-- GIS 基础 -->
+                <li>
+                    <button class="tree-item" onclick="toggleTree(this)" aria-expanded="false" aria-label="展开/折叠 GIS 基础">
+                        <span class="tree-toggle">▶</span>
+                        <span class="tree-icon">📖</span>
+                        <span class="tree-label">GIS 基础</span>
+                    </button>
+                    <ul class="tree-children">
+                        <li><a class="tree-item" href="{{ '/gis/basic/data/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">数据格式</span></a></li>
+                        <li><a class="tree-item" href="{{ '/gis/basic/services/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">地图服务</span></a></li>
+                        <li><a class="tree-item" href="{{ '/gis/basic/env/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">开发环境</span></a></li>
+                        <li><a class="tree-item" href="{{ '/gis/basic/dev/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">开发技巧</span></a></li>
+                    </ul>
+                </li>
+                <!-- 技术博客翻译 -->
+                <li>
+                    <button class="tree-item" onclick="toggleTree(this)" aria-expanded="false" aria-label="展开/折叠 博客翻译">
+                        <span class="tree-toggle">▶</span>
+                        <span class="tree-icon">📝</span>
+                        <span class="tree-label">博客翻译</span>
+                    </button>
+                    <ul class="tree-children">
+                        <li><a class="tree-item" href="{{ '/gis/lin-ear-th-inking/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">Lin.ear th.inking</span></a></li>
+                    </ul>
+                </li>
+                <!-- CAD 开发 -->
+                <li>
+                    <button class="tree-item" onclick="toggleTree(this)" aria-expanded="false" aria-label="展开/折叠 CAD 开发">
+                        <span class="tree-toggle">▶</span>
+                        <span class="tree-icon">📐</span>
+                        <span class="tree-label">CAD 开发</span>
+                    </button>
+                    <ul class="tree-children">
+                        <li><a class="tree-item" href="{{ '/cad/IFoxCAD/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">IFoxCAD</span></a></li>
+                        <li><a class="tree-item" href="{{ '/cad/FY_Layout/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">FY_Layout</span></a></li>
+                        <li><a class="tree-item" href="{{ '/cad/Clipper2/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">Clipper2</span></a></li>
+                        <li><a class="tree-item" href="{{ '/cad/Clipper1/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">Clipper1</span></a></li>
+                        <li><a class="tree-item" href="{{ '/cad/chili3d/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">Chili3D</span></a></li>
+                        <li><a class="tree-item" href="{{ '/cad/libredwg/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">LibreDWG</span></a></li>
+                        <li><a class="tree-item" href="{{ '/cad/qcad/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">QCAD</span></a></li>
+                        <li><a class="tree-item" href="{{ '/cad/Astral3D/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">Astral3D</span></a></li>
+                        <li><a class="tree-item" href="{{ '/cad/KiCad/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">KiCad</span></a></li>
+                        <li><a class="tree-item" href="{{ '/cad/solvespace/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">SolveSpace</span></a></li>
+                        <li><a class="tree-item" href="{{ '/cad/cadquery/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">CadQuery</span></a></li>
+                        <li><a class="tree-item" href="{{ '/cad/LibreCAD/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">LibreCAD</span></a></li>
+                        <li><a class="tree-item" href="{{ '/cad/FreeCAD/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">FreeCAD</span></a></li>
+                    </ul>
+                </li>
+                <!-- C# 开发 -->
+                <li>
+                    <button class="tree-item" onclick="toggleTree(this)" aria-expanded="false" aria-label="展开/折叠 C# 开发">
+                        <span class="tree-toggle">▶</span>
+                        <span class="tree-icon">💻</span>
+                        <span class="tree-label">C# 开发</span>
+                    </button>
+                    <ul class="tree-children">
+                        <li><a class="tree-item" href="{{ '/csharp/Admin.NET/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">Admin.NET</span></a></li>
+                        <li><a class="tree-item" href="{{ '/csharp/sod/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">SOD 框架</span></a></li>
+                        <li><a class="tree-item" href="{{ '/csharp/.NET Reactor/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">.NET Reactor</span></a></li>
+                        <li><a class="tree-item" href="{{ '/csharp/npoi/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">NPOI</span></a></li>
+                        <li><a class="tree-item" href="{{ '/csharp/ReoGrid/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">ReoGrid</span></a></li>
+                    </ul>
+                </li>
+                <!-- AI 系列 -->
+                <li>
+                    <button class="tree-item" onclick="toggleTree(this)" aria-expanded="false" aria-label="展开/折叠 AI 系列">
+                        <span class="tree-toggle">▶</span>
+                        <span class="tree-icon">🤖</span>
+                        <span class="tree-label">AI 系列</span>
+                    </button>
+                    <ul class="tree-children">
+                        <li><a class="tree-item" href="{{ '/ai/dify/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">Dify 平台</span></a></li>
+                    </ul>
+                </li>
+                <!-- 其他教程 -->
+                <li>
+                    <button class="tree-item" onclick="toggleTree(this)" aria-expanded="false" aria-label="展开/折叠 其他教程">
+                        <span class="tree-toggle">▶</span>
+                        <span class="tree-icon">📦</span>
+                        <span class="tree-label">其他教程</span>
+                    </button>
+                    <ul class="tree-children">
+                        <li><a class="tree-item" href="{{ '/others/BillionMail/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">BillionMail</span></a></li>
+                        <li><a class="tree-item" href="{{ '/others/RuoYi-Cloud/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">RuoYi-Cloud</span></a></li>
+                    </ul>
+                </li>
+                <!-- 项目演示 -->
+                <li>
+                    <button class="tree-item" onclick="toggleTree(this)" aria-expanded="false" aria-label="展开/折叠 项目演示">
+                        <span class="tree-toggle">▶</span>
+                        <span class="tree-icon">🎯</span>
+                        <span class="tree-label">项目演示</span>
+                    </button>
+                    <ul class="tree-children">
+                        <li><a class="tree-item" href="{{ '/demos/gistools-tutorial/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">GIS工具教程</span></a></li>
+                        <li><a class="tree-item" href="{{ '/demos/vue3+openlayers/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">Vue3+OpenLayers</span></a></li>
+                        <li><a class="tree-item" href="{{ '/demos/vue3-map-dashboard/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">Vue3地图大屏</span></a></li>
+                        <li><a class="tree-item" href="{{ '/demos/ai-water-front/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">AI智慧水务前端</span></a></li>
+                    </ul>
+                </li>
+            </ul>
+        </aside>
+        
+        <!-- 遮罩层 -->
+        <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+        
+        <!-- 主内容区域 -->
+        <div class="content-wrapper">
+            <div class="content-inner">
+                <header>
+                    <h1><a href="{{ '/' | relative_url }}">{{ site.title }}</a></h1>
+                    <p>{{ site.description }}</p>
+                    <nav>
+                        <a href="{{ '/' | relative_url }}">首页</a>
+                        <a href="{{ '/about' | relative_url }}">关于</a>
+                        <a href="https://space.bilibili.com/161342702" target="_blank">B站</a>
+                        <a href="https://github.com/znlgis" target="_blank">GitHub</a>
+                    </nav>
+                </header>
+                <main>
+                    {{ content }}
+                </main>
+                <footer>
+                    <p>&copy; {{ site.time | date: '%Y' }} {{ site.author }}. 使用 <a href="https://pages.github.com/" target="_blank">GitHub Pages</a> 托管.</p>
+                </footer>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 移动端侧边栏切换按钮 -->
+    <button class="sidebar-toggle" id="sidebarToggle" onclick="toggleSidebar()" title="显示/隐藏目录">☰</button>
+    
     <a href="#" class="back-to-top" id="backToTop" title="回到顶部">↑</a>
-    <footer>
-        <p>&copy; {{ site.time | date: '%Y' }} {{ site.author }}. 使用 <a href="https://pages.github.com/" target="_blank">GitHub Pages</a> 托管.</p>
-    </footer>
+    
     <script>
+        // 目录树展开/折叠
+        function toggleTree(element) {
+            const toggle = element.querySelector('.tree-toggle');
+            const children = element.nextElementSibling;
+            if (children && children.classList.contains('tree-children')) {
+                toggle.classList.toggle('expanded');
+                children.classList.toggle('expanded');
+                // 更新 aria-expanded 属性
+                const isExpanded = children.classList.contains('expanded');
+                element.setAttribute('aria-expanded', isExpanded);
+            }
+        }
+        
+        // 移动端侧边栏切换
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('sidebarOverlay');
+            sidebar.classList.toggle('show');
+            overlay.classList.toggle('show');
+        }
+        
         // 回到顶部功能
         const backToTop = document.getElementById('backToTop');
         window.addEventListener('scroll', () => {
@@ -298,6 +640,33 @@
                     wrapper.className = 'table-wrapper';
                     table.parentNode.insertBefore(wrapper, table);
                     wrapper.appendChild(table);
+                }
+            });
+            
+            // 高亮当前页面在目录树中的位置
+            const currentPath = window.location.pathname;
+            const treeLinks = document.querySelectorAll('.dir-tree a.tree-item');
+            treeLinks.forEach(link => {
+                const href = link.getAttribute('href');
+                if (href) {
+                    const normalizedHref = href.replace(/\/$/, '');
+                    const normalizedPath = currentPath.replace(/\/$/, '');
+                    // 精确匹配或当前路径以 href + '/' 开头
+                    if (normalizedPath === normalizedHref || normalizedPath.startsWith(normalizedHref + '/')) {
+                        link.classList.add('active');
+                        // 展开父级目录
+                        let parent = link.closest('.tree-children');
+                        while (parent) {
+                            parent.classList.add('expanded');
+                            const toggleBtn = parent.previousElementSibling;
+                            if (toggleBtn) {
+                                const toggle = toggleBtn.querySelector('.tree-toggle');
+                                if (toggle) toggle.classList.add('expanded');
+                                toggleBtn.setAttribute('aria-expanded', 'true');
+                            }
+                            parent = parent.parentElement?.closest('.tree-children');
+                        }
+                    }
                 }
             });
         });
