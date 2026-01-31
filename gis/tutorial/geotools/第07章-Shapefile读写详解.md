@@ -1,9 +1,6 @@
 ---
-layout: post
+layout: default
 title: 第07章 - Shapefile读写详解
-date: 2024-04-07 10:00:00 +0800
-categories: [GIS, GeoTools]
-tags: [GeoTools, Shapefile, 数据读写, 矢量数据]
 ---
 
 # 第07章 - Shapefile读写详解

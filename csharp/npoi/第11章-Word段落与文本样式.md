@@ -1,11 +1,3 @@
----
-layout: post
-title: 第11章 - Word段落与文本样式
-date: 2024-07-11 10:00:00 +0800
-categories: [编程, CSharp, NPOI]
-tags: [NPOI, Word, 段落, 文本样式]
----
-
 # 第十一章：Word段落与文本样式
 
 ## 11.1 段落样式深入

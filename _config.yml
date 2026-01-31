@@ -1,166 +1,62 @@
-# The Site Configuration
 # 站点配置
-
-# Import the theme
-# 导入 Chirpy 主题
-theme: jekyll-theme-chirpy
-
-# The language of the webpage › http://www.lingoes.net/en/translator/langcode.htm
-# 网页语言
-lang: zh-CN
-
-# Change to your timezone › https://zones.arilyn.cc
-# 时区设置
-timezone: Asia/Shanghai
-
-# jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
-# ↓ --------------------------
-
-title: znlgis 博客 # 主标题
-
-tagline: GIS开发与技术分享 # 副标题
-
-description: >- # SEO meta 和 atom feed 使用
-  一个专注于 GIS 开发技术分享的博客，内容涵盖 GDAL、GeoServer、PostGIS、CesiumJS、
-  GeoTools 等 GIS 核心技术，以及 C#/.NET、Java、Python、Vue3 等开发技术。
-
-# 站点 URL
+title: znlgis 博客
+description: GIS开发与技术分享
+author: znlgis
+baseurl: ""
 url: "https://znlgis.github.io"
 
-github:
-  username: znlgis
+# 主题配置
+markdown: kramdown
+highlighter: rouge
 
-social:
-  name: znlgis
-  email: # 如果需要可以添加邮箱
-  links:
-    - https://github.com/znlgis
-    - https://gitee.com/znlgis
-    - https://www.cnblogs.com/znlgis
-    - https://space.bilibili.com/161342702
+# Jekyll 插件
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
 
-# ↑ --------------------------
-# The end of `jekyll-seo-tag` settings
+# 构建优化
+incremental: true
+quiet: true
 
-# Web Analytics Settings
-# 网站分析设置（如需要可配置）
-analytics:
-  google:
-    id: # 填写 Google Analytics ID
-
-# Prefer color scheme setting.
-# 主题模式设置（留空则跟随系统）
-theme_mode: # [light | dark]
-
-# the avatar on sidebar, support local or CORS resources
-# 侧边栏头像
-avatar: https://avatars.githubusercontent.com/znlgis
-
-# boolean type, the global switch for TOC in posts.
-# 文章目录开关
-toc: true
-
-comments:
-  # Global switch for the post-comment system
-  # 评论系统（如需要可配置）
-  provider: # [disqus | utterances | giscus]
-  giscus:
-    repo: # <gh-username>/<repo>
-    repo_id:
-    category:
-    category_id:
-
-# Self-hosted static assets, optional
-assets:
-  self_host:
-    enabled: # boolean, keep empty means false
-
-pwa:
-  enabled: true # PWA 功能
-  cache:
-    enabled: true # PWA 离线缓存
-
-paginate: 10
-
-# The base URL of your site
-baseurl: ""
-
-# ------------ The following options are not recommended to be modified ------------------
-# 以下选项不建议修改
-
+# Kramdown 配置
 kramdown:
-  footnote_backlink: "&#8617;&#xfe0e;"
+  input: GFM
   syntax_highlighter: rouge
   syntax_highlighter_opts:
-    css_class: highlight
-    span:
-      line_numbers: false
     block:
-      line_numbers: true
-      start_line: 1
+      line_numbers: false
 
-collections:
-  tabs:
-    output: true
-    sort_by: order
-
-defaults:
-  - scope:
-      path: "" # An empty string here means all files in the project
-      type: posts
-    values:
-      layout: post
-      comments: true
-      toc: true
-      permalink: /posts/:year/:month/:day/:title/
-  - scope:
-      path: _drafts
-    values:
-      comments: false
-  - scope:
-      path: ""
-      type: tabs
-    values:
-      layout: page
-      permalink: /:title/
-
-sass:
-  style: compressed
-
-compress_html:
-  clippings: all
-  comments: all
-  endings: all
-  profile: false
-  blanklines: false
-  ignore:
-    envs: [development]
-
+# 排除文件
 exclude:
-  - "*.gem"
-  - "*.gemspec"
-  - docs
-  - tools
   - README.md
   - LICENSE
-  - purgecss.js
-  - "*.config.js"
-  - "package*.json"
+  - .gitignore
+  - gis/basic/pom
   - vendor
   - .bundle
+  - Gemfile
   - Gemfile.lock
   - node_modules
-  - gis
-  - csharp
-  - cad
-  - ai
-  - others
+  - package.json
+  - package-lock.json
 
-jekyll-archives:
-  enabled: [categories, tags]
-  layouts:
-    category: category
-    tag: tag
-  permalinks:
-    tag: /tags/:name/
-    category: /categories/:name/
+# 集合配置
+collections:
+  posts:
+    output: true
+    permalink: /:title/
+
+# 性能优化
+# 注意: GitHub Pages 默认启用 safe 模式（禁用自定义插件）
+# 本地开发如需使用自定义插件，取消注释并设为 false
+# safe: false  # 本地开发使用自定义插件时取消注释
+profile: false
+lsi: false
+
+# 默认值
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default

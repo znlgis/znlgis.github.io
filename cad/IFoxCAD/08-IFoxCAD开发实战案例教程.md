@@ -1,11 +1,3 @@
----
-layout: post
-title: 08 - IFoxCAD开发实战案例教程
-date: 2024-09-08 10:00:00 +0800
-categories: [CAD开发, IFoxCAD]
-tags: [IFoxCAD, 实战案例, CAD插件, 项目开发]
----
-
 # 第八章：IFoxCAD开发实战案例教程
 
 ## 8.1 项目概述

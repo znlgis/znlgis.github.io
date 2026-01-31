@@ -1,9 +1,6 @@
 ---
-layout: post
+layout: default
 title: 第16章 - GeoServer集成开发
-date: 2024-04-16 10:00:00 +0800
-categories: [GIS, GeoTools]
-tags: [GeoTools, GeoServer, 插件开发, 集成开发]
 ---
 
 # 第16章 - GeoServer集成开发

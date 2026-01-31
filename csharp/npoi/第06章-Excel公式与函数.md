@@ -1,11 +1,3 @@
----
-layout: post
-title: 第06章 - Excel公式与函数
-date: 2024-07-06 10:00:00 +0800
-categories: [编程, CSharp, NPOI]
-tags: [NPOI, Excel, 公式, 函数]
----
-
 # 第六章：Excel公式与函数
 
 ## 6.1 公式基础

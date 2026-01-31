@@ -1,11 +1,3 @@
----
-layout: post
-title: 第05章 - Excel样式与格式化
-date: 2024-07-05 10:00:00 +0800
-categories: [编程, CSharp, NPOI]
-tags: [NPOI, Excel, 样式, 格式化]
----
-
 # 第五章：Excel样式与格式化
 
 ## 5.1 样式基础概念

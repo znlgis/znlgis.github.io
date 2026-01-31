@@ -1,11 +1,3 @@
----
-layout: post
-title: 第01章 - NPOI概述与入门
-date: 2024-07-01 10:00:00 +0800
-categories: [编程, CSharp, NPOI]
-tags: [NPOI, .NET, Office文档, Excel]
----
-
 # 第一章：NPOI概述与入门
 
 ## 1.1 NPOI简介

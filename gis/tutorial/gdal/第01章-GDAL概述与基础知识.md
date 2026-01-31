@@ -1,9 +1,6 @@
 ---
-layout: post
+layout: default
 title: 第01章 - GDAL概述与基础知识
-date: 2024-01-15 10:00:00 +0800
-categories: [GIS, GDAL]
-tags: [GDAL, 地理信息系统, 栅格数据, 矢量数据]
 ---
 
 # 第01章：GDAL概述与基础知识

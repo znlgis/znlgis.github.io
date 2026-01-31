@@ -1,11 +1,3 @@
----
-layout: post
-title: 第13章 - Word图片与多媒体
-date: 2024-07-13 10:00:00 +0800
-categories: [编程, CSharp, NPOI]
-tags: [NPOI, Word, 图片, 多媒体]
----
-
 # 第十三章：Word图片与多媒体
 
 ## 13.1 插入图片

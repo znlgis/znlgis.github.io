@@ -1,9 +1,6 @@
 ---
-layout: post
+layout: default
 title: 第10章 - 3D Tiles大规模数据
-date: 2024-03-10 10:00:00 +0800
-categories: [GIS, CesiumJS]
-tags: [CesiumJS, 3D-Tiles, 倾斜摄影]
 ---
 
 # 第10章：3D Tiles大规模数据

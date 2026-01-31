@@ -1,11 +1,3 @@
----
-layout: post
-title: 第09章 - Excel高级功能-合并单元格与冻结窗格
-date: 2024-07-09 10:00:00 +0800
-categories: [编程, CSharp, NPOI]
-tags: [NPOI, Excel, 合并单元格, 冻结窗格]
----
-
 # 第九章：Excel高级功能-合并单元格与冻结窗格
 
 ## 9.1 合并单元格

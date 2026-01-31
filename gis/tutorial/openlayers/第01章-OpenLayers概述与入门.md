@@ -1,9 +1,6 @@
 ---
-layout: post
+layout: default
 title: 第01章 - OpenLayers 概述与入门
-date: 2024-06-01 10:00:00 +0800
-categories: [GIS, OpenLayers]
-tags: [OpenLayers, Web地图, JavaScript]
 ---
 
 # 第01章 - OpenLayers 概述与入门

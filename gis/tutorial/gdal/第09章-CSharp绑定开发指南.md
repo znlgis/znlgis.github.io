@@ -1,9 +1,6 @@
 ---
-layout: post
+layout: default
 title: 第09章 - C#/.NET绑定开发指南
-date: 2024-01-23 10:00:00 +0800
-categories: [GIS, GDAL]
-tags: [GDAL, CSharp, .NET, 编程开发, API绑定]
 ---
 
 # 第09章：C#/.NET绑定开发指南

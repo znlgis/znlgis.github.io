@@ -1,11 +1,3 @@
----
-layout: post
-title: 06 - Agent智能助手
-date: 2024-10-06 10:00:00 +0800
-categories: [AI应用, Dify]
-tags: [Dify, Agent, 智能体, 智能助手]
----
-
 # 第六章：Agent 智能助手
 
 ## 6.1 Agent 概述

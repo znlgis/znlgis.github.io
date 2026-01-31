@@ -1,11 +1,3 @@
----
-layout: post
-title: 07 - REST API与自动化
-date: 2024-02-07 10:00:00 +0800
-categories: [GIS, GeoServer]
-tags: [GeoServer, REST-API, 自动化, 脚本]
----
-
 # 第7章 REST API与自动化
 
 ## 7.1 REST API概述

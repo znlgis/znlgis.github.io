@@ -1,11 +1,3 @@
----
-layout: post
-title: 02 - DBTrans事务管理核心教程
-date: 2024-09-02 10:00:00 +0800
-categories: [CAD开发, IFoxCAD]
-tags: [IFoxCAD, DBTrans, 事务管理, AutoCAD开发]
----
-
 # 第二章：DBTrans事务管理核心教程
 
 ## 2.1 事务机制基础

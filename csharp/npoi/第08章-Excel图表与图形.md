@@ -1,11 +1,3 @@
----
-layout: post
-title: 第08章 - Excel图表与图形
-date: 2024-07-08 10:00:00 +0800
-categories: [编程, CSharp, NPOI]
-tags: [NPOI, Excel, 图表, 图形]
----
-
 # 第八章：Excel图表与图形
 
 ## 8.1 图表基础

@@ -1,9 +1,6 @@
 ---
-layout: post
+layout: default
 title: 第11章 - Interaction交互系统
-date: 2024-06-11 10:00:00 +0800
-categories: [GIS, OpenLayers]
-tags: [OpenLayers, Interaction, 交互系统]
 ---
 
 # 第11章 - Interaction 交互系统

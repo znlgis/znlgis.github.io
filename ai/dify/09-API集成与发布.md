@@ -1,11 +1,3 @@
----
-layout: post
-title: 09 - API集成与发布
-date: 2024-10-09 10:00:00 +0800
-categories: [AI应用, Dify]
-tags: [Dify, API, 应用发布, 集成]
----
-
 # 第九章：API 集成与发布
 
 ## 9.1 应用发布概述

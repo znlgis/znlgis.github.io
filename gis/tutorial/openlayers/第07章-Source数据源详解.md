@@ -1,9 +1,6 @@
 ---
-layout: post
+layout: default
 title: 第07章 - Source数据源详解
-date: 2024-06-07 10:00:00 +0800
-categories: [GIS, OpenLayers]
-tags: [OpenLayers, Source, 数据源]
 ---
 
 # 第07章 - Source 数据源详解
