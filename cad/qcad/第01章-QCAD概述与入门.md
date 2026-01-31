@@ -353,3 +353,15 @@ QCAD提供完整的官方文档：
 ---
 
 **下一章预告**：第二章将详细介绍QCAD在Windows、macOS和Linux平台上的安装方法，以及基本的环境配置和初始设置。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <span></span>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第02章-安装与环境配置" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

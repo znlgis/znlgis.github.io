@@ -323,3 +323,15 @@ Astral3D采用Apache-2.0许可证开源，基本规则如下：
 ---
 
 **下一章预告**：第二章将详细介绍Astral3D的环境搭建过程，包括开发环境配置、项目克隆、依赖安装、本地运行等内容，帮助读者快速搭建起自己的Astral3D开发环境。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <span></span>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第02章-环境搭建与快速开始" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

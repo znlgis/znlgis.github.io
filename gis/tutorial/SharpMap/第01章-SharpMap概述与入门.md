@@ -745,3 +745,15 @@ image.Save("themed_map.png");
 ---
 
 **下一章预告**：第02章将详细介绍开发环境配置和项目创建，包括 Visual Studio 项目配置、引用管理和第一个 SharpMap 应用的创建。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <span></span>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第02章-环境配置与项目创建" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

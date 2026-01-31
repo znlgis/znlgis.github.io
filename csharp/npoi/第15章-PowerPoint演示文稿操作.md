@@ -443,3 +443,15 @@ PowerPoint操作在NPOI中功能相对有限，但基本的演示文稿创建需
 ---
 
 > **下一章预告**：第十六章将介绍大文件处理与性能优化。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="第14章-Word页眉页脚与页面设置" style="text-decoration: none;">← 上一章</a>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第16章-大文件处理与性能优化" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

@@ -645,3 +645,15 @@ FxBricks使用CadQuery构建产品开发流水线，他们开源了CAD流程文�
 - 编写简单的CadQuery脚本创建基本3D模型
 
 在下一章中，我们将深入学习CadQuery的Workplane和草图系统，这是进行复杂建模的基础。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <span></span>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第02章-Workplane与草图系统" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

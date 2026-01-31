@@ -301,3 +301,15 @@ Console.WriteLine("Word文档创建成功！");
 ---
 
 > **下一章预告**：第二章将详细介绍NPOI的环境搭建和项目配置，包括NuGet包安装、版本选择建议和基础项目结构。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <span></span>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第02章-环境搭建与项目配置" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

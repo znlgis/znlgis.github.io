@@ -702,3 +702,15 @@ FROM cities;
 - [PostgreSQL 官网](https://www.postgresql.org/)
 - [PostGIS 源码仓库](https://github.com/postgis/postgis)
 - [OGC 标准](https://www.ogc.org/)
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <span></span>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第02章-安装与环境配置" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

@@ -510,3 +510,15 @@ title: 第01章 .NET Reactor概述与简介
 ---
 
 **下一章预告**：在第二章中，我们将详细讲解如何安装和配置 .NET Reactor，包括系统要求、许可证激活和开发环境集成。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <span></span>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第02章-安装与环境配置" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

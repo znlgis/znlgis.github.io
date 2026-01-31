@@ -1047,3 +1047,15 @@ public partial class MapForm : Form
 ---
 
 **下一章预告**：第05章将详细介绍 SharpMap 的图层系统，包括各种图层类型的使用方法和高级配置。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="第03章-核心架构与类库设计" style="text-decoration: none;">← 上一章</a>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第05章-图层系统详解" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

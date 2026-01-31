@@ -713,3 +713,15 @@ public class GeoJSONGeometryValidator {
 ---
 
 [← 上一章：Shapefile读写详解](第07章-Shapefile读写详解) | [返回目录](README) | [下一章：数据库空间数据访问 →](第09章-数据库空间数据访问)
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="第07章-Shapefile读写详解" style="text-decoration: none;">← 上一章</a>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第09章-数据库空间数据访问" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

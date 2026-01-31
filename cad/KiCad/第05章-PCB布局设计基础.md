@@ -957,3 +957,15 @@ Gerber是PCB制造的标准文件格式。
 10. **实战案例**：通过LED电路实践了完整的PCB设计流程。
 
 通过本章的学习，读者应该能够独立完成简单的双面PCB设计。在下一章中，我们将学习元器件库和封装管理的详细内容。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="第04章-原理图设计基础" style="text-decoration: none;">← 上一章</a>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第06章-元器件库与封装管理" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

@@ -710,3 +710,15 @@ curl -u admin:geoserver http://localhost:8080/geoserver/rest/about/version.json
 4. 分析GeoServer数据目录的结构，理解各配置文件的作用。
 5. 修改默认管理员密码，并尝试创建一个新的管理员用户。
 6. 调整JVM参数，观察对GeoServer性能的影响。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="01-GeoServer概述与入门" style="text-decoration: none;">← 上一章</a>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="03-数据管理与发布" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

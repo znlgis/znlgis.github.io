@@ -996,3 +996,15 @@ public class OperationRequest
 - [GeoJSON 规范 RFC 7946](https://tools.ietf.org/html/rfc7946)
 - [NetTopologySuite.IO.GeoJSON GitHub](https://github.com/NetTopologySuite/NetTopologySuite.IO.GeoJSON)
 - [geojson.io - 在线 GeoJSON 编辑器](https://geojson.io/)
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="第06章-空间分析算法" style="text-decoration: none;">← 上一章</a>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第08章-Shapefile文件操作" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

@@ -403,3 +403,15 @@ GeoServer拥有活跃的开源社区，提供丰富的资源：
 3. 访问GeoServer官方网站，了解最新版本的功能更新。
 4. 在GeoServer官方演示站点（https://demo.geo-solutions.it/geoserver/）上浏览和测试各种服务。
 5. 思考你所在的行业或领域，GeoServer可能有哪些应用场景？
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <span></span>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="02-GeoServer安装与配置" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

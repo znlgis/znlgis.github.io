@@ -274,3 +274,15 @@ processing.run("qgis:importintopostgis", {
 **相关资源**：
 - [QGIS 文档](https://docs.qgis.org/)
 - [PyQGIS 开发者手册](https://docs.qgis.org/3.28/en/docs/pyqgis_developer_cookbook/)
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="第15章-与GeoServer集成" style="text-decoration: none;">← 上一章</a>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第17章-编程语言集成" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

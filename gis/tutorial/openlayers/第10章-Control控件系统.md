@@ -672,3 +672,15 @@ map.addControl(toolbar);
 ---
 
 [← 上一章：栅格数据与瓦片服务](第09章-栅格数据与瓦片服务) | [返回目录](README) | [下一章：Interaction交互系统 →](第11章-Interaction交互系统)
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="第09章-栅格数据与瓦片服务" style="text-decoration: none;">← 上一章</a>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第11章-Interaction交互系统" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

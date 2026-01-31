@@ -939,3 +939,15 @@ manager.clear();
 3. 对比 Entity 和 Primitive 渲染相同数据的性能差异。
 4. 开发一个图元管理器，支持分组和批量操作。
 5. 实现贴地多边形的动态编辑功能。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="第06章-Entity-API实体管理" style="text-decoration: none;">← 上一章</a>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第08章-影像图层与地图服务" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

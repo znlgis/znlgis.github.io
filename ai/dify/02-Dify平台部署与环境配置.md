@@ -757,3 +757,15 @@ docker compose exec db pg_dump -U postgres dify > backup.sql
 ---
 
 **下一章预告**：第三章将介绍应用构建基础，包括各种应用类型的创建和配置方法。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="01-Dify平台简介与入门" style="text-decoration: none;">← 上一章</a>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="03-应用构建基础" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

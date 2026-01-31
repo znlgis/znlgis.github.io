@@ -389,3 +389,15 @@ Dify 采用现代化的微服务架构，主要组件包括：
 ---
 
 **下一章预告**：第二章将详细介绍 Dify 的部署方式和环境配置，包括 Docker Compose 部署、本地源码部署以及各种云服务选项。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <span></span>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="02-Dify平台部署与环境配置" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

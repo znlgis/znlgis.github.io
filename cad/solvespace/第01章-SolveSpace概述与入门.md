@@ -300,3 +300,15 @@ SolveSpace使用 `.slvs` 作为原生文件格式。文件是纯文本格式，�
 
 **导航**
 - 下一章: [第02章 - 安装与环境配置](第02章-安装与环境配置)
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <span></span>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第02章-安装与环境配置" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

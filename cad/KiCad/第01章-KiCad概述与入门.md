@@ -876,3 +876,15 @@ https://gitlab.com/kicad/code/kicad
 通过本章的学习，读者应该对KiCad有了全面的了解，并能够独立创建简单的PCB设计项目。在接下来的章节中，我们将深入学习KiCad的各个功能模块，掌握更多的设计技巧和最佳实践。
 
 下一章我们将详细介绍KiCad的环境搭建与安装配置，包括高级配置选项和开发环境的准备。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <span></span>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第02章-环境搭建与安装配置" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

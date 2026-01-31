@@ -515,3 +515,15 @@ Mapsui V5 是当前的主要版本，带来了多项重要改进：
 3. MemoryLayer 和 WritableLayer 各自适合什么场景？
 4. 列举三个你能想到的 Mapsui 应用场景。
 5. 访问 Mapsui 官方在线示例，运行并理解一个基础示例。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <span></span>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第02章-环境搭建与快速开始" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

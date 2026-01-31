@@ -662,3 +662,15 @@ namespace GeoServerQuickStart
 - [GeoServer 官方文档](https://docs.geoserver.org/)
 - [GeoServer REST API 文档](https://docs.geoserver.org/latest/en/user/rest/)
 - [GeoServerDesktop 项目地址](https://github.com/znlgis/GeoServerDesktop)
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <span></span>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第02章-环境准备与客户端配置" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

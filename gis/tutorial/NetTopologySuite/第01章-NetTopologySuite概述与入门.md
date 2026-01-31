@@ -617,3 +617,15 @@ Console.WriteLine($"几何数量: {multiPolygon.NumGeometries}");
 ---
 
 **下一章预告**：第02章将详细介绍开发环境配置和项目创建，包括 Visual Studio 和 VS Code 的配置方法。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <span></span>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第02章-环境配置与项目创建" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

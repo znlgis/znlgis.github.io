@@ -548,3 +548,14 @@ A: 建议将坐标缩放到合适的范围。过大的坐标可能导致溢出�
 
 在下一章中，我们将深入学习Clipper2的核心数据结构，包括Point、Path、Paths、PolyTree等，为后续的高级操作打下坚实的基础。
 
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <span></span>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第2章_核心数据结构" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

@@ -641,3 +641,15 @@ cq.exporters.export(result, "t_slot_plate.step")
 - 应用最佳实践进行参数化设计
 
 下一章我们将学习3D建模操作，包括拉伸、旋转、扫略、放样等核心功能。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="第01章-CadQuery概述与入门" style="text-decoration: none;">← 上一章</a>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第03章-3D建模操作" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

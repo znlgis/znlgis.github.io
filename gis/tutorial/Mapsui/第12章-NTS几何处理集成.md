@@ -462,3 +462,15 @@ public static class GeometryUtils
 3. 实现一个几何简化功能，根据当前缩放级别动态简化几何。
 4. 创建一个多边形分割工具。
 5. 实现一个路径分析功能，找出两点间的最短路径。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="第11章-瓦片图层与地图服务" style="text-decoration: none;">← 上一章</a>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第13章-导航与视图控制" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

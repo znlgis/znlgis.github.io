@@ -526,3 +526,15 @@ public class SecurityCheckReport
 **相关资源**：
 - [GeoServer 安全文档](https://docs.geoserver.org/latest/en/user/security/index.html)
 - [REST API 安全配置](https://docs.geoserver.org/latest/en/api/#1.0.0/security.yaml)
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="第10章-服务设置与配置管理" style="text-decoration: none;">← 上一章</a>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第12章-覆盖范围与栅格数据管理" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

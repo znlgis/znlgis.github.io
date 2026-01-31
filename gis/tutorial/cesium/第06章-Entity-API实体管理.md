@@ -1172,3 +1172,15 @@ viewer.selectedEntityChanged.addEventListener(function(entity) {
 3. 开发自定义的实体样式管理器。
 4. 实现鼠标悬停显示实体信息的功能。
 5. 创建一个实体编辑器，支持拖拽移动实体。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="第05章-相机系统与视角控制" style="text-decoration: none;">← 上一章</a>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第07章-Primitive底层渲染" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

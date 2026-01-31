@@ -565,3 +565,15 @@ GDAL 3.x 系列带来了许多重要更新：
 3. GDAL 3.x 相比 2.x 版本有哪些重要的改进？
 4. 列举三个你熟悉的使用 GDAL 的项目或软件。
 5. 对于一个新项目，你会如何选择合适的 GDAL 版本？
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <span></span>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第02章-GDAL安装与环境配置" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

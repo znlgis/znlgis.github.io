@@ -349,3 +349,15 @@ public class LayoutCmds
 - 具备独立开发CAD插件的能力
 
 下一章我们将详细介绍开发环境的搭建和项目配置。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <span></span>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="02-开发环境搭建与项目配置" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

@@ -992,3 +992,15 @@ docker compose exec wms env | grep -i pgconfig
 4. 如何实现零停机时间的服务更新？
 
 5. 监控系统应该关注哪些关键指标来评估 GeoServer Cloud 的健康状态？
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="第05章-安全配置与认证" style="text-decoration: none;">← 上一章</a>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第07章-Kubernetes部署实战" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

@@ -966,3 +966,15 @@ public async Task GetWorkspaces_ReturnsWorkspaces()
 - [HttpClient 最佳实践](https://docs.microsoft.com/en-us/dotnet/fundamentals/networking/http/httpclient-guidelines)
 - [Dispose 模式](https://docs.microsoft.com/en-us/dotnet/standard/garbage-collection/implementing-dispose)
 - [异步编程](https://docs.microsoft.com/en-us/dotnet/csharp/async)
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="第02章-环境准备与客户端配置" style="text-decoration: none;">← 上一章</a>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第04章-工作空间管理API实战" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

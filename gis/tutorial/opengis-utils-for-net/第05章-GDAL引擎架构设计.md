@@ -923,3 +923,15 @@ public void SafeWrite(OguLayer layer, string path, string driverName)
 6. **性能优化**：大文件处理、内存管理、并行处理
 
 理解GDAL引擎的实现细节，有助于解决实际开发中遇到的问题，并进行必要的扩展和优化。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="第04章-统一图层模型详解" style="text-decoration: none;">← 上一章</a>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第06章-数据格式转换实战" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

@@ -274,3 +274,15 @@ KiCad等长工具：
 7. **机械集成**：了解了与机械设计的配合。
 
 通过本章学习，读者可以设计更复杂的多层PCB。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="第11章-原理图设计进阶" style="text-decoration: none;">← 上一章</a>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第13章-高速电路设计" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

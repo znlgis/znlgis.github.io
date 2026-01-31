@@ -1177,3 +1177,15 @@ public class FormattedReportExample
 ---
 
 > **下一章预告**：第六章将介绍Excel公式与函数，包括公式的插入、引用、求值和常用函数的使用。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="第04章-Excel单元格操作与数据类型" style="text-decoration: none;">← 上一章</a>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第06章-Excel公式与函数" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

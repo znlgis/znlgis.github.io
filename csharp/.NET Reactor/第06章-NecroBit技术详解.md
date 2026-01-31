@@ -797,3 +797,15 @@ NecroBit 是 .NET Reactor 最强大的保护技术，合理使用可以极大提
 ---
 
 **下一章预告**：在第七章中，我们将学习本地代码编译技术，了解如何将 .NET 程序完全转换为原生可执行文件。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="第05章-加密与保护机制" style="text-decoration: none;">← 上一章</a>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第07章-本地代码编译" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

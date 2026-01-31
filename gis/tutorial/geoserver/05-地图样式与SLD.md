@@ -972,3 +972,15 @@ GeoServer支持CSS样式语言，提供了更简洁的样式定义方式：
 4. 创建带有文字描边的标注样式。
 5. 将一个SLD样式转换为等效的CSS样式。
 6. 设计一个完整的地图样式，包含道路、建筑和标注。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="04-OGC标准服务" style="text-decoration: none;">← 上一章</a>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="06-安全管理与访问控制" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

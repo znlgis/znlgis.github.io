@@ -958,3 +958,15 @@ public class ProfessionalReportExample
 ---
 
 > **下一章预告**：第十章将介绍Word文档基础操作，包括文档的创建、打开、保存以及基本结构操作。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="第08章-Excel图表与图形" style="text-decoration: none;">← 上一章</a>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第10章-Word文档基础操作" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

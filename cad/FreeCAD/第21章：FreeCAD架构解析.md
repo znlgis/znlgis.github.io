@@ -282,3 +282,15 @@ FreeCAD使用CMake作为构建系统，支持多平台编译。
 - Qt官方文档：https://doc.qt.io/
 - Coin3D项目：https://github.com/coin3d
 - Python C API：https://docs.python.org/3/c-api/
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="第20章：实战案例分析" style="text-decoration: none;">← 上一章</a>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第22章：Python脚本基础" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

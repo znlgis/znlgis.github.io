@@ -372,3 +372,15 @@ Web服务是现代GIS数据共享的重要方式。
 **上一章**：[第16章 数据库集成](第16章-数据库集成)
 
 **下一章**：[第18章 高级功能与扩展](第18章-高级功能与扩展)
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="第16章-数据库集成" style="text-decoration: none;">← 上一章</a>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第18章-高级功能与扩展" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

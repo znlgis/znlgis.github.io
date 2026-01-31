@@ -588,3 +588,15 @@ foreach (var group in groups)
 **相关资源**：
 
 - [NetTopologySuite.Features](https://www.nuget.org/packages/NetTopologySuite.Features/)
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="第12章-矢量切片生成" style="text-decoration: none;">← 上一章</a>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第14章-高级功能与性能优化" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

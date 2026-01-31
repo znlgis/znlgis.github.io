@@ -452,3 +452,15 @@ def safe_operation():
 6. **实用示例**：通过实例掌握了常见脚本编写方法。
 
 通过本章学习，读者可以使用Python自动化KiCad操作。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="第13章-高速电路设计" style="text-decoration: none;">← 上一章</a>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第15章-Python插件开发实战" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

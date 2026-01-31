@@ -887,3 +887,15 @@ public class SalesReportWithChartExample
 ---
 
 > **下一章预告**：第九章将介绍Excel高级功能，包括合并单元格、冻结窗格、筛选、排序等操作。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="第07章-Excel数据验证与保护" style="text-decoration: none;">← 上一章</a>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第09章-Excel高级功能-合并单元格与冻结窗格" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

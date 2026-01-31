@@ -1063,3 +1063,15 @@ public class StyleManager
 9. **实际应用**：通过图层管理器、块库管理器等案例巩固所学知识
 
 SymbolTable类极大简化了符号表的操作，使我们能够用更少的代码完成更多的工作。下一章我们将学习选择集过滤器，这是CAD二次开发中的另一个重要主题。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="02-DBTrans事务管理核心教程" style="text-decoration: none;">← 上一章</a>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="04-选择集过滤器与图元选择教程" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

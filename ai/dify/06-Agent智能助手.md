@@ -694,3 +694,15 @@ else:
 ---
 
 **下一章预告**：第七章将介绍工具与插件系统，包括插件生态、自定义工具开发和最佳实践。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="05-工作流编排" style="text-decoration: none;">← 上一章</a>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="07-工具与插件系统" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

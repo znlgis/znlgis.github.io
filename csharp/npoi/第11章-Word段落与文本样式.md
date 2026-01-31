@@ -711,3 +711,15 @@ public class TechnicalDocumentExample
 ---
 
 > **下一章预告**：第十二章将介绍Word表格操作，包括表格的创建、样式设置和复杂表格的处理。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="第10章-Word文档基础操作" style="text-decoration: none;">← 上一章</a>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第12章-Word表格操作" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

@@ -1087,3 +1087,15 @@ public class WorkspaceCache
 **相关资源**：
 - [GeoServer 工作空间文档](https://docs.geoserver.org/latest/en/user/data/webadmin/workspaces.html)
 - [GeoServer REST API - Workspaces](https://docs.geoserver.org/latest/en/api/#1.0.0/workspaces.yaml)
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="第03章-HTTP客户端基础设施详解" style="text-decoration: none;">← 上一章</a>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第05章-数据存储管理API详解" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

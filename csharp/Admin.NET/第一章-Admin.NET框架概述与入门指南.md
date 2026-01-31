@@ -693,3 +693,15 @@ Admin.NET是一个功能完善、开箱即用的.NET通用权限开发框架。�
 通过本章的学习，你应该对Admin.NET有了全面的认识，包括其核心技术栈、特色功能、适用场景以及学习路线。在接下来的章节中，我们将深入学习如何搭建开发环境、理解项目架构、进行二次开发等内容。
 
 无论你是.NET新手还是有经验的开发者，Admin.NET都能为你提供一个快速起步的平台。让我们开始Admin.NET的学习之旅吧！
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="第七章-二次开发实战-创建自定义模块" style="text-decoration: none;">← 上一章</a>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第九章-系统部署与运维指南" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

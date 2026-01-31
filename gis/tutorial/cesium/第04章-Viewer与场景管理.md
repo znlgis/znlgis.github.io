@@ -846,3 +846,15 @@ controller.tiltEventTypes = [
 3. 配置自定义天空盒和大气效果。
 4. 创建一个完整的工具栏，包含常用功能。
 5. 实现图层透明度滑块控件。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="第03章-核心架构与模块设计" style="text-decoration: none;">← 上一章</a>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第05章-相机系统与视角控制" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

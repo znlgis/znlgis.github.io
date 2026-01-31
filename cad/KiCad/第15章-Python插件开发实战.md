@@ -528,3 +528,15 @@ board.save()
 5. **插件发布**：掌握了插件打包和发布流程。
 
 通过本章学习，读者可以开发自己的KiCad插件，扩展软件功能。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="第14章-Python脚本开发基础" style="text-decoration: none;">← 上一章</a>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第16章-源码架构与编译环境" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

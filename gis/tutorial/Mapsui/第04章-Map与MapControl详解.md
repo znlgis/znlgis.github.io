@@ -783,3 +783,15 @@ writableLayer.DataHasChanged();
 3. 实现地图的前进/后退导航功能。
 4. 优化一个包含大量要素的地图应用的性能。
 5. 比较不同平台 MapControl 的实现差异。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="第03章-核心架构与组件设计" style="text-decoration: none;">← 上一章</a>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第05章-图层系统详解" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

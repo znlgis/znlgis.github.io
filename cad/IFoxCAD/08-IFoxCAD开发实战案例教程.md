@@ -919,3 +919,15 @@ public class BatchProcessor
 - 学会处理实际开发中的常见需求
 
 希望这些案例能够帮助读者在实际项目中更好地应用IFoxCAD进行CAD二次开发。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="07-图元操作与几何处理教程" style="text-decoration: none;">← 上一章</a>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <span></span>
+</div>
+
+<!-- /NAVIGATION -->

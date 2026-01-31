@@ -553,3 +553,15 @@ public class ComplexTableExample
 ---
 
 > **下一章预告**：第十三章将介绍Word图片与多媒体操作，包括图片的插入、调整和定位。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="第11章-Word段落与文本样式" style="text-decoration: none;">← 上一章</a>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第13章-Word图片与多媒体" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

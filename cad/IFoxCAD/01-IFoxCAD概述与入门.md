@@ -572,3 +572,15 @@ IFoxCAD的官方文档是学习的首选资源：
 通过本章的学习，读者应该对IFoxCAD有了初步的了解，并能够创建简单的CAD插件程序。在接下来的章节中，我们将深入学习IFoxCAD的各个核心模块，掌握更多的开发技巧。
 
 下一章我们将详细介绍DBTrans事务管理类，这是IFoxCAD最核心的类，也是进行CAD二次开发的基础。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <span></span>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="02-DBTrans事务管理核心教程" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

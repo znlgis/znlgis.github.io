@@ -322,3 +322,15 @@ public class DataStoreMigrator
 **相关资源**：
 - [GeoServer 数据存储文档](https://docs.geoserver.org/latest/en/user/data/webadmin/stores.html)
 - [PostGIS 配置](https://docs.geoserver.org/latest/en/user/data/database/postgis.html)
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="第04章-工作空间管理API实战" style="text-decoration: none;">← 上一章</a>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第06章-要素类型与图层管理" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

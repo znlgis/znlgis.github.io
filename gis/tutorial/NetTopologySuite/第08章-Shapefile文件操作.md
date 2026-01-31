@@ -892,3 +892,15 @@ public class ShapefileDatabaseImporter
 - [Shapefile 技术规范](https://www.esri.com/library/whitepapers/pdfs/shapefile.pdf)
 - [NetTopologySuite.IO.Esri GitHub](https://github.com/NetTopologySuite/NetTopologySuite.IO.Esri)
 - [dBASE 文件格式](https://www.dbase.com/Knowledgebase/INT/db7_file_fmt.htm)
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="第07章-GeoJSON数据处理" style="text-decoration: none;">← 上一章</a>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第09章-PostGIS数据库集成" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->
