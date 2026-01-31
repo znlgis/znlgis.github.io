@@ -15,7 +15,7 @@ FY_Layout作为飞扬集成设计平台的场地布置二次开发插件示例�
 
 ### 1.1.2 项目仓库信息
 
-- **仓库地址**：https://github.com/znlgis/FY_Layout
+- **仓库地址**：https://gitee.com/qidaosoft/FY_Layout
 - **授权协议**：CC-BY-NC 4.0
 - **核心框架**：基于LightCAD/LightBIM平台
 - **开发语言**：C#
@@ -163,7 +163,7 @@ FY_Layout/
 
 2. **克隆代码仓库**
    ```bash
-   git clone https://github.com/znlgis/FY_Layout.git
+   git clone https://gitee.com/qidaosoft/FY_Layout.git
    cd FY_Layout
    ```
 
