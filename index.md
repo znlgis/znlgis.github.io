@@ -603,6 +603,28 @@ JTS Topology Suite 创始人 Martin Davis 的技术博客翻译，涵盖计算�
 - [高级应用与扩展](csharp/ReoGrid/第19章-高级应用与扩展)
 - [实战案例与综合应用](csharp/ReoGrid/第20章-实战案例与综合应用)
 
+#### SqlSugar 系列
+- [SqlSugar概述与入门](csharp/SqlSugar/第01章-SqlSugar概述与入门)
+- [环境搭建与项目配置](csharp/SqlSugar/第02章-环境搭建与项目配置)
+- [实体类定义与特性配置](csharp/SqlSugar/第03章-实体类定义与特性配置)
+- [CodeFirst代码优先开发](csharp/SqlSugar/第04章-CodeFirst代码优先开发)
+- [DbFirst数据库优先开发](csharp/SqlSugar/第05章-DbFirst数据库优先开发)
+- [基础查询操作](csharp/SqlSugar/第06章-基础查询操作)
+- [高级查询与联表查询](csharp/SqlSugar/第07章-高级查询与联表查询)
+- [插入数据操作](csharp/SqlSugar/第08章-插入数据操作)
+- [更新数据操作](csharp/SqlSugar/第09章-更新数据操作)
+- [删除数据操作](csharp/SqlSugar/第10章-删除数据操作)
+- [事务与工作单元](csharp/SqlSugar/第11章-事务与工作单元)
+- [导航属性与关联查询](csharp/SqlSugar/第12章-导航属性与关联查询)
+- [分页与动态表达式](csharp/SqlSugar/第13章-分页与动态表达式)
+- [SQL函数与自定义函数](csharp/SqlSugar/第14章-SQL函数与自定义函数)
+- [多租户与分库分表](csharp/SqlSugar/第15章-多租户与分库分表)
+- [大数据批量操作](csharp/SqlSugar/第16章-大数据批量操作)
+- [AOP拦截与日志](csharp/SqlSugar/第17章-AOP拦截与日志)
+- [缓存与性能优化](csharp/SqlSugar/第18章-缓存与性能优化)
+- [仓储模式与最佳实践](csharp/SqlSugar/第19章-仓储模式与最佳实践)
+- [实战案例与综合应用](csharp/SqlSugar/第20章-实战案例与综合应用)
+
 ### AI 系列
 
 #### Dify 平台

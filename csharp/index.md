@@ -10,3 +10,4 @@ title: C# 教程
 - [npoi 教程](npoi/)
 - [ReoGrid 教程](ReoGrid/)
 - [sod 教程](sod/)
+- [SqlSugar 教程](SqlSugar/)
