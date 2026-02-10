@@ -1356,7 +1356,7 @@ db.CodeFirst.InitTables<Employee>();
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
   <a href="第03章-实体类定义与特性配置" style="text-decoration: none;">← 上一章</a>
   <a href="./" style="text-decoration: none;">目录</a>
-  <span></span>
+  <a href="第05章-DbFirst数据库优先开发" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->
