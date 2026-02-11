@@ -1028,3 +1028,7 @@ public class PerformanceService : IDynamicApiController
 | 缓存 | 对热点数据使用缓存，减少数据库压力 |
 | `AsSplitQuery()` | 多 Include 时使用拆分查询 |
 | 原生 SQL | 复杂查询考虑使用原生 SQL 提升性能 |
+
+---
+
+**上一章**: [第五章-依赖注入与服务注册](第五章-依赖注入与服务注册.md) | [返回目录](index.md) | **下一章**: [第七章-数据验证与异常处理](第七章-数据验证与异常处理.md)
