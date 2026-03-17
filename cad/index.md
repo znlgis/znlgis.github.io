@@ -13,6 +13,7 @@ title: CAD 教程
 - [FreeCAD 教程](FreeCAD/)
 - [FY_Layout 教程](FY_Layout/)
 - [IFoxCAD 教程](IFoxCAD/)
+- [LightCAD 教程](LightCAD/)
 - [KiCad 教程](KiCad/)
 - [LibreCAD 教程](LibreCAD/)
 - [libredwg 教程](libredwg/)
