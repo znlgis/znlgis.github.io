@@ -28,19 +28,17 @@ http://gwmodel.whu.edu.cn/mirrors/osgeo4w
 
 ## GDAL环境变量配置
 
-OSGEO4W_ROOT: C:\OSGeo4W
+GDAL_DATA: C:\OSGeo4W\apps\gdal\share\gdal
 
-GDAL_DATA: %OSGEO4W_ROOT%\apps\gdal\share\gdal
+GDAL_DRIVER_PATH: C:\OSGeo4W\apps\gdal\lib\gdalplugins
 
-GDAL_DRIVER_PATH: %OSGEO4W_ROOT%\apps\gdal\lib\gdalplugins
+PROJ_LIB: C:\OSGeo4W\share\proj
 
-PROJ_LIB: %OSGEO4W_ROOT%\share\proj
-
-PYTHONHOME: %OSGEO4W_ROOT%\apps\Python312
+PYTHONHOME: C:\OSGeo4W\apps\Python312
 
 在PATH系统变量中追加如下值：
 
-%OSGEO4W_ROOT%\bin
+C:\OSGeo4W\bin
 
 %PYTHONHOME%
 
