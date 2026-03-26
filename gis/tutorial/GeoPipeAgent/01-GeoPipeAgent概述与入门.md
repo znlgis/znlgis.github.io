@@ -1,355 +1,226 @@
 ---
 layout: default
-title: GeoPipeAgent概述与入门
+title: 第一章：GeoPipeAgent 概述与入门
 ---
 
 # 第一章：GeoPipeAgent 概述与入门
 
 ## 1.1 什么是 GeoPipeAgent
 
-GeoPipeAgent 是一个 **AI 优先（AI-Native）** 的 GIS 数据分析流水线框架，由 Python 编写，采用 MIT 开源许可证发布。它的核心设计理念是：让 AI 通过 Skill 文件理解框架能力，自动生成 YAML 格式的分析流水线，框架负责解析并执行，最终返回 JSON 结构化报告。
+GeoPipeAgent 是一个 **AI 优先（AI-Native）** 的 GIS 数据分析流水线框架，由 Python 实现，基于 MIT 开源协议发布。它的核心理念是让 AI（如 ChatGPT、Claude 等大语言模型）能够通过阅读 Skill 文件来理解框架的能力，然后自动生成 YAML 格式的分析流水线，框架负责解析和执行这些流水线，最终返回结构化的 JSON 报告。
 
-其工作流程可以用一行描述：
+整个工作流程可以概括为：
 
 ```
 AI 生成 YAML 流水线 → GeoPipeAgent 解析 & 执行 → JSON 结构化报告
 ```
 
-GeoPipeAgent 的定位并非传统意义上的 GIS 桌面软件或 Web GIS 服务，而是一个 **面向 AI 代理（AI Agent）的 GIS 分析管道编排框架**。它将 GIS 分析任务抽象为声明式的 YAML 流水线，使得 AI 可以像编写配置文件一样组织复杂的空间分析工作流。
+GeoPipeAgent 的项目仓库地址为：[https://github.com/znlgis/GeoPipeAgent](https://github.com/znlgis/GeoPipeAgent)
 
-### 1.1.1 项目背景
+## 1.2 项目定位与设计理念
 
-随着大语言模型（LLM）和 AI Agent 的快速发展，越来越多的场景需要 AI 能够自主调用工具、编排复杂任务。在 GIS 领域，空间数据处理通常涉及多个步骤的串联——数据读取、投影转换、缓冲区分析、叠加分析、结果输出等。传统方式需要编写大量 Python 脚本，对 AI 来说理解和生成完整的 Python 代码门槛较高。
+### 1.2.1 AI 原生设计
 
-GeoPipeAgent 通过以下设计解决了这个问题：
+GeoPipeAgent 的设计哲学与传统 GIS 工具有本质不同。传统的 GIS 分析工具要求用户编写代码或通过图形界面操作，而 GeoPipeAgent 则专门为 AI 协作场景设计：
 
-1. **YAML 声明式流水线**：AI 只需要生成结构化的 YAML 配置，而不是编写代码
-2. **Skill 文件系统**：框架可以自动生成描述自身能力的文档，供 AI 阅读和理解
-3. **JSON 结构化输出**：执行结果以机器可读的 JSON 格式返回，便于 AI 解析和利用
+- **Skill 文件机制**：框架可以自动生成结构化的 Skill 文档，让 AI 理解所有可用的分析步骤、参数规格和流水线语法
+- **YAML 驱动**：用声明式的 YAML 定义分析流程，无需编写代码，天然适合 AI 生成
+- **JSON 报告**：每次执行都生成结构化的 JSON 报告，便于 AI 解读和进一步处理
+- **AI 友好的错误信息**：所有错误都包含结构化的描述和修复建议，方便 AI 自动修正流水线
 
-### 1.1.2 核心特性
+### 1.2.2 声明式流水线
 
-| 特性 | 描述 |
-|------|------|
-| **YAML 驱动** | 声明式流水线定义，AI 友好，无需编写代码 |
-| **插件化 Steps** | 23 个内置步骤，涵盖 IO、矢量、栅格、分析、网络五大类别 |
-| **多后端支持** | 支持 GDAL Python、GDAL CLI、QGIS Process 三种后端引擎 |
-| **AI 友好错误** | 所有错误信息包含修复建议，便于 AI 自动纠错 |
-| **变量系统** | 支持 `${var}` 变量替换和 `$step.attr` 步骤引用 |
-| **高级流控** | 支持条件执行（when）、重试（retry）、跳过（skip）等流控特性 |
-| **Skill 自动生成** | 自动生成 AI 可消费的 Skill 文件和步骤参考文档 |
-| **JSON 报告** | 执行结果以结构化 JSON 输出，包含每步的状态、耗时和摘要 |
+GeoPipeAgent 采用声明式的方式定义分析流程，用户只需要描述"做什么"，而不需要关心"怎么做"。框架负责解析流水线定义、解析变量和引用、选择合适的后端、按顺序执行步骤、处理错误和重试，最终生成执行报告。
 
-## 1.2 技术定位与对比
+### 1.2.3 多后端可插拔架构
 
-### 1.2.1 与传统 GIS 脚本的对比
+GeoPipeAgent 支持五种 GIS 后端引擎，同一个流水线可以在不同后端上执行，无需修改流水线定义：
 
-传统的 GIS 数据处理通常需要编写 Python 脚本，例如使用 GeoPandas：
+| 后端 | 实现 | 适用场景 |
+|------|------|----------|
+| `native_python` | GeoPandas + Shapely | 默认后端，适合中小数据量 |
+| `gdal_cli` | ogr2ogr 命令行 | 大文件处理，无需 Python 绑定 |
+| `gdal_python` | GDAL/OGR Python 绑定 | 精细控制 GDAL 功能 |
+| `qgis_process` | QGIS Processing CLI | 利用 QGIS 的丰富算法库 |
+| `pyqgis` | PyQGIS Python API | 直接调用 QGIS Python API |
 
-```python
-import geopandas as gpd
+## 1.3 核心特性概览
 
-# 读取数据
-roads = gpd.read_file("data/roads.shp")
-# 投影转换
-roads = roads.to_crs("EPSG:3857")
-# 缓冲区分析
-buffer = roads.buffer(500)
-# 保存结果
-buffer.to_file("output/buffer.geojson", driver="GeoJSON")
-```
+GeoPipeAgent 具有以下核心特性：
 
-使用 GeoPipeAgent，同样的任务可以用 YAML 来表达：
+### 1.3.1 33 个内置步骤
 
-```yaml
-pipeline:
-  name: "道路缓冲区分析"
-  steps:
-    - id: read
-      use: io.read_vector
-      params:
-        path: "data/roads.shp"
-    - id: reproject
-      use: vector.reproject
-      params:
-        input: "$read.output"
-        target_crs: "EPSG:3857"
-    - id: buffer
-      use: vector.buffer
-      params:
-        input: "$reproject.output"
-        distance: 500
-    - id: save
-      use: io.write_vector
-      params:
-        input: "$buffer.output"
-        path: "output/buffer.geojson"
-```
+框架内置了 33 个分析步骤，覆盖六大类别：
 
-两种方式的对比：
+| 类别 | 步骤数 | 说明 |
+|------|--------|------|
+| IO（数据读写） | 4 | 矢量/栅格数据的读取与写入 |
+| Vector（矢量分析） | 7 | 缓冲区、裁剪、投影转换、融合、简化、查询、叠加 |
+| Raster（栅格分析） | 5 | 投影转换、裁剪、波段运算、统计、等值线 |
+| Analysis（空间分析） | 4 | 泰森多边形、热力图、空间插值、空间聚类 |
+| Network（网络分析） | 3 | 最短路径、服务区分析、地理编码 |
+| QC（数据质检） | 10 | 几何有效性、拓扑、属性完整性等全面质检 |
 
-| 维度 | Python 脚本 | GeoPipeAgent YAML |
-|------|------------|-------------------|
-| 表达方式 | 命令式（怎么做） | 声明式（做什么） |
-| AI 生成难度 | 高（需要正确的 API 调用） | 低（结构化的配置格式） |
-| 可读性 | 中等 | 高（步骤清晰分明） |
-| 可验证性 | 需要运行才知道对错 | 可在执行前验证 |
-| 错误处理 | 需要手写 try/except | 框架内置 on_error 策略 |
-| 可复现性 | 取决于代码质量 | YAML 天然可复现 |
+### 1.3.2 变量与引用系统
 
-### 1.2.2 与其他 GIS 框架的对比
+GeoPipeAgent 支持两种引用机制：
 
-| 框架 | 定位 | 语言 | AI 支持 |
-|------|------|------|---------|
-| GeoPipeAgent | AI 优先的流水线框架 | Python | ✅ 原生支持 |
-| QGIS Processing | 桌面 GIS 处理框架 | Python/C++ | ❌ 无 |
-| GeoServer WPS | Web 处理服务 | Java | ❌ 无 |
-| Apache Sedona | 大数据空间分析 | Scala/Java | ❌ 无 |
-| rasterio/fiona | 底层 IO 库 | Python | ❌ 无 |
+- **变量替换 `${var}`**：在 `variables` 中定义变量，通过 `${var_name}` 在步骤参数中引用
+- **步骤引用 `$step_id`**：通过 `$step_id` 引用前一步骤的输出，或通过 `$step_id.attr` 引用具体属性
 
-GeoPipeAgent 的独特之处在于它不是在已有框架上加一层 AI 接口，而是从设计之初就以 AI 为第一公民（AI-First），所有 API 和数据格式都围绕 AI 的使用习惯设计。
+### 1.3.3 高级流水线控制
 
-## 1.3 项目结构概览
+- **条件执行（`when`）**：根据条件表达式决定是否执行某个步骤
+- **自动重试（`retry`）**：步骤失败时自动重试（最多 3 次，带指数退避）
+- **错误跳过（`skip`）**：步骤失败时跳过，继续执行后续步骤
 
-GeoPipeAgent 的代码结构清晰，采用标准的 Python 包结构：
+### 1.3.4 AI 集成
+
+框架内置了 Skill 文件生成器，可以自动生成：
+
+- `SKILL.md`：主技能描述文件
+- `steps-reference.md`：完整的步骤参考文档
+- `pipeline-schema.md`：YAML 流水线 Schema 文档
+
+## 1.4 技术栈
+
+GeoPipeAgent 基于以下核心技术栈构建：
+
+| 技术 | 版本要求 | 用途 |
+|------|----------|------|
+| Python | ≥ 3.10 | 运行时环境 |
+| Click | ≥ 8.0 | CLI 命令行框架 |
+| PyYAML | ≥ 6.0 | YAML 解析 |
+| GeoPandas | ≥ 0.14 | 矢量数据处理 |
+| Shapely | ≥ 2.0 | 几何运算 |
+| Fiona | ≥ 1.9 | 矢量数据 I/O |
+| Rasterio | ≥ 1.3 | 栅格数据处理 |
+
+可选依赖：
+
+| 依赖组 | 包含 | 用途 |
+|--------|------|------|
+| `analysis` | scipy, scikit-learn, matplotlib | 空间分析步骤 |
+| `network` | networkx, geopy | 网络分析步骤 |
+| `dev` | pytest, pytest-cov | 开发与测试 |
+
+## 1.5 项目结构总览
+
+GeoPipeAgent 的源码组织结构如下：
 
 ```
 GeoPipeAgent/
-├── pyproject.toml              # 项目配置（依赖、入口点、构建设置）
-├── src/
-│   └── geopipe_agent/          # 主包
-│       ├── __init__.py          # 包初始化，导出核心 API
-│       ├── cli.py               # Click CLI 命令行入口
-│       ├── errors.py            # 异常类定义
-│       ├── backends/            # 后端引擎
-│       │   ├── base.py          # GeoBackend 抽象基类
-│       │   ├── gdal_python.py   # GDAL Python 后端
-│       │   ├── gdal_cli.py      # GDAL CLI 后端
-│       │   └── qgis_process.py  # QGIS Process 后端
-│       ├── engine/              # 执行引擎
-│       │   ├── parser.py        # YAML 解析器
-│       │   ├── validator.py     # 流水线验证器
-│       │   ├── resolver.py      # 参数解析器
-│       │   ├── context.py       # 执行上下文
-│       │   ├── executor.py      # 步骤执行器
-│       │   └── reporter.py      # 报告生成器
-│       ├── models/              # 数据模型
-│       │   ├── pipeline.py      # 流水线和步骤定义
-│       │   └── result.py        # 步骤执行结果
-│       ├── steps/               # 内置步骤
-│       │   ├── registry.py      # 步骤注册表
-│       │   ├── decorators.py    # @step 装饰器
-│       │   ├── io/              # IO 步骤（4 个）
-│       │   ├── vector/          # 矢量步骤（7 个）
-│       │   ├── raster/          # 栅格步骤（5 个）
-│       │   ├── analysis/        # 分析步骤（4 个）
-│       │   └── network/         # 网络步骤（3 个）
-│       ├── skillgen/            # Skill 文件生成器
-│       │   └── generator.py
-│       └── utils/               # 工具模块
-│           ├── crs.py           # CRS 工具函数
-│           └── logging.py       # 日志配置
-├── tests/                       # 测试（95 个测试用例）
-│   ├── conftest.py              # pytest 配置和 fixtures
-│   ├── test_engine/             # 引擎测试
-│   ├── test_steps/              # 步骤测试
-│   └── test_backends/           # 后端测试
-└── cookbook/                     # 示例流水线
-    ├── buffer-analysis.yaml
-    ├── overlay-analysis.yaml
-    ├── batch-convert.yaml
-    ├── filter-simplify.yaml
-    └── dissolve-analysis.yaml
+├── pyproject.toml               # 项目配置（依赖、构建、入口点）
+├── README.md                    # 项目说明文档
+├── LICENSE                      # MIT 许可证
+├── cookbook/                     # 示例流水线 YAML 文件
+│   ├── buffer-analysis.yaml     # 缓冲区分析示例
+│   ├── overlay-analysis.yaml    # 叠加分析示例
+│   ├── batch-convert.yaml       # 批量转换示例
+│   ├── filter-simplify.yaml     # 筛选简化示例
+│   ├── dissolve-analysis.yaml   # 融合分析示例
+│   ├── vector-qc.yaml           # 矢量数据质检示例
+│   └── raster-qc.yaml           # 栅格数据质检示例
+├── src/geopipe_agent/           # 源码主目录
+│   ├── __init__.py              # 包入口，自动加载内置步骤
+│   ├── cli.py                   # CLI 命令行接口
+│   ├── errors.py                # 错误类定义
+│   ├── backends/                # 多后端实现
+│   ├── engine/                  # 流水线引擎
+│   ├── models/                  # 数据模型
+│   ├── steps/                   # 内置步骤（自动发现 & 注册）
+│   ├── skillgen/                # AI Skill 文件生成器
+│   └── utils/                   # 工具函数
+└── tests/                       # 测试用例
+    ├── conftest.py              # 测试配置与 fixture
+    ├── test_backends/           # 后端测试
+    ├── test_engine/             # 引擎测试
+    └── test_steps/              # 步骤测试
 ```
 
-### 1.3.1 核心模块说明
+## 1.6 快速体验
 
-框架由以下六大核心模块组成：
+以下是一个最简单的 GeoPipeAgent 使用示例，展示从安装到执行的完整流程。
 
-```
-┌─────────────────────────────────────────────────────┐
-│                      CLI 层                          │
-│              geopipe-agent 命令行工具                 │
-├─────────────────────────────────────────────────────┤
-│                    Engine 层                          │
-│    Parser → Validator → Resolver → Executor          │
-│                                   → Reporter         │
-├─────────────────────────────────────────────────────┤
-│                    Steps 层                           │
-│    Registry ← @step 装饰器 ← 各类步骤模块            │
-├─────────────────────────────────────────────────────┤
-│                  Backend 层                           │
-│    GdalPython │ GdalCli │ QgisProcess                │
-├─────────────────────────────────────────────────────┤
-│                  Models 层                            │
-│    PipelineDefinition │ StepDefinition │ StepResult   │
-├─────────────────────────────────────────────────────┤
-│                  Utils 层                             │
-│    Logging │ CRS │ Errors                            │
-└─────────────────────────────────────────────────────┘
-```
-
-## 1.4 快速体验
-
-### 1.4.1 最小示例
-
-以下是一个最简单的 GeoPipeAgent 流水线，它读取一个 Shapefile 并将其转换为 GeoJSON 格式：
-
-```yaml
-pipeline:
-  name: "格式转换"
-  steps:
-    - id: read
-      use: io.read_vector
-      params:
-        path: "data/input.shp"
-    - id: save
-      use: io.write_vector
-      params:
-        input: "$read.output"
-        path: "output/result.geojson"
-        format: "GeoJSON"
-```
-
-执行命令：
+### 安装
 
 ```bash
-geopipe-agent run pipeline.yaml
+pip install -e .
 ```
 
-输出结果（JSON）：
+### 编写流水线
 
-```json
-{
-  "pipeline": "格式转换",
-  "status": "success",
-  "duration_seconds": 1.234,
-  "steps": [
-    {
-      "id": "read",
-      "step": "io.read_vector",
-      "status": "success",
-      "duration": 0.5,
-      "output_summary": {
-        "feature_count": 100,
-        "crs": "EPSG:4326",
-        "geometry_types": ["Point"]
-      }
-    },
-    {
-      "id": "save",
-      "step": "io.write_vector",
-      "status": "success",
-      "duration": 0.734,
-      "output_summary": {
-        "path": "output/result.geojson"
-      }
-    }
-  ],
-  "outputs": {}
-}
-```
-
-### 1.4.2 使用变量的流水线
+创建文件 `hello-pipeline.yaml`：
 
 ```yaml
 pipeline:
-  name: "参数化缓冲分析"
-  variables:
-    input_path: "data/roads.shp"
-    buffer_dist: 500
+  name: "Hello GeoPipeAgent"
+  description: "第一个流水线示例"
+
   steps:
-    - id: read
+    - id: read-data
       use: io.read_vector
       params:
-        path: "${input_path}"
+        path: "data/roads.shp"
+
     - id: buffer
       use: vector.buffer
       params:
-        input: "$read.output"
-        distance: "${buffer_dist}"
+        input: "$read-data"
+        distance: 100
+
     - id: save
       use: io.write_vector
       params:
-        input: "$buffer.output"
-        path: "output/buffer_result.geojson"
+        input: "$buffer"
+        path: "output/buffered_roads.geojson"
+
   outputs:
-    result: "$save.output"
+    result: "$save"
 ```
 
-可以通过命令行覆盖变量：
+### 执行流水线
 
 ```bash
-geopipe-agent run pipeline.yaml --var input_path=data/highways.shp --var buffer_dist=1000
+geopipe-agent run hello-pipeline.yaml
 ```
 
-## 1.5 核心概念速览
+执行后将输出 JSON 格式的结构化报告，包含每个步骤的执行状态、耗时和统计信息。
 
-在深入学习之前，了解以下核心概念有助于快速理解 GeoPipeAgent 的设计：
+## 1.7 与其他 GIS 工具的对比
 
-### 1.5.1 Pipeline（流水线）
+| 特性 | GeoPipeAgent | ArcPy | QGIS Processing | GeoTools |
+|------|-------------|-------|-----------------|----------|
+| AI 原生 | ✅ | ❌ | ❌ | ❌ |
+| YAML 声明式 | ✅ | ❌ | 部分（模型设计器） | ❌ |
+| 多后端支持 | ✅（5种后端） | 单一后端 | 单一后端 | 单一后端 |
+| 结构化 JSON 报告 | ✅ | ❌ | ❌ | ❌ |
+| 数据质检 | ✅（10种检查） | 有限 | 有限 | ❌ |
+| 自动 Skill 生成 | ✅ | ❌ | ❌ | ❌ |
+| 开源免费 | ✅（MIT） | ❌（商业） | ✅（GPL） | ✅（LGPL） |
 
-流水线是 GeoPipeAgent 的核心执行单元，由一组有序的步骤（Steps）组成。流水线通过 YAML 文件定义，包含名称、描述、变量、步骤列表和输出声明。
+## 1.8 适用场景
 
-### 1.5.2 Step（步骤）
+GeoPipeAgent 适用于以下场景：
 
-步骤是流水线中的最小执行单元。每个步骤有一个唯一的 `id`，通过 `use` 字段指定要调用的步骤类型（如 `io.read_vector`、`vector.buffer`），并通过 `params` 传递参数。
+1. **AI 辅助 GIS 分析**：让大语言模型根据自然语言描述自动生成分析流水线
+2. **批量数据处理**：通过 YAML 定义可重复的数据处理流程
+3. **数据质量检查**：对矢量和栅格数据进行全面的质量检查
+4. **自动化 ETL 流程**：数据格式转换、投影转换、属性筛选等自动化处理
+5. **教学与学习**：以声明式方式学习 GIS 空间分析的基本概念和流程
+6. **快速原型开发**：用最少的代码快速验证 GIS 分析思路
 
-### 1.5.3 Backend（后端）
+## 1.9 学习路径建议
 
-后端是实际执行 GIS 操作的引擎。GeoPipeAgent 支持三种后端：
-- **gdal_python**：基于 GeoPandas + Shapely 的 Python 后端（默认）
-- **gdal_cli**：基于 ogr2ogr 命令行工具的后端（适合大文件）
-- **qgis_process**：基于 QGIS Processing 的后端（提供 QGIS 算法）
+建议按照以下路径学习 GeoPipeAgent：
 
-### 1.5.4 Context（上下文）
+1. **入门阶段**：阅读第 1-3 章，了解框架概述、安装配置和整体架构
+2. **流水线基础**：阅读第 4-6 章，掌握 YAML 流水线语法、变量系统和步骤注册机制
+3. **步骤深入**：阅读第 7-12 章，了解各类内置步骤的详细用法
+4. **引擎与后端**：阅读第 13-15 章，理解后端系统、执行引擎和数据模型
+5. **工具与集成**：阅读第 16-18 章，掌握 CLI 工具、AI 集成和错误处理
+6. **进阶实战**：阅读第 19-20 章，学习自定义步骤开发和实战案例
 
-上下文管理流水线执行过程中的数据流转。它负责：
-- 存储每个步骤的执行结果
-- 解析 `$step_id.attr` 格式的步骤引用
-- 替换 `${var_name}` 格式的变量
+## 1.10 本章小结
 
-### 1.5.5 Registry（注册表）
-
-注册表是所有可用步骤的全局目录。步骤通过 `@step` 装饰器自动注册到注册表中，引擎在执行时通过注册表查找并调用步骤函数。
-
-## 1.6 适用场景
-
-GeoPipeAgent 特别适合以下场景：
-
-1. **AI 自动化 GIS 分析**：让 AI Agent 自动编排和执行 GIS 分析任务
-2. **批量数据处理**：通过变量化的流水线批量处理不同数据集
-3. **GIS 工作流标准化**：将常用的分析流程标准化为可复现的 YAML 配置
-4. **教学与演示**：声明式的 YAML 格式便于理解和展示分析流程
-5. **快速原型验证**：无需写代码即可验证 GIS 分析思路
-
-## 1.7 技术栈
-
-GeoPipeAgent 构建在以下技术栈之上：
-
-| 组件 | 技术 | 用途 |
-|------|------|------|
-| 语言 | Python >= 3.10 | 开发语言 |
-| CLI | Click >= 8.0 | 命令行接口 |
-| YAML | PyYAML >= 6.0 | 流水线解析 |
-| 矢量处理 | GeoPandas >= 0.14 | 矢量数据操作 |
-| 几何引擎 | Shapely >= 2.0 | 几何计算 |
-| 矢量 IO | Fiona >= 1.9 | 矢量文件读写 |
-| 栅格处理 | Rasterio >= 1.3 | 栅格数据操作 |
-| 验证 | jsonschema >= 4.0 | Schema 验证 |
-| 科学计算 | SciPy >= 1.10 | 空间插值、热力图等（可选） |
-| 机器学习 | scikit-learn >= 1.2 | 聚类分析（可选） |
-| 图论 | NetworkX >= 3.0 | 网络分析（可选） |
-| 地理编码 | geopy >= 2.3 | 地理编码（可选） |
-
-## 1.8 本教程结构
-
-本教程共分为 15 章，按照由浅入深的顺序组织：
-
-- **基础篇（第1-3章）**：介绍项目概况、安装配置和架构设计
-- **流水线篇（第4-6章）**：深入讲解 YAML Schema、数据模型和插件系统
-- **步骤篇（第7-10章）**：详细介绍所有 23 个内置步骤的用法
-- **引擎与工具篇（第11-14章）**：解析后端系统、执行引擎、CLI 工具和 Skill 生成
-- **实战篇（第15章）**：综合案例与最佳实践
-
-建议按照章节顺序阅读。如果只是想快速上手使用，可以重点阅读第1、2、4、7、8章和第15章。
+本章介绍了 GeoPipeAgent 的基本概念、核心特性、技术栈和项目结构。GeoPipeAgent 是一个面向 AI 协作的 GIS 分析流水线框架，通过 YAML 声明式定义分析流程，支持多后端执行，内置 33 个分析步骤，覆盖矢量、栅格、空间分析、网络分析和数据质检等场景。接下来，我们将详细介绍安装与环境配置。
