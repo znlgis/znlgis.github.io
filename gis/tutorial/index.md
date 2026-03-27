@@ -22,3 +22,4 @@ title: GIS 技术教程
 - [qgis 教程](qgis/)
 - [SharpMap 教程](SharpMap/)
 - [GeoPipeAgent 教程](GeoPipeAgent/)
+- [geopandas 教程](geopandas/)
