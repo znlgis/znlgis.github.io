@@ -23,3 +23,4 @@ title: GIS 技术教程
 - [SharpMap 教程](SharpMap/)
 - [GeoPipeAgent 教程](GeoPipeAgent/)
 - [geopandas 教程](geopandas/)
+- [shapely 教程](shapely/)
