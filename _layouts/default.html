@@ -20,6 +20,9 @@
     <meta property="twitter:title" content="{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}">
     <meta property="twitter:description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
     
+    <!-- 不蒜子访客统计 -->
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -234,6 +237,11 @@
             border-top: 1px solid var(--border-color);
             font-size: 0.85rem;
             color: #666;
+        }
+        .busuanzi-stats {
+            margin-top: 0.4rem;
+            font-size: 0.8rem;
+            color: #999;
         }
         a {
             color: var(--link-color);
@@ -591,6 +599,13 @@
                 </main>
                 <footer>
                     <p>&copy; {{ site.time | date: '%Y' }} {{ site.author }}. 使用 <a href="https://pages.github.com/" target="_blank">GitHub Pages</a> 托管.</p>
+                    <p class="busuanzi-stats">
+                        <span id="busuanzi_container_site_uv">本站访客数 <span id="busuanzi_value_site_uv"></span> 人</span>
+                        &nbsp;|&nbsp;
+                        <span id="busuanzi_container_site_pv">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
+                        &nbsp;|&nbsp;
+                        <span id="busuanzi_container_page_pv">本页访问量 <span id="busuanzi_value_page_pv"></span> 次</span>
+                    </p>
                 </footer>
             </div>
         </div>
