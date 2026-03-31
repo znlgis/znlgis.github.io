@@ -1,547 +1,568 @@
 ---
 layout: default
-title: 第十六章：CLI 命令行工具完全指南
+title: "第十六章：CLI 命令行工具完全指南"
 ---
 
 # 第十六章：CLI 命令行工具完全指南
 
 ## 16.1 概述
 
-GeoPipeAgent 提供了功能完整的命令行工具 `geopipe-agent`，通过 Click 框架实现。安装后可在终端直接使用：
+GeoPipeAgent 提供 `geopipe-agent` 命令行工具，包含 **11 个子命令**，覆盖流水线执行、校验、步骤查询、AI 技能生成等全流程操作。
 
-```bash
-geopipe-agent --help
+```
+geopipe-agent <子命令> [参数] [选项]
 ```
 
-完整命令列表：
+---
 
-| 命令 | 说明 |
-|------|------|
-| `run` | 执行 YAML 流水线 |
-| `validate` | 校验 YAML 流水线（不执行） |
+## 16.2 快速参考
+
+| 子命令 | 说明 |
+|--------|------|
+| `run` | 运行流水线 |
+| `validate` | 校验流水线格式 |
 | `list-steps` | 列出所有可用步骤 |
 | `describe` | 查看步骤详情 |
-| `info` | 查看 GIS 数据文件摘要 |
-| `backends` | 列出可用后端 |
-| `generate-skill-doc` | 生成步骤参考文档（供 AI 使用） |
-| `generate-skill` | 生成 AI Skill 文件集 |
+| `info` | 查看流水线信息 |
+| `backends` | 查看可用后端 |
+| `generate-skill-doc` | 生成 Skill 文档（标准输出） |
+| `generate-skill` | 生成 Skill 文件到目录 |
 
-## 16.2 `geopipe-agent run`
+---
 
-### 基本语法
+## 16.3 `geopipe-agent run`：运行流水线
+
+### 16.3.1 基本语法
 
 ```bash
-geopipe-agent run <YAML_FILE> [选项]
+geopipe-agent run <pipeline_file> [选项]
 ```
 
-### 完整选项
+### 16.3.2 选项说明
 
-| 选项 | 类型 | 默认 | 说明 |
-|------|------|------|------|
-| `--var` | 多值字符串 | — | 覆盖流水线变量，格式 `key=value` |
-| `--log-level` | 选项 | `INFO` | 日志级别：`DEBUG`/`INFO`/`WARNING`/`ERROR` |
-| `--json-log` | 标志 | False | 使用 JSON 格式输出日志 |
+| 选项 | 说明 | 示例 |
+|------|------|------|
+| `--var key=value` | 覆盖 YAML 变量 | `--var buffer_dist=500` |
+| `--log-level LEVEL` | 日志级别 | `--log-level DEBUG` |
+| `--json-log` | JSON 格式日志 | `--json-log` |
+| `--output FILE` | 报告输出文件 | `--output report.json` |
 
-### 使用示例
+### 16.3.3 使用示例
 
 ```bash
-# 基本执行
+# 基本运行
 geopipe-agent run pipeline.yaml
 
-# 覆盖变量
-geopipe-agent run pipeline.yaml --var input_path=data/roads.shp
+# 覆盖单个变量
+geopipe-agent run pipeline.yaml --var buffer_dist=1000
 
 # 覆盖多个变量
 geopipe-agent run pipeline.yaml \
-  --var input_path=data/roads.shp \
-  --var buffer_dist=1000 \
-  --var output_dir=output/batch001/
+  --var input_path=data/new_data.geojson \
+  --var buffer_dist=300 \
+  --var output_dir=output/batch2/
 
 # 调试模式（显示详细日志）
 geopipe-agent run pipeline.yaml --log-level DEBUG
 
-# JSON 日志格式（便于日志聚合）
+# 静默模式（只显示错误）
+geopipe-agent run pipeline.yaml --log-level ERROR
+
+# JSON 格式日志（便于日志系统采集）
 geopipe-agent run pipeline.yaml --json-log
 
 # 保存报告到文件
-geopipe-agent run pipeline.yaml > report.json
+geopipe-agent run pipeline.yaml --output reports/result.json
 
-# 保存报告并查看日志（stdout 报告，stderr 日志）
-geopipe-agent run pipeline.yaml > report.json 2>execution.log
+# 组合使用
+geopipe-agent run pipeline.yaml \
+  --var input_path=data/city.geojson \
+  --log-level DEBUG \
+  --output reports/city_analysis.json
 ```
 
-### 输出格式
+### 16.3.4 日志级别说明
 
-成功时：
+| 级别 | 说明 | 适用场景 |
+|------|------|----------|
+| `DEBUG` | 所有信息，含内部状态 | 开发调试 |
+| `INFO` | 正常执行信息（默认） | 日常使用 |
+| `WARNING` | 警告信息 | 生产监控 |
+| `ERROR` | 仅错误信息 | 安静执行 |
 
-```json
-{
-  "pipeline": {
-    "name": "道路缓冲区分析",
-    "status": "success",
-    "duration": 0.34,
-    "timestamp": "2024-01-15T10:30:00Z"
-  },
-  "steps": [
-    {"id": "load-roads", "step": "io.read_vector", "status": "success", "duration": 0.12, ...},
-    {"id": "buffer", "step": "vector.buffer", "status": "success", "duration": 0.05, ...}
-  ],
-  "outputs": {
-    "result": {"type": "GeoDataFrame", "feature_count": 42, "crs": "EPSG:3857"}
-  }
-}
+### 16.3.5 退出码
+
+| 退出码 | 含义 |
+|--------|------|
+| `0` | 成功 |
+| `1` | 流水线执行失败 |
+| `2` | 解析/校验错误 |
+| `3` | 参数错误 |
+
+```bash
+# 在 shell 脚本中检查执行结果
+geopipe-agent run pipeline.yaml
+if [ $? -eq 0 ]; then
+    echo "流水线执行成功"
+else
+    echo "流水线执行失败，退出码: $?"
+fi
 ```
 
-失败时（输出到 stderr，exit code 1）：
-
-```json
-{
-  "error": "StepExecutionError",
-  "step_id": "buffer",
-  "message": "步骤 'buffer' 执行失败：CRS mismatch",
-  "suggestion": "Add a vector.reproject step before this step."
-}
-```
-
-### 在脚本中使用
+### 16.3.6 批量执行
 
 ```bash
 #!/bin/bash
-# 批量处理脚本
+# batch_run.sh - 批量处理多个城市的数据
 
-for file in data/*.shp; do
-  base=$(basename "$file" .shp)
-  output=$(geopipe-agent run template.yaml \
-    --var "input_path=$file" \
-    --var "output_path=output/${base}.geojson" 2>/dev/null)
-  
-  # 检查执行状态
-  status=$(echo "$output" | python3 -c "import json,sys; d=json.load(sys.stdin); print(d['pipeline']['status'])")
-  
-  if [ "$status" = "success" ]; then
-    echo "✅ $base 处理成功"
-  else
-    echo "❌ $base 处理失败"
-    echo "$output" | python3 -c "import json,sys; d=json.load(sys.stdin); print(d.get('message', '未知错误'))"
-  fi
+CITIES=("beijing" "shanghai" "guangzhou" "shenzhen")
+
+for city in "${CITIES[@]}"; do
+    echo "处理: $city"
+    geopipe-agent run analysis_pipeline.yaml \
+      --var input_path="data/${city}/roads.geojson" \
+      --var output_dir="output/${city}/" \
+      --log-level INFO \
+      --output "reports/${city}_report.json"
+
+    if [ $? -ne 0 ]; then
+        echo "处理 $city 时发生错误，继续下一个..."
+    fi
 done
+
+echo "批量处理完成"
 ```
 
-```python
-# Python 中调用
-import subprocess
-import json
+---
 
-result = subprocess.run(
-    ["geopipe-agent", "run", "pipeline.yaml", "--var", "input_path=data/roads.shp"],
-    capture_output=True, text=True
-)
+## 16.4 `geopipe-agent validate`：校验流水线
 
-report = json.loads(result.stdout)
-if report["pipeline"]["status"] == "success":
-    feature_count = report["outputs"]["result"]["feature_count"]
-    print(f"处理成功，输出 {feature_count} 个要素")
-```
-
-## 16.3 `geopipe-agent validate`
-
-### 基本语法
+### 16.4.1 基本语法
 
 ```bash
-geopipe-agent validate <YAML_FILE> [--log-level LEVEL]
+geopipe-agent validate <pipeline_file>
 ```
 
-### 说明
-
-校验流水线配置的合法性，**不执行**任何 GIS 操作。适合在 CI/CD 中作为提交前检查。
-
-### 使用示例
+### 16.4.2 使用示例
 
 ```bash
-# 基本校验
+# 校验流水线文件
 geopipe-agent validate pipeline.yaml
 
-# 静默模式（仅看结果）
-geopipe-agent validate pipeline.yaml --log-level ERROR
+# 成功输出
+# ✓ 流水线 "道路缓冲区分析" 格式有效
+# 步骤数量: 5
+# 变量数量: 3
+# 输出声明: result, stats
 
-# 在 CI 中使用（exit code 非 0 表示失败）
-geopipe-agent validate pipeline.yaml && echo "校验通过" || echo "校验失败"
+# 失败输出
+# ✗ 流水线校验失败:
+#   - 步骤 'buffer' 引用了不存在的步骤 'load-data'（应为 'load-roads'）
+#   - 步骤 ID 'My Step' 包含非法字符（应符合 [a-z0-9_-]）
 ```
 
-### 输出示例
-
-校验通过：
-
-```json
-{
-  "status": "valid",
-  "pipeline": "道路缓冲区分析",
-  "steps_count": 4,
-  "steps": [
-    {"id": "load-roads", "use": "io.read_vector"},
-    {"id": "reproject", "use": "vector.reproject"},
-    {"id": "buffer", "use": "vector.buffer"},
-    {"id": "save", "use": "io.write_vector"}
-  ]
-}
-```
-
-校验失败（stderr，exit code 1）：
-
-```json
-{
-  "status": "invalid",
-  "error": "PipelineValidationError",
-  "message": "步骤 ID 'buffer' 重复出现在第 3 步和第 7 步。所有步骤 ID 必须唯一。"
-}
-```
-
-## 16.4 `geopipe-agent list-steps`
-
-### 基本语法
+`validate` 命令适合用于：
+- **开发阶段**：在运行前确认格式正确
+- **CI/CD 流水线**：PR 合并前的格式检查
+- **AI 生成后**：验证 AI 生成的 YAML 是否合法
 
 ```bash
-geopipe-agent list-steps [--category CATEGORY] [--format FORMAT]
+# 在 CI 中使用
+geopipe-agent validate pipelines/production.yaml || exit 1
 ```
 
-### 选项
+---
 
-| 选项 | 值 | 说明 |
-|------|-----|------|
-| `--category` | `io`/`vector`/`raster`/`analysis`/`network`/`qc` | 过滤步骤类别 |
-| `--format` | `table`（默认）/`json` | 输出格式 |
+## 16.5 `geopipe-agent list-steps`：列出步骤
 
-### 使用示例
+### 16.5.1 基本语法
+
+```bash
+geopipe-agent list-steps [选项]
+```
+
+### 16.5.2 选项说明
+
+| 选项 | 说明 | 示例 |
+|------|------|------|
+| `--category` | 按类别过滤 | `--category io` |
+| `--format` | 输出格式 | `--format table` 或 `--format json` |
+
+### 16.5.3 使用示例
 
 ```bash
 # 列出所有步骤（表格格式）
 geopipe-agent list-steps
 
-# 只列出矢量步骤
+# 输出：
+# ┌──────────────────────────────┬──────────┬────────────────────────────────┐
+# │ 步骤 ID                       │ 类别     │ 说明                           │
+# ├──────────────────────────────┼──────────┼────────────────────────────────┤
+# │ io.read_vector               │ io       │ 读取矢量数据                   │
+# │ io.write_vector              │ io       │ 写入矢量数据                   │
+# │ io.read_raster               │ io       │ 读取栅格数据                   │
+# │ io.write_raster              │ io       │ 写入栅格数据                   │
+# │ vector.buffer                │ vector   │ 缓冲区分析                     │
+# │ ...                          │ ...      │ ...                            │
+# └──────────────────────────────┴──────────┴────────────────────────────────┘
+
+# 仅列出 IO 步骤
+geopipe-agent list-steps --category io
+
+# 仅列出矢量步骤
 geopipe-agent list-steps --category vector
 
-# JSON 格式输出（便于程序解析）
+# 仅列出质检步骤
+geopipe-agent list-steps --category qc
+
+# JSON 格式输出（便于程序处理）
 geopipe-agent list-steps --format json
 
-# 列出质检步骤（JSON 格式）
-geopipe-agent list-steps --category qc --format json
+# JSON 输出示例
+# [
+#   {"id": "io.read_vector", "category": "io", "description": "读取矢量数据", ...},
+#   ...
+# ]
 ```
 
-### 输出示例（表格格式）
+### 16.5.4 可用类别
 
-```
-ID                             Name                 Category     Backends
---------------------------------------------------------------------------------
-io.read_vector                 读取矢量数据          io           native_python
-io.write_vector                写入矢量数据          io           native_python
-io.read_raster                 读取栅格数据          io           native_python
-io.write_raster                写入栅格数据          io           native_python
-vector.buffer                  缓冲区分析            vector       native_python
-vector.clip                    矢量裁剪              vector       native_python
-...
+| 类别值 | 说明 | 步骤数 |
+|--------|------|--------|
+| `io` | 数据读写 | 4 |
+| `vector` | 矢量分析 | 7 |
+| `raster` | 栅格分析 | 5 |
+| `analysis` | 空间分析（需要 analysis 依赖） | 4 |
+| `network` | 网络分析（需要 network 依赖） | 3 |
+| `qc` | 数据质检 | 10 |
 
-Total: 33 steps
-```
+---
 
-## 16.5 `geopipe-agent describe`
+## 16.6 `geopipe-agent describe`：查看步骤详情
 
-### 基本语法
+### 16.6.1 基本语法
 
 ```bash
-geopipe-agent describe <STEP_ID>
+geopipe-agent describe <step_id>
 ```
 
-### 使用示例
+### 16.6.2 使用示例
 
 ```bash
-# 查看缓冲区分析步骤详情
+# 查看 vector.buffer 步骤详情
 geopipe-agent describe vector.buffer
 
-# 查看 DBSCAN 聚类步骤详情
-geopipe-agent describe analysis.cluster
+# 输出：
+# 步骤: vector.buffer
+# 名称: 缓冲区分析
+# 类别: vector
+# 描述: 在矢量要素周围生成指定距离的缓冲多边形
+#
+# 参数:
+#   input       (GeoDataFrame, 必填) 输入矢量数据
+#   distance    (float, 必填)        缓冲距离（单位与 CRS 相同）
+#   cap_style   (string, 可选)       端头样式: round/flat/square（默认: round）
+#
+# 输出:
+#   output      (GeoDataFrame) 缓冲区多边形数据
+#   stats.feature_count  (int)   要素数量
+#   stats.total_area     (float) 缓冲区总面积
+#
+# 示例:
+#   - id: buffer
+#     use: vector.buffer
+#     params:
+#       input: "$load"
+#       distance: 500
+#       cap_style: "round"
+#
+# 支持的后端: native_python, gdal_cli
 
-# 查看几何质检步骤详情
+# 查看 QC 步骤
 geopipe-agent describe qc.geometry_validity
+
+# 查看分析步骤
+geopipe-agent describe analysis.cluster
 ```
 
-### 输出示例
+---
 
-```json
-{
-  "id": "vector.buffer",
-  "name": "缓冲区分析",
-  "category": "vector",
-  "description": "对矢量要素进行缓冲区分析，生成缓冲面（Polygon）。",
-  "params": {
-    "input": {
-      "required": true,
-      "type": "geodataframe",
-      "description": "输入 GeoDataFrame（来自前一步骤的引用）"
-    },
-    "distance": {
-      "required": true,
-      "type": "number",
-      "description": "缓冲距离，单位与 CRS 一致"
-    },
-    "cap_style": {
-      "required": false,
-      "type": "string",
-      "description": "端点样式：round / flat / square，默认 round"
-    },
-    "join_style": {
-      "required": false,
-      "type": "string",
-      "description": "拐角样式：round / mitre / bevel，默认 round"
-    },
-    "resolution": {
-      "required": false,
-      "type": "integer",
-      "description": "圆弧分段数，默认 16"
-    }
-  },
-  "backends": ["native_python"]
-}
-```
+## 16.7 `geopipe-agent info`：查看流水线信息
 
-## 16.6 `geopipe-agent info`
-
-### 基本语法
+### 16.7.1 基本语法
 
 ```bash
-geopipe-agent info <GIS_FILE>
+geopipe-agent info <pipeline_file>
 ```
 
-### 说明
-
-快速查看 GIS 数据文件（矢量或栅格）的基本信息，无需编写代码。
-
-### 使用示例
+### 16.7.2 使用示例
 
 ```bash
-# 查看矢量文件信息
-geopipe-agent info data/roads.shp
-geopipe-agent info data/buildings.gpkg
-geopipe-agent info data/points.geojson
+geopipe-agent info pipeline.yaml
 
-# 查看栅格文件信息
-geopipe-agent info data/dem.tif
-geopipe-agent info data/landsat.tif
+# 输出：
+# ╔══════════════════════════════════════════════════╗
+# ║ 流水线信息                                         ║
+# ╠══════════════════════════════════════════════════╣
+# ║ 名称: 道路缓冲区分析                               ║
+# ║ 描述: 对城市道路做 500 米缓冲区分析               ║
+# ║ CRS:  EPSG:4326                                   ║
+# ╠══════════════════════════════════════════════════╣
+# ║ 变量 (3):                                         ║
+# ║   input_path   = data/roads.geojson               ║
+# ║   buffer_dist  = 500                              ║
+# ║   output_dir   = output/                          ║
+# ╠══════════════════════════════════════════════════╣
+# ║ 步骤 (5):                                         ║
+# ║  1. load-roads      →  io.read_vector             ║
+# ║  2. reproject       →  vector.reproject           ║
+# ║  3. buffer          →  vector.buffer              ║
+# ║  4. reproject-back  →  vector.reproject           ║
+# ║  5. save            →  io.write_vector            ║
+# ╠══════════════════════════════════════════════════╣
+# ║ 输出 (2):                                         ║
+# ║   result        = $save                           ║
+# ║   buffer_stats  = $buffer.stats                   ║
+# ╚══════════════════════════════════════════════════╝
 ```
 
-### 矢量文件输出示例
+---
 
-```json
-{
-  "path": "data/roads.shp",
-  "format": "vector",
-  "feature_count": 1543,
-  "crs": "EPSG:4326",
-  "geometry_types": ["LineString"],
-  "columns": ["name", "type", "length", "lanes"],
-  "bounds": [116.3, 39.5, 117.2, 40.1]
-}
-```
-
-### 栅格文件输出示例
-
-```json
-{
-  "path": "data/dem.tif",
-  "format": "raster",
-  "driver": "GTiff",
-  "crs": "EPSG:4326",
-  "width": 3601,
-  "height": 2401,
-  "bands": 1,
-  "dtypes": ["float32"],
-  "bounds": [116.0, 39.0, 117.0, 40.0],
-  "transform": [0.000277, 0.0, 116.0, 0.0, -0.000277, 40.0]
-}
-```
-
-## 16.7 `geopipe-agent backends`
-
-### 基本语法
+## 16.8 `geopipe-agent backends`：查看可用后端
 
 ```bash
 geopipe-agent backends
 ```
 
-### 说明
+输出示例：
+```
+可用后端:
+  ✓ native_python  — GeoPandas + Shapely [始终可用]
+  ✓ gdal_cli       — ogr2ogr 命令行 [GDAL 3.6.2]
+  ✓ gdal_python    — GDAL Python API [GDAL 3.6.2]
+  ✗ qgis_process   — QGIS Processing CLI [未找到 qgis_process]
+  ✗ pyqgis         — PyQGIS Python API [QGIS 未安装]
+  ✓ generic_cli    — 通用 CLI 后端 [始终可用]
+  ✓ curl_api       — HTTP/curl 后端 [始终可用]
 
-检查所有后端的可用状态，帮助诊断后端依赖问题。
-
-### 输出示例
-
-```json
-[
-  {"name": "native_python", "available": true},
-  {"name": "gdal_cli", "available": true},
-  {"name": "gdal_python", "available": false},
-  {"name": "qgis_process", "available": false},
-  {"name": "pyqgis", "available": false},
-  {"name": "generic_cli", "available": true},
-  {"name": "curl_api", "available": true}
-]
+说明:
+  ✓ 可用  ✗ 不可用（需要安装对应软件）
 ```
 
-`available: false` 表示该后端的依赖未满足，需要安装相应工具。
+---
 
-## 16.8 `geopipe-agent generate-skill-doc`
+## 16.9 `geopipe-agent generate-skill-doc`：生成技能文档
 
-### 基本语法
+### 16.9.1 说明
+
+将框架的完整能力描述输出为 Markdown 格式的技能文档，可直接输出到终端或重定向到文件：
 
 ```bash
-geopipe-agent generate-skill-doc [> skill_reference.md]
+# 输出到终端
+geopipe-agent generate-skill-doc
+
+# 重定向到文件
+geopipe-agent generate-skill-doc > SKILL.md
+
+# 查看生成的文档
+cat SKILL.md | head -50
 ```
 
-### 说明
+---
 
-生成所有内置步骤的 Markdown 格式参考文档，主要供 AI 读取以了解框架能力。
+## 16.10 `geopipe-agent generate-skill`：生成技能文件
+
+### 16.10.1 基本语法
 
 ```bash
-# 生成并保存到文件
-geopipe-agent generate-skill-doc > skills/reference.md
-
-# 直接查看
-geopipe-agent generate-skill-doc | head -50
+geopipe-agent generate-skill [--output-dir <目录>]
 ```
 
-### 输出格式
-
-生成的 Markdown 文档包含所有步骤的：
-- ID、名称、类别
-- 功能描述
-- 参数说明（类型、是否必填、默认值、描述）
-- 使用示例
-
-## 16.9 `geopipe-agent generate-skill`
-
-### 基本语法
-
-```bash
-geopipe-agent generate-skill [--output-dir DIR]
-```
-
-### 说明
-
-生成完整的 AI Skill 文件集（多个 Markdown 文件），按步骤类别组织，供 AI 工具（如 Claude Projects、GPT Custom Instructions）配置使用。
+### 16.10.2 使用示例
 
 ```bash
 # 生成到默认目录（skills/geopipe-agent/）
 geopipe-agent generate-skill
 
 # 指定输出目录
-geopipe-agent generate-skill --output-dir my-project/ai-skills/
+geopipe-agent generate-skill --output-dir my-skills/geopipe/
+
+# 生成后查看文件结构
+tree skills/
+# skills/
+# └── geopipe-agent/
+#     ├── SKILL.md                          # 主技能描述
+#     └── reference/
+#         ├── steps-reference.md            # 完整步骤参考
+#         └── pipeline-schema.md            # YAML Schema 规范
 ```
 
-### 生成的文件结构
+### 16.10.3 生成的文件说明
 
-```
-skills/geopipe-agent/
-├── 00-overview.md          # 框架概述、流水线格式说明
-├── 01-io-steps.md          # IO 步骤参考
-├── 02-vector-steps.md      # 矢量步骤参考
-├── 03-raster-steps.md      # 栅格步骤参考
-├── 04-analysis-steps.md    # 空间分析步骤参考
-├── 05-network-steps.md     # 网络分析步骤参考
-└── 06-qc-steps.md          # 数据质检步骤参考
-```
+| 文件 | 内容 |
+|------|------|
+| `SKILL.md` | AI 技能主文件，包含框架概述和快速开始 |
+| `reference/steps-reference.md` | 所有步骤的完整参数和输出文档 |
+| `reference/pipeline-schema.md` | YAML 流水线格式的完整规范 |
 
-详细用法请参见第十七章：AI Skill 生成系统。
+---
 
-## 16.10 常用工作流
+## 16.11 在 CI/CD 中使用 CLI
 
-### 开发调试工作流
-
-```bash
-# 1. 编写 YAML 流水线
-vim my-pipeline.yaml
-
-# 2. 校验配置
-geopipe-agent validate my-pipeline.yaml
-
-# 3. 查看不确定的步骤详情
-geopipe-agent describe vector.buffer
-
-# 4. 检查输入数据信息
-geopipe-agent info data/roads.shp
-
-# 5. 调试执行（详细日志）
-geopipe-agent run my-pipeline.yaml --log-level DEBUG
-
-# 6. 正式执行并保存报告
-geopipe-agent run my-pipeline.yaml > report.json
-```
-
-### 批量处理工作流
-
-```bash
-# 创建参数化模板
-cat > template.yaml << 'EOF'
-name: 批量处理模板
-variables:
-  input_path: ""
-  output_path: ""
-steps:
-  - id: load
-    use: io.read_vector
-    params:
-      path: ${input_path}
-  - id: process
-    use: vector.buffer
-    params:
-      input: $load
-      distance: 500
-  - id: save
-    use: io.write_vector
-    params:
-      input: $process
-      path: ${output_path}
-outputs:
-  result: $save
-EOF
-
-# 批量执行
-for f in data/*.shp; do
-  base=$(basename "$f" .shp)
-  geopipe-agent run template.yaml \
-    --var "input_path=$f" \
-    --var "output_path=output/${base}_buffer.geojson"
-done
-```
-
-### CI/CD 集成
+### GitHub Actions 示例
 
 ```yaml
-# .github/workflows/validate-pipelines.yml
-name: 校验流水线配置
-on: [push, pull_request]
+# .github/workflows/geoanalysis.yml
+name: GIS Analysis Pipeline
+
+on:
+  push:
+    paths:
+      - 'pipelines/**'
+      - 'data/**'
+
 jobs:
-  validate:
+  analyze:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: 安装 GeoPipeAgent
-        run: pip install -e ".[dev]"
-      - name: 校验所有流水线
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install GeoPipeAgent
         run: |
-          for f in pipelines/*.yaml; do
-            echo "校验 $f..."
-            geopipe-agent validate "$f"
-          done
+          pip install -e ".[analysis]"
+
+      - name: Validate Pipeline
+        run: |
+          geopipe-agent validate pipelines/production.yaml
+
+      - name: Run Analysis
+        run: |
+          geopipe-agent run pipelines/production.yaml \
+            --var input_path=data/latest.geojson \
+            --var output_dir=output/ \
+            --log-level INFO \
+            --output reports/latest_report.json
+
+      - name: Upload Report
+        uses: actions/upload-artifact@v3
+        with:
+          name: analysis-report
+          path: reports/latest_report.json
 ```
 
-## 16.11 小结
+### Jenkins Pipeline 示例
 
-本章详细介绍了 `geopipe-agent` CLI 的全部命令：
+```groovy
+pipeline {
+    agent any
+    stages {
+        stage('Validate') {
+            steps {
+                sh 'geopipe-agent validate pipelines/daily_analysis.yaml'
+            }
+        }
+        stage('Run Analysis') {
+            steps {
+                sh """
+                    geopipe-agent run pipelines/daily_analysis.yaml \
+                        --var input_path=${DATA_PATH} \
+                        --var report_date=${BUILD_DATE} \
+                        --json-log \
+                        --output reports/report_${BUILD_NUMBER}.json
+                """
+            }
+        }
+    }
+    post {
+        always {
+            archiveArtifacts 'reports/*.json'
+        }
+        failure {
+            mail to: 'team@example.com',
+                 subject: "GIS 分析失败 [${env.BUILD_NUMBER}]"
+        }
+    }
+}
+```
 
-- **`run`**：执行流水线，支持 `--var` 变量覆盖、`--log-level` 日志控制、`--json-log` JSON 格式日志
-- **`validate`**：流水线配置校验，适合 CI/CD 集成
-- **`list-steps`**：查看所有/指定类别的步骤，支持 JSON 格式
-- **`describe`**：查看步骤详细参数说明
-- **`info`**：查看 GIS 文件摘要信息
-- **`backends`**：检查各后端可用状态
-- **`generate-skill-doc`/`generate-skill`**：生成 AI Skill 文档
+---
 
-下一章将介绍 AI Skill 生成系统的工作原理和使用方法。
+## 16.12 Shell 完成（Tab 补全）
+
+```bash
+# Bash
+eval "$(_GEOPIPE_AGENT_COMPLETE=bash_source geopipe-agent)"
+
+# Zsh
+eval "$(_GEOPIPE_AGENT_COMPLETE=zsh_source geopipe-agent)"
+
+# Fish
+eval (env _GEOPIPE_AGENT_COMPLETE=fish_source geopipe-agent)
+
+# 持久化（加入 ~/.bashrc）
+echo 'eval "$(_GEOPIPE_AGENT_COMPLETE=bash_source geopipe-agent)"' >> ~/.bashrc
+```
+
+---
+
+## 16.13 常见问题
+
+### 问题一：`geopipe-agent` 命令不存在
+
+```bash
+# 检查虚拟环境是否激活
+which python && which geopipe-agent
+
+# 重新安装
+pip install -e .
+```
+
+### 问题二：`run` 命令执行时找不到文件
+
+```bash
+# 确认当前工作目录
+pwd
+
+# 流水线中的相对路径基于运行命令的工作目录，而非 YAML 文件位置
+# 应该从项目根目录运行
+cd /path/to/project
+geopipe-agent run pipelines/analysis.yaml
+```
+
+### 问题三：`--var` 类型问题
+
+```bash
+# CLI 传入的值默认为字符串，框架会自动转换
+# 数值型变量
+geopipe-agent run pipeline.yaml --var buffer_dist=500
+# 等效于 YAML 中 buffer_dist: 500 （数值）
+
+# 字符串变量（含特殊字符时加引号）
+geopipe-agent run pipeline.yaml --var "road_filter=road_type == '主干道'"
+```
+
+---
+
+## 16.14 本章小结
+
+本章完整介绍了 `geopipe-agent` CLI 工具的所有命令：
+
+1. **`run`**：执行流水线，支持变量覆盖、日志控制、报告输出
+2. **`validate`**：静态校验流水线格式（适合 CI/CD 集成）
+3. **`list-steps`**：查看可用步骤（支持分类过滤）
+4. **`describe`**：查看步骤的详细参数和示例
+5. **`info`**：查看流水线结构信息
+6. **`backends`**：检查可用执行后端
+7. **`generate-skill-doc`**：生成 AI 技能文档
+8. **`generate-skill`**：生成完整 Skill 文件包
+
+CLI 是 GeoPipeAgent 的主要使用入口，熟练掌握这些命令可以显著提升工作效率。
+
+---
+
+**导航**：[← 第十五章：数据模型与错误体系](15-数据模型与错误体系) ｜ [第十七章：AI Skill 生成系统 →](17-AI-Skill生成系统)

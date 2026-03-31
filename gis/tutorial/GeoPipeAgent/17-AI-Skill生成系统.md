@@ -1,425 +1,513 @@
 ---
 layout: default
-title: 第十七章：AI Skill 生成系统
+title: "第十七章：AI Skill 生成系统"
 ---
 
 # 第十七章：AI Skill 生成系统
 
 ## 17.1 概述
 
-GeoPipeAgent 的核心定位是"AI 优先"框架——不只是为人类提供 YAML 流水线执行能力，更是为 AI 提供一套标准化的能力接口。**AI Skill 生成系统**（`src/geopipe_agent/skillgen/`）正是实现这一目标的关键组件。
+AI Skill 生成系统是 GeoPipeAgent **AI 优先（AI-First）** 理念的核心实现。通过生成标准化的技能文档（Skill 文件），让 ChatGPT、Claude 等大语言模型能够**理解框架能力并生成正确的 YAML 流水线**。
 
-### AI Skill 的作用
-
-```
-人类需求（自然语言）
-        ↓
-    大语言模型（LLM）
-        │  读取 Skill 文件了解框架能力
-        ↓
-YAML 流水线（AI 生成）
-        ↓
-GeoPipeAgent 执行
-        ↓
-JSON 报告（AI 解析）
-```
-
-**Skill 文件**是一种面向 AI 的文档格式，它描述了 GeoPipeAgent 能做什么、怎么做，让 LLM 能够：
-
-1. 理解框架支持哪些 GIS 操作（33 个步骤）
-2. 了解每个步骤的参数格式和约束
-3. 生成符合 YAML Schema 的流水线配置
-4. 避免生成非法引用、错误参数类型等常见错误
-
-## 17.2 skillgen 模块架构
+### 工作流程
 
 ```
-src/geopipe_agent/skillgen/
-├── __init__.py
-└── generator.py          # 核心生成逻辑
+┌─────────────────────────────────────────────────────────────┐
+│  第一步：生成 Skill 文件                                      │
+│  geopipe-agent generate-skill --output-dir skills/          │
+└────────────────────────┬────────────────────────────────────┘
+                         ↓
+┌─────────────────────────────────────────────────────────────┐
+│  第二步：将 Skill 文件提供给 AI                               │
+│  将 skills/geopipe-agent/ 目录中的文件复制到 AI 系统提示或   │
+│  上传给对话中的 AI 助手                                       │
+└────────────────────────┬────────────────────────────────────┘
+                         ↓
+┌─────────────────────────────────────────────────────────────┐
+│  第三步：AI 理解框架能力                                      │
+│  AI 阅读步骤参考、YAML Schema、使用示例                      │
+└────────────────────────┬────────────────────────────────────┘
+                         ↓
+┌─────────────────────────────────────────────────────────────┐
+│  第四步：用户用自然语言描述需求                               │
+│  "帮我对北京道路数据做 500 米缓冲区分析，保存为 GeoJSON"     │
+└────────────────────────┬────────────────────────────────────┘
+                         ↓
+┌─────────────────────────────────────────────────────────────┐
+│  第五步：AI 生成 YAML 流水线                                  │
+│  AI 根据 Skill 文件，生成符合规范的 YAML                     │
+└────────────────────────┬────────────────────────────────────┘
+                         ↓
+┌─────────────────────────────────────────────────────────────┐
+│  第六步：执行流水线                                           │
+│  geopipe-agent run generated_pipeline.yaml                  │
+└─────────────────────────────────────────────────────────────┘
 ```
 
-核心函数：
+---
 
-```python
-# 生成 Markdown 格式的步骤参考文档
-def generate_steps_reference() -> str:
-    """生成所有步骤的 Markdown 参考文档（单文件）。"""
+## 17.2 生成 Skill 文件
 
-# 生成分类 Skill 文件集
-def write_skill_files(output_dir: str) -> list[str]:
-    """生成分类 Skill 文件集，返回生成的文件路径列表。"""
-```
-
-## 17.3 生成 Skill 文件
-
-### 17.3.1 生成单个参考文档
-
-```bash
-# 生成所有步骤的 Markdown 参考
-geopipe-agent generate-skill-doc > skills/reference.md
-```
-
-生成的文档包含所有 33 个步骤的完整说明，格式示例：
-
-```markdown
-# GeoPipeAgent 步骤参考
-
-## IO 步骤
-
-### io.read_vector
-**名称**: 读取矢量数据
-**类别**: io
-**描述**: 读取矢量地理数据文件，返回 GeoDataFrame。
-
-**参数**:
-| 参数名 | 类型 | 必填 | 说明 |
-|--------|------|------|------|
-| path | string | ✅ | 文件路径，支持 .shp/.geojson/.gpkg 等 |
-| layer | string | ❌ | 多层文件中的图层名称（默认第一层） |
-| encoding | string | ❌ | 文件编码，默认自动检测 |
-| bbox | array | ❌ | 空间过滤范围 [minx, miny, maxx, maxy] |
-
-**示例**:
-```yaml
-- id: load
-  use: io.read_vector
-  params:
-    path: "data/roads.shp"
-```
-...
-```
-
-### 17.3.2 生成分类 Skill 文件集
+### 17.2.1 基本命令
 
 ```bash
 # 生成到默认目录
 geopipe-agent generate-skill
 
-# 生成到自定义目录
-geopipe-agent generate-skill --output-dir my-project/skills/
+# 指定输出目录
+geopipe-agent generate-skill --output-dir skills/geopipe-agent
 ```
 
-生成的文件结构：
+### 17.2.2 生成的文件结构
 
 ```
 skills/geopipe-agent/
-├── 00-overview.md          # 框架概述 + 流水线 YAML 格式说明
-├── 01-io-steps.md          # 4 个 IO 步骤
-├── 02-vector-steps.md      # 7 个矢量步骤
-├── 03-raster-steps.md      # 5 个栅格步骤
-├── 04-analysis-steps.md    # 4 个空间分析步骤
-├── 05-network-steps.md     # 3 个网络分析步骤
-└── 06-qc-steps.md          # 10 个质检步骤
+├── SKILL.md                          # 主技能文件（给 AI 阅读）
+└── reference/
+    ├── steps-reference.md            # 所有步骤的完整参数参考
+    └── pipeline-schema.md            # YAML 流水线格式规范
 ```
 
-## 17.4 Skill 文件内容结构
+### 17.2.3 各文件内容说明
 
-### 00-overview.md 内容示例
+#### `SKILL.md`（主技能文件）
 
-```markdown
-# GeoPipeAgent Skill
+包含：
+- **框架概述**：GeoPipeAgent 是什么，能做什么
+- **核心概念**：流水线、步骤、变量、引用
+- **YAML 格式速查**：顶层结构和必填字段
+- **步骤索引**：按类别列出所有步骤
+- **完整示例**：2-3 个典型流水线示例
 
-## 简介
-GeoPipeAgent 是一个 AI 优先的 GIS 数据分析流水线框架。
-你可以通过生成 YAML 流水线文件来使用它，框架会执行并返回 JSON 报告。
+#### `reference/steps-reference.md`（步骤参考）
 
-## 流水线格式
+包含每个步骤的：
+- 步骤 ID 和说明
+- 所有参数（名称、类型、是否必填、默认值、说明）
+- 输出字段说明
+- 使用示例（YAML 片段）
+
+#### `reference/pipeline-schema.md`（Pipeline Schema）
+
+包含：
+- YAML 格式的完整规范（字段、类型、约束）
+- 变量引用语法 `${var}`
+- 步骤引用语法 `$step-id`、`$step-id.stats`
+- 错误策略说明
+- 后端说明
+
+---
+
+## 17.3 将 Skill 文件提供给 AI
+
+### 17.3.1 方法一：复制到系统提示（System Prompt）
+
+对于有系统提示配置的 AI 应用（如自定义 GPT、Claude Projects），将 `SKILL.md` 内容放入系统提示：
+
+```
+你是一个 GIS 数据分析助手，专门使用 GeoPipeAgent 框架进行分析。
+
+【GeoPipeAgent 技能文档】
+[在此粘贴 SKILL.md 全文]
+
+当用户提出 GIS 分析需求时，你应当：
+1. 理解用户需求
+2. 根据技能文档选择合适的步骤
+3. 生成符合规范的 YAML 流水线
+4. 解释每个步骤的用途
+```
+
+### 17.3.2 方法二：在对话中上传文件
+
+直接将 `SKILL.md` 和 `reference/steps-reference.md` 上传到 ChatGPT 或 Claude 的对话中：
+
+```
+用户：[上传 SKILL.md 和 steps-reference.md 文件]
+
+用户提示：
+我已上传了 GeoPipeAgent 框架的技能文档。
+请根据这些文档，帮我生成一个流水线：
+- 输入：北京市道路数据 data/beijing_roads.geojson
+- 操作：筛选主干道，做 500 米缓冲区分析
+- 输出：output/primary_road_buffer.geojson
+```
+
+### 17.3.3 方法三：自定义 GPT 配置
+
+在 OpenAI 的自定义 GPT 中配置：
+
+```json
+{
+  "instructions": "你是 GeoPipeAgent 流水线生成助手...[SKILL.md 内容]",
+  "capabilities": {
+    "code_interpreter": true
+  }
+}
+```
+
+---
+
+## 17.4 AI 生成流水线示例
+
+### 17.4.1 简单需求
+
+**用户输入**：
+> 我有一份城市 POI 数据（data/pois.geojson），想计算每个 POI 周围 200 米内的覆盖区域，保存为 GeoJSON。
+
+**AI 生成的 YAML**：
 
 ```yaml
-name: 流水线名称              # 必填
-description: 描述              # 可选
-variables:                    # 可选，定义变量
-  var_name: value
-steps:                        # 必填，步骤列表
-  - id: unique-step-id        # 必填
-    use: category.action      # 必填（见各步骤文档）
-    params:                   # 步骤参数
-      key: value
-      ref: $other-step-id     # 引用其他步骤的输出
-      var: ${var_name}        # 引用变量
-    when: "condition"         # 可选，条件执行
-    on_error: fail            # fail/skip/retry
-outputs:                      # 可选，输出声明
-  output_name: $step-id
+pipeline:
+  name: "POI 200米覆盖区域分析"
+  description: "计算城市 POI 数据的 200 米覆盖区域"
+
+  variables:
+    input_path: "data/pois.geojson"
+    buffer_distance: 200
+    output_path: "output/poi_coverage_200m.geojson"
+    working_crs: "EPSG:3857"
+
+  steps:
+    - id: load-pois
+      use: io.read_vector
+      params:
+        path: "${input_path}"
+
+    - id: reproject
+      use: vector.reproject
+      params:
+        input: "$load-pois"
+        target_crs: "${working_crs}"
+
+    - id: buffer
+      use: vector.buffer
+      params:
+        input: "$reproject"
+        distance: "${buffer_distance}"
+        cap_style: "round"
+
+    - id: reproject-back
+      use: vector.reproject
+      params:
+        input: "$buffer"
+        target_crs: "EPSG:4326"
+
+    - id: save
+      use: io.write_vector
+      params:
+        input: "$reproject-back"
+        path: "${output_path}"
+        format: "GeoJSON"
+
+  outputs:
+    coverage_area: "$save"
+    stats: "$buffer.stats"
 ```
 
-## 注意事项
-- 步骤 ID 只允许 [a-z0-9_-]
-- $step-id 只能引用之前定义的步骤
-- 缓冲区等距离操作需要使用投影坐标系（如 EPSG:3857，单位米）
+### 17.4.2 复杂需求
+
+**用户输入**：
+> 我需要对一批提交的道路数据做质量检查：
+> 1. 检查几何有效性
+> 2. 确认坐标系是 EPSG:4326
+> 3. 检查必填字段：road_id、road_name、road_type
+> 4. road_type 只能是：主干道、次干道、支路
+> 5. 如果有质检问题，保存问题报告；如果全部通过，继续做缓冲区分析
+
+**AI 生成的 YAML**：
+
+```yaml
+pipeline:
+  name: "道路数据质检与缓冲区分析"
+  description: "先做全面质检，通过后再做缓冲区分析"
+
+  variables:
+    input_path: "data/roads_submitted.geojson"
+    expected_crs: "EPSG:4326"
+    buffer_distance: 300
+
+  steps:
+    - id: load
+      use: io.read_vector
+      params:
+        path: "${input_path}"
+
+    - id: qc-geometry
+      use: qc.geometry_validity
+      params:
+        input: "$load"
+
+    - id: qc-crs
+      use: qc.crs_check
+      params:
+        input: "$qc-geometry"
+        expected_crs: "${expected_crs}"
+
+    - id: qc-completeness
+      use: qc.attribute_completeness
+      params:
+        input: "$qc-crs"
+        required_fields:
+          - "road_id"
+          - "road_name"
+          - "road_type"
+
+    - id: qc-domain
+      use: qc.attribute_domain
+      params:
+        input: "$qc-completeness"
+        field: "road_type"
+        allowed_values:
+          - "主干道"
+          - "次干道"
+          - "支路"
+
+    # 有问题时保存质检报告
+    - id: save-issues
+      use: io.write_vector
+      when: "len($qc-domain.issues) > 0"
+      params:
+        input: "$qc-domain"
+        path: "output/qc_failed_data.geojson"
+        format: "GeoJSON"
+
+    # 无问题时继续缓冲区分析
+    - id: reproject
+      use: vector.reproject
+      when: "len($qc-domain.issues) == 0"
+      params:
+        input: "$qc-domain"
+        target_crs: "EPSG:3857"
+
+    - id: buffer
+      use: vector.buffer
+      when: "len($qc-domain.issues) == 0"
+      params:
+        input: "$reproject"
+        distance: "${buffer_distance}"
+        cap_style: "round"
+
+    - id: save-result
+      use: io.write_vector
+      when: "len($qc-domain.issues) == 0"
+      params:
+        input: "$buffer"
+        path: "output/road_buffer.geojson"
+        format: "GeoJSON"
+
+  outputs:
+    qc_issues: "$qc-domain.issues"
+    geometry_check: "$qc-geometry.stats"
 ```
 
-## 17.5 配置 AI 使用 Skill 文件
+---
 
-### 方法 1：Claude Projects（推荐）
+## 17.5 AI 生成流水线的最佳实践
 
-1. 在 Claude 的 Project 中添加知识文件
-2. 上传 `skills/geopipe-agent/` 目录下的所有文件
-3. Claude 会自动学习框架能力
-
-配置后，可以用自然语言描述任务，Claude 会自动生成 YAML 流水线：
+### 17.5.1 给 AI 的有效提示模板
 
 ```
-用户：帮我写一个流水线，读取 roads.shp，做 500 米缓冲区分析，结果保存为 GeoJSON
+任务描述：[描述要完成的 GIS 分析任务]
 
-Claude：
-name: 道路缓冲区分析
-variables:
-  input_path: "roads.shp"
-  buffer_dist: 500
+输入数据：
+  - 文件路径：[路径]
+  - 数据类型：[矢量/栅格]
+  - 坐标系：[EPSG:XXXX]
+  - 主要字段：[字段名列表]
+
+分析步骤：
+  1. [步骤描述]
+  2. [步骤描述]
+  ...
+
+输出要求：
+  - 格式：[GeoJSON/Shapefile/GeoPackage]
+  - 路径：[输出路径]
+
+特殊要求：
+  - 需要进行质量检查（/不需要）
+  - 缓冲区距离：[距离]米
+  - 过滤条件：[条件]
+
+请生成符合 GeoPipeAgent 规范的 YAML 流水线文件。
+```
+
+### 17.5.2 验证 AI 生成的流水线
+
+AI 生成的流水线在使用前应进行校验：
+
+```bash
+# 1. 保存 AI 生成的 YAML
+cat > ai_generated.yaml << 'EOF'
+[粘贴 AI 生成的 YAML]
+EOF
+
+# 2. 校验格式
+geopipe-agent validate ai_generated.yaml
+
+# 3. 查看流水线信息
+geopipe-agent info ai_generated.yaml
+
+# 4. 测试运行（先用小数据集）
+geopipe-agent run ai_generated.yaml \
+  --var input_path=data/sample_small.geojson \
+  --log-level DEBUG
+```
+
+### 17.5.3 常见 AI 生成错误和修复
+
+**错误一：缺少投影转换**
+
+AI 可能直接对 WGS84 数据做缓冲区：
+```yaml
+# AI 可能生成（错误！缓冲单位是度而非米）
+- id: buffer
+  use: vector.buffer
+  params:
+    input: "$load"   # 可能是 WGS84 数据
+    distance: 500    # 单位是度，不是米！
+```
+
+修复：在缓冲前添加 `vector.reproject`：
+```yaml
+- id: reproject
+  use: vector.reproject
+  params:
+    input: "$load"
+    target_crs: "EPSG:3857"
+
+- id: buffer
+  use: vector.buffer
+  params:
+    input: "$reproject"   # 现在是米制坐标
+    distance: 500
+```
+
+**错误二：步骤 ID 格式不正确**
+
+```yaml
+# AI 可能使用大写或空格（错误！）
+- id: "Load Roads"
+  use: io.read_vector
+```
+
+修复：
+```yaml
+- id: load-roads
+  use: io.read_vector
+```
+
+**错误三：忘记 `pipeline:` 顶层键**
+
+```yaml
+# AI 可能忘记顶层键（错误！）
+name: "分析流水线"
 steps:
   - id: load
     use: io.read_vector
-    params:
-      path: ${input_path}
-  - id: reproject
-    use: vector.reproject
-    params:
-      input: $load
-      target_crs: "EPSG:3857"
-  - id: buffer
-    use: vector.buffer
-    params:
-      input: $reproject
-      distance: ${buffer_dist}
-  - id: save
-    use: io.write_vector
-    params:
-      input: $buffer
-      path: "output/roads_buffer.geojson"
-outputs:
-  result: $save
 ```
 
-### 方法 2：OpenAI Custom Instructions
+修复：
+```yaml
+pipeline:
+  name: "分析流水线"
+  steps:
+    - id: load
+      use: io.read_vector
+```
 
-在 ChatGPT 的 Custom Instructions 中粘贴 Skill 文件内容，让 GPT-4 了解框架能力。
+---
 
-### 方法 3：系统提示词（System Prompt）
+## 17.6 与 Web API 集成（AI 自动化）
 
-对于 API 调用，将 Skill 文件内容作为系统提示词：
+如果安装了 `web` 依赖，可以通过 Web API 实现完全自动化的 AI → 流水线 → 执行流程：
+
+```bash
+pip install -e ".[web]"
+```
 
 ```python
+# 示例：使用 OpenAI API 自动生成并执行流水线
 import openai
+import yaml
+import subprocess
 
-# 读取 Skill 文件
-with open("skills/geopipe-agent/00-overview.md") as f:
-    overview = f.read()
-with open("skills/geopipe-agent/02-vector-steps.md") as f:
-    vector_steps = f.read()
+# 读取 Skill 文档
+with open("skills/geopipe-agent/SKILL.md") as f:
+    skill_doc = f.read()
 
+with open("skills/geopipe-agent/reference/steps-reference.md") as f:
+    steps_ref = f.read()
+
+# 用户需求
+user_request = """
+我有一份上海市道路数据（data/shanghai_roads.geojson），
+请生成一个流水线：筛选主干道，投影到 EPSG:3857，
+做 800 米缓冲区，保存为 output/shanghai_primary_buffer.geojson
+"""
+
+# 调用 AI 生成流水线
 client = openai.OpenAI()
 response = client.chat.completions.create(
-    model="gpt-4",
+    model="gpt-4o",
     messages=[
         {
             "role": "system",
-            "content": f"你是 GeoPipeAgent 流水线生成专家。以下是框架文档：\n\n{overview}\n\n{vector_steps}"
+            "content": f"""你是 GeoPipeAgent 流水线生成助手。
+根据以下技能文档生成正确的 YAML 流水线：
+
+{skill_doc}
+
+步骤参考：
+{steps_ref}
+
+请只输出 YAML 代码，不要有其他文字。"""
         },
         {
             "role": "user",
-            "content": "帮我写一个缓冲区分析流水线，输入 roads.shp，缓冲距离 1000 米，输出 GeoJSON"
+            "content": user_request
         }
     ]
 )
-print(response.choices[0].message.content)
-```
 
-## 17.6 Web UI 中的 AI 集成
+# 提取生成的 YAML
+yaml_content = response.choices[0].message.content
+# 去掉可能的 markdown 代码块标记
+yaml_content = yaml_content.strip().removeprefix("```yaml").removesuffix("```").strip()
 
-GeoPipeAgent 的 Web UI 提供了内置的 LLM 对话助手，无需手动配置 Skill 文件：
+# 保存 YAML
+with open("ai_generated_pipeline.yaml", "w") as f:
+    f.write(yaml_content)
 
-### 自动 Skill 加载
-
-Web 后端（FastAPI）在启动时自动：
-1. 调用 `generate_steps_reference()` 生成步骤参考
-2. 将参考文档作为 AI 对话的系统提示词
-3. AI 助手可以直接回答有关步骤的问题
-
-### Skill 管理界面
-
-Web UI 提供 Skill 管理页面（`SkillManager.vue`），可以：
-- 查看当前加载的所有 Skill 文件
-- 手动上传自定义 Skill 文件
-- 启用/禁用特定 Skill 模块
-
-### LLM 对话流程
-
-```
-用户在 Web UI 输入自然语言需求
-        ↓
-FastAPI /api/llm/generate 接口
-        ↓
-构建提示词（Skill 文件 + 用户需求）
-        ↓
-调用 LLM API（OpenAI/DeepSeek 等）
-        ↓
-LLM 返回 YAML 流水线
-        ↓
-自动校验（validate_pipeline）
-        ↓
-在 Web 编辑器中展示
-        ↓
-用户确认后一键执行
-```
-
-## 17.7 Skill 文件的技术细节
-
-### 生成原理
-
-`generator.py` 通过以下步骤生成 Skill 文档：
-
-1. **遍历步骤注册表**：调用 `registry.list_all()` 获取所有注册步骤
-2. **按类别分组**：将步骤按 `category`（io/vector/raster 等）分组
-3. **渲染 Markdown 模板**：将每个步骤的 `StepInfo` 渲染为标准化 Markdown 格式
-4. **写入文件**：按类别输出到对应文件
-
-### 自定义步骤自动出现在 Skill 文件中
-
-由于 Skill 文件从注册表动态生成，**自定义步骤**在通过 `@step` 装饰器注册后，会自动出现在生成的 Skill 文件中。这意味着 AI 可以立即学习和使用你添加的自定义步骤，无需手动更新文档。
-
-```python
-# 添加自定义步骤
-@step(
-    id="my.custom_analysis",
-    name="自定义分析",
-    category="my",
-    description="执行我的专有 GIS 分析算法",
-    params={
-        "input": {"required": True, "type": "geodataframe", "description": "输入数据"},
-        "method": {"required": False, "type": "string", "description": "分析方法", "default": "standard"},
-    }
+# 校验和执行
+result = subprocess.run(
+    ["geopipe-agent", "validate", "ai_generated_pipeline.yaml"],
+    capture_output=True, text=True
 )
-def my_custom_analysis(ctx: StepContext) -> StepResult:
-    # ... 实现
-    pass
 
-# 重新生成 Skill 文件，自动包含 my.custom_analysis
-geopipe-agent generate-skill --output-dir skills/
+if result.returncode == 0:
+    print("校验通过，开始执行...")
+    subprocess.run(["geopipe-agent", "run", "ai_generated_pipeline.yaml"])
+else:
+    print("流水线校验失败：")
+    print(result.stderr)
 ```
 
-## 17.8 实战：AI 自动化 GIS 数据处理
+---
 
-### 完整工作流示例
-
-以下是一个完整的 AI 驱动 GIS 分析工作流：
-
-**步骤 1**：配置 AI 使用 Skill 文件（一次性配置）
-
-```bash
-geopipe-agent generate-skill --output-dir skills/
-# 将 skills/ 目录内容上传到 Claude Project 或配置为系统提示词
-```
-
-**步骤 2**：用自然语言描述任务
-
-```
-用户：我有一份全国铁路线 SHP 文件（roads.shp，EPSG:4326），
-需要：
-1. 提取高铁线路（字段 type == '高铁'）
-2. 投影到 EPSG:3857
-3. 做 2000 米缓冲区
-4. 统计缓冲区内的县域（counties.shp）
-5. 结果保存为 GeoPackage
-
-请生成 GeoPipeAgent 流水线 YAML 文件。
-```
-
-**步骤 3**：AI 生成 YAML
-
-```yaml
-name: 高铁缓冲区县域统计
-description: 提取高铁线路、缓冲区分析、统计覆盖县域
-
-variables:
-  railway_path: "roads.shp"
-  county_path: "counties.shp"
-  output_path: "output/railway_analysis.gpkg"
-  buffer_dist: 2000
-
-steps:
-  - id: load-railway
-    use: io.read_vector
-    params:
-      path: ${railway_path}
-
-  - id: filter-hsr
-    use: vector.query
-    params:
-      input: $load-railway
-      expr: "type == '高铁'"
-
-  - id: reproject-hsr
-    use: vector.reproject
-    params:
-      input: $filter-hsr
-      target_crs: "EPSG:3857"
-
-  - id: buffer-hsr
-    use: vector.buffer
-    params:
-      input: $reproject-hsr
-      distance: ${buffer_dist}
-
-  - id: dissolve-buffer
-    use: vector.dissolve
-    params:
-      input: $buffer-hsr
-
-  - id: load-county
-    use: io.read_vector
-    params:
-      path: ${county_path}
-
-  - id: reproject-county
-    use: vector.reproject
-    params:
-      input: $load-county
-      target_crs: "EPSG:3857"
-
-  - id: overlay-county
-    use: vector.overlay
-    params:
-      left: $reproject-county
-      right: $dissolve-buffer
-      how: intersection
-
-  - id: save
-    use: io.write_vector
-    params:
-      input: $overlay-county
-      path: ${output_path}
-      driver: GPKG
-      layer: "hsr_covered_counties"
-
-outputs:
-  result: $save
-```
-
-**步骤 4**：执行并获取报告
-
-```bash
-geopipe-agent run hsr_analysis.yaml > report.json
-```
-
-**步骤 5**：AI 解析报告并继续分析
-
-```
-用户（粘贴 report.json）：执行完成，报告如上，共覆盖了多少个县？
-
-AI：根据执行报告，overlay-county 步骤输出了 XXX 个要素（县域），
-    其中 feature_count 为 XXX，表示有 XXX 个县域与高铁缓冲区有交叉覆盖...
-```
-
-## 17.9 小结
+## 17.7 本章小结
 
 本章介绍了 GeoPipeAgent 的 AI Skill 生成系统：
 
-- **Skill 文件**：面向 AI 的标准化框架能力文档
-- **生成命令**：`generate-skill-doc`（单文件）和 `generate-skill`（分类文件集）
-- **配置方法**：Claude Projects、OpenAI Custom Instructions、API 系统提示词
-- **Web UI 集成**：内置 LLM 对话助手，自动加载 Skill
-- **自定义步骤自动支持**：新步骤注册后自动出现在生成的 Skill 文件中
+1. **生成 Skill 文件**：`geopipe-agent generate-skill --output-dir skills/`
+2. **三个文件**：`SKILL.md`（主文档）、`steps-reference.md`（步骤参考）、`pipeline-schema.md`（格式规范）
+3. **提供给 AI**：系统提示、文件上传、自定义 GPT 等方式
+4. **AI 生成流水线**：基于技能文档，AI 可以准确生成 YAML
+5. **校验和修复**：用 `validate` 命令检查，修复常见错误
+6. **自动化集成**：通过 OpenAI API 实现全自动流水线生成和执行
 
-下一章将介绍 GeoPipeAgent 的 Web 可视化界面与 API 服务。
+AI Skill 系统是 GeoPipeAgent 与现代 AI 工具链连接的桥梁，使得"自然语言 → GIS 分析"成为可能。
+
+---
+
+**导航**：[← 第十六章：CLI 命令行工具完全指南](16-CLI命令行工具完全指南) ｜ [第十八章：Web 界面与 API 服务 →](18-Web界面与API服务)

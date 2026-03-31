@@ -5,6 +5,10 @@ title: GeoPipeAgent 教程目录
 
 # GeoPipeAgent 教程目录
 
+GeoPipeAgent 是一个 **AI 优先**的 GIS 数据分析流水线框架，通过 YAML 声明式流水线驱动地理空间数据处理。本教程共 20 章，从入门到进阶，全面介绍 GeoPipeAgent 的使用方法与扩展开发。
+
+---
+
 ## 基础篇
 
 - [第一章：GeoPipeAgent 概述与核心理念](01-GeoPipeAgent概述与核心理念)
@@ -41,7 +45,7 @@ title: GeoPipeAgent 教程目录
 ## 进阶篇
 
 - [第十九章：自定义步骤与扩展开发](19-自定义步骤与扩展开发)
-- [第二十章：Docker 部署、测试与最佳实践](20-Docker部署测试与最佳实践)
+- [第二十章：最佳实践与综合案例](20-最佳实践与综合案例)
 
 ---
 
