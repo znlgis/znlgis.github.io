@@ -43,6 +43,7 @@ KiCad最初由法国工程师Jean-Pierre Charras于1992年开发，当时他在�
 - KiCad 7.x：增强的仿真功能，更好的性能
 - KiCad 8.x：改进的用户体验，新的设计功能
 - KiCad 9.x：IPC API、嵌入式文件支持、表格编辑等新特性
+- KiCad 10.x：STEP格式3D模型、图形化DRC规则编辑器、设计变体、暗色模式、时域约束等
 
 ### 1.1.3 KiCad的主要特点
 
@@ -485,7 +486,7 @@ brew install --cask kicad
 **Ubuntu/Debian：**
 ```bash
 # 添加官方PPA
-sudo add-apt-repository --yes ppa:kicad/kicad-8.0-releases
+sudo add-apt-repository --yes ppa:kicad/kicad-10.0-releases
 sudo apt update
 
 # 安装KiCad
@@ -525,9 +526,9 @@ d. 重启KiCad使设置生效
 ```
 a. 进入 Preferences → Configure Paths
 b. 检查以下路径设置：
-   - KICAD8_3DMODEL_DIR: 3D模型路径
-   - KICAD8_FOOTPRINT_DIR: 封装库路径
-   - KICAD8_SYMBOL_DIR: 符号库路径
+   - KICAD10_3DMODEL_DIR: 3D模型路径
+   - KICAD10_FOOTPRINT_DIR: 封装库路径
+   - KICAD10_SYMBOL_DIR: 符号库路径
 ```
 
 **3. 默认编辑器设置**
