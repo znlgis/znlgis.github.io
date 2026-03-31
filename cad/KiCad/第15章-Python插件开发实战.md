@@ -32,13 +32,13 @@ MyPlugin().register()
 
 ```
 Windows:
-  %APPDATA%\kicad\8.0\scripting\plugins\
+  %APPDATA%\kicad\10.0\scripting\plugins\
 
 Linux:
-  ~/.local/share/kicad/8.0/scripting/plugins/
+  ~/.local/share/kicad/10.0/scripting/plugins/
 
 macOS:
-  ~/Library/Preferences/kicad/8.0/scripting/plugins/
+  ~/Library/Preferences/kicad/10.0/scripting/plugins/
 
 或使用：
   Pcbnew → Tools → External Plugins → Open Plugin Directory
@@ -475,7 +475,7 @@ board.save()
     "author": "Your Name",
     "maintainer": "your@email.com",
     "version": "1.0.0",
-    "kicad_version": "8.0",
+    "kicad_version": "10.0",
     "license": "MIT"
 }
 ```
