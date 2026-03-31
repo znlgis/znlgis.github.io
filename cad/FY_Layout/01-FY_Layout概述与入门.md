@@ -19,8 +19,8 @@ FY_Layout作为飞扬集成设计平台的场地布置二次开发插件示例�
 - **授权协议**：CC-BY-NC 4.0
 - **核心框架**：基于LightCAD/LightBIM平台
 - **开发语言**：C#
-- **开发环境**：Visual Studio 2022 社区版（17.5.5以上）
-- **目标框架**：.NET 8.0 Windows
+- **开发环境**：Visual Studio 2026 社区版（17.14以上）
+- **目标框架**：.NET 10 Windows
 
 ### 1.1.3 业务愿景
 
@@ -156,10 +156,10 @@ FY_Layout/
 
 ### 1.4.1 环境准备
 
-1. **安装Visual Studio 2022**
-   - 版本要求：17.5.5或更高版本
+1. **安装Visual Studio 2026**
+   - 版本要求：17.14或更高版本
    - 安装.NET桌面开发工作负载
-   - 安装.NET 8.0 SDK
+   - 安装.NET 10 SDK
 
 2. **克隆代码仓库**
    ```bash
@@ -194,7 +194,7 @@ QdLayout项目的csproj文件关键配置：
 ```xml
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net8.0-windows</TargetFramework>
+    <TargetFramework>net10.0-windows</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>

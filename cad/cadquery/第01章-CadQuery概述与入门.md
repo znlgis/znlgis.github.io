@@ -17,7 +17,7 @@ CadQuery是一个直观、易用的Python模块，专门用于构建参数化3D 
 
 CadQuery最初是基于FreeCAD API开发的。FreeCAD提供了Python接口，使得CadQuery能够快速开发并获得跨平台能力。然而，随着项目的发展，开发团队发现FreeCAD API在某些高级操作和选择器方面存在限制。
 
-为了突破这些限制，CadQuery 2.0版本进行了重大重构，直接基于OpenCASCADE Technology（OCCT）的Python包装器OCP进行开发。这个决定带来了以下好处：
+为了突破这些限制，CadQuery 2.0版本进行了重大重构，直接基于OpenCASCADE Technology（OCCT）的Python包装器OCP进行开发。最新的CadQuery 2.7.0版本（2026年2月发布）延续了这一架构，持续改进性能和功能。这个架构决定带来了以下好处：
 
 - **更强的控制力**：直接访问OCCT内核，可以实现更复杂的几何操作
 - **更好的灵活性**：不再受限于中间层API的功能范围
@@ -223,7 +223,7 @@ CadQuery的典型数据流如下：
 - Linux（主要发行版）
 
 **Python版本：**
-- Python 3.9 - 3.12（推荐3.10或3.11）
+- Python 3.9 - 3.13（推荐3.11或3.12）
 
 **硬件要求：**
 - 至少4GB RAM（推荐8GB以上）
@@ -293,7 +293,7 @@ python -m pip install --upgrade pip
 **步骤3：安装CadQuery**
 
 ```bash
-pip install cadquery
+pip install cadquery  # 当前最新版本为2.7.0
 ```
 
 安装最新开发版本：

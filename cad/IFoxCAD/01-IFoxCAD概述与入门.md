@@ -183,7 +183,7 @@ OpFilter是选择集过滤器的基类，提供了构建复杂过滤器的能力
 **SDK和框架**
 
 - .NET Framework 4.8（用于支持较老版本的CAD）
-- .NET 6.0/7.0/8.0（用于支持新版本的CAD）
+- .NET 8.0/10（.NET 10为最新LTS版本，推荐用于新版本CAD）
 
 ### 1.3.2 获取IFoxCAD
 
@@ -191,9 +191,9 @@ IFoxCAD可以通过以下几种方式获取：
 
 **通过NuGet包管理器安装**
 
-这是最推荐的方式。在Visual Studio中，可以通过NuGet包管理器搜索"IFoxCAD"并安装。根据目标CAD版本选择相应的包：
-- IFoxCAD.AutoCad - 用于AutoCAD开发
-- IFoxCAD.ZwCad - 用于中望CAD开发
+这是最推荐的方式。在Visual Studio中，可以通过NuGet包管理器搜索"IFox.CAD"并安装。根据目标CAD版本选择相应的包：
+- IFox.CAD.ACAD - 用于AutoCAD开发
+- IFox.CAD.ZCAD - 用于中望CAD开发
 
 **通过源码编译**
 
@@ -217,7 +217,7 @@ git clone https://github.com/znlgis/IFoxCAD.git
 **步骤2：添加NuGet包引用**
 
 通过NuGet包管理器添加以下包引用：
-- IFoxCAD.AutoCad 或 IFoxCAD.ZwCad
+- IFox.CAD.ACAD 或 IFox.CAD.ZCAD
 - 对应版本的AutoCAD.NET API包
 
 **步骤3：创建初始化类**
@@ -258,13 +258,14 @@ namespace MyPlugin
 
 ### 1.4.1 IFoxCAD的版本说明
 
-目前IFoxCAD同时维护着多个版本：0.5、0.6、0.7三个大版本。每个版本都有其特点和适用场景：
+目前IFoxCAD的最新版本为v0.9.9.1，同时也维护着多个历史版本。每个版本都有其特点和适用场景：
 
-- **0.5版本**：稳定版本，API相对稳定
+- **0.5版本**：早期稳定版本，API相对稳定
 - **0.6版本**：过渡版本，进行了一些API调整
-- **0.7版本**：最新版本，包含最新特性
+- **0.7版本**：中间版本，包含许多改进
+- **0.9版本**（最新）：v0.9.9.1，包含最新特性，支持AutoCAD/ZWCAD/GStarCAD 2026+
 
-建议新项目使用最新的0.7版本，以获得最完整的功能支持。
+建议新项目使用最新的0.9版本，以获得最完整的功能支持和最新CAD版本兼容。
 
 ### 1.4.2 使用NuGet包引用
 
@@ -272,7 +273,7 @@ namespace MyPlugin
 
 ```xml
 <ItemGroup>
-  <PackageReference Include="IFoxCAD.AutoCad" Version="0.7.*" />
+  <PackageReference Include="IFox.CAD.ACAD" Version="0.9.*" />
 </ItemGroup>
 ```
 
