@@ -1,516 +1,598 @@
 ---
 layout: default
-title: 第四章：YAML 流水线格式完全解析
+title: "第四章：YAML 流水线格式完全解析"
 ---
 
 # 第四章：YAML 流水线格式完全解析
 
-## 4.1 完整 YAML Schema 概览
+## 4.1 流水线文件总体结构
 
-一个 GeoPipeAgent YAML 流水线文件的完整格式如下：
+每个 GeoPipeAgent 流水线文件都是一个标准 YAML 文件，必须以 `pipeline:` 作为**唯一的顶层键**。这是框架解析器（`parser.py`）的强制要求，缺少此键将直接报 `PipelineParseError`。
+
+### 完整结构示例
 
 ```yaml
-# ==============================
-# 顶层元信息
-# ==============================
-name: 流水线名称              # 必填，用于日志和报告
-description: 流水线的描述说明  # 可选
-crs: "EPSG:4326"              # 可选，全局默认 CRS，步骤未指定时使用
+pipeline:
+  # ─── 元数据 ───────────────────────────────────
+  name: "流水线名称"           # 必填：流水线唯一名称
+  description: "流水线描述"    # 可选：说明流水线用途
+  crs: "EPSG:4326"            # 可选：默认坐标参考系统
 
-# ==============================
-# 变量定义
-# ==============================
-variables:                    # 可选
-  var_name: value             # 变量名: 变量值（支持字符串、数值、布尔值）
-  another_var: 100
+  # ─── 变量定义 ─────────────────────────────────
+  variables:                   # 可选：可复用的变量
+    input_path: "data/input.shp"
+    buffer_dist: 500
+    output_dir: "output/"
 
-# ==============================
-# 步骤列表
-# ==============================
-steps:                        # 必填，至少包含一个步骤
-  - id: step-id               # 必填，唯一标识，格式：[a-z0-9_-]+
-    use: category.action      # 必填，步骤类型
-    params:                   # 可选（部分步骤无需参数）
-      key: value
-      ref_param: $other-step  # 步骤引用
-      var_param: ${var_name}  # 变量引用
-    when: "条件表达式"         # 可选，为 false 时跳过该步骤
-    on_error: fail            # 可选，错误策略：fail（默认）/ skip / retry
-    backend: native_python    # 可选，指定执行后端
+  # ─── 步骤列表 ─────────────────────────────────
+  steps:                       # 必填：步骤列表，顺序执行
+    - id: step-one             # 必填：步骤唯一 ID
+      use: io.read_vector      # 必填：步骤类型
+      params:                  # 步骤参数
+        path: "${input_path}"
+      when: "true"             # 可选：条件执行
+      on_error: fail           # 可选：错误策略
+      backend: native_python   # 可选：指定后端
 
-# ==============================
-# 输出声明
-# ==============================
-outputs:                      # 可选
-  output_name: $step-id       # 将步骤输出映射到具名输出
+    - id: step-two
+      use: vector.buffer
+      params:
+        input: "$step-one"
+        distance: "${buffer_dist}"
+
+  # ─── 输出声明 ─────────────────────────────────
+  outputs:                     # 可选：声明流水线输出
+    result: "$step-two"
+    stats: "$step-two.stats"
 ```
 
-## 4.2 顶层元信息字段
+---
 
-### `name`（必填）
+## 4.2 `pipeline:` 顶层键（强制要求）
 
-流水线名称，会出现在执行日志和 JSON 报告中。
+`pipeline:` 是整个 YAML 文件的根键，这是 GeoPipeAgent 的**解析约定**。
+
+### 正确示例
 
 ```yaml
-name: 城市道路缓冲区分析
+pipeline:          # ✓ 正确：有顶层 pipeline: 键
+  name: "测试流水线"
+  steps:
+    - id: step1
+      use: io.read_vector
+      params:
+        path: "data.geojson"
 ```
 
-**约束**：
-- 类型：字符串
-- 必填，不可为空
-
-### `description`（可选）
-
-对流水线的文字说明，有助于团队理解流水线用途。
+### 错误示例（会报 PipelineParseError）
 
 ```yaml
-description: |
-  对城市主干道做 500m 缓冲区分析，用于评估噪声影响范围。
-  输入：WGS84 坐标系 Shapefile
-  输出：GeoJSON 格式缓冲面
-```
-
-### `crs`（可选）
-
-全局默认坐标参考系（Coordinate Reference System）。当某些步骤需要 CRS 信息但未显式指定时，使用此值。
-
-```yaml
-crs: "EPSG:4326"
-```
-
-支持的 CRS 格式：
-- EPSG 代码：`"EPSG:4326"`、`"EPSG:3857"`
-- PROJ 字符串：`"+proj=utm +zone=50 +datum=WGS84"`
-- WKT 格式（不推荐，冗长）
-
-## 4.3 variables 块
-
-`variables` 块用于定义可在流水线中复用的变量值，通过 `${var_name}` 语法引用。
-
-### 4.3.1 支持的数据类型
-
-```yaml
-variables:
-  # 字符串
-  input_path: "data/roads.shp"
-  output_dir: "output/"
-
-  # 整数
-  buffer_distance: 500
-
-  # 浮点数
-  tolerance: 0.001
-
-  # 布尔值
-  simplify_enabled: true
-
-  # 列表（用于支持列表参数的步骤）
-  required_fields:
-    - name
-    - type
-    - length
-```
-
-### 4.3.2 变量引用语法
-
-```yaml
+# ✗ 错误：缺少 pipeline: 顶层键
+name: "测试流水线"
 steps:
-  - id: load
+  - id: step1
     use: io.read_vector
-    params:
-      path: ${input_path}          # 引用字符串变量
-
-  - id: buffer
-    use: vector.buffer
-    params:
-      input: $load
-      distance: ${buffer_distance} # 引用数值变量
 ```
 
-### 4.3.3 CLI 覆盖变量
+```yaml
+# ✗ 错误：顶层键名不正确
+workflow:
+  name: "测试流水线"
+  steps: []
+```
 
-`variables` 中定义的变量可以在运行时通过 `--var` 参数覆盖：
+### 解析器行为
+
+当 YAML 文件缺少 `pipeline:` 顶层键时，`parser.py` 会抛出：
+
+```
+PipelineParseError: 无效的流水线格式：缺少必要的顶层键 'pipeline'
+```
+
+---
+
+## 4.3 `name` 字段
+
+| 属性 | 值 |
+|------|-----|
+| 类型 | string |
+| 是否必填 | **是** |
+| 约束 | 非空字符串 |
+
+流水线名称用于报告生成和日志标识，建议使用描述性的名称。
+
+```yaml
+pipeline:
+  name: "城市道路缓冲区分析 v2.0"  # 推荐：版本化、描述性
+  # name: "test"                   # 不推荐：不够描述性
+```
+
+---
+
+## 4.4 `description` 字段
+
+| 属性 | 值 |
+|------|-----|
+| 类型 | string |
+| 是否必填 | 否 |
+| 默认值 | `""` |
+
+多行描述使用 YAML 折叠块语法：
+
+```yaml
+pipeline:
+  name: "道路分析"
+  description: >
+    本流水线对城市道路网络进行缓冲区分析，
+    筛选主干道并生成 500 米服务范围，
+    用于城市规划中的基础设施覆盖分析。
+```
+
+---
+
+## 4.5 `crs` 字段
+
+| 属性 | 值 |
+|------|-----|
+| 类型 | string |
+| 是否必填 | 否 |
+| 默认值 | `null` |
+| 格式 | EPSG 代码、PROJ 字符串或 WKT |
+
+`crs` 字段指定流水线默认的坐标参考系统，主要用于：
+- 某些步骤的默认 CRS 上下文
+- 报告中的 CRS 元数据
+
+```yaml
+pipeline:
+  name: "北京道路分析"
+  crs: "EPSG:4326"           # WGS84 地理坐标
+  # crs: "EPSG:3857"         # Web 墨卡托（米）
+  # crs: "EPSG:4490"         # CGCS2000（国家大地坐标系）
+  # crs: "EPSG:32650"        # WGS84 UTM Zone 50N
+```
+
+**常用 CRS 对照表**：
+
+| CRS | EPSG 代码 | 单位 | 适用范围 |
+|-----|-----------|------|----------|
+| WGS84 | EPSG:4326 | 度 | 全球，GPS 坐标 |
+| Web 墨卡托 | EPSG:3857 | 米 | 网络地图，缓冲区分析 |
+| CGCS2000 | EPSG:4490 | 度 | 中国国家标准 |
+| Beijing 1954 / GK | EPSG:21460 | 米 | 中国历史数据 |
+| UTM Zone 50N | EPSG:32650 | 米 | 中国东部精确距离计算 |
+
+---
+
+## 4.6 `variables` 字段
+
+| 属性 | 值 |
+|------|-----|
+| 类型 | dict |
+| 是否必填 | 否 |
+| 默认值 | `{}` |
+
+`variables` 定义可在整个流水线中复用的命名值，使用 `${var_name}` 引用。
+
+### 支持的变量类型
+
+```yaml
+pipeline:
+  name: "变量类型示例"
+  variables:
+    # 字符串
+    input_path: "data/roads.shp"
+    output_dir: "output/"
+
+    # 数字
+    buffer_dist: 500
+    threshold: 0.001
+
+    # 布尔值
+    preserve_topology: true
+
+    # 列表（不常用，部分步骤支持）
+    required_fields:
+      - road_id
+      - name
+      - type
+
+  steps:
+    - id: load
+      use: io.read_vector
+      params:
+        path: "${input_path}"
+
+    - id: buffer
+      use: vector.buffer
+      params:
+        input: "$load"
+        distance: "${buffer_dist}"
+```
+
+### 变量的优先级
+
+CLI 通过 `--var` 参数传入的值会**覆盖** YAML 中定义的变量：
 
 ```bash
-# 单个变量覆盖
-geopipe-agent run pipeline.yaml --var input_path=data/rivers.shp
-
-# 多个变量覆盖
-geopipe-agent run pipeline.yaml \
-  --var input_path=data/rivers.shp \
-  --var buffer_distance=1000 \
-  --var simplify_enabled=false
+# YAML 中 buffer_dist = 500，CLI 覆盖为 1000
+geopipe-agent run pipeline.yaml --var buffer_dist=1000
 ```
 
-这使得同一 YAML 文件可以作为"模板"，在不同数据或参数组合下复用。
+---
 
-## 4.4 steps 块
+## 4.7 `steps` 字段
 
-### 4.4.1 步骤 `id`
+| 属性 | 值 |
+|------|-----|
+| 类型 | list[StepDefinition] |
+| 是否必填 | **是** |
+| 最少步骤 | 1 |
+| 执行顺序 | 从上到下，顺序执行 |
 
-步骤 ID 是步骤的唯一标识符，用于：
-- 在后续步骤中通过 `$step-id` 引用该步骤的输出
-- 在日志和报告中标识步骤
+`steps` 是流水线的核心，列出所有需要执行的步骤。
 
-**命名规范**：
-- 只允许小写字母、数字、下划线（`_`）、短横线（`-`）
-- 示例：`load-data`、`reproject_wgs84`、`buffer500`
-- 不允许空格、大写字母、特殊符号
+---
+
+## 4.8 步骤定义（`StepDefinition`）
+
+每个步骤由以下字段组成：
+
+### 4.8.1 `id` 字段（必填）
+
+| 属性 | 值 |
+|------|-----|
+| 类型 | string |
+| 是否必填 | **是** |
+| 格式规则 | `[a-z0-9_-]`，必须在流水线中唯一 |
+
+步骤 ID 用于：
+- 在其他步骤中引用该步骤的输出（`$step-id`）
+- 在报告中标识步骤
+- 在日志中追踪执行
 
 ```yaml
 steps:
-  - id: load-roads      # ✅ 合法
-  - id: reproject       # ✅ 合法
-  - id: Buffer Analysis # ❌ 含空格和大写，非法
+  - id: load-roads        # ✓ 正确：小写字母、连字符
+  - id: buffer_zone       # ✓ 正确：下划线
+  - id: step01            # ✓ 正确：数字
+  # - id: Load Roads      # ✗ 错误：包含大写和空格
+  # - id: 步骤1           # ✗ 错误：包含中文
 ```
 
-### 4.4.2 步骤 `use`
+**唯一性约束**：如果流水线中有两个步骤使用相同的 `id`，`validator.py` 会报 `PipelineValidationError`。
 
-`use` 字段指定步骤类型，格式为 `类别.动作`：
+### 4.8.2 `use` 字段（必填）
+
+| 属性 | 值 |
+|------|-----|
+| 类型 | string |
+| 格式 | `category.action` |
+| 是否必填 | **是** |
+
+`use` 指定步骤类型，格式为 `类别.操作`。如果指定了未注册的步骤，执行时会报 `StepNotFoundError`。
 
 ```yaml
-use: io.read_vector
-use: vector.buffer
-use: raster.reproject
-use: analysis.voronoi
-use: network.shortest_path
-use: qc.geometry_validity
+use: io.read_vector         # IO 类别，读取矢量
+use: vector.buffer          # 矢量类别，缓冲区
+use: raster.clip            # 栅格类别，裁剪
+use: analysis.voronoi       # 分析类别，泰森多边形
+use: network.shortest_path  # 网络类别，最短路径
+use: qc.geometry_validity   # 质检类别，几何有效性
 ```
 
-各类别前缀：
+### 4.8.3 `params` 字段
 
-| 前缀 | 说明 | 步骤数 |
-|------|------|--------|
-| `io` | 数据输入/输出 | 4 |
-| `vector` | 矢量数据处理 | 7 |
-| `raster` | 栅格数据处理 | 5 |
-| `analysis` | 空间分析 | 4 |
-| `network` | 网络分析 | 3 |
-| `qc` | 数据质检 | 10 |
+| 属性 | 值 |
+|------|-----|
+| 类型 | dict |
+| 是否必填 | 否（部分步骤有必填参数） |
+| 默认值 | `{}` |
 
-### 4.4.3 步骤 `params`
+`params` 是传给步骤函数的参数字典。参数值可以是：
+- **字面量**：直接写值
+- **变量引用**：`${var_name}`
+- **步骤输出引用**：`$step-id` 或 `$step-id.attr`
 
-`params` 是一个键值对字典，向步骤传递参数。参数值支持：
+```yaml
+params:
+  path: "data/roads.geojson"         # 字面量（字符串）
+  distance: 500                       # 字面量（数字）
+  preserve_topology: true             # 字面量（布尔）
+  input: "$load-roads"               # 步骤输出引用
+  distance: "${buffer_dist}"         # 变量引用
+  target_crs: "EPSG:3857"           # 字面量（CRS 字符串）
+```
 
-- **字面量**：直接写值（字符串、数值、布尔值）
-- **变量引用**：`${var_name}` 替换为 `variables` 中定义的值
-- **步骤引用**：`$step-id` 引用前一步骤的输出数据
-- **步骤属性引用**：`$step-id.attr` 引用步骤输出的特定属性
+### 4.8.4 `when` 字段（条件执行）
+
+| 属性 | 值 |
+|------|-----|
+| 类型 | string |
+| 是否必填 | 否 |
+| 默认值 | 无（始终执行） |
+
+`when` 接受一个布尔表达式，可引用变量和步骤统计值：
 
 ```yaml
 steps:
   - id: load
     use: io.read_vector
     params:
-      path: ${input_path}        # 变量引用
+      path: "data/roads.geojson"
 
-  - id: reproject
-    use: vector.reproject
-    params:
-      input: $load               # 步骤引用（引用 load 步骤的输出）
-      target_crs: "EPSG:3857"   # 字面量
-
-  - id: check-crs
-    use: qc.crs_check
-    params:
-      input: $load
-      expected_crs: $load.crs   # 步骤属性引用（引用 load 步骤输出的 crs 属性）
-```
-
-### 4.4.4 `when` 条件执行
-
-`when` 字段接受一个表达式字符串，在运行时求值。如果结果为 `false`（或 falsy），该步骤会被**跳过**（状态标记为 `skipped`）而不是执行。
-
-```yaml
-variables:
-  enable_simplify: false
-  min_features: 100
-
-steps:
-  - id: load
-    use: io.read_vector
-    params:
-      path: "data/roads.shp"
-
+  # 只在数据量大于 1000 时才做简化
   - id: simplify
     use: vector.simplify
+    when: "$load.stats.feature_count > 1000"
     params:
-      input: $load
-      tolerance: 10
-    when: "${enable_simplify} == true"   # 变量为 false，跳过此步骤
+      input: "$load"
+      tolerance: 0.001
 
-  - id: buffer
-    use: vector.buffer
-    params:
-      input: $load
-      distance: 500
-    when: "$load.feature_count > ${min_features}"  # 基于步骤结果的条件
-```
-
-**`when` 表达式支持的操作**：
-- 比较运算：`==`、`!=`、`>`、`<`、`>=`、`<=`
-- 逻辑运算：`and`、`or`、`not`
-- 变量/步骤引用：`${var}`、`$step.attr`
-- 字面量：字符串（带引号）、数值、`true`/`false`
-
-**注意**：`when` 表达式通过安全求值（AST 白名单）运行，不支持任意 Python 代码。
-
-### 4.4.5 `on_error` 错误策略
-
-当步骤执行抛出异常时，`on_error` 决定框架的行为：
-
-| 值 | 行为 | 适用场景 |
-|----|------|----------|
-| `fail`（默认） | 立即终止流水线，报告失败 | 步骤失败影响后续所有步骤 |
-| `skip` | 跳过当前步骤，继续后续步骤 | 可选的非关键步骤 |
-| `retry` | 自动重试最多 3 次，仍失败则终止 | 网络请求、外部 API 调用等不稳定操作 |
-
-```yaml
-steps:
-  - id: geocode
-    use: network.geocode
-    params:
-      address: "北京市天安门广场"
-    on_error: retry    # 网络问题时自动重试
-
-  - id: optional-clip
-    use: vector.clip
-    params:
-      input: $data
-      clip: $boundary
-    on_error: skip     # 裁剪失败时跳过，不影响主流程
-```
-
-### 4.4.6 `backend` 后端指定
-
-在步骤级别指定使用的后端，优先级高于全局配置：
-
-```yaml
-steps:
-  - id: convert
+  # 根据变量决定是否执行
+  - id: save-debug
     use: io.write_vector
+    when: "${enable_debug}"
     params:
-      input: $load
-      path: "output/result.shp"
-    backend: gdal_cli          # 使用 GDAL CLI 后端而非默认的 native_python
-
-  - id: buffer
-    use: vector.buffer
-    params:
-      input: $load
-      distance: 500
-    backend: native_python     # 明确使用默认后端
+      input: "$simplify"
+      path: "debug/simplified.geojson"
+      format: "GeoJSON"
 ```
 
-## 4.5 outputs 块
+详细的 `when` 表达式语法见第六章。
 
-`outputs` 块将步骤的输出映射到具名输出，方便在 JSON 报告中查找结果：
+### 4.8.5 `on_error` 字段（错误策略）
+
+| 属性 | 值 |
+|------|-----|
+| 类型 | string |
+| 可选值 | `fail` / `skip` / `retry` |
+| 默认值 | `fail` |
+
+| 策略 | 行为 |
+|------|------|
+| `fail` | 步骤失败时立即终止整个流水线（默认） |
+| `skip` | 步骤失败时跳过该步骤，继续执行后续步骤 |
+| `retry` | 最多重试 3 次，每次间隔 0.5 秒，全部失败则终止 |
+
+```yaml
+steps:
+  - id: fetch-online-data
+    use: io.read_vector
+    on_error: retry        # 网络请求可能不稳定，自动重试
+    params:
+      path: "https://api.example.com/data.geojson"
+
+  - id: optional-step
+    use: vector.simplify
+    on_error: skip         # 此步骤可选，失败不影响后续
+    params:
+      input: "$load"
+      tolerance: 0.001
+```
+
+### 4.8.6 `backend` 字段
+
+| 属性 | 值 |
+|------|-----|
+| 类型 | string |
+| 可选值 | `native_python` / `gdal_cli` / `gdal_python` / `qgis_process` / `pyqgis` / `generic_cli` / `curl_api` |
+| 默认值 | `native_python` |
+
+```yaml
+steps:
+  - id: convert-format
+    use: io.write_vector
+    backend: gdal_cli          # 使用 GDAL CLI 后端
+    params:
+      input: "$load"
+      path: "output/data.gpkg"
+      format: "GPKG"
+```
+
+---
+
+## 4.9 `outputs` 字段
+
+| 属性 | 值 |
+|------|-----|
+| 类型 | dict |
+| 是否必填 | 否 |
+| 默认值 | `{}` |
+
+`outputs` 声明流水线的最终输出，这些值会出现在 JSON 报告的 `outputs` 字段中。
 
 ```yaml
 outputs:
-  # 格式：输出名称: $step-id
-  buffer_result: $buffer-step    # 将 buffer-step 步骤的输出命名为 buffer_result
-  statistics: $stats-step
+  # 引用步骤输出数据
+  final_data: "$save-result"
+
+  # 引用步骤统计信息
+  processing_stats: "$buffer.stats"
+
+  # 引用步骤特定属性
+  feature_count: "$load.stats.feature_count"
+
+  # 引用 QC 问题列表
+  quality_issues: "$qc-check.issues"
 ```
 
-`outputs` 是可选的，但强烈建议定义，这样：
-1. JSON 报告的 `outputs` 字段会包含对应结果的位置信息。
-2. AI 解析报告时更容易找到关键输出。
+---
 
-## 4.6 步骤引用详解
+## 4.10 完整字段参考表
 
-步骤引用（`$step-id`）是 GeoPipeAgent 的数据流传递机制，支持以下形式：
+| 字段 | 级别 | 类型 | 必填 | 默认值 | 说明 |
+|------|------|------|------|--------|------|
+| `pipeline` | 顶层 | object | **是** | - | 根键 |
+| `pipeline.name` | 二级 | string | **是** | - | 流水线名称 |
+| `pipeline.description` | 二级 | string | 否 | `""` | 流水线描述 |
+| `pipeline.crs` | 二级 | string | 否 | `null` | 默认 CRS |
+| `pipeline.variables` | 二级 | dict | 否 | `{}` | 变量定义 |
+| `pipeline.steps` | 二级 | list | **是** | - | 步骤列表 |
+| `pipeline.outputs` | 二级 | dict | 否 | `{}` | 输出声明 |
+| `steps[].id` | 步骤 | string | **是** | - | 步骤唯一 ID |
+| `steps[].use` | 步骤 | string | **是** | - | 步骤类型 |
+| `steps[].params` | 步骤 | dict | 否 | `{}` | 步骤参数 |
+| `steps[].when` | 步骤 | string | 否 | 无 | 执行条件 |
+| `steps[].on_error` | 步骤 | string | 否 | `fail` | 错误策略 |
+| `steps[].backend` | 步骤 | string | 否 | `native_python` | 执行后端 |
 
-### 基本引用
+---
+
+## 4.11 YAML 格式技巧
+
+### 多行字符串
 
 ```yaml
-# $step-id 引用步骤的主要输出（通常是 GeoDataFrame 或 raster 数组）
-params:
-  input: $load-data
+pipeline:
+  name: "多行示例"
+  description: |
+    这是第一行描述。
+    这是第二行描述。
+    可以包含换行。
 ```
 
-### 属性引用
+### 注释
 
 ```yaml
-# $step-id.attr 引用步骤输出的特定属性
-params:
-  expected_crs: $load.crs             # 引用步骤输出的 crs 字段
-  feature_count: $load.feature_count  # 引用步骤输出的 feature_count 字段
+pipeline:
+  name: "有注释的流水线"
+  steps:
+    # 第一步：加载数据
+    - id: load
+      use: io.read_vector
+      params:
+        path: "data.geojson"  # 数据文件路径
+
+    # 第二步：缓冲区分析
+    - id: buffer
+      use: vector.buffer
+      params:
+        input: "$load"
+        distance: 100   # 单位：米（需要投影坐标系）
 ```
 
-常见可引用属性：
-
-| 步骤类型 | 可引用属性 | 说明 |
-|----------|-----------|------|
-| `io.read_vector` | `.crs`、`.feature_count`、`.geometry_type` | 矢量数据元信息 |
-| `io.read_raster` | `.crs`、`.width`、`.height`、`.nodata` | 栅格数据元信息 |
-| `vector.*` | `.feature_count`、`.crs` | 矢量步骤通用属性 |
-| `qc.*` | `.issue_count`、`.passed` | 质检结果属性 |
-
-## 4.7 YAML 多文档与注释
-
-YAML 本身支持注释（以 `#` 开头），建议在流水线中充分使用注释增加可读性：
+### 锚点与引用（减少重复）
 
 ```yaml
-name: 复杂分析流水线
+pipeline:
+  name: "使用 YAML 锚点"
 
-variables:
-  # 输入数据路径
-  input_path: "data/buildings.gpkg"
-  # 分析缓冲距离（单位：米，需使用投影坐标系）
-  buffer_dist: 100
-  # 是否执行质检步骤
-  run_qc: true
+  # 定义锚点
+  variables:
+    common_crs: &target_crs "EPSG:3857"
 
+  steps:
+    - id: reproject-layer1
+      use: vector.reproject
+      params:
+        input: "$load1"
+        target_crs: *target_crs   # 使用锚点引用
+
+    - id: reproject-layer2
+      use: vector.reproject
+      params:
+        input: "$load2"
+        target_crs: *target_crs   # 同一 CRS
+```
+
+---
+
+## 4.12 常见格式错误
+
+### 错误一：缺少 `pipeline:` 顶层键
+
+```yaml
+# ✗ 错误
+name: "测试"
+steps: []
+```
+
+```
+PipelineParseError: 缺少必要的顶层键 'pipeline'
+```
+
+### 错误二：步骤 ID 包含非法字符
+
+```yaml
+# ✗ 错误
 steps:
-  # ---- 数据加载阶段 ----
+  - id: "Load Roads"    # 包含大写和空格
+    use: io.read_vector
+```
+
+```
+PipelineValidationError: 步骤 ID 'Load Roads' 不符合规范 [a-z0-9_-]
+```
+
+### 错误三：引用不存在的步骤
+
+```yaml
+# ✗ 错误
+steps:
+  - id: step-a
+    use: io.read_vector
+    params:
+      path: "data.geojson"
+  - id: step-b
+    use: vector.buffer
+    params:
+      input: "$step-x"    # step-x 不存在！
+      distance: 100
+```
+
+```
+PipelineValidationError: 步骤 'step-b' 引用了不存在的步骤 'step-x'
+```
+
+### 错误四：重复的步骤 ID
+
+```yaml
+# ✗ 错误
+steps:
   - id: load
     use: io.read_vector
     params:
-      path: ${input_path}
-
-  # ---- 预处理阶段 ----
-  - id: reproject
-    use: vector.reproject
+      path: "data1.geojson"
+  - id: load    # 重复！
+    use: io.read_vector
     params:
-      input: $load
-      target_crs: "EPSG:3857"    # 转为墨卡托投影，距离单位变为米
-
-  # ---- 分析阶段 ----
-  - id: buffer
-    use: vector.buffer
-    params:
-      input: $reproject
-      distance: ${buffer_dist}
-
-  # ---- 质检阶段（可选）----
-  - id: qc-check
-    use: qc.geometry_validity
-    params:
-      input: $buffer
-    when: "${run_qc} == true"
-    on_error: skip
+      path: "data2.geojson"
 ```
 
-## 4.8 完整示例：多步骤复杂流水线
+```
+PipelineValidationError: 发现重复的步骤 ID: 'load'
+```
 
-以下是一个综合示例，展示了 YAML 格式的各种特性：
+### 错误五：`on_error` 值不合法
 
 ```yaml
-name: 城市用地适宜性分析
-description: 综合道路、水系、土地利用数据，分析城市建设适宜性
-
-crs: "EPSG:4326"
-
-variables:
-  road_path: "data/roads.shp"
-  water_path: "data/water.shp"
-  land_path: "data/land_use.gpkg"
-  output_dir: "output/"
-  buffer_road: 500     # 道路缓冲距离（米）
-  buffer_water: 200    # 水系缓冲距离（米）
-  run_simplify: true
-
+# ✗ 错误
 steps:
-  # 1. 加载数据
-  - id: load-roads
+  - id: step1
     use: io.read_vector
-    params:
-      path: ${road_path}
-
-  - id: load-water
-    use: io.read_vector
-    params:
-      path: ${water_path}
-
-  - id: load-land
-    use: io.read_vector
-    params:
-      path: ${land_path}
-
-  # 2. 投影转换（统一到 EPSG:3857）
-  - id: proj-roads
-    use: vector.reproject
-    params:
-      input: $load-roads
-      target_crs: "EPSG:3857"
-
-  - id: proj-water
-    use: vector.reproject
-    params:
-      input: $load-water
-      target_crs: "EPSG:3857"
-
-  # 3. 缓冲区分析
-  - id: buf-roads
-    use: vector.buffer
-    params:
-      input: $proj-roads
-      distance: ${buffer_road}
-
-  - id: buf-water
-    use: vector.buffer
-    params:
-      input: $proj-water
-      distance: ${buffer_water}
-
-  # 4. 叠加分析：求道路缓冲区与水系缓冲区的差集
-  - id: overlay
-    use: vector.overlay
-    params:
-      left: $buf-roads
-      right: $buf-water
-      how: difference
-
-  # 5. 简化（可选）
-  - id: simplify
-    use: vector.simplify
-    params:
-      input: $overlay
-      tolerance: 5
-    when: "${run_simplify} == true"
-
-  # 6. 保存结果
-  - id: save
-    use: io.write_vector
-    params:
-      input: $simplify
-      path: "${output_dir}suitable_areas.geojson"
-      driver: GeoJSON
-    on_error: retry
-
-outputs:
-  suitable_areas: $save
-  road_buffer: $buf-roads
-  water_buffer: $buf-water
+    on_error: ignore    # 不合法，应为 fail/skip/retry
 ```
 
-## 4.9 常见错误与最佳实践
+```
+PipelineValidationError: 步骤 'step1' 的 on_error 值 'ignore' 无效，应为 fail/skip/retry
+```
 
-### 最佳实践
+---
 
-1. **始终定义 `variables`**：将路径、参数等硬编码值提取为变量，提高复用性。
-2. **合理使用 `when`**：对于可选步骤，用 `when` 控制是否执行，避免注释/删除步骤。
-3. **重要步骤加 `on_error: retry`**：网络请求、外部 API 调用建议设置重试策略。
-4. **定义 `outputs`**：明确声明流水线的关键输出，便于 AI 和人类解析报告。
-5. **充分注释**：用 `#` 为步骤和变量添加说明，特别是在团队协作中。
+## 4.13 本章小结
 
-### 常见错误
+本章全面解析了 GeoPipeAgent YAML 流水线的格式规范：
 
-| 错误 | 原因 | 解决方法 |
-|------|------|----------|
-| `步骤 ID 重复` | 同一 YAML 中有两个相同的 `id` | 确保所有步骤 ID 唯一 |
-| `引用不存在的步骤` | `$step-id` 中的 step-id 不存在 | 检查拼写，确保被引用步骤在前 |
-| `循环引用` | 步骤 A 引用步骤 B，步骤 B 又引用步骤 A | 调整步骤顺序，消除循环 |
-| `变量未定义` | `${var}` 中的变量名在 `variables` 中不存在 | 添加变量定义或通过 `--var` 传入 |
+1. **`pipeline:` 顶层键**：强制要求，缺少会报 `PipelineParseError`
+2. **元数据字段**：`name`（必填）、`description`、`crs`
+3. **`variables`**：定义可复用变量，CLI 可覆盖
+4. **`steps`**：核心字段，包含 `id`、`use`、`params`、`when`、`on_error`、`backend`
+5. **`outputs`**：声明流水线最终输出
+6. **常见错误**：格式错误的早期诊断有助于快速修复
 
-## 4.10 小结
+掌握这些格式规范后，你就能准确理解和编写任意复杂度的 GeoPipeAgent 流水线。
 
-本章全面解析了 GeoPipeAgent YAML 流水线格式的每个字段：
+---
 
-- **顶层字段**：`name`（必填）、`description`、`crs`（可选）
-- **`variables`**：定义可复用变量，支持 `${var}` 引用和 CLI `--var` 覆盖
-- **`steps`**：步骤列表，每步有 `id`、`use`、`params`、`when`、`on_error`、`backend`
-- **`outputs`**：映射步骤结果到具名输出
-
-下一章将深入介绍变量系统和步骤引用的工作机制，包括引用解析的底层原理。
+**导航**：[← 第三章：快速上手](03-快速上手第一个流水线) ｜ [第五章：变量系统与步骤引用 →](05-变量系统与步骤引用)
