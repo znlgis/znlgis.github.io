@@ -657,6 +657,8 @@ JTS Topology Suite 创始人 Martin Davis 的技术博客翻译，涵盖计算�
 - [多边形树结构源码解读](sci/Clipper1/第4章_多边形树结构源码解读)
 - [边结构与辅助数据结构源码解读](sci/Clipper1/第5章_边结构与辅助数据结构源码解读)
 - [枚举类型与类型别名系统源码解读](sci/Clipper1/第6章_枚举类型与类型别名系统源码解读)
+- [ClipperBase 基类源码解读（上）— 初始化与边处理](sci/Clipper1/第7章_ClipperBase基类源码解读上)
+- [ClipperBase 基类源码解读（下）— 扫描线与活动边表](sci/Clipper1/第8章_ClipperBase基类源码解读下)
 
 ### 项目演示
 
