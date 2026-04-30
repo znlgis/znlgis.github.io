@@ -46,6 +46,11 @@ GeoServer项目始于2001年，由Open Planning Project（TOPP）发起。TOPP�
 - **2010年**：集成GeoWebCache，提供内置的瓦片缓存功能
 - **2015年**：支持CSS样式，简化了地图样式的编写
 - **2020年**：增强了对OGC API标准的支持，向下一代Web服务标准演进
+- **2021年**：GeoServer 2.19 发布，增强Kubernetes部署支持
+- **2022年**：GeoServer 2.21 发布，改进安全性并增强OGC API支持
+- **2023年**：GeoServer Cloud 进入稳定版，支持微服务架构部署
+- **2024年**：GeoServer 2.25 发布，Java 17 全面支持与性能优化
+- **2025年**：GeoServer 2.26+ 发布，持续增强云原生与安全性
 
 ### 1.2.3 开源许可
 

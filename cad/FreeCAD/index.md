@@ -27,7 +27,7 @@ title: FreeCAD 教程目录
 - [第20章：实战案例分析](第20章：实战案例分析)
 - [第21章：FreeCAD架构解析](第21章：FreeCAD架构解析)
 - [第22章：Python脚本基础](第22章：Python脚本基础)
-- [第23章：FreeCAD Python API](第23章：FreeCAD Python API)
+- [第23章：FreeCAD Python API](第23章：FreeCAD-Python-API)
 - [第24章：创建宏与脚本](第24章：创建宏与脚本)
 - [第25章：自定义工作台开发](第25章：自定义工作台开发)
 - [第26章：自定义对象开发](第26章：自定义对象开发)

@@ -244,6 +244,7 @@ title: 首页
 - [扩展开发与插件集成](gis/tutorial/SharpMap/第15章-扩展开发与插件集成)
 - [性能优化与最佳实践](gis/tutorial/SharpMap/第16章-性能优化与最佳实践)
 - [实战案例与综合应用](gis/tutorial/SharpMap/第17章-实战案例与综合应用)
+
 #### Mapsui 系列
 - [Mapsui概述与入门](gis/tutorial/Mapsui/第01章-Mapsui概述与入门)
 - [环境搭建与快速开始](gis/tutorial/Mapsui/第02章-环境搭建与快速开始)
@@ -261,6 +262,35 @@ title: 首页
 - [性能优化与最佳实践](gis/tutorial/Mapsui/第14章-性能优化与最佳实践)
 - [各平台集成实战](gis/tutorial/Mapsui/第15章-各平台集成实战)
 - [实战案例与项目应用](gis/tutorial/Mapsui/第16章-实战案例与项目应用)
+
+#### OpenLayers 系列
+- [OpenLayers概述与入门](gis/tutorial/openlayers/第01章-OpenLayers概述与入门)
+- [环境搭建与快速开始](gis/tutorial/openlayers/第02章-环境搭建与快速开始)
+- [核心概念与架构设计](gis/tutorial/openlayers/第03章-核心概念与架构设计)
+- [Map地图对象详解](gis/tutorial/openlayers/第04章-Map地图对象详解)
+- [View视图与坐标系统](gis/tutorial/openlayers/第05章-View视图与坐标系统)
+- [Layer图层体系](gis/tutorial/openlayers/第06章-Layer图层体系)
+- [Source数据源详解](gis/tutorial/openlayers/第07章-Source数据源详解)
+- [矢量数据与样式](gis/tutorial/openlayers/第08章-矢量数据与样式)
+- [栅格数据与瓦片服务](gis/tutorial/openlayers/第09章-栅格数据与瓦片服务)
+- [Control控件系统](gis/tutorial/openlayers/第10章-Control控件系统)
+- [Interaction交互系统](gis/tutorial/openlayers/第11章-Interaction交互系统)
+- [Overlay覆盖物](gis/tutorial/openlayers/第12章-Overlay覆盖物)
+- [地图事件与动画](gis/tutorial/openlayers/第13章-地图事件与动画)
+- [投影与坐标转换](gis/tutorial/openlayers/第14章-投影与坐标转换)
+- [要素编辑与绘制](gis/tutorial/openlayers/第15章-要素编辑与绘制)
+- [OGC服务集成](gis/tutorial/openlayers/第16章-OGC服务集成)
+- [性能优化与最佳实践](gis/tutorial/openlayers/第17章-性能优化与最佳实践)
+- [实战案例与项目应用](gis/tutorial/openlayers/第18章-实战案例与项目应用)
+
+#### GeoPipeAgent 系列
+- [GeoPipeAgent 教程目录](gis/tutorial/GeoPipeAgent/)
+
+#### GeoPandas 系列
+- [GeoPandas 教程目录](gis/tutorial/geopandas/)
+
+#### Shapely 系列
+- [Shapely 教程目录](gis/tutorial/shapely/)
 
 ### GIS 基础
 
@@ -387,6 +417,7 @@ JTS Topology Suite 创始人 Martin Davis 的技术博客翻译，涵盖计算�
 - [二次开发实战案例](cad/libredwg/第12章-二次开发实战案例)
 - [性能优化与最佳实践](cad/libredwg/第13章-性能优化与最佳实践)
 - [常见问题与故障排除](cad/libredwg/第14章-常见问题与故障排除)
+
 #### QCAD 系列
 开源2D CAD软件QCAD的完整学习、使用与二次开发教程。
 - [QCAD概述与入门](cad/qcad/第01章-QCAD概述与入门)
@@ -404,6 +435,7 @@ JTS Topology Suite 创始人 Martin Davis 的技术博客翻译，涵盖计算�
 - [C++插件开发](cad/qcad/第13章-C++插件开发)
 - [自定义工具开发](cad/qcad/第14章-自定义工具开发)
 - [实战案例与最佳实践](cad/qcad/第15章-实战案例与最佳实践)
+
 #### Astral3D 系列
 - [Astral3D概述与入门](cad/Astral3D/第01章-Astral3D概述与入门)
 - [环境搭建与快速开始](cad/Astral3D/第02章-环境搭建与快速开始)
@@ -417,6 +449,7 @@ JTS Topology Suite 创始人 Martin Davis 的技术博客翻译，涵盖计算�
 - [二次开发入门](cad/Astral3D/第10章-二次开发入门)
 - [二次开发进阶](cad/Astral3D/第11章-二次开发进阶)
 - [实战案例与最佳实践](cad/Astral3D/第12章-实战案例与最佳实践)
+
 #### KiCad 完整教程系列
 - [KiCad概述与入门](cad/KiCad/第01章-KiCad概述与入门)
 - [环境搭建与安装配置](cad/KiCad/第02章-环境搭建与安装配置)
@@ -436,6 +469,7 @@ JTS Topology Suite 创始人 Martin Davis 的技术博客翻译，涵盖计算�
 - [源码架构与编译环境](cad/KiCad/第16章-源码架构与编译环境)
 - [核心模块源码分析](cad/KiCad/第17章-核心模块源码分析)
 - [二次开发实战案例](cad/KiCad/第18章-二次开发实战案例)
+
 #### SolveSpace 系列
 - [SolveSpace概述与入门](cad/solvespace/第01章-SolveSpace概述与入门)
 - [安装与环境配置](cad/solvespace/第02章-安装与环境配置)
@@ -452,6 +486,7 @@ JTS Topology Suite 创始人 Martin Davis 的技术博客翻译，涵盖计算�
 - [Python绑定开发](cad/solvespace/第13章-Python绑定开发)
 - [源码架构分析](cad/solvespace/第14章-源码架构分析)
 - [二次开发实战](cad/solvespace/第15章-二次开发实战)
+
 #### CadQuery 系列
 - [CadQuery概述与入门](cad/cadquery/第01章-CadQuery概述与入门)
 - [Workplane与草图系统](cad/cadquery/第02章-Workplane与草图系统)
@@ -463,6 +498,7 @@ JTS Topology Suite 创始人 Martin Davis 的技术博客翻译，涵盖计算�
 - [二次开发基础](cad/cadquery/第08章-二次开发基础)
 - [二次开发进阶](cad/cadquery/第09章-二次开发进阶)
 - [实战案例与最佳实践](cad/cadquery/第10章-实战案例与最佳实践)
+
 #### LibreCAD 完整教程系列
 - [LibreCAD概述与入门](cad/LibreCAD/第01章-LibreCAD概述与入门)
 - [安装与环境配置](cad/LibreCAD/第02章-安装与环境配置)
@@ -480,6 +516,7 @@ JTS Topology Suite 创始人 Martin Davis 的技术博客翻译，涵盖计算�
 - [Action系统与命令开发](cad/LibreCAD/第14章-Action系统与命令开发)
 - [插件系统与开发实战](cad/LibreCAD/第15章-插件系统与开发实战)
 - [二次开发进阶与最佳实践](cad/LibreCAD/第16章-二次开发进阶与最佳实践)
+
 #### FreeCAD 完整教程系列
 
 ##### 学习教程（基础篇）
@@ -509,7 +546,7 @@ JTS Topology Suite 创始人 Martin Davis 的技术博客翻译，涵盖计算�
 ##### 二次开发教程（开发篇）
 - [FreeCAD架构解析](cad/FreeCAD/第21章：FreeCAD架构解析)
 - [Python脚本基础](cad/FreeCAD/第22章：Python脚本基础)
-- [FreeCAD Python API](cad/FreeCAD/第23章：FreeCAD%20Python%20API)
+- [FreeCAD Python API](cad/FreeCAD/第23章：FreeCAD-Python-API)
 - [创建宏与脚本](cad/FreeCAD/第24章：创建宏与脚本)
 - [自定义工作台开发](cad/FreeCAD/第25章：自定义工作台开发)
 - [自定义对象开发](cad/FreeCAD/第26章：自定义对象开发)
@@ -517,6 +554,9 @@ JTS Topology Suite 创始人 Martin Davis 的技术博客翻译，涵盖计算�
 - [插件开发实战](cad/FreeCAD/第28章：插件开发实战)
 - [C++扩展开发](cad/FreeCAD/第29章：C++扩展开发)
 - [综合开发案例](cad/FreeCAD/第30章：综合开发案例)
+
+#### LightCAD 系列
+- [LightCAD 教程目录](cad/LightCAD/)
 
 ### C# 开发
 
@@ -531,6 +571,9 @@ JTS Topology Suite 创始人 Martin Davis 的技术博客翻译，涵盖计算�
 - [二次开发实战-业务功能扩展](csharp/Admin.NET/第八章-二次开发实战-业务功能扩展)
 - [系统部署与运维指南](csharp/Admin.NET/第九章-系统部署与运维指南)
 - [最佳实践与常见问题解答](csharp/Admin.NET/第十章-最佳实践与常见问题解答)
+
+#### Furion 系列
+- [Furion 教程目录](csharp/Furion/)
 
 #### SOD 框架系列
 - [框架概述与设计理念](csharp/sod/01-框架概述与设计理念)
@@ -603,6 +646,9 @@ JTS Topology Suite 创始人 Martin Davis 的技术博客翻译，涵盖计算�
 - [高级应用与扩展](csharp/ReoGrid/第19章-高级应用与扩展)
 - [实战案例与综合应用](csharp/ReoGrid/第20章-实战案例与综合应用)
 
+#### SqlSugar 系列
+- [SqlSugar 教程目录](csharp/SqlSugar/)
+
 ### AI 系列
 
 #### Dify 平台
@@ -616,6 +662,19 @@ JTS Topology Suite 创始人 Martin Davis 的技术博客翻译，涵盖计算�
 - [模型接入与配置](ai/dify/08-模型接入与配置)
 - [API集成与发布](ai/dify/09-API集成与发布)
 - [最佳实践与进阶技巧](ai/dify/10-最佳实践与进阶技巧)
+
+### IoT 物联网
+
+#### KE3036-Keyes-Pico 系列
+- [KE3036-Keyes-Pico 教程目录](iot/KE3036-Keyes-Pico/)
+
+### 源码解读
+
+#### Clipper2 源码分析
+- [Clipper2 源码解读目录](sci/Clipper2/)
+
+#### Clipper1 源码分析
+- [Clipper1 源码解读目录](sci/Clipper1/)
 
 ### 其他教程
 

@@ -90,7 +90,7 @@ title: 关于
 如果你也对 GIS 开发感兴趣，推荐以下学习资源：
 
 - [GDAL 官方文档](https://gdal.org/)
-- [GeoServer 用户指南](http://docs.geoserver.org/)
+- [GeoServer 用户指南](https://docs.geoserver.org/)
 - [PostGIS 文档](https://postgis.net/documentation/)
 - [OpenLayers 示例](https://openlayers.org/en/latest/examples/)
 

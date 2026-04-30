@@ -64,6 +64,7 @@ CesiumJS 的发展历程是 Web 三维地理可视化技术演进的缩影：
 | 2022 | 3D Tiles Next 扩展发布 |
 | 2023 | CesiumJS 持续优化云原生支持 |
 | 2024 | 增强 AI 集成与实时数据流支持 |
+| 2025 | CesiumJS 持续更新，性能优化与 WebGPU 探索 |
 
 ### 1.1.3 CesiumJS 的核心特点
 
