@@ -663,6 +663,19 @@ JTS Topology Suite 创始人 Martin Davis 的技术博客翻译，涵盖计算�
 - [API集成与发布](ai/dify/09-API集成与发布)
 - [最佳实践与进阶技巧](ai/dify/10-最佳实践与进阶技巧)
 
+#### oh-my-openagent
+- [oh-my-openagent 教程目录](ai/oh-my-openagent/)
+- [项目简介与核心理念](ai/oh-my-openagent/01-项目简介与核心理念)
+- [整体架构与多模型编排机制](ai/oh-my-openagent/02-整体架构与多模型编排机制)
+- [安装与环境配置](ai/oh-my-openagent/03-安装与环境配置)
+- [智能体全景详解](ai/oh-my-openagent/04-智能体全景详解)
+- [工作模式 Ultrawork、Prometheus 与 Atlas](ai/oh-my-openagent/05-工作模式-Ultrawork-Prometheus-Atlas)
+- [Category 与 Skill 系统](ai/oh-my-openagent/06-Category与Skill系统)
+- [核心工具链 Hashline、LSP、AST-Grep 与 Tmux](ai/oh-my-openagent/07-核心工具链)
+- [Hooks 与 MCP 系统](ai/oh-my-openagent/08-Hooks与MCP系统)
+- [命令、模型回退与配置参考](ai/oh-my-openagent/09-命令模型回退与配置参考)
+- [实战案例、最佳实践与故障排除](ai/oh-my-openagent/10-实战案例最佳实践与故障排除)
+
 ### IoT 物联网
 
 #### KE3036-Keyes-Pico 系列
