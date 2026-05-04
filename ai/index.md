@@ -9,3 +9,4 @@ title: AI 教程
 - [oh-my-openagent 教程](oh-my-openagent/)
 - [OpenClaw 教程](openclaw/)
 - [superpowers-zh 教程](superpowers-zh/)
+- [hermes-agent 教程](hermes-agent/)

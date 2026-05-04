@@ -688,6 +688,21 @@ JTS Topology Suite 创始人 Martin Davis 的技术博客翻译，涵盖计算�
 - [MCP 构建、工作流执行与自定义 Skill](ai/superpowers-zh/09-MCP构建工作流执行与自定义Skill)
 - [团队实战落地、排障与最佳实践](ai/superpowers-zh/10-团队实战落地排障与最佳实践)
 
+#### hermes-agent 教程
+- [hermes-agent 教程目录](ai/hermes-agent/)
+- [项目简介与核心理念](ai/hermes-agent/01-项目简介与核心理念)
+- [整体架构与核心组件](ai/hermes-agent/02-整体架构与核心组件)
+- [安装、初始化与首次对话](ai/hermes-agent/03-安装初始化与首次对话)
+- [CLI/TUI 与会话管理](ai/hermes-agent/04-CLI-TUI与会话管理)
+- [模型供应商与配置体系](ai/hermes-agent/05-模型供应商与配置体系)
+- [工具系统与终端后端](ai/hermes-agent/06-工具系统与终端后端)
+- [技能、记忆与自学习闭环](ai/hermes-agent/07-技能记忆与自学习闭环)
+- [MCP 集成与上下文文件](ai/hermes-agent/08-MCP集成与上下文文件)
+- [消息网关与多平台接入](ai/hermes-agent/09-消息网关与多平台接入)
+- [定时任务与自动化（Cron）](ai/hermes-agent/10-定时任务与自动化)
+- [语音、视觉、浏览器与子代理协作](ai/hermes-agent/11-语音视觉浏览器与子代理协作)
+- [插件开发、研究功能与最佳实践](ai/hermes-agent/12-插件开发研究功能与最佳实践)
+
 ### IoT 物联网
 
 #### KE3036-Keyes-Pico 系列
