@@ -1,3 +1,8 @@
+---
+layout: default
+title: 第七章：并行智能体、子智能体与 Git Worktree
+---
+
 # 第七章：并行智能体、子智能体与 Git Worktree
 
 ## 7.1 为什么需要多 Agent 与隔离工作区

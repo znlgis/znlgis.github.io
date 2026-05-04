@@ -1,3 +1,8 @@
+---
+layout: default
+title: GIS开发的基础优化策略
+---
+
 # GIS开发的基础优化策略
 
 ## 1. GIS开发

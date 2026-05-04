@@ -1,3 +1,8 @@
+---
+layout: default
+title: 第四章：实体类与CodeFirst
+---
+
 # 第四章：实体类与CodeFirst
 
 ## 目录

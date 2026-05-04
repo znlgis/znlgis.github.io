@@ -1,3 +1,8 @@
+---
+layout: default
+title: 第九章：MCP 构建、工作流执行与自定义 Skill
+---
+
 # 第九章：MCP 构建、工作流执行与自定义 Skill
 
 ## 9.1 扩展类 Skills 的定位

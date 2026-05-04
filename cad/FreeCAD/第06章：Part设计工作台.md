@@ -1,3 +1,8 @@
+---
+layout: default
+title: 第06章：Part设计工作台
+---
+
 # 第06章：Part设计工作台
 
 ## 06.1 章节概述

@@ -1,3 +1,8 @@
+---
+layout: default
+title: GeoJSON代码示例
+---
+
 # GeoJSON代码示例
 
 ## 1. 读取GeoJSON文件

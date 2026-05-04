@@ -1,3 +1,8 @@
+---
+layout: default
+title: 使用 JTS 快速检测狭窄多边形
+---
+
 # 使用 JTS 快速检测狭窄多边形
 
 > 原文：[Fast detection of narrow polygons with JTS](https://lin-ear-th-inking.blogspot.com/2025/07/)

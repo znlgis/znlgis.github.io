@@ -1,3 +1,8 @@
+---
+layout: default
+title: JTS 中使用级联并集快速合并多边形
+---
+
 # JTS 中使用级联并集快速合并多边形
 
 > 原文：[Fast polygon merging in JTS using Cascaded Union](https://lin-ear-th-inking.blogspot.com/2007/11/fast-polygon-merging-in-jts-using.html)

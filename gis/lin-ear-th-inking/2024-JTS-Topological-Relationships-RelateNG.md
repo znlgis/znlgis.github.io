@@ -1,3 +1,8 @@
+---
+layout: default
+title: JTS 拓扑关系 - 下一代 (RelateNG)
+---
+
 # JTS 拓扑关系 - 下一代 (RelateNG)
 
 > 原文：[JTS Topological Relationships - the Next Generation](https://lin-ear-th-inking.blogspot.com/2024/05/jts-topological-relationships-next.html)

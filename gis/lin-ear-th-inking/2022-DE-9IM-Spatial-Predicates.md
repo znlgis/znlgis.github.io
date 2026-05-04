@@ -1,3 +1,8 @@
+---
+layout: default
+title: DE-9IM 空间谓词的关系属性
+---
+
 # DE-9IM 空间谓词的关系属性
 
 > 原文：[Relational Properties of DE-9IM spatial predicates](https://lin-ear-th-inking.blogspot.com/2022/10/)

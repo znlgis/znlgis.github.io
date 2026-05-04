@@ -1,3 +1,8 @@
+---
+layout: default
+title: 课程知识准备
+---
+
 # 课程知识准备
 
 1. [HTML5基础教程](https://www.runoob.com/html/html5-intro.html)

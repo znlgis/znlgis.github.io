@@ -1,3 +1,8 @@
+---
+layout: default
+title: vue3-openlayers基础知识简介
+---
+
 # vue3-openlayers基础知识简介
 
 [OpenLayers 3 Primer](https://linwei.xyz/ol3-primer/index.html)

@@ -1,3 +1,8 @@
+---
+layout: default
+title: 第27章：GUI界面开发
+---
+
 # 第27章：GUI界面开发
 
 ## 27.1 章节概述

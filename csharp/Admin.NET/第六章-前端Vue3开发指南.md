@@ -1,3 +1,8 @@
+---
+layout: default
+title: 第六章：前端Vue3开发指南
+---
+
 # 第六章：前端Vue3开发指南
 
 ## 目录

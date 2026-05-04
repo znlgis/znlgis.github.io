@@ -1,3 +1,8 @@
+---
+layout: default
+title: 使用 JTS 简化多边形覆盖
+---
+
 # 使用 JTS 简化多边形覆盖
 
 > 原文：[Simplifying Polygonal Coverages with JTS](https://lin-ear-th-inking.blogspot.com/2023/03/simplifying-polygonal-coverages-with-jts.html)

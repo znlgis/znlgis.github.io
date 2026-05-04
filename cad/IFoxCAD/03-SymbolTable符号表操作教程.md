@@ -1,3 +1,8 @@
+---
+layout: default
+title: 第三章：SymbolTable符号表操作教程
+---
+
 # 第三章：SymbolTable符号表操作教程
 
 ## 3.1 符号表基础概念

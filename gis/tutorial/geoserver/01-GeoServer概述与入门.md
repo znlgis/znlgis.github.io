@@ -1,3 +1,8 @@
+---
+layout: default
+title: 第1章 GeoServer概述与入门
+---
+
 # 第1章 GeoServer概述与入门
 
 ## 1.1 GeoServer简介

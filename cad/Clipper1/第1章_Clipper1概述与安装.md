@@ -1,3 +1,8 @@
+---
+layout: default
+title: "第一章 Clipper1概述与安装（C#版）"
+---
+
 # 第一章 Clipper1概述与安装（C#版）
 
 ## 1.1 引言

@@ -1,3 +1,8 @@
+---
+layout: default
+title: NVM及NODE开发环境搭建
+---
+
 # NVM及NODE开发环境搭建
 
 ## 1. 安装NVM

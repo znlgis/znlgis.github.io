@@ -1,3 +1,8 @@
+---
+layout: default
+title: 第2章 GeoServer安装与配置
+---
+
 # 第2章 GeoServer安装与配置
 
 ## 2.1 系统需求和环境准备

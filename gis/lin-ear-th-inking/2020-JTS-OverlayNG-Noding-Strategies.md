@@ -1,3 +1,8 @@
+---
+layout: default
+title: JTS OverlayNG - 节点化策略
+---
+
 # JTS OverlayNG - 节点化策略
 
 > 原文：[JTS OverlayNG - Noding Strategies](https://lin-ear-th-inking.blogspot.com/2020/06/jts-overlayng-noding-strategies.html)

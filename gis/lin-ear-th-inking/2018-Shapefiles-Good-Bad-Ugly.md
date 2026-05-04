@@ -1,3 +1,8 @@
+---
+layout: default
+title: Shapefile：好、坏与丑
+---
+
 # Shapefile：好、坏与丑
 
 > 原文：[Shapefiles: The Good, the Bad, and the Ugly](https://lin-ear-th-inking.blogspot.com/2018/04/)

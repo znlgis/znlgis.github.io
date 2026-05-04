@@ -1,3 +1,8 @@
+---
+layout: default
+title: 第12章：WinForms 桌面应用开发
+---
+
 # 第12章：WinForms 桌面应用开发
 
 ## 12.1 MapBox 控件

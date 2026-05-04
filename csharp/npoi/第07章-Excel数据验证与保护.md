@@ -1,3 +1,8 @@
+---
+layout: default
+title: 第七章：Excel数据验证与保护
+---
+
 # 第七章：Excel数据验证与保护
 
 ## 7.1 数据验证基础

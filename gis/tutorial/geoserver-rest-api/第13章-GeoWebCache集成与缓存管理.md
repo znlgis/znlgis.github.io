@@ -1,3 +1,8 @@
+---
+layout: default
+title: 第13章：GeoWebCache集成与缓存管理
+---
+
 # 第13章：GeoWebCache集成与缓存管理
 
 ## 13.1 GeoWebCache 概述

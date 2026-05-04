@@ -1,3 +1,8 @@
+---
+layout: default
+title: 第八章：Hooks 钩子流水线与 MCP 系统
+---
+
 # 第八章：Hooks 钩子流水线与 MCP 系统
 
 到这一章为止，前面讲到的"Sisyphus 自动并行、Atlas 强制委派、Junior 不能偷停、编辑改不错行、429 自动 fallback"——背后真正在干活的，是 **Hooks**。

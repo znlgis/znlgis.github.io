@@ -1,3 +1,8 @@
+---
+layout: default
+title: 第7章 REST API与自动化
+---
+
 # 第7章 REST API与自动化
 
 ## 7.1 REST API概述

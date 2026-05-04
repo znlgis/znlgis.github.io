@@ -1,3 +1,8 @@
+---
+layout: default
+title: OGC标准地图服务协议总结
+---
+
 # OGC标准地图服务协议总结
 
 ## 1. WMS

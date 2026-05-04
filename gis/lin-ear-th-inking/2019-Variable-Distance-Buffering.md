@@ -1,3 +1,8 @@
+---
+layout: default
+title: JTS 中的可变距离缓冲区
+---
+
 # JTS 中的可变距离缓冲区
 
 > 原文：[Variable-distance buffering in JTS](https://lin-ear-th-inking.blogspot.com/2019/11/variable-distance-buffering-in-jts.html)

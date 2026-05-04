@@ -1,3 +1,8 @@
+---
+layout: default
+title: 第二章：DBTrans事务管理核心教程
+---
+
 # 第二章：DBTrans事务管理核心教程
 
 ## 2.1 事务机制基础

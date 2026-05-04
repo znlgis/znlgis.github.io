@@ -1,3 +1,8 @@
+---
+layout: default
+title: 第五章：BIM轻量化与CAD解析
+---
+
 # 第五章：BIM轻量化与CAD解析
 
 ## 5.1 BIM功能概述

@@ -1,3 +1,8 @@
+---
+layout: default
+title: 在Ubuntu WSL2里配置GDAL Docker环境
+---
+
 # 在Ubuntu WSL2里配置GDAL Docker环境
 
 ## 启用systemd

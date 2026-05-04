@@ -1,3 +1,8 @@
+---
+layout: default
+title: 第21章：FreeCAD架构解析
+---
+
 # 第21章：FreeCAD架构解析
 
 ## 21.1 FreeCAD整体架构

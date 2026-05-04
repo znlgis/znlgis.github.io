@@ -1,3 +1,8 @@
+---
+layout: default
+title: 第六章：数据库操作与EF Core集成
+---
+
 # 第六章：数据库操作与EF Core集成
 
 ## 6.1 EF Core集成概述

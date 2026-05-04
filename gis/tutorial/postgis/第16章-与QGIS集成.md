@@ -1,3 +1,8 @@
+---
+layout: default
+title: 第16章：与 QGIS 集成
+---
+
 # 第16章：与 QGIS 集成
 
 ## 16.1 概述

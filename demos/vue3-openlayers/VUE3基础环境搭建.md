@@ -1,3 +1,8 @@
+---
+layout: default
+title: VUE3基础环境搭建
+---
+
 # VUE3基础环境搭建
 
 ## 1. 安装vue.js

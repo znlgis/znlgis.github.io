@@ -1,3 +1,8 @@
+---
+layout: default
+title: JTS 中的均匀分布随机点生成
+---
+
 # JTS 中的均匀分布随机点生成
 
 > 原文：[Evenly Distributed Random Points in JTS](https://lin-ear-th-inking.blogspot.com/2015/07/)

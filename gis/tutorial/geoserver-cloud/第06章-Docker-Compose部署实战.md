@@ -1,3 +1,8 @@
+---
+layout: default
+title: 第六章：Docker Compose 部署实战
+---
+
 # 第六章：Docker Compose 部署实战
 
 ## 6.1 引言

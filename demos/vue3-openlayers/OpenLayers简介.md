@@ -1,3 +1,8 @@
+---
+layout: default
+title: OpenLayers简介
+---
+
 # OpenLayers简介
 
 OpenLayers 是一个强大的、开源的 JavaScript 地图库，用于在网页上显示地图。它支持多种地图源，包括矢量图层、栅格图层和各种地图服务。OpenLayers

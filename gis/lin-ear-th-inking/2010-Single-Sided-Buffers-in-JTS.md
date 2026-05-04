@@ -1,3 +1,8 @@
+---
+layout: default
+title: JTS 中的单侧缓冲区
+---
+
 # JTS 中的单侧缓冲区
 
 > 原文：[Single-Sided Buffers in JTS](https://lin-ear-th-inking.blogspot.com/2010/11/single-sided-buffers-in-jts.html)

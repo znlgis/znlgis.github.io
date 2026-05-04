@@ -1,3 +1,8 @@
+---
+layout: default
+title: 第05章：草图绘制（Sketcher）
+---
+
 # 第05章：草图绘制（Sketcher）
 
 ## 05.1 章节概述

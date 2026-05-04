@@ -1,3 +1,8 @@
+---
+layout: default
+title: 多边形的外部和内部包络（Outer and Inner Polygon Hulls）
+---
+
 # 多边形的外部和内部包络（Outer and Inner Polygon Hulls）
 
 > 原文：[Outer and Inner Polygon Hulls in JTS](https://lin-ear-th-inking.blogspot.com/2022/04/)

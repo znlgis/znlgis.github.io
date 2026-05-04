@@ -1,3 +1,8 @@
+---
+layout: default
+title: 第六章：Excel公式与函数
+---
+
 # 第六章：Excel公式与函数
 
 ## 6.1 公式基础

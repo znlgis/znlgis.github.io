@@ -1,3 +1,8 @@
+---
+layout: default
+title: 基础软件环境安装
+---
+
 # 基础软件环境安装
 
 ## 安装docker desktop

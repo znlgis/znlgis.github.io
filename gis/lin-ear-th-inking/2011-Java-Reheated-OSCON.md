@@ -1,3 +1,8 @@
+---
+layout: default
+title: Java 在 OSCON 重新火热
+---
+
 # Java 在 OSCON 重新火热
 
 > 原文：[Java gets Reheated at OSCON](https://lin-ear-th-inking.blogspot.com/2011/06/java-gets-reheated-at-oscon.html)

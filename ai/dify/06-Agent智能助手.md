@@ -1,3 +1,8 @@
+---
+layout: default
+title: 第六章：Agent 智能助手
+---
+
 # 第六章：Agent 智能助手
 
 ## 6.1 Agent 概述

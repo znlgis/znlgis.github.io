@@ -1,3 +1,8 @@
+---
+layout: default
+title: 第十八章：WPF平台集成
+---
+
 # 第十八章：WPF平台集成
 
 ## 18.1 WPF项目配置
