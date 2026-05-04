@@ -1,3 +1,8 @@
+---
+layout: default
+title: Lin.ear th.inking 博客翻译
+---
+
 # Lin.ear th.inking 博客翻译
 
 这是 [Lin.ear th.inking](https://lin-ear-th-inking.blogspot.com/) 博客的中文翻译系列。该博客由 Martin Davis 撰写，他是 JTS Topology Suite（Java 拓扑套件）的原始创建者和主要维护者，也是计算几何领域的权威专家。

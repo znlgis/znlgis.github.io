@@ -1,3 +1,8 @@
+---
+layout: default
+title: geometry-api-net 教程
+---
+
 # geometry-api-net 教程
 
 欢迎阅读 geometry-api-net 完整教程！本教程将帮助您全面掌握这个强大的 .NET 几何计算库。
