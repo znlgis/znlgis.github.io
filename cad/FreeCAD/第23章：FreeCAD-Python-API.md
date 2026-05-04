@@ -1,3 +1,8 @@
+---
+layout: default
+title: 第23章：FreeCAD Python API
+---
+
 # 第23章：FreeCAD Python API
 
 ## 23.1 章节概述

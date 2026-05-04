@@ -1,3 +1,8 @@
+---
+layout: default
+title: JTS 设计原则
+---
+
 # JTS 设计原则
 
 > 原文：[JTS Design Principles](https://lin-ear-th-inking.blogspot.com/2019/02/)

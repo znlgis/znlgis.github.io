@@ -1,3 +1,8 @@
+---
+layout: default
+title: 第八章：中国特色 Skills 与本土团队落地
+---
+
 # 第八章：中国特色 Skills 与本土团队落地
 
 ## 8.1 为什么需要中国特色 Skills

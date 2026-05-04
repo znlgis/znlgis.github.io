@@ -1,3 +1,8 @@
+---
+layout: default
+title: JTS 中的约束 Delaunay 三角剖分
+---
+
 # JTS 中的约束 Delaunay 三角剖分
 
 > 原文：基于 JTS 文档和 Lin.ear th.inking 博客内容

@@ -1,3 +1,8 @@
+---
+layout: default
+title: 第五章：PCB布局设计基础
+---
+
 # 第五章：PCB布局设计基础
 
 ## 5.1 PCB设计概述

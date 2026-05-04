@@ -1,3 +1,8 @@
+---
+layout: default
+title: 第15章：与 GeoServer 集成
+---
+
 # 第15章：与 GeoServer 集成
 
 ## 15.1 概述

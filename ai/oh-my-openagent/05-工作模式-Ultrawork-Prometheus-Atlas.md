@@ -1,3 +1,8 @@
+---
+layout: default
+title: 第五章：工作模式 Ultrawork、Prometheus 与 Atlas
+---
+
 # 第五章：工作模式 Ultrawork、Prometheus 与 Atlas
 
 oh-my-openagent（OmO）日常使用其实只有三种主线工作流：

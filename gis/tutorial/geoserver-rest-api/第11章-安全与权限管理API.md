@@ -1,3 +1,8 @@
+---
+layout: default
+title: 第11章：安全与权限管理API
+---
+
 # 第11章：安全与权限管理API
 
 ## 11.1 GeoServer 安全架构

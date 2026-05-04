@@ -1,3 +1,8 @@
+---
+layout: default
+title: 第22章：Python脚本基础
+---
+
 # 第22章：Python脚本基础
 
 ## 22.1 章节概述

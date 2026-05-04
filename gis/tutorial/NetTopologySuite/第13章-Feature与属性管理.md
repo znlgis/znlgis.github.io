@@ -1,3 +1,8 @@
+---
+layout: default
+title: 第13章：Feature 与属性管理
+---
+
 # 第13章：Feature 与属性管理
 
 ## 13.1 Feature 模型概述

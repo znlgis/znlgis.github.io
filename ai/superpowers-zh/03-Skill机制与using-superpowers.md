@@ -1,3 +1,8 @@
+---
+layout: default
+title: 第三章：Skill 机制与 using-superpowers
+---
+
 # 第三章：Skill 机制与 using-superpowers
 
 ## 3.1 Skill 的基本结构

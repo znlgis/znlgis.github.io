@@ -1,3 +1,8 @@
+---
+layout: default
+title: 第一章：ReoGrid概述与入门
+---
+
 # 第一章：ReoGrid概述与入门
 
 ## 1.1 ReoGrid简介

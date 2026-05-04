@@ -1,3 +1,8 @@
+---
+layout: default
+title: FOSS4G 北美 2012 回顾
+---
+
 # FOSS4G 北美 2012 回顾
 
 > 原文：[FOSS4G-NA 2012 review](https://lin-ear-th-inking.blogspot.com/2012/04/foss4g-na-2012-review.html)

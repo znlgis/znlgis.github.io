@@ -1,3 +1,8 @@
+---
+layout: default
+title: 第01章：SharpMap 概述与入门
+---
+
 # 第01章：SharpMap 概述与入门
 
 ## 1.1 SharpMap 简介

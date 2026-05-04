@@ -1,3 +1,8 @@
+---
+layout: default
+title: 第七章：Kubernetes 部署实战
+---
+
 # 第七章：Kubernetes 部署实战
 
 ## 7.1 引言

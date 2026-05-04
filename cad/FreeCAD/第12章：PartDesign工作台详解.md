@@ -1,3 +1,8 @@
+---
+layout: default
+title: 第12章：PartDesign工作台详解
+---
+
 # 第12章：PartDesign工作台详解
 
 ## 12.1 章节概述

@@ -1,3 +1,8 @@
+---
+layout: default
+title: Windows下的GDAL环境配置
+---
+
 # Windows下的GDAL环境配置
 
 在Windows下GDAL环境的配置方式有很多种，我尝试了很多不同的配置方式，包括Anaconda、

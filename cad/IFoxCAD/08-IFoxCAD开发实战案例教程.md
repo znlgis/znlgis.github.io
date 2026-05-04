@@ -1,3 +1,8 @@
+---
+layout: default
+title: 第八章：IFoxCAD开发实战案例教程
+---
+
 # 第八章：IFoxCAD开发实战案例教程
 
 ## 8.1 项目概述

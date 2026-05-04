@@ -1,3 +1,8 @@
+---
+layout: default
+title: 第07章：GeoJSON 数据处理
+---
+
 # 第07章：GeoJSON 数据处理
 
 ## 7.1 GeoJSON 格式概述

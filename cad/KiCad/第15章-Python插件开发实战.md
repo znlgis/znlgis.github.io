@@ -1,3 +1,8 @@
+---
+layout: default
+title: 第十五章：Python插件开发实战
+---
+
 # 第十五章：Python插件开发实战
 
 ## 15.1 动作插件（Action Plugin）

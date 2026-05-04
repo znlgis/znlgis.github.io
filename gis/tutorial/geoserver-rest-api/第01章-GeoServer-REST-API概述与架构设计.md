@@ -1,3 +1,8 @@
+---
+layout: default
+title: 第01章：GeoServer REST API 概述与架构设计
+---
+
 # 第01章：GeoServer REST API 概述与架构设计
 
 ## 1.1 GeoServer REST API 简介

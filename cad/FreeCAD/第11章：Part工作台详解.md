@@ -1,3 +1,8 @@
+---
+layout: default
+title: 第11章：Part工作台详解
+---
+
 # 第11章：Part工作台详解
 
 ## 11.1 章节概述

@@ -1,3 +1,8 @@
+---
+layout: default
+title: 2012 年度回顾
+---
+
 # 2012 年度回顾
 
 > 原文：[2012 Year in Review](https://lin-ear-th-inking.blogspot.com/2013/01/)

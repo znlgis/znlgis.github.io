@@ -1,3 +1,8 @@
+---
+layout: default
+title: 第13章：WPF 桌面应用开发
+---
+
 # 第13章：WPF 桌面应用开发
 
 ## 13.1 WPF 集成概述

@@ -1,3 +1,8 @@
+---
+layout: default
+title: 第六章：SQL-MAP技术深入
+---
+
 # 第六章：SQL-MAP技术深入
 
 ## 6.1 SQL-MAP概述

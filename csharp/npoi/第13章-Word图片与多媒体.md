@@ -1,3 +1,8 @@
+---
+layout: default
+title: 第十三章：Word图片与多媒体
+---
+
 # 第十三章：Word图片与多媒体
 
 ## 13.1 插入图片

@@ -1,3 +1,8 @@
+---
+layout: default
+title: KD 树查询优化 - 100 倍速度提升的技巧
+---
+
 # KD 树查询优化 - 100 倍速度提升的技巧
 
 > 原文：[Query KD-trees 100x faster with this one weird trick!](https://lin-ear-th-inking.blogspot.com/2021/10/query-kd-trees-100x-faster-with-this.html)

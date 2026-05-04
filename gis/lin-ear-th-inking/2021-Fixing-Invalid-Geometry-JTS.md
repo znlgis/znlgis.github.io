@@ -1,3 +1,8 @@
+---
+layout: default
+title: JTS 中修复无效几何图形
+---
+
 # JTS 中修复无效几何图形
 
 > 原文：[Fixing Invalid Geometry with JTS](https://lin-ear-th-inking.blogspot.com/2021/05/fixing-invalid-geometry-with-jts.html)

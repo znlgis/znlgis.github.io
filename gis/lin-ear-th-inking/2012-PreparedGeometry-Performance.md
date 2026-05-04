@@ -1,3 +1,8 @@
+---
+layout: default
+title: 几何裁剪大赛与 PreparedGeometry 性能优化
+---
+
 # 几何裁剪大赛与 PreparedGeometry 性能优化
 
 > 原文：[The Great Geometry Clipping Contest](https://lin-ear-th-inking.blogspot.com/2012/11/the-great-geometry-clipping-contest.html)

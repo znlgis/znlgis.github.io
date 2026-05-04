@@ -1,3 +1,8 @@
+---
+layout: default
+title: 第4章 OGC标准服务
+---
+
 # 第4章 OGC标准服务
 
 ## 4.1 OGC标准概述

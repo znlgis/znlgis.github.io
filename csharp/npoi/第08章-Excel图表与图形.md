@@ -1,3 +1,8 @@
+---
+layout: default
+title: 第八章：Excel图表与图形
+---
+
 # 第八章：Excel图表与图形
 
 ## 8.1 图表基础

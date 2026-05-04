@@ -1,3 +1,8 @@
+---
+layout: default
+title: 第十二章：Word表格操作
+---
+
 # 第十二章：Word表格操作
 
 ## 12.1 表格基础

@@ -1,3 +1,8 @@
+---
+layout: default
+title: JTS 中的随机点生成
+---
+
 # JTS 中的随机点生成
 
 > 原文：[More Random Points in JTS](https://lin-ear-th-inking.blogspot.com/2010/05/more-random-points-in-jts.html)

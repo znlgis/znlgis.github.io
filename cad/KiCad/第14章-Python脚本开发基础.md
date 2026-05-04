@@ -1,3 +1,8 @@
+---
+layout: default
+title: 第十四章：Python脚本开发基础
+---
+
 # 第十四章：Python脚本开发基础
 
 ## 14.1 KiCad Python环境

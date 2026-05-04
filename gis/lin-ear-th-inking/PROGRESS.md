@@ -1,3 +1,8 @@
+---
+layout: default
+title: Lin.ear th.inking 博客翻译进度
+---
+
 # Lin.ear th.inking 博客翻译进度
 
 ## 翻译状态说明

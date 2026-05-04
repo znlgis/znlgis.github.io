@@ -1,3 +1,8 @@
+---
+layout: default
+title: 第一章：IFoxCAD概述与入门
+---
+
 # 第一章：IFoxCAD概述与入门
 
 ## 1.1 IFoxCAD简介

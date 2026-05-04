@@ -1,3 +1,8 @@
+---
+layout: default
+title: JTS 中的 Coverage 清理
+---
+
 # JTS 中的 Coverage 清理
 
 > 原文：[Coverage Cleaning in JTS](https://lin-ear-th-inking.blogspot.com/2025/04/coverage-cleaning-in-jts.html)

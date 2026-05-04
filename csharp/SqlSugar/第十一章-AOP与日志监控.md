@@ -1,3 +1,8 @@
+---
+layout: default
+title: 第十一章：AOP与日志监控
+---
+
 # 第十一章：AOP与日志监控
 
 ## 目录

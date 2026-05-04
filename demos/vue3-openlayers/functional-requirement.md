@@ -1,3 +1,8 @@
+---
+layout: default
+title: 功能需求
+---
+
 # 功能需求
 
 基于GeoServer现有功能，以地图展示和服务管理为核心，实现一张图DEMO。

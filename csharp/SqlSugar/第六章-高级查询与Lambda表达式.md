@@ -1,3 +1,8 @@
+---
+layout: default
+title: 第六章：高级查询与Lambda表达式
+---
+
 # 第六章：高级查询与Lambda表达式
 
 ## 目录

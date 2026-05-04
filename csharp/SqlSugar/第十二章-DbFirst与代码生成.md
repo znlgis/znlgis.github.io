@@ -1,3 +1,8 @@
+---
+layout: default
+title: 第十二章：DbFirst与代码生成
+---
+
 # 第十二章：DbFirst与代码生成
 
 ## 目录

@@ -1,3 +1,8 @@
+---
+layout: default
+title: JTS 中的距离度量与形状相似性
+---
+
 # JTS 中的距离度量与形状相似性
 
 > 原文：基于 Lin.ear th.inking 博客和 JTS 技术文档

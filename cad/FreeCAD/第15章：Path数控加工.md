@@ -1,3 +1,8 @@
+---
+layout: default
+title: 第15章：Path数控加工
+---
+
 # 第15章：Path数控加工
 
 ## 15.1 章节概述

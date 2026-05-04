@@ -1,3 +1,8 @@
+---
+layout: default
+title: 第一章：SqlSugar 简介与快速入门
+---
+
 # 第一章：SqlSugar 简介与快速入门
 
 ## 目录

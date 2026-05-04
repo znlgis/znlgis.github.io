@@ -1,3 +1,8 @@
+---
+layout: default
+title: 第13章：Draft工作台详解
+---
+
 # 第13章：Draft工作台详解
 
 ## 13.1 章节概述

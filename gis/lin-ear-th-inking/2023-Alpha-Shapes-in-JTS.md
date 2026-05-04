@@ -1,3 +1,8 @@
+---
+layout: default
+title: JTS 中的 Alpha Shapes（凹包算法）
+---
+
 # JTS 中的 Alpha Shapes（凹包算法）
 
 > 原文：[Alpha Shapes in JTS](https://lin-ear-th-inking.blogspot.com/2023/01/alpha-shapes-in-jts.html)

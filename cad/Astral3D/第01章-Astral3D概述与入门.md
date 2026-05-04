@@ -1,3 +1,8 @@
+---
+layout: default
+title: 第一章：Astral3D概述与入门
+---
+
 # 第一章：Astral3D概述与入门
 
 ## 1.1 什么是Astral3D

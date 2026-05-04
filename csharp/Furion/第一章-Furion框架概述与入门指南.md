@@ -1,3 +1,8 @@
+---
+layout: default
+title: 第一章：Furion框架概述与入门指南
+---
+
 # 第一章：Furion框架概述与入门指南
 
 ## 目录

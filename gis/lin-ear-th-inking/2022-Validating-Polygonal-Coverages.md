@@ -1,3 +1,8 @@
+---
+layout: default
+title: 验证 JTS 中的多边形覆盖
+---
+
 # 验证 JTS 中的多边形覆盖
 
 > 原文：[Validating Polygonal Coverages in JTS](https://lin-ear-th-inking.blogspot.com/2022/08/)

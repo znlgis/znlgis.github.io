@@ -1,3 +1,8 @@
+---
+layout: default
+title: 第10章：Entity Framework Core 集成
+---
+
 # 第10章：Entity Framework Core 集成
 
 ## 10.1 EF Core 空间数据支持概述
