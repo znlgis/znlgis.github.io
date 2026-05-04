@@ -5,7 +5,7 @@ title: OpenClaw 教程目录
 
 # OpenClaw 教程目录
 
-> 本教程基于 [openclaw/openclaw](https://github.com/openclaw/openclaw) 当前公开仓库、README 与官方文档整理，面向中文读者系统讲解 OpenClaw 的定位、安装、架构、配置、通道、Agent、工具、技能、插件、安全、运维与开发。OpenClaw 迭代很快，实际命令和字段请以当前版本的 `openclaw --help`、`openclaw doctor`、`openclaw config schema` 为准。
+> 本教程基于 [openclaw/openclaw](https://github.com/openclaw/openclaw) 当前公开仓库、项目主页说明与官方文档整理，面向中文读者系统讲解 OpenClaw 的定位、安装、架构、配置、通道、Agent、工具、技能、插件、安全、运维与开发。OpenClaw 迭代很快，实际命令和字段请以当前版本的 `openclaw --help`、`openclaw doctor`、`openclaw config schema` 为准。
 
 - [第一章：OpenClaw 项目概览与核心定位](01-项目概览与核心定位)
 - [第二章：安装、环境准备与快速上手](02-安装环境准备与快速上手)
