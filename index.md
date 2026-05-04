@@ -663,6 +663,18 @@ JTS Topology Suite 创始人 Martin Davis 的技术博客翻译，涵盖计算�
 - [API集成与发布](ai/dify/09-API集成与发布)
 - [最佳实践与进阶技巧](ai/dify/10-最佳实践与进阶技巧)
 
+#### superpowers-zh 教程
+- [项目概览与学习路线](ai/superpowers-zh/01-项目概览与学习路线)
+- [安装部署与工具适配](ai/superpowers-zh/02-安装部署与工具适配)
+- [Skill 机制与 using-superpowers](ai/superpowers-zh/03-Skill机制与using-superpowers)
+- [需求澄清、方案设计与计划编写](ai/superpowers-zh/04-需求澄清方案设计与计划编写)
+- [TDD、系统化调试与完成前验证](ai/superpowers-zh/05-TDD系统化调试与完成前验证)
+- [代码审查、反馈处理与分支收尾](ai/superpowers-zh/06-代码审查反馈处理与分支收尾)
+- [并行智能体、子智能体与 Git Worktree](ai/superpowers-zh/07-并行智能体子智能体与Git-Worktree)
+- [中国特色 Skills 与本土团队落地](ai/superpowers-zh/08-中国特色Skills与本土团队落地)
+- [MCP 构建、工作流执行与自定义 Skill](ai/superpowers-zh/09-MCP构建工作流执行与自定义Skill)
+- [团队实战落地、排障与最佳实践](ai/superpowers-zh/10-团队实战落地排障与最佳实践)
+
 ### IoT 物联网
 
 #### KE3036-Keyes-Pico 系列
