@@ -703,6 +703,21 @@ JTS Topology Suite 创始人 Martin Davis 的技术博客翻译，涵盖计算�
 - [语音、视觉、浏览器与子代理协作](ai/hermes-agent/11-语音视觉浏览器与子代理协作)
 - [插件开发、研究功能与最佳实践](ai/hermes-agent/12-插件开发研究功能与最佳实践)
 
+#### OpenClaw 教程
+- [OpenClaw 教程目录](ai/openclaw/)
+- [项目概览与核心定位](ai/openclaw/01-项目概览与核心定位)
+- [安装、环境准备与快速上手](ai/openclaw/02-安装环境准备与快速上手)
+- [Gateway 架构、协议与运行机制](ai/openclaw/03-Gateway架构协议与运行机制)
+- [配置体系、模型接入与认证管理](ai/openclaw/04-配置体系模型接入与认证管理)
+- [多通道消息接入与聊天平台配置](ai/openclaw/05-多通道消息接入与聊天平台配置)
+- [Agent 工作区、会话与多智能体路由](ai/openclaw/06-Agent工作区会话与多智能体路由)
+- [工具、技能、插件与能力扩展](ai/openclaw/07-工具技能插件与能力扩展)
+- [安全模型、访问控制与沙箱实践](ai/openclaw/08-安全模型访问控制与沙箱实践)
+- [Control UI、节点、Canvas 与语音能力](ai/openclaw/09-Control-UI节点Canvas与语音能力)
+- [自动化、远程访问、日志与排障](ai/openclaw/10-自动化远程访问日志与排障)
+- [源码结构、开发调试与插件开发](ai/openclaw/11-源码结构开发调试与插件开发)
+- [学习路线、实战方案与最佳实践](ai/openclaw/12-学习路线实战方案与最佳实践)
+
 ### IoT 物联网
 
 #### KE3036-Keyes-Pico 系列
