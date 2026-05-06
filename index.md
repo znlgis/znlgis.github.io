@@ -555,6 +555,26 @@ JTS Topology Suite 创始人 Martin Davis 的技术博客翻译，涵盖计算�
 - [C++扩展开发](cad/FreeCAD/第29章：C++扩展开发)
 - [综合开发案例](cad/FreeCAD/第30章：综合开发案例)
 
+#### OCCT 完整教程系列
+- [OCCT项目全景与学习路线](cad/occt/第01章-OCCT项目全景与学习路线)
+- [源码获取、编译与开发环境配置](cad/occt/第02章-源码获取编译与开发环境配置)
+- [基础类与底层框架FoundationClasses](cad/occt/第03章-基础类与底层框架FoundationClasses)
+- [数学与几何基元gp/Geom/GeomAPI](cad/occt/第04章-数学与几何基元gpGeomGeomAPI)
+- [拓扑数据结构TopoDS与BRep](cad/occt/第05章-拓扑数据结构TopoDS与BRep)
+- [建模数据与几何表达ModelingData](cad/occt/第06章-建模数据与几何表达ModelingData)
+- [建模算法概览BRepBuilderAPI与BRepPrimAPI](cad/occt/第07章-建模算法概览BRepBuilderAPI与BRepPrimAPI)
+- [布尔运算与高级建模BOPAlgo/BRepAlgoAPI](cad/occt/第08章-布尔运算与高级建模BOPAlgoBRepAlgoAPI)
+- [局部操作 圆角倒角抽壳偏置扫掠](cad/occt/第09章-局部操作圆角倒角抽壳偏置扫掠)
+- [网格化与离散化BRepMesh与Poly](cad/occt/第10章-网格化与离散化BRepMesh与Poly)
+- [可视化框架V3d/AIS/Graphic3d/Prs3d](cad/occt/第11章-可视化框架V3dAISGraphic3dPrs3d)
+- [数据交换 STEP/IGES/STL/glTF/OBJ](cad/occt/第12章-数据交换STEPIGESSTLglTFOBJ)
+- [OCAF应用框架TDF/TDocStd/XCAF](cad/occt/第13章-OCAF应用框架TDFTDocStdXCAF)
+- [Draw测试框架与TCL扩展](cad/occt/第14章-Draw测试框架与TCL扩展)
+- [曲面建模与自由形状](cad/occt/第15章-曲面建模与自由形状)
+- [性能优化、并发与最佳实践](cad/occt/第16章-性能优化并发与最佳实践)
+- [与Qt/VTK/Python(pythonOCC)生态集成](cad/occt/第17章-与QtVTKPythonpythonOCC生态集成)
+- [二次开发实战与综合案例](cad/occt/第18章-二次开发实战与综合案例)
+
 #### LightCAD 系列
 - [LightCAD 教程目录](cad/LightCAD/)
 
