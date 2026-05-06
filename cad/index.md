@@ -15,6 +15,7 @@ title: CAD 教程
 - [IFoxCAD 教程](IFoxCAD/)
 - [LightCAD 教程](LightCAD/)
 - [KiCad 教程](KiCad/)
+- [OCCT 教程](occt/)
 - [LibreCAD 教程](LibreCAD/)
 - [libredwg 教程](libredwg/)
 - [qcad 教程](qcad/)
