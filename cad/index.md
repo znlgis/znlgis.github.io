@@ -21,3 +21,4 @@ title: CAD 教程
 - [OpenSCAD 教程](openscad/)
 - [qcad 教程](qcad/)
 - [solvespace 教程](solvespace/)
+- [Xbim 教程](Xbim/)

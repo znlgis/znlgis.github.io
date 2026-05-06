@@ -593,6 +593,24 @@ JTS Topology Suite 创始人 Martin Davis 的技术博客翻译，涵盖计算�
 - [扩展生态、MCAD 与外部集成](cad/openscad/第15章-扩展生态MCAD与集成)
 - [常见问题、排错与最佳实践](cad/openscad/第16章-常见问题与最佳实践)
 
+#### Xbim 完整教程系列
+- [Xbim 项目全景与学习路线](cad/Xbim/第01章-Xbim项目全景与学习路线)
+- [开发环境搭建、源码获取与编译](cad/Xbim/第02章-开发环境搭建源码获取与编译)
+- [IFC 标准与 BuildingSMART 数据模型基础](cad/Xbim/第03章-IFC标准与BuildingSMART数据模型基础)
+- [Xbim.Common 通用框架与 EXPRESS 元模型](cad/Xbim/第04章-XbimCommon通用框架与EXPRESS元模型)
+- [Xbim.Essentials 体系结构与 IfcStore 模型容器](cad/Xbim/第05章-XbimEssentials体系结构与IfcStore模型容器)
+- [IFC 模型读取、解析与 STEP/XML/Zip 序列化](cad/Xbim/第06章-IFC模型读取解析与STEPXMLZip序列化)
+- [IFC 数据查询、过滤与 LINQ 检索](cad/Xbim/第07章-IFC数据查询过滤与LINQ检索)
+- [IFC 模型创建、编辑与事务管理](cad/Xbim/第08章-IFC模型创建编辑与事务管理)
+- [属性集、量集、材料与分类系统](cad/Xbim/第09章-属性集量集材料与分类系统)
+- [空间结构、构件与 IfcRelationship 关系网络](cad/Xbim/第10章-空间结构构件与IfcRelationship关系网络)
+- [Xbim.Geometry 几何引擎架构与 OCCT 集成](cad/Xbim/第11章-XbimGeometry几何引擎架构与OCCT集成)
+- [几何表达、布尔运算与三角网格生成](cad/Xbim/第12章-几何表达布尔运算与三角网格生成)
+- [场景管理、Wexbim 文件与 3D 可视化](cad/Xbim/第13章-场景管理Wexbim文件与3D可视化)
+- [COBie 数据交换与 Xbim.CobieExpress](cad/Xbim/第14章-COBie数据交换与XbimCobieExpress)
+- [IDS 模型校验、BCF 协同与生态扩展](cad/Xbim/第15章-IDS模型校验BCF协同与生态扩展)
+- [综合实战：构建 IFC 处理与 BIM 应用](cad/Xbim/第16章-综合实战构建IFC处理与BIM应用)
+
 #### LightCAD 系列
 - [LightCAD 教程目录](cad/LightCAD/)
 
