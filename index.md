@@ -575,6 +575,24 @@ JTS Topology Suite 创始人 Martin Davis 的技术博客翻译，涵盖计算�
 - [与Qt/VTK/Python(pythonOCC)生态集成](cad/occt/第17章-与QtVTKPythonpythonOCC生态集成)
 - [二次开发实战与综合案例](cad/occt/第18章-二次开发实战与综合案例)
 
+#### OpenSCAD 完整教程系列
+- [OpenSCAD 项目全景与学习路线](cad/openscad/第01章-项目全景与学习路线)
+- [安装、环境配置与开发工作流](cad/openscad/第02章-安装环境与开发工作流)
+- [OpenSCAD 语言基础](cad/openscad/第03章-OpenSCAD语言基础)
+- [参数、变量、函数、模块与作用域](cad/openscad/第04章-参数变量函数模块作用域)
+- [基础几何、坐标系与变换](cad/openscad/第05章-基础几何与变换)
+- [CSG 布尔建模方法](cad/openscad/第06章-CSG布尔建模)
+- [二维图形、拉伸、旋转与投影](cad/openscad/第07章-二维图形拉伸与投影)
+- [参数化零件库与复用设计](cad/openscad/第08章-参数化零件库与复用)
+- [列表推导、递归与算法建模](cad/openscad/第09章-列表推导递归与算法建模)
+- [导入导出、命令行与自动化](cad/openscad/第10章-导入导出CLI自动化)
+- [预览、渲染、网格精度与性能优化](cad/openscad/第11章-预览渲染网格精度与性能优化)
+- [实战案例：机械结构与 3D 打印零件](cad/openscad/第12章-实战案例机械结构与3D打印)
+- [OpenSCAD 源码架构与核心执行流程](cad/openscad/第13章-源码架构与核心执行流程)
+- [构建、测试、调试与贡献流程](cad/openscad/第14章-构建测试调试与贡献)
+- [扩展生态、MCAD 与外部集成](cad/openscad/第15章-扩展生态MCAD与集成)
+- [常见问题、排错与最佳实践](cad/openscad/第16章-常见问题与最佳实践)
+
 #### LightCAD 系列
 - [LightCAD 教程目录](cad/LightCAD/)
 
