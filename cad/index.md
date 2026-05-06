@@ -17,5 +17,6 @@ title: CAD 教程
 - [KiCad 教程](KiCad/)
 - [LibreCAD 教程](LibreCAD/)
 - [libredwg 教程](libredwg/)
+- [OpenSCAD 教程](openscad/)
 - [qcad 教程](qcad/)
 - [solvespace 教程](solvespace/)
