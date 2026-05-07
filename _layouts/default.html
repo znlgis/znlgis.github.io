@@ -442,6 +442,14 @@
             <div class="sidebar-header">
                 <h2>📚 教程目录</h2>
             </div>
+            <div style="margin: 0 0 0.75rem; padding: 0;">
+                <form onsubmit="var q=document.getElementById('searchInput').value; if(q.trim()){ window.open('https://duckduckgo.com/?q=site:znlgis.github.io+'+encodeURIComponent(q),'_blank'); } return false;" style="display: flex; gap: 0.3rem;">
+                    <input type="text" id="searchInput" placeholder="搜索教程..." 
+                           style="flex: 1; padding: 0.35rem 0.5rem; border: 1px solid var(--border-color); border-radius: 4px; font-size: 0.8rem; outline: none;"
+                           aria-label="搜索教程">
+                    <button type="submit" style="padding: 0.35rem 0.6rem; border: 1px solid var(--link-color); background: var(--link-color); color: white; border-radius: 4px; cursor: pointer; font-size: 0.8rem;" title="搜索">🔍</button>
+                </form>
+            </div>
             <ul class="dir-tree">
                 <!-- GIS 教程 -->
                 <li>

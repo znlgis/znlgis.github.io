@@ -3,9 +3,103 @@ layout: default
 title: 首页
 ---
 
-# 欢迎来到我的博客
+# znlgis 博客
 
-这里分享 GIS、CAD、C#、3D、AI等各种开发与技术内容。
+GIS · CAD · C# · 3D · AI 开发与技术分享
+
+---
+
+## 🚀 快速开始
+
+无论你是 GIS 初学者还是资深开发者，这里都有适合你的教程。选择感兴趣的方向开始学习：
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; margin: 2rem 0;">
+
+<div style="border: 1px solid #e1e4e8; border-radius: 8px; padding: 1.2rem; background: #f8f9fa;">
+<h3 style="margin: 0 0 0.5rem;">🌍 GIS 开发</h3>
+<p style="font-size: 0.85rem; color: #666; margin: 0 0 0.8rem;">GDAL · GeoServer · PostGIS · QGIS · OpenLayers · Cesium</p>
+<a href="#gis-教程" style="font-size: 0.85rem;">浏览教程 →</a>
+</div>
+
+<div style="border: 1px solid #e1e4e8; border-radius: 8px; padding: 1.2rem; background: #f8f9fa;">
+<h3 style="margin: 0 0 0.5rem;">📐 CAD 开发</h3>
+<p style="font-size: 0.85rem; color: #666; margin: 0 0 0.8rem;">FreeCAD · OCCT · KiCad · OpenSCAD · CadQuery · Xbim</p>
+<a href="#cad-开发" style="font-size: 0.85rem;">浏览教程 →</a>
+</div>
+
+<div style="border: 1px solid #e1e4e8; border-radius: 8px; padding: 1.2rem; background: #f8f9fa;">
+<h3 style="margin: 0 0 0.5rem;">💻 C# 开发</h3>
+<p style="font-size: 0.85rem; color: #666; margin: 0 0 0.8rem;">Admin.NET · Furion · NPOI · ReoGrid · SqlSugar</p>
+<a href="#c-开发" style="font-size: 0.85rem;">浏览教程 →</a>
+</div>
+
+<div style="border: 1px solid #e1e4e8; border-radius: 8px; padding: 1.2rem; background: #f8f9fa;">
+<h3 style="margin: 0 0 0.5rem;">🤖 AI 应用</h3>
+<p style="font-size: 0.85rem; color: #666; margin: 0 0 0.8rem;">Dify · OpenClaw · hermes-agent · superpowers-zh</p>
+<a href="#ai-系列" style="font-size: 0.85rem;">浏览教程 →</a>
+</div>
+
+<div style="border: 1px solid #e1e4e8; border-radius: 8px; padding: 1.2rem; background: #f8f9fa;">
+<h3 style="margin: 0 0 0.5rem;">🔌 IoT 物联网</h3>
+<p style="font-size: 0.85rem; color: #666; margin: 0 0 0.8rem;">Raspberry Pi Pico · MicroPython · 传感器</p>
+<a href="#iot-物联网" style="font-size: 0.85rem;">浏览教程 →</a>
+</div>
+
+<div style="border: 1px solid #e1e4e8; border-radius: 8px; padding: 1.2rem; background: #f8f9fa;">
+<h3 style="margin: 0 0 0.5rem;">🎯 项目演示</h3>
+<p style="font-size: 0.85rem; color: #666; margin: 0 0 0.8rem;">Vue3+OpenLayers · 地图大屏 · AI水务前端</p>
+<a href="#项目演示" style="font-size: 0.85rem;">浏览教程 →</a>
+</div>
+
+</div>
+
+---
+
+## 📊 教程统计
+
+本博客目前维护 **{{ site.time | date: '%Y' }}** 年最新版教程：
+
+- **GIS 教程**：19 个系列，涵盖 GDAL、GeoServer、PostGIS、QGIS、CesiumJS 等
+- **CAD 开发**：18 个系列，涵盖 FreeCAD、OCCT、KiCad、OpenSCAD 等
+- **C# 开发**：8 个系列，涵盖 Admin.NET、Furion、NPOI、ReoGrid 等
+- **AI 系列**：5 个系列，涵盖 Dify、OpenClaw、hermes-agent 等
+- **源码解读**：Clipper1 / Clipper2 C# 源码逐行分析
+- **博客翻译**：Martin Davis JTS 博客完整翻译 28 篇
+
+所有教程均包含详细代码示例、架构图和实战案例。
+
+---
+
+## ⭐ 推荐教程
+
+### 🥇 入门首选
+
+| 教程 | 难度 | 章节 | 适合人群 |
+|------|:----:|:----:|----------|
+| [GDAL 完整教程](gis/tutorial/gdal/) | ⭐⭐ | 15章 | GIS 开发者、数据处理工程师 |
+| [QGIS 完整教程](gis/tutorial/qgis/) | ⭐ | 20章 | GIS 初学者、数据分析师 |
+| [PostGIS 教程](gis/tutorial/postgis/) | ⭐⭐ | 18章 | 数据库开发者、后端工程师 |
+| [NPOI 教程](csharp/npoi/) | ⭐ | 18章 | .NET 开发者、报表工程师 |
+
+### 🥈 进阶提升
+
+| 教程 | 难度 | 章节 | 适合人群 |
+|------|:----:|:----:|----------|
+| [GeoServer REST API](gis/tutorial/geoserver-rest-api/) | ⭐⭐⭐ | 18章 | GIS 服务端开发者 |
+| [OpenLayers 教程](gis/tutorial/openlayers/) | ⭐⭐ | 18章 | 前端开发者、WebGIS 工程师 |
+| [NetTopologySuite 教程](gis/tutorial/NetTopologySuite/) | ⭐⭐⭐ | 15章 | .NET GIS 开发者 |
+| [CesiumJS 教程](gis/tutorial/cesium/) | ⭐⭐⭐ | 18章 | 3D GIS 开发者 |
+
+### 🥇 高级专精
+
+| 教程 | 难度 | 章节 | 适合人群 |
+|------|:----:|:----:|----------|
+| [OCCT 完整教程](cad/occt/) | ⭐⭐⭐⭐ | 18章 | CAD 内核开发者 |
+| [FreeCAD 完整教程](cad/FreeCAD/) | ⭐⭐⭐ | 30章 | 机械/建筑工程师、CAD 开发者 |
+| [Xbim 完整教程](cad/Xbim/) | ⭐⭐⭐⭐ | 16章 | BIM 开发者、IFC 工程师 |
+| [KiCad 完整教程](cad/KiCad/) | ⭐⭐⭐ | 18章 | 电子工程师、PCB 设计师 |
+
+> 难度说明：⭐ 入门级 → ⭐⭐ 基础级 → ⭐⭐⭐ 进阶级 → ⭐⭐⭐⭐ 高级
 
 ---
 
@@ -518,8 +612,6 @@ JTS Topology Suite 创始人 Martin Davis 的技术博客翻译，涵盖计算�
 - [二次开发进阶与最佳实践](cad/LibreCAD/第16章-二次开发进阶与最佳实践)
 
 #### FreeCAD 完整教程系列
-
-##### 学习教程（基础篇）
 - [FreeCAD概述与简介](cad/FreeCAD/第01章：FreeCAD概述与简介)
 - [安装与环境配置](cad/FreeCAD/第02章：安装与环境配置)
 - [用户界面详解](cad/FreeCAD/第03章：用户界面详解)
@@ -530,8 +622,6 @@ JTS Topology Suite 创始人 Martin Davis 的技术博客翻译，涵盖计算�
 - [装配设计](cad/FreeCAD/第08章：装配设计)
 - [工程图制作](cad/FreeCAD/第09章：工程图制作)
 - [曲面建模](cad/FreeCAD/第10章：曲面建模)
-
-##### 使用教程（进阶篇）
 - [Part工作台详解](cad/FreeCAD/第11章：Part工作台详解)
 - [PartDesign工作台详解](cad/FreeCAD/第12章：PartDesign工作台详解)
 - [Draft工作台详解](cad/FreeCAD/第13章：Draft工作台详解)
@@ -542,8 +632,6 @@ JTS Topology Suite 创始人 Martin Davis 的技术博客翻译，涵盖计算�
 - [高级建模技巧](cad/FreeCAD/第18章：高级建模技巧)
 - [仿真与分析](cad/FreeCAD/第19章：仿真与分析)
 - [实战案例分析](cad/FreeCAD/第20章：实战案例分析)
-
-##### 二次开发教程（开发篇）
 - [FreeCAD架构解析](cad/FreeCAD/第21章：FreeCAD架构解析)
 - [Python脚本基础](cad/FreeCAD/第22章：Python脚本基础)
 - [FreeCAD Python API](cad/FreeCAD/第23章：FreeCAD-Python-API)

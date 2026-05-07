@@ -32,22 +32,80 @@ title: 关于
 - **容器化**：Docker、Kubernetes
 - **AI 平台**：Dify
 
-## 📊 内容创作
+## 📊 教程内容
 
-### 博客教程系列
+### GIS 开发（19个系列）
+- GDAL 完整教程（15章）
+- GeoServer 系列（8章）
+- GeoServer REST API 系列（18章）
+- QGIS 完整教程（20章）
+- PostGIS 系列（18章）
+- CesiumJS 系列（18章）
+- GeoTools 系列（17章）
+- OpenLayers 系列（18章）
+- NetTopologySuite 系列（15章）
+- SharpMap 系列（17章）
+- Mapsui 系列（16章）
+- GeoServer Cloud 系列（10章）
+- OpenGIS Utils for Java / .NET
+- Esri Geometry API for Java / .NET
+- GeoPipeAgent / GeoPandas / Shapely
 
-我在博客上维护多个完整的技术教程系列，包括：
+### CAD 开发（18个系列）
+- FreeCAD 完整教程（30章）
+- OCCT 几何内核教程（18章）
+- KiCad EDA教程（18章）
+- OpenSCAD 脚本化CAD（16章）
+- Xbim BIM开发（16章）
+- LibreCAD / QCAD / SolveSpace
+- CadQuery / Clipper1 / Clipper2
+- IFoxCAD / FY_Layout / LightCAD
+- LibreDWG / Astral3D / Chili3D
 
-- **GIS 核心**：GDAL、GeoServer、PostGIS、GeoTools
-- **C# 开发**：NPOI、Admin.NET、IFoxCAD、Clipper
-- **前端开发**：Vue3+OpenLayers、地图大屏
-- **AI 应用**：Dify 平台使用
+### C# 开发（8个系列）
+- Admin.NET 框架（10章）
+- Furion 框架（20章）
+- NPOI Office操作（18章）
+- ReoGrid 电子表格（20章）
+- SqlSugar ORM（15章）
+- SOD 框架 / .NET Reactor
 
-所有教程都是原创内容，包含详细的代码示例和实战案例。
+### AI 系列（5个系列）
+- Dify AI应用平台（10章）
+- oh-my-openagent（10章）
+- OpenClaw 多智能体网关（12章）
+- superpowers-zh / hermes-agent
 
-### B站视频
+---
 
-在 B 站发布 GIS 开发相关的视频教程和直播内容，欢迎关注！
+## 🎓 学习路线推荐
+
+### 🌱 GIS 入门路线
+1. [GIS 基础](gis/basic/) → 了解数据格式与地图服务
+2. [QGIS 教程](gis/tutorial/qgis/) → 掌握桌面 GIS
+3. [GDAL 教程](gis/tutorial/gdal/) → 学会空间数据处理
+4. [PostGIS 教程](gis/tutorial/postgis/) → 空间数据库
+5. [GeoServer 教程](gis/tutorial/geoserver/) → 发布地图服务
+6. [OpenLayers 教程](gis/tutorial/openlayers/) → WebGIS 开发
+
+### 🔧 .NET GIS 开发路线
+1. [NetTopologySuite](gis/tutorial/NetTopologySuite/) → .NET 空间计算
+2. [GDAL C# 绑定](gis/tutorial/gdal/) → 数据读写
+3. [SharpMap](gis/tutorial/SharpMap/) / [Mapsui](gis/tutorial/Mapsui/) → 地图渲染
+4. [OpenGIS Utils for .NET](gis/tutorial/opengis-utils-for-net/) → GIS 工具库
+
+### 🏗️ CAD 开发路线
+1. [FreeCAD 教程](cad/FreeCAD/) → 参数化建模入门
+2. [OCCT 教程](cad/occt/) → 几何内核深入
+3. [CadQuery 教程](cad/cadquery/) → Python 参数化CAD
+4. 选择领域深化：PCB([KiCad](cad/KiCad/)) / BIM([Xbim](cad/Xbim/)) / 机械
+
+### 🤖 AI 应用路线
+1. [Dify 平台](ai/dify/) → 低代码 AI 应用
+2. [OpenClaw](ai/openclaw/) → 多智能体网关
+3. [superpowers-zh](ai/superpowers-zh/) → AI 辅助开发实践
+
+---
 
 ## 💬 联系方式
 
@@ -59,60 +117,15 @@ title: 关于
 - **GitHub**: [znlgis](https://github.com/znlgis) - 开源项目
 - **Gitee**: [znlgis](https://gitee.com/znlgis) - 国内镜像
 
-## 🌟 开源项目
-
-我维护和参与了多个 GIS 相关的开源项目，欢迎查看和贡献：
-
-- OpenGIS Utils for Java - Java GIS 工具库
-- OpenGIS Utils for .NET - .NET GIS 工具库
-- 以及其他 GIS 相关工具和示例项目
-
 ## 📖 关于这个博客
 
-这个博客使用 [Jekyll](https://jekyllrb.com/) 构建，托管在 [GitHub Pages](https://pages.github.com/) 上。
-
-### 设计理念
+使用 [Jekyll](https://jekyllrb.com/) 构建，托管在 [GitHub Pages](https://pages.github.com/)。
 
 - **极简风格**：专注于内容本身，减少视觉干扰
 - **快速访问**：优化加载速度，提供流畅的阅读体验
 - **移动友好**：响应式设计，适配各种设备
-- **易于导航**：清晰的目录结构，快速找到所需内容
-
-### 技术特点
-
-- 静态网站生成，加载速度快
-- Markdown 编写，内容易于维护
-- 代码高亮支持，示例清晰易读
-- SEO 优化，便于搜索引擎收录
-
-## 🎓 学习资源推荐
-
-如果你也对 GIS 开发感兴趣，推荐以下学习资源：
-
-- [GDAL 官方文档](https://gdal.org/)
-- [GeoServer 用户指南](https://docs.geoserver.org/)
-- [PostGIS 文档](https://postgis.net/documentation/)
-- [OpenLayers 示例](https://openlayers.org/en/latest/examples/)
-
-## 🤝 合作与支持
-
-如果你有以下需求，欢迎联系我：
-
-- 技术咨询和顾问服务
-- 企业培训和技术分享
-- 项目合作和开发
-- 内容创作和宣传
-
-## ⭐ 支持我的工作
-
-如果你觉得我的内容对你有帮助，可以通过以下方式支持我：
-
-- ⭐ 在 GitHub 上给项目加星
-- 👍 在 B 站点赞、投币、收藏视频
-- 💬 在 QQ 群参与讨论，提供反馈
-- 📢 向朋友推荐我的博客和视频
-
-感谢你的支持！
+- **代码高亮**：基于 Rouge，示例清晰易读
+- **SEO 优化**：便于搜索引擎收录
 
 ---
 

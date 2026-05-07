@@ -1,9 +1,12 @@
 # 站点配置
 title: znlgis 博客
-description: GIS开发与技术分享
+description: GIS开发与技术分享 — GDAL · GeoServer · PostGIS · QGIS · OpenLayers · Cesium · FreeCAD · NPOI
 author: znlgis
 baseurl: ""
 url: "https://znlgis.github.io"
+
+# SEO
+keywords: GIS,GDAL,GeoServer,PostGIS,QGIS,OpenLayers,Cesium,FreeCAD,OCCT,NPOI,C#,CAD,3D,AI,地图开发,空间数据,地理信息系统
 
 # 主题配置
 markdown: kramdown
@@ -47,10 +50,7 @@ collections:
     output: true
     permalink: /:title/
 
-# 性能优化
-# 注意: GitHub Pages 默认启用 safe 模式（禁用自定义插件）
-# 本地开发如需使用自定义插件，取消注释并设为 false
-# safe: false  # 本地开发使用自定义插件时取消注释
+# GitHub Pages 安全模式
 profile: false
 lsi: false
 
