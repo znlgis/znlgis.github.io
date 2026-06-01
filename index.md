@@ -60,8 +60,8 @@ GIS · CAD · C# · 3D · AI 开发与技术分享
 本博客目前维护 **{{ site.time | date: '%Y' }}** 年最新版教程：
 
 - **GIS 教程**：19 个系列，涵盖 GDAL、GeoServer、PostGIS、QGIS、CesiumJS 等
-- **CAD 开发**：18 个系列，涵盖 FreeCAD、OCCT、KiCad、OpenSCAD 等
-- **C# 开发**：8 个系列，涵盖 Admin.NET、Furion、NPOI、ReoGrid 等
+- **CAD 开发**：17 个系列，涵盖 FreeCAD、OCCT、KiCad、OpenSCAD 等
+- **C# 开发**：7 个系列，涵盖 Admin.NET、Furion、NPOI、ReoGrid 等
 - **AI 系列**：5 个系列，涵盖 Dify、OpenClaw、hermes-agent 等
 - **源码解读**：Clipper1 / Clipper2 C# 源码逐行分析
 - **博客翻译**：Martin Davis JTS 博客完整翻译 28 篇
