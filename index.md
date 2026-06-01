@@ -95,7 +95,7 @@ GIS · CAD · C# · 3D · AI 开发与技术分享
 | 教程 | 难度 | 章节 | 适合人群 |
 |------|:----:|:----:|----------|
 | [OCCT 完整教程](cad/occt/) | ⭐⭐⭐⭐ | 18章 | CAD 内核开发者 |
-| [FreeCAD 完整教程](cad/FreeCAD/) | ⭐⭐⭐ | 30章 | 机械/建筑工程师、CAD 开发者 |
+| [FreeCAD 完整教程](cad/FreeCAD/) | ⭐⭐⭐ | 18章 | 机械/建筑工程师、CAD 开发者 |
 | [Xbim 完整教程](cad/Xbim/) | ⭐⭐⭐⭐ | 16章 | BIM 开发者、IFC 工程师 |
 | [KiCad 完整教程](cad/KiCad/) | ⭐⭐⭐ | 18章 | 电子工程师、PCB 设计师 |
 
@@ -612,36 +612,24 @@ JTS Topology Suite 创始人 Martin Davis 的技术博客翻译，涵盖计算�
 - [二次开发进阶与最佳实践](cad/LibreCAD/第16章-二次开发进阶与最佳实践)
 
 #### FreeCAD 完整教程系列
-- [FreeCAD概述与简介](cad/FreeCAD/第01章：FreeCAD概述与简介)
-- [安装与环境配置](cad/FreeCAD/第02章：安装与环境配置)
-- [用户界面详解](cad/FreeCAD/第03章：用户界面详解)
-- [基础建模入门](cad/FreeCAD/第04章：基础建模入门)
-- [草图绘制（Sketcher）](cad/FreeCAD/第05章：草图绘制（Sketcher）)
-- [Part设计工作台](cad/FreeCAD/第06章：Part设计工作台)
-- [参数化建模](cad/FreeCAD/第07章：参数化建模)
-- [装配设计](cad/FreeCAD/第08章：装配设计)
-- [工程图制作](cad/FreeCAD/第09章：工程图制作)
-- [曲面建模](cad/FreeCAD/第10章：曲面建模)
-- [Part工作台详解](cad/FreeCAD/第11章：Part工作台详解)
-- [PartDesign工作台详解](cad/FreeCAD/第12章：PartDesign工作台详解)
-- [Draft工作台详解](cad/FreeCAD/第13章：Draft工作台详解)
-- [Arch建筑设计工作台](cad/FreeCAD/第14章：Arch建筑设计工作台)
-- [Path数控加工](cad/FreeCAD/第15章：Path数控加工)
-- [渲染与可视化](cad/FreeCAD/第16章：渲染与可视化)
-- [数据导入导出](cad/FreeCAD/第17章：数据导入导出)
-- [高级建模技巧](cad/FreeCAD/第18章：高级建模技巧)
-- [仿真与分析](cad/FreeCAD/第19章：仿真与分析)
-- [实战案例分析](cad/FreeCAD/第20章：实战案例分析)
-- [FreeCAD架构解析](cad/FreeCAD/第21章：FreeCAD架构解析)
-- [Python脚本基础](cad/FreeCAD/第22章：Python脚本基础)
-- [FreeCAD Python API](cad/FreeCAD/第23章：FreeCAD-Python-API)
-- [创建宏与脚本](cad/FreeCAD/第24章：创建宏与脚本)
-- [自定义工作台开发](cad/FreeCAD/第25章：自定义工作台开发)
-- [自定义对象开发](cad/FreeCAD/第26章：自定义对象开发)
-- [GUI界面开发](cad/FreeCAD/第27章：GUI界面开发)
-- [插件开发实战](cad/FreeCAD/第28章：插件开发实战)
-- [C++扩展开发](cad/FreeCAD/第29章：C++扩展开发)
-- [综合开发案例](cad/FreeCAD/第30章：综合开发案例)
+- [项目全景与学习路线](cad/FreeCAD/第01章-项目全景与学习路线)
+- [安装版本与工作环境配置](cad/FreeCAD/第02章-安装版本与工作环境配置)
+- [界面工作台与基础操作](cad/FreeCAD/第03章-界面工作台与基础操作)
+- [草图Sketcher约束建模](cad/FreeCAD/第04章-草图Sketcher约束建模)
+- [PartDesign实体特征建模](cad/FreeCAD/第05章-PartDesign实体特征建模)
+- [Part工作台与几何内核](cad/FreeCAD/第06章-Part工作台与几何内核)
+- [参数化表达式与Spreadsheet](cad/FreeCAD/第07章-参数化表达式与Spreadsheet)
+- [装配设计Assembly](cad/FreeCAD/第08章-装配设计Assembly)
+- [工程图TechDraw](cad/FreeCAD/第09章-工程图TechDraw)
+- [Draft二维绘图与BIM建筑](cad/FreeCAD/第10章-Draft二维绘图与BIM建筑)
+- [SurfaceMesh与逆向工程](cad/FreeCAD/第11章-SurfaceMesh与逆向工程)
+- [CAM数控加工](cad/FreeCAD/第12章-CAM数控加工)
+- [FEM仿真分析](cad/FreeCAD/第13章-FEM仿真分析)
+- [Python脚本宏与自动化](cad/FreeCAD/第14章-Python脚本宏与自动化)
+- [插件与自定义工作台开发](cad/FreeCAD/第15章-插件与自定义工作台开发)
+- [源码架构与二次开发](cad/FreeCAD/第16章-源码架构与二次开发)
+- [数据交换与协同](cad/FreeCAD/第17章-数据交换与协同)
+- [综合实战案例](cad/FreeCAD/第18章-综合实战案例)
 
 #### OCCT 完整教程系列
 - [OCCT项目全景与学习路线](cad/occt/第01章-OCCT项目全景与学习路线)
