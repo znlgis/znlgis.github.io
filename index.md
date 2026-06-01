@@ -46,6 +46,12 @@ GIS · CAD · C# · 3D · AI 开发与技术分享
 </div>
 
 <div style="border: 1px solid #e1e4e8; border-radius: 8px; padding: 1.2rem; background: #f8f9fa;">
+<h3 style="margin: 0 0 0.5rem;">🧊 3D 开发</h3>
+<p style="font-size: 0.85rem; color: #666; margin: 0 0 0.8rem;">SuperSplat · 3D 高斯泼溅 · 高斯泼溅编辑</p>
+<a href="#3d-开发" style="font-size: 0.85rem;">浏览教程 →</a>
+</div>
+
+<div style="border: 1px solid #e1e4e8; border-radius: 8px; padding: 1.2rem; background: #f8f9fa;">
 <h3 style="margin: 0 0 0.5rem;">🎯 项目演示</h3>
 <p style="font-size: 0.85rem; color: #666; margin: 0 0 0.8rem;">Vue3+OpenLayers · 地图大屏 · AI水务前端</p>
 <a href="#项目演示" style="font-size: 0.85rem;">浏览教程 →</a>
@@ -61,6 +67,7 @@ GIS · CAD · C# · 3D · AI 开发与技术分享
 
 - **GIS 教程**：19 个系列，涵盖 GDAL、GeoServer、PostGIS、QGIS、CesiumJS 等
 - **CAD 开发**：17 个系列，涵盖 FreeCAD、OCCT、KiCad、OpenSCAD 等
+- **3D 开发**：1 个系列，涵盖 SuperSplat 3D 高斯泼溅编辑器
 - **C# 开发**：7 个系列，涵盖 Admin.NET、Furion、NPOI、ReoGrid 等
 - **AI 系列**：5 个系列，涵盖 Dify、OpenClaw、hermes-agent 等
 - **源码解读**：Clipper1 / Clipper2 C# 源码逐行分析
@@ -689,6 +696,20 @@ JTS Topology Suite 创始人 Martin Davis 的技术博客翻译，涵盖计算�
 
 #### LightCAD 系列
 - [LightCAD 教程目录](cad/LightCAD/)
+
+### 3D 开发
+
+#### SuperSplat 完整教程系列
+- [SuperSplat 项目全景与学习路线](3d/supersplat/第01章-SuperSplat项目全景与学习路线)
+- [3D 高斯泼溅原理与 PLY 数据格式](3d/supersplat/第02章-3D高斯泼溅原理与PLY数据格式)
+- [在线编辑器使用入门与视图操作](3d/supersplat/第03章-在线编辑器使用入门与视图操作)
+- [选择工具与高斯点数据编辑](3d/supersplat/第04章-选择工具与高斯点数据编辑)
+- [变换、裁剪与多模型场景管理](3d/supersplat/第05章-变换裁剪与多模型场景管理)
+- [颜色调整、球谐与外观优化](3d/supersplat/第06章-颜色调整球谐与外观优化)
+- [相机姿态、时间轴与动画导出](3d/supersplat/第07章-相机姿态时间轴与动画导出)
+- [导出格式、压缩与发布上线](3d/supersplat/第08章-导出格式压缩与发布上线)
+- [源码架构、事件系统与开发环境搭建](3d/supersplat/第09章-源码架构事件系统与开发环境搭建)
+- [二次开发实战与生态集成](3d/supersplat/第10章-二次开发实战与生态集成)
 
 ### C# 开发
 
