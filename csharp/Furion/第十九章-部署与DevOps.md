@@ -679,6 +679,7 @@ data:
 
 ### 7.1 GitHub Actions
 
+{% raw %}
 ```yaml
 # .github/workflows/deploy.yml
 name: Build and Deploy
@@ -768,6 +769,7 @@ jobs:
           docker compose up -d --force-recreate
           docker image prune -f
 ```
+{% endraw %}
 
 ### 7.2 Azure DevOps Pipeline
 

@@ -330,6 +330,7 @@ public class AdvancedGeneratorConfig
 
 创建完全自定义的代码模板：
 
+{% raw %}
 ```csharp
 public class CustomTemplateGenerator
 {
@@ -468,6 +469,7 @@ namespace {Namespace}
     }
 }
 ```
+{% endraw %}
 
 ### 12.3.2 模板变量
 
@@ -535,6 +537,7 @@ namespace {Namespace}
 
 创建包含业务逻辑的高级模板：
 
+{% raw %}
 ```csharp
 public class AdvancedTemplateGenerator
 {
@@ -700,6 +703,7 @@ namespace {Namespace}.Dtos
     }
 }
 ```
+{% endraw %}
 
 ## 12.4 代码生成器
 

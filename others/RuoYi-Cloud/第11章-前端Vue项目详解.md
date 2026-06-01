@@ -859,6 +859,7 @@ export default permission
 
 ### 11.6.1 字典标签组件
 
+{% raw %}
 ```vue
 <!-- components/DictTag/index.vue -->
 <template>
@@ -938,6 +939,7 @@ export default {
 }
 </script>
 ```
+{% endraw %}
 
 ### 11.6.2 分页组件
 

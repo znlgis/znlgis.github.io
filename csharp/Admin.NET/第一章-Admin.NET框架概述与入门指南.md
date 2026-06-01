@@ -246,6 +246,7 @@ Vue3是Admin.NET前端的核心框架，相比Vue2有显著的性能提升和更
 
 **Vue3在Admin.NET中的应用**：
 
+{% raw %}
 ```vue
 <template>
   <div class="user-list">
@@ -285,6 +286,7 @@ onMounted(() => {
 });
 </script>
 ```
+{% endraw %}
 
 #### 3.2.2 Element Plus
 

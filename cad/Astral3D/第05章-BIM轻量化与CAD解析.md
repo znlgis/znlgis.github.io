@@ -766,6 +766,7 @@ function checkPipeCollision(pipes) {
 
 ### 5.7.1 属性显示组件
 
+{% raw %}
 ```vue
 <template>
   <div class="property-panel">
@@ -812,6 +813,7 @@ const formatArea = (value) => `${value.toFixed(2)} m²`;
 const formatVolume = (value) => `${value.toFixed(2)} m³`;
 </script>
 ```
+{% endraw %}
 
 ### 5.7.2 属性编辑
 

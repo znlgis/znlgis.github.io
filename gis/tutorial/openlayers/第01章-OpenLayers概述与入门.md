@@ -551,6 +551,7 @@ export default {
 
 **React 集成**：
 
+{% raw %}
 ```javascript
 // React 函数组件示例
 import { useEffect, useRef } from 'react';
@@ -589,6 +590,7 @@ function MapComponent() {
   return <div ref={mapRef} style={{ width: '100%', height: '400px' }} />;
 }
 ```
+{% endraw %}
 
 ## 1.5 适用场景分析
 
