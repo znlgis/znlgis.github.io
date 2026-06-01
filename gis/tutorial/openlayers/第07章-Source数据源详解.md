@@ -1027,7 +1027,7 @@ const kmlData = converter.convert(features, 'geojson', 'kml');
 
 ---
 
-[← 上一章：Layer图层体系](第06章-Layer图层体系) | [返回目录](README) | [下一章：矢量数据与样式 →](第08章-矢量数据与样式)
+[← 上一章：Layer图层体系](第06章-Layer图层体系) | [返回目录](index) | [下一章：矢量数据与样式 →](第08章-矢量数据与样式)
 
 <!-- NAVIGATION -->
 

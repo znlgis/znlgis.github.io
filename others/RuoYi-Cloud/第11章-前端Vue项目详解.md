@@ -859,6 +859,7 @@ export default permission
 
 ### 11.6.1 字典标签组件
 
+{% raw %}
 ```vue
 <!-- components/DictTag/index.vue -->
 <template>
@@ -938,6 +939,7 @@ export default {
 }
 </script>
 ```
+{% endraw %}
 
 ### 11.6.2 分页组件
 
@@ -1058,4 +1060,4 @@ export default {
 
 ---
 
-[上一章：文件服务与存储](./第10章-文件服务与存储.md) | [返回目录](./README.md) | [下一章：数据库设计与管理](./第12章-数据库设计与管理.md)
+[上一章：文件服务与存储](./第10章-文件服务与存储.md) | [返回目录](./index.md) | [下一章：数据库设计与管理](./第12章-数据库设计与管理.md)

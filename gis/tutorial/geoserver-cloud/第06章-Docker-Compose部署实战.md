@@ -572,6 +572,7 @@ done
 
 创建监控脚本实现简单的自动扩缩容：
 
+{% raw %}
 ```bash
 #!/bin/bash
 # auto-scale.sh - 基于负载的自动扩缩容
@@ -616,6 +617,7 @@ while true; do
     sleep $CHECK_INTERVAL
 done
 ```
+{% endraw %}
 
 ## 6.5 监控集成
 
@@ -722,6 +724,7 @@ scrape_configs:
 
 创建 `monitoring/grafana/provisioning/dashboards/geoserver-cloud.json`：
 
+{% raw %}
 ```json
 {
   "dashboard": {
@@ -770,6 +773,7 @@ scrape_configs:
   }
 }
 ```
+{% endraw %}
 
 ### 6.5.4 启用监控
 
@@ -949,6 +953,7 @@ docker stats
 
 ### 6.8.2 故障排除
 
+{% raw %}
 ```bash
 # 检查服务健康
 docker compose ps
@@ -967,6 +972,7 @@ docker compose exec wms nc -zv rabbitmq 5672
 # 检查配置
 docker compose exec wms env | grep -i pgconfig
 ```
+{% endraw %}
 
 ## 6.9 本章小结
 

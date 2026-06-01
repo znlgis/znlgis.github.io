@@ -214,6 +214,7 @@ onMounted(() => {
 </script>
 ```
 
+{% raw %}
 ```vue
 <!-- 子组件 ChildComponent.vue -->
 <template>
@@ -248,6 +249,7 @@ const emitUpdate = () => {
 }
 </script>
 ```
+{% endraw %}
 
 ---
 
@@ -787,6 +789,7 @@ export const useAppStore = defineStore('app', {
 
 ### 4.3 Store使用
 
+{% raw %}
 ```vue
 <template>
   <div class="user-info">
@@ -815,6 +818,7 @@ const handleLogout = async () => {
 }
 </script>
 ```
+{% endraw %}
 
 ---
 
@@ -1402,6 +1406,7 @@ const handleClose = () => {
 
 ### 7.1 图标选择器
 
+{% raw %}
 ```vue
 <!-- components/IconSelect/index.vue -->
 <template>
@@ -1523,6 +1528,7 @@ const handleClear = () => {
 }
 </style>
 ```
+{% endraw %}
 
 ### 7.2 树形选择器
 
@@ -1709,6 +1715,7 @@ export default {
 }
 ```
 
+{% raw %}
 ```vue
 <!-- 使用国际化 -->
 <template>
@@ -1733,6 +1740,7 @@ const changeLanguage = (lang: string) => {
 }
 </script>
 ```
+{% endraw %}
 
 ### 8.2 主题配置
 

@@ -373,6 +373,7 @@ POST /api/v1/mail/batch_send
 
 **请求参数**
 
+{% raw %}
 ```json
 {
   "recipients": [
@@ -400,6 +401,7 @@ POST /api/v1/mail/batch_send
   "template_id": "tpl_order_confirmation"
 }
 ```
+{% endraw %}
 
 **使用模板**
 
@@ -478,6 +480,7 @@ GET /api/v1/templates
 ```
 
 **响应**：
+{% raw %}
 ```json
 {
   "success": true,
@@ -493,6 +496,7 @@ GET /api/v1/templates
   }
 }
 ```
+{% endraw %}
 
 **获取模板详情**
 

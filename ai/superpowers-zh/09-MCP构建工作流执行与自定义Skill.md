@@ -150,6 +150,7 @@ MCP 使用 stdio 通信时，不能随意 `console.log`，否则可能破坏协�
 
 典型字段：
 
+{% raw %}
 ```yaml
 name: "工作流名称"
 agents_dir: "agency-agents-zh"
@@ -166,6 +167,7 @@ steps:
     task: "基于 {{product_analysis}} 给出架构建议"
     depends_on: [analyze]
 ```
+{% endraw %}
 
 `workflow-runner` 会解析 inputs、steps、depends_on，做拓扑排序，逐层执行。没有依赖关系的同层步骤可并行执行。
 
