@@ -596,9 +596,9 @@
                         <span class="tree-label">其他教程</span>
                     </button>
                     <ul class="tree-children">
-                       <li><a class="tree-item" href="{{ '/others/acme.sh/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">acme.sh</span></a></li>
-                       <li><a class="tree-item" href="{{ '/others/BillionMail/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">BillionMail</span></a></li>
-                       <li><a class="tree-item" href="{{ '/others/RuoYi-Cloud/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">RuoYi-Cloud</span></a></li>
+                        <li><a class="tree-item" href="{{ '/others/acme.sh/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">acme.sh</span></a></li>
+                        <li><a class="tree-item" href="{{ '/others/BillionMail/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">BillionMail</span></a></li>
+                        <li><a class="tree-item" href="{{ '/others/RuoYi-Cloud/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">RuoYi-Cloud</span></a></li>
                     </ul>
                 </li>
                 <!-- 项目演示 -->
@@ -662,7 +662,7 @@
             const input = document.getElementById('searchInput');
             const query = input ? input.value.trim() : '';
             if (!query) return false;
-            const win = window.open(
+            window.open(
                 'https://duckduckgo.com/?q=site:znlgis.github.io+' + encodeURIComponent(query),
                 '_blank',
                 'noopener,noreferrer'
