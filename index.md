@@ -915,6 +915,18 @@ JTS Topology Suite 创始人 Martin Davis 的技术博客翻译，涵盖计算�
 - [二次开发指南](others/RuoYi-Cloud/第14章-二次开发指南)
 - [最佳实践与常见问题](others/RuoYi-Cloud/第15章-最佳实践与常见问题)
 
+#### acme.sh SSL证书自动化教程
+- [acme.sh概述与基础知识](others/acme.sh/第01章-acme.sh概述与基础知识)
+- [安装与快速入门](others/acme.sh/第02章-安装与快速入门)
+- [HTTP验证方式申请证书](others/acme.sh/第03章-HTTP验证方式申请证书)
+- [DNS验证方式申请证书](others/acme.sh/第04章-DNS验证方式申请证书)
+- [国内云服务商集成使用](others/acme.sh/第05章-国内云服务商集成使用)
+- [国际云服务商集成使用](others/acme.sh/第06章-国际云服务商集成使用)
+- [证书部署与安装](others/acme.sh/第07章-证书部署与安装)
+- [自动续期与维护管理](others/acme.sh/第08章-自动续期与维护管理)
+- [高级功能与技巧](others/acme.sh/第09章-高级功能与技巧)
+- [常见问题与故障排查](others/acme.sh/第10章-常见问题与故障排查)
+
 ### 项目演示
 
 #### GIS工具教程
