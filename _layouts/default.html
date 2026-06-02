@@ -657,16 +657,28 @@
     <a href="#" class="back-to-top" id="backToTop" title="回到顶部">↑</a>
     
     <script>
+        const SITE_HOST = (() => {
+            try {
+                return new URL('{{ site.url }}').host || window.location.host;
+            } catch (error) {
+                return window.location.host;
+            }
+        })();
+        const SITE_SEARCH_BASE_URL = 'https://duckduckgo.com/?q=site:' + SITE_HOST + '+';
+        const SEARCH_LINK_CLEANUP_DELAY_MS = 100;
+
         function handleSiteSearch(event) {
             event.preventDefault();
             const input = document.getElementById('searchInput');
             const query = input ? input.value.trim() : '';
             if (!query) return false;
-            window.open(
-                'https://duckduckgo.com/?q=site:znlgis.github.io+' + encodeURIComponent(query),
-                '_blank',
-                'noopener noreferrer'
-            );
+            const link = document.createElement('a');
+            link.href = SITE_SEARCH_BASE_URL + encodeURIComponent(query);
+            link.target = '_blank';
+            link.rel = 'noopener noreferrer';
+            document.body.appendChild(link);
+            link.click();
+            setTimeout(() => link.remove(), SEARCH_LINK_CLEANUP_DELAY_MS);
             return false;
         }
 
