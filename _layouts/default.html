@@ -433,7 +433,7 @@
                 <h2>📚 教程目录</h2>
             </div>
             <div style="margin: 0 0 0.75rem; padding: 0;">
-                <form onsubmit="var q=document.getElementById('searchInput').value; if(q.trim()){ var w=window.open('https://duckduckgo.com/?q=site:znlgis.github.io+'+encodeURIComponent(q),'_blank','noopener,noreferrer'); if(w){ w.opener=null; } } return false;" style="display: flex; gap: 0.3rem;">
+                <form onsubmit="return handleSiteSearch(event)" style="display: flex; gap: 0.3rem;">
                     <input type="text" id="searchInput" placeholder="搜索教程..." 
                            style="flex: 1; padding: 0.35rem 0.5rem; border: 1px solid var(--border-color); border-radius: 4px; font-size: 0.8rem; outline: none;"
                            aria-label="搜索教程">
@@ -656,6 +656,19 @@
     <a href="#" class="back-to-top" id="backToTop" title="回到顶部">↑</a>
     
     <script>
+        function handleSiteSearch(event) {
+            event.preventDefault();
+            const input = document.getElementById('searchInput');
+            const query = input ? input.value.trim() : '';
+            if (!query) return false;
+            const win = window.open(
+                'https://duckduckgo.com/?q=site:znlgis.github.io+' + encodeURIComponent(query),
+                '_blank',
+                'noopener,noreferrer'
+            );
+            return false;
+        }
+
         // 目录树展开/折叠
         function toggleTree(element) {
             const toggle = element.querySelector('.tree-toggle');
