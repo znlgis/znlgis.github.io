@@ -14,3 +14,11 @@
 
 - [Jekyll](https://jekyllrb.com/) - 静态网站生成器
 - [GitHub Pages](https://pages.github.com/) - 托管服务
+
+## 🚧 本地开发
+
+在仓库根目录执行：
+
+1. 安装依赖：`bundle install`
+2. 本地预览：`bundle exec jekyll serve`
+3. 构建校验：`bundle exec jekyll build`
