@@ -8,17 +8,7 @@
     <meta name="author" content="{{ site.author }}">
     <meta name="keywords" content="{% if page.keywords %}{{ page.keywords }}{% else %}GIS,GDAL,GeoServer,PostGIS,C#,.NET,地理信息系统,空间数据,教程{% endif %}">
     
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="{{ site.url }}{{ page.url }}">
-    <meta property="og:title" content="{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}">
-    <meta property="og:description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
-    
-    <!-- Twitter -->
-    <meta property="twitter:card" content="summary">
-    <meta property="twitter:url" content="{{ site.url }}{{ page.url }}">
-    <meta property="twitter:title" content="{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}">
-    <meta property="twitter:description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
+    {% seo title=false %}
     
     <!-- 不蒜子访客统计 -->
     <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
@@ -443,7 +433,7 @@
                 <h2>📚 教程目录</h2>
             </div>
             <div style="margin: 0 0 0.75rem; padding: 0;">
-                <form onsubmit="var q=document.getElementById('searchInput').value; if(q.trim()){ window.open('https://duckduckgo.com/?q=site:znlgis.github.io+'+encodeURIComponent(q),'_blank'); } return false;" style="display: flex; gap: 0.3rem;">
+                <form onsubmit="var q=document.getElementById('searchInput').value; if(q.trim()){ var w=window.open('https://duckduckgo.com/?q=site:znlgis.github.io+'+encodeURIComponent(q),'_blank','noopener,noreferrer'); if(w){ w.opener=null; } } return false;" style="display: flex; gap: 0.3rem;">
                     <input type="text" id="searchInput" placeholder="搜索教程..." 
                            style="flex: 1; padding: 0.35rem 0.5rem; border: 1px solid var(--border-color); border-radius: 4px; font-size: 0.8rem; outline: none;"
                            aria-label="搜索教程">
@@ -639,15 +629,15 @@
                     <nav>
                         <a href="{{ '/' | relative_url }}">首页</a>
                         <a href="{{ '/about' | relative_url }}">关于</a>
-                        <a href="https://space.bilibili.com/161342702" target="_blank">B站</a>
-                        <a href="https://github.com/znlgis" target="_blank">GitHub</a>
+                        <a href="https://space.bilibili.com/161342702" target="_blank" rel="noopener noreferrer">B站</a>
+                        <a href="https://github.com/znlgis" target="_blank" rel="noopener noreferrer">GitHub</a>
                     </nav>
                 </header>
                 <main>
                     {{ content }}
                 </main>
                 <footer>
-                    <p>&copy; {{ site.time | date: '%Y' }} {{ site.author }}. 使用 <a href="https://pages.github.com/" target="_blank">GitHub Pages</a> 托管.</p>
+                    <p>&copy; {{ site.time | date: '%Y' }} {{ site.author }}. 使用 <a href="https://pages.github.com/" target="_blank" rel="noopener noreferrer">GitHub Pages</a> 托管.</p>
                     <p class="busuanzi-stats">
                         <span id="busuanzi_container_site_uv">本站访客数 <span id="busuanzi_value_site_uv"></span> 人</span>
                         &nbsp;|&nbsp;
