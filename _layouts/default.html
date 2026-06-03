@@ -325,6 +325,57 @@
             border-bottom: 1px solid var(--border-color);
             padding-bottom: 0.5rem;
         }
+        /* 搜索下拉结果 */
+        .search-container {
+            position: relative;
+        }
+        .search-results {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: var(--bg-color);
+            border: 1px solid var(--border-color);
+            border-radius: 0 0 4px 4px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            z-index: 1000;
+            max-height: 280px;
+            overflow-y: auto;
+        }
+        .search-results.show {
+            display: block;
+        }
+        .search-result-item {
+            display: block;
+            padding: 0.5rem 0.75rem;
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 0.8rem;
+            border-bottom: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: background 0.15s;
+        }
+        .search-result-item:last-child {
+            border-bottom: none;
+        }
+        .search-result-item:hover,
+        .search-result-item.active {
+            background: rgba(3, 102, 214, 0.08);
+            color: var(--link-color);
+        }
+        .search-no-results {
+            padding: 0.75rem;
+            color: #999;
+            font-size: 0.8rem;
+            text-align: center;
+        }
+        .search-loading {
+            padding: 0.75rem;
+            color: #999;
+            font-size: 0.8rem;
+            text-align: center;
+        }
         /* 回到顶部按钮 */
         .back-to-top {
             position: fixed;
@@ -432,13 +483,13 @@
             <div class="sidebar-header">
                 <h2>📚 教程目录</h2>
             </div>
-            <div style="margin: 0 0 0.75rem; padding: 0;">
-                <form onsubmit="return handleSiteSearch(event)" style="display: flex; gap: 0.3rem;">
-                    <input type="text" id="searchInput" placeholder="搜索教程..." 
+            <div style="margin: 0 0 0.75rem; padding: 0;" class="search-container">
+                <form onsubmit="return false" style="display: flex; gap: 0.3rem;">
+                    <input type="text" id="searchInput" placeholder="搜索教程..." autocomplete="off"
                            style="flex: 1; padding: 0.35rem 0.5rem; border: 1px solid var(--border-color); border-radius: 4px; font-size: 0.8rem; outline: none;"
                            aria-label="搜索教程">
-                    <button type="submit" style="padding: 0.35rem 0.6rem; border: 1px solid var(--link-color); background: var(--link-color); color: white; border-radius: 4px; cursor: pointer; font-size: 0.8rem;" title="搜索">🔍</button>
                 </form>
+                <div class="search-results" id="searchResults"></div>
             </div>
             <ul class="dir-tree">
                 <!-- GIS 教程 -->
@@ -506,6 +557,7 @@
                         <li><a class="tree-item" href="{{ '/cad/IFoxCAD/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">IFoxCAD</span></a></li>
                         <li><a class="tree-item" href="{{ '/cad/FY_Layout/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">FY_Layout</span></a></li>
                         <li><a class="tree-item" href="{{ '/cad/LightCAD/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">LightCAD</span></a></li>
+                        <li><a class="tree-item" href="{{ '/cad/LightningCAD/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">LightningCAD</span></a></li>
                         <li><a class="tree-item" href="{{ '/cad/Clipper2/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">Clipper2</span></a></li>
                         <li><a class="tree-item" href="{{ '/cad/Clipper1/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">Clipper1</span></a></li>
                         <li><a class="tree-item" href="{{ '/cad/chili3d/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">Chili3D</span></a></li>
@@ -563,6 +615,7 @@
                         <li><a class="tree-item" href="{{ '/ai/superpowers-zh/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">superpowers-zh</span></a></li>
                         <li><a class="tree-item" href="{{ '/ai/hermes-agent/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">hermes-agent</span></a></li>
                         <li><a class="tree-item" href="{{ '/ai/openclaw/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">OpenClaw</span></a></li>
+                        <li><a class="tree-item" href="{{ '/ai/opencode/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">OpenCode</span></a></li>
                     </ul>
                 </li>
                 <!-- IoT 物联网 -->
@@ -657,32 +710,180 @@
     <a href="#" class="back-to-top" id="backToTop" title="回到顶部">↑</a>
     
     <script>
-        const SITE_HOST = (() => {
-            try {
-                return new URL('{{ site.url }}').host || window.location.host;
-            } catch (error) {
-                return window.location.host;
+        // 客户端即时搜索
+        (function() {
+            var searchData = null;
+            var searchInput = document.getElementById('searchInput');
+            var searchResults = document.getElementById('searchResults');
+            var activeIndex = -1;
+            var searchTimeout = null;
+
+            // 懒加载搜索索引
+            function loadSearchData(callback) {
+                if (searchData !== null) {
+                    callback(searchData);
+                    return;
+                }
+                var xhr = new XMLHttpRequest();
+                xhr.onload = function() {
+                    if (xhr.status === 200) {
+                        try {
+                            searchData = JSON.parse(xhr.responseText);
+                        } catch(e) {
+                            searchData = [];
+                        }
+                    } else {
+                        searchData = [];
+                    }
+                    callback(searchData);
+                };
+                xhr.onerror = function() {
+                    searchData = [];
+                    callback(searchData);
+                };
+                xhr.open('GET', '{{ "/search.json" | relative_url }}', true);
+                xhr.send();
             }
+
+            // 模糊搜索（支持中文和拼音简拼）
+            function fuzzyMatch(text, query) {
+                var t = text.toLowerCase();
+                var q = query.toLowerCase();
+                if (t.indexOf(q) !== -1) return true;
+                // 分词匹配：query 中的每个字符都按顺序出现在 text 中
+                var qi = 0;
+                for (var i = 0; i < t.length && qi < q.length; i++) {
+                    if (t[i] === q[qi]) qi++;
+                }
+                return qi === q.length;
+            }
+
+            function doSearch(query) {
+                if (!query || query.trim().length === 0) {
+                    searchResults.classList.remove('show');
+                    searchResults.innerHTML = '';
+                    activeIndex = -1;
+                    return;
+                }
+                loadSearchData(function(data) {
+                    if (!data || data.length === 0) {
+                        searchResults.innerHTML = '<div class="search-no-results">暂无搜索结果</div>';
+                        searchResults.classList.add('show');
+                        return;
+                    }
+                    var results = [];
+                    var q = query.trim();
+                    for (var i = 0; i < data.length; i++) {
+                        if (fuzzyMatch(data[i].title, q)) {
+                            results.push(data[i]);
+                            if (results.length >= 15) break;
+                        }
+                    }
+                    if (results.length === 0) {
+                        searchResults.innerHTML = '<div class="search-no-results">未找到匹配的教程</div>';
+                    } else {
+                        var html = '';
+                        for (var j = 0; j < results.length; j++) {
+                            html += '<a class="search-result-item" href="' + results[j].url + '" data-index="' + j + '">' + highlightMatch(results[j].title, q) + '</a>';
+                        }
+                        searchResults.innerHTML = html;
+                    }
+                    searchResults.classList.add('show');
+                    activeIndex = -1;
+                });
+            }
+
+            function highlightMatch(text, query) {
+                var t = text.toLowerCase();
+                var q = query.toLowerCase();
+                var idx = t.indexOf(q);
+                if (idx === -1) return escapeHtml(text);
+                var before = escapeHtml(text.substring(0, idx));
+                var match = '<mark style="background:#fff3cd;padding:0 1px;border-radius:2px;">' + escapeHtml(text.substring(idx, idx + q.length)) + '</mark>';
+                var after = escapeHtml(text.substring(idx + q.length));
+                return before + match + after;
+            }
+
+            function escapeHtml(str) {
+                var div = document.createElement('div');
+                div.appendChild(document.createTextNode(str));
+                return div.innerHTML;
+            }
+
+            searchInput.addEventListener('input', function() {
+                clearTimeout(searchTimeout);
+                var query = this.value;
+                searchTimeout = setTimeout(function() { doSearch(query); }, 150);
+            });
+
+            searchInput.addEventListener('focus', function() {
+                if (this.value.trim().length > 0) {
+                    doSearch(this.value);
+                }
+                // 首次聚焦预加载索引
+                if (searchData === null) {
+                    loadSearchData(function(){});
+                }
+            });
+
+            // 键盘导航
+            searchInput.addEventListener('keydown', function(e) {
+                var items = searchResults.querySelectorAll('.search-result-item');
+                if (e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    if (items.length > 0) {
+                        activeIndex = Math.min(activeIndex + 1, items.length - 1);
+                        updateActive(items);
+                    }
+                } else if (e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    if (items.length > 0) {
+                        activeIndex = Math.max(activeIndex - 1, 0);
+                        updateActive(items);
+                    }
+                } else if (e.key === 'Enter') {
+                    if (activeIndex >= 0 && items.length > 0 && items[activeIndex]) {
+                        e.preventDefault();
+                        window.location.href = items[activeIndex].getAttribute('href');
+                    }
+                } else if (e.key === 'Escape') {
+                    searchResults.classList.remove('show');
+                    activeIndex = -1;
+                }
+            });
+
+            function updateActive(items) {
+                items.forEach(function(item, i) {
+                    if (i === activeIndex) {
+                        item.classList.add('active');
+                        item.scrollIntoView({ block: 'nearest' });
+                    } else {
+                        item.classList.remove('active');
+                    }
+                });
+            }
+
+            // 点击外部关闭搜索
+            document.addEventListener('click', function(e) {
+                if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
+                    searchResults.classList.remove('show');
+                    activeIndex = -1;
+                }
+            });
+
+            // 结果项悬停时激活
+            searchResults.addEventListener('mouseover', function(e) {
+                var item = e.target.closest('.search-result-item');
+                if (item) {
+                    var items = searchResults.querySelectorAll('.search-result-item');
+                    items.forEach(function(el, i) {
+                        el.classList.toggle('active', el === item);
+                    });
+                    activeIndex = parseInt(item.getAttribute('data-index'));
+                }
+            });
         })();
-        const SITE_SEARCH_BASE_URL = 'https://duckduckgo.com/?q=site:' + SITE_HOST + '+';
-        const SEARCH_LINK_CLEANUP_DELAY_MS = 100;
-
-        function handleSiteSearch(event) {
-            event.preventDefault();
-            const input = document.getElementById('searchInput');
-            const query = input ? input.value.trim() : '';
-            if (!query) return false;
-            const link = document.createElement('a');
-            link.href = SITE_SEARCH_BASE_URL + encodeURIComponent(query);
-            link.target = '_blank';
-            link.rel = 'noopener noreferrer';
-            document.body.appendChild(link);
-            link.click();
-            setTimeout(() => link.remove(), SEARCH_LINK_CLEANUP_DELAY_MS);
-            return false;
-        }
-
-        // 目录树展开/折叠
+    </script>
         function toggleTree(element) {
             const toggle = element.querySelector('.tree-toggle');
             const children = element.nextElementSibling;

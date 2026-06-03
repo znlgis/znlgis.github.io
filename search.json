@@ -1,0 +1,17 @@
+---
+layout: none
+permalink: /search.json
+---
+[
+{%- assign page_count = 0 -%}
+{%- for page in site.pages -%}
+  {%- if page.title and page.title != "" and page.name != "search.json" -%}
+    {%- if page_count > 0 -%},{%- endif -%}
+    {
+      "title": {{ page.title | jsonify }},
+      "url": {{ page.url | jsonify }}
+    }
+    {%- assign page_count = page_count | plus: 1 -%}
+  {%- endif -%}
+{%- endfor -%}
+]

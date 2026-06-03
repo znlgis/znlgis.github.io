@@ -420,7 +420,7 @@ GIS · CAD · C# · 3D · AI 开发与技术分享
 #### Lin.ear th.inking 博客（Martin Davis）
 JTS Topology Suite 创始人 Martin Davis 的技术博客翻译，涵盖计算几何和空间算法。
 
-- [博客目录](gis/lin-ear-th-inking/README)
+- [博客目录](gis/lin-ear-th-inking/)
 - [JTS Overlay - 下一代 (OverlayNG)](gis/lin-ear-th-inking/2020-JTS-Overlay-Next-Generation)
 - [JTS OverlayNG - 节点化策略](gis/lin-ear-th-inking/2020-JTS-OverlayNG-Noding-Strategies)
 - [JTS 中的 Alpha Shapes（凹包算法）](gis/lin-ear-th-inking/2023-Alpha-Shapes-in-JTS)

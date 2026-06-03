@@ -26,6 +26,7 @@ title: CAD 教程
 | [IFoxCAD 教程](IFoxCAD/) | 8章 | ⭐⭐⭐ | AutoCAD .NET 开发 |
 | [FY_Layout 教程](FY_Layout/) | 20章 | ⭐⭐⭐ | 场布设计平台 |
 | [LightCAD 教程](LightCAD/) | 20章 | ⭐⭐⭐ | Web CAD 框架 |
+| [LightningCAD 教程](LightningCAD/) | 11章 | ⭐⭐⭐ | 围护结构 CAD 设计 |
 | [Clipper2 教程](Clipper2/) | 6章 | ⭐⭐ | 多边形裁剪库 |
 | [Clipper1 教程](Clipper1/) | 6章 | ⭐⭐ | 多边形裁剪库 v1 |
 | [Chili3D 教程](chili3d/) | 7章 | ⭐⭐ | 轻量 3D 引擎 |
@@ -65,6 +66,7 @@ title: CAD 教程
 - [FY_Layout 教程](FY_Layout/)
 - [IFoxCAD 教程](IFoxCAD/)
 - [LightCAD 教程](LightCAD/)
+- [LightningCAD 教程](LightningCAD/)
 - [KiCad 教程](KiCad/)
 - [OCCT 教程](occt/)
 - [LibreCAD 教程](LibreCAD/)
