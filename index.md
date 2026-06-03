@@ -35,7 +35,7 @@ GIS · CAD · C# · 3D · AI 开发与技术分享
 
 <div style="border: 1px solid #e1e4e8; border-radius: 8px; padding: 1.2rem; background: #f8f9fa;">
 <h3 style="margin: 0 0 0.5rem;">🤖 AI 应用</h3>
-<p style="font-size: 0.85rem; color: #666; margin: 0 0 0.8rem;">Dify · OpenClaw · hermes-agent · superpowers-zh</p>
+<p style="font-size: 0.85rem; color: #666; margin: 0 0 0.8rem;">Dify · OpenClaw · hermes-agent · OpenCode</p>
 <a href="#ai-系列" style="font-size: 0.85rem;">浏览教程 →</a>
 </div>
 
@@ -69,7 +69,7 @@ GIS · CAD · C# · 3D · AI 开发与技术分享
 - **CAD 开发**：17 个系列，涵盖 FreeCAD、OCCT、KiCad、OpenSCAD 等
 - **3D 开发**：1 个系列，涵盖 SuperSplat 3D 高斯泼溅编辑器
 - **C# 开发**：7 个系列，涵盖 Admin.NET、Furion、NPOI、ReoGrid 等
-- **AI 系列**：5 个系列，涵盖 Dify、OpenClaw、hermes-agent 等
+- **AI 系列**：6 个系列，涵盖 Dify、OpenClaw、hermes-agent、OpenCode 等
 - **源码解读**：Clipper1 / Clipper2 C# 源码逐行分析
 - **博客翻译**：Martin Davis JTS 博客完整翻译 28 篇
 
@@ -870,6 +870,19 @@ JTS Topology Suite 创始人 Martin Davis 的技术博客翻译，涵盖计算�
 - [自动化、远程访问、日志与排障](ai/openclaw/10-自动化远程访问日志与排障)
 - [源码结构、开发调试与插件开发](ai/openclaw/11-源码结构开发调试与插件开发)
 - [学习路线、实战方案与最佳实践](ai/openclaw/12-学习路线实战方案与最佳实践)
+
+#### OpenCode 教程
+- [OpenCode 教程目录](ai/opencode/)
+- [项目概览与核心定位](ai/opencode/01-项目概览与核心定位)
+- [安装、环境准备与快速上手](ai/opencode/02-安装环境准备与快速上手)
+- [界面操作、会话管理与内置命令](ai/opencode/03-界面操作会话管理与内置命令)
+- [配置体系详解与优先级](ai/opencode/04-配置体系详解与优先级)
+- [模型与 Provider 接入配置](ai/opencode/05-模型与Provider接入配置)
+- [Agent 与子代理自定义](ai/opencode/06-Agent与子代理自定义)
+- [自定义命令、规则与上下文](ai/opencode/07-自定义命令规则与上下文)
+- [工具、权限与 MCP 扩展](ai/opencode/08-工具权限与MCP扩展)
+- [Token 优化与高效省钱配置](ai/opencode/09-Token优化与高效省钱配置)
+- [最佳实践、完整配置模板与排障](ai/opencode/10-最佳实践完整配置模板与排障)
 
 ### IoT 物联网
 
