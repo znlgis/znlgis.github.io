@@ -314,7 +314,7 @@
             background: #f6f8fa;
             font-weight: 600;
         }
-        tr:nth-child(even) td {
+        tbody tr:nth-child(even) td {
             background: #fafbfc;
         }
         img {
@@ -787,7 +787,7 @@
                 </header>
                 <main>
                     {% assign crumbs = page.url | remove: '/index.html' | split: '/' %}
-                    {% if crumbs.size > 2 %}
+                    {% if crumbs.size > 1 %}
                     <nav class="breadcrumb" aria-label="面包屑导航">
                         {% assign crumb_path = '' %}
                         <a href="{{ '/' | relative_url }}">首页</a>
