@@ -264,41 +264,129 @@
             border-radius: 3px;
             font-size: 0.9em;
             font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+            border: 1px solid #e1e4e8;
         }
         pre {
             background: var(--code-bg);
-            padding: 1rem;
-            border-radius: 5px;
+            padding: 1rem 1.2rem;
+            border-radius: 6px;
             overflow-x: auto;
-            margin: 1rem 0;
+            margin: 1.2rem 0;
+            border: 1px solid #e1e4e8;
+            line-height: 1.6;
         }
         pre code {
             background: none;
             padding: 0;
+            border: none;
+            font-size: 0.875em;
+        }
+        /* 代码语言标签 */
+        .highlight {
+            position: relative;
+        }
+        .highlight > pre {
+            padding-top: 1.8rem;
         }
         blockquote {
-            border-left: 3px solid var(--border-color);
-            padding-left: 1rem;
-            margin: 1rem 0;
-            color: #666;
+            border-left: 4px solid #0366d6;
+            padding: 0.6rem 1rem;
+            margin: 1.2rem 0;
+            color: #555;
+            background: #f6f8ff;
+            border-radius: 0 4px 4px 0;
+        }
+        blockquote p {
+            margin: 0;
         }
         table {
             width: 100%;
             border-collapse: collapse;
-            margin: 1rem 0;
+            margin: 1.2rem 0;
+            font-size: 0.9rem;
         }
         th, td {
-            border: 1px solid var(--border-color);
-            padding: 0.5rem;
+            border: 1px solid #dfe2e5;
+            padding: 0.5rem 0.75rem;
             text-align: left;
         }
         th {
-            background: var(--code-bg);
+            background: #f6f8fa;
+            font-weight: 600;
+        }
+        tr:nth-child(even) td {
+            background: #fafbfc;
         }
         img {
             max-width: 100%;
             height: auto;
+            border-radius: 4px;
+            display: block;
+            margin: 0.5rem auto;
         }
+        /* Rouge 代码高亮 (GitHub 风格) */
+        .highlight .hll { background-color: #ffffcc }
+        .highlight .c { color: #6a737d } /* Comment */
+        .highlight .err { color: #b31d28; background-color: #ffeef0 } /* Error */
+        .highlight .k { color: #d73a49 } /* Keyword */
+        .highlight .l { color: #005cc5 } /* Literal */
+        .highlight .n { color: #24292e } /* Name */
+        .highlight .o { color: #d73a49 } /* Operator */
+        .highlight .p { color: #24292e } /* Punctuation */
+        .highlight .cm { color: #6a737d } /* Comment.Multiline */
+        .highlight .cp { color: #d73a49 } /* Comment.Preproc */
+        .highlight .c1 { color: #6a737d } /* Comment.Single */
+        .highlight .cs { color: #6a737d } /* Comment.Special */
+        .highlight .gd { color: #b31d28; background-color: #ffeef0 } /* Generic.Deleted */
+        .highlight .ge { font-style: italic } /* Generic.Emph */
+        .highlight .gs { font-weight: bold } /* Generic.Strong */
+        .highlight .gi { color: #22863a; background-color: #f0fff4 } /* Generic.Inserted */
+        .highlight .kc { color: #005cc5 } /* Keyword.Constant */
+        .highlight .kd { color: #d73a49 } /* Keyword.Declaration */
+        .highlight .kn { color: #d73a49 } /* Keyword.Namespace */
+        .highlight .kp { color: #d73a49 } /* Keyword.Pseudo */
+        .highlight .kr { color: #d73a49 } /* Keyword.Reserved */
+        .highlight .kt { color: #005cc5 } /* Keyword.Type */
+        .highlight .ld { color: #032f62 } /* Literal.Date */
+        .highlight .m { color: #005cc5 } /* Literal.Number */
+        .highlight .s { color: #032f62 } /* Literal.String */
+        .highlight .na { color: #6f42c1 } /* Name.Attribute */
+        .highlight .nb { color: #005cc5 } /* Name.Builtin */
+        .highlight .nc { color: #6f42c1 } /* Name.Class */
+        .highlight .no { color: #005cc5 } /* Name.Constant */
+        .highlight .nd { color: #6f42c1 } /* Name.Decorator */
+        .highlight .ni { color: #24292e } /* Name.Entity */
+        .highlight .ne { color: #b31d28 } /* Name.Exception */
+        .highlight .nf { color: #6f42c1 } /* Name.Function */
+        .highlight .nl { color: #24292e } /* Name.Label */
+        .highlight .nn { color: #24292e } /* Name.Namespace */
+        .highlight .nx { color: #24292e } /* Name.Other */
+        .highlight .py { color: #005cc5 } /* Name.Property */
+        .highlight .nt { color: #22863a } /* Name.Tag */
+        .highlight .nv { color: #e36209 } /* Name.Variable */
+        .highlight .ow { color: #d73a49 } /* Operator.Word */
+        .highlight .w { color: #bbbbbb } /* Text.Whitespace */
+        .highlight .mb { color: #005cc5 } /* Literal.Number.Bin */
+        .highlight .mf { color: #005cc5 } /* Literal.Number.Float */
+        .highlight .mh { color: #005cc5 } /* Literal.Number.Hex */
+        .highlight .mi { color: #005cc5 } /* Literal.Number.Integer */
+        .highlight .mo { color: #005cc5 } /* Literal.Number.Oct */
+        .highlight .sb { color: #032f62 } /* Literal.String.Backtick */
+        .highlight .sc { color: #032f62 } /* Literal.String.Char */
+        .highlight .sd { color: #032f62 } /* Literal.String.Doc */
+        .highlight .s2 { color: #032f62 } /* Literal.String.Double */
+        .highlight .se { color: #032f62 } /* Literal.String.Escape */
+        .highlight .sh { color: #032f62 } /* Literal.String.Heredoc */
+        .highlight .si { color: #032f62 } /* Literal.String.Interpol */
+        .highlight .sx { color: #032f62 } /* Literal.String.Other */
+        .highlight .sr { color: #032f62 } /* Literal.String.Regex */
+        .highlight .s1 { color: #032f62 } /* Literal.String.Single */
+        .highlight .ss { color: #005cc5 } /* Literal.String.Symbol */
+        .highlight .bp { color: #005cc5 } /* Name.Builtin.Pseudo */
+        .highlight .vc { color: #e36209 } /* Name.Variable.Class */
+        .highlight .vg { color: #e36209 } /* Name.Variable.Global */
+        .highlight .vi { color: #e36209 } /* Name.Variable.Instance */
+        .highlight .il { color: #005cc5 } /* Literal.Number.Integer.Long */
         .post-meta {
             color: #666;
             font-size: 0.9rem;
@@ -424,7 +512,7 @@
         /* 响应式表格 */
         .table-wrapper {
             overflow-x: auto;
-            margin: 1rem 0;
+            margin: 1.2rem 0;
         }
         /* 代码块改进 */
         pre {
@@ -433,9 +521,19 @@
         pre code {
             display: block;
         }
-        /* 改进代码语言标签 */
-        .highlight {
-            position: relative;
+        /* 标题锚点 */
+        .heading-anchor {
+            opacity: 0;
+            font-size: 0.8em;
+            margin-left: 0.4rem;
+            color: #999;
+            text-decoration: none;
+            transition: opacity 0.2s;
+        }
+        h2:hover .heading-anchor,
+        h3:hover .heading-anchor,
+        h4:hover .heading-anchor {
+            opacity: 1;
         }
         /* 响应式设计 */
         @media (max-width: 900px) {
@@ -688,6 +786,24 @@
                     </nav>
                 </header>
                 <main>
+                    {% assign crumbs = page.url | remove: '/index.html' | split: '/' %}
+                    {% if crumbs.size > 2 %}
+                    <nav class="breadcrumb" aria-label="面包屑导航">
+                        {% assign crumb_path = '' %}
+                        <a href="{{ '/' | relative_url }}">首页</a>
+                        {% for crumb in crumbs offset: 1 %}
+                            {% if forloop.last %}
+                                <span>›</span> <span>{{ page.title | default: crumb }}</span>
+                            {% else %}
+                                {% assign crumb_path = crumb_path | append: '/' | append: crumb %}
+                                <span>›</span> <a href="{{ crumb_path | relative_url }}">{{ crumb }}</a>
+                            {% endif %}
+                        {% endfor %}
+                    </nav>
+                    {% endif %}
+                    {% if page.date %}
+                    <p class="post-meta">{{ page.date | date: "%Y年%m月%d日" }}</p>
+                    {% endif %}
                     {{ content }}
                 </main>
                 <footer>
@@ -884,6 +1000,7 @@
             });
         })();
     </script>
+    <script>
         function toggleTree(element) {
             const toggle = element.querySelector('.tree-toggle');
             const children = element.nextElementSibling;
@@ -927,6 +1044,19 @@
                     wrapper.className = 'table-wrapper';
                     table.parentNode.insertBefore(wrapper, table);
                     wrapper.appendChild(table);
+                }
+            });
+
+            // 为标题添加锚点链接
+            const headings = document.querySelectorAll('main h2, main h3, main h4');
+            headings.forEach(heading => {
+                if (heading.id) {
+                    const anchor = document.createElement('a');
+                    anchor.className = 'heading-anchor';
+                    anchor.href = '#' + heading.id;
+                    anchor.textContent = '#';
+                    anchor.setAttribute('aria-hidden', 'true');
+                    heading.appendChild(anchor);
                 }
             });
             
