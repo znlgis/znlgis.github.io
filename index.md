@@ -72,6 +72,7 @@ GIS · CAD · C# · 3D · AI 开发与技术分享
 - **AI 系列**：6 个系列，涵盖 Dify、OpenClaw、hermes-agent、OpenCode 等
 - **源码解读**：Clipper1 / Clipper2 C# 源码逐行分析
 - **博客翻译**：Martin Davis JTS 博客完整翻译 28 篇
+- **其他教程**：Go 语言、RuoYi-Cloud、BillionMail、acme.sh 等系列
 
 所有教程均包含详细代码示例、架构图和实战案例。
 
@@ -910,6 +911,26 @@ JTS Topology Suite 创始人 Martin Davis 的技术博客翻译，涵盖计算�
 - [高级功能与性能优化](others/BillionMail/第08章-高级功能与性能优化)
 - [运维监控与故障排除](others/BillionMail/第09章-运维监控与故障排除)
 - [实战案例与最佳实践](others/BillionMail/第10章-实战案例与最佳实践)
+
+#### Go 语言学习与开发教程
+- [Go语言概述与发展历史](others/go/第01章-Go语言概述与发展历史)
+- [环境搭建与工具链](others/go/第02章-环境搭建与工具链)
+- [基础语法与数据类型](others/go/第03章-基础语法与数据类型)
+- [流程控制与函数](others/go/第04章-流程控制与函数)
+- [复合数据类型](others/go/第05章-复合数据类型)
+- [方法与接口](others/go/第06章-方法与接口)
+- [错误处理机制](others/go/第07章-错误处理机制)
+- [并发编程：Goroutine与Channel](others/go/第08章-并发编程-Goroutine与Channel)
+- [并发进阶：sync包与并发控制](others/go/第09章-并发进阶-sync包与并发控制)
+- [包管理与Go Modules](others/go/第10章-包管理与Go-Modules)
+- [标准库详解](others/go/第11章-标准库详解)
+- [测试、基准测试与性能分析](others/go/第12章-测试、基准测试与性能分析)
+- [反射与泛型](others/go/第13章-反射与泛型)
+- [内存管理与运行时](others/go/第14章-内存管理与运行时)
+- [Web开发与net/http](others/go/第15章-Web开发与net-http)
+- [数据库编程](others/go/第16章-数据库编程)
+- [工程化与项目实战](others/go/第17章-工程化与项目实战)
+- [最佳实践与常见陷阱](others/go/第18章-最佳实践与常见陷阱)
 
 #### RuoYi-Cloud 微服务框架教程
 - [RuoYi-Cloud概述与入门](others/RuoYi-Cloud/第01章-RuoYi-Cloud概述与入门)
