@@ -15,6 +15,7 @@ title: 其他教程
 |----------|:------:|:----:|----------|
 | [acme.sh](acme.sh/) | 10章 | ⭐⭐ | SSL证书自动化 |
 | [BillionMail](BillionMail/) | 10章 | ⭐⭐ | 邮件营销系统 |
+| [Go 语言](go/) | 18章 | ⭐⭐ | Go 语言学习与开发 |
 | [RuoYi-Cloud](RuoYi-Cloud/) | 15章 | ⭐⭐⭐ | Java 微服务框架 |
 
 ---
@@ -23,4 +24,5 @@ title: 其他教程
 
 - [acme.sh 教程](acme.sh/)
 - [BillionMail 教程](BillionMail/)
+- [Go 语言教程](go/)
 - [RuoYi-Cloud 教程](RuoYi-Cloud/)
