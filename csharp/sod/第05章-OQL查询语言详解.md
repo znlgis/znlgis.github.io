@@ -1,0 +1,660 @@
+---
+layout: default
+title: 第五章：OQL查询语言详解
+---
+
+# 第五章：OQL查询语言详解
+
+## 5.1 OQL概述
+
+### 5.1.1 什么是OQL
+
+OQL（ORM Query Language）是SOD框架独创的ORM查询语言，它的设计目标是：
+
+1. **接近SQL语法**：让熟悉SQL的开发者无缝上手
+2. **类型安全**：在编译期发现错误，而不是运行时
+3. **数据库无关**：一套代码适配多种数据库
+4. **链式调用**：流畅的API设计，代码更易读
+
+### 5.1.2 OQL vs LINQ
+
+| 特性 | OQL | LINQ |
+|------|-----|------|
+| 语法风格 | 类SQL | 函数式/查询式 |
+| 学习曲线 | 低（熟悉SQL即可） | 中等 |
+| 延迟执行 | 调用ToList时执行 | 延迟执行 |
+| SQL可控性 | 高 | 中等 |
+| 表达式能力 | 基础 | 强大 |
+| 编译时检查 | 支持 | 支持 |
+
+### 5.1.3 OQL的组成
+
+```
+OQL对象 = From子句 + [Join子句] + Select子句 + [Where子句] + [GroupBy子句] + [Having子句] + [OrderBy子句]
+```
+
+## 5.2 OQL基本语法
+
+### 5.2.1 From子句
+
+```csharp
+// 创建实体对象
+UserEntity user = new UserEntity();
+
+// From是OQL的起点
+var oql = OQL.From(user)  // 指定查询的实体
+    .Select()              // SELECT *
+    .END;                  // 结束构建
+
+// 多实体From（用于联合查询）
+OrderEntity order = new OrderEntity();
+var oql2 = OQL.From(order, user)
+    .Select()
+    .END;
+```
+
+### 5.2.2 Select子句
+
+```csharp
+UserEntity user = new UserEntity();
+
+// SELECT * (查询所有字段)
+var oql1 = OQL.From(user)
+    .Select()
+    .END;
+
+// 选择特定字段
+var oql2 = OQL.From(user)
+    .Select(user.ID, user.Name, user.Email)
+    .END;
+
+// 使用数组形式
+var oql3 = OQL.From(user)
+    .Select(new object[] { user.ID, user.Name })
+    .END;
+```
+
+### 5.2.3 Where子句基础
+
+```csharp
+UserEntity user = new UserEntity();
+user.Status = 1;
+
+// 方式1：使用实体属性值作为条件
+var oql1 = OQL.From(user)
+    .Select()
+    .Where(user.Status)  // WHERE Status = 1
+    .END;
+
+// 方式2：多个条件（AND关系）
+user.Name = "张三";
+var oql2 = OQL.From(user)
+    .Select()
+    .Where(user.Status, user.Name)  // WHERE Status=1 AND Name='张三'
+    .END;
+```
+
+### 5.2.4 OrderBy子句
+
+```csharp
+UserEntity user = new UserEntity();
+
+// 升序
+var oql1 = OQL.From(user)
+    .Select()
+    .OrderBy(user.ID)  // ORDER BY ID ASC
+    .END;
+
+// 降序
+var oql2 = OQL.From(user)
+    .Select()
+    .OrderBy(user.ID, "desc")  // ORDER BY ID DESC
+    .END;
+
+// 多字段排序
+var oql3 = OQL.From(user)
+    .Select()
+    .OrderBy(order => order.Asc(user.Status).Desc(user.CreateTime))
+    .END;
+// ORDER BY Status ASC, CreateTime DESC
+
+// 使用Lambda表达式
+var oql4 = OQL.From(user)
+    .Select()
+    .OrderBy(o => o.Desc(user.ID))
+    .END;
+```
+
+### 5.2.5 END属性
+
+```csharp
+// END是必须的，表示OQL构建完成
+var oql = OQL.From(user)
+    .Select()
+    .Where(user.ID)
+    .OrderBy(user.Name)
+    .END;  // 返回OQL对象
+
+// END之后可以调用其他方法
+oql.Limit(10, 1);  // 分页
+oql.TopCount = 5;  // TOP N
+```
+
+## 5.3 条件表达式（OQLCompare）
+
+### 5.3.1 使用Lambda表达式构建条件
+
+```csharp
+UserEntity user = new UserEntity();
+
+// 基本比较
+var oql = OQL.From(user)
+    .Select()
+    .Where(cmp => cmp.Property(user.Name) == "张三")
+    .END;
+
+// 多个条件
+var oql2 = OQL.From(user)
+    .Select()
+    .Where(cmp => cmp.Property(user.Status) == 1 & 
+                  cmp.Property(user.Age) >= 18)
+    .END;
+```
+
+### 5.3.2 比较运算符
+
+```csharp
+// 等于
+cmp.Property(user.Name) == "张三"
+cmp.EqualValue(user.Name)  // 使用实体属性当前值
+
+// 不等于
+cmp.Property(user.Status) != 0
+
+// 大于、小于
+cmp.Property(user.Age) > 18
+cmp.Property(user.Age) < 60
+cmp.Property(user.Age) >= 18
+cmp.Property(user.Age) <= 60
+
+// LIKE模糊查询
+cmp.Comparer(user.Name, "like", "张%")      // 以"张"开头
+cmp.Comparer(user.Name, "like", "%三")      // 以"三"结尾
+cmp.Comparer(user.Name, "like", "%小%")     // 包含"小"
+
+// IS NULL / IS NOT NULL
+cmp.IsNull(user.Email)
+cmp.IsNotNull(user.Email)
+
+// IN查询
+cmp.In(user.Status, new int[] { 1, 2, 3 })
+
+// BETWEEN
+cmp.Between(user.Age, 18, 60)
+```
+
+### 5.3.3 逻辑运算符
+
+```csharp
+// AND条件（使用 &）
+cmp.Property(user.Status) == 1 & cmp.Property(user.Age) >= 18
+
+// OR条件（使用 |）
+cmp.Property(user.Status) == 1 | cmp.Property(user.Status) == 2
+
+// 复杂条件组合
+(cmp.Property(user.Status) == 1 | cmp.Property(user.Status) == 2) 
+& cmp.Property(user.Age) >= 18
+
+// 嵌套条件
+var oql = OQL.From(user)
+    .Select()
+    .Where(cmp => 
+        cmp.Property(user.Name) == "张三" 
+        | (cmp.Property(user.Age) >= 18 & cmp.Property(user.Status) == 1))
+    .END;
+// WHERE Name='张三' OR (Age>=18 AND Status=1)
+```
+
+### 5.3.4 Comparer方法详解
+
+```csharp
+// Comparer方法签名
+cmp.Comparer(object propertyValue, string compareSymbol, object value)
+
+// 使用示例
+cmp.Comparer(user.Name, "=", "张三")
+cmp.Comparer(user.Age, ">", 18)
+cmp.Comparer(user.Name, "like", "张%")
+cmp.Comparer(user.Status, "in", new int[]{1,2,3})
+cmp.Comparer(user.Email, "is", null)
+cmp.Comparer(user.Email, "is not", null)
+```
+
+### 5.3.5 动态条件构建
+
+```csharp
+public List<UserEntity> SearchUsers(string name, int? status, int? minAge)
+{
+    UserEntity user = new UserEntity();
+    
+    var oql = OQL.From(user)
+        .Select()
+        .Where(cmp =>
+        {
+            // 动态构建条件
+            OQLCompare condition = cmp.Property(user.ID) > 0;  // 默认条件
+            
+            if (!string.IsNullOrEmpty(name))
+            {
+                condition = condition & cmp.Comparer(user.Name, "like", $"%{name}%");
+            }
+            
+            if (status.HasValue)
+            {
+                condition = condition & cmp.Property(user.Status) == status.Value;
+            }
+            
+            if (minAge.HasValue)
+            {
+                condition = condition & cmp.Property(user.Age) >= minAge.Value;
+            }
+            
+            return condition;
+        })
+        .OrderBy(user.ID)
+        .END;
+    
+    return EntityQuery<UserEntity>.QueryList(oql);
+}
+```
+
+## 5.4 分页查询
+
+### 5.4.1 Limit方法
+
+```csharp
+UserEntity user = new UserEntity();
+
+var oql = OQL.From(user)
+    .Select()
+    .OrderBy(user.ID)  // 分页通常需要排序
+    .END;
+
+// 基本分页：Limit(每页记录数, 页码)
+oql.Limit(10, 1);  // 第1页，每页10条
+oql.Limit(10, 2);  // 第2页，每页10条
+
+var users = EntityQuery<UserEntity>.QueryList(oql);
+```
+
+### 5.4.2 获取总记录数
+
+```csharp
+var oql = OQL.From(user)
+    .Select()
+    .Where(cmp => cmp.Property(user.Status) == 1)
+    .OrderBy(user.ID)
+    .END;
+
+// 第三个参数为true，表示同时计算总记录数
+oql.Limit(10, 1, true);
+
+var users = EntityQuery<UserEntity>.QueryList(oql);
+
+// 获取总记录数
+int totalCount = oql.PageWithAllRecordCount;
+```
+
+### 5.4.3 传入已知总数
+
+```csharp
+// 首次查询获取总数
+var oql = OQL.From(user).Select().OrderBy(user.ID).END;
+oql.Limit(10, 1, true);
+var users1 = EntityQuery<UserEntity>.QueryList(oql);
+int totalCount = oql.PageWithAllRecordCount;
+
+// 后续查询传入已知总数，提高性能
+var oql2 = OQL.From(user).Select().OrderBy(user.ID).END;
+oql2.Limit(10, 2, totalCount);  // 第2页，传入已知总数
+var users2 = EntityQuery<UserEntity>.QueryList(oql2);
+```
+
+### 5.4.4 Top N查询
+
+```csharp
+var oql = OQL.From(user)
+    .Select()
+    .OrderBy(o => o.Desc(user.CreateTime))
+    .END;
+
+oql.TopCount = 10;  // 只取前10条
+
+var topUsers = EntityQuery<UserEntity>.QueryList(oql);
+```
+
+## 5.5 关联查询
+
+### 5.5.1 InnerJoin
+
+```csharp
+OrderEntity order = new OrderEntity();
+UserEntity user = new UserEntity();
+
+var oql = OQL.From(order)
+    .InnerJoin(user).On(order.UserId, user.ID)
+    .Select()
+    .Where(cmp => cmp.Property(order.Status) == 1)
+    .END;
+
+// 使用EntityContainer映射结果
+EntityContainer ec = new EntityContainer(oql);
+var list = ec.MapToList(() => new {
+    OrderId = order.ID,
+    OrderNo = order.OrderNo,
+    UserName = user.Name
+});
+```
+
+### 5.5.2 LeftJoin
+
+```csharp
+OrderEntity order = new OrderEntity();
+UserEntity user = new UserEntity();
+
+var oql = OQL.From(order)
+    .LeftJoin(user).On(order.UserId, user.ID)
+    .Select()
+    .END;
+
+// 左连接时，user可能为null
+```
+
+### 5.5.3 多表关联
+
+```csharp
+OrderEntity order = new OrderEntity();
+UserEntity user = new UserEntity();
+ProductEntity product = new ProductEntity();
+
+var oql = OQL.From(order)
+    .InnerJoin(user).On(order.UserId, user.ID)
+    .InnerJoin(product).On(order.ProductId, product.ID)
+    .Select()
+    .Where(cmp => cmp.Property(order.Status) == 1)
+    .OrderBy(o => o.Desc(order.CreateTime))
+    .END;
+
+EntityContainer ec = new EntityContainer(oql);
+var list = ec.MapToList(() => new OrderDetailDto {
+    OrderId = order.ID,
+    OrderNo = order.OrderNo,
+    UserName = user.Name,
+    ProductName = product.Name,
+    Price = order.Price
+});
+```
+
+### 5.5.4 子查询
+
+```csharp
+// 查询有订单的用户
+UserEntity user = new UserEntity();
+OrderEntity order = new OrderEntity();
+
+var subOql = OQL.From(order)
+    .Select(order.UserId)
+    .Where(cmp => cmp.Property(order.Status) == 1)
+    .END;
+
+var oql = OQL.From(user)
+    .Select()
+    .Where(cmp => cmp.In(user.ID, subOql))  // IN子查询
+    .END;
+```
+
+## 5.6 聚合查询
+
+### 5.6.1 Count查询
+
+```csharp
+UserEntity user = new UserEntity();
+
+var oql = OQL.From(user)
+    .Select(OQL.Count)
+    .Where(cmp => cmp.Property(user.Status) == 1)
+    .END;
+
+// 方式1：使用ExecuteScalar
+AdoHelper db = MyDB.GetDBHelper();
+int count = Convert.ToInt32(db.ExecuteScalar(oql.ToString(), oql.Parameters));
+
+// 方式2：使用EntityContainer
+EntityContainer ec = new EntityContainer(oql);
+var result = ec.MapToScalar<int>();
+```
+
+### 5.6.2 GroupBy分组
+
+```csharp
+OrderEntity order = new OrderEntity();
+
+var oql = OQL.From(order)
+    .Select(order.Status, OQL.Count)
+    .GroupBy(order.Status)
+    .END;
+
+EntityContainer ec = new EntityContainer(oql);
+var groups = ec.MapToList(() => new {
+    Status = order.Status,
+    Count = 0  // 将被实际值替换
+});
+```
+
+### 5.6.3 Having子句
+
+```csharp
+OrderEntity order = new OrderEntity();
+
+var oql = OQL.From(order)
+    .Select(order.UserId, OQL.Sum(order.Price))
+    .GroupBy(order.UserId)
+    .Having(cmp => cmp.Comparer(OQL.Sum(order.Price), ">", 1000))
+    .END;
+
+// SELECT UserId, SUM(Price) FROM Order GROUP BY UserId HAVING SUM(Price) > 1000
+```
+
+## 5.7 更新与删除
+
+### 5.7.1 OQL批量更新
+
+```csharp
+UserEntity user = new UserEntity();
+user.Status = 0;  // 设置要更新的值
+
+var oql = OQL.From(user)
+    .Update(user.Status)  // 指定更新的字段
+    .Where(cmp => cmp.Property(user.LastLoginTime) < DateTime.Now.AddDays(-30))
+    .END;
+
+int affected = EntityQuery<UserEntity>.ExecuteOql(oql);
+// UPDATE TbUser SET Status=0 WHERE LastLoginTime < '2024-01-01'
+```
+
+### 5.7.2 更新多个字段
+
+```csharp
+UserEntity user = new UserEntity();
+user.Status = 0;
+user.UpdateTime = DateTime.Now;
+
+var oql = OQL.From(user)
+    .Update(user.Status, user.UpdateTime)  // 更新多个字段
+    .Where(cmp => cmp.Property(user.ID) == 100)
+    .END;
+
+int affected = EntityQuery<UserEntity>.ExecuteOql(oql);
+```
+
+### 5.7.3 OQL删除
+
+```csharp
+UserEntity user = new UserEntity();
+
+var oql = OQL.From(user)
+    .Delete()
+    .Where(cmp => cmp.Property(user.Status) == 0 
+                & cmp.Property(user.CreateTime) < DateTime.Now.AddYears(-1))
+    .END;
+
+int affected = EntityQuery<UserEntity>.ExecuteOql(oql);
+// DELETE FROM TbUser WHERE Status=0 AND CreateTime < '2023-01-01'
+```
+
+## 5.8 GOQL泛型查询
+
+### 5.8.1 GOQL基本用法
+
+```csharp
+using PWMIS.Core.Extensions;
+
+// 无需创建实体对象
+var users = OQL.FromObject<UserEntity>()
+    .Select()
+    .Where((cmp, u) => cmp.Property(u.Status) == 1)
+    .OrderBy((o, u) => o.Desc(u.ID))
+    .Limit(10, 1)
+    .ToList();
+```
+
+### 5.8.2 GOQL与接口类型
+
+```csharp
+// 使用接口类型查询
+var users = OQL.FromObject<IUser>()
+    .Select()
+    .Where((cmp, u) => cmp.Property(u.Name) == "张三")
+    .ToList();
+
+// 指定表名
+var users2 = OQL.FromObject<IUser>("CustomUserTable")
+    .Select()
+    .ToList();
+```
+
+### 5.8.3 GOQL链式调用
+
+```csharp
+// 完整的链式调用
+var result = OQL.FromObject<UserEntity>()
+    .Select(s => new object[] { s.ID, s.Name, s.Email })
+    .Where((cmp, u) => cmp.Property(u.Status) == 1 
+                     & cmp.Comparer(u.Name, "like", "张%"))
+    .OrderBy((o, u) => o.Asc(u.Name))
+    .Limit(20, 1, true)
+    .ToList();
+```
+
+## 5.9 OQL调试与优化
+
+### 5.9.1 查看生成的SQL
+
+```csharp
+var oql = OQL.From(user)
+    .Select()
+    .Where(user.Status)
+    .END;
+
+// 输出SQL语句
+Console.WriteLine(oql.ToString());
+
+// 输出参数信息
+Console.WriteLine(oql.PrintParameterInfo());
+```
+
+### 5.9.2 使用查询日志
+
+```csharp
+// 开启查询日志
+PWMIS.DataProvider.Data.CommandLog.Instance.Enabled = true;
+PWMIS.DataProvider.Data.CommandLog.Instance.LogFile = "query.log";
+
+// 执行查询
+var users = EntityQuery<UserEntity>.QueryList(oql);
+
+// 日志会记录所有执行的SQL和参数
+```
+
+### 5.9.3 性能优化建议
+
+1. **只查询需要的字段**
+```csharp
+// 推荐：只查询需要的字段
+var oql = OQL.From(user)
+    .Select(user.ID, user.Name)  // 不要 Select() 全选
+    .END;
+```
+
+2. **合理使用分页**
+```csharp
+// 推荐：使用分页避免一次加载过多数据
+oql.Limit(100, 1);
+```
+
+3. **利用索引**
+```csharp
+// 确保WHERE条件中的字段有索引
+var oql = OQL.From(user)
+    .Select()
+    .Where(user.ID)  // ID是主键，有索引
+    .END;
+```
+
+4. **避免在循环中查询**
+```csharp
+// 不推荐
+foreach(var id in ids)
+{
+    var user = GetUser(id);  // N次查询
+}
+
+// 推荐：批量查询
+var oql = OQL.From(user)
+    .Select()
+    .Where(cmp => cmp.In(user.ID, ids))
+    .END;
+var users = EntityQuery<UserEntity>.QueryList(oql);
+```
+
+## 5.10 本章小结
+
+本章详细介绍了OQL查询语言的各个方面：
+
+1. **基本语法**：From、Select、Where、OrderBy、END
+2. **条件表达式**：OQLCompare的使用，比较和逻辑运算符
+3. **分页查询**：Limit方法，获取总记录数
+4. **关联查询**：InnerJoin、LeftJoin、多表关联
+5. **聚合查询**：Count、GroupBy、Having
+6. **更新删除**：使用OQL进行批量更新和删除
+7. **GOQL**：泛型OQL的简化用法
+8. **调试优化**：查看SQL、查询日志、性能优化
+
+OQL是SOD框架的核心特性之一，熟练掌握OQL可以让你高效地进行各种数据查询操作。
+
+---
+
+> **下一章预告**：第六章将深入讲解SQL-MAP技术，包括XML配置、参数化查询、DAL代码生成等内容。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="第04章-实体类与ORM映射" style="text-decoration: none;">← 上一章</a>
+  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="第06章-SQL-MAP技术深入" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

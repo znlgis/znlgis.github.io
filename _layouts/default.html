@@ -1,11 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="{{ site.lang | default: "zh-CN" }}">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
-    <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
-    <meta name="author" content="{{ site.author }}">
     <meta name="keywords" content="{% if page.keywords %}{{ page.keywords }}{% else %}GIS,GDAL,GeoServer,PostGIS,C#,.NET,地理信息系统,空间数据,教程{% endif %}">
     
     {% seo title=false %}
@@ -37,6 +35,24 @@
             line-height: 1.8;
             color: var(--text-color);
             background: var(--bg-color);
+        }
+        @font-face {
+            font-family: 'Noto Sans SC';
+            font-display: swap;
+        }
+        .skip-link {
+            position: absolute;
+            top: -100px;
+            left: 0;
+            background: var(--link-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            z-index: 9999;
+            text-decoration: none;
+            border-radius: 0 0 4px 0;
+        }
+        .skip-link:focus {
+            top: 0;
         }
         /* 页面布局容器 */
         .page-wrapper {
@@ -575,6 +591,7 @@
     </style>
 </head>
 <body>
+    <a href="#main-content" class="skip-link">跳转到主要内容</a>
     <div class="page-wrapper">
         <!-- 左侧目录树 -->
         <aside class="sidebar" id="sidebar" role="navigation" aria-label="教程目录导航">
@@ -589,184 +606,7 @@
                 </form>
                 <div class="search-results" id="searchResults"></div>
             </div>
-            <ul class="dir-tree">
-                <!-- GIS 教程 -->
-                <li>
-                    <button class="tree-item" onclick="toggleTree(this)" aria-expanded="false" aria-label="展开/折叠 GIS 教程">
-                        <span class="tree-toggle">▶</span>
-                        <span class="tree-icon">🌍</span>
-                        <span class="tree-label">GIS 教程</span>
-                    </button>
-                    <ul class="tree-children">
-                        <li><a class="tree-item" href="{{ '/gis/tutorial/gdal/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">GDAL 教程</span></a></li>
-                        <li><a class="tree-item" href="{{ '/gis/tutorial/geoserver/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">GeoServer 教程</span></a></li>
-                        <li><a class="tree-item" href="{{ '/gis/tutorial/geoserver-rest-api/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">GeoServer REST API</span></a></li>
-                        <li><a class="tree-item" href="{{ '/gis/tutorial/cesium/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">CesiumJS 教程</span></a></li>
-                        <li><a class="tree-item" href="{{ '/gis/tutorial/geotools/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">GeoTools 教程</span></a></li>
-                        <li><a class="tree-item" href="{{ '/gis/tutorial/qgis/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">QGIS 教程</span></a></li>
-                        <li><a class="tree-item" href="{{ '/gis/tutorial/postgis/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">PostGIS 教程</span></a></li>
-                        <li><a class="tree-item" href="{{ '/gis/tutorial/geoserver-cloud/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">GeoServer Cloud</span></a></li>
-                        <li><a class="tree-item" href="{{ '/gis/tutorial/opengis-utils-for-java/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">OpenGIS Utils Java</span></a></li>
-                        <li><a class="tree-item" href="{{ '/gis/tutorial/opengis-utils-for-net/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">OpenGIS Utils .NET</span></a></li>
-                        <li><a class="tree-item" href="{{ '/gis/tutorial/geometry-api-java/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">Geometry API Java</span></a></li>
-                        <li><a class="tree-item" href="{{ '/gis/tutorial/geometry-api-net/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">Geometry API .NET</span></a></li>
-                        <li><a class="tree-item" href="{{ '/gis/tutorial/NetTopologySuite/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">NetTopologySuite</span></a></li>
-                        <li><a class="tree-item" href="{{ '/gis/tutorial/SharpMap/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">SharpMap</span></a></li>
-                        <li><a class="tree-item" href="{{ '/gis/tutorial/Mapsui/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">Mapsui</span></a></li>
-                        <li><a class="tree-item" href="{{ '/gis/tutorial/openlayers/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">OpenLayers</span></a></li>
-                        <li><a class="tree-item" href="{{ '/gis/tutorial/GeoPipeAgent/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">GeoPipeAgent</span></a></li>
-                        <li><a class="tree-item" href="{{ '/gis/tutorial/geopandas/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">GeoPandas</span></a></li>
-                        <li><a class="tree-item" href="{{ '/gis/tutorial/shapely/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">Shapely</span></a></li>
-                    </ul>
-                </li>
-                <!-- GIS 基础 -->
-                <li>
-                    <button class="tree-item" onclick="toggleTree(this)" aria-expanded="false" aria-label="展开/折叠 GIS 基础">
-                        <span class="tree-toggle">▶</span>
-                        <span class="tree-icon">📖</span>
-                        <span class="tree-label">GIS 基础</span>
-                    </button>
-                    <ul class="tree-children">
-                        <li><a class="tree-item" href="{{ '/gis/basic/data/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">数据格式</span></a></li>
-                        <li><a class="tree-item" href="{{ '/gis/basic/services/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">地图服务</span></a></li>
-                        <li><a class="tree-item" href="{{ '/gis/basic/env/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">开发环境</span></a></li>
-                        <li><a class="tree-item" href="{{ '/gis/basic/dev/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">开发技巧</span></a></li>
-                    </ul>
-                </li>
-                <!-- 技术博客翻译 -->
-                <li>
-                    <button class="tree-item" onclick="toggleTree(this)" aria-expanded="false" aria-label="展开/折叠 博客翻译">
-                        <span class="tree-toggle">▶</span>
-                        <span class="tree-icon">📝</span>
-                        <span class="tree-label">博客翻译</span>
-                    </button>
-                    <ul class="tree-children">
-                        <li><a class="tree-item" href="{{ '/gis/lin-ear-th-inking/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">Lin.ear th.inking</span></a></li>
-                    </ul>
-                </li>
-                <!-- CAD 开发 -->
-                <li>
-                    <button class="tree-item" onclick="toggleTree(this)" aria-expanded="false" aria-label="展开/折叠 CAD 开发">
-                        <span class="tree-toggle">▶</span>
-                        <span class="tree-icon">📐</span>
-                        <span class="tree-label">CAD 开发</span>
-                    </button>
-                    <ul class="tree-children">
-                        <li><a class="tree-item" href="{{ '/cad/IFoxCAD/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">IFoxCAD</span></a></li>
-                        <li><a class="tree-item" href="{{ '/cad/FY_Layout/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">FY_Layout</span></a></li>
-                        <li><a class="tree-item" href="{{ '/cad/LightCAD/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">LightCAD</span></a></li>
-                        <li><a class="tree-item" href="{{ '/cad/LightningCAD/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">LightningCAD</span></a></li>
-                        <li><a class="tree-item" href="{{ '/cad/Clipper2/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">Clipper2</span></a></li>
-                        <li><a class="tree-item" href="{{ '/cad/Clipper1/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">Clipper1</span></a></li>
-                        <li><a class="tree-item" href="{{ '/cad/chili3d/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">Chili3D</span></a></li>
-                        <li><a class="tree-item" href="{{ '/cad/libredwg/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">LibreDWG</span></a></li>
-                        <li><a class="tree-item" href="{{ '/cad/qcad/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">QCAD</span></a></li>
-                        <li><a class="tree-item" href="{{ '/cad/Astral3D/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">Astral3D</span></a></li>
-                        <li><a class="tree-item" href="{{ '/cad/KiCad/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">KiCad</span></a></li>
-                        <li><a class="tree-item" href="{{ '/cad/solvespace/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">SolveSpace</span></a></li>
-                        <li><a class="tree-item" href="{{ '/cad/cadquery/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">CadQuery</span></a></li>
-                        <li><a class="tree-item" href="{{ '/cad/LibreCAD/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">LibreCAD</span></a></li>
-                        <li><a class="tree-item" href="{{ '/cad/FreeCAD/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">FreeCAD</span></a></li>
-                        <li><a class="tree-item" href="{{ '/cad/occt/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">OCCT</span></a></li>
-                        <li><a class="tree-item" href="{{ '/cad/openscad/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">OpenSCAD</span></a></li>
-                        <li><a class="tree-item" href="{{ '/cad/Xbim/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">Xbim</span></a></li>
-                    </ul>
-                </li>
-                <!-- 3D 开发 -->
-                <li>
-                    <button class="tree-item" onclick="toggleTree(this)" aria-expanded="false" aria-label="展开/折叠 3D 开发">
-                        <span class="tree-toggle">▶</span>
-                        <span class="tree-icon">🧊</span>
-                        <span class="tree-label">3D 开发</span>
-                    </button>
-                    <ul class="tree-children">
-                        <li><a class="tree-item" href="{{ '/3d/supersplat/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">SuperSplat</span></a></li>
-                    </ul>
-                </li>
-                <!-- C# 开发 -->
-                <li>
-                    <button class="tree-item" onclick="toggleTree(this)" aria-expanded="false" aria-label="展开/折叠 C# 开发">
-                        <span class="tree-toggle">▶</span>
-                        <span class="tree-icon">💻</span>
-                        <span class="tree-label">C# 开发</span>
-                    </button>
-                    <ul class="tree-children">
-                        <li><a class="tree-item" href="{{ '/csharp/Admin.NET/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">Admin.NET</span></a></li>
-                        <li><a class="tree-item" href="{{ '/csharp/Furion/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">Furion</span></a></li>
-                        <li><a class="tree-item" href="{{ '/csharp/sod/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">SOD 框架</span></a></li>
-                        <li><a class="tree-item" href="{{ '/csharp/dotnet-reactor/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">.NET Reactor</span></a></li>
-                        <li><a class="tree-item" href="{{ '/csharp/npoi/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">NPOI</span></a></li>
-                        <li><a class="tree-item" href="{{ '/csharp/ReoGrid/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">ReoGrid</span></a></li>
-                        <li><a class="tree-item" href="{{ '/csharp/SqlSugar/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">SqlSugar</span></a></li>
-                    </ul>
-                </li>
-                <!-- AI 系列 -->
-                <li>
-                    <button class="tree-item" onclick="toggleTree(this)" aria-expanded="false" aria-label="展开/折叠 AI 系列">
-                        <span class="tree-toggle">▶</span>
-                        <span class="tree-icon">🤖</span>
-                        <span class="tree-label">AI 系列</span>
-                    </button>
-                    <ul class="tree-children">
-                        <li><a class="tree-item" href="{{ '/ai/dify/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">Dify 平台</span></a></li>
-                        <li><a class="tree-item" href="{{ '/ai/oh-my-openagent/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">oh-my-openagent</span></a></li>
-                        <li><a class="tree-item" href="{{ '/ai/superpowers-zh/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">superpowers-zh</span></a></li>
-                        <li><a class="tree-item" href="{{ '/ai/hermes-agent/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">hermes-agent</span></a></li>
-                        <li><a class="tree-item" href="{{ '/ai/openclaw/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">OpenClaw</span></a></li>
-                        <li><a class="tree-item" href="{{ '/ai/opencode/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">OpenCode</span></a></li>
-                    </ul>
-                </li>
-                <!-- IoT 物联网 -->
-                <li>
-                    <button class="tree-item" onclick="toggleTree(this)" aria-expanded="false" aria-label="展开/折叠 IoT 物联网">
-                        <span class="tree-toggle">▶</span>
-                        <span class="tree-icon">🔌</span>
-                        <span class="tree-label">IoT 物联网</span>
-                    </button>
-                    <ul class="tree-children">
-                        <li><a class="tree-item" href="{{ '/iot/KE3036-Keyes-Pico/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">KE3036-Keyes-Pico</span></a></li>
-                    </ul>
-                </li>
-                <!-- 源码解读 -->
-                <li>
-                    <button class="tree-item" onclick="toggleTree(this)" aria-expanded="false" aria-label="展开/折叠 源码解读">
-                        <span class="tree-toggle">▶</span>
-                        <span class="tree-icon">📖</span>
-                        <span class="tree-label">源码解读</span>
-                    </button>
-                    <ul class="tree-children">
-                        <li><a class="tree-item" href="{{ '/sci/Clipper2/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">Clipper2</span></a></li>
-                        <li><a class="tree-item" href="{{ '/sci/Clipper1/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">Clipper1</span></a></li>
-                    </ul>
-                </li>
-                <!-- 其他教程 -->
-                <li>
-                    <button class="tree-item" onclick="toggleTree(this)" aria-expanded="false" aria-label="展开/折叠 其他教程">
-                        <span class="tree-toggle">▶</span>
-                        <span class="tree-icon">📦</span>
-                        <span class="tree-label">其他教程</span>
-                    </button>
-                    <ul class="tree-children">
-                        <li><a class="tree-item" href="{{ '/others/acme.sh/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">acme.sh</span></a></li>
-                        <li><a class="tree-item" href="{{ '/others/BillionMail/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">BillionMail</span></a></li>
-                        <li><a class="tree-item" href="{{ '/others/RuoYi-Cloud/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">RuoYi-Cloud</span></a></li>
-                    </ul>
-                </li>
-                <!-- 项目演示 -->
-                <li>
-                    <button class="tree-item" onclick="toggleTree(this)" aria-expanded="false" aria-label="展开/折叠 项目演示">
-                        <span class="tree-toggle">▶</span>
-                        <span class="tree-icon">🎯</span>
-                        <span class="tree-label">项目演示</span>
-                    </button>
-                    <ul class="tree-children">
-                        <li><a class="tree-item" href="{{ '/demos/gistools-tutorial/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">GIS工具教程</span></a></li>
-                        <li><a class="tree-item" href="{{ '/demos/vue3-openlayers/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">Vue3+OpenLayers</span></a></li>
-                        <li><a class="tree-item" href="{{ '/demos/vue3-map-dashboard/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">Vue3地图大屏</span></a></li>
-                        <li><a class="tree-item" href="{{ '/demos/ai-water-front/' | relative_url }}"><span class="tree-icon">📁</span><span class="tree-label">AI智慧水务前端</span></a></li>
-                    </ul>
-                </li>
-            </ul>
+            {% include sidebar.html %}
         </aside>
         
         <!-- 遮罩层 -->
@@ -785,7 +625,7 @@
                         <a href="https://github.com/znlgis" target="_blank" rel="noopener noreferrer">GitHub</a>
                     </nav>
                 </header>
-                <main>
+                    <main id="main-content">
                     {% assign crumbs = page.url | remove: '/index.html' | split: '/' %}
                     {% if crumbs.size > 1 %}
                     <nav class="breadcrumb" aria-label="面包屑导航">
@@ -828,11 +668,11 @@
     <script>
         // 客户端即时搜索
         (function() {
-            var searchData = null;
-            var searchInput = document.getElementById('searchInput');
-            var searchResults = document.getElementById('searchResults');
-            var activeIndex = -1;
-            var searchTimeout = null;
+            let searchData = null;
+            const searchInput = document.getElementById('searchInput');
+            const searchResults = document.getElementById('searchResults');
+            let activeIndex = -1;
+            let searchTimeout = null;
 
             // 懒加载搜索索引
             function loadSearchData(callback) {
@@ -840,7 +680,7 @@
                     callback(searchData);
                     return;
                 }
-                var xhr = new XMLHttpRequest();
+                const xhr = new XMLHttpRequest();
                 xhr.onload = function() {
                     if (xhr.status === 200) {
                         try {
@@ -863,12 +703,12 @@
 
             // 模糊搜索（支持中文和拼音简拼）
             function fuzzyMatch(text, query) {
-                var t = text.toLowerCase();
-                var q = query.toLowerCase();
+                const t = text.toLowerCase();
+                const q = query.toLowerCase();
                 if (t.indexOf(q) !== -1) return true;
                 // 分词匹配：query 中的每个字符都按顺序出现在 text 中
-                var qi = 0;
-                for (var i = 0; i < t.length && qi < q.length; i++) {
+                let qi = 0;
+                for (let i = 0; i < t.length && qi < q.length; i++) {
                     if (t[i] === q[qi]) qi++;
                 }
                 return qi === q.length;
@@ -887,9 +727,9 @@
                         searchResults.classList.add('show');
                         return;
                     }
-                    var results = [];
-                    var q = query.trim();
-                    for (var i = 0; i < data.length; i++) {
+                    const results = [];
+                    const q = query.trim();
+                    for (let i = 0; i < data.length; i++) {
                         if (fuzzyMatch(data[i].title, q)) {
                             results.push(data[i]);
                             if (results.length >= 15) break;
@@ -898,8 +738,8 @@
                     if (results.length === 0) {
                         searchResults.innerHTML = '<div class="search-no-results">未找到匹配的教程</div>';
                     } else {
-                        var html = '';
-                        for (var j = 0; j < results.length; j++) {
+                        let html = '';
+                        for (let j = 0; j < results.length; j++) {
                             html += '<a class="search-result-item" href="' + results[j].url + '" data-index="' + j + '">' + highlightMatch(results[j].title, q) + '</a>';
                         }
                         searchResults.innerHTML = html;
@@ -910,25 +750,25 @@
             }
 
             function highlightMatch(text, query) {
-                var t = text.toLowerCase();
-                var q = query.toLowerCase();
-                var idx = t.indexOf(q);
+                const t = text.toLowerCase();
+                const q = query.toLowerCase();
+                const idx = t.indexOf(q);
                 if (idx === -1) return escapeHtml(text);
-                var before = escapeHtml(text.substring(0, idx));
-                var match = '<mark style="background:#fff3cd;padding:0 1px;border-radius:2px;">' + escapeHtml(text.substring(idx, idx + q.length)) + '</mark>';
-                var after = escapeHtml(text.substring(idx + q.length));
+                const before = escapeHtml(text.substring(0, idx));
+                const match = '<mark style="background:#fff3cd;padding:0 1px;border-radius:2px;">' + escapeHtml(text.substring(idx, idx + q.length)) + '</mark>';
+                const after = escapeHtml(text.substring(idx + q.length));
                 return before + match + after;
             }
 
             function escapeHtml(str) {
-                var div = document.createElement('div');
+                const div = document.createElement('div');
                 div.appendChild(document.createTextNode(str));
                 return div.innerHTML;
             }
 
             searchInput.addEventListener('input', function() {
                 clearTimeout(searchTimeout);
-                var query = this.value;
+                const query = this.value;
                 searchTimeout = setTimeout(function() { doSearch(query); }, 150);
             });
 
@@ -944,7 +784,7 @@
 
             // 键盘导航
             searchInput.addEventListener('keydown', function(e) {
-                var items = searchResults.querySelectorAll('.search-result-item');
+                const items = searchResults.querySelectorAll('.search-result-item');
                 if (e.key === 'ArrowDown') {
                     e.preventDefault();
                     if (items.length > 0) {
@@ -989,9 +829,9 @@
 
             // 结果项悬停时激活
             searchResults.addEventListener('mouseover', function(e) {
-                var item = e.target.closest('.search-result-item');
+                const item = e.target.closest('.search-result-item');
                 if (item) {
-                    var items = searchResults.querySelectorAll('.search-result-item');
+                const items = searchResults.querySelectorAll('.search-result-item');
                     items.forEach(function(el, i) {
                         el.classList.toggle('active', el === item);
                     });
@@ -1020,6 +860,18 @@
             sidebar.classList.toggle('show');
             overlay.classList.toggle('show');
         }
+        
+        // Escape 键关闭移动端侧边栏
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const sidebar = document.getElementById('sidebar');
+                const overlay = document.getElementById('sidebarOverlay');
+                if (sidebar.classList.contains('show')) {
+                    sidebar.classList.remove('show');
+                    overlay.classList.remove('show');
+                }
+            }
+        });
         
         // 回到顶部功能
         const backToTop = document.getElementById('backToTop');

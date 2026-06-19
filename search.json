@@ -3,15 +3,29 @@ layout: none
 permalink: /search.json
 ---
 [
-{%- assign page_count = 0 -%}
+{%- assign doc_count = 0 -%}
+{%- for doc in site.documents -%}
+  {%- if doc.title and doc.title != "" and doc.name != "search.json" -%}
+    {%- if doc_count > 0 -%},{%- endif -%}
+    {
+      "title": {{ doc.title | jsonify }},
+      "url": {{ doc.url | jsonify }},
+      "content": {{ doc.content | strip_html | normalize_whitespace | truncate: 500 | jsonify }},
+      "description": {{ doc.description | default: site.description | jsonify }}
+    }
+    {%- assign doc_count = doc_count | plus: 1 -%}
+  {%- endif -%}
+{%- endfor -%}
 {%- for page in site.pages -%}
   {%- if page.title and page.title != "" and page.name != "search.json" -%}
-    {%- if page_count > 0 -%},{%- endif -%}
+    {%- if doc_count > 0 -%},{%- endif -%}
     {
       "title": {{ page.title | jsonify }},
-      "url": {{ page.url | jsonify }}
+      "url": {{ page.url | jsonify }},
+      "content": {{ page.content | strip_html | normalize_whitespace | truncate: 500 | jsonify }},
+      "description": {{ page.description | default: site.description | jsonify }}
     }
-    {%- assign page_count = page_count | plus: 1 -%}
+    {%- assign doc_count = doc_count | plus: 1 -%}
   {%- endif -%}
 {%- endfor -%}
 ]

@@ -1,0 +1,247 @@
+# 侧边栏导航树配置
+# 每个条目支持: title, icon, url (链接) 或 children (子菜单)
+
+- title: GIS 教程
+  icon: 🌍
+  children:
+    - title: GDAL 教程
+      icon: 📁
+      url: /gis/tutorial/gdal/
+    - title: GeoServer 教程
+      icon: 📁
+      url: /gis/tutorial/geoserver/
+    - title: GeoServer REST API
+      icon: 📁
+      url: /gis/tutorial/geoserver-rest-api/
+    - title: CesiumJS 教程
+      icon: 📁
+      url: /gis/tutorial/cesium/
+    - title: GeoTools 教程
+      icon: 📁
+      url: /gis/tutorial/geotools/
+    - title: QGIS 教程
+      icon: 📁
+      url: /gis/tutorial/qgis/
+    - title: PostGIS 教程
+      icon: 📁
+      url: /gis/tutorial/postgis/
+    - title: GeoServer Cloud
+      icon: 📁
+      url: /gis/tutorial/geoserver-cloud/
+    - title: OpenGIS Utils Java
+      icon: 📁
+      url: /gis/tutorial/opengis-utils-for-java/
+    - title: OpenGIS Utils .NET
+      icon: 📁
+      url: /gis/tutorial/opengis-utils-for-net/
+    - title: Geometry API Java
+      icon: 📁
+      url: /gis/tutorial/geometry-api-java/
+    - title: Geometry API .NET
+      icon: 📁
+      url: /gis/tutorial/geometry-api-net/
+    - title: NetTopologySuite
+      icon: 📁
+      url: /gis/tutorial/NetTopologySuite/
+    - title: SharpMap
+      icon: 📁
+      url: /gis/tutorial/SharpMap/
+    - title: Mapsui
+      icon: 📁
+      url: /gis/tutorial/Mapsui/
+    - title: OpenLayers
+      icon: 📁
+      url: /gis/tutorial/openlayers/
+    - title: GeoPipeAgent
+      icon: 📁
+      url: /gis/tutorial/GeoPipeAgent/
+    - title: GeoPandas
+      icon: 📁
+      url: /gis/tutorial/geopandas/
+    - title: Shapely
+      icon: 📁
+      url: /gis/tutorial/shapely/
+
+- title: GIS 基础
+  icon: 📖
+  children:
+    - title: 数据格式
+      icon: 📁
+      url: /gis/basic/data/
+    - title: 地图服务
+      icon: 📁
+      url: /gis/basic/services/
+    - title: 开发环境
+      icon: 📁
+      url: /gis/basic/env/
+    - title: 开发技巧
+      icon: 📁
+      url: /gis/basic/dev/
+
+- title: 博客翻译
+  icon: 📝
+  children:
+    - title: Lin.ear th.inking
+      icon: 📁
+      url: /gis/lin-ear-th-inking/
+
+- title: CAD 开发
+  icon: 📐
+  children:
+    - title: IFoxCAD
+      icon: 📁
+      url: /cad/IFoxCAD/
+    - title: FY_Layout
+      icon: 📁
+      url: /cad/FY_Layout/
+    - title: LightCAD
+      icon: 📁
+      url: /cad/LightCAD/
+    - title: LightningCAD
+      icon: 📁
+      url: /cad/LightningCAD/
+    - title: Clipper2
+      icon: 📁
+      url: /cad/Clipper2/
+    - title: Clipper1
+      icon: 📁
+      url: /cad/Clipper1/
+    - title: Chili3D
+      icon: 📁
+      url: /cad/chili3d/
+    - title: LibreDWG
+      icon: 📁
+      url: /cad/libredwg/
+    - title: QCAD
+      icon: 📁
+      url: /cad/qcad/
+    - title: Astral3D
+      icon: 📁
+      url: /cad/Astral3D/
+    - title: KiCad
+      icon: 📁
+      url: /cad/KiCad/
+    - title: SolveSpace
+      icon: 📁
+      url: /cad/solvespace/
+    - title: CadQuery
+      icon: 📁
+      url: /cad/cadquery/
+    - title: LibreCAD
+      icon: 📁
+      url: /cad/LibreCAD/
+    - title: FreeCAD
+      icon: 📁
+      url: /cad/FreeCAD/
+    - title: OCCT
+      icon: 📁
+      url: /cad/occt/
+    - title: OpenSCAD
+      icon: 📁
+      url: /cad/openscad/
+    - title: Xbim
+      icon: 📁
+      url: /cad/Xbim/
+
+- title: 3D 开发
+  icon: 🧊
+  children:
+    - title: SuperSplat
+      icon: 📁
+      url: /3d/supersplat/
+
+- title: C# 开发
+  icon: 💻
+  children:
+    - title: Admin.NET
+      icon: 📁
+      url: /csharp/Admin.NET/
+    - title: Furion
+      icon: 📁
+      url: /csharp/Furion/
+    - title: SOD 框架
+      icon: 📁
+      url: /csharp/sod/
+    - title: .NET Reactor
+      icon: 📁
+      url: /csharp/dotnet-reactor/
+    - title: NPOI
+      icon: 📁
+      url: /csharp/npoi/
+    - title: ReoGrid
+      icon: 📁
+      url: /csharp/ReoGrid/
+    - title: SqlSugar
+      icon: 📁
+      url: /csharp/SqlSugar/
+
+- title: AI 系列
+  icon: 🤖
+  children:
+    - title: Dify 平台
+      icon: 📁
+      url: /ai/dify/
+    - title: oh-my-openagent
+      icon: 📁
+      url: /ai/oh-my-openagent/
+    - title: superpowers-zh
+      icon: 📁
+      url: /ai/superpowers-zh/
+    - title: hermes-agent
+      icon: 📁
+      url: /ai/hermes-agent/
+    - title: OpenClaw
+      icon: 📁
+      url: /ai/openclaw/
+    - title: OpenCode
+      icon: 📁
+      url: /ai/opencode/
+
+- title: IoT 物联网
+  icon: 🔌
+  children:
+    - title: KE3036-Keyes-Pico
+      icon: 📁
+      url: /iot/KE3036-Keyes-Pico/
+
+- title: 源码解读
+  icon: 📖
+  children:
+    - title: Clipper2
+      icon: 📁
+      url: /sci/Clipper2/
+    - title: Clipper1
+      icon: 📁
+      url: /sci/Clipper1/
+
+- title: 其他教程
+  icon: 📦
+  children:
+    - title: acme.sh
+      icon: 📁
+      url: /others/acme.sh/
+    - title: BillionMail
+      icon: 📁
+      url: /others/BillionMail/
+    - title: RuoYi-Cloud
+      icon: 📁
+      url: /others/RuoYi-Cloud/
+    - title: Go 语言
+      icon: 📁
+      url: /others/go/
+
+- title: 项目演示
+  icon: 🎯
+  children:
+    - title: GIS工具教程
+      icon: 📁
+      url: /demos/gistools-tutorial/
+    - title: Vue3+OpenLayers
+      icon: 📁
+      url: /demos/vue3-openlayers/
+    - title: Vue3地图大屏
+      icon: 📁
+      url: /demos/vue3-map-dashboard/
+    - title: AI智慧水务前端
+      icon: 📁
+      url: /demos/ai-water-front/

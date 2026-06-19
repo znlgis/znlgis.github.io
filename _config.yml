@@ -4,6 +4,8 @@ description: GIS开发与技术分享 — GDAL · GeoServer · PostGIS · QGIS �
 author: znlgis
 baseurl: ""
 url: "https://znlgis.github.io"
+lang: zh-CN
+timezone: Asia/Shanghai
 
 # SEO
 keywords: GIS,GDAL,GeoServer,PostGIS,QGIS,OpenLayers,Cesium,FreeCAD,OCCT,NPOI,C#,CAD,3D,AI,地图开发,空间数据,地理信息系统
@@ -18,9 +20,7 @@ plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
 
-# 构建优化
-incremental: true
-quiet: true
+# 构建选项
 
 # Kramdown 配置
 kramdown:

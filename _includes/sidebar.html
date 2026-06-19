@@ -1,0 +1,16 @@
+<ul class="dir-tree">
+{%- for section in site.data.navigation -%}
+    <li>
+        <button class="tree-item" onclick="toggleTree(this)" aria-expanded="false" aria-label="展开/折叠 {{ section.title }}">
+            <span class="tree-toggle">▶</span>
+            <span class="tree-icon">{{ section.icon }}</span>
+            <span class="tree-label">{{ section.title }}</span>
+        </button>
+        <ul class="tree-children">
+        {%- for item in section.children -%}
+            <li><a class="tree-item" href="{{ item.url | relative_url }}"><span class="tree-icon">{{ item.icon }}</span><span class="tree-label">{{ item.title }}</span></a></li>
+        {%- endfor -%}
+        </ul>
+    </li>
+{%- endfor -%}
+</ul>
