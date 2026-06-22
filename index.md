@@ -932,6 +932,23 @@ JTS Topology Suite 创始人 Martin Davis 的技术博客翻译，涵盖计算�
 - [工程化与项目实战](others/go/第17章-工程化与项目实战)
 - [最佳实践与常见陷阱](others/go/第18章-最佳实践与常见陷阱)
 
+#### RobotGo 桌面自动化教程
+- [RobotGo概述与应用场景](others/robotgo/第01章-RobotGo概述与应用场景)
+- [环境准备与安装配置](others/robotgo/第02章-环境准备与安装配置)
+- [快速入门：第一个自动化程序](others/robotgo/第03章-快速入门-第一个自动化程序)
+- [鼠标控制详解](others/robotgo/第04章-鼠标控制详解)
+- [键盘控制与文本输入](others/robotgo/第05章-键盘控制与文本输入)
+- [屏幕与像素操作](others/robotgo/第06章-屏幕与像素操作)
+- [屏幕截图与图像处理](others/robotgo/第07章-屏幕截图与图像处理)
+- [Bitmap位图与图像查找](others/robotgo/第08章-Bitmap位图与图像查找)
+- [剪贴板操作](others/robotgo/第09章-剪贴板操作)
+- [进程与窗口管理](others/robotgo/第10章-进程与窗口管理)
+- [全局事件监听（GoHook）](others/robotgo/第11章-全局事件监听-GoHook)
+- [OpenCV图像识别（gcv）](others/robotgo/第12章-OpenCV图像识别-gcv)
+- [跨平台与Cgo-free构建](others/robotgo/第13章-跨平台与Cgo-free构建)
+- [综合实战项目](others/robotgo/第14章-综合实战项目)
+- [最佳实践、性能优化与常见问题](others/robotgo/第15章-最佳实践、性能优化与常见问题)
+
 #### RuoYi-Cloud 微服务框架教程
 - [RuoYi-Cloud概述与入门](others/RuoYi-Cloud/第01章-RuoYi-Cloud概述与入门)
 - [系统架构详解](others/RuoYi-Cloud/第02章-系统架构详解)

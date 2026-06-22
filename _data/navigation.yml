@@ -229,6 +229,9 @@
     - title: Go 语言
       icon: 📁
       url: /others/go/
+    - title: RobotGo
+      icon: 📁
+      url: /others/robotgo/
 
 - title: 项目演示
   icon: 🎯
