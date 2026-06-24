@@ -48,7 +48,7 @@ KiCad最初由法国工程师Jean-Pierre Charras于1992年开发，当时他在�
 - KiCad 7.x：增强的仿真功能，更好的性能
 - KiCad 8.x：改进的用户体验，新的设计功能
 - KiCad 9.x：IPC API、嵌入式文件支持、表格编辑等新特性
-- KiCad 10.x：STEP格式3D模型、图形化DRC规则编辑器、设计变体、暗色模式、时域约束等
+- KiCad 10.x（10.0 于 2026年3月发布，最新补丁 10.0.4，2026年6月）：STEP格式3D模型、图形化DRC规则编辑器、设计变体、暗色模式、时域约束、Allegro/PADS导入、设计块（Design Blocks）等
 
 ### 1.1.3 KiCad的主要特点
 

@@ -34,7 +34,7 @@ BimQA/
 
 ```xml
 <PackageReference Include="Xbim.Essentials" Version="6.0.*" />
-<PackageReference Include="Xbim.Geometry" Version="5.1.*" />
+<PackageReference Include="Xbim.Geometry" Version="6.0.*" />
 <PackageReference Include="Xbim.CobieExpress" Version="6.0.*" />
 <PackageReference Include="Xbim.IDS.Validator" Version="1.0.*" />
 <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.*" />

@@ -56,6 +56,7 @@ GeoServer项目始于2001年，由Open Planning Project（TOPP）发起。TOPP�
 - **2023年**：GeoServer Cloud 进入稳定版，支持微服务架构部署
 - **2024年**：GeoServer 2.25 发布，Java 17 全面支持与性能优化
 - **2025年**：GeoServer 2.26+ 发布，持续增强云原生与安全性
+- **2026年**：GeoServer 3.0.0 发布，基于 Spring Framework 7、Jakarta EE、Java 17/21，重新设计管理界面（支持暗色模式），升级至 Tomcat 11
 
 ### 1.2.3 开源许可
 

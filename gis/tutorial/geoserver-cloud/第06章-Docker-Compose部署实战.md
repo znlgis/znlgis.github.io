@@ -118,7 +118,7 @@ geoserver-cloud-deploy/
 # ===================
 # 版本配置
 # ===================
-TAG=2.28.1.0
+TAG=3.0.0.0
 POSTGRES_VERSION=15-alpine
 RABBITMQ_VERSION=3-management-alpine
 

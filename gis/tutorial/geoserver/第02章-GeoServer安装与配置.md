@@ -63,7 +63,8 @@ GeoServer的核心依赖是Java运行环境。不同版本的GeoServer对Java版
 
 | GeoServer版本 | 支持的Java版本 |
 |--------------|---------------|
-| 2.26.x及以上 | Java 11, 17, 21 |
+| 3.0.x及以上 | Java 17, 21 |
+| 2.26.x | Java 11, 17, 21 |
 | 2.24.x-2.25.x | Java 11, 17 |
 | 2.20.x-2.23.x | Java 11, 17 |
 | 2.15.x-2.19.x | Java 8, 11 |
@@ -184,12 +185,12 @@ Binary包是最简单的安装方式，适合快速试用和开发环境。
 
 **下载和解压：**
 ```bash
-# 下载GeoServer（以2.24.x版本为例）
-wget https://sourceforge.net/projects/geoserver/files/GeoServer/2.24.0/geoserver-2.24.0-bin.zip
+# 下载GeoServer（以3.0.0版本为例）
+wget https://sourceforge.net/projects/geoserver/files/GeoServer/3.0.0/geoserver-3.0.0-bin.zip
 
 # 解压到指定目录
-unzip geoserver-2.24.0-bin.zip -d /opt/
-mv /opt/geoserver-2.24.0 /opt/geoserver
+unzip geoserver-3.0.0-bin.zip -d /opt/
+mv /opt/geoserver-3.0.0 /opt/geoserver
 
 # 设置权限
 sudo chown -R $USER:$USER /opt/geoserver
@@ -238,10 +239,10 @@ mv /opt/apache-tomcat-9.0.80 /opt/tomcat
 **部署GeoServer WAR：**
 ```bash
 # 下载WAR包
-wget https://sourceforge.net/projects/geoserver/files/GeoServer/2.24.0/geoserver-2.24.0-war.zip
+wget https://sourceforge.net/projects/geoserver/files/GeoServer/3.0.0/geoserver-3.0.0-war.zip
 
 # 解压
-unzip geoserver-2.24.0-war.zip
+unzip geoserver-3.0.0-war.zip
 
 # 部署到Tomcat
 cp geoserver.war /opt/tomcat/webapps/
@@ -259,14 +260,14 @@ Docker是现代化部署的推荐方式，提供了环境隔离和便捷的版�
 **基本部署：**
 ```bash
 # 拉取官方镜像
-docker pull docker.osgeo.org/geoserver:2.24.0
+docker pull docker.osgeo.org/geoserver:3.0.0
 
 # 运行容器
 docker run -d \
   --name geoserver \
   -p 8080:8080 \
   -v /data/geoserver_data:/opt/geoserver_data \
-  docker.osgeo.org/geoserver:2.24.0
+  docker.osgeo.org/geoserver:3.0.0
 ```
 
 **使用Docker Compose：**
@@ -275,7 +276,7 @@ docker run -d \
 version: '3'
 services:
   geoserver:
-    image: docker.osgeo.org/geoserver:2.24.0
+    image: docker.osgeo.org/geoserver:3.0.0
     container_name: geoserver
     ports:
       - "8080:8080"

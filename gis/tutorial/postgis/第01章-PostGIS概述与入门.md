@@ -61,7 +61,8 @@ PostGIS 的发展历程可以追溯到 2001 年：
 | 2021 | 3.1 | 改进的 3D 支持，更多函数 |
 | 2022 | 3.2 | 性能优化，新增函数 |
 | 2023 | 3.3 | 持续改进，新功能添加 |
-| 2024 | 3.4 | 最新稳定版本 |
+| 2024 | 3.4 | 维护中 |
+| 2026 | 3.6 | 最新稳定版本（PostgreSQL 12-18, GEOS 3.8+） |
 
 ### 1.1.4 PostGIS 的优势
 
@@ -570,7 +571,7 @@ WHERE ST_SRID(geom) = 4326;
 version: '3.8'
 services:
   postgis:
-    image: postgis/postgis:16-3.4
+    image: postgis/postgis:18-3.6
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres

@@ -66,7 +66,7 @@ GDAL Java 绑定通过 SWIG（Simplified Wrapper and Interface Generator）生�
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <gdal.version>3.7.0</gdal.version>
+        <gdal.version>3.13.1</gdal.version>
     </properties>
 
     <dependencies>
@@ -210,7 +210,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.gdal:gdal:3.7.0'
+    implementation 'org.gdal:gdal:3.13.1'
     
     testImplementation 'org.junit.jupiter:junit-jupiter:5.9.2'
 }

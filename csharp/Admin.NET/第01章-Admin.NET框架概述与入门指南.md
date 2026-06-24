@@ -90,19 +90,20 @@ Admin.NET作为一个开源项目，经历了多个版本的迭代和优化：
 - 前端升级到Vue3 + Element Plus
 - 引入SqlSugar作为ORM框架
 
-**当前版本（基于.NET 6/8）**
-- 全面支持.NET 6和.NET 8
+**当前版本（基于.NET 8/10，v2分支）**
+- 全面支持.NET 8和.NET 10
 - 采用Vue3 + Element Plus + Vite5
 - 集成更多企业级功能
 - 完善国产化适配
 - 引入更多第三方集成
+- v2分支提供最新的.NET 8/10目标框架支持
 
 ### 2.2 技术演进路线
 
 Admin.NET的技术演进始终紧跟.NET生态的发展：
 
 **后端技术演进**：
-- 从.NET Core 3.1到.NET 8的平滑升级
+- 从.NET Core 3.1到.NET 8/10的平滑升级
 - 从传统Repository模式到SqlSugar的演进
 - 从手动依赖注入到Furion自动注入
 - 从同步编程到全异步编程模式
@@ -119,7 +120,7 @@ Admin.NET的技术演进始终紧跟.NET生态的发展：
 
 | 组件 | 最低版本 | 推荐版本 |
 |------|----------|----------|
-| .NET SDK | 6.0 | 8.0 |
+| .NET SDK | 8.0 | 10.0 |
 | Node.js | 16.0 | 20.x LTS |
 | pnpm | 8.0 | 9.x |
 | 数据库 | MySQL 5.7 / SQL Server 2012 / PostgreSQL 10 | MySQL 8.0 / SQL Server 2019 / PostgreSQL 15 |

@@ -65,6 +65,7 @@ CesiumJS 的发展历程是 Web 三维地理可视化技术演进的缩影：
 | 2023 | CesiumJS 持续优化云原生支持 |
 | 2024 | 增强 AI 集成与实时数据流支持 |
 | 2025 | CesiumJS 持续更新，性能优化与 WebGPU 探索 |
+| 2026 | CesiumJS 1.142：GeoJsonPrimitive、MVTDataProvider、Gaussian Splat 支持、Panorama 支持、火星(Mars)支持 |
 
 ### 1.1.3 CesiumJS 的核心特点
 
@@ -455,7 +456,9 @@ viewer.entities.add({
 | 1.0 - 1.40 | 2012-2017 | 基础功能建立，Entity API，3D Tiles 初版 |
 | 1.41 - 1.80 | 2018-2021 | 性能优化，glTF 2.0，模块化 |
 | 1.81 - 1.100 | 2021-2023 | 3D Tiles Next，云优化，TypeScript 支持 |
-| 1.100+ | 2023-至今 | 持续优化，新特效，AI 集成 |
+| 1.100 - 1.130 | 2023-2025 | 持续优化，新特效，AI 集成 |
+| 1.130 - 1.142 | 2025-2026 | GeoJsonPrimitive，MVTDataProvider，Gaussian Splat 支持，Panorama 支持，火星(Mars)支持 |
+| 1.142 | 2026-06 | 当前最新稳定版 |
 
 ### 1.5.2 模块化结构
 

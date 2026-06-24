@@ -71,7 +71,7 @@ dotnet add package MaxRev.Gdal.Universal
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MaxRev.Gdal.Universal" Version="3.7.0.100" />
+    <PackageReference Include="MaxRev.Gdal.Universal" Version="3.13.1.100" />
   </ItemGroup>
 
 </Project>

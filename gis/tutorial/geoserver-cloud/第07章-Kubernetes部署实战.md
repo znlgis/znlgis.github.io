@@ -181,7 +181,7 @@ kubectl get pods -n geoserver -w
 # 全局配置
 global:
   image:
-    tag: "2.28.1.0"
+    tag: "3.0.0.0"
     pullPolicy: IfNotPresent
   
   # 管理员账户
@@ -686,7 +686,7 @@ helm install gs-cloud geoserver-cloud/geoserver-cloud \
 # 更新镜像版本
 helm upgrade gs-cloud geoserver-cloud/geoserver-cloud \
     --namespace geoserver \
-    --set global.image.tag=2.28.2.0
+    --set global.image.tag=3.0.0.0
 
 # 或修改 values.yaml 后升级
 helm upgrade gs-cloud geoserver-cloud/geoserver-cloud \
