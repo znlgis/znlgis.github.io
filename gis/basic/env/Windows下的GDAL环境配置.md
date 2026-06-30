@@ -13,15 +13,15 @@ title: Windows下的GDAL环境配置
 
 从[OSGeo4W官网](https://trac.osgeo.org/osgeo4w/)下载最新的osgeo4w-setup.exe安装包。按照下图步骤安装：
 
-![win1](img/win1.png)
+![win1](../img/win1.png)
 
-![win2](img/win2.png)
+![win2](../img/win2.png)
 
 输入国内源
 http://gwmodel.whu.edu.cn/mirrors/osgeo4w
 默认的源是国外的，下载比较慢。
 
-![win3](img/win3.png)
+![win3](../img/win3.png)
 
 选择图上三个选项，然后下一步开始安装。
 
