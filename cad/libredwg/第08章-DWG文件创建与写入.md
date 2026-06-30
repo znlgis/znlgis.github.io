@@ -931,7 +931,7 @@ dwgadd house.txt -o house.dwg
 
 ---
 
-**下一章预告**：[第09章 - 格式转换实战](第09章-格式转换实战) - 学习DWG与DXF、JSON、SVG等格式的转换。
+**下一章预告**：[第09章 - 格式转换实战](../第09章-格式转换实战) - 学习DWG与DXF、JSON、SVG等格式的转换。
 
 <!-- NAVIGATION -->
 

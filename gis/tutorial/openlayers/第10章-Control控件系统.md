@@ -671,7 +671,7 @@ map.addControl(toolbar);
 
 ---
 
-[← 上一章：栅格数据与瓦片服务](第09章-栅格数据与瓦片服务) | [返回目录](index) | [下一章：Interaction交互系统 →](第11章-Interaction交互系统)
+[← 上一章：栅格数据与瓦片服务](../第09章-栅格数据与瓦片服务) | [返回目录](../index) | [下一章：Interaction交互系统 →](../第11章-Interaction交互系统)
 
 <!-- NAVIGATION -->
 

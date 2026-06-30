@@ -523,7 +523,7 @@ interactionManager.activate('draw-point');
 
 ---
 
-[← 上一章：Control控件系统](第10章-Control控件系统) | [返回目录](index) | [下一章：Overlay覆盖物 →](第12章-Overlay覆盖物)
+[← 上一章：Control控件系统](../第10章-Control控件系统) | [返回目录](../index) | [下一章：Overlay覆盖物 →](../第12章-Overlay覆盖物)
 
 <!-- NAVIGATION -->
 

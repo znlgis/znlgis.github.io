@@ -1066,7 +1066,7 @@ visibilityManager.restoreState('default');
 
 ---
 
-[← 上一章：View视图与坐标系统](第05章-View视图与坐标系统) | [返回目录](index) | [下一章：Source数据源详解 →](第07章-Source数据源详解)
+[← 上一章：View视图与坐标系统](../第05章-View视图与坐标系统) | [返回目录](../index) | [下一章：Source数据源详解 →](../第07章-Source数据源详解)
 
 <!-- NAVIGATION -->
 

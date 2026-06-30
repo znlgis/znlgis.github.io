@@ -380,7 +380,7 @@ public class MyDataStoreFactory implements DataStoreFactorySpi {
 
 ---
 
-[← 上一章：性能优化与最佳实践](第15章-性能优化与最佳实践) | [返回目录](index) | [下一章：实战案例分析 →](第17章-实战案例分析)
+[← 上一章：性能优化与最佳实践](../第15章-性能优化与最佳实践) | [返回目录](../index) | [下一章：实战案例分析 →](../第17章-实战案例分析)
 
 <!-- NAVIGATION -->
 

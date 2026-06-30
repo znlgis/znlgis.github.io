@@ -1401,7 +1401,7 @@ document.getElementById('export-btn').addEventListener('click', () => {
 
 ---
 
-[← 上一章：核心概念与架构设计](第03章-核心概念与架构设计) | [返回目录](index) | [下一章：View视图与坐标系统 →](第05章-View视图与坐标系统)
+[← 上一章：核心概念与架构设计](../第03章-核心概念与架构设计) | [返回目录](../index) | [下一章：View视图与坐标系统 →](../第05章-View视图与坐标系统)
 
 <!-- NAVIGATION -->
 
