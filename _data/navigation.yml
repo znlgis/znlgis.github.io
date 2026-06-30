@@ -196,6 +196,9 @@
     - title: OpenCode
       icon: 📁
       url: /ai/opencode/
+    - title: Pi
+      icon: 📁
+      url: /ai/pi/
 
 - title: IoT 物联网
   icon: 🔌

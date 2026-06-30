@@ -698,6 +698,20 @@ JTS Topology Suite 创始人 Martin Davis 的技术博客翻译，涵盖计算�
 #### LightCAD 系列
 - [LightCAD 教程目录](cad/LightCAD/)
 
+#### LightningCAD 系列
+- [LightningCAD 教程目录](cad/LightningCAD/)
+- [产品概述](cad/LightningCAD/第01章-产品概述)
+- [安装与部署](cad/LightningCAD/第02章-安装与部署)
+- [客户端使用指南](cad/LightningCAD/第03章-客户端使用指南)
+- [板材排布教程](cad/LightningCAD/第04章-板材排布教程)
+- [节点线教程](cad/LightningCAD/第05章-节点线教程)
+- [收边教程](cad/LightningCAD/第06章-收边教程)
+- [洞口与屋面教程](cad/LightningCAD/第07章-洞口与屋面教程)
+- [图纸校验与输出](cad/LightningCAD/第08章-图纸校验与输出)
+- [CAD工具包教程](cad/LightningCAD/第09章-CAD工具包教程)
+- [高级功能与技巧](cad/LightningCAD/第10章-高级功能与技巧)
+- [常见问题与故障排除](cad/LightningCAD/第11章-常见问题与故障排除)
+
 ### 3D 开发
 
 #### SuperSplat 完整教程系列
@@ -884,6 +898,24 @@ JTS Topology Suite 创始人 Martin Davis 的技术博客翻译，涵盖计算�
 - [工具、权限与 MCP 扩展](ai/opencode/08-工具权限与MCP扩展)
 - [Token 优化与高效省钱配置](ai/opencode/09-Token优化与高效省钱配置)
 - [最佳实践、完整配置模板与排障](ai/opencode/10-最佳实践完整配置模板与排障)
+
+#### Pi 教程
+- [Pi 教程目录](ai/pi/)
+- [项目概览与核心定位](ai/pi/01-项目概览与核心定位)
+- [安装与环境配置](ai/pi/02-安装与环境配置)
+- [快速入门：首次交互](ai/pi/03-快速入门首次交互)
+- [模型供应商与认证体系](ai/pi/04-模型供应商与认证体系)
+- [配置体系全解](ai/pi/05-配置体系全解)
+- [交互式 TUI 深入](ai/pi/06-交互式TUI深入)
+- [工具系统：内置工具与权限控制](ai/pi/07-工具系统内置工具与权限控制)
+- [Skills 技能系统](ai/pi/08-Skills技能系统)
+- [Extensions 扩展开发](ai/pi/09-Extensions扩展开发)
+- [Pi 包管理与分发](ai/pi/10-Pi包管理与分发)
+- [SDK 嵌入与 RPC 模式](ai/pi/11-SDK嵌入与RPC模式)
+- [容器化与安全沙箱](ai/pi/12-容器化与安全沙箱)
+- [核心架构：pi-ai 统一 LLM API 层](ai/pi/13-核心架构pi-ai统一LLM-API层)
+- [核心架构：pi-agent-core 代理运行时](ai/pi/14-核心架构pi-agent-core代理运行时)
+- [核心架构：pi-tui 终端 UI 库](ai/pi/15-核心架构pi-tui终端UI库)
 
 ### IoT 物联网
 
