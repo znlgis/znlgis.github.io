@@ -1,48 +1,48 @@
 ---
 layout: default
-title: �?8章：Minkowski 和与�?
+title: 第18章：Minkowski 和与差
 ---
 
-# �?8章：Minkowski 和与�?
+# 第18章：Minkowski 和与差
 
 ## 18.1 概述
 
-Minkowski 和与差是两种重要的几何运算，在碰撞检测、运动规划、膨胀/腐蚀等领域有广泛应用。Clipper2 提供了这些运算的实现�?
+Minkowski 和与差是两种重要的几何运算，在碰撞检测、运动规划、膨胀/腐蚀等领域有广泛应用。Clipper2 提供了这些运算的实现。
 
 ## 18.2 数学定义
 
-### 18.2.1 Minkowski �?
+### 18.2.1 Minkowski 和
 
-给定两个点集 A �?B，它们的 Minkowski 和定义为�?
-
-```
-A �?B = { a + b | a �?A, b �?B }
-```
-
-�?A 中的每个点与 B 中的每个点相加得到的所有点的集合�?
-
-### 18.2.2 Minkowski �?
+给定两个点集 A 和 B，它们的 Minkowski 和定义为：
 
 ```
-A �?B = { a - b | a �?A, b �?B }
-     = A �?(-B)
+A ⊕ B = { a + b | a ∈ A, b ∈ B }
 ```
 
-�?A �?B 的反射的 Minkowski 和�?
+即 A 中的每个点与 B 中的每个点相加得到的所有点的集合。
+
+### 18.2.2 Minkowski 差
+
+```
+A ⊖ B = { a - b | a ∈ A, b ∈ B }
+     = A ⊕ (-B)
+```
+
+即 A 与 B 的反射的 Minkowski 和。
 
 ### 18.2.3 几何意义
 
 ```
-Minkowski 和的几何意义�?
-将形�?B 的中心沿着形状 A 的边界移动，B 扫过的区�?
+Minkowski 和的几何意义：
+将形状 B 的中心沿着形状 A 的边界移动，B 扫过的区域
 
-       A              B             A �?B
-    ┌─────�?        ┌──�?        ┌───────�?
-    �?    �?   �?   �? �?   =    �?      �?
-    �?    �?        └──�?        �?      �?
-    └─────�?                     �?      �?
-                                 └───────�?
-                                 (圆角�?
+       A              B             A ⊕ B
+    ┌─────┐         ┌──┐         ┌───────┐
+    │     │    ⊕    │  │    =    │       │
+    │     │         └──┘         │       │
+    └─────┘                      │       │
+                                 └───────┘
+                                 (圆角化)
 ```
 
 ## 18.3 Clipper2 中的实现
@@ -93,7 +93,7 @@ private static Paths64 Minkowski(Path64 pattern, Path64 path,
     // 如果是差集，反转 pattern
     Path64 pat = isSum ? pattern : ReversePath(pattern);
     
-    // 计算所有边�?Minkowski 结果
+    // 计算所有边的 Minkowski 结果
     Paths64 result = new Paths64();
     
     if (isClosed)
@@ -107,19 +107,19 @@ private static Paths64 Minkowski(Path64 pattern, Path64 path,
     }
     else
     {
-        // 开放路�?
+        // 开放路径
         for (int i = 0; i < pathCnt - 1; i++)
         {
             Path64 quad = TranslatePath(pat, path[i]);
             result.Add(quad);
         }
         
-        // 最后一�?
+        // 最后一点
         Path64 lastQuad = TranslatePath(pat, path[pathCnt - 1]);
         result.Add(lastQuad);
     }
     
-    // 使用裁剪器合并所有结�?
+    // 使用裁剪器合并所有结果
     Clipper64 clipper = new Clipper64();
     clipper.AddSubject(result);
     
@@ -151,28 +151,28 @@ private static Path64 TranslatePath(Path64 path, Point64 delta)
 ### 18.4.2 作用示意
 
 ```
-原始 pattern:        平移�?path[i]:
-    ○──�?                   ○──�?
-    �? �?     + (dx, dy) =  �? �?
-    ○──�?                   ○──�?
-                              �?
+原始 pattern:        平移到 path[i]:
+    ○──○                    ○──○
+    │  │      + (dx, dy) =  │  │
+    ○──○                    ○──○
+                              ↑
                         位于 path[i] 位置
 ```
 
 ## 18.5 详细算法
 
-### 18.5.1 凸多边形 Minkowski �?
+### 18.5.1 凸多边形 Minkowski 和
 
-对于凸多边形，有更高效的算法�?
+对于凸多边形，有更高效的算法：
 
 ```csharp
 private static Path64 ConvexMinkowskiSum(Path64 a, Path64 b)
 {
-    // 确保都是逆时�?
+    // 确保都是逆时针
     if (!IsPositive(a)) a = ReversePath(a);
     if (!IsPositive(b)) b = ReversePath(b);
     
-    // 合并边的旋转�?
+    // 合并边的旋转角
     int i = IndexOfLowestPoint(a);
     int j = IndexOfLowestPoint(b);
     
@@ -186,13 +186,13 @@ private static Path64 ConvexMinkowskiSum(Path64 a, Path64 b)
     
     while (i < iEnd || j < jEnd)
     {
-        // 添加当前�?
+        // 添加当前点
         result.Add(new Point64(
             a[i % lenA].X + b[j % lenB].X,
             a[i % lenA].Y + b[j % lenB].Y
         ));
         
-        // 比较边的角度，选择较小的前�?
+        // 比较边的角度，选择较小的前进
         double angleA = EdgeAngle(a, i % lenA);
         double angleB = EdgeAngle(b, j % lenB);
         
@@ -213,7 +213,7 @@ private static Path64 ConvexMinkowskiSum(Path64 a, Path64 b)
 
 ### 18.5.2 通用算法
 
-对于非凸多边形，使用分解方法�?
+对于非凸多边形，使用分解方法：
 
 ```csharp
 private static Paths64 GeneralMinkowskiSum(Path64 pattern, Path64 path)
@@ -228,7 +228,7 @@ private static Paths64 GeneralMinkowskiSum(Path64 pattern, Path64 path)
     {
         int j = (i + 1) % pathLen;
         
-        // 创建边对应的四边�?
+        // 创建边对应的四边形
         Path64 quad = new Path64(patternLen * 2);
         
         // 沿着 pattern 平移
@@ -258,13 +258,13 @@ private static Paths64 GeneralMinkowskiSum(Path64 pattern, Path64 path)
 
 ## 18.6 应用场景
 
-### 18.6.1 碰撞检�?
+### 18.6.1 碰撞检测
 
 ```csharp
 // 检测两个多边形是否碰撞
 bool CheckCollision(Path64 polyA, Path64 polyB)
 {
-    // 计算 Minkowski �?
+    // 计算 Minkowski 差
     Paths64 diff = Clipper.MinkowskiDiff(polyA, polyB, true);
     
     // 如果原点在差集内，则碰撞
@@ -279,11 +279,11 @@ bool CheckCollision(Path64 polyA, Path64 polyB)
         }
     }
     
-    return false;  // 无碰�?
+    return false;  // 无碰撞
 }
 ```
 
-### 18.6.2 机器人运动规�?
+### 18.6.2 机器人运动规划
 
 ```csharp
 // 计算机器人可以移动的空间
@@ -296,13 +296,13 @@ Paths64 ComputeConfigurationSpace(Path64 robot, Paths64 obstacles)
     
     foreach (Path64 obstacle in obstacles)
     {
-        // 每个障碍物膨胀�?Minkowski �?
+        // 每个障碍物膨胀为 Minkowski 和
         Paths64 expanded = Clipper.MinkowskiSum(
             robotCentered, obstacle, true);
         expandedObstacles.AddRange(expanded);
     }
     
-    // 合并所有膨胀后的障碍�?
+    // 合并所有膨胀后的障碍物
     return Clipper.Union(expandedObstacles, FillRule.NonZero);
 }
 ```
@@ -313,7 +313,7 @@ Paths64 ComputeConfigurationSpace(Path64 robot, Paths64 obstacles)
 // 膨胀操作
 Paths64 Dilate(Path64 shape, Path64 structuringElement)
 {
-    // 膨胀 = Minkowski �?
+    // 膨胀 = Minkowski 和
     return Clipper.MinkowskiSum(structuringElement, shape, true);
 }
 
@@ -321,7 +321,7 @@ Paths64 Dilate(Path64 shape, Path64 structuringElement)
 Paths64 Erode(Path64 shape, Path64 structuringElement)
 {
     // 腐蚀 = Minkowski 差（的边界内部）
-    // 需要更复杂的处�?..
+    // 需要更复杂的处理...
     Path64 reflected = ReflectPath(structuringElement);
     Paths64 diff = Clipper.MinkowskiDiff(shape, reflected, true);
     return diff;
@@ -330,7 +330,7 @@ Paths64 Erode(Path64 shape, Path64 structuringElement)
 
 ## 18.7 性能优化
 
-### 18.7.1 简�?pattern
+### 18.7.1 简化 pattern
 
 ```csharp
 // 减少 pattern 的点数可以提高性能
@@ -343,7 +343,7 @@ Path64 SimplifyPattern(Path64 pattern, double tolerance)
 ### 18.7.2 凸壳优化
 
 ```csharp
-// 如果只需要外轮廓，可以使用凸�?
+// 如果只需要外轮廓，可以使用凸壳
 Path64 ConvexHullMinkowski(Path64 pattern, Path64 path)
 {
     // 对于凸多边形，Minkowski 和的结果也是凸的
@@ -354,10 +354,10 @@ Path64 ConvexHullMinkowski(Path64 pattern, Path64 path)
 }
 ```
 
-### 18.7.3 分而治�?
+### 18.7.3 分而治之
 
 ```csharp
-// 对于大型路径，可以分段处�?
+// 对于大型路径，可以分段处理
 Paths64 MinkowskiSumLarge(Path64 pattern, Path64 path)
 {
     const int chunkSize = 100;
@@ -384,10 +384,10 @@ Paths64 MinkowskiSumLarge(Path64 pattern, Path64 path)
 
 ## 18.8 使用示例
 
-### 18.8.1 基本 Minkowski �?
+### 18.8.1 基本 Minkowski 和
 
 ```csharp
-// 正方�?pattern
+// 正方形 pattern
 Path64 square = new Path64 {
     new Point64(-10, -10),
     new Point64(10, -10),
@@ -395,29 +395,29 @@ Path64 square = new Path64 {
     new Point64(-10, 10)
 };
 
-// 三角形路�?
+// 三角形路径
 Path64 triangle = new Path64 {
     new Point64(0, 0),
     new Point64(100, 0),
     new Point64(50, 100)
 };
 
-// 计算 Minkowski �?
+// 计算 Minkowski 和
 Paths64 result = Clipper.MinkowskiSum(square, triangle, true);
 
-// 结果是三角形"膨胀"了正方形的大�?
+// 结果是三角形"膨胀"了正方形的大小
 ```
 
-### 18.8.2 Minkowski 差用于碰�?
+### 18.8.2 Minkowski 差用于碰撞
 
 ```csharp
 Path64 movingObject = CreateRectangle(0, 0, 20, 20);
 Path64 obstacle = CreateRectangle(50, 50, 30, 30);
 
-// 计算 Minkowski �?
+// 计算 Minkowski 差
 Paths64 diff = Clipper.MinkowskiDiff(obstacle, movingObject, true);
 
-// 检查移动目标位置是否碰�?
+// 检查移动目标位置是否碰撞
 Point64 targetPosition = new Point64(40, 40);
 bool willCollide = IsPointInPaths(targetPosition, diff);
 ```
@@ -446,7 +446,7 @@ if (!Clipper.IsPositive(path))
     path = Clipper.ReversePath(path);
 ```
 
-### 18.9.2 自相交处�?
+### 18.9.2 自相交处理
 
 ```csharp
 // Minkowski 和可能产生自相交
@@ -470,14 +470,14 @@ Paths64 clean = Clipper.Union(raw, FillRule.NonZero);
 
 Minkowski 和与差是强大的几何运算：
 
-1. **Minkowski �?*：形状膨胀、扫描区�?
-2. **Minkowski �?*：碰撞检测、穿透深�?
+1. **Minkowski 和**：形状膨胀、扫描区域
+2. **Minkowski 差**：碰撞检测、穿透深度
 3. **应用广泛**：机器人、游戏、CAD
 4. **实现方式**：分解为平移 + 并集
-5. **优化方法**：凸壳、分段处�?
+5. **优化方法**：凸壳、分段处理
 
-正确使用这些运算可以解决许多实际问题�?
+正确使用这些运算可以解决许多实际问题。
 
 ---
 
-[上一章：RectClip矩形裁剪优化](�?7�?RectClip矩形裁剪优化) | [返回目录](../index) | [下一章：PolyTree多边形树结构](�?9�?PolyTree多边形树结构)
+[上一章：RectClip矩形裁剪优化](../第17章-RectClip矩形裁剪优化) | [返回目录](../index) | [下一章：PolyTree多边形树结构](../第19章-PolyTree多边形树结构)

@@ -1,15 +1,15 @@
 ---
 layout: default
-title: �?7章：ClipperOffset 偏移类详�?
+title: 第17章：ClipperOffset 偏移类详解
 ---
 
-# �?7章：ClipperOffset 偏移类详�?
+# 第17章：ClipperOffset 偏移类详解
 
 ## 17.1 概述
 
-`ClipperOffset` 类用于对多边形进行偏移（扩张或收缩）操作。这在制造业（刀具补偿）、地图制作（缓冲区分析）、图形设计（描边效果）等领域有广泛应用�?
+`ClipperOffset` 类用于对多边形进行偏移（扩张或收缩）操作。这在制造业（刀具补偿）、地图制作（缓冲区分析）、图形设计（描边效果）等领域有广泛应用。
 
-## 17.2 类定�?
+## 17.2 类定义
 
 ```csharp
 public class ClipperOffset
@@ -38,21 +38,21 @@ public class ClipperOffset
 
 | 成员 | 类型 | 说明 |
 |------|------|------|
-| `m_destPolys` | `Paths` | 目标多边形集�?|
-| `m_srcPoly` | `Path` | 当前处理的源多边�?|
+| `m_destPolys` | `Paths` | 目标多边形集合 |
+| `m_srcPoly` | `Path` | 当前处理的源多边形 |
 | `m_destPoly` | `Path` | 当前构建的目标多边形 |
-| `m_normals` | `List<DoublePoint>` | 边的单位法向�?|
+| `m_normals` | `List<DoublePoint>` | 边的单位法向量 |
 | `m_delta` | `double` | 偏移距离 |
-| `m_sinA` | `double` | 当前角度的正弦�?|
-| `m_sin`, `m_cos` | `double` | 圆弧步进的三角函数�?|
+| `m_sinA` | `double` | 当前角度的正弦值 |
+| `m_sin`, `m_cos` | `double` | 圆弧步进的三角函数值 |
 | `m_miterLim` | `double` | 斜接限制因子 |
 | `m_StepsPerRad` | `double` | 每弧度的步数 |
 | `m_lowest` | `IntPoint` | 最低点位置 |
-| `m_polyNodes` | `PolyNode` | 输入多边形的节点�?|
+| `m_polyNodes` | `PolyNode` | 输入多边形的节点树 |
 | `ArcTolerance` | `double` | 圆弧近似容差 |
 | `MiterLimit` | `double` | 斜接限制 |
 
-## 17.4 构造函�?
+## 17.4 构造函数
 
 ```csharp
 public ClipperOffset(
@@ -66,35 +66,35 @@ public ClipperOffset(
 
 ### 17.4.1 MiterLimit
 
-斜接限制控制尖角的最大延伸长度�?
+斜接限制控制尖角的最大延伸长度。
 
 ```
 MiterLimit = 距离 / delta
 
-�?MiterLimit (�?2):
-    �?
-     ╲▁▁▁  �?裁切
-      �?
-       �?
+低 MiterLimit (如 2):
+    ╲
+     ╲▁▁▁  ← 裁切
+      ╲
+       ╲
 
-�?MiterLimit (�?10):
-          �?
-         �?
-        �?
-       �?
-      �?
-     �?�?长尖�?
+高 MiterLimit (如 10):
+          ╱
+         ╱
+        ╱
+       ╱
+      ╱
+     ╱ ← 长尖角
 ```
 
 ### 17.4.2 ArcTolerance
 
-圆弧近似的精度控制�?
+圆弧近似的精度控制。
 
 ```
 高容差（粗糙）：           低容差（平滑）：
       ___                      ⌢⌣
-    _/   \_                  �?   �?
-   /       \                �?     �?
+    _/   \_                  ⌢    ⌣
+   /       \                ⌢      ⌣
   |         |              |        |
 ```
 
@@ -120,7 +120,7 @@ public void AddPath(Path path, JoinType joinType, EndType endType)
     newNode.m_jointype = joinType;
     newNode.m_endtype = endType;
 
-    // 移除重复�?
+    // 移除重复点
     if (endType == EndType.etClosedLine || endType == EndType.etClosedPolygon)
         while (highI > 0 && path[0] == path[highI]) highI--;
     
@@ -178,46 +178,46 @@ public enum JoinType {
 ### 17.7.1 Square（方形）
 
 ```
-原始�?          偏移�?
-    �?             ┌──�?
-   �?              �? �?
-  �?               �? �?
+原始角:          偏移后:
+    ╱              ┌──┐
+   ╱               │  │
+  ╱                │  │
 ```
 
-在拐角处创建 45° 斜切边�?
+在拐角处创建 45° 斜切边。
 
 ### 17.7.2 Round（圆形）
 
 ```
-原始�?          偏移�?
-    �?             ╭──�?
-   �?              �? �?
-  �?               �? �?
+原始角:          偏移后:
+    ╱              ╭──╮
+   ╱               │  │
+  ╱                │  │
 ```
 
-在拐角处创建圆弧�?
+在拐角处创建圆弧。
 
 ### 17.7.3 Miter（斜接）
 
 ```
-原始�?          偏移�?
-    �?               �?
-   �?             �?
-  �?           �?
-             �?
+原始角:          偏移后:
+    ╱                ╱
+   ╱              ╱
+  ╱            ╱
+             ╱
 ```
 
-延伸边线直到相交。受 MiterLimit 限制�?
+延伸边线直到相交。受 MiterLimit 限制。
 
 ## 17.8 EndType 枚举
 
 ```csharp
 public enum EndType { 
-    etClosedPolygon,  // 闭合多边�?
-    etClosedLine,     // 闭合�?
-    etOpenButt,       // 开�?平头
-    etOpenSquare,     // 开�?方头
-    etOpenRound       // 开�?圆头
+    etClosedPolygon,  // 闭合多边形
+    etClosedLine,     // 闭合线
+    etOpenButt,       // 开放-平头
+    etOpenSquare,     // 开放-方头
+    etOpenRound       // 开放-圆头
 }
 ```
 
@@ -225,66 +225,66 @@ public enum EndType {
 
 ```
 输入:              输出:
-┌──────�?         ╭────────�?
-�?     �?         �?       �?
-�?     �?   �?    �?       �?
-�?     �?         �?       �?
-└──────�?         ╰────────�?
+┌──────┐          ╭────────╮
+│      │          │        │
+│      │    →     │        │
+│      │          │        │
+└──────┘          ╰────────╯
 ```
 
-偏移闭合多边形的所有边�?
+偏移闭合多边形的所有边。
 
 ### 17.8.2 ClosedLine
 
 ```
 输入:              输出:
-┌──────�?         ╭────╮╭────�?
-�?     �?         �?   ││    �?
-�?     �?   �?    �?   ││    �?
-�?     �?         �?   ││    �?
-└──────�?         ╰────╯╰────�?
+┌──────┐          ╭────╮╭────╮
+│      │          │    ││    │
+│      │    →     │    ││    │
+│      │          │    ││    │
+└──────┘          ╰────╯╰────╯
 ```
 
-偏移闭合线的两侧，但不闭合末端�?
+偏移闭合线的两侧，但不闭合末端。
 
 ### 17.8.3 OpenButt（平头）
 
 ```
 输入:              输出:
-────────          ┌────────�?
-                  �?       �?
-            �?    �?       �?
-                  �?       �?
-                  └────────�?
+────────          ┌────────┐
+                  │        │
+            →     │        │
+                  │        │
+                  └────────┘
 ```
 
-末端垂直截断�?
+末端垂直截断。
 
 ### 17.8.4 OpenSquare（方头）
 
 ```
 输入:              输出:
-────────         ┌──────────�?
-                 �?         �?
-           �?    �?         �?
-                 �?         �?
-                 └──────────�?
+────────         ┌──────────┐
+                 │          │
+           →     │          │
+                 │          │
+                 └──────────┘
 ```
 
-末端延伸 delta 距离后截断�?
+末端延伸 delta 距离后截断。
 
 ### 17.8.5 OpenRound（圆头）
 
 ```
 输入:              输出:
-────────          ╭──────────�?
-                  �?         �?
-            �?    �?         �?
-                  �?         �?
-                  ╰──────────�?
+────────          ╭──────────╮
+                  │          │
+            →     │          │
+                  │          │
+                  ╰──────────╯
 ```
 
-末端使用半圆�?
+末端使用半圆。
 
 ## 17.9 Execute 方法
 
@@ -295,7 +295,7 @@ public void Execute(ref Paths solution, double delta)
     FixOrientations();
     DoOffset(delta);
     
-    // 使用 Clipper 清理自相�?
+    // 使用 Clipper 清理自相交
     Clipper clpr = new Clipper();
     clpr.AddPaths(m_destPolys, PolyType.ptSubject, true);
     
@@ -338,23 +338,23 @@ public void Execute(ref PolyTree solution, double delta)
     }
     else
     {
-        // ... 负偏移处�?...
+        // ... 负偏移处理 ...
     }
 }
 ```
 
-### 17.9.1 正偏�?vs 负偏�?
+### 17.9.1 正偏移 vs 负偏移
 
 ```
-正偏�?(delta > 0): 扩张
-┌────�?       ╭──────�?
-�?   �?  �?   �?     �?
-└────�?       ╰──────�?
+正偏移 (delta > 0): 扩张
+┌────┐        ╭──────╮
+│    │   →    │      │
+└────┘        ╰──────╯
 
-负偏�?(delta < 0): 收缩
-╭──────�?       ┌────�?
-�?     �?  �?   �?   �?
-╰──────�?       └────�?
+负偏移 (delta < 0): 收缩
+╭──────╮        ┌────┐
+│      │   →    │    │
+╰──────╯        └────┘
 ```
 
 ## 17.10 FixOrientations
@@ -367,7 +367,7 @@ private void FixOrientations()
     if (m_lowest.X >= 0 && 
         !Clipper.Orientation(m_polyNodes.Childs[(int)m_lowest.X].m_polygon))
     {
-        // 最低点的多边形方向错误，反转所�?
+        // 最低点的多边形方向错误，反转所有
         for (int i = 0; i < m_polyNodes.ChildCount; i++)
         {
             PolyNode node = m_polyNodes.Childs[i];
@@ -395,7 +395,7 @@ private void FixOrientations()
 ### 17.11.1 基本偏移
 
 ```csharp
-// 创建正方�?
+// 创建正方形
 Path square = new Path();
 square.Add(new IntPoint(0, 0));
 square.Add(new IntPoint(100, 0));
@@ -419,19 +419,19 @@ line.Add(new IntPoint(0, 0));
 line.Add(new IntPoint(100, 0));
 line.Add(new IntPoint(100, 100));
 
-// 偏移成带宽度的路�?
+// 偏移成带宽度的路径
 ClipperOffset co = new ClipperOffset();
 co.AddPath(line, JoinType.jtRound, EndType.etOpenRound);
 
 Paths solution = new Paths();
-co.Execute(ref solution, 5);  // 宽度�?10
+co.Execute(ref solution, 5);  // 宽度为 10
 ```
 
-### 17.11.3 自定义参�?
+### 17.11.3 自定义参数
 
 ```csharp
 ClipperOffset co = new ClipperOffset(
-    miterLimit: 4.0,      // 较大的斜接限�?
+    miterLimit: 4.0,      // 较大的斜接限制
     arcTolerance: 0.1     // 更平滑的圆弧
 );
 
@@ -443,26 +443,26 @@ co.Execute(ref solution, 15);
 
 ## 17.12 本章小结
 
-本章详细分析�?ClipperOffset 类：
+本章详细分析了 ClipperOffset 类：
 
-1. **类结�?*�?
-   - 成员变量管理偏移状�?
-   - ArcTolerance �?MiterLimit 控制质量
+1. **类结构**：
+   - 成员变量管理偏移状态
+   - ArcTolerance 和 MiterLimit 控制质量
 
-2. **连接类型**�?
-   - Square：方形裁�?
-   - Round：圆弧过�?
-   - Miter：尖角延�?
+2. **连接类型**：
+   - Square：方形裁切
+   - Round：圆弧过渡
+   - Miter：尖角延伸
 
-3. **端点类型**�?
-   - ClosedPolygon/ClosedLine：闭合路�?
-   - OpenButt/OpenSquare/OpenRound：开放路�?
+3. **端点类型**：
+   - ClosedPolygon/ClosedLine：闭合路径
+   - OpenButt/OpenSquare/OpenRound：开放路径
 
-4. **执行流程**�?
+4. **执行流程**：
    - FixOrientations 确保正确方向
    - DoOffset 执行偏移计算
-   - 使用 Clipper 清理自相�?
+   - 使用 Clipper 清理自相交
 
 ---
 
-[上一章：填充规则详解](�?6�?填充规则详解) | [返回目录](../index) | [下一章：偏移算法实现](�?8�?偏移算法实现)
+[上一章：填充规则详解](../第16章-填充规则详解) | [返回目录](../index) | [下一章：偏移算法实现](../第18章-偏移算法实现)

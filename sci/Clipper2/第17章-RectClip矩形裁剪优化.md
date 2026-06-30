@@ -1,39 +1,39 @@
 ---
 layout: default
-title: �?7章：RectClip 矩形裁剪优化
+title: 第17章：RectClip 矩形裁剪优化
 ---
 
-# �?7章：RectClip 矩形裁剪优化
+# 第17章：RectClip 矩形裁剪优化
 
 ## 17.1 概述
 
-`RectClip64` �?`RectClipLines64` �?Clipper2 专门为矩形裁剪优化的类。当裁剪区域是矩形时，使用这些类比通用�?`Clipper64` 快得多。这�?Clipper2 相对�?Clipper1 的重要改进之一�?
+`RectClip64` 和 `RectClipLines64` 是 Clipper2 专门为矩形裁剪优化的类。当裁剪区域是矩形时，使用这些类比通用的 `Clipper64` 快得多。这是 Clipper2 相对于 Clipper1 的重要改进之一。
 
-## 17.2 为什么需要矩形裁剪优�?
+## 17.2 为什么需要矩形裁剪优化
 
 ### 17.2.1 常见场景
 
-- **地图瓦片切割**：将大地图切割为小瓦�?
+- **地图瓦片切割**：将大地图切割为小瓦片
 - **视口裁剪**：裁剪到可视区域
-- **边界框过�?*：快速过滤超出范围的几何�?
+- **边界框过滤**：快速过滤超出范围的几何体
 
 ### 17.2.2 性能对比
 
 ```
 通用裁剪 (Clipper64):
-- 需要构建完整的扫描线结�?
+- 需要构建完整的扫描线结构
 - 处理任意多边形的交点
-- 时间复杂�? O(n log n)
+- 时间复杂度: O(n log n)
 
 矩形裁剪 (RectClip64):
 - 利用矩形的简单性质
 - 简化的交点计算
-- 时间复杂�? O(n)，常数因子小
+- 时间复杂度: O(n)，常数因子小
 ```
 
-## 17.3 RectClip64 �?
+## 17.3 RectClip64 类
 
-### 17.3.1 类定�?
+### 17.3.1 类定义
 
 ```csharp
 public class RectClip64
@@ -57,7 +57,7 @@ public class RectClip64
 }
 ```
 
-### 17.3.2 Rect64 属�?
+### 17.3.2 Rect64 属性
 
 ```csharp
 // 矩形的四个边
@@ -77,7 +77,7 @@ internal readonly Point64[] rectCorners;  // 四个角点
 ```csharp
 internal enum Location
 {
-    Inside,      // 在矩形内�?
+    Inside,      // 在矩形内部
     Left,        // 在左边外
     Top,         // 在上边外
     Right,       // 在右边外
@@ -109,21 +109,21 @@ private Location GetLocation(Point64 pt)
 }
 ```
 
-### 17.4.3 位置关系�?
+### 17.4.3 位置关系图
 
 ```
            Top
-       ┌─────────�?
-  Left �?Inside  �?Right
-       �?        �?
-       └─────────�?
+       ┌─────────┐
+  Left │ Inside  │ Right
+       │         │
+       └─────────┘
           Bottom
           
-角点属于两个边界�?
-左上�?= Left �?Top
-右上�?= Right �?Top
-左下�?= Left �?Bottom
-右下�?= Right �?Bottom
+角点属于两个边界：
+左上角 = Left ∪ Top
+右上角 = Right ∪ Top
+左下角 = Left ∪ Bottom
+右下角 = Right ∪ Bottom
 ```
 
 ## 17.5 Execute 方法
@@ -142,23 +142,23 @@ public Paths64 Execute(Paths64 paths)
     {
         if (path.Count < 3) continue;
         
-        // 快速边界框检�?
+        // 快速边界框检查
         Rect64 pathBounds = Clipper.GetBounds(path);
         
         if (!_rect.Intersects(pathBounds))
         {
-            // 完全在矩形外，跳�?
+            // 完全在矩形外，跳过
             continue;
         }
         
         if (_rect.Contains(pathBounds))
         {
-            // 完全在矩形内，直接添�?
+            // 完全在矩形内，直接添加
             result.Add(path);
             continue;
         }
         
-        // 需要实际裁�?
+        // 需要实际裁剪
         ClipPath(path, result);
     }
     
@@ -187,12 +187,12 @@ private void ClipPath(Path64 path, Paths64 result)
             // 前一点在内部
             if (currLoc == Location.Inside)
             {
-                // 当前点也在内�?
+                // 当前点也在内部
                 _pathOut.Add(curr);
             }
             else
             {
-                // 当前点在外部，计算交�?
+                // 当前点在外部，计算交点
                 AddIntersection(prev, curr, prevLoc, currLoc);
             }
         }
@@ -201,18 +201,18 @@ private void ClipPath(Path64 path, Paths64 result)
             // 前一点在外部
             if (currLoc == Location.Inside)
             {
-                // 当前点在内部，计算交�?
+                // 当前点在内部，计算交点
                 AddIntersection(prev, curr, prevLoc, currLoc);
                 _pathOut.Add(curr);
             }
             else if (currLoc == prevLoc)
             {
-                // 同一边界，可能需要添加角�?
+                // 同一边界，可能需要添加角点
                 // ...
             }
             else
             {
-                // 不同边界，可能穿过矩�?
+                // 不同边界，可能穿过矩形
                 AddCorners(prevLoc, currLoc);
             }
         }
@@ -236,11 +236,11 @@ private void ClipPath(Path64 path, Paths64 result)
 private void AddIntersection(Point64 prev, Point64 curr, 
     Location prevLoc, Location currLoc)
 {
-    // 计算与矩形边的交�?
+    // 计算与矩形边的交点
     
     if (currLoc == Location.Left || prevLoc == Location.Left)
     {
-        // 与左边相�?
+        // 与左边相交
         Point64 ip = GetLeftIntersection(prev, curr);
         if (ip.Y >= _rect.top && ip.Y <= _rect.bottom)
             _pathOut.Add(ip);
@@ -248,7 +248,7 @@ private void AddIntersection(Point64 prev, Point64 curr,
     
     if (currLoc == Location.Right || prevLoc == Location.Right)
     {
-        // 与右边相�?
+        // 与右边相交
         Point64 ip = GetRightIntersection(prev, curr);
         if (ip.Y >= _rect.top && ip.Y <= _rect.bottom)
             _pathOut.Add(ip);
@@ -256,7 +256,7 @@ private void AddIntersection(Point64 prev, Point64 curr,
     
     if (currLoc == Location.Top || prevLoc == Location.Top)
     {
-        // 与上边相�?
+        // 与上边相交
         Point64 ip = GetTopIntersection(prev, curr);
         if (ip.X >= _rect.left && ip.X <= _rect.right)
             _pathOut.Add(ip);
@@ -264,7 +264,7 @@ private void AddIntersection(Point64 prev, Point64 curr,
     
     if (currLoc == Location.Bottom || prevLoc == Location.Bottom)
     {
-        // 与下边相�?
+        // 与下边相交
         Point64 ip = GetBottomIntersection(prev, curr);
         if (ip.X >= _rect.left && ip.X <= _rect.right)
             _pathOut.Add(ip);
@@ -303,15 +303,15 @@ private Point64 GetTopIntersection(Point64 p1, Point64 p2)
 ```csharp
 private void AddCorners(Location prevLoc, Location currLoc)
 {
-    // 当路径从一个边界跨到另一个边界时，可能需要添加角�?
+    // 当路径从一个边界跨到另一个边界时，可能需要添加角点
     
-    // 确定需要添加哪些角�?
+    // 确定需要添加哪些角点
     int startIdx = LocToIdx(prevLoc);
     int endIdx = LocToIdx(currLoc);
     
     if (startIdx == endIdx) return;
     
-    // 按顺时针或逆时针添加角�?
+    // 按顺时针或逆时针添加角点
     bool clockwise = IsClockwise(prevLoc, currLoc);
     
     int idx = startIdx;
@@ -327,9 +327,9 @@ private void AddCorners(Location prevLoc, Location currLoc)
 
 ```
     0 ─────────── 1
-    �?            �?
-    �?            �?
-    �?            �?
+    │             │
+    │             │
+    │             │
     3 ─────────── 2
     
 Corner[0] = (left, top)
@@ -338,7 +338,7 @@ Corner[2] = (right, bottom)
 Corner[3] = (left, bottom)
 ```
 
-## 17.8 RectClipLines64 �?
+## 17.8 RectClipLines64 类
 
 ### 17.8.1 线段裁剪
 
@@ -436,9 +436,9 @@ private void ClipLine(Path64 path, Paths64 result)
 }
 ```
 
-## 17.9 优化技�?
+## 17.9 优化技术
 
-### 17.9.1 快速边界检�?
+### 17.9.1 快速边界检查
 
 ```csharp
 [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -473,16 +473,16 @@ private bool IsInsideRect(Point64 pt)
 
 ## 17.10 使用示例
 
-### 17.10.1 多边形裁�?
+### 17.10.1 多边形裁剪
 
 ```csharp
 // 定义裁剪矩形
 Rect64 rect = new Rect64(0, 0, 100, 100);
 
-// 创建裁剪�?
+// 创建裁剪器
 RectClip64 rc = new RectClip64(rect);
 
-// 待裁剪的多边�?
+// 待裁剪的多边形
 Paths64 polygons = new Paths64 {
     new Path64 {
         new Point64(-50, 50),
@@ -524,7 +524,7 @@ Paths64 allPolygons = GetAllPolygons();
 Paths64 result = rc.Execute(allPolygons);
 ```
 
-## 17.11 �?Clipper64 对比
+## 17.11 与 Clipper64 对比
 
 ### 17.11.1 性能测试
 
@@ -548,7 +548,7 @@ Paths64 result2 = new Paths64();
 c.Execute(ClipType.Intersection, FillRule.NonZero, result2);
 sw2.Stop();
 
-// RectClip64 通常�?5-20 �?
+// RectClip64 通常快 5-20 倍
 ```
 
 ### 17.11.2 适用场景
@@ -556,22 +556,22 @@ sw2.Stop();
 | 场景 | 推荐方法 |
 |------|----------|
 | 矩形裁剪 | RectClip64 |
-| 任意多边形裁�?| Clipper64 |
-| 简单边界检�?| RectClip64 |
+| 任意多边形裁剪 | Clipper64 |
+| 简单边界检查 | RectClip64 |
 | 复杂布尔运算 | Clipper64 |
 
 ## 17.12 本章小结
 
-RectClip 提供了优化的矩形裁剪�?
+RectClip 提供了优化的矩形裁剪：
 
-1. **专用算法**：利用矩形的几何特�?
-2. **快速拒�?*：边界框检�?
-3. **简化计�?*：直接计算与边的交点
+1. **专用算法**：利用矩形的几何特性
+2. **快速拒绝**：边界框检查
+3. **简化计算**：直接计算与边的交点
 4. **角点处理**：正确处理跨边界情况
-5. **线段版本**：RectClipLines64 处理开放路�?
+5. **线段版本**：RectClipLines64 处理开放路径
 
-对于矩形裁剪场景，使�?RectClip64 可以获得显著的性能提升�?
+对于矩形裁剪场景，使用 RectClip64 可以获得显著的性能提升。
 
 ---
 
-[上一章：ClipperOffset偏移类详解](�?6�?ClipperOffset偏移类详�? | [返回目录](../index) | [下一章：Minkowski和与差](�?8�?Minkowski和与�?
+[上一章：ClipperOffset偏移类详解](../第16章-ClipperOffset偏移类详解) | [返回目录](../index) | [下一章：Minkowski和与差](../第18章-Minkowski和与差)

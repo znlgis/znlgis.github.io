@@ -1,106 +1,106 @@
 ---
 layout: default
-title: �?1�?- 前端Vue项目详解
+title: 第11章 - 前端Vue项目详解
 ---
 
-# �?1�?- 前端Vue项目详解
+# 第11章 - 前端Vue项目详解
 
 ## 11.1 项目概述
 
 ### 11.1.1 技术栈
 
-RuoYi-Cloud前端项目（ruoyi-ui）基于Vue 2.x + Element UI构建�?
+RuoYi-Cloud前端项目（ruoyi-ui）基于Vue 2.x + Element UI构建：
 
-| 技�?| 版本 | 说明 |
+| 技术 | 版本 | 说明 |
 |------|------|------|
 | Vue.js | 2.6.x | 渐进式JavaScript框架 |
 | Vue Router | 3.x | 路由管理 |
-| Vuex | 3.x | 状态管�?|
-| Element UI | 2.15.x | UI组件�?|
-| Axios | 0.24.x | HTTP请求�?|
+| Vuex | 3.x | 状态管理 |
+| Element UI | 2.15.x | UI组件库 |
+| Axios | 0.24.x | HTTP请求库 |
 | JS-Cookie | 3.x | Cookie操作 |
-| Nprogress | 0.2.x | 进度�?|
-| Echarts | 5.x | 图表�?|
+| Nprogress | 0.2.x | 进度条 |
+| Echarts | 5.x | 图表库 |
 
 ### 11.1.2 项目结构
 
 ```
 ruoyi-ui/
-├── public/                      # 静态资�?
-�?  ├── favicon.ico             # 网站图标
-�?  └── index.html              # HTML模板
+├── public/                      # 静态资源
+│   ├── favicon.ico             # 网站图标
+│   └── index.html              # HTML模板
 ├── src/
-�?  ├── api/                    # API接口
-�?  �?  ├── login.js           # 登录接口
-�?  �?  ├── menu.js            # 菜单接口
-�?  �?  └── system/            # 系统管理接口
-�?  ├── assets/                 # 静态资�?
-�?  �?  ├── icons/             # SVG图标
-�?  �?  ├── images/            # 图片
-�?  �?  └── styles/            # 全局样式
-�?  ├── components/             # 公共组件
-�?  �?  ├── Breadcrumb/        # 面包�?
-�?  �?  ├── DictTag/           # 字典标签
-�?  �?  ├── Editor/            # 富文本编辑器
-�?  �?  ├── FileUpload/        # 文件上传
-�?  �?  ├── Hamburger/         # 折叠按钮
-�?  �?  ├── HeaderSearch/      # 搜索
-�?  �?  ├── IconSelect/        # 图标选择
-�?  �?  ├── ImagePreview/      # 图片预览
-�?  �?  ├── ImageUpload/       # 图片上传
-�?  �?  ├── Pagination/        # 分页
-�?  �?  ├── PanThumb/          # 头像
-�?  �?  ├── ParentView/        # 父视�?
-�?  �?  ├── RightPanel/        # 右侧面板
-�?  �?  ├── RightToolbar/      # 右侧工具�?
-�?  �?  ├── Screenfull/        # 全屏
-�?  �?  ├── SizeSelect/        # 尺寸选择
-�?  �?  ├── SvgIcon/           # SVG图标
-�?  �?  └── TopNav/            # 顶部导航
-�?  ├── directive/              # 自定义指�?
-�?  �?  ├── dialog/            # 弹窗拖拽
-�?  �?  ├── hasPermi.js        # 权限指令
-�?  �?  └── hasRole.js         # 角色指令
-�?  ├── layout/                 # 布局组件
-�?  �?  ├── components/        # 布局子组�?
-�?  �?  └── index.vue          # 主布局
-�?  ├── plugins/                # 插件
-�?  �?  ├── auth.js            # 权限验证
-�?  �?  ├── cache.js           # 缓存
-�?  �?  ├── download.js        # 下载
-�?  �?  ├── modal.js           # 模态框
-�?  �?  └── tab.js             # 标签�?
-�?  ├── router/                 # 路由配置
-�?  �?  └── index.js           # 路由入口
-�?  ├── store/                  # Vuex状态管�?
-�?  �?  ├── modules/           # 模块
-�?  �?  ├── getters.js         # 计算属�?
-�?  �?  └── index.js           # Store入口
-�?  ├── utils/                  # 工具�?
-�?  �?  ├── auth.js            # Token操作
-�?  �?  ├── dict.js            # 字典工具
-�?  �?  ├── errorCode.js       # 错误�?
-�?  �?  ├── jsencrypt.js       # 加密
-�?  �?  ├── permission.js      # 权限工具
-�?  �?  ├── request.js         # Axios封装
-�?  �?  ├── ruoyi.js           # 通用工具
-�?  �?  ├── scroll-to.js       # 滚动
-�?  �?  └── validate.js        # 验证
-�?  ├── views/                  # 页面视图
-�?  �?  ├── components/        # 页面组件
-�?  �?  ├── dashboard/         # 首页
-�?  �?  ├── error/             # 错误页面
-�?  �?  ├── login.vue          # 登录�?
-�?  �?  ├── monitor/           # 监控
-�?  �?  ├── redirect.vue       # 重定�?
-�?  �?  ├── register.vue       # 注册�?
-�?  �?  ├── system/            # 系统管理
-�?  �?  └── tool/              # 系统工具
-�?  ├── App.vue                 # 根组�?
-�?  ├── main.js                 # 入口文件
-�?  ├── permission.js           # 路由守卫
-�?  └── settings.js             # 系统配置
-├── .env.development            # 开发环境配�?
+│   ├── api/                    # API接口
+│   │   ├── login.js           # 登录接口
+│   │   ├── menu.js            # 菜单接口
+│   │   └── system/            # 系统管理接口
+│   ├── assets/                 # 静态资源
+│   │   ├── icons/             # SVG图标
+│   │   ├── images/            # 图片
+│   │   └── styles/            # 全局样式
+│   ├── components/             # 公共组件
+│   │   ├── Breadcrumb/        # 面包屑
+│   │   ├── DictTag/           # 字典标签
+│   │   ├── Editor/            # 富文本编辑器
+│   │   ├── FileUpload/        # 文件上传
+│   │   ├── Hamburger/         # 折叠按钮
+│   │   ├── HeaderSearch/      # 搜索
+│   │   ├── IconSelect/        # 图标选择
+│   │   ├── ImagePreview/      # 图片预览
+│   │   ├── ImageUpload/       # 图片上传
+│   │   ├── Pagination/        # 分页
+│   │   ├── PanThumb/          # 头像
+│   │   ├── ParentView/        # 父视图
+│   │   ├── RightPanel/        # 右侧面板
+│   │   ├── RightToolbar/      # 右侧工具栏
+│   │   ├── Screenfull/        # 全屏
+│   │   ├── SizeSelect/        # 尺寸选择
+│   │   ├── SvgIcon/           # SVG图标
+│   │   └── TopNav/            # 顶部导航
+│   ├── directive/              # 自定义指令
+│   │   ├── dialog/            # 弹窗拖拽
+│   │   ├── hasPermi.js        # 权限指令
+│   │   └── hasRole.js         # 角色指令
+│   ├── layout/                 # 布局组件
+│   │   ├── components/        # 布局子组件
+│   │   └── index.vue          # 主布局
+│   ├── plugins/                # 插件
+│   │   ├── auth.js            # 权限验证
+│   │   ├── cache.js           # 缓存
+│   │   ├── download.js        # 下载
+│   │   ├── modal.js           # 模态框
+│   │   └── tab.js             # 标签页
+│   ├── router/                 # 路由配置
+│   │   └── index.js           # 路由入口
+│   ├── store/                  # Vuex状态管理
+│   │   ├── modules/           # 模块
+│   │   ├── getters.js         # 计算属性
+│   │   └── index.js           # Store入口
+│   ├── utils/                  # 工具类
+│   │   ├── auth.js            # Token操作
+│   │   ├── dict.js            # 字典工具
+│   │   ├── errorCode.js       # 错误码
+│   │   ├── jsencrypt.js       # 加密
+│   │   ├── permission.js      # 权限工具
+│   │   ├── request.js         # Axios封装
+│   │   ├── ruoyi.js           # 通用工具
+│   │   ├── scroll-to.js       # 滚动
+│   │   └── validate.js        # 验证
+│   ├── views/                  # 页面视图
+│   │   ├── components/        # 页面组件
+│   │   ├── dashboard/         # 首页
+│   │   ├── error/             # 错误页面
+│   │   ├── login.vue          # 登录页
+│   │   ├── monitor/           # 监控
+│   │   ├── redirect.vue       # 重定向
+│   │   ├── register.vue       # 注册页
+│   │   ├── system/            # 系统管理
+│   │   └── tool/              # 系统工具
+│   ├── App.vue                 # 根组件
+│   ├── main.js                 # 入口文件
+│   ├── permission.js           # 路由守卫
+│   └── settings.js             # 系统配置
+├── .env.development            # 开发环境配置
 ├── .env.production             # 生产环境配置
 ├── babel.config.js             # Babel配置
 ├── package.json                # 依赖配置
@@ -116,10 +116,10 @@ ruoyi-ui/
 # 页面标题
 VUE_APP_TITLE = 若依管理系统
 
-# 开发环境配�?
+# 开发环境配置
 ENV = 'development'
 
-# 若依管理系统/开发环�?
+# 若依管理系统/开发环境
 VUE_APP_BASE_API = '/dev-api'
 ```
 
@@ -211,7 +211,7 @@ module.exports = {
   // 网页标题
   title: process.env.VUE_APP_TITLE,
   
-  // 侧边栏主�?深色主题theme-dark，浅色主题theme-light
+  // 侧边栏主题 深色主题theme-dark，浅色主题theme-light
   sideTheme: 'theme-dark',
   
   // 是否系统布局配置
@@ -229,7 +229,7 @@ module.exports = {
   // 是否显示logo
   sidebarLogo: true,
   
-  // 是否显示动态标�?
+  // 是否显示动态标题
   dynamicTitle: false,
   
   // 错误日志
@@ -237,7 +237,7 @@ module.exports = {
 }
 ```
 
-## 11.3 路由与权�?
+## 11.3 路由与权限
 
 ### 11.3.1 路由配置
 
@@ -326,7 +326,7 @@ export const dynamicRoutes = [
       }
     ]
   },
-  // 更多动态路�?..
+  // 更多动态路由...
 ]
 
 export default new Router({
@@ -368,7 +368,7 @@ router.beforeEach((to, from, next) => {
         store.dispatch('GetInfo').then(() => {
           isRelogin.show = false
           store.dispatch('GenerateRoutes').then(accessRoutes => {
-            // 根据roles权限生成可访问的路由�?
+            // 根据roles权限生成可访问的路由表
             router.addRoutes(accessRoutes)
             next({ ...to, replace: true })
           })
@@ -459,11 +459,11 @@ const service = axios.create({
   timeout: 10000
 })
 
-// request拦截�?
+// request拦截器
 service.interceptors.request.use(config => {
-  // 是否需要设�?token
+  // 是否需要设置 token
   const isToken = (config.headers || {}).isToken === false
-  // 是否需要防止数据重复提�?
+  // 是否需要防止数据重复提交
   const isRepeatSubmit = (config.headers || {}).repeatSubmit === false
   
   if (getToken() && !isToken) {
@@ -493,7 +493,7 @@ service.interceptors.request.use(config => {
       const s_time = sessionObj.time
       const interval = 1000
       if (s_data === requestObj.data && requestObj.time - s_time < interval && s_url === requestObj.url) {
-        const message = '数据正在处理，请勿重复提�?
+        const message = '数据正在处理，请勿重复提交'
         console.warn(`[${s_url}]: ` + message)
         return Promise.reject(new Error(message))
       } else {
@@ -507,9 +507,9 @@ service.interceptors.request.use(config => {
   Promise.reject(error)
 })
 
-// 响应拦截�?
+// 响应拦截器
 service.interceptors.response.use(res => {
-  // 未设置状态码则默认成功状�?
+  // 未设置状态码则默认成功状态
   const code = res.data.code || 200
   // 获取错误信息
   const msg = errorCode[code] || res.data.msg || errorCode['default']
@@ -522,7 +522,7 @@ service.interceptors.response.use(res => {
   if (code === 401) {
     if (!isRelogin.show) {
       isRelogin.show = true
-      MessageBox.confirm('登录状态已过期，您可以继续留在该页面，或者重新登�?, '系统提示', {
+      MessageBox.confirm('登录状态已过期，您可以继续留在该页面，或者重新登录', '系统提示', {
         confirmButtonText: '重新登录',
         cancelButtonText: '取消',
         type: 'warning'
@@ -535,7 +535,7 @@ service.interceptors.response.use(res => {
         isRelogin.show = false
       })
     }
-    return Promise.reject('无效的会话，或者会话已过期，请重新登录�?)
+    return Promise.reject('无效的会话，或者会话已过期，请重新登录。')
   } else if (code === 500) {
     Message({ message: msg, type: 'error' })
     return Promise.reject(new Error(msg))
@@ -628,7 +628,7 @@ export function resetUserPwd(userId, password) {
   })
 }
 
-// 用户状态修�?
+// 用户状态修改
 export function changeUserStatus(userId, status) {
   const data = {
     userId,
@@ -652,7 +652,7 @@ export function exportUser(query) {
 }
 ```
 
-## 11.5 Vuex状态管�?
+## 11.5 Vuex状态管理
 
 ### 11.5.1 用户模块
 
@@ -735,7 +735,7 @@ const user = {
       })
     },
     
-    // 退出系�?
+    // 退出系统
     LogOut({ commit, state }) {
       return new Promise((resolve, reject) => {
         logout(state.token).then(() => {
@@ -1050,14 +1050,14 @@ export default {
 本章详细介绍了RuoYi-Cloud前端Vue项目，包括：
 
 1. **项目结构**：目录组织和文件说明
-2. **核心配置**：环境变量、Vue配置、系统设�?
-3. **路由权限**：动态路由、路由守卫、权限指�?
+2. **核心配置**：环境变量、Vue配置、系统设置
+3. **路由权限**：动态路由、路由守卫、权限指令
 4. **Axios封装**：请求拦截、响应处理、API定义
-5. **Vuex状态管�?*：用户模块、权限模�?
-6. **常用组件**：字典标签、分页组�?
+5. **Vuex状态管理**：用户模块、权限模块
+6. **常用组件**：字典标签、分页组件
 
-掌握前端项目结构是进行二次开发的基础，理解这些核心模块可以帮助你更好地定制和扩展前端功能�?
+掌握前端项目结构是进行二次开发的基础，理解这些核心模块可以帮助你更好地定制和扩展前端功能。
 
 ---
 
-[上一章：文件服务与存储](./�?0�?文件服务与存�?md) | [返回目录](./index) | [下一章：数据库设计与管理](./�?2�?数据库设计与管理)
+[上一章：文件服务与存储](./第10章-文件服务与存储) | [返回目录](./index) | [下一章：数据库设计与管理](./第12章-数据库设计与管理)

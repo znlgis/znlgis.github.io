@@ -3,7 +3,10 @@ layout: default
 title: 第八章：Skills 技能系统
 ---
 
+{% raw %}
+
 # 第八章：Skills 技能系统
+
 
 > 本章全面解析 Pi 的技能系统：从 Skills 的概念与定位、加载优先级与目录结构、SKILL.md 格式规范，到创建完整 Skill 的实战示例、调用方式与配置，以及 Prompt Templates 提示模板和 Themes 主题系统。读完本章，你将能够为你的 Pi 构建、组织和管理一整套可复用的技能库，并通过主题系统定制你专属的终端编码环境。
 
@@ -1245,3 +1248,5 @@ pi --theme dracula
 - **Themes 主题系统：** 内置 `dark` 和 `light` 主题，支持自定义 JSON 主题文件（定义 20+ 颜色字段和 6 个 UI 样式字段）。支持热重载（改文件即刻生效），通过 CLI 参数、settings.json、`/theme` 命令或 `Ctrl+T` 快捷键快速切换。
 
 下一章：[第九章：Extensions扩展开发](09-Extensions扩展开发) 将深入 Pi 的 **Extensions 扩展系统**——学习如何编写 TypeScript 扩展来注册自定义工具、监听生命周期事件、构建自定义 TUI 组件，真正将 Pi 改造成你专属的编码 Agent。
+
+{% endraw %}
