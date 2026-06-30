@@ -28,7 +28,7 @@ jobs:
       - name: Check HTML (internal links & markup)
         run: |
           bundle exec htmlproofer ./_site \
-            --check-html \
+            --checks Links,Images,Scripts,Html \
             --disable-external \
             --allow-hash-href \
             --ignore-empty-alt \
