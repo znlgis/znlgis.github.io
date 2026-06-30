@@ -1,32 +1,32 @@
 ---
 layout: default
-title: 第7章：边缘数据结构 TEdge 深入分析
+title: �?章：边缘数据结构 TEdge 深入分析
 ---
 
-# 第7章：边缘数据结构 TEdge 深入分析
+# �?章：边缘数据结构 TEdge 深入分析
 
 ## 7.1 概述
 
-`TEdge` 是 Clipper1 中最核心的内部数据结构，代表多边形的一条边。Vatti 裁剪算法的所有操作都围绕边展开：边的插入、删除、交点计算、输出构建等。深入理解 TEdge 的设计对于理解 Clipper 算法至关重要。
+`TEdge` �?Clipper1 中最核心的内部数据结构，代表多边形的一条边。Vatti 裁剪算法的所有操作都围绕边展开：边的插入、删除、交点计算、输出构建等。深入理�?TEdge 的设计对于理�?Clipper 算法至关重要�?
 
-## 7.2 TEdge 类定义
+## 7.2 TEdge 类定�?
 
 ```csharp
 internal class TEdge 
 {
     internal IntPoint Bot;        // 底部端点
-    internal IntPoint Curr;       // 当前点（随扫描线更新）
+    internal IntPoint Curr;       // 当前点（随扫描线更新�?
     internal IntPoint Top;        // 顶部端点
     internal IntPoint Delta;      // 增量 (Top - Bot)
     internal double Dx;           // 斜率 (Delta.X / Delta.Y)
-    internal PolyType PolyTyp;    // 多边形类型
-    internal EdgeSide Side;       // 当前在输出多边形的哪一侧
+    internal PolyType PolyTyp;    // 多边形类�?
+    internal EdgeSide Side;       // 当前在输出多边形的哪一�?
     internal int WindDelta;       // 缠绕数变化量
     internal int WindCnt;         // 缠绕计数
     internal int WindCnt2;        // 对方多边形类型的缠绕计数
-    internal int OutIdx;          // 输出多边形索引
-    internal TEdge Next;          // 下一条边（多边形顺序）
-    internal TEdge Prev;          // 上一条边（多边形顺序）
+    internal int OutIdx;          // 输出多边形索�?
+    internal TEdge Next;          // 下一条边（多边形顺序�?
+    internal TEdge Prev;          // 上一条边（多边形顺序�?
     internal TEdge NextInLML;     // LML 中的下一条边
     internal TEdge NextInAEL;     // AEL 中的下一条边
     internal TEdge PrevInAEL;     // AEL 中的上一条边
@@ -41,19 +41,19 @@ internal class TEdge
 
 ```
       Top (X_top, Y_top)
-         ●
+         �?
         /
        /
-      /   ← Curr (当前扫描线位置)
+      /   �?Curr (当前扫描线位�?
      /
     /
-   ●
+   �?
 Bot (X_bot, Y_bot)
 
 约定：Bot.Y >= Top.Y（Clipper Y轴向上）
 ```
 
-**字段说明**：
+**字段说明**�?
 
 | 字段 | 说明 |
 |------|------|
@@ -61,24 +61,24 @@ Bot (X_bot, Y_bot)
 | Top | 边的顶部端点（Y 值较小） |
 | Curr | 当前扫描线与边的交点，随扫描进行更新 |
 
-### 7.3.2 Delta 和 Dx
+### 7.3.2 Delta �?Dx
 
 ```csharp
 Delta.X = Top.X - Bot.X;
-Delta.Y = Top.Y - Bot.Y;  // 总是 <= 0（因为 Bot.Y >= Top.Y）
+Delta.Y = Top.Y - Bot.Y;  // 总是 <= 0（因�?Bot.Y >= Top.Y�?
 Dx = Delta.X / Delta.Y;    // 水平边时设为 horizontal 常量
 ```
 
-**Dx 的物理意义**：
-- 表示 Y 坐标每减少 1 时，X 坐标变化量
+**Dx 的物理意�?*�?
+- 表示 Y 坐标每减�?1 时，X 坐标变化�?
 - 用于计算扫描线与边的交点
 
-### 7.3.3 Curr 的更新
+### 7.3.3 Curr 的更�?
 
-在处理每个扫描线时，需要更新边的当前 X 坐标：
+在处理每个扫描线时，需要更新边的当�?X 坐标�?
 
 ```csharp
-// 在 TopX 方法中计算
+// �?TopX 方法中计�?
 private static cInt TopX(TEdge edge, cInt currentY)
 {
     if (currentY == edge.Top.Y)
@@ -86,7 +86,7 @@ private static cInt TopX(TEdge edge, cInt currentY)
     return edge.Bot.X + Round(edge.Dx * (currentY - edge.Bot.Y));
 }
 
-// 在 ProcessEdgesAtTopOfScanbeam 中更新
+// �?ProcessEdgesAtTopOfScanbeam 中更�?
 e.Curr.X = TopX(e, topY);
 e.Curr.Y = topY;
 ```
@@ -96,18 +96,18 @@ e.Curr.Y = topY;
 ### 7.4.1 PolyTyp
 
 ```csharp
-internal PolyType PolyTyp;  // ptSubject 或 ptClip
+internal PolyType PolyTyp;  // ptSubject �?ptClip
 ```
 
-标识边属于主体多边形还是裁剪多边形。
+标识边属于主体多边形还是裁剪多边形�?
 
 ### 7.4.2 Side
 
 ```csharp
-internal EdgeSide Side;  // esLeft 或 esRight
+internal EdgeSide Side;  // esLeft �?esRight
 ```
 
-标识边当前位于输出多边形的左侧还是右侧。
+标识边当前位于输出多边形的左侧还是右侧�?
 
 ```
 输出多边形示意：
@@ -126,33 +126,33 @@ esRight: 边在输出多边形的右侧
 ### 7.4.3 WindDelta
 
 ```csharp
-internal int WindDelta;  // 1, -1, 或 0
+internal int WindDelta;  // 1, -1, �?0
 ```
 
-**含义**：从下往上穿过这条边时，缠绕数的变化量。
+**含义**：从下往上穿过这条边时，缠绕数的变化量�?
 
-| 值 | 说明 |
+| �?| 说明 |
 |----|------|
 | 1 | 向上穿过时缠绕数 +1 |
 | -1 | 向上穿过时缠绕数 -1 |
-| 0 | 开放路径的边 |
+| 0 | 开放路径的�?|
 
-### 7.4.4 WindCnt 和 WindCnt2
+### 7.4.4 WindCnt �?WindCnt2
 
 ```csharp
-internal int WindCnt;   // 同类型多边形的缠绕计数
+internal int WindCnt;   // 同类型多边形的缠绕计�?
 internal int WindCnt2;  // 不同类型多边形的缠绕计数
 ```
 
-**缠绕计数的作用**：
-- 确定点是否在多边形内部
-- 实现不同的填充规则
+**缠绕计数的作�?*�?
+- 确定点是否在多边形内�?
+- 实现不同的填充规�?
 
 ## 7.5 链表指针
 
 TEdge 参与多个链表，每个链表有不同的用途：
 
-### 7.5.1 多边形链表（Next/Prev）
+### 7.5.1 多边形链表（Next/Prev�?
 
 ```csharp
 internal TEdge Next;  // 多边形中的下一条边
@@ -166,50 +166,50 @@ internal TEdge Prev;  // 多边形中的上一条边
    (循环链表)
 ```
 
-### 7.5.2 LML 链表（NextInLML）
+### 7.5.2 LML 链表（NextInLML�?
 
 ```csharp
-internal TEdge NextInLML;  // Local Minima List 中的后续边
+internal TEdge NextInLML;  // Local Minima List 中的后续�?
 ```
 
-**LML（Local Minima List）**：从局部极小值点延伸的边序列。
+**LML（Local Minima List�?*：从局部极小值点延伸的边序列�?
 
 ```
-                 ●──────●
+                 ●──────�?
                 / NextInLML
                /
-              ●  ← 局部极小值
+              �? �?局部极小�?
              /
 NextInLML   /
            /
-          ●
+          �?
 ```
 
-### 7.5.3 AEL 链表（NextInAEL/PrevInAEL）
+### 7.5.3 AEL 链表（NextInAEL/PrevInAEL�?
 
 ```csharp
 internal TEdge NextInAEL;  // 活动边表中的下一条边
 internal TEdge PrevInAEL;  // 活动边表中的上一条边
 ```
 
-**AEL（Active Edge List）**：当前扫描线穿过的所有边，按 X 坐标排序。
+**AEL（Active Edge List�?*：当前扫描线穿过的所有边，按 X 坐标排序�?
 
 ```
-扫描线: ─────────────────────────────────
-           │    │       │      │
+扫描�? ─────────────────────────────────
+           �?   �?      �?     �?
           e1   e2      e3     e4
            
 AEL: e1 ←→ e2 ←→ e3 ←→ e4
 ```
 
-### 7.5.4 SEL 链表（NextInSEL/PrevInSEL）
+### 7.5.4 SEL 链表（NextInSEL/PrevInSEL�?
 
 ```csharp
 internal TEdge NextInSEL;  // 排序边表中的下一条边
 internal TEdge PrevInSEL;  // 排序边表中的上一条边
 ```
 
-**SEL（Sorted Edge List）**：用于水平边处理和交点排序。
+**SEL（Sorted Edge List�?*：用于水平边处理和交点排序�?
 
 ### 7.5.5 OutIdx
 
@@ -217,31 +217,31 @@ internal TEdge PrevInSEL;  // 排序边表中的上一条边
 internal int OutIdx;  // 输出多边形记录的索引
 ```
 
-| 值 | 含义 |
+| �?| 含义 |
 |----|------|
-| Unassigned (-1) | 边尚未与输出多边形关联 |
+| Unassigned (-1) | 边尚未与输出多边形关�?|
 | Skip (-2) | 边应被跳过（开放路径的终点边） |
-| >= 0 | 关联的 OutRec 索引 |
+| >= 0 | 关联�?OutRec 索引 |
 
 ## 7.6 边的生命周期
 
-### 7.6.1 创建阶段（AddPath）
+### 7.6.1 创建阶段（AddPath�?
 
 ```csharp
-// 1. 创建边对象
+// 1. 创建边对�?
 List<TEdge> edges = new List<TEdge>(highI + 1);
 for (int i = 0; i <= highI; i++) edges.Add(new TEdge());
 
 // 2. 初始化多边形链表
 InitEdge(edges[0], edges[1], edges[highI], pg[0]);
 
-// 3. 设置方向和斜率
+// 3. 设置方向和斜�?
 InitEdge2(E, polyType);
 ```
 
 ### 7.6.2 进入 AEL
 
-当扫描线到达边的底部（局部极小值）时，边被插入 AEL：
+当扫描线到达边的底部（局部极小值）时，边被插入 AEL�?
 
 ```csharp
 private void InsertEdgeIntoAEL(TEdge edge, TEdge startEdge)
@@ -254,7 +254,7 @@ private void InsertEdgeIntoAEL(TEdge edge, TEdge startEdge)
     }
     else if (startEdge == null && E2InsertsBeforeE1(m_ActiveEdges, edge))
     {
-        // 插入到 AEL 头部
+        // 插入�?AEL 头部
         edge.PrevInAEL = null;
         edge.NextInAEL = m_ActiveEdges;
         m_ActiveEdges.PrevInAEL = edge;
@@ -276,22 +276,22 @@ private void InsertEdgeIntoAEL(TEdge edge, TEdge startEdge)
 }
 ```
 
-### 7.6.3 在 AEL 中更新
+### 7.6.3 �?AEL 中更�?
 
 ```csharp
 // 交换两条边的位置
 internal void SwapPositionsInAEL(TEdge edge1, TEdge edge2)
 {
-    // 复杂的链表指针操作...
+    // 复杂的链表指针操�?..
 }
 
-// 从 AEL 删除
+// �?AEL 删除
 internal void DeleteFromAEL(TEdge e)
 {
     TEdge AelPrev = e.PrevInAEL;
     TEdge AelNext = e.NextInAEL;
     if (AelPrev == null && AelNext == null && (e != m_ActiveEdges))
-        return; // 已删除
+        return; // 已删�?
     if (AelPrev != null)
         AelPrev.NextInAEL = AelNext;
     else 
@@ -303,7 +303,7 @@ internal void DeleteFromAEL(TEdge e)
 }
 ```
 
-### 7.6.4 边的延续（UpdateEdgeIntoAEL）
+### 7.6.4 边的延续（UpdateEdgeIntoAEL�?
 
 当边到达中间转折点时，更新为下一段：
 
@@ -343,7 +343,7 @@ internal void UpdateEdgeIntoAEL(ref TEdge e)
 当扫描线到达边的顶部（局部极大值）时：
 
 ```csharp
-// 在 DoMaxima 中
+// �?DoMaxima �?
 DeleteFromAEL(e);
 DeleteFromAEL(eMaxPair);
 ```
@@ -367,8 +367,8 @@ private bool E2InsertsBeforeE1(TEdge e1, TEdge e2)
 }
 ```
 
-**排序规则**：
-1. 首先按当前 X 坐标排序
+**排序规则**�?
+1. 首先按当�?X 坐标排序
 2. X 相同时，按斜率方向排序（确保正确的左右关系）
 
 ### 7.7.2 IsHorizontal
@@ -380,13 +380,13 @@ internal static bool IsHorizontal(TEdge e)
 }
 ```
 
-水平边需要特殊处理，因为它们与扫描线平行。
+水平边需要特殊处理，因为它们与扫描线平行�?
 
-## 7.8 边对的查找
+## 7.8 边对的查�?
 
 ### 7.8.1 GetMaximaPair
 
-找到在同一个局部极大值点的配对边：
+找到在同一个局部极大值点的配对边�?
 
 ```csharp
 internal TEdge GetMaximaPair(TEdge e)
@@ -413,31 +413,31 @@ internal TEdge GetMaximaPairEx(TEdge e)
 }
 ```
 
-额外检查确保配对边仍在 AEL 中。
+额外检查确保配对边仍在 AEL 中�?
 
-## 7.9 边的可视化
+## 7.9 边的可视�?
 
 ```
 多边形：
-        ●(100, 200)──────●(300, 200)
+        �?100, 200)──────�?300, 200)
        /                  \
       /                    \
      /                      \
-    ●(0, 100)              ●(400, 100)
+    �?0, 100)              �?400, 100)
      \                      /
       \                    /
        \                  /
-        ●(100, 0)────────●(300, 0)
+        �?100, 0)────────�?300, 0)
 
 边分解：
-e0: (100,0) → (0,100)   Bot=(100,0), Top=(0,100)
-e1: (0,100) → (100,200) Bot=(0,100), Top=(100,200)
-e2: (100,200) → (300,200) 水平边
-e3: (300,200) → (400,100) Bot=(400,100), Top=(300,200)
-e4: (400,100) → (300,0)  Bot=(300,0), Top=(400,100)
-e5: (300,0) → (100,0)    水平边
+e0: (100,0) �?(0,100)   Bot=(100,0), Top=(0,100)
+e1: (0,100) �?(100,200) Bot=(0,100), Top=(100,200)
+e2: (100,200) �?(300,200) 水平�?
+e3: (300,200) �?(400,100) Bot=(400,100), Top=(300,200)
+e4: (400,100) �?(300,0)  Bot=(300,0), Top=(400,100)
+e5: (300,0) �?(100,0)    水平�?
 
-扫描过程：
+扫描过程�?
 Y=0:   AEL = [e0, e5, e4]
 Y=100: AEL = [e1, e3]
 Y=200: 处理完成
@@ -445,22 +445,22 @@ Y=200: 处理完成
 
 ## 7.10 本章小结
 
-TEdge 是 Clipper 算法的核心数据结构：
+TEdge �?Clipper 算法的核心数据结构：
 
-1. **几何信息**：Bot、Top、Curr、Delta、Dx 描述边的位置和方向
+1. **几何信息**：Bot、Top、Curr、Delta、Dx 描述边的位置和方�?
 
-2. **多边形属性**：PolyTyp、Side、WindDelta、WindCnt 用于布尔运算
+2. **多边形属�?*：PolyTyp、Side、WindDelta、WindCnt 用于布尔运算
 
-3. **链表关系**：
+3. **链表关系**�?
    - Next/Prev：原始多边形结构
-   - NextInLML：局部极小值延伸
-   - NextInAEL/PrevInAEL：活动边表
-   - NextInSEL/PrevInSEL：排序边表
+   - NextInLML：局部极小值延�?
+   - NextInAEL/PrevInAEL：活动边�?
+   - NextInSEL/PrevInSEL：排序边�?
 
-4. **生命周期**：从创建、插入 AEL、更新、到删除的完整过程
+4. **生命周期**：从创建、插�?AEL、更新、到删除的完整过�?
 
-理解 TEdge 的设计是理解 Clipper 算法的关键。
+理解 TEdge 的设计是理解 Clipper 算法的关键�?
 
 ---
 
-[上一章：ClipperBase基类详解](第06章-ClipperBase基类详解) | [返回目录](index) | [下一章：局部极小值与扫描线](第08章-局部极小值与扫描线)
+[上一章：ClipperBase基类详解](�?6�?ClipperBase基类详解) | [返回目录](../index) | [下一章：局部极小值与扫描线](�?8�?局部极小值与扫描�?

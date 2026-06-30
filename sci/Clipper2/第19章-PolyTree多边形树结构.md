@@ -1,47 +1,47 @@
 ---
 layout: default
-title: 第19章：PolyTree 多边形树结构
+title: �?9章：PolyTree 多边形树结构
 ---
 
-# 第19章：PolyTree 多边形树结构
+# �?9章：PolyTree 多边形树结构
 
 ## 19.1 概述
 
-`PolyTree` 是 Clipper2 中用于表示具有层次结构的多边形的数据结构。它能够正确表示外轮廓和孔洞的嵌套关系，这在许多应用场景中非常重要。
+`PolyTree` �?Clipper2 中用于表示具有层次结构的多边形的数据结构。它能够正确表示外轮廓和孔洞的嵌套关系，这在许多应用场景中非常重要�?
 
-## 19.2 为什么需要 PolyTree
+## 19.2 为什么需�?PolyTree
 
-### 19.2.1 Paths64 的局限
+### 19.2.1 Paths64 的局�?
 
 ```csharp
 // Paths64 只是路径的列表，没有层次信息
 Paths64 paths = new Paths64 {
-    outerPolygon,   // 外轮廓
+    outerPolygon,   // 外轮�?
     hole1,          // 孔洞1
     hole2,          // 孔洞2
     island          // 孔洞中的岛屿
 };
 
-// 问题：无法知道哪个是哪个的孔洞
+// 问题：无法知道哪个是哪个的孔�?
 ```
 
-### 19.2.2 PolyTree 的优势
+### 19.2.2 PolyTree 的优�?
 
 ```
-PolyTree 层次结构：
+PolyTree 层次结构�?
 
-Root (虚拟根节点)
-├── OuterPolygon1 (外轮廓)
-│   ├── Hole1 (孔洞)
-│   │   └── Island1 (孔洞中的岛屿)
-│   └── Hole2 (孔洞)
+Root (虚拟根节�?
+├── OuterPolygon1 (外轮�?
+�?  ├── Hole1 (孔洞)
+�?  �?  └── Island1 (孔洞中的岛屿)
+�?  └── Hole2 (孔洞)
 └── OuterPolygon2 (另一个外轮廓)
     └── Hole3 (孔洞)
 ```
 
-## 19.3 PolyPath64 类
+## 19.3 PolyPath64 �?
 
-### 19.3.1 类定义
+### 19.3.1 类定�?
 
 ```csharp
 public class PolyPath64 : IEnumerable<PolyPath64>
@@ -72,10 +72,10 @@ public class PolyPath64 : IEnumerable<PolyPath64>
 
 | 成员 | 类型 | 说明 |
 |------|------|------|
-| `_parent` | `PolyPath64?` | 父节点 |
-| `_childs` | `List<PolyPath64>` | 子节点列表 |
-| `Polygon` | `Path64?` | 多边形路径 |
-| `IsHole` | `bool` | 是否为孔洞 |
+| `_parent` | `PolyPath64?` | 父节�?|
+| `_childs` | `List<PolyPath64>` | 子节点列�?|
+| `Polygon` | `Path64?` | 多边形路�?|
+| `IsHole` | `bool` | 是否为孔�?|
 
 ### 19.3.3 IsHole 判断
 
@@ -84,7 +84,7 @@ public bool IsHole
 {
     get
     {
-        // 根节点不是孔洞
+        // 根节点不是孔�?
         if (_parent == null) return false;
         
         // 如果父节点是孔洞，则自己不是孔洞
@@ -93,25 +93,25 @@ public bool IsHole
     }
 }
 
-// 层次关系：
-// Level 0 (Root):     不是孔洞（虚拟根）
-// Level 1 (外轮廓):   不是孔洞
-// Level 2 (孔洞):     是孔洞
+// 层次关系�?
+// Level 0 (Root):     不是孔洞（虚拟根�?
+// Level 1 (外轮�?:   不是孔洞
+// Level 2 (孔洞):     是孔�?
 // Level 3 (岛屿):     不是孔洞
-// Level 4 (岛中孔):   是孔洞
+// Level 4 (岛中�?:   是孔�?
 // ...
 ```
 
-## 19.4 PolyTree64 类
+## 19.4 PolyTree64 �?
 
-### 19.4.1 类定义
+### 19.4.1 类定�?
 
 ```csharp
 public class PolyTree64 : PolyPath64
 {
     public PolyTree64() : base(null)
     {
-        // PolyTree64 是特殊的根节点
+        // PolyTree64 是特殊的根节�?
         // 它没有父节点，也没有 Polygon
     }
     
@@ -122,15 +122,15 @@ public class PolyTree64 : PolyPath64
 }
 ```
 
-### 19.4.2 与 PolyPath64 的关系
+### 19.4.2 �?PolyPath64 的关�?
 
 ```
-PolyTree64 (根节点，无 Polygon)
-    ↓ 继承
-PolyPath64 (普通节点，有 Polygon)
+PolyTree64 (根节点，�?Polygon)
+    �?继承
+PolyPath64 (普通节点，�?Polygon)
 ```
 
-## 19.5 PolyPathD 和 PolyTreeD
+## 19.5 PolyPathD �?PolyTreeD
 
 ### 19.5.1 浮点版本
 
@@ -156,10 +156,10 @@ public class PolyTreeD : PolyPathD
 }
 ```
 
-### 19.5.2 Scale 属性
+### 19.5.2 Scale 属�?
 
 ```csharp
-// 用于 ClipperD 的精度转换
+// 用于 ClipperD 的精度转�?
 public double Scale { get; internal set; }
 
 // 设置后会传递给所有子节点
@@ -173,7 +173,7 @@ internal void SetScale(double scale)
 }
 ```
 
-## 19.6 添加子节点
+## 19.6 添加子节�?
 
 ### 19.6.1 AddChild 方法
 
@@ -192,13 +192,13 @@ public PolyPath64 AddChild(Path64 path)
 ```csharp
 PolyTree64 tree = new PolyTree64();
 
-// 添加外轮廓
+// 添加外轮�?
 PolyPath64 outer = tree.AddChild(outerPath);
 
 // 添加孔洞到外轮廓
 PolyPath64 hole = outer.AddChild(holePath);
 
-// 添加岛屿到孔洞
+// 添加岛屿到孔�?
 PolyPath64 island = hole.AddChild(islandPath);
 ```
 
@@ -207,12 +207,12 @@ PolyPath64 island = hole.AddChild(islandPath);
 ### 19.7.1 IEnumerable 实现
 
 ```csharp
-// PolyPath64 实现了 IEnumerable<PolyPath64>
+// PolyPath64 实现�?IEnumerable<PolyPath64>
 foreach (PolyPath64 child in polyTree)
 {
     ProcessPath(child.Polygon);
     
-    // 递归处理子节点
+    // 递归处理子节�?
     foreach (PolyPath64 grandChild in child)
     {
         ProcessPath(grandChild.Polygon);
@@ -233,7 +233,7 @@ void TraversePolyTree(PolyPath64 node, int level = 0)
         Console.WriteLine($"{indent}{type}: {node.Polygon.Count} points");
     }
     
-    // 递归处理子节点
+    // 递归处理子节�?
     foreach (PolyPath64 child in node)
     {
         TraversePolyTree(child, level + 1);
@@ -241,7 +241,7 @@ void TraversePolyTree(PolyPath64 node, int level = 0)
 }
 ```
 
-### 19.7.3 收集所有路径
+### 19.7.3 收集所有路�?
 
 ```csharp
 void CollectPaths(PolyPath64 node, Paths64 outerPaths, Paths64 holes)
@@ -261,9 +261,9 @@ void CollectPaths(PolyPath64 node, Paths64 outerPaths, Paths64 holes)
 }
 ```
 
-## 19.8 在 Clipper64 中使用
+## 19.8 �?Clipper64 中使�?
 
-### 19.8.1 Execute 输出到 PolyTree
+### 19.8.1 Execute 输出�?PolyTree
 
 ```csharp
 Clipper64 clipper = new Clipper64();
@@ -273,10 +273,10 @@ clipper.AddClip(clips);
 PolyTree64 tree = new PolyTree64();
 clipper.Execute(ClipType.Intersection, FillRule.NonZero, tree);
 
-// 现在 tree 包含了层次化的结果
+// 现在 tree 包含了层次化的结�?
 ```
 
-### 19.8.2 与 Paths64 对比
+### 19.8.2 �?Paths64 对比
 
 ```csharp
 // 方式1：输出到 Paths64（丢失层次信息）
@@ -288,7 +288,7 @@ PolyTree64 tree = new PolyTree64();
 clipper.Execute(ClipType.Union, FillRule.NonZero, tree);
 ```
 
-## 19.9 PolyTree 转 Paths
+## 19.9 PolyTree �?Paths
 
 ### 19.9.1 PolyTreeToPaths64
 
@@ -312,17 +312,17 @@ private static void AddPolyPath(PolyPath64 polypath, Paths64 paths)
 }
 ```
 
-### 19.9.2 静态方法
+### 19.9.2 静态方�?
 
 ```csharp
-// Clipper 类中的便捷方法
+// Clipper 类中的便捷方�?
 Paths64 paths = Clipper.PolyTreeToPaths64(tree);
 PathsD pathsD = Clipper.PolyTreeToPathsD(treeD);
 ```
 
 ## 19.10 实际应用
 
-### 19.10.1 绘制带孔洞的多边形
+### 19.10.1 绘制带孔洞的多边�?
 
 ```csharp
 void DrawPolyTree(PolyTree64 tree, Graphics g)
@@ -332,7 +332,7 @@ void DrawPolyTree(PolyTree64 tree, Graphics g)
         // 创建带孔洞的 GraphicsPath
         GraphicsPath gp = new GraphicsPath();
         
-        // 添加外轮廓
+        // 添加外轮�?
         gp.AddPolygon(ToPointArray(outer.Polygon));
         
         // 添加孔洞
@@ -370,7 +370,7 @@ double CalculateNetArea(PolyPath64 node)
             area += pathArea;
     }
     
-    // 递归处理子节点
+    // 递归处理子节�?
     foreach (PolyPath64 child in node)
     {
         area += CalculateNetArea(child);
@@ -392,7 +392,7 @@ string ExportToSvg(PolyTree64 tree)
     {
         sb.Append("<path d=\"");
         
-        // 外轮廓
+        // 外轮�?
         AppendPathData(sb, outer.Polygon, false);
         
         // 孔洞
@@ -414,12 +414,12 @@ string ExportToSvg(PolyTree64 tree)
 ### 19.11.1 内部构建过程
 
 ```csharp
-// 在 ClipperBase 中
+// �?ClipperBase �?
 private void BuildTree(PolyTree64 polytree, Paths64 openPaths)
 {
     polytree.Clear();
     
-    // 处理所有 OutRec
+    // 处理所�?OutRec
     foreach (OutRec outrec in _outrecList)
     {
         if (outrec.pts == null) continue;
@@ -428,10 +428,10 @@ private void BuildTree(PolyTree64 polytree, Paths64 openPaths)
         Path64 path = BuildPath(outrec.pts, false, false);
         if (path == null || path.Count < 3) continue;
         
-        // 确定父节点
+        // 确定父节�?
         PolyPath64 parent = GetParent(outrec, polytree);
         
-        // 添加到树中
+        // 添加到树�?
         outrec.polypath = parent.AddChild(path);
     }
 }
@@ -453,17 +453,17 @@ private PolyPath64 GetParent(OutRec outrec, PolyTree64 tree)
 ### 19.11.2 Owner 关系
 
 ```csharp
-// OutRec 的 owner 字段决定了层次关系
+// OutRec �?owner 字段决定了层次关�?
 // owner 链形成了包含关系
 
-OutRec A (owner = null)     → 属于 PolyTree 根
-OutRec B (owner = A)        → B 是 A 的孔洞
-OutRec C (owner = B)        → C 是 B 中的岛屿
+OutRec A (owner = null)     �?属于 PolyTree �?
+OutRec B (owner = A)        �?B �?A 的孔�?
+OutRec C (owner = B)        �?C �?B 中的岛屿
 ```
 
 ## 19.12 调试与可视化
 
-### 19.12.1 打印树结构
+### 19.12.1 打印树结�?
 
 ```csharp
 void PrintTree(PolyPath64 node, int depth = 0)
@@ -488,7 +488,7 @@ void PrintTree(PolyPath64 node, int depth = 0)
 }
 ```
 
-### 19.12.2 验证树结构
+### 19.12.2 验证树结�?
 
 ```csharp
 bool ValidateTree(PolyPath64 node)
@@ -502,7 +502,7 @@ bool ValidateTree(PolyPath64 node)
             return false;
         }
         
-        // 检查孔洞状态交替
+        // 检查孔洞状态交�?
         if (child.Polygon != null && node.Polygon != null)
         {
             if (child.IsHole == node.IsHole)
@@ -512,7 +512,7 @@ bool ValidateTree(PolyPath64 node)
             }
         }
         
-        // 递归检查
+        // 递归检�?
         if (!ValidateTree(child))
             return false;
     }
@@ -523,17 +523,17 @@ bool ValidateTree(PolyPath64 node)
 
 ## 19.13 本章小结
 
-PolyTree 是 Clipper2 中表示层次化多边形的重要结构：
+PolyTree �?Clipper2 中表示层次化多边形的重要结构�?
 
 1. **层次关系**：正确表示外轮廓、孔洞、岛屿的嵌套
 2. **PolyPath64**：树的节点，包含路径和子节点
-3. **PolyTree64**：根节点，没有路径
-4. **IsHole 属性**：自动计算是否为孔洞
+3. **PolyTree64**：根节点，没有路�?
+4. **IsHole 属�?*：自动计算是否为孔洞
 5. **遍历方式**：IEnumerable 支持 foreach
-6. **应用场景**：绘图、SVG 导出、面积计算
+6. **应用场景**：绘图、SVG 导出、面积计�?
 
-当需要保留多边形的层次结构时，使用 PolyTree 而不是 Paths64。
+当需要保留多边形的层次结构时，使�?PolyTree 而不�?Paths64�?
 
 ---
 
-[上一章：Minkowski和与差](第18章-Minkowski和与差) | [返回目录](index) | [下一章：实际应用与最佳实践](第20章-实际应用与最佳实践)
+[上一章：Minkowski和与差](�?8�?Minkowski和与�? | [返回目录](../index) | [下一章：实际应用与最佳实践](�?0�?实际应用与最佳实�?

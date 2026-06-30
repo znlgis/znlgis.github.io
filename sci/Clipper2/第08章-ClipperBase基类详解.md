@@ -1,15 +1,15 @@
 ---
 layout: default
-title: 第8章：ClipperBase 基类详解
+title: �?章：ClipperBase 基类详解
 ---
 
-# 第8章：ClipperBase 基类详解
+# �?章：ClipperBase 基类详解
 
 ## 8.1 概述
 
-`ClipperBase` 是 Clipper2 裁剪引擎的核心基类，定义了多边形裁剪算法的主要数据结构和基础方法。`Clipper64` 和 `ClipperD` 都继承自这个类。
+`ClipperBase` �?Clipper2 裁剪引擎的核心基类，定义了多边形裁剪算法的主要数据结构和基础方法。`Clipper64` �?`ClipperD` 都继承自这个类�?
 
-## 8.2 类层次结构
+## 8.2 类层次结�?
 
 ```
 ClipperBase (抽象基类)
@@ -42,7 +42,7 @@ public abstract class ClipperBase
     internal List<HorzSegment>? _horz_seg_list;
     internal List<HorzJoin>? _horz_join_list;
     
-    // 状态标志
+    // 状态标�?
     internal bool _isSortedMinimaList;
     internal bool _hasOpenPaths;
     
@@ -50,7 +50,7 @@ public abstract class ClipperBase
     internal int _currentLocMinIdx;
     internal long _currentBotY;
     
-    // 对象池
+    // 对象�?
     private readonly Pool<OutPt> _outPtPool;
     private readonly Pool<OutRec> _outRecPool;
     
@@ -58,18 +58,18 @@ public abstract class ClipperBase
 }
 ```
 
-### 8.3.2 变量用途说明
+### 8.3.2 变量用途说�?
 
-| 变量名 | 类型 | 用途 |
+| 变量�?| 类型 | 用�?|
 |--------|------|------|
-| `_minimaList` | `List<LocalMinima>` | 局部极小值列表 |
-| `_vertexList` | `List<List<Vertex>>` | 顶点列表的列表 |
+| `_minimaList` | `List<LocalMinima>` | 局部极小值列�?|
+| `_vertexList` | `List<List<Vertex>>` | 顶点列表的列�?|
 | `_scanlineList` | `List<long>` | 扫描线Y坐标列表 |
-| `_actives` | `Active?` | 活动边表头指针 |
+| `_actives` | `Active?` | 活动边表头指�?|
 | `_outrecList` | `List<OutRec>` | 输出记录列表 |
-| `_hasOpenPaths` | `bool` | 是否包含开放路径 |
+| `_hasOpenPaths` | `bool` | 是否包含开放路�?|
 
-## 8.4 局部极小值列表 (MinimaList)
+## 8.4 局部极小值列�?(MinimaList)
 
 ### 8.4.1 LocalMinima 结构
 
@@ -94,20 +94,20 @@ internal class LocalMinima
 在多边形轮廓中，局部极小值是Y坐标最低的点（在Y轴向上的坐标系中）：
 
 ```
-           ▲ Y
-           │
-    ○──────●──────○     ← 局部最大值
-    │             │
-    │             │
-    ○             ○
-     ╲           ╱
-      ╲         ╱
-       ╲       ╱
-        ●─────●         ← 局部极小值
-           │
+           �?Y
+           �?
+    ○──────●──────�?    �?局部最大�?
+    �?            �?
+    �?            �?
+    �?            �?
+     �?          �?
+      �?        �?
+       �?      �?
+        ●─────�?        �?局部极小�?
+           �?
 ```
 
-### 8.4.3 添加到极小值列表
+### 8.4.3 添加到极小值列�?
 
 ```csharp
 [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -117,19 +117,19 @@ private void AddLocMin(Vertex vert, PathType pathtype, bool isOpen)
     if (!_scanlineList.Contains(vert.pt.Y))
         _scanlineList.Add(vert.pt.Y);
     
-    // 添加到局部极小值列表
+    // 添加到局部极小值列�?
     _minimaList.Add(new LocalMinima(vert, pathtype, isOpen));
 }
 ```
 
-### 8.4.4 排序极小值
+### 8.4.4 排序极小�?
 
 ```csharp
 private void SortMinima()
 {
     if (!_isSortedMinimaList)
     {
-        // 按 Y 坐标降序排序（从上到下扫描）
+        // �?Y 坐标降序排序（从上到下扫描）
         _minimaList.Sort((a, b) => b.vertex.pt.Y.CompareTo(a.vertex.pt.Y));
         _isSortedMinimaList = true;
     }
@@ -150,7 +150,7 @@ internal class Vertex
 }
 ```
 
-每个多边形路径都有自己的顶点链表，存储在 `_vertexList` 中。
+每个多边形路径都有自己的顶点链表，存储在 `_vertexList` 中�?
 
 ### 8.5.2 顶点标志
 
@@ -159,10 +159,10 @@ internal class Vertex
 internal enum VertexFlags
 {
     None = 0,
-    OpenStart = 1,   // 开放路径起点
-    OpenEnd = 2,     // 开放路径终点
-    LocalMax = 4,    // 局部最大值
-    LocalMin = 8     // 局部最小值
+    OpenStart = 1,   // 开放路径起�?
+    OpenEnd = 2,     // 开放路径终�?
+    LocalMax = 4,    // 局部最大�?
+    LocalMin = 8     // 局部最小�?
 }
 ```
 
@@ -178,7 +178,7 @@ private void AddPathsToVertexList(Paths64 paths, PathType pathType, bool isOpen)
         
         foreach (Point64 pt in path)
         {
-            // 跳过重复点
+            // 跳过重复�?
             if (prevVert != null && pt == prevVert.pt) continue;
             
             Vertex v = new Vertex
@@ -208,26 +208,26 @@ private void AddPathsToVertexList(Paths64 paths, PathType pathType, bool isOpen)
         if (firstVert != null)
             _vertexList.Add(CreateVertexList(firstVert));
         
-        // 识别并标记局部极值
+        // 识别并标记局部极�?
         MarkLocalMinMax(firstVert, pathType, isOpen);
     }
 }
 ```
 
-## 8.6 扫描线列表 (ScanlineList)
+## 8.6 扫描线列�?(ScanlineList)
 
 ### 8.6.1 扫描线的作用
 
-扫描线算法的核心是维护一个有序的Y坐标列表，算法在每个Y坐标处进行事件处理。
+扫描线算法的核心是维护一个有序的Y坐标列表，算法在每个Y坐标处进行事件处理�?
 
 ```csharp
 internal List<long> _scanlineList;
 ```
 
-### 8.6.2 扫描线操作
+### 8.6.2 扫描线操�?
 
 ```csharp
-// 添加扫描线
+// 添加扫描�?
 [MethodImpl(MethodImplOptions.AggressiveInlining)]
 private void AddScanline(long y)
 {
@@ -255,14 +255,14 @@ private bool PopScanline(out long y)
 }
 ```
 
-### 8.6.3 扫描线事件类型
+### 8.6.3 扫描线事件类�?
 
 在每个扫描线位置，可能发生以下事件：
 
-1. **插入边**：局部极小值点，开始向上扫描
-2. **删除边**：局部最大值点，边结束
+1. **插入�?*：局部极小值点，开始向上扫�?
+2. **删除�?*：局部最大值点，边结束
 3. **交点处理**：两条边相交
-4. **水平边处理**：水平边的特殊处理
+4. **水平边处�?*：水平边的特殊处�?
 
 ## 8.7 AddPath/AddPaths 方法
 
@@ -282,7 +282,7 @@ public void AddPaths(Paths64 paths, PathType pathtype, bool isOpen = false)
 {
     if (isOpen) _hasOpenPaths = true;
     
-    // 标记需要重新排序
+    // 标记需要重新排�?
     _isSortedMinimaList = false;
     
     // 将路径添加到顶点列表
@@ -319,14 +319,14 @@ public void AddClip(Paths64 paths)
 }
 ```
 
-## 8.8 清理和重置
+## 8.8 清理和重�?
 
 ### 8.8.1 Clear 方法
 
 ```csharp
 public void Clear()
 {
-    // 清空所有数据
+    // 清空所有数�?
     ClearSolution();
     _minimaList.Clear();
     _vertexList.Clear();
@@ -346,7 +346,7 @@ internal void ClearSolution()
     _actives = null;
     _sel = null;
     
-    // 回收对象到池中
+    // 回收对象到池�?
     foreach (var outrec in _outrecList)
     {
         if (outrec.pts != null)
@@ -360,11 +360,11 @@ internal void ClearSolution()
 }
 ```
 
-## 8.9 对象池
+## 8.9 对象�?
 
-### 8.9.1 Pool 类
+### 8.9.1 Pool �?
 
-Clipper2 使用对象池来减少GC压力：
+Clipper2 使用对象池来减少GC压力�?
 
 ```csharp
 internal class Pool<T> where T : class, new()
@@ -383,7 +383,7 @@ internal class Pool<T> where T : class, new()
 }
 ```
 
-### 8.9.2 使用对象池
+### 8.9.2 使用对象�?
 
 ```csharp
 // 获取对象
@@ -398,11 +398,11 @@ _outPtPool.Return(op);
 
 ### 8.9.3 对象池的好处
 
-1. **减少内存分配**：重用已创建的对象
-2. **减少GC压力**：避免频繁创建和销毁对象
-3. **提高性能**：特别是在处理大量多边形时
+1. **减少内存分配**：重用已创建的对�?
+2. **减少GC压力**：避免频繁创建和销毁对�?
+3. **提高性能**：特别是在处理大量多边形�?
 
-## 8.10 PreserveCollinear 属性
+## 8.10 PreserveCollinear 属�?
 
 ### 8.10.1 定义
 
@@ -415,14 +415,14 @@ public bool PreserveCollinear { get; set; }
 控制是否保留共线点：
 
 ```csharp
-// 三个共线点
+// 三个共线�?
 // A ─── B ─── C
 
 // PreserveCollinear = false（默认）
-// 结果：A ─── C（移除B）
+// 结果：A ─── C（移除B�?
 
 // PreserveCollinear = true
-// 结果：A ─── B ─── C（保留B）
+// 结果：A ─── B ─── C（保留B�?
 ```
 
 ### 8.10.3 实现
@@ -432,7 +432,7 @@ private void AddVertex(Vertex v, Vertex prev)
 {
     if (!PreserveCollinear)
     {
-        // 检查是否共线
+        // 检查是否共�?
         if (prev.prev != null && 
             IsCollinear(prev.prev.pt, prev.pt, v.pt))
         {
@@ -449,7 +449,7 @@ private void AddVertex(Vertex v, Vertex prev)
 }
 ```
 
-## 8.11 ReverseSolution 属性
+## 8.11 ReverseSolution 属�?
 
 ### 8.11.1 定义
 
@@ -459,19 +459,19 @@ public bool ReverseSolution { get; set; }
 
 ### 8.11.2 作用
 
-控制输出多边形的方向：
+控制输出多边形的方向�?
 
 ```csharp
 // ReverseSolution = false（默认）
-// 外轮廓：逆时针
-// 内轮廓（孔洞）：顺时针
+// 外轮廓：逆时�?
+// 内轮廓（孔洞）：顺时�?
 
 // ReverseSolution = true
-// 外轮廓：顺时针
-// 内轮廓（孔洞）：逆时针
+// 外轮廓：顺时�?
+// 内轮廓（孔洞）：逆时�?
 ```
 
-## 8.12 状态检查方法
+## 8.12 状态检查方�?
 
 ### 8.12.1 IsEmpty
 
@@ -523,7 +523,7 @@ internal static bool IsHotEdge(Active ae)
 }
 ```
 
-"热边"是指当前正在构建输出多边形的边。
+"热边"是指当前正在构建输出多边形的边�?
 
 ## 8.14 调试支持
 
@@ -540,7 +540,7 @@ public override string ToString()
 #endif
 ```
 
-### 8.14.2 调试可视化
+### 8.14.2 调试可视�?
 
 在调试模式下，可以添加方法来可视化内部状态：
 
@@ -562,27 +562,27 @@ internal void DumpActives()
 
 ## 8.15 本章小结
 
-`ClipperBase` 是 Clipper2 的核心基类，包含：
+`ClipperBase` �?Clipper2 的核心基类，包含�?
 
-1. **核心数据结构**：
-   - `_minimaList`：局部极小值列表
-   - `_vertexList`：顶点列表
+1. **核心数据结构**�?
+   - `_minimaList`：局部极小值列�?
+   - `_vertexList`：顶点列�?
    - `_scanlineList`：扫描线Y坐标列表
-   - `_actives`：活动边表
-   - `_outrecList`：输出记录列表
+   - `_actives`：活动边�?
+   - `_outrecList`：输出记录列�?
 
-2. **关键方法**：
-   - `AddPath/AddPaths`：添加路径
-   - `Clear/ClearSolution`：清理状态
+2. **关键方法**�?
+   - `AddPath/AddPaths`：添加路�?
+   - `Clear/ClearSolution`：清理状�?
    - 各种辅助方法
 
-3. **性能优化**：
+3. **性能优化**�?
    - 对象池减少GC
    - 内联优化
-   - 懒排序
+   - 懒排�?
 
-理解 `ClipperBase` 的结构是理解 Clipper2 裁剪算法的基础。
+理解 `ClipperBase` 的结构是理解 Clipper2 裁剪算法的基础�?
 
 ---
 
-[上一章：高精度运算](第07章-高精度运算) | [返回目录](index) | [下一章：Active活动边结构](第09章-Active活动边结构)
+[上一章：高精度运算](�?7�?高精度运�? | [返回目录](../index) | [下一章：Active活动边结构](�?9�?Active活动边结�?

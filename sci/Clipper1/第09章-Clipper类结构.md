@@ -1,15 +1,15 @@
 ---
 layout: default
-title: 第9章：Clipper 类结构与初始化
+title: �?章：Clipper 类结构与初始�?
 ---
 
-# 第9章：Clipper 类结构与初始化
+# �?章：Clipper 类结构与初始�?
 
 ## 9.1 概述
 
-`Clipper` 类继承自 `ClipperBase`，是用户直接使用的主要类。它实现了多边形布尔运算的核心算法，包括交集、并集、差集和异或运算。
+`Clipper` 类继承自 `ClipperBase`，是用户直接使用的主要类。它实现了多边形布尔运算的核心算法，包括交集、并集、差集和异或运算�?
 
-## 9.2 类定义
+## 9.2 类定�?
 
 ```csharp
 public class Clipper : ClipperBase
@@ -38,7 +38,7 @@ public class Clipper : ClipperBase
     public ZFillCallback ZFillFunction { get; set; }
 #endif
 
-    // 公共属性
+    // 公共属�?
     public bool ReverseSolution { get; set; }
     public bool StrictlySimple { get; set; }
 }
@@ -46,7 +46,7 @@ public class Clipper : ClipperBase
 
 ## 9.3 成员变量详解
 
-### 9.3.1 运算状态
+### 9.3.1 运算状�?
 
 | 成员 | 类型 | 说明 |
 |------|------|------|
@@ -60,45 +60,45 @@ public class Clipper : ClipperBase
 
 | 成员 | 类型 | 说明 |
 |------|------|------|
-| `m_Maxima` | `Maxima` | 局部极大值链表 |
+| `m_Maxima` | `Maxima` | 局部极大值链�?|
 | `m_SortedEdges` | `TEdge` | 排序边列表头 |
 | `m_IntersectList` | `List<IntersectNode>` | 交点列表 |
-| `m_Joins` | `List<Join>` | 连接点列表 |
+| `m_Joins` | `List<Join>` | 连接点列�?|
 | `m_GhostJoins` | `List<Join>` | 幽灵连接点（水平边） |
 
 ### 9.3.3 辅助结构
 
-**Maxima 结构**：
+**Maxima 结构**�?
 ```csharp
 internal class Maxima
 {
     internal cInt X;        // 极大值的 X 坐标
-    internal Maxima Next;   // 下一个极大值
-    internal Maxima Prev;   // 上一个极大值
+    internal Maxima Next;   // 下一个极大�?
+    internal Maxima Prev;   // 上一个极大�?
 }
 ```
 
-**IntersectNode 结构**：
+**IntersectNode 结构**�?
 ```csharp
 public class IntersectNode
 {
     internal TEdge Edge1;   // 参与交点的第一条边
-    internal TEdge Edge2;   // 参与交点的第二条边
+    internal TEdge Edge2;   // 参与交点的第二条�?
     internal IntPoint Pt;   // 交点坐标
 }
 ```
 
-**Join 结构**：
+**Join 结构**�?
 ```csharp
 internal class Join
 {
     internal OutPt OutPt1;  // 第一个输出点
     internal OutPt OutPt2;  // 第二个输出点
-    internal IntPoint OffPt; // 偏移点（用于判断连接方向）
+    internal IntPoint OffPt; // 偏移点（用于判断连接方向�?
 }
 ```
 
-## 9.4 构造函数
+## 9.4 构造函�?
 
 ```csharp
 public Clipper(int InitOptions = 0) : base()
@@ -128,13 +128,13 @@ public Clipper(int InitOptions = 0) : base()
 
 ### 9.4.1 初始化选项
 
-| 选项 | 值 | 说明 |
+| 选项 | �?| 说明 |
 |------|-----|------|
-| `ioReverseSolution` | 1 | 反转结果多边形方向 |
+| `ioReverseSolution` | 1 | 反转结果多边形方�?|
 | `ioStrictlySimple` | 2 | 确保结果是简单多边形 |
 | `ioPreserveCollinear` | 4 | 保留共线顶点 |
 
-**使用示例**：
+**使用示例**�?
 ```csharp
 // 默认选项
 Clipper c1 = new Clipper();
@@ -151,9 +151,9 @@ Clipper c3 = new Clipper(
 
 ## 9.5 Execute 方法
 
-Clipper 提供了四个 Execute 重载方法：
+Clipper 提供了四�?Execute 重载方法�?
 
-### 9.5.1 返回 Paths（简化版）
+### 9.5.1 返回 Paths（简化版�?
 
 ```csharp
 public bool Execute(ClipType clipType, Paths solution, 
@@ -163,7 +163,7 @@ public bool Execute(ClipType clipType, Paths solution,
 }
 ```
 
-### 9.5.2 返回 Paths（完整版）
+### 9.5.2 返回 Paths（完整版�?
 
 ```csharp
 public bool Execute(ClipType clipType, Paths solution,
@@ -196,7 +196,7 @@ public bool Execute(ClipType clipType, Paths solution,
 }
 ```
 
-### 9.5.3 返回 PolyTree（简化版）
+### 9.5.3 返回 PolyTree（简化版�?
 
 ```csharp
 public bool Execute(ClipType clipType, PolyTree polytree,
@@ -206,7 +206,7 @@ public bool Execute(ClipType clipType, PolyTree polytree,
 }
 ```
 
-### 9.5.4 返回 PolyTree（完整版）
+### 9.5.4 返回 PolyTree（完整版�?
 
 ```csharp
 public bool Execute(ClipType clipType, PolyTree polytree,
@@ -283,7 +283,7 @@ private bool ExecuteInternal()
                 FixupOutPolygon(outRec);
         }
 
-        // 处理严格简单模式
+        // 处理严格简单模�?
         if (StrictlySimple) DoSimplePolygons();
         
         return true;
@@ -296,55 +296,55 @@ private bool ExecuteInternal()
 }
 ```
 
-### 9.6.1 执行流程图
+### 9.6.1 执行流程�?
 
 ```
 ExecuteInternal()
-       │
-       ▼
+       �?
+       �?
     Reset()
-       │
-       ▼
+       �?
+       �?
 PopScanbeam(botY)
-       │
-       ▼
+       �?
+       �?
 InsertLocalMinimaIntoAEL(botY)
-       │
-       ▼
-┌──────────────────────────────┐
-│  while (有扫描线或待处理LM)  │
-│         │                    │
-│         ▼                    │
-│  ProcessHorizontals()        │
-│         │                    │
-│         ▼                    │
-│  ProcessIntersections(topY)  │
-│         │                    │
-│         ▼                    │
-│  ProcessEdgesAtTopOfScanbeam │
-│         │                    │
-│         ▼                    │
-│  InsertLocalMinimaIntoAEL    │
-│         │                    │
-│         └────────────────────┘
-       │
-       ▼
+       �?
+       �?
+┌──────────────────────────────�?
+�? while (有扫描线或待处理LM)  �?
+�?        �?                   �?
+�?        �?                   �?
+�? ProcessHorizontals()        �?
+�?        �?                   �?
+�?        �?                   �?
+�? ProcessIntersections(topY)  �?
+�?        �?                   �?
+�?        �?                   �?
+�? ProcessEdgesAtTopOfScanbeam �?
+�?        �?                   �?
+�?        �?                   �?
+�? InsertLocalMinimaIntoAEL    �?
+�?        �?                   �?
+�?        └────────────────────�?
+       �?
+       �?
    方向修正
-       │
-       ▼
+       �?
+       �?
  JoinCommonEdges()
-       │
-       ▼
+       �?
+       �?
    输出清理
-       │
-       ▼
- DoSimplePolygons() (可选)
-       │
-       ▼
+       �?
+       �?
+ DoSimplePolygons() (可�?
+       �?
+       �?
     返回结果
 ```
 
-## 9.7 公共属性
+## 9.7 公共属�?
 
 ### 9.7.1 ReverseSolution
 
@@ -352,15 +352,15 @@ InsertLocalMinimaIntoAEL(botY)
 public bool ReverseSolution { get; set; }
 ```
 
-**功能**：反转结果多边形的方向。
+**功能**：反转结果多边形的方向�?
 
-**默认行为**：
+**默认行为**�?
 - 外轮廓：逆时针（正面积）
-- 孔洞：顺时针（负面积）
+- 孔洞：顺时针（负面积�?
 
-**启用后**：
-- 外轮廓：顺时针
-- 孔洞：逆时针
+**启用�?*�?
+- 外轮廓：顺时�?
+- 孔洞：逆时�?
 
 ### 9.7.2 StrictlySimple
 
@@ -368,21 +368,21 @@ public bool ReverseSolution { get; set; }
 public bool StrictlySimple { get; set; }
 ```
 
-**功能**：确保输出是严格简单的多边形（没有自交点）。
+**功能**：确保输出是严格简单的多边形（没有自交点）�?
 
-**注意**：启用此选项可能增加处理时间和输出多边形数量。
+**注意**：启用此选项可能增加处理时间和输出多边形数量�?
 
 ### 9.7.3 PreserveCollinear
 
 ```csharp
-public bool PreserveCollinear { get; set; }  // 继承自 ClipperBase
+public bool PreserveCollinear { get; set; }  // 继承�?ClipperBase
 ```
 
-**功能**：保留共线顶点。
+**功能**：保留共线顶点�?
 
-**默认行为**：移除共线顶点以简化输出。
+**默认行为**：移除共线顶点以简化输出�?
 
-## 9.8 Z 坐标处理（use_xyz）
+## 9.8 Z 坐标处理（use_xyz�?
 
 ```csharp
 #if use_xyz
@@ -392,12 +392,12 @@ public ZFillCallback ZFillFunction { get; set; }
 #endif
 ```
 
-**用途**：当两条边相交创建新点时，通过回调函数计算 Z 坐标。
+**用�?*：当两条边相交创建新点时，通过回调函数计算 Z 坐标�?
 
-**使用示例**：
+**使用示例**�?
 ```csharp
 #if use_xyz
-// 插值计算 Z
+// 插值计�?Z
 clipper.ZFillFunction = (bot1, top1, bot2, top2, ref IntPoint pt) =>
 {
     // 基于两条边的端点插值计算交点的 Z
@@ -407,7 +407,7 @@ clipper.ZFillFunction = (bot1, top1, bot2, top2, ref IntPoint pt) =>
     double ratio2 = (double)(pt.Y - bot2.Y) / (top2.Y - bot2.Y);
     double z2 = bot2.Z + ratio2 * (top2.Z - bot2.Z);
     
-    pt.Z = (cInt)((z1 + z2) / 2);  // 平均值
+    pt.Z = (cInt)((z1 + z2) / 2);  // 平均�?
 };
 #endif
 ```
@@ -417,7 +417,7 @@ clipper.ZFillFunction = (bot1, top1, bot2, top2, ref IntPoint pt) =>
 ### 9.9.1 基本使用
 
 ```csharp
-// 创建多边形
+// 创建多边�?
 Path subject = new Path();
 subject.Add(new IntPoint(0, 0));
 subject.Add(new IntPoint(100, 0));
@@ -455,8 +455,8 @@ void TraverseTree(PolyNode node, int depth)
     for (int i = 0; i < node.ChildCount; i++)
     {
         PolyNode child = node.Childs[i];
-        string type = child.IsHole ? "孔洞" : "外轮廓";
-        Console.WriteLine($"{new string(' ', depth * 2)}{type}: {child.Contour.Count}点");
+        string type = child.IsHole ? "孔洞" : "外轮�?;
+        Console.WriteLine($"{new string(' ', depth * 2)}{type}: {child.Contour.Count}�?);
         TraverseTree(child, depth + 1);
     }
 }
@@ -469,12 +469,12 @@ TraverseTree(tree, 0);
 ```csharp
 Clipper clipper = new Clipper();
 
-// 第一次操作
+// 第一次操�?
 clipper.AddPaths(paths1, PolyType.ptSubject, true);
 Paths result1 = new Paths();
 clipper.Execute(ClipType.ctUnion, result1);
 
-// 清理并重用
+// 清理并重�?
 clipper.Clear();
 clipper.AddPaths(paths2, PolyType.ptSubject, true);
 clipper.AddPaths(paths3, PolyType.ptClip, true);
@@ -484,30 +484,30 @@ clipper.Execute(ClipType.ctDifference, result2);
 
 ## 9.10 本章小结
 
-本章详细分析了 Clipper 类的结构：
+本章详细分析�?Clipper 类的结构�?
 
-1. **类设计**：
-   - 继承自 ClipperBase
+1. **类设�?*�?
+   - 继承�?ClipperBase
    - 通过构造函数参数设置选项
    - 支持多种 Execute 重载
 
-2. **核心成员**：
+2. **核心成员**�?
    - 运算状态（ClipType、FillType等）
    - 数据结构（Maxima、IntersectList、Joins等）
    - 属性选项（ReverseSolution、StrictlySimple等）
 
-3. **Execute 方法**：
-   - 支持 Paths 和 PolyTree 两种输出
+3. **Execute 方法**�?
+   - 支持 Paths �?PolyTree 两种输出
    - 可指定不同的填充规则
    - 通过 ExecuteInternal 执行核心算法
 
-4. **可选功能**：
-   - Z 坐标处理（use_xyz）
+4. **可选功�?*�?
+   - Z 坐标处理（use_xyz�?
    - 严格简单多边形
    - 保留共线顶点
 
-理解 Clipper 类的结构是正确使用该库的基础。
+理解 Clipper 类的结构是正确使用该库的基础�?
 
 ---
 
-[上一章：局部极小值与扫描线](第08章-局部极小值与扫描线) | [返回目录](index) | [下一章：布尔运算执行流程](第10章-布尔运算执行流程)
+[上一章：局部极小值与扫描线](�?8�?局部极小值与扫描�? | [返回目录](../index) | [下一章：布尔运算执行流程](�?0�?布尔运算执行流程)

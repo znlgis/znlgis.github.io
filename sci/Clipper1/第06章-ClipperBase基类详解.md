@@ -1,13 +1,13 @@
 ---
 layout: default
-title: 第6章：ClipperBase 基类详解
+title: �?章：ClipperBase 基类详解
 ---
 
-# 第6章：ClipperBase 基类详解
+# �?章：ClipperBase 基类详解
 
 ## 6.1 概述
 
-`ClipperBase` 是 `Clipper` 类的基类，负责管理多边形数据的存储和预处理。它实现了路径添加、边初始化、局部极小值管理等核心功能，为 Clipper 的裁剪算法提供基础支持。
+`ClipperBase` �?`Clipper` 类的基类，负责管理多边形数据的存储和预处理。它实现了路径添加、边初始化、局部极小值管理等核心功能，为 Clipper 的裁剪算法提供基础支持�?
 
 ## 6.2 类定义与成员变量
 
@@ -31,15 +31,15 @@ public class ClipperBase
 
     // 成员变量
     internal LocalMinima m_MinimaList;      // 局部极小值链表头
-    internal LocalMinima m_CurrentLM;        // 当前处理的局部极小值
-    internal List<List<TEdge>> m_edges = new List<List<TEdge>>();  // 边列表
-    internal Scanbeam m_Scanbeam;            // 扫描线链表
-    internal List<OutRec> m_PolyOuts;        // 输出多边形记录
-    internal TEdge m_ActiveEdges;            // 活动边表头
-    internal bool m_UseFullRange;            // 是否使用高精度模式
-    internal bool m_HasOpenPaths;            // 是否有开放路径
+    internal LocalMinima m_CurrentLM;        // 当前处理的局部极小�?
+    internal List<List<TEdge>> m_edges = new List<List<TEdge>>();  // 边列�?
+    internal Scanbeam m_Scanbeam;            // 扫描线链�?
+    internal List<OutRec> m_PolyOuts;        // 输出多边形记�?
+    internal TEdge m_ActiveEdges;            // 活动边表�?
+    internal bool m_UseFullRange;            // 是否使用高精度模�?
+    internal bool m_HasOpenPaths;            // 是否有开放路�?
 
-    // 属性
+    // 属�?
     public bool PreserveCollinear { get; set; }
 }
 ```
@@ -48,18 +48,18 @@ public class ClipperBase
 
 | 成员 | 类型 | 说明 |
 |------|------|------|
-| `m_MinimaList` | `LocalMinima` | 局部极小值链表，按 Y 降序排列 |
-| `m_CurrentLM` | `LocalMinima` | 当前正在处理的局部极小值 |
+| `m_MinimaList` | `LocalMinima` | 局部极小值链表，�?Y 降序排列 |
+| `m_CurrentLM` | `LocalMinima` | 当前正在处理的局部极小�?|
 | `m_edges` | `List<List<TEdge>>` | 所有添加的路径的边数据 |
-| `m_Scanbeam` | `Scanbeam` | 扫描线 Y 坐标链表 |
-| `m_PolyOuts` | `List<OutRec>` | 输出多边形记录列表 |
+| `m_Scanbeam` | `Scanbeam` | 扫描�?Y 坐标链表 |
+| `m_PolyOuts` | `List<OutRec>` | 输出多边形记录列�?|
 | `m_ActiveEdges` | `TEdge` | 活动边表的头指针 |
 | `m_UseFullRange` | `bool` | 是否启用 128 位高精度计算 |
-| `m_HasOpenPaths` | `bool` | 是否包含开放路径 |
+| `m_HasOpenPaths` | `bool` | 是否包含开放路�?|
 
 ## 6.3 构造函数与清理
 
-### 6.3.1 构造函数
+### 6.3.1 构造函�?
 
 ```csharp
 internal ClipperBase() //constructor (nb: no external instantiation)
@@ -71,7 +71,7 @@ internal ClipperBase() //constructor (nb: no external instantiation)
 }
 ```
 
-**设计说明**：
+**设计说明**�?
 - 使用 `internal` 修饰符，不允许外部直接实例化
 - 只能通过子类 `Clipper` 创建实例
 
@@ -93,10 +93,10 @@ public virtual void Clear()
 }
 ```
 
-**清理顺序**：
-1. 清理局部极小值链表
-2. 清理所有边数据（显式设为 null 帮助 GC）
-3. 重置状态标志
+**清理顺序**�?
+1. 清理局部极小值链�?
+2. 清理所有边数据（显式设�?null 帮助 GC�?
+3. 重置状态标�?
 
 ### 6.3.3 DisposeLocalMinimaList
 
@@ -113,9 +113,9 @@ private void DisposeLocalMinimaList()
 }
 ```
 
-**作用**：遍历并释放局部极小值链表。
+**作用**：遍历并释放局部极小值链表�?
 
-## 6.4 坐标范围检查
+## 6.4 坐标范围检�?
 
 ```csharp
 void RangeTest(IntPoint Pt, ref bool useFullRange)
@@ -135,11 +135,11 @@ void RangeTest(IntPoint Pt, ref bool useFullRange)
 }
 ```
 
-**逻辑流程**：
-1. 如果已经在高精度模式，检查是否超出 hiRange
-2. 如果在低精度模式且坐标超出 loRange：
+**逻辑流程**�?
+1. 如果已经在高精度模式，检查是否超�?hiRange
+2. 如果在低精度模式且坐标超�?loRange�?
    - 切换到高精度模式
-   - 重新检查是否超出 hiRange
+   - 重新检查是否超�?hiRange
 
 ## 6.5 边初始化
 
@@ -155,7 +155,7 @@ private void InitEdge(TEdge e, TEdge eNext, TEdge ePrev, IntPoint pt)
 }
 ```
 
-**功能**：初始化边的链表指针和当前点。
+**功能**：初始化边的链表指针和当前点�?
 
 ### 6.5.2 InitEdge2
 
@@ -177,10 +177,10 @@ private void InitEdge2(TEdge e, PolyType polyType)
 }
 ```
 
-**功能**：
-1. 确定边的 Bot（底部）和 Top（顶部）
+**功能**�?
+1. 确定边的 Bot（底部）�?Top（顶部）
 2. 计算斜率
-3. 设置多边形类型
+3. 设置多边形类�?
 
 ### 6.5.3 SetDx
 
@@ -196,14 +196,14 @@ private void SetDx(TEdge e)
 }
 ```
 
-**斜率定义**：
+**斜率定义**�?
 - `Dx = ΔX / ΔY`
 - 水平边：`Dx = horizontal`（特殊标记值）
 
-**为什么使用 ΔX/ΔY 而非 ΔY/ΔX**：
+**为什么使�?ΔX/ΔY 而非 ΔY/ΔX**�?
 - 扫描线是水平的，从下向上扫描
-- 需要知道 Y 增加 1 时 X 变化多少
-- 这样在更新边的当前 X 坐标时更直接
+- 需要知�?Y 增加 1 �?X 变化多少
+- 这样在更新边的当�?X 坐标时更直接
 
 ## 6.6 AddPath 方法
 
@@ -227,7 +227,7 @@ public bool AddPath(Path pg, PolyType polyType, bool Closed)
     while (highI > 0 && (pg[highI] == pg[highI - 1])) --highI;
     if ((Closed && highI < 2) || (!Closed && highI < 1)) return false;
 
-    // 创建边数组
+    // 创建边数�?
     List<TEdge> edges = new List<TEdge>(highI + 1);
     for (int i = 0; i <= highI; i++) edges.Add(new TEdge());
         
@@ -246,13 +246,13 @@ public bool AddPath(Path pg, PolyType polyType, bool Closed)
     }
     TEdge eStart = edges[0];
 
-    // 阶段2：移除重复顶点和共线边
+    // 阶段2：移除重复顶点和共线�?
     TEdge E = eStart, eLoopStop = eStart;
     for (;;)
     {
         if (E.Curr == E.Next.Curr && (Closed || E.Next != eStart))
         {
-            // 移除重复点
+            // 移除重复�?
             if (E == E.Next) break;
             if (E == eStart) eStart = E.Next;
             E = RemoveEdge(E);
@@ -264,7 +264,7 @@ public bool AddPath(Path pg, PolyType polyType, bool Closed)
             SlopesEqual(E.Prev.Curr, E.Curr, E.Next.Curr, m_UseFullRange) && 
             (!PreserveCollinear || !Pt2IsBetweenPt1AndPt3(E.Prev.Curr, E.Curr, E.Next.Curr))) 
         {
-            // 移除共线中间点
+            // 移除共线中间�?
             if (E == eStart) eStart = E.Next;
             E = RemoveEdge(E);
             E = E.Prev;
@@ -275,7 +275,7 @@ public bool AddPath(Path pg, PolyType polyType, bool Closed)
         if ((E == eLoopStop) || (!Closed && E.Next == eStart)) break;
     }
 
-    // 检查结果是否有效
+    // 检查结果是否有�?
     if ((!Closed && (E == E.Next)) || (Closed && (E.Prev == E.Next)))
         return false;
 
@@ -285,7 +285,7 @@ public bool AddPath(Path pg, PolyType polyType, bool Closed)
         eStart.Prev.OutIdx = Skip;  // 标记开放路径的最后一条边
     }
 
-    // 阶段3：二次边初始化
+    // 阶段3：二次边初始�?
     E = eStart;
     do
     {
@@ -295,32 +295,32 @@ public bool AddPath(Path pg, PolyType polyType, bool Closed)
     }
     while (E != eStart);
 
-    // 阶段4：添加局部极小值
-    // ... (见后续分析)
+    // 阶段4：添加局部极小�?
+    // ... (见后续分�?
     
     return true;
 }
 ```
 
-### 6.6.1 处理流程图
+### 6.6.1 处理流程�?
 
 ```
 输入路径
-    ↓
-检查开放路径限制
-    ↓
-移除重复尾部点
-    ↓
-创建边数组
-    ↓
-阶段1：基础初始化（链表指针、当前点）
-    ↓
-阶段2：清理无效数据（重复点、共线边）
-    ↓
-阶段3：计算方向（Bot/Top、Dx）
-    ↓
-阶段4：识别并记录局部极小值
-    ↓
+    �?
+检查开放路径限�?
+    �?
+移除重复尾部�?
+    �?
+创建边数�?
+    �?
+阶段1：基础初始化（链表指针、当前点�?
+    �?
+阶段2：清理无效数据（重复点、共线边�?
+    �?
+阶段3：计算方向（Bot/Top、Dx�?
+    �?
+阶段4：识别并记录局部极小�?
+    �?
 添加到边列表
 ```
 
@@ -337,11 +337,11 @@ TEdge RemoveEdge(TEdge e)
 }
 ```
 
-**功能**：从双向链表中移除一条边，返回下一条边。
+**功能**：从双向链表中移除一条边，返回下一条边�?
 
 ## 6.7 斜率比较
 
-### 6.7.1 SlopesEqual（两条边）
+### 6.7.1 SlopesEqual（两条边�?
 
 ```csharp
 internal static bool SlopesEqual(TEdge e1, TEdge e2, bool UseFullRange)
@@ -355,12 +355,12 @@ internal static bool SlopesEqual(TEdge e1, TEdge e2, bool UseFullRange)
 }
 ```
 
-**数学原理**：
-两条边斜率相等 ⟺ `Δy1/Δx1 = Δy2/Δx2` ⟺ `Δy1 * Δx2 = Δx1 * Δy2`
+**数学原理**�?
+两条边斜率相�?�?`Δy1/Δx1 = Δy2/Δx2` �?`Δy1 * Δx2 = Δx1 * Δy2`
 
-使用乘法交叉比较避免除法，同时避免除以零的问题。
+使用乘法交叉比较避免除法，同时避免除以零的问题�?
 
-### 6.7.2 SlopesEqual（三个点）
+### 6.7.2 SlopesEqual（三个点�?
 
 ```csharp
 internal static bool SlopesEqual(IntPoint pt1, IntPoint pt2,
@@ -375,9 +375,9 @@ internal static bool SlopesEqual(IntPoint pt1, IntPoint pt2,
 }
 ```
 
-**用途**：判断三点是否共线。
+**用�?*：判断三点是否共线�?
 
-## 6.8 局部极小值管理
+## 6.8 局部极小值管�?
 
 ### 6.8.1 LocalMinima 结构
 
@@ -387,7 +387,7 @@ internal class LocalMinima
     internal cInt Y;              // 极小值的 Y 坐标
     internal TEdge LeftBound;     // 左边界边
     internal TEdge RightBound;    // 右边界边
-    internal LocalMinima Next;    // 下一个极小值（链表）
+    internal LocalMinima Next;    // 下一个极小值（链表�?
 }
 ```
 
@@ -402,7 +402,7 @@ private void InsertLocalMinima(LocalMinima newLm)
     }
     else if (newLm.Y >= m_MinimaList.Y)
     {
-        // 插入到链表头部
+        // 插入到链表头�?
         newLm.Next = m_MinimaList;
         m_MinimaList = newLm;
     } 
@@ -418,9 +418,9 @@ private void InsertLocalMinima(LocalMinima newLm)
 }
 ```
 
-**排序规则**：按 Y 坐标降序排列（最大 Y 值在前）。
+**排序规则**：按 Y 坐标降序排列（最�?Y 值在前）�?
 
-这样在扫描时，从最低的 Y（底部）开始向上扫描，可以按顺序处理局部极小值。
+这样在扫描时，从最低的 Y（底部）开始向上扫描，可以按顺序处理局部极小值�?
 
 ### 6.8.3 PopLocalMinima
 
@@ -437,9 +437,9 @@ internal Boolean PopLocalMinima(cInt Y, out LocalMinima current)
 }
 ```
 
-**功能**：如果当前局部极小值的 Y 坐标等于给定值，弹出并返回。
+**功能**：如果当前局部极小值的 Y 坐标等于给定值，弹出并返回�?
 
-## 6.9 扫描线管理
+## 6.9 扫描线管�?
 
 ### 6.9.1 Scanbeam 结构
 
@@ -456,7 +456,7 @@ internal class Scanbeam
 ```csharp
 internal void InsertScanbeam(cInt Y)
 {
-    // 单链表：降序排列，忽略重复
+    // 单链表：降序排列，忽略重�?
     if (m_Scanbeam == null)
     {
         m_Scanbeam = new Scanbeam();
@@ -500,7 +500,7 @@ internal Boolean PopScanbeam(out cInt Y)
 }
 ```
 
-## 6.10 输出多边形管理
+## 6.10 输出多边形管�?
 
 ### 6.10.1 OutRec 结构
 
@@ -508,12 +508,12 @@ internal Boolean PopScanbeam(out cInt Y)
 internal class OutRec
 {
     internal int Idx;              // 索引
-    internal bool IsHole;          // 是否为孔洞
-    internal bool IsOpen;          // 是否为开放路径
-    internal OutRec FirstLeft;     // 父轮廓（用于孔洞）
+    internal bool IsHole;          // 是否为孔�?
+    internal bool IsOpen;          // 是否为开放路�?
+    internal OutRec FirstLeft;     // 父轮廓（用于孔洞�?
     internal OutPt Pts;            // 点链表头
     internal OutPt BottomPt;       // 最底部的点
-    internal PolyNode PolyNode;    // 对应的 PolyNode
+    internal PolyNode PolyNode;    // 对应�?PolyNode
 }
 ```
 
@@ -548,7 +548,7 @@ internal void DisposeOutRec(int index)
 }
 ```
 
-## 6.11 边界框计算
+## 6.11 边界框计�?
 
 ```csharp
 public static IntRect GetBounds(Paths paths)
@@ -611,24 +611,24 @@ internal virtual void Reset()
 }
 ```
 
-**功能**：重置所有状态，准备执行新的裁剪操作。
+**功能**：重置所有状态，准备执行新的裁剪操作�?
 
 ## 6.13 本章小结
 
-ClipperBase 是 Clipper 的基础架构类：
+ClipperBase �?Clipper 的基础架构类：
 
-1. **数据存储**：管理边、局部极小值、扫描线等核心数据
+1. **数据存储**：管理边、局部极小值、扫描线等核心数�?
 
 2. **路径处理**：AddPath 将用户输入转换为内部数据结构
 
 3. **几何计算**：提供斜率比较、范围检查等基础功能
 
-4. **生命周期管理**：Clear 和 Reset 方法管理对象状态
+4. **生命周期管理**：Clear �?Reset 方法管理对象状�?
 
 5. **精度控制**：自动检测并切换到高精度模式
 
-理解 ClipperBase 的实现对于深入理解 Clipper 的工作原理至关重要。
+理解 ClipperBase 的实现对于深入理�?Clipper 的工作原理至关重要�?
 
 ---
 
-[上一章：Int128高精度运算](第05章-Int128高精度运算) | [返回目录](index) | [下一章：TEdge边缘结构](第07章-TEdge边缘结构)
+[上一章：Int128高精度运算](�?5�?Int128高精度运�? | [返回目录](../index) | [下一章：TEdge边缘结构](�?7�?TEdge边缘结构)

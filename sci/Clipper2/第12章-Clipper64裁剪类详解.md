@@ -1,17 +1,17 @@
 ---
 layout: default
-title: 第12章：Clipper64 裁剪类详解
+title: �?2章：Clipper64 裁剪类详�?
 ---
 
-# 第12章：Clipper64 裁剪类详解
+# �?2章：Clipper64 裁剪类详�?
 
 ## 12.1 概述
 
-`Clipper64` 是 Clipper2 的核心裁剪类，用于对整数坐标的多边形执行布尔运算。它继承自 `ClipperBase`，实现了完整的 Vatti 扫描线裁剪算法。
+`Clipper64` �?Clipper2 的核心裁剪类，用于对整数坐标的多边形执行布尔运算。它继承�?`ClipperBase`，实现了完整�?Vatti 扫描线裁剪算法�?
 
-## 12.2 类定义
+## 12.2 类定�?
 
-### 12.2.1 类声明
+### 12.2.1 类声�?
 
 ```csharp
 public class Clipper64 : ClipperBase
@@ -31,7 +31,7 @@ public class Clipper64 : ClipperBase
 
 ```
 ClipperBase (抽象基类)
-    ↓
+    �?
 Clipper64 (整数坐标裁剪)
 ```
 
@@ -40,13 +40,13 @@ Clipper64 (整数坐标裁剪)
 ### 12.3.1 主要重载
 
 ```csharp
-// 输出到 Paths64
+// 输出�?Paths64
 public bool Execute(ClipType clipType, FillRule fillRule, Paths64 closedSolution)
 {
     return Execute(clipType, fillRule, closedSolution, new Paths64());
 }
 
-// 输出到 Paths64，分离闭合和开放路径
+// 输出�?Paths64，分离闭合和开放路�?
 public bool Execute(ClipType clipType, FillRule fillRule, 
     Paths64 closedSolution, Paths64 openSolution)
 {
@@ -67,13 +67,13 @@ public bool Execute(ClipType clipType, FillRule fillRule,
     return true;
 }
 
-// 输出到 PolyTree64
+// 输出�?PolyTree64
 public bool Execute(ClipType clipType, FillRule fillRule, PolyTree64 polytree)
 {
     return Execute(clipType, fillRule, polytree, new Paths64());
 }
 
-// 输出到 PolyTree64，分离开放路径
+// 输出�?PolyTree64，分离开放路�?
 public bool Execute(ClipType clipType, FillRule fillRule, 
     PolyTree64 polytree, Paths64 openSolution)
 {
@@ -95,9 +95,9 @@ public bool Execute(ClipType clipType, FillRule fillRule,
 }
 ```
 
-### 12.3.2 返回值说明
+### 12.3.2 返回值说�?
 
-- `true`：裁剪成功
+- `true`：裁剪成�?
 - `false`：裁剪过程中发生异常
 
 ## 12.4 ExecuteInternal 方法
@@ -114,15 +114,15 @@ private void ExecuteInternal(ClipType clipType, FillRule fillRule)
     
     Reset();
     
-    // 排序局部极小值
+    // 排序局部极小�?
     if (!PopScanline(out long y)) return;
     
     while (true)
     {
-        // 插入当前 Y 的局部极小值
+        // 插入当前 Y 的局部极小�?
         InsertLocalMinimaIntoAEL(y);
         
-        // 处理水平边
+        // 处理水平�?
         while (PopHorz(out Active? ae))
         {
             DoHorizontal(ae!);
@@ -131,17 +131,17 @@ private void ExecuteInternal(ClipType clipType, FillRule fillRule)
         // 处理顶部事件
         if (!PopScanline(out long nextY)) break;
         
-        // 处理边交点
+        // 处理边交�?
         DoIntersections(y, nextY);
         
-        // 处理顶部边
+        // 处理顶部�?
         DoTopOfScanbeam(nextY);
         
         // 继续下一个扫描线
         y = nextY;
     }
     
-    // 处理开放路径
+    // 处理开放路�?
     ProcessOpenPaths();
 }
 ```
@@ -157,7 +157,7 @@ private void Reset()
         _isSortedMinimaList = true;
     }
     
-    // 重置扫描线
+    // 重置扫描�?
     _scanlineList.Clear();
     foreach (var lm in _minimaList)
         AddScanline(lm.vertex.pt.Y);
@@ -176,38 +176,38 @@ private void Reset()
 ```csharp
 private void InsertLocalMinimaIntoAEL(long botY)
 {
-    // 处理所有当前 Y 坐标的局部极小值
+    // 处理所有当�?Y 坐标的局部极小�?
     while (PopLocalMinima(botY, out LocalMinima locMin))
     {
         Vertex vert = locMin.vertex;
         
-        // 创建左边和右边
+        // 创建左边和右�?
         Active leftBound = CreateLeftEdge(vert, locMin);
         Active rightBound = CreateRightEdge(vert, locMin);
         
-        // 检查是否是有效边
+        // 检查是否是有效�?
         if (leftBound.bot.Y != leftBound.top.Y)
         {
-            // 插入左边到 AEL
+            // 插入左边�?AEL
             InsertLeftEdge(leftBound);
             
             // 设置缠绕计数
             SetWindCountForClosedPathEdge(leftBound);
             
-            // 检查是否贡献输出
+            // 检查是否贡献输�?
             if (IsContributingClosed(leftBound))
                 SetOutRecReference(leftBound, rightBound);
         }
         
         if (rightBound.bot.Y != rightBound.top.Y)
         {
-            // 插入右边到 AEL
+            // 插入右边�?AEL
             InsertRightEdge(rightBound, leftBound);
             
             // 设置缠绕计数
             SetWindCountForClosedPathEdge(rightBound);
             
-            // 检查交点
+            // 检查交�?
             CheckAndAddIntersection(leftBound, rightBound, botY);
         }
         
@@ -229,7 +229,7 @@ private Active CreateLeftEdge(Vertex v, LocalMinima locMin)
     ae.localMin = locMin;
     ae.isLeftBound = true;
     
-    // 设置顶点和方向
+    // 设置顶点和方�?
     ae.vertexTop = v.next!;
     ae.top = ae.vertexTop.pt;
     ae.windDx = 1;
@@ -270,14 +270,14 @@ private bool BuildIntersectList(long topY, long nextY)
         if (GetIntersection(ae, ae2, out Point64 pt) &&
             pt.Y >= nextY && pt.Y <= topY)
         {
-            // 添加到交点列表
+            // 添加到交点列�?
             AddIntersect(ae, ae2, pt);
         }
         
         ae = ae2;
     }
     
-    // 按 Y 坐标排序交点
+    // �?Y 坐标排序交点
     if (_intersectList.Count > 1)
     {
         _intersectList.Sort((a, b) => {
@@ -314,7 +314,7 @@ private void ProcessIntersectList()
 ```csharp
 private void IntersectEdges(Active ae1, Active ae2, Point64 pt)
 {
-    // 根据填充规则和路径类型决定如何处理交点
+    // 根据填充规则和路径类型决定如何处理交�?
     
     bool ae1Contributing = ae1.outrec != null;
     bool ae2Contributing = ae2.outrec != null;
@@ -331,7 +331,7 @@ private void IntersectEdges(Active ae1, Active ae2, Point64 pt)
         // 贡献状态改变，需要添加输出点
         if (ae1Contributing && ae2Contributing)
         {
-            // 两边都贡献 -> 添加局部最大值
+            // 两边都贡�?-> 添加局部最大�?
             AddLocalMaxPoly(ae1, ae2, pt);
         }
         else if (ae1Contributing)
@@ -348,7 +348,7 @@ private void IntersectEdges(Active ae1, Active ae2, Point64 pt)
         }
         else
         {
-            // 两边都不贡献 -> 开始新的局部最小值
+            // 两边都不贡献 -> 开始新的局部最小�?
             AddLocalMinPoly(ae1, ae2, pt, true);
         }
     }
@@ -366,10 +366,10 @@ private void IntersectEdges(Active ae1, Active ae2, Point64 pt)
 ```csharp
 private void UpdateWindCount(Active ae1, Active ae2)
 {
-    // 更新 ae1 和 ae2 的缠绕计数
+    // 更新 ae1 �?ae2 的缠绕计�?
     if (GetPolyType(ae1) == GetPolyType(ae2))
     {
-        // 同类型路径
+        // 同类型路�?
         if (_fillrule == FillRule.EvenOdd)
         {
             int tmp = ae1.windCnt;
@@ -408,7 +408,7 @@ private void UpdateWindCount(Active ae1, Active ae2)
 
 ## 12.8 DoTopOfScanbeam
 
-### 12.8.1 处理扫描带顶部
+### 12.8.1 处理扫描带顶�?
 
 ```csharp
 private void DoTopOfScanbeam(long y)
@@ -423,19 +423,19 @@ private void DoTopOfScanbeam(long y)
         
         if (ae.top.Y == y)
         {
-            // 边到达顶点
+            // 边到达顶�?
             ae = DoMaxima(ae);
         }
         else
         {
-            // 边继续向上
+            // 边继续向�?
             if (ae.vertexTop != null)
             {
-                // 检查是否有水平边
+                // 检查是否有水平�?
                 if (ae.vertexTop.pt.Y == y && 
                     ae.vertexTop.pt.X != ae.top.X)
                 {
-                    // 处理水平边
+                    // 处理水平�?
                     PushHorz(ae);
                 }
             }
@@ -452,7 +452,7 @@ private Active? DoMaxima(Active ae)
 {
     Active? nextAe = ae.nextInAEL;
     
-    // 查找配对边
+    // 查找配对�?
     Active? ae2 = GetMaximaPair(ae);
     
     if (ae2 == null)
@@ -464,13 +464,13 @@ private Active? DoMaxima(Active ae)
         return nextAe;
     }
     
-    // 处理局部最大值
+    // 处理局部最大�?
     if (ae.outrec != null || ae2.outrec != null)
     {
         AddLocalMaxPoly(ae, ae2, ae.top);
     }
     
-    // 更新边到下一段
+    // 更新边到下一�?
     if (IsLocalMaxima(ae))
     {
         DeleteFromAEL(ae);
@@ -486,7 +486,7 @@ private Active? DoMaxima(Active ae)
 }
 ```
 
-## 12.9 水平边处理
+## 12.9 水平边处�?
 
 ### 12.9.1 DoHorizontal
 
@@ -496,7 +496,7 @@ private void DoHorizontal(Active horz)
     Point64 pt;
     bool horzIsOpen = IsOpen(horz);
     
-    // 确定水平边方向
+    // 确定水平边方�?
     Point64 startPt, endPt;
     if (horz.bot.X < horz.top.X)
     {
@@ -513,7 +513,7 @@ private void DoHorizontal(Active horz)
     Active? leftBound = GetLeftBound(horz);
     Active? rightBound = GetRightBound(horz);
     
-    // 处理与其他边的交点
+    // 处理与其他边的交�?
     Active? ae = leftBound;
     while (ae != null && ae != rightBound)
     {
@@ -532,7 +532,7 @@ private void DoHorizontal(Active horz)
         ae = ae.nextInAEL;
     }
     
-    // 更新水平边
+    // 更新水平�?
     UpdateEdgeIntoAEL(ref horz);
 }
 ```
@@ -594,7 +594,7 @@ public delegate void ZCallback64(Point64 bot1, Point64 top1,
 Clipper64 clipper = new Clipper64();
 clipper.ZCallback = (bot1, top1, bot2, top2, ref Point64 pt) =>
 {
-    // 线性插值计算 Z 值
+    // 线性插值计�?Z �?
     if (top1.Y - bot1.Y != 0)
     {
         double t = (pt.Y - bot1.Y) / (double)(top1.Y - bot1.Y);
@@ -637,9 +637,9 @@ public bool Execute(ClipType clipType, FillRule fillRule, Paths64 solution)
 
 ### 12.12.2 常见错误
 
-1. **空路径**：输入路径少于 3 个点
-2. **坐标溢出**：坐标超出 MaxCoord 范围
-3. **自相交**：复杂的自相交情况
+1. **空路�?*：输入路径少�?3 个点
+2. **坐标溢出**：坐标超�?MaxCoord 范围
+3. **自相�?*：复杂的自相交情�?
 
 ## 12.13 使用示例
 
@@ -682,7 +682,7 @@ clipper.AddClip(clip);
 Paths64 intersection = new Paths64();
 clipper.Execute(ClipType.Intersection, FillRule.NonZero, intersection);
 
-// 不需要 Clear()，可以继续使用
+// 不需�?Clear()，可以继续使�?
 // 第二次：并集
 Paths64 union = new Paths64();
 clipper.Execute(ClipType.Union, FillRule.NonZero, union);
@@ -690,20 +690,20 @@ clipper.Execute(ClipType.Union, FillRule.NonZero, union);
 
 ## 12.14 本章小结
 
-`Clipper64` 是 Clipper2 的核心类：
+`Clipper64` �?Clipper2 的核心类�?
 
 1. **Execute 方法**：执行布尔运算的入口
-2. **ExecuteInternal**：扫描线算法主循环
-3. **关键步骤**：
-   - 插入局部极小值
+2. **ExecuteInternal**：扫描线算法主循�?
+3. **关键步骤**�?
+   - 插入局部极小�?
    - 处理交点
-   - 处理水平边
-   - 处理扫描带顶部
-4. **输出构建**：将内部结构转换为 Paths64 或 PolyTree64
-5. **Z 坐标支持**：通过 ZCallback 处理 Z 值
+   - 处理水平�?
+   - 处理扫描带顶�?
+4. **输出构建**：将内部结构转换�?Paths64 �?PolyTree64
+5. **Z 坐标支持**：通过 ZCallback 处理 Z �?
 
-掌握 `Clipper64` 的使用和实现原理是使用 Clipper2 的关键。
+掌握 `Clipper64` 的使用和实现原理是使�?Clipper2 的关键�?
 
 ---
 
-[上一章：OutRec与OutPt输出结构](第11章-OutRec与OutPt输出结构) | [返回目录](index) | [下一章：ClipperD浮点裁剪类](第13章-ClipperD浮点裁剪类)
+[上一章：OutRec与OutPt输出结构](�?1�?OutRec与OutPt输出结构) | [返回目录](../index) | [下一章：ClipperD浮点裁剪类](�?3�?ClipperD浮点裁剪�?
