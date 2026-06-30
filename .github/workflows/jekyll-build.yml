@@ -1,4 +1,4 @@
-name: Jekyll Build
+name: Jekyll Build & Verify
 
 on:
   push:
@@ -24,3 +24,12 @@ jobs:
 
       - name: Build site
         run: bundle exec jekyll build
+
+      - name: Check HTML (internal links & markup)
+        run: |
+          bundle exec htmlproofer ./_site \
+            --check-html \
+            --disable-external \
+            --allow-hash-href \
+            --ignore-empty-alt \
+            --ignore-status-codes "0,403,429"

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
-    <meta name="keywords" content="{% if page.keywords %}{{ page.keywords }}{% else %}GIS,GDAL,GeoServer,PostGIS,C#,.NET,地理信息系统,空间数据,教程{% endif %}">
+    <meta name="keywords" content="{% if page.keywords %}{{ page.keywords }}{% else %}{{ site.keywords }}{% endif %}">
     
     {% seo title=false %}
     
@@ -13,7 +13,7 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --text-color: #333;
@@ -35,10 +35,6 @@
             line-height: 1.8;
             color: var(--text-color);
             background: var(--bg-color);
-        }
-        @font-face {
-            font-family: 'Noto Sans SC';
-            font-display: swap;
         }
         .skip-link {
             position: absolute;
@@ -290,12 +286,14 @@
             margin: 1.2rem 0;
             border: 1px solid #e1e4e8;
             line-height: 1.6;
+            position: relative;
         }
         pre code {
             background: none;
             padding: 0;
             border: none;
             font-size: 0.875em;
+            display: block;
         }
         /* 代码语言标签 */
         .highlight {
@@ -530,13 +528,6 @@
             overflow-x: auto;
             margin: 1.2rem 0;
         }
-        /* 代码块改进 */
-        pre {
-            position: relative;
-        }
-        pre code {
-            display: block;
-        }
         /* 标题锚点 */
         .heading-anchor {
             opacity: 0;
@@ -610,7 +601,7 @@
         </aside>
         
         <!-- 遮罩层 -->
-        <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
         
         <!-- 主内容区域 -->
         <div class="content-wrapper">
@@ -661,7 +652,7 @@
     </div>
     
     <!-- 移动端侧边栏切换按钮 -->
-    <button class="sidebar-toggle" id="sidebarToggle" onclick="toggleSidebar()" title="显示/隐藏目录">☰</button>
+    <button class="sidebar-toggle" id="sidebarToggle" title="显示/隐藏目录" aria-label="显示/隐藏目录导航">☰</button>
     
     <a href="#" class="back-to-top" id="backToTop" title="回到顶部">↑</a>
     
@@ -740,7 +731,7 @@
                     } else {
                         let html = '';
                         for (let j = 0; j < results.length; j++) {
-                            html += '<a class="search-result-item" href="' + results[j].url + '" data-index="' + j + '">' + highlightMatch(results[j].title, q) + '</a>';
+                            html += '<a class="search-result-item" href="' + escapeHtml(results[j].url) + '" data-index="' + j + '">' + highlightMatch(results[j].title, q) + '</a>';
                         }
                         searchResults.innerHTML = html;
                     }
@@ -841,103 +832,102 @@
         })();
     </script>
     <script>
-        function toggleTree(element) {
-            const toggle = element.querySelector('.tree-toggle');
-            const children = element.nextElementSibling;
-            if (children && children.classList.contains('tree-children')) {
-                toggle.classList.toggle('expanded');
-                children.classList.toggle('expanded');
-                // 更新 aria-expanded 属性
-                const isExpanded = children.classList.contains('expanded');
-                element.setAttribute('aria-expanded', isExpanded);
+        // 侧边栏目录树与移动端交互
+        document.addEventListener('DOMContentLoaded', function() {
+            var sidebar = document.getElementById('sidebar');
+            var overlay = document.getElementById('sidebarOverlay');
+
+            // 移动端侧边栏切换
+            function toggleSidebar() {
+                sidebar.classList.toggle('show');
+                overlay.classList.toggle('show');
             }
-        }
-        
-        // 移动端侧边栏切换
-        function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            const overlay = document.getElementById('sidebarOverlay');
-            sidebar.classList.toggle('show');
-            overlay.classList.toggle('show');
-        }
-        
-        // Escape 键关闭移动端侧边栏
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                const sidebar = document.getElementById('sidebar');
-                const overlay = document.getElementById('sidebarOverlay');
-                if (sidebar.classList.contains('show')) {
+
+            document.getElementById('sidebarToggle').addEventListener('click', toggleSidebar);
+            overlay.addEventListener('click', toggleSidebar);
+
+            // Escape 键关闭侧边栏
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && sidebar.classList.contains('show')) {
                     sidebar.classList.remove('show');
                     overlay.classList.remove('show');
                 }
-            }
-        });
-        
-        // 回到顶部功能
-        const backToTop = document.getElementById('backToTop');
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                backToTop.classList.add('show');
-            } else {
-                backToTop.classList.remove('show');
-            }
-        });
-        backToTop.addEventListener('click', (e) => {
-            e.preventDefault();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
+            });
 
-        // 表格响应式包装
-        document.addEventListener('DOMContentLoaded', () => {
-            const tables = document.querySelectorAll('main table');
-            tables.forEach(table => {
+            // 目录树展开/折叠（事件委托）
+            sidebar.addEventListener('click', function(e) {
+                var btn = e.target.closest('.js-tree-toggle');
+                if (!btn) return;
+                var toggle = btn.querySelector('.tree-toggle');
+                var children = btn.nextElementSibling;
+                if (children && children.classList.contains('tree-children')) {
+                    toggle.classList.toggle('expanded');
+                    children.classList.toggle('expanded');
+                    btn.setAttribute('aria-expanded', children.classList.contains('expanded'));
+                }
+            });
+
+            // 回到顶部
+            var backToTop = document.getElementById('backToTop');
+            window.addEventListener('scroll', function() {
+                backToTop.classList.toggle('show', window.pageYOffset > 300);
+            });
+            backToTop.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // 表格响应式包装
+            var tables = document.querySelectorAll('main table');
+            for (var i = 0; i < tables.length; i++) {
+                var table = tables[i];
                 if (!table.parentElement.classList.contains('table-wrapper')) {
-                    const wrapper = document.createElement('div');
+                    var wrapper = document.createElement('div');
                     wrapper.className = 'table-wrapper';
                     table.parentNode.insertBefore(wrapper, table);
                     wrapper.appendChild(table);
                 }
-            });
+            }
 
-            // 为标题添加锚点链接
-            const headings = document.querySelectorAll('main h2, main h3, main h4');
-            headings.forEach(heading => {
+            // 标题锚点链接
+            var headings = document.querySelectorAll('main h2, main h3, main h4');
+            for (var h = 0; h < headings.length; h++) {
+                var heading = headings[h];
                 if (heading.id) {
-                    const anchor = document.createElement('a');
+                    var anchor = document.createElement('a');
                     anchor.className = 'heading-anchor';
                     anchor.href = '#' + heading.id;
                     anchor.textContent = '#';
                     anchor.setAttribute('aria-hidden', 'true');
                     heading.appendChild(anchor);
                 }
-            });
-            
+            }
+
             // 高亮当前页面在目录树中的位置
-            const currentPath = window.location.pathname;
-            const treeLinks = document.querySelectorAll('.dir-tree a.tree-item');
-            treeLinks.forEach(link => {
-                const href = link.getAttribute('href');
+            var currentPath = window.location.pathname;
+            var treeLinks = document.querySelectorAll('.dir-tree a.tree-item');
+            for (var i = 0; i < treeLinks.length; i++) {
+                var link = treeLinks[i];
+                var href = link.getAttribute('href');
                 if (href) {
-                    const normalizedHref = href.replace(/\/$/, '');
-                    const normalizedPath = currentPath.replace(/\/$/, '');
-                    // 精确匹配或当前路径以 href + '/' 开头
-                    if (normalizedPath === normalizedHref || normalizedPath.startsWith(normalizedHref + '/')) {
+                    var normalizedHref = href.replace(/\/$/, '');
+                    var normalizedPath = currentPath.replace(/\/$/, '');
+                    if (normalizedPath === normalizedHref || normalizedPath.indexOf(normalizedHref + '/') === 0) {
                         link.classList.add('active');
-                        // 展开父级目录
-                        let parent = link.closest('.tree-children');
+                        var parent = link.closest('.tree-children');
                         while (parent) {
                             parent.classList.add('expanded');
-                            const toggleBtn = parent.previousElementSibling;
+                            var toggleBtn = parent.previousElementSibling;
                             if (toggleBtn) {
-                                const toggle = toggleBtn.querySelector('.tree-toggle');
-                                if (toggle) toggle.classList.add('expanded');
+                                var tg = toggleBtn.querySelector('.tree-toggle');
+                                if (tg) tg.classList.add('expanded');
                                 toggleBtn.setAttribute('aria-expanded', 'true');
                             }
-                            parent = parent.parentElement?.closest('.tree-children');
+                            parent = parent.parentElement ? parent.parentElement.closest('.tree-children') : null;
                         }
                     }
                 }
-            });
+            }
         });
     </script>
 </body>

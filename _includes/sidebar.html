@@ -1,7 +1,7 @@
 <ul class="dir-tree">
 {%- for section in site.data.navigation -%}
     <li>
-        <button class="tree-item" onclick="toggleTree(this)" aria-expanded="false" aria-label="展开/折叠 {{ section.title }}">
+        <button class="tree-item js-tree-toggle" aria-expanded="false" aria-label="展开/折叠 {{ section.title }}">
             <span class="tree-toggle">▶</span>
             <span class="tree-icon">{{ section.icon }}</span>
             <span class="tree-label">{{ section.title }}</span>

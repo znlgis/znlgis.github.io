@@ -1,13 +1,13 @@
 source "https://rubygems.org"
 
+ruby ">= 3.1"
+
 # GitHub Pages gem - 管理所有 GitHub Pages 依赖
 gem "github-pages"
 
-# Jekyll 插件（已包含在 github-pages gem 中，但可以显式声明）
-group :jekyll_plugins do
-  gem "jekyll-feed"
-  gem "jekyll-seo-tag"
-  gem "jekyll-sitemap"
+# 开发与测试工具
+group :development, :test do
+  gem "html-proofer", "~> 5.0"
 end
 
 # Windows 平台支持

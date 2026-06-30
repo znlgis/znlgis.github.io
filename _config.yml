@@ -6,8 +6,22 @@ baseurl: ""
 url: "https://znlgis.github.io"
 lang: zh-CN
 timezone: Asia/Shanghai
+locale: zh_CN
 
-# SEO
+# 社交账号与分享配置（用于 jekyll-seo-tag 生成 og 元数据）
+social:
+  name: znlgis
+  links:
+    - https://github.com/znlgis
+    - https://space.bilibili.com/161342702
+
+# 社交分享预览图（需在 /assets/ 下放置至少 600×315 的图片）
+logo: /assets/logo.png
+
+# 页面链接美化（/path/to/page/ 替代 /path/to/page.html）
+permalink: pretty
+
+# 站点级关键词（供 jekyll-seo-tag 使用）
 keywords: GIS,GDAL,GeoServer,PostGIS,QGIS,OpenLayers,Cesium,FreeCAD,OCCT,NPOI,C#,CAD,3D,AI,地图开发,空间数据,地理信息系统
 
 # 主题配置
@@ -30,7 +44,7 @@ kramdown:
     block:
       line_numbers: false
 
-# 排除文件
+# 排除文件（不参与 Jekyll 构建）
 exclude:
   - README.md
   - LICENSE
@@ -39,7 +53,6 @@ exclude:
   - vendor
   - .bundle
   - Gemfile
-  - Gemfile.lock
   - node_modules
   - package.json
   - package-lock.json
