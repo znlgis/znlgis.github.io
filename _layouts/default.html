@@ -593,9 +593,12 @@
                 <form onsubmit="return false" style="display: flex; gap: 0.3rem;">
                     <input type="text" id="searchInput" placeholder="搜索教程..." autocomplete="off"
                            style="flex: 1; padding: 0.35rem 0.5rem; border: 1px solid var(--border-color); border-radius: 4px; font-size: 0.8rem; outline: none;"
-                           aria-label="搜索教程">
+                           aria-label="搜索教程"
+                           aria-controls="searchResults"
+                           aria-autocomplete="list"
+                           aria-expanded="false">
                 </form>
-                <div class="search-results" id="searchResults"></div>
+                <div class="search-results" id="searchResults" role="listbox" aria-label="搜索结果"></div>
             </div>
             {% include sidebar.html %}
         </aside>
@@ -662,8 +665,19 @@
             let searchData = null;
             const searchInput = document.getElementById('searchInput');
             const searchResults = document.getElementById('searchResults');
+            const SCORE_TITLE_EXACT = 100;
+            const SCORE_TITLE_FUZZY = 60;
+            const SCORE_DESC_EXACT = 30;
+            const SCORE_CONTENT_EXACT = 20;
+            const MAX_SEARCH_RESULTS = 15;
             let activeIndex = -1;
             let searchTimeout = null;
+            let currentResults = [];
+
+            function setResultsVisible(visible) {
+                searchResults.classList.toggle('show', visible);
+                searchInput.setAttribute('aria-expanded', visible ? 'true' : 'false');
+            }
 
             // 懒加载搜索索引
             function loadSearchData(callback) {
@@ -707,35 +721,56 @@
 
             function doSearch(query) {
                 if (!query || query.trim().length === 0) {
-                    searchResults.classList.remove('show');
                     searchResults.innerHTML = '';
+                    currentResults = [];
+                    setResultsVisible(false);
                     activeIndex = -1;
                     return;
                 }
                 loadSearchData(function(data) {
                     if (!data || data.length === 0) {
                         searchResults.innerHTML = '<div class="search-no-results">暂无搜索结果</div>';
-                        searchResults.classList.add('show');
+                        currentResults = [];
+                        setResultsVisible(true);
                         return;
                     }
                     const results = [];
                     const q = query.trim();
+                    const qLower = q.toLowerCase();
                     for (let i = 0; i < data.length; i++) {
-                        if (fuzzyMatch(data[i].title, q)) {
-                            results.push(data[i]);
-                            if (results.length >= 15) break;
+                        const item = data[i];
+                        const title = (item.title || '');
+                        const description = (item.description || '');
+                        const content = (item.content || '');
+                        const titleLower = title.toLowerCase();
+                        const descLower = description.toLowerCase();
+                        const contentLower = content.toLowerCase();
+                        let score = 0;
+
+                        if (titleLower.indexOf(qLower) !== -1) {
+                            score += SCORE_TITLE_EXACT;
+                        } else if (fuzzyMatch(title, q)) {
+                            score += SCORE_TITLE_FUZZY;
+                        }
+                        if (descLower.indexOf(qLower) !== -1) score += SCORE_DESC_EXACT;
+                        if (contentLower.indexOf(qLower) !== -1) score += SCORE_CONTENT_EXACT;
+
+                        if (score > 0) {
+                            results.push({ item: item, score: score });
                         }
                     }
-                    if (results.length === 0) {
+                    results.sort(function(a, b) { return b.score - a.score; });
+                    currentResults = results.slice(0, MAX_SEARCH_RESULTS).map(function(entry) { return entry.item; });
+                    if (currentResults.length === 0) {
                         searchResults.innerHTML = '<div class="search-no-results">未找到匹配的教程</div>';
                     } else {
                         let html = '';
-                        for (let j = 0; j < results.length; j++) {
-                            html += '<a class="search-result-item" href="' + escapeHtml(results[j].url) + '" data-index="' + j + '">' + highlightMatch(results[j].title, q) + '</a>';
+                        for (let j = 0; j < currentResults.length; j++) {
+                            html += '<a class="search-result-item" role="option" aria-selected="false" href="' + escapeHtml(currentResults[j].url) + '" data-index="' + j + '">' + highlightMatch(currentResults[j].title, q) + '</a>';
                         }
                         searchResults.innerHTML = html;
                     }
-                    searchResults.classList.add('show');
+                    setResultsVisible(true);
                     activeIndex = -1;
                 });
             }
@@ -794,7 +829,7 @@
                         window.location.href = items[activeIndex].getAttribute('href');
                     }
                 } else if (e.key === 'Escape') {
-                    searchResults.classList.remove('show');
+                    setResultsVisible(false);
                     activeIndex = -1;
                 }
             });
@@ -803,9 +838,11 @@
                 items.forEach(function(item, i) {
                     if (i === activeIndex) {
                         item.classList.add('active');
+                        item.setAttribute('aria-selected', 'true');
                         item.scrollIntoView({ block: 'nearest' });
                     } else {
                         item.classList.remove('active');
+                        item.setAttribute('aria-selected', 'false');
                     }
                 });
             }
@@ -813,7 +850,7 @@
             // 点击外部关闭搜索
             document.addEventListener('click', function(e) {
                 if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
-                    searchResults.classList.remove('show');
+                    setResultsVisible(false);
                     activeIndex = -1;
                 }
             });
