@@ -665,6 +665,11 @@
             let searchData = null;
             const searchInput = document.getElementById('searchInput');
             const searchResults = document.getElementById('searchResults');
+            const SCORE_TITLE_EXACT = 100;
+            const SCORE_TITLE_FUZZY = 60;
+            const SCORE_DESC_EXACT = 30;
+            const SCORE_CONTENT_EXACT = 20;
+            const MAX_SEARCH_RESULTS = 15;
             let activeIndex = -1;
             let searchTimeout = null;
             let currentResults = [];
@@ -742,23 +747,26 @@
                         const contentLower = content.toLowerCase();
                         let score = 0;
 
-                        if (titleLower.indexOf(qLower) !== -1) score += 100;
-                        if (fuzzyMatch(title, q)) score += 60;
-                        if (descLower.indexOf(qLower) !== -1) score += 30;
-                        if (contentLower.indexOf(qLower) !== -1) score += 20;
+                        if (titleLower.indexOf(qLower) !== -1) {
+                            score += SCORE_TITLE_EXACT;
+                        } else if (fuzzyMatch(title, q)) {
+                            score += SCORE_TITLE_FUZZY;
+                        }
+                        if (descLower.indexOf(qLower) !== -1) score += SCORE_DESC_EXACT;
+                        if (contentLower.indexOf(qLower) !== -1) score += SCORE_CONTENT_EXACT;
 
                         if (score > 0) {
                             results.push({ item: item, score: score });
                         }
                     }
                     results.sort(function(a, b) { return b.score - a.score; });
-                    currentResults = results.slice(0, 15).map(function(entry) { return entry.item; });
+                    currentResults = results.slice(0, MAX_SEARCH_RESULTS).map(function(entry) { return entry.item; });
                     if (currentResults.length === 0) {
                         searchResults.innerHTML = '<div class="search-no-results">未找到匹配的教程</div>';
                     } else {
                         let html = '';
                         for (let j = 0; j < currentResults.length; j++) {
-                            html += '<a class="search-result-item" role="option" href="' + escapeHtml(currentResults[j].url) + '" data-index="' + j + '">' + highlightMatch(currentResults[j].title, q) + '</a>';
+                            html += '<a class="search-result-item" role="option" aria-selected="false" href="' + escapeHtml(currentResults[j].url) + '" data-index="' + j + '">' + highlightMatch(currentResults[j].title, q) + '</a>';
                         }
                         searchResults.innerHTML = html;
                     }
