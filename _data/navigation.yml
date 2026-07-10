@@ -238,6 +238,9 @@
     - title: RobotGo
       icon: 📁
       url: /others/robotgo/
+    - title: robotgo-flow
+      icon: 📁
+      url: /others/robotgo-flow/
 
 - title: 项目演示
   icon: 🎯

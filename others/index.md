@@ -17,6 +17,7 @@ title: 其他教程
 | [BillionMail](BillionMail/) | 10章 | ⭐⭐ | 邮件营销系统 |
 | [Go 语言](go/) | 18章 | ⭐⭐ | Go 语言学习与开发 |
 | [RobotGo](robotgo/) | 15章 | ⭐⭐⭐ | Go 桌面自动化 |
+| [robotgo-flow](robotgo-flow/) | 19章 | ⭐⭐⭐ | Windows RPA 自动化 |
 | [RuoYi-Cloud](RuoYi-Cloud/) | 15章 | ⭐⭐⭐ | Java 微服务框架 |
 
 ---
@@ -27,4 +28,5 @@ title: 其他教程
 - [BillionMail 教程](BillionMail/)
 - [Go 语言教程](go/)
 - [RobotGo 教程](robotgo/)
+- [robotgo-flow 教程](robotgo-flow/)
 - [RuoYi-Cloud 教程](RuoYi-Cloud/)
