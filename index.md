@@ -981,6 +981,27 @@ JTS Topology Suite 创始人 Martin Davis 的技术博客翻译，涵盖计算�
 - [综合实战项目](others/robotgo/第14章-综合实战项目)
 - [最佳实践、性能优化与常见问题](others/robotgo/第15章-最佳实践、性能优化与常见问题)
 
+#### robotgo-flow RPA 自动化教程
+- [概述与核心特性](others/robotgo-flow/第01章-概述与核心特性)
+- [环境准备与编译构建](others/robotgo-flow/第02章-环境准备与编译构建)
+- [快速入门：第一个RPA工作流](others/robotgo-flow/第03章-快速入门-第一个RPA工作流)
+- [YAML工作流文件结构详解](others/robotgo-flow/第04章-YAML工作流文件结构详解)
+- [动作详解——鼠标操作](others/robotgo-flow/第05章-动作详解-鼠标操作)
+- [动作详解——键盘操作](others/robotgo-flow/第06章-动作详解-键盘操作)
+- [动作详解——等待、延时与滚动](others/robotgo-flow/第07章-动作详解-等待延时与滚动)
+- [动作详解——浏览器操作](others/robotgo-flow/第08章-动作详解-浏览器操作)
+- [交互式动作与运行时变量注入](others/robotgo-flow/第09章-交互式动作与运行时变量注入)
+- [图像模板匹配机制详解](others/robotgo-flow/第10章-图像模板匹配机制详解)
+- [人类行为模拟](others/robotgo-flow/第11章-人类行为模拟)
+- [CLI命令详解](others/robotgo-flow/第12章-CLI命令详解)
+- [交互式录制器与截图工具实战](others/robotgo-flow/第13章-交互式录制器与截图工具实战)
+- [错误处理、容错与调试](others/robotgo-flow/第14章-错误处理容错与调试)
+- [WPF托盘应用与集成](others/robotgo-flow/第15章-WPF托盘应用与集成)
+- [架构设计与源码剖析](others/robotgo-flow/第16章-架构设计与源码剖析)
+- [二次开发——扩展新动作类型](others/robotgo-flow/第17章-二次开发-扩展新动作类型)
+- [综合实战项目](others/robotgo-flow/第18章-综合实战项目)
+- [最佳实践、常见问题与跨平台](others/robotgo-flow/第19章-最佳实践常见问题与跨平台)
+
 #### RuoYi-Cloud 微服务框架教程
 - [RuoYi-Cloud概述与入门](others/RuoYi-Cloud/第01章-RuoYi-Cloud概述与入门)
 - [系统架构详解](others/RuoYi-Cloud/第02章-系统架构详解)
