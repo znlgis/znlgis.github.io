@@ -199,6 +199,9 @@
     - title: Pi
       icon: 📁
       url: /ai/pi/
+    - title: DocuTranslate
+      icon: 📁
+      url: /ai/docutranslate/
 
 - title: IoT 物联网
   icon: 🔌

@@ -20,6 +20,7 @@ title: AI 教程
 | [hermes-agent](hermes-agent/) | 12章 | ⭐⭐⭐ | 多模态 AI 代理 |
 | [Pi](pi/) | 15章 | ⭐⭐ | 极简终端 AI 编码代理 |
 | [OpenCode](opencode/) | 10章 | ⭐⭐ | 开源 AI 编码代理 |
+| [DocuTranslate](docutranslate/) | 12章 | ⭐⭐ | 大模型文档翻译工具 |
 
 ---
 
@@ -36,6 +37,9 @@ title: AI 教程
 3. [OpenClaw](openclaw/) — 多智能体系统
 4. [hermes-agent](hermes-agent/) — 全栈 AI 代理
 
+### 🌐 AI 工具应用
+1. [DocuTranslate](docutranslate/) — 基于大模型的文档翻译工具
+
 ---
 
 ## 📦 详细目录
@@ -47,3 +51,4 @@ title: AI 教程
 - [superpowers-zh 教程](superpowers-zh/)
 - [hermes-agent 教程](hermes-agent/)
 - [OpenCode 教程](opencode/)
+- [DocuTranslate 教程](docutranslate/)
