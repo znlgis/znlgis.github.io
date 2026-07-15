@@ -24,3 +24,19 @@ title: 3D 开发
 - [二次开发实战与生态集成](supersplat/第10章-二次开发实战与生态集成)
 
 [📁 查看完整目录 →](supersplat/)
+
+### Ara3D-SDK 使用与开发教程
+开源（MIT）面向 AEC 行业的高性能 .NET 8 三维/BIM 库集合，涵盖从架构原理到二次开发的完整学习路径。
+
+- [Ara3D-SDK 全景概览与学习路线](ara3d-sdk/第01章-Ara3D-SDK全景概览与学习路线)
+- [环境搭建、NuGet 包体系与第一个程序](ara3d-sdk/第02章-环境搭建NuGet包体系与第一个程序)
+- [核心基础库 Core 详解](ara3d-sdk/第03章-核心基础库Core详解)
+- [数学基础与 F8 SIMD 加速](ara3d-sdk/第04章-数学基础与F8-SIMD加速)
+- [几何与网格建模](ara3d-sdk/第05章-几何与网格建模)
+- [场景模型 Models 与实例化渲染](ara3d-sdk/第06章-场景模型Models与实例化渲染)
+- [文件 IO 与三维数据格式](ara3d-sdk/第07章-文件IO与三维数据格式)
+- [BIM 与 IFC 数据处理](ara3d-sdk/第08章-BIM与IFC数据处理)
+- [Ara3D Studio 插件开发](ara3d-sdk/第09章-Ara3D-Studio插件开发)
+- [二次开发实战、构建测试与发布](ara3d-sdk/第10章-二次开发实战构建测试与发布)
+
+[📁 查看完整目录 →](ara3d-sdk/)
