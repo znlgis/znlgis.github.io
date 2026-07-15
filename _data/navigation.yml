@@ -149,6 +149,9 @@
     - title: SuperSplat
       icon: 📁
       url: /3d/supersplat/
+    - title: Ara3D-SDK
+      icon: 📁
+      url: /3d/ara3d-sdk/
 
 - title: C# 开发
   icon: 💻

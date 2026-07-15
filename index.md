@@ -47,7 +47,7 @@ GIS · CAD · C# · 3D · AI 开发与技术分享
 
 <div style="border: 1px solid #e1e4e8; border-radius: 8px; padding: 1.2rem; background: #f8f9fa;">
 <h3 style="margin: 0 0 0.5rem;">🧊 3D 开发</h3>
-<p style="font-size: 0.85rem; color: #666; margin: 0 0 0.8rem;">SuperSplat · 3D 高斯泼溅 · 高斯泼溅编辑</p>
+<p style="font-size: 0.85rem; color: #666; margin: 0 0 0.8rem;">SuperSplat · Ara3D-SDK · 高斯泼溅 · BIM</p>
 <a href="#3d-开发" style="font-size: 0.85rem;">浏览教程 →</a>
 </div>
 
@@ -67,7 +67,7 @@ GIS · CAD · C# · 3D · AI 开发与技术分享
 
 - **GIS 教程**：19 个系列，涵盖 GDAL、GeoServer、PostGIS、QGIS、CesiumJS 等
 - **CAD 开发**：17 个系列，涵盖 FreeCAD、OCCT、KiCad、OpenSCAD 等
-- **3D 开发**：1 个系列，涵盖 SuperSplat 3D 高斯泼溅编辑器
+- **3D 开发**：2 个系列，涵盖 SuperSplat 3D 高斯泼溅编辑器、Ara3D-SDK AEC 三维/BIM 库
 - **C# 开发**：7 个系列，涵盖 Admin.NET、Furion、NPOI、ReoGrid 等
 - **AI 系列**：6 个系列，涵盖 Dify、OpenClaw、hermes-agent、OpenCode 等
 - **源码解读**：Clipper1 / Clipper2 C# 源码逐行分析
@@ -725,6 +725,18 @@ JTS Topology Suite 创始人 Martin Davis 的技术博客翻译，涵盖计算�
 - [导出格式、压缩与发布上线](3d/supersplat/第08章-导出格式压缩与发布上线)
 - [源码架构、事件系统与开发环境搭建](3d/supersplat/第09章-源码架构事件系统与开发环境搭建)
 - [二次开发实战与生态集成](3d/supersplat/第10章-二次开发实战与生态集成)
+
+#### Ara3D-SDK 使用与开发教程系列
+- [Ara3D-SDK 全景概览与学习路线](3d/ara3d-sdk/第01章-Ara3D-SDK全景概览与学习路线)
+- [环境搭建、NuGet 包体系与第一个程序](3d/ara3d-sdk/第02章-环境搭建NuGet包体系与第一个程序)
+- [核心基础库 Core 详解](3d/ara3d-sdk/第03章-核心基础库Core详解)
+- [数学基础与 F8 SIMD 加速](3d/ara3d-sdk/第04章-数学基础与F8-SIMD加速)
+- [几何与网格建模](3d/ara3d-sdk/第05章-几何与网格建模)
+- [场景模型 Models 与实例化渲染](3d/ara3d-sdk/第06章-场景模型Models与实例化渲染)
+- [文件 IO 与三维数据格式](3d/ara3d-sdk/第07章-文件IO与三维数据格式)
+- [BIM 与 IFC 数据处理](3d/ara3d-sdk/第08章-BIM与IFC数据处理)
+- [Ara3D Studio 插件开发](3d/ara3d-sdk/第09章-Ara3D-Studio插件开发)
+- [二次开发实战、构建测试与发布](3d/ara3d-sdk/第10章-二次开发实战构建测试与发布)
 
 ### C# 开发
 
