@@ -27,6 +27,8 @@ title: CAD 教程
 | [FY_Layout 教程](FY_Layout/) | 20章 | ⭐⭐⭐ | 场布设计平台 |
 | [LightCAD 教程](LightCAD/) | 20章 | ⭐⭐⭐ | Web CAD 框架 |
 | [LightningCAD 教程](LightningCAD/) | 11章 | ⭐⭐⭐ | 围护结构 CAD 设计 |
+| [TongWen 教程](TongWen/) | 12章 | ⭐⭐⭐ | CAD 图纸无损翻译 |
+| [TongWen 教程](TongWen/) | 12章 | ⭐⭐⭐ | CAD 图纸无损翻译 |
 | [Clipper2 教程](Clipper2/) | 6章 | ⭐⭐ | 多边形裁剪库 |
 | [Clipper1 教程](Clipper1/) | 6章 | ⭐⭐ | 多边形裁剪库 v1 |
 | [Chili3D 教程](chili3d/) | 7章 | ⭐⭐ | 轻量 3D 引擎 |
@@ -44,7 +46,8 @@ title: CAD 教程
 
 ### 🔌 AutoCAD 二次开发
 1. [IFoxCAD 教程](IFoxCAD/) — .NET 开发框架
-2. [LibreDWG 教程](libredwg/) — DWG 文件格式
+2. [TongWen 教程](TongWen/) — CAD 图纸无损翻译
+3. [LibreDWG 教程](libredwg/) — DWG 文件格式
 
 ### 📐 BIM 开发
 1. [Xbim 教程](Xbim/) — IFC 标准与 BIM
@@ -74,4 +77,5 @@ title: CAD 教程
 - [OpenSCAD 教程](openscad/)
 - [qcad 教程](qcad/)
 - [solvespace 教程](solvespace/)
+- [TongWen 教程](TongWen/)
 - [Xbim 教程](Xbim/)

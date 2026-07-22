@@ -124,6 +124,9 @@
     - title: SolveSpace
       icon: 📁
       url: /cad/solvespace/
+    - title: TongWen
+      icon: 📁
+      url: /cad/TongWen/
     - title: CadQuery
       icon: 📁
       url: /cad/cadquery/
