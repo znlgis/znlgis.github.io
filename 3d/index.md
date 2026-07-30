@@ -40,3 +40,19 @@ title: 3D 开发
 - [二次开发实战、构建测试与发布](ara3d-sdk/第10章-二次开发实战构建测试与发布)
 
 [📁 查看完整目录 →](ara3d-sdk/)
+
+### Photo-Sphere-Viewer 使用与开发教程
+基于 Three.js 的全景图展示库，涵盖从基础显示到插件开发、虚拟导览的完整学习路径。
+
+- [Photo-Sphere-Viewer 项目全景与学习路线](Photo-Sphere-Viewer/第01章-Photo-Sphere-Viewer项目全景与学习路线)
+- [环境搭建与第一个全景应用](Photo-Sphere-Viewer/第02章-环境搭建与第一个全景应用)
+- [Viewer 核心配置与 API 详解](Photo-Sphere-Viewer/第03章-Viewer核心配置与API详解)
+- [全景图类型与适配器详解](Photo-Sphere-Viewer/第04章-全景图类型与适配器详解)
+- [标记系统 MarkersPlugin 深度解析](Photo-Sphere-Viewer/第05章-标记系统MarkersPlugin深度解析)
+- [插件体系架构与自定义插件开发](Photo-Sphere-Viewer/第06章-插件体系架构与自定义插件开发)
+- [虚拟导览与画廊](Photo-Sphere-Viewer/第07章-虚拟导览与画廊VirtualTour与Gallery)
+- [视频全景与移动端交互](Photo-Sphere-Viewer/第08章-视频全景与移动端交互)
+- [地图集成与辅助功能](Photo-Sphere-Viewer/第09章-地图集成与辅助功能)
+- [框架集成、实战项目与部署优化](Photo-Sphere-Viewer/第10章-框架集成实战项目与部署优化)
+
+[📁 查看完整目录 →](Photo-Sphere-Viewer/)

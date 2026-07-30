@@ -155,6 +155,9 @@
     - title: Ara3D-SDK
       icon: 📁
       url: /3d/ara3d-sdk/
+    - title: Photo-Sphere-Viewer
+      icon: 📁
+      url: /3d/Photo-Sphere-Viewer/
 
 - title: C# 开发
   icon: 💻
