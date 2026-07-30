@@ -216,6 +216,77 @@ CadQuery的典型数据流如下：
    └─ Workplane创建
 ```
 
+### 1.2.4 自由函数（Free Function）API
+
+从 v2.5 开始，CadQuery 引入了自由函数（Free Function）API，并在 v2.8 中正式稳定，不再是实验性功能。这种新风格的 API 提供了一种更加函数式、声明式的建模方式，与现代 Python 社区的习惯更加一致。
+
+**两种风格的对比**
+
+传统的 Workplane 链式调用风格：
+
+```python
+import cadquery as cq
+
+result = (
+    cq.Workplane("XY")
+    .box(80, 60, 10)
+    .faces(">Z")
+    .workplane()
+    .hole(22)
+)
+```
+
+自由函数风格（v2.8 推荐写法）：
+
+```python
+import cadquery as cq
+
+box = cq.box(80, 60, 10)
+plane = cq.Workplane(box.faces(">Z").val())
+result = cq.cut(box, cq.cylinder(11, 10))
+```
+
+更简洁的混合写法：
+
+```python
+import cadquery as cq
+
+result = (
+    cq.box(80, 60, 10)
+    .faces(">Z")
+    .workplane()
+    .hole(22)
+)
+```
+
+**常用自由函数**
+
+| 函数 | 说明 |
+|------|------|
+| `cq.box(length, width, height)` | 创建盒子 |
+| `cq.cylinder(radius, height)` | 创建圆柱体 |
+| `cq.sphere(radius)` | 创建球体 |
+| `cq.cone(radius1, radius2, height)` | 创建圆锥体 |
+| `cq.torus(radius1, radius2)` | 创建圆环体 |
+| `cq.extrude(face, amount)` | 拉伸面 |
+| `cq.cut(solid, tool)` | 布尔减法 |
+| `cq.fuse(solid, tool)` | 布尔加法 |
+| `cq.intersect(solid, tool)` | 布尔交集 |
+| `cq.Workplane(plane)` | 创建工作平面 |
+| `cq.import_step(filename)` | 导入 STEP 文件 |
+| `cq.export_step(shape, filename)` | 导出 STEP 文件 |
+
+**风格选择建议**
+
+CadQuery 2.8 推荐将自由函数作为首选建模风格。自由函数风格的优点包括：
+
+- 更直观的 Python 函数调用方式
+- 便于 IDE 自动补全和类型检查
+- 更容易编写单元测试
+- 与函数式编程范式兼容
+
+传统的 Workplane 链式调用仍然完全支持，现有代码无需修改即可运行。两种风格可以自由混用。
+
 ## 1.3 环境搭建与安装
 
 ### 1.3.1 系统要求
@@ -228,7 +299,7 @@ CadQuery的典型数据流如下：
 - Linux（主要发行版）
 
 **Python版本：**
-- Python 3.9 - 3.13（推荐3.11或3.12）
+- Python 3.10 - 3.12（推荐3.11或3.12）
 
 **硬件要求：**
 - 至少4GB RAM（推荐8GB以上）
@@ -307,7 +378,41 @@ pip install cadquery  # 当前最新版本为2.8.0
 pip install git+https://github.com/CadQuery/cadquery.git
 ```
 
-### 1.3.4 安装CQ-editor（可视化IDE）
+### 1.3.4 使用Docker快速启动
+
+如果不想在本地配置 Python 环境，可以使用 Docker 快速运行 CadQuery。CadQuery 官方在 Docker Hub 上提供了预构建的镜像，开箱即用。
+
+**拉取并运行容器：**
+
+```bash
+# 拉取官方镜像并启动交互式终端，挂载当前目录为工作区
+docker run -it --rm -v "${PWD}:/workspace" -w /workspace cadquery/cadquery
+```
+
+**参数说明：**
+- `-it`：交互式终端模式
+- `--rm`：容器退出后自动删除
+- `-v "${PWD}:/workspace"`：将当前目录挂载到容器的 `/workspace`，方便读写本地文件
+- `-w /workspace`：设置容器内的工作目录
+
+**在容器中直接运行脚本：**
+
+```bash
+# 无需进入交互终端，直接执行 CadQuery 脚本
+docker run --rm -v "${PWD}:/workspace" -w /workspace cadquery/cadquery python my_script.py
+```
+
+**运行 CQ-editor（需要 X11 转发）：**
+
+在 Linux 上配合 X11 转发可以启动 CQ-editor 图形界面：
+
+```bash
+docker run --rm -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v "${PWD}:/workspace" cadquery/cadquery cq-editor
+```
+
+Docker 方式适合需要快速体验 CadQuery、不想处理本地依赖冲突，或在 CI/CD 环境中批量生成模型的用户。
+
+### 1.3.5 安装CQ-editor（可视化IDE）
 
 CQ-editor是CadQuery的官方图形化IDE，提供实时预览、调试等功能。
 
@@ -330,7 +435,7 @@ CQ-editor的主要功能：
 - 栈检查器：查看CadQuery对象栈
 - 导出功能：直接导出STEP、STL等格式
 
-### 1.3.5 在Jupyter中使用CadQuery
+### 1.3.6 在Jupyter中使用CadQuery
 
 CadQuery可以在Jupyter Notebook/Lab中直接使用：
 
@@ -353,7 +458,7 @@ box = cq.Workplane("XY").box(10, 10, 10)
 show(box)
 ```
 
-### 1.3.6 验证安装
+### 1.3.7 验证安装
 
 安装完成后，可以通过以下代码验证安装是否成功：
 
@@ -579,6 +684,128 @@ CadQuery使用右手坐标系：
 - `"left"` - YZ的反面
 - `"right"` - 等同于YZ
 
+### 1.5.5 材料系统
+
+CadQuery v2.7 引入了基础材料功能，允许为模型附加材料信息，包括密度、颜色和名称等属性，便于工程计算和数据交换。
+
+**创建材料：**
+
+```python
+import cadquery as cq
+
+# 定义铝合金材料
+aluminum = cq.Material(
+    name="Aluminum 6061",
+    density=2.7,              # 密度，单位 g/cm³
+    color=(0.8, 0.8, 0.85)    # RGB 颜色
+)
+
+# 定义钢材
+steel = cq.Material(
+    name="Steel 1045",
+    density=7.85,
+    color=(0.6, 0.6, 0.65)
+)
+```
+
+**将材料应用到模型：**
+
+```python
+import cadquery as cq
+
+bracket = (
+    cq.Workplane("XY")
+    .box(50, 30, 5)
+    .faces(">Z")
+    .workplane()
+    .hole(8)
+)
+
+aluminum = cq.Material(name="Aluminum 6061", density=2.7)
+bracket.material = aluminum
+
+# 利用材料属性计算质量
+volume = bracket.val().Volume()  # mm³
+mass = volume * 0.001 * aluminum.density  # g
+print(f"材料: {bracket.material.name}")
+print(f"体积: {volume:.1f} mm³, 质量: {mass:.1f} g")
+```
+
+**材料与 STEP 联动**
+
+材料信息可以在导入导出 STEP 文件时保留和传递：
+
+```python
+import cadquery as cq
+
+# 导出时，材料信息会写入 STEP 文件
+steel = cq.Material(name="Steel 1045", density=7.85)
+part = cq.box(100, 50, 10)
+part.material = steel
+cq.export_step(part, "steel_part.step")
+
+# 导入时可读取 STEP 中的材料信息
+imported = cq.import_step("steel_part.step")
+print(imported.material.name)  # 输出: Steel 1045
+```
+
+材料系统使 CadQuery 模型更接近实际工程需求，特别适合需要重量计算和材料追踪的机械设计场景。
+
+### 1.5.6 非阻塞可视化（cadquery.fig）
+
+v2.6 引入的 `cadquery.fig.Figure` API 提供了非阻塞的 3D 可视化能力。与传统的 `show_object()` 不同，Figure API 使用 trame/VTK 后台渲染，显示模型时不会阻塞脚本执行，在 Jupyter 与 CQ-editor 中均可使用。
+
+**对比：传统 show_object() vs Figure API**
+
+传统方式（阻塞，仅限 CQ-editor 环境）：
+
+```python
+import cadquery as cq
+
+# show_object() 仅适用于 CQ-editor，会阻塞脚本
+show_object(cq.Workplane("XY").box(10, 10, 10))
+```
+
+新的 Figure API（非阻塞，跨环境通用）：
+
+```python
+import cadquery as cq
+from cadquery.fig import Figure
+
+fig = Figure()
+
+box = cq.Workplane("XY").box(10, 10, 10)
+cylinder = cq.Workplane("XY").cylinder(5, 20)
+
+# 添加多个模型到同一视图，可分别设置颜色和名称
+fig.add(box, color=(0.5, 0.7, 1.0), name="盒子")
+fig.add(cylinder, color=(1.0, 0.5, 0.5), name="圆柱")
+
+# 显示模型——脚本随即继续执行，不会阻塞
+fig.show()
+print("模型已显示，脚本继续运行中...")
+```
+
+**基本操作：**
+
+```python
+from cadquery.fig import Figure
+
+fig = Figure()
+fig.add(cq.box(10, 10, 10), name="demo")
+
+fig.show()   # 显示视图（非阻塞）
+fig.clear()  # 清空当前场景中的模型
+fig.close()  # 关闭视图窗口
+```
+
+**Figure API 的优势：**
+
+- **非阻塞**：`fig.show()` 后脚本立即继续执行，适合批量渲染和自动化流程
+- **跨环境**：Jupyter Notebook、JupyterLab、CQ-editor 均可使用
+- **多模型叠加**：在同一视图中显示多个模型，分别设置颜色与标签
+- **trame/VTK 渲染**：现代化渲染管线，支持后台异步渲染
+
 ## 1.6 常用工具与资源
 
 ### 1.6.1 官方资源
@@ -629,9 +856,11 @@ FxBricks使用CadQuery构建产品开发流水线，他们开源了CAD流程文�
 2. **技术架构**
    - 分层架构：用户脚本 → CadQuery API → OCP → OCCT
    - 核心概念：Workplane、Selector、Shape
+   - 自由函数API：v2.8 推荐的新建模风格
 
 3. **环境搭建**
    - 推荐使用Conda安装
+   - Docker 快速启动，无需本地配置
    - 可选安装CQ-editor可视化IDE
    - 支持Jupyter集成
 
@@ -639,6 +868,8 @@ FxBricks使用CadQuery构建产品开发流水线，他们开源了CAD流程文�
    - 创建简单模型
    - 链式调用风格
    - 对象栈概念
+   - 材料系统：v2.7 引入，支持密度、颜色等属性
+   - 非阻塞可视化：v2.6 引入的 `cadquery.fig.Figure` API
 
 5. **资源与工具**
    - 官方文档和社区支持
@@ -648,6 +879,7 @@ FxBricks使用CadQuery构建产品开发流水线，他们开源了CAD流程文�
 - 理解CadQuery的核心概念和工作原理
 - 成功安装和配置CadQuery开发环境
 - 编写简单的CadQuery脚本创建基本3D模型
+- 使用自由函数API和材料系统进行现代建模
 
 在下一章中，我们将深入学习CadQuery的Workplane和草图系统，这是进行复杂建模的基础。
 

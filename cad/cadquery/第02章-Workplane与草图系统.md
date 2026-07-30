@@ -142,6 +142,73 @@ faces = solid.faces(">Z")  # 栈: [Face]
 new_wp = faces.workplane()  # 栈: [Point(工作平面原点)]
 ```
 
+### 2.1.6 自由函数风格的工作平面
+
+CadQuery v2.5 引入了"自由函数 API"，v2.8 起正式稳定，是官方推荐的现代写法。自由函数 API 不构建 Workplane 堆栈，而是将建模步骤拆分为独立函数，中间结果可以显式存储和复用。
+
+**创建工作平面：**
+
+```python
+import cadquery as cq
+
+# Workplane 风格
+wp = cq.Workplane("XY")
+
+# 自由函数风格（等价写法）
+wp = cq.workplane("XY")
+```
+
+**草图绘制与拉伸的等价写法：**
+
+```python
+# Workplane 链式 — 矩形拉伸
+result = cq.Workplane("XY").rect(10, 20).extrude(5)
+
+# 自由函数等价写法
+sketch = cq.Sketch().rect(10, 20)
+result = cq.extrude(sketch, 5)
+```
+
+```python
+# Workplane 链式 — 圆形拉伸
+result = cq.Workplane("XY").circle(5).extrude(10)
+
+# 自由函数等价写法
+sketch = cq.Sketch().circle(5)
+result = cq.extrude(sketch, 10)
+```
+
+```python
+# Workplane 链式 — 带孔零件
+result = (
+    cq.Workplane("XY")
+    .rect(30, 20)
+    .circle(5, mode="s")
+    .extrude(10)
+)
+
+# 自由函数等价写法
+sketch = (
+    cq.Sketch()
+    .rect(30, 20)
+    .circle(5, mode="s")
+)
+result = cq.extrude(sketch, 10)
+```
+
+**Workplane 与自由函数混合使用：**
+
+```python
+# 自由函数可接受 Workplane 对象作为输入
+wp = cq.Workplane("XY").rect(10, 10)
+result = cq.extrude(wp, 5)
+
+# 也可从 Sketch 通过 Workplane 构建
+sketch = cq.Sketch().rect(10, 10)
+wp = cq.Workplane("XY").placeSketch(sketch)
+result = cq.extrude(wp, 5)
+```
+
 ## 2.2 2D草图绘制
 
 ### 2.2.1 基本形状
@@ -414,6 +481,60 @@ sketch = (
     .solve()                                  # 求解约束
 )
 ```
+
+### 2.3.6 自由函数草图
+
+除了通过 Workplane 使用草图，CadQuery 提供了更直接的自由函数草图构建方式：
+
+**直接创建并拉伸草图：**
+
+```python
+import cadquery as cq
+
+# 使用 Sketch() 直接构建草图
+sketch = cq.Sketch().rect(20, 10)
+result = cq.extrude(sketch, 5)
+```
+
+**cq.make_sketch() — 从 Workplane 提取草图：**
+
+`cq.make_sketch()` 将 Workplane 上已绘制的图形转换为独立的 Sketch 对象：
+
+```python
+# Workplane 方式：在 Workplane 上绘制并拉伸
+result = cq.Workplane("XY").circle(5).extrude(10)
+
+# make_sketch 方式：先转换为 Sketch，再拉伸
+sketch = cq.make_sketch(cq.Workplane("XY").circle(5))
+result = cq.extrude(sketch, 10)
+```
+
+**完整示例 — 带孔的矩形板：**
+
+```python
+import cadquery as cq
+
+# 自由函数风格：完全使用 Sketch + extrude/cut
+base = cq.Sketch().rect(30, 20)
+hole = cq.Sketch().circle(5)
+
+body = cq.extrude(base, 8)
+body = cq.cut(body, cq.extrude(hole, 8))
+
+cq.exporters.export(body, "plate.step")
+```
+
+等价 Workplane 写法：
+
+```python
+body = cq.Workplane("XY").rect(30, 20).circle(5, mode="s").extrude(8)
+```
+
+**选择建议：**
+
+- **自由函数风格**适合需要显式中介变量、分步调试，或团队协作中关注输入/输出的场景
+- **Workplane 链式**适合简单零件的快速构建，代码紧凑但存在隐式堆栈状态
+- 两种风格可以混用，自由函数可接受 Workplane 和 Sketch 作为输入
 
 ## 2.4 实际应用示例
 
