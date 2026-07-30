@@ -214,6 +214,9 @@
     - title: my-opencode-deepseek-config
       icon: 📁
       url: /ai/my-opencode-deepseek-config/
+    - title: OpenGIS-Skills
+      icon: 📁
+      url: /ai/opengis-skills/
 
 - title: IoT 物联网
   icon: 🔌
