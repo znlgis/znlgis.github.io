@@ -911,6 +911,21 @@ JTS Topology Suite 创始人 Martin Davis 的技术博客翻译，涵盖计算�
 - [Token 优化与高效省钱配置](ai/opencode/09-Token优化与高效省钱配置)
 - [最佳实践、完整配置模板与排障](ai/opencode/10-最佳实践完整配置模板与排障)
 
+#### my-opencode-deepseek-config 教程
+- [my-opencode-deepseek-config 教程目录](ai/my-opencode-deepseek-config/)
+- [项目概览与核心定位](ai/my-opencode-deepseek-config/01-项目概览与核心定位)
+- [安装部署与环境配置](ai/my-opencode-deepseek-config/02-安装部署与环境配置)
+- [模型配置详解](ai/my-opencode-deepseek-config/03-模型配置详解)
+- [多Agent体系完全解析](ai/my-opencode-deepseek-config/04-多Agent体系完全解析)
+- [Orchestrator路由机制深度解析](ai/my-opencode-deepseek-config/05-Orchestrator路由机制深度解析)
+- [技能体系与插件生态](ai/my-opencode-deepseek-config/06-技能体系与插件生态)
+- [命令别名完整指南](ai/my-opencode-deepseek-config/07-命令别名完整指南)
+- [配置文件完全参考](ai/my-opencode-deepseek-config/08-配置文件完全参考)
+- [全局规则AGENTS.md深度解读](ai/my-opencode-deepseek-config/09-全局规则AGENTS.md深度解读)
+- [典型工作流实战](ai/my-opencode-deepseek-config/10-典型工作流实战)
+- [设计决策与迭代历程](ai/my-opencode-deepseek-config/11-设计决策与迭代历程)
+- [最佳实践与定制指南](ai/my-opencode-deepseek-config/12-最佳实践与定制指南)
+
 #### Pi 教程
 - [Pi 教程目录](ai/pi/)
 - [项目概览与核心定位](ai/pi/01-项目概览与核心定位)

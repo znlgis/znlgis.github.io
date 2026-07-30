@@ -21,6 +21,7 @@ title: AI 教程
 | [Pi](pi/) | 15章 | ⭐⭐ | 极简终端 AI 编码代理 |
 | [OpenCode](opencode/) | 10章 | ⭐⭐ | 开源 AI 编码代理 |
 | [DocuTranslate](docutranslate/) | 12章 | ⭐⭐ | 大模型文档翻译工具 |
+| [my-opencode-deepseek-config](my-opencode-deepseek-config/) | 12章 | ⭐⭐⭐ | OpenCode x DeepSeek 最优配置 |
 
 ---
 
@@ -29,7 +30,8 @@ title: AI 教程
 ### 🛠️ AI 编码代理入门
 1. [Pi](pi/) — 极简终端编码代理（4 工具 + 自托管模型优化）
 2. [OpenCode](opencode/) — 开源 AI 编码代理（重点：省 Token 最优化配置）
-3. [oh-my-openagent](oh-my-openagent/) — AI 编码代理进阶
+3. [my-opencode-deepseek-config](my-opencode-deepseek-config/) — OpenCode x DeepSeek 最优配置实践（纯配置驱动的多Agent框架）
+4. [oh-my-openagent](oh-my-openagent/) — AI 编码代理进阶
 
 ### 🤖 AI 应用开发入门
 1. [Dify 平台](dify/) — 低代码 LLM 应用
@@ -52,3 +54,4 @@ title: AI 教程
 - [hermes-agent 教程](hermes-agent/)
 - [OpenCode 教程](opencode/)
 - [DocuTranslate 教程](docutranslate/)
+- [my-opencode-deepseek-config 教程](my-opencode-deepseek-config/)

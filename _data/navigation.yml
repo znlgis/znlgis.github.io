@@ -211,6 +211,9 @@
     - title: DocuTranslate
       icon: 📁
       url: /ai/docutranslate/
+    - title: my-opencode-deepseek-config
+      icon: 📁
+      url: /ai/my-opencode-deepseek-config/
 
 - title: IoT 物联网
   icon: 🔌
