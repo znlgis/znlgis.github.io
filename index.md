@@ -67,7 +67,7 @@ GIS · CAD · C# · 3D · AI 开发与技术分享
 
 - **GIS 教程**：19 个系列，涵盖 GDAL、GeoServer、PostGIS、QGIS、CesiumJS 等
 - **CAD 开发**：17 个系列，涵盖 FreeCAD、OCCT、KiCad、OpenSCAD 等
-- **3D 开发**：2 个系列，涵盖 SuperSplat 3D 高斯泼溅编辑器、Ara3D-SDK AEC 三维/BIM 库
+- **3D 开发**：4 个系列，涵盖 SuperSplat 3D 高斯泼溅编辑器、Ara3D-SDK AEC 三维/BIM 库、Photo-Sphere-Viewer 全景展示、Elements BIM 编程生成库
 - **C# 开发**：7 个系列，涵盖 Admin.NET、Furion、NPOI、ReoGrid 等
 - **AI 系列**：6 个系列，涵盖 Dify、OpenClaw、hermes-agent、OpenCode 等
 - **源码解读**：Clipper1 / Clipper2 C# 源码逐行分析
@@ -737,6 +737,24 @@ JTS Topology Suite 创始人 Martin Davis 的技术博客翻译，涵盖计算�
 - [BIM 与 IFC 数据处理](3d/ara3d-sdk/第08章-BIM与IFC数据处理)
 - [Ara3D Studio 插件开发](3d/ara3d-sdk/第09章-Ara3D-Studio插件开发)
 - [二次开发实战、构建测试与发布](3d/ara3d-sdk/第10章-二次开发实战构建测试与发布)
+
+#### Elements——BIM 编程生成库使用与开发教程系列
+- [Elements 概述与快速入门](3d/elements/第01章-Elements概述与快速入门)
+- [核心概念——Element 与 Model](3d/elements/第02章-核心概念Element与Model)
+- [几何系统（上）——向量、曲线与多边形](3d/elements/第03章-几何系统（上）向量曲线与多边形)
+- [几何系统（下）——轮廓、变换与实体](3d/elements/第04章-几何系统（下）轮廓变换与实体)
+- [建筑元素——墙、梁、柱、楼板](3d/elements/第05章-建筑元素墙梁柱楼板)
+- [结构与框架——桁架、支撑与结构框架](3d/elements/第06章-结构与框架桁架支撑与结构框架)
+- [空间、开洞与地形](3d/elements/第07章-空间开洞与地形)
+- [CSG 布尔运算与实体操作](3d/elements/第08章-CSG布尔运算与实体操作)
+- [材质、光照与渲染](3d/elements/第09章-材质光照与渲染)
+- [序列化——JSON、glTF 与 IFC](3d/elements/第10章-序列化JSON-glTF与IFC)
+- [空间数据结构——网格、拓扑与自适应网格](3d/elements/第11章-空间数据结构网格拓扑与自适应网格)
+- [图与空间搜索](3d/elements/第12章-图与空间搜索)
+- [MEP 机电系统](3d/elements/第13章-MEP机电系统)
+- [组件化生成](3d/elements/第14章-组件化生成)
+- [Schema 驱动开发——自定义元素类型](3d/elements/第15章-Schema驱动开发自定义元素类型)
+- [实战案例——综合建模项目](3d/elements/第16章-实战案例综合建模项目)
 
 ### C# 开发
 

@@ -56,3 +56,25 @@ title: 3D 开发
 - [框架集成、实战项目与部署优化](Photo-Sphere-Viewer/第10章-框架集成实战项目与部署优化)
 
 [📁 查看完整目录 →](Photo-Sphere-Viewer/)
+
+### Elements——BIM 编程生成库使用与开发教程
+开源（MIT）AEC 建筑元素生成库，涵盖从类型体系与几何内核到 CSG 布尔运算、序列化互操作、MEP 机电、组件化生成、Schema 驱动开发的完整学习路径。
+
+- [Elements 概述与快速入门](elements/第01章-Elements概述与快速入门)
+- [核心概念——Element 与 Model](elements/第02章-核心概念Element与Model)
+- [几何系统（上）——向量、曲线与多边形](elements/第03章-几何系统（上）向量曲线与多边形)
+- [几何系统（下）——轮廓、变换与实体](elements/第04章-几何系统（下）轮廓变换与实体)
+- [建筑元素——墙、梁、柱、楼板](elements/第05章-建筑元素墙梁柱楼板)
+- [结构与框架——桁架、支撑与结构框架](elements/第06章-结构与框架桁架支撑与结构框架)
+- [空间、开洞与地形](elements/第07章-空间开洞与地形)
+- [CSG 布尔运算与实体操作](elements/第08章-CSG布尔运算与实体操作)
+- [材质、光照与渲染](elements/第09章-材质光照与渲染)
+- [序列化——JSON、glTF 与 IFC](elements/第10章-序列化JSON-glTF与IFC)
+- [空间数据结构——网格、拓扑与自适应网格](elements/第11章-空间数据结构网格拓扑与自适应网格)
+- [图与空间搜索](elements/第12章-图与空间搜索)
+- [MEP 机电系统](elements/第13章-MEP机电系统)
+- [组件化生成](elements/第14章-组件化生成)
+- [Schema 驱动开发——自定义元素类型](elements/第15章-Schema驱动开发自定义元素类型)
+- [实战案例——综合建模项目](elements/第16章-实战案例综合建模项目)
+
+[📁 查看完整目录 →](elements/)

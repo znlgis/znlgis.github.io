@@ -158,6 +158,9 @@
     - title: Photo-Sphere-Viewer
       icon: 📁
       url: /3d/Photo-Sphere-Viewer/
+    - title: Elements
+      icon: 📁
+      url: /3d/elements/
 
 - title: C# 开发
   icon: 💻
