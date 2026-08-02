@@ -67,7 +67,7 @@ GIS · CAD · C# · 3D · AI 开发与技术分享
 
 - **GIS 教程**：19 个系列，涵盖 GDAL、GeoServer、PostGIS、QGIS、CesiumJS 等
 - **CAD 开发**：17 个系列，涵盖 FreeCAD、OCCT、KiCad、OpenSCAD 等
-- **3D 开发**：4 个系列，涵盖 SuperSplat 3D 高斯泼溅编辑器、Ara3D-SDK AEC 三维/BIM 库、Photo-Sphere-Viewer 全景展示、Elements BIM 编程生成库
+- **3D 开发**：5 个系列，涵盖 SuperSplat 3D 高斯泼溅编辑器、Ara3D-SDK AEC 三维/BIM 库、Photo-Sphere-Viewer 全景展示、Elements BIM 编程生成库、OpenCSG.NET 构造实体几何（CSG）库
 - **C# 开发**：7 个系列，涵盖 Admin.NET、Furion、NPOI、ReoGrid 等
 - **AI 系列**：6 个系列，涵盖 Dify、OpenClaw、hermes-agent、OpenCode 等
 - **源码解读**：Clipper1 / Clipper2 C# 源码逐行分析
@@ -755,6 +755,22 @@ JTS Topology Suite 创始人 Martin Davis 的技术博客翻译，涵盖计算�
 - [组件化生成](3d/elements/第14章-组件化生成)
 - [Schema 驱动开发——自定义元素类型](3d/elements/第15章-Schema驱动开发自定义元素类型)
 - [实战案例——综合建模项目](3d/elements/第16章-实战案例综合建模项目)
+
+#### OpenCSG.NET 使用与开发教程系列
+- [OpenCSG.NET 概述与学习路线](3d/OpenCSG.NET/第01章-OpenCSG.NET概述与学习路线)
+- [环境搭建与第一个程序](3d/OpenCSG.NET/第02章-环境搭建与第一个程序)
+- [CSG 与 BSP 树核心原理](3d/OpenCSG.NET/第03章-CSG与BSP树核心原理)
+- [数学与几何基础类型](3d/OpenCSG.NET/第04章-数学与几何基础类型)
+- [基础形体——立方体、球体、圆柱体](3d/OpenCSG.NET/第05章-基础形体立方体球体圆柱体)
+- [布尔运算——并集、差集、交集](3d/OpenCSG.NET/第06章-布尔运算并集差集交集)
+- [几何变换——平移、旋转与缩放](3d/OpenCSG.NET/第07章-几何变换平移旋转与缩放)
+- [STL 导出与文件格式](3d/OpenCSG.NET/第08章-STL导出与文件格式)
+- [声明式 CsgNode 树与求值器](3d/OpenCSG.NET/第09章-声明式CsgNode树与求值器)
+- [参数化截面与拉伸建模](3d/OpenCSG.NET/第10章-参数化截面与拉伸建模)
+- [CsgNode 的 JSON 序列化](3d/OpenCSG.NET/第11章-CsgNode的JSON序列化)
+- [源码剖析——Solid 内核与 BSP 算法](3d/OpenCSG.NET/第12章-源码剖析Solid内核与BSP算法)
+- [实战案例——冷弯 C 型钢檩条建模](3d/OpenCSG.NET/第13章-实战案例冷弯C型钢檩条建模)
+- [测试、性能优化与二次开发](3d/OpenCSG.NET/第14章-测试性能优化与二次开发)
 
 ### C# 开发
 

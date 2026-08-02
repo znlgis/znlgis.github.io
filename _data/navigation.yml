@@ -161,6 +161,9 @@
     - title: Elements
       icon: 📁
       url: /3d/elements/
+    - title: OpenCSG.NET
+      icon: 📁
+      url: /3d/OpenCSG.NET/
 
 - title: C# 开发
   icon: 💻

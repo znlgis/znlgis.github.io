@@ -78,3 +78,23 @@ title: 3D 开发
 - [实战案例——综合建模项目](elements/第16章-实战案例综合建模项目)
 
 [📁 查看完整目录 →](elements/)
+
+### OpenCSG.NET 使用与开发教程
+开源（MIT）纯 C# 实现、零第三方依赖的构造实体几何（CSG）库，涵盖从 CSG 与 BSP 树原理、基础形体与布尔运算，到声明式建模树、参数化型材、JSON 序列化、内核源码剖析与二次开发的完整学习路径。
+
+- [OpenCSG.NET 概述与学习路线](OpenCSG.NET/第01章-OpenCSG.NET概述与学习路线)
+- [环境搭建与第一个程序](OpenCSG.NET/第02章-环境搭建与第一个程序)
+- [CSG 与 BSP 树核心原理](OpenCSG.NET/第03章-CSG与BSP树核心原理)
+- [数学与几何基础类型](OpenCSG.NET/第04章-数学与几何基础类型)
+- [基础形体——立方体、球体、圆柱体](OpenCSG.NET/第05章-基础形体立方体球体圆柱体)
+- [布尔运算——并集、差集、交集](OpenCSG.NET/第06章-布尔运算并集差集交集)
+- [几何变换——平移、旋转与缩放](OpenCSG.NET/第07章-几何变换平移旋转与缩放)
+- [STL 导出与文件格式](OpenCSG.NET/第08章-STL导出与文件格式)
+- [声明式 CsgNode 树与求值器](OpenCSG.NET/第09章-声明式CsgNode树与求值器)
+- [参数化截面与拉伸建模](OpenCSG.NET/第10章-参数化截面与拉伸建模)
+- [CsgNode 的 JSON 序列化](OpenCSG.NET/第11章-CsgNode的JSON序列化)
+- [源码剖析——Solid 内核与 BSP 算法](OpenCSG.NET/第12章-源码剖析Solid内核与BSP算法)
+- [实战案例——冷弯 C 型钢檩条建模](OpenCSG.NET/第13章-实战案例冷弯C型钢檩条建模)
+- [测试、性能优化与二次开发](OpenCSG.NET/第14章-测试性能优化与二次开发)
+
+[📁 查看完整目录 →](OpenCSG.NET/)
