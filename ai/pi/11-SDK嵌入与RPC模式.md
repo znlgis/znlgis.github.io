@@ -1280,7 +1280,7 @@ jobs:
 
       - name: Run Pi Review
         env:
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          ANTHROPIC_API_KEY: ${% raw %}{{ secrets.ANTHROPIC_API_KEY }}{% endraw %}
         run: |
           git diff origin/main..HEAD > /tmp/diff.txt
           pi -p --model anthropic/claude-sonnet-4-20250514 "审查以下 diff，重点关注安全问题、性能问题和逻辑错误。给出具体建议。" < /tmp/diff.txt > /tmp/review.txt 2>/dev/null
