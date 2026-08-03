@@ -2022,7 +2022,7 @@ params:
 steps:
   - find: "export_menu.png"
     action: click
-  - find: "{{format}}_option.png"  # 使用参数
+  - find: "{% raw %}{{format}}{% endraw %}_option.png"  # 使用参数
     action: click
 ```
 
@@ -2131,7 +2131,7 @@ Flow saved to: recorded_flow.yaml
 这是 billionmail 最核心的场景——向订阅者列表批量发送营销邮件：
 
 - **联系人管理**：导入/导出 CSV 联系人，分组管理，自定义字段
-- **邮件模板**：可视化模板编辑器（类 Markdown + HTML），模板变量替换（`{{name}}`、`{{company}}`）
+- **邮件模板**：可视化模板编辑器（类 Markdown + HTML），模板变量替换（`{% raw %}{{name}}{% endraw %}`、`{% raw %}{{company}}{% endraw %}`）
 - **排期发送**：设定发送时间和时区，支持定时和周期性发送
 - **发送控制**：限制每小时/每天发送量（避免被邮件服务商判定为垃圾邮件），分批发送
 - **A/B 测试**：对同一内容的不同标题/版本进行分桶发送，根据打开率自动选择优胜版本
@@ -2139,7 +2139,7 @@ Flow saved to: recorded_flow.yaml
 ```text
 典型 Newsletter 工作流：
 1. 导入联系人 → 创建订阅者列表
-2. 设计邮件模板 → 插入 {{变量}} 占位符
+2. 设计邮件模板 → 插入 {% raw %}{{变量}}{% endraw %} 占位符
 3. 编写正文 → 预览手机/桌面两种显示效果
 4. 设置发送时间 → 排期到"周二上午 10 点"
 5. 观察发送统计 → 打开率/点击率/退信率
