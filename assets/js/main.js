@@ -278,7 +278,7 @@ document.addEventListener('DOMContentLoaded', function() {
             anchor.className = 'heading-anchor';
             anchor.href = '#' + heading.id;
             anchor.textContent = '#';
-            anchor.setAttribute('aria-hidden', 'true');
+            anchor.setAttribute('aria-hidden', 'false');
             heading.appendChild(anchor);
         }
     }
