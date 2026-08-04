@@ -1,0 +1,311 @@
+/**
+ * znlgis.github.io — 主脚本
+ * 提取自 _layouts/default.html 内联 <script> 标签
+ * 包含：客户端即时搜索 + 侧边栏/UI 交互
+ */
+
+// 客户端即时搜索
+(function() {
+    let searchData = null;
+    const searchInput = document.getElementById('searchInput');
+    const searchResults = document.getElementById('searchResults');
+    const SCORE_TITLE_EXACT = 100;
+    const SCORE_TITLE_FUZZY = 60;
+    const SCORE_DESC_EXACT = 30;
+    const SCORE_CONTENT_EXACT = 20;
+    const MAX_SEARCH_RESULTS = 15;
+    let activeIndex = -1;
+    let searchTimeout = null;
+    let currentResults = [];
+
+    function setResultsVisible(visible) {
+        searchResults.classList.toggle('show', visible);
+        searchInput.setAttribute('aria-expanded', visible ? 'true' : 'false');
+    }
+
+    // 懒加载搜索索引
+    function loadSearchData(callback) {
+        if (searchData !== null) {
+            callback(searchData);
+            return;
+        }
+        const xhr = new XMLHttpRequest();
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                try {
+                    searchData = JSON.parse(xhr.responseText);
+                } catch(e) {
+                    searchData = [];
+                }
+            } else {
+                searchData = [];
+            }
+            callback(searchData);
+        };
+        xhr.onerror = function() {
+            searchData = [];
+            callback(searchData);
+        };
+        xhr.open('GET', '/search.json', true);
+        xhr.send();
+    }
+
+    // 模糊搜索（支持中文和拼音简拼）
+    function fuzzyMatch(text, query) {
+        const t = text.toLowerCase();
+        const q = query.toLowerCase();
+        if (t.indexOf(q) !== -1) return true;
+        // 分词匹配：query 中的每个字符都按顺序出现在 text 中
+        let qi = 0;
+        for (let i = 0; i < t.length && qi < q.length; i++) {
+            if (t[i] === q[qi]) qi++;
+        }
+        return qi === q.length;
+    }
+
+    function doSearch(query) {
+        if (!query || query.trim().length === 0) {
+            searchResults.innerHTML = '';
+            currentResults = [];
+            setResultsVisible(false);
+            activeIndex = -1;
+            return;
+        }
+        loadSearchData(function(data) {
+            if (!data || data.length === 0) {
+                searchResults.innerHTML = '<div class="search-no-results">暂无搜索结果</div>';
+                currentResults = [];
+                setResultsVisible(true);
+                return;
+            }
+            const results = [];
+            const q = query.trim();
+            const qLower = q.toLowerCase();
+            for (let i = 0; i < data.length; i++) {
+                const item = data[i];
+                const title = (item.title || '');
+                const description = (item.description || '');
+                const content = (item.content || '');
+                const titleLower = title.toLowerCase();
+                const descLower = description.toLowerCase();
+                const contentLower = content.toLowerCase();
+                let score = 0;
+
+                if (titleLower.indexOf(qLower) !== -1) {
+                    score += SCORE_TITLE_EXACT;
+                } else if (fuzzyMatch(title, q)) {
+                    score += SCORE_TITLE_FUZZY;
+                }
+                if (descLower.indexOf(qLower) !== -1) score += SCORE_DESC_EXACT;
+                if (contentLower.indexOf(qLower) !== -1) score += SCORE_CONTENT_EXACT;
+
+                if (score > 0) {
+                    results.push({ item: item, score: score });
+                }
+            }
+            results.sort(function(a, b) { return b.score - a.score; });
+            currentResults = results.slice(0, MAX_SEARCH_RESULTS).map(function(entry) { return entry.item; });
+            if (currentResults.length === 0) {
+                searchResults.innerHTML = '<div class="search-no-results">未找到匹配的教程</div>';
+            } else {
+                let html = '';
+                for (let j = 0; j < currentResults.length; j++) {
+                    html += '<a class="search-result-item" role="option" aria-selected="false" href="' + escapeHtml(currentResults[j].url) + '" data-index="' + j + '">' + highlightMatch(currentResults[j].title, q) + '</a>';
+                }
+                searchResults.innerHTML = html;
+            }
+            setResultsVisible(true);
+            activeIndex = -1;
+        });
+    }
+
+    function highlightMatch(text, query) {
+        const t = text.toLowerCase();
+        const q = query.toLowerCase();
+        const idx = t.indexOf(q);
+        if (idx === -1) return escapeHtml(text);
+        const before = escapeHtml(text.substring(0, idx));
+        const match = '<mark style="background:#fff3cd;padding:0 1px;border-radius:2px;">' + escapeHtml(text.substring(idx, idx + q.length)) + '</mark>';
+        const after = escapeHtml(text.substring(idx + q.length));
+        return before + match + after;
+    }
+
+    function escapeHtml(str) {
+        const div = document.createElement('div');
+        div.appendChild(document.createTextNode(str));
+        return div.innerHTML;
+    }
+
+    searchInput.addEventListener('input', function() {
+        clearTimeout(searchTimeout);
+        const query = this.value;
+        searchTimeout = setTimeout(function() { doSearch(query); }, 150);
+    });
+
+    searchInput.addEventListener('focus', function() {
+        if (this.value.trim().length > 0) {
+            doSearch(this.value);
+        }
+        // 首次聚焦预加载索引
+        if (searchData === null) {
+            loadSearchData(function(){});
+        }
+    });
+
+    // 键盘导航
+    searchInput.addEventListener('keydown', function(e) {
+        const items = searchResults.querySelectorAll('.search-result-item');
+        if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            if (items.length > 0) {
+                activeIndex = Math.min(activeIndex + 1, items.length - 1);
+                updateActive(items);
+            }
+        } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            if (items.length > 0) {
+                activeIndex = Math.max(activeIndex - 1, 0);
+                updateActive(items);
+            }
+        } else if (e.key === 'Enter') {
+            if (activeIndex >= 0 && items.length > 0 && items[activeIndex]) {
+                e.preventDefault();
+                window.location.href = items[activeIndex].getAttribute('href');
+            }
+        } else if (e.key === 'Escape') {
+            setResultsVisible(false);
+            activeIndex = -1;
+        }
+    });
+
+    function updateActive(items) {
+        items.forEach(function(item, i) {
+            if (i === activeIndex) {
+                item.classList.add('active');
+                item.setAttribute('aria-selected', 'true');
+                item.scrollIntoView({ block: 'nearest' });
+            } else {
+                item.classList.remove('active');
+                item.setAttribute('aria-selected', 'false');
+            }
+        });
+    }
+
+    // 点击外部关闭搜索
+    document.addEventListener('click', function(e) {
+        if (!searchInput.contains(e.target) && !searchResults.contains(e.target)) {
+            setResultsVisible(false);
+            activeIndex = -1;
+        }
+    });
+
+    // 结果项悬停时激活
+    searchResults.addEventListener('mouseover', function(e) {
+        const item = e.target.closest('.search-result-item');
+        if (item) {
+        const items = searchResults.querySelectorAll('.search-result-item');
+            items.forEach(function(el, i) {
+                el.classList.toggle('active', el === item);
+            });
+            activeIndex = parseInt(item.getAttribute('data-index'));
+        }
+    });
+})();
+
+// 侧边栏目录树与移动端交互
+document.addEventListener('DOMContentLoaded', function() {
+    var sidebar = document.getElementById('sidebar');
+    var overlay = document.getElementById('sidebarOverlay');
+
+    // 移动端侧边栏切换
+    function toggleSidebar() {
+        sidebar.classList.toggle('show');
+        overlay.classList.toggle('show');
+    }
+
+    document.getElementById('sidebarToggle').addEventListener('click', toggleSidebar);
+    overlay.addEventListener('click', toggleSidebar);
+
+    // Escape 键关闭侧边栏
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && sidebar.classList.contains('show')) {
+            sidebar.classList.remove('show');
+            overlay.classList.remove('show');
+        }
+    });
+
+    // 目录树展开/折叠（事件委托）
+    sidebar.addEventListener('click', function(e) {
+        var btn = e.target.closest('.js-tree-toggle');
+        if (!btn) return;
+        var toggle = btn.querySelector('.tree-toggle');
+        var children = btn.nextElementSibling;
+        if (children && children.classList.contains('tree-children')) {
+            toggle.classList.toggle('expanded');
+            children.classList.toggle('expanded');
+            btn.setAttribute('aria-expanded', children.classList.contains('expanded'));
+        }
+    });
+
+    // 回到顶部
+    var backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', function() {
+        backToTop.classList.toggle('show', window.pageYOffset > 300);
+    });
+    backToTop.addEventListener('click', function(e) {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // 表格响应式包装
+    var tables = document.querySelectorAll('main table');
+    for (var i = 0; i < tables.length; i++) {
+        var table = tables[i];
+        if (!table.parentElement.classList.contains('table-wrapper')) {
+            var wrapper = document.createElement('div');
+            wrapper.className = 'table-wrapper';
+            table.parentNode.insertBefore(wrapper, table);
+            wrapper.appendChild(table);
+        }
+    }
+
+    // 标题锚点链接
+    var headings = document.querySelectorAll('main h2, main h3, main h4');
+    for (var h = 0; h < headings.length; h++) {
+        var heading = headings[h];
+        if (heading.id) {
+            var anchor = document.createElement('a');
+            anchor.className = 'heading-anchor';
+            anchor.href = '#' + heading.id;
+            anchor.textContent = '#';
+            anchor.setAttribute('aria-hidden', 'true');
+            heading.appendChild(anchor);
+        }
+    }
+
+    // 高亮当前页面在目录树中的位置
+    var currentPath = window.location.pathname;
+    var treeLinks = document.querySelectorAll('.dir-tree a.tree-item');
+    for (var i = 0; i < treeLinks.length; i++) {
+        var link = treeLinks[i];
+        var href = link.getAttribute('href');
+        if (href) {
+            var normalizedHref = href.replace(/\/$/, '');
+            var normalizedPath = currentPath.replace(/\/$/, '');
+            if (normalizedPath === normalizedHref || normalizedPath.indexOf(normalizedHref + '/') === 0) {
+                link.classList.add('active');
+                var parent = link.closest('.tree-children');
+                while (parent) {
+                    parent.classList.add('expanded');
+                    var toggleBtn = parent.previousElementSibling;
+                    if (toggleBtn) {
+                        var tg = toggleBtn.querySelector('.tree-toggle');
+                        if (tg) tg.classList.add('expanded');
+                        toggleBtn.setAttribute('aria-expanded', 'true');
+                    }
+                    parent = parent.parentElement ? parent.parentElement.closest('.tree-children') : null;
+                }
+            }
+        }
+    }
+});
