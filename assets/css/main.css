@@ -581,3 +581,49 @@ img {
         font-size: 0.85rem;
     }
 }
+
+/* 首页卡片网格 */
+.home-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1rem;
+    margin: 2rem 0;
+}
+.home-card {
+    border: 1px solid #e1e4e8;
+    border-radius: 8px;
+    padding: 1.2rem;
+    background: #f8f9fa;
+}
+.home-card h3 {
+    margin: 0 0 0.5rem;
+}
+.home-card p {
+    font-size: 0.85rem;
+    color: #666;
+    margin: 0 0 0.8rem;
+}
+.home-card a {
+    font-size: 0.85rem;
+}
+.home-link-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 0.4rem 1rem;
+}
+.home-link-list li {
+    margin: 0;
+}
+.home-link-list a {
+    display: block;
+    padding: 0.3rem 0.5rem;
+    border-radius: 4px;
+    transition: background 0.15s;
+}
+.home-link-list a:hover {
+    background: rgba(0,0,0,0.04);
+    text-decoration: none;
+}
