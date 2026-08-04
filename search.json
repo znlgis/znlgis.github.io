@@ -10,7 +10,7 @@ permalink: /search.json
     {
       "title": {{ doc.title | jsonify }},
       "url": {{ doc.url | jsonify }},
-      "content": {{ doc.content | strip_html | normalize_whitespace | truncate: 500 | jsonify }},
+      "content": {{ doc.description | default: site.description | truncate: 500 | jsonify }},
       "description": {{ doc.description | default: site.description | jsonify }}
     }
     {%- assign doc_count = doc_count | plus: 1 -%}
@@ -22,7 +22,7 @@ permalink: /search.json
     {
       "title": {{ page.title | jsonify }},
       "url": {{ page.url | jsonify }},
-      "content": {{ page.content | strip_html | normalize_whitespace | truncate: 500 | jsonify }},
+      "content": {{ page.description | default: site.description | truncate: 500 | jsonify }},
       "description": {{ page.description | default: site.description | jsonify }}
     }
     {%- assign doc_count = doc_count | plus: 1 -%}
