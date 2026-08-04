@@ -960,9 +960,9 @@ ds = None
 ---
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="第02章-GDAL安装与环境配置" style="text-decoration: none;">← 上一章</a>
-  <a href="./" style="text-decoration: none;">目录</a>
-  <a href="第04章-栅格数据处理基础" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/gis/tutorial/gdal/第03章-GDAL核心架构与数据模型/第02章-GDAL安装与环境配置/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/tutorial/gdal/第03章-GDAL核心架构与数据模型/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/tutorial/gdal/第03章-GDAL核心架构与数据模型/第04章-栅格数据处理基础/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

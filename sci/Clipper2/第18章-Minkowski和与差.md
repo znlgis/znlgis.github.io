@@ -480,4 +480,4 @@ Minkowski 和与差是强大的几何运算：
 
 ---
 
-[上一章：RectClip矩形裁剪优化](../第17章-RectClip矩形裁剪优化) | [返回目录](../index) | [下一章：PolyTree多边形树结构](../第19章-PolyTree多边形树结构)
+[上一章：RectClip矩形裁剪优化](https://znlgis.github.io/sci/Clipper2/第17章-RectClip矩形裁剪优化/) | [返回目录](https://znlgis.github.io/sci/Clipper2/) | [下一章：PolyTree多边形树结构](https://znlgis.github.io/sci/Clipper2/第19章-PolyTree多边形树结构/)

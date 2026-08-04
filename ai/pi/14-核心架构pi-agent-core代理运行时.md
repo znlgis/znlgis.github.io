@@ -11,7 +11,7 @@ title: 第十四章：核心架构：pi-agent-core 代理运行时
 
 ### 14.1.1 在 monorepo 中的位置
 
-Pi 的 monorepo 结构在第一章（[1.4.2](01-项目概览与核心定位#142-技术架构typescript-monorepo5-个核心包)）中已做全景介绍。`pi-agent-core` 是五个核心包中的第二个，物理路径为：
+Pi 的 monorepo 结构在第一章（[1.4.2](https://znlgis.github.io/ai/pi/14-核心架构pi-agent-core代理运行时/01-项目概览与核心定位/#142-技术架构typescript-monorepo5-个核心包)）中已做全景介绍。`pi-agent-core` 是五个核心包中的第二个，物理路径为：
 
 ```
 pi/
@@ -825,7 +825,7 @@ interface ToolResult {
 
 ## 14.9 上下文工程
 
-上下文工程（Context Engineering）是 Pi 设计哲学的核心（第一章 [1.2.5](01-项目概览与核心定位#125-上下文工程优先精确控制进入模型上下文的内容) 详细阐述过）。`pi-agent-core` 通过两个关键函数实现了上下文工程的执行层。
+上下文工程（Context Engineering）是 Pi 设计哲学的核心（第一章 [1.2.5](https://znlgis.github.io/ai/pi/14-核心架构pi-agent-core代理运行时/01-项目概览与核心定位/#125-上下文工程优先精确控制进入模型上下文的内容) 详细阐述过）。`pi-agent-core` 通过两个关键函数实现了上下文工程的执行层。
 
 ### 14.9.1 transformContext —— 消息修剪/压缩
 
@@ -1166,4 +1166,4 @@ const agent = createTestAgent({
 
 - **Harness 测试工具**让扩展开发者和核心贡献者可以在不启动完整 TUI 的情况下，用 Mock 模型和可控工具对 Agent 进行确定性的单元测试和集成测试。
 
-下一章：[第十五章：核心架构pi-tui终端UI库](15-核心架构pi-tui终端UI库) 将深入 Pi 的第三个核心包——`pi-tui`，揭开 Pi 那个无闪烁、保留滚动缓冲区、支持差异化渲染的终端 UI 框架的设计秘密。
+下一章：[第十五章：核心架构pi-tui终端UI库](https://znlgis.github.io/ai/pi/14-核心架构pi-agent-core代理运行时/15-核心架构pi-tui终端UI库/) 将深入 Pi 的第三个核心包——`pi-tui`，揭开 Pi 那个无闪烁、保留滚动缓冲区、支持差异化渲染的终端 UI 框架的设计秘密。

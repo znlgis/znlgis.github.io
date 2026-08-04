@@ -705,9 +705,9 @@ SQL-MAP技术让开发者能够完全控制SQL语句，同时享受框架的便�
 ---
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="第05章-OQL查询语言详解" style="text-decoration: none;">← 上一章</a>
-  <a href="./" style="text-decoration: none;">目录</a>
-  <a href="第07章-数据窗体开发" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/csharp/sod/第06章-SQL-MAP技术深入/第05章-OQL查询语言详解/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/csharp/sod/第06章-SQL-MAP技术深入/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/csharp/sod/第06章-SQL-MAP技术深入/第07章-数据窗体开发/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

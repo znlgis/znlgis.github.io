@@ -1003,16 +1003,16 @@ gcc -o dwg_info dwg_info.c -lredwg -lm
 
 ---
 
-**下一章预告**：[第07章 - DWG文件读取与解析](../第07章-DWG文件读取与解析) - 深入学习DWG文件的读取和解析技术。
+**下一章预告**：[第07章 - DWG文件读取与解析](https://znlgis.github.io/cad/libredwg/第07章-DWG文件读取与解析/) - 深入学习DWG文件的读取和解析技术。
 
 <!-- NAVIGATION -->
 
 ---
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="第05章-命令行工具详解" style="text-decoration: none;">← 上一章</a>
-  <a href="./" style="text-decoration: none;">目录</a>
-  <a href="第07章-DWG文件读取与解析" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/cad/libredwg/第06章-C语言API编程基础/第05章-命令行工具详解/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/libredwg/第06章-C语言API编程基础/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/cad/libredwg/第06章-C语言API编程基础/第07章-DWG文件读取与解析/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

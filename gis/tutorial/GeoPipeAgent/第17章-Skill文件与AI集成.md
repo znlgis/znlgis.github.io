@@ -259,4 +259,4 @@ def my_custom_skill():
 
 ---
 
-**导航**：[← 第十六章：CLI 命令行工具](../第16章-CLI命令行工具) ｜ [第十八章：自定义步骤与扩展 →](../第18章-自定义步骤与扩展开发)
+**导航**：[← 第十六章：CLI 命令行工具](https://znlgis.github.io/gis/tutorial/GeoPipeAgent/第16章-CLI命令行工具/) ｜ [第十八章：自定义步骤与扩展 →](https://znlgis.github.io/gis/tutorial/GeoPipeAgent/第18章-自定义步骤与扩展开发/)

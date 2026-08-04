@@ -5,21 +5,21 @@ title: solvespace 教程目录
 
 # solvespace 教程目录
 
-- [第01章 SolveSpace概述与入门](第01章-SolveSpace概述与入门)
-- [第02章 安装与环境配置](第02章-安装与环境配置)
-- [第03章 用户界面详解](第03章-用户界面详解)
-- [第04章 草图绘制基础](第04章-草图绘制基础)
-- [第05章 约束系统详解](第05章-约束系统详解)
-- [第06章 三维建模基础](第06章-三维建模基础)
-- [第07章 高级建模技巧](第07章-高级建模技巧)
-- [第08章 装配与链接功能](第08章-装配与链接功能)
-- [第09章 导入导出与数据交换](第09章-导入导出与数据交换)
-- [第10章 约束求解器原理](第10章-约束求解器原理)
-- [第11章 命令行工具使用](第11章-命令行工具使用)
-- [第12章 C语言库API详解](第12章-C语言库API详解)
-- [第13章 Python绑定开发](第13章-Python绑定开发)
-- [第14章 源码架构分析](第14章-源码架构分析)
-- [第15章 二次开发实战](第15章-二次开发实战)
+- [第01章 SolveSpace概述与入门](https://znlgis.github.io/cad/solvespace/第01章-SolveSpace概述与入门/)
+- [第02章 安装与环境配置](https://znlgis.github.io/cad/solvespace/第02章-安装与环境配置/)
+- [第03章 用户界面详解](https://znlgis.github.io/cad/solvespace/第03章-用户界面详解/)
+- [第04章 草图绘制基础](https://znlgis.github.io/cad/solvespace/第04章-草图绘制基础/)
+- [第05章 约束系统详解](https://znlgis.github.io/cad/solvespace/第05章-约束系统详解/)
+- [第06章 三维建模基础](https://znlgis.github.io/cad/solvespace/第06章-三维建模基础/)
+- [第07章 高级建模技巧](https://znlgis.github.io/cad/solvespace/第07章-高级建模技巧/)
+- [第08章 装配与链接功能](https://znlgis.github.io/cad/solvespace/第08章-装配与链接功能/)
+- [第09章 导入导出与数据交换](https://znlgis.github.io/cad/solvespace/第09章-导入导出与数据交换/)
+- [第10章 约束求解器原理](https://znlgis.github.io/cad/solvespace/第10章-约束求解器原理/)
+- [第11章 命令行工具使用](https://znlgis.github.io/cad/solvespace/第11章-命令行工具使用/)
+- [第12章 C语言库API详解](https://znlgis.github.io/cad/solvespace/第12章-C语言库API详解/)
+- [第13章 Python绑定开发](https://znlgis.github.io/cad/solvespace/第13章-Python绑定开发/)
+- [第14章 源码架构分析](https://znlgis.github.io/cad/solvespace/第14章-源码架构分析/)
+- [第15章 二次开发实战](https://znlgis.github.io/cad/solvespace/第15章-二次开发实战/)
 
 ---
 

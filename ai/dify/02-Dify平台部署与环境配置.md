@@ -768,9 +768,9 @@ docker compose exec db pg_dump -U postgres dify > backup.sql
 ---
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="01-Dify平台简介与入门" style="text-decoration: none;">← 上一章</a>
-  <a href="./" style="text-decoration: none;">目录</a>
-  <a href="03-应用构建基础" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/ai/dify/02-Dify平台部署与环境配置/01-Dify平台简介与入门/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/ai/dify/02-Dify平台部署与环境配置/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/ai/dify/02-Dify平台部署与环境配置/03-应用构建基础/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

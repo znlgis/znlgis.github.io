@@ -1009,9 +1009,9 @@ docker compose exec wms env | grep -i pgconfig
 ---
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="第05章-安全配置与认证" style="text-decoration: none;">← 上一章</a>
-  <a href="./" style="text-decoration: none;">目录</a>
-  <a href="第07章-Kubernetes部署实战" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/gis/tutorial/geoserver-cloud/第06章-Docker-Compose部署实战/第05章-安全配置与认证/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/tutorial/geoserver-cloud/第06章-Docker-Compose部署实战/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/tutorial/geoserver-cloud/第06章-Docker-Compose部署实战/第07章-Kubernetes部署实战/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

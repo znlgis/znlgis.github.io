@@ -1174,9 +1174,9 @@ gdal.SetConfigOption('CPL_VSIL_CURL_CACHE_SIZE', '100000000')  # 100MB
 ---
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="第06章-坐标系统与投影转换" style="text-decoration: none;">← 上一章</a>
-  <a href="./" style="text-decoration: none;">目录</a>
-  <a href="第08章-Java绑定开发指南" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/gis/tutorial/gdal/第07章-Python绑定开发指南/第06章-坐标系统与投影转换/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/tutorial/gdal/第07章-Python绑定开发指南/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/tutorial/gdal/第07章-Python绑定开发指南/第08章-Java绑定开发指南/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

@@ -510,4 +510,4 @@ clipper.Execute(ClipType.ctDifference, result2);
 
 ---
 
-[上一章：局部极小值与扫描线](../第08章-局部极小值与扫描线) | [返回目录](../index) | [下一章：布尔运算执行流程](../第10章-布尔运算执行流程)
+[上一章：局部极小值与扫描线](https://znlgis.github.io/sci/Clipper1/第08章-局部极小值与扫描线/) | [返回目录](https://znlgis.github.io/sci/Clipper1/) | [下一章：布尔运算执行流程](https://znlgis.github.io/sci/Clipper1/第10章-布尔运算执行流程/)

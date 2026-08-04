@@ -465,4 +465,4 @@ co.Execute(ref solution, 15);
 
 ---
 
-[上一章：填充规则详解](../第16章-填充规则详解) | [返回目录](../index) | [下一章：偏移算法实现](../第18章-偏移算法实现)
+[上一章：填充规则详解](https://znlgis.github.io/sci/Clipper1/第16章-填充规则详解/) | [返回目录](https://znlgis.github.io/sci/Clipper1/) | [下一章：偏移算法实现](https://znlgis.github.io/sci/Clipper1/第18章-偏移算法实现/)

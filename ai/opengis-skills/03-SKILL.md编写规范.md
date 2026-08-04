@@ -577,7 +577,7 @@ FAQ 格式**必须是表格**——这与正文的段落形成对比，让 AI �
 
 - **主 SKILL.md**：保留核心命令的**常用用法**和 1-2 个关键示例
 - **reference/*.md**：存放完整的参数表格、边界情况、高级用法、性能调优细节
-- **引用方式**：在主文件中添加 `[详细参数](reference/xxx-tools.md)` 的链接
+- **引用方式**：在主文件中添加 `[详细参数](https://znlgis.github.io/ai/opengis-skills/03-SKILL.md编写规范/reference/xxx-tools/)` 的链接
 
 ### 3.5.2 目录结构示例
 
@@ -733,7 +733,7 @@ opengis-skills 的 SKILL.md 不使用 emoji 图标（如 ✅ ❌ 🔧 📦），
 ### 结构与引用
 
 - [ ] 章节顺序符合推荐结构
-- [ ] 所有内部相对路径引用正确（`[文字](reference/xxx.md)`）
+- [ ] 所有内部相对路径引用正确（`[文字](https://znlgis.github.io/ai/opengis-skills/03-SKILL.md编写规范/reference/xxx/)`）
 - [ ] 所有外部 URL 可访问
 - [ ] 超过 500 行的文件已考虑 reference 拆分
 

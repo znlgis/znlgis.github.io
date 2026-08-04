@@ -580,4 +580,4 @@ internal void DumpMinimaList()
 
 ---
 
-[上一章：Active活动边结构](../第09章-Active活动边结构) | [返回目录](../index) | [下一章：OutRec与OutPt输出结构](../第11章-OutRec与OutPt输出结构)
+[上一章：Active活动边结构](https://znlgis.github.io/sci/Clipper2/第09章-Active活动边结构/) | [返回目录](https://znlgis.github.io/sci/Clipper2/) | [下一章：OutRec与OutPt输出结构](https://znlgis.github.io/sci/Clipper2/第11章-OutRec与OutPt输出结构/)

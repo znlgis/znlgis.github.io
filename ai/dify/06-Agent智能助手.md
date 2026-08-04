@@ -705,9 +705,9 @@ else:
 ---
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="05-工作流编排" style="text-decoration: none;">← 上一章</a>
-  <a href="./" style="text-decoration: none;">目录</a>
-  <a href="07-工具与插件系统" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/ai/dify/06-Agent智能助手/05-工作流编排/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/ai/dify/06-Agent智能助手/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/ai/dify/06-Agent智能助手/07-工具与插件系统/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

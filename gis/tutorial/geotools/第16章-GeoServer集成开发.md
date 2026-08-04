@@ -380,16 +380,16 @@ public class MyDataStoreFactory implements DataStoreFactorySpi {
 
 ---
 
-[← 上一章：性能优化与最佳实践](../第15章-性能优化与最佳实践) | [返回目录](../index) | [下一章：实战案例分析 →](../第17章-实战案例分析)
+[← 上一章：性能优化与最佳实践](https://znlgis.github.io/gis/tutorial/geotools/第15章-性能优化与最佳实践/) | [返回目录](https://znlgis.github.io/gis/tutorial/geotools/) | [下一章：实战案例分析 →](https://znlgis.github.io/gis/tutorial/geotools/第17章-实战案例分析/)
 
 <!-- NAVIGATION -->
 
 ---
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="第15章-性能优化与最佳实践" style="text-decoration: none;">← 上一章</a>
-  <a href="./" style="text-decoration: none;">目录</a>
-  <a href="第17章-实战案例分析" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/gis/tutorial/geotools/第16章-GeoServer集成开发/第15章-性能优化与最佳实践/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/tutorial/geotools/第16章-GeoServer集成开发/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/tutorial/geotools/第16章-GeoServer集成开发/第17章-实战案例分析/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

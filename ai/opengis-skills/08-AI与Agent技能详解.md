@@ -436,7 +436,7 @@ opencode 原生支持 MCP Server，分为本地和远程两种类型：
 
 **AGENTS.md 注入**：
 
-opencode 会自动读取项目根目录的 `AGENTS.md` 文件，将其内容注入到 System Prompt 中。对于 opengis-skills 用户，可以在 AGENTS.md 中写入技能库的引用规则（详见 [第四章 4.6.2](04-AI工具集成指南#462-agentsmd-集成)）。
+opencode 会自动读取项目根目录的 `AGENTS.md` 文件，将其内容注入到 System Prompt 中。对于 opengis-skills 用户，可以在 AGENTS.md 中写入技能库的引用规则（详见 [第四章 4.6.2](https://znlgis.github.io/ai/opengis-skills/08-AI与Agent技能详解/04-AI工具集成指南/#462-agentsmd-集成)）。
 
 ### 8.3.2 pi：极简终端 Agent Harness
 
@@ -1039,7 +1039,7 @@ def segment_markdown(md_content: str) -> list[Segment]:
 ```
 
 翻译时，LLM 被要求：
-1. 保留所有 Markdown 标记（`##`、`|表格|`、`![图片](path)`、行内代码 `` ` `` 等）
+1. 保留所有 Markdown 标记（`##`、`|表格|`、`![图片](https://znlgis.github.io/ai/opengis-skills/08-AI与Agent技能详解/path/)`、行内代码 `` ` `` 等）
 2. 不翻译代码块和命令行示例（保留原样）
 3. 术语翻译参考 glossary 文件
 4. 遇到不确定的术语时保持原文并添加 `(注:原文xxx)` 注释

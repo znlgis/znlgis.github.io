@@ -983,9 +983,9 @@ GeoServer支持CSS样式语言，提供了更简洁的样式定义方式：
 ---
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="第04章-OGC标准服务" style="text-decoration: none;">← 上一章</a>
-  <a href="./" style="text-decoration: none;">目录</a>
-  <a href="第06章-安全管理与访问控制" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/gis/tutorial/geoserver/第05章-地图样式与SLD/第04章-OGC标准服务/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/tutorial/geoserver/第05章-地图样式与SLD/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/tutorial/geoserver/第05章-地图样式与SLD/第06章-安全管理与访问控制/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

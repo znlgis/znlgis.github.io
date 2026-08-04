@@ -536,4 +536,4 @@ PolyTree 是 Clipper2 中表示层次化多边形的重要结构：
 
 ---
 
-[上一章：Minkowski和与差](../第18章-Minkowski和与差) | [返回目录](../index) | [下一章：实际应用与最佳实践](../第20章-实际应用与最佳实践)
+[上一章：Minkowski和与差](https://znlgis.github.io/sci/Clipper2/第18章-Minkowski和与差/) | [返回目录](https://znlgis.github.io/sci/Clipper2/) | [下一章：实际应用与最佳实践](https://znlgis.github.io/sci/Clipper2/第20章-实际应用与最佳实践/)

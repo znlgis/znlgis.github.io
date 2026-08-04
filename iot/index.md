@@ -13,13 +13,13 @@ title: IoT 物联网教程
 
 | 教程系列 | 章节数 | 难度 | 核心技术 |
 |----------|:------:|:----:|----------|
-| [KE3036-Keyes-Pico](KE3036-Keyes-Pico/) | 25章 | ⭐ | Raspberry Pi Pico / MicroPython |
+| [KE3036-Keyes-Pico](https://znlgis.github.io/iot/KE3036-Keyes-Pico/) | 25章 | ⭐ | Raspberry Pi Pico / MicroPython |
 
 ---
 
 ## 📦 详细目录
 
-- [KE3036-Keyes-Pico 传感器套件教程](KE3036-Keyes-Pico/)
+- [KE3036-Keyes-Pico 传感器套件教程](https://znlgis.github.io/iot/KE3036-Keyes-Pico/)
 
 ---
 

@@ -564,9 +564,9 @@ public class ComplexTableExample
 ---
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="第11章-Word段落与文本样式" style="text-decoration: none;">← 上一章</a>
-  <a href="./" style="text-decoration: none;">目录</a>
-  <a href="第13章-Word图片与多媒体" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/csharp/npoi/第12章-Word表格操作/第11章-Word段落与文本样式/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/csharp/npoi/第12章-Word表格操作/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/csharp/npoi/第12章-Word表格操作/第13章-Word图片与多媒体/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

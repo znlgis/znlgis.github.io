@@ -613,7 +613,7 @@ console.log(markdownView.getContent());
 | `1. 有序列表` | `  1. 列表项` 缩进 |
 | `> 引用块` | `│ 引用文本` 左边框 |
 | `---` 分割线 | 全宽水平线（`─` 字符） |
-| `` [链接](url) `` | 仅显示链接文本（终端不支持点击）；或显示为 `链接文本 (url)` |
+| `` [链接](https://znlgis.github.io/ai/pi/15-核心架构pi-tui终端UI库/url/) `` | 仅显示链接文本（终端不支持点击）；或显示为 `链接文本 (url)` |
 
 **代码块语法高亮：** 使用基于 TextMate 语法的高亮引擎，预装了 50+ 语言的 grammar 文件。高亮结果使用 16 色 ANSI 转义序列映射到终端的实际颜色（由当前主题决定）。
 
@@ -1786,7 +1786,7 @@ Extensions 可以通过以下 `ctx.ui` API 将自定义组件注入 Pi TUI：
 | `ctx.ui.setEditorComponent({ ... })` | 完全替换 Pi 的内置编辑器组件。高级用法——仅当你需要全新的输入交互模式时使用 |
 | `ctx.ui.setFooter(widgets[])` | 向底部栏添加自定义小部件（如自定义快捷键提示、状态指示器） |
 
-详见 [第九章：Extensions 扩展开发](09-Extensions扩展开发) 中 `ctx.ui` 的完整 API 文档。
+详见 [第九章：Extensions 扩展开发](https://znlgis.github.io/ai/pi/15-核心架构pi-tui终端UI库/09-Extensions扩展开发/) 中 `ctx.ui` 的完整 API 文档。
 
 ---
 

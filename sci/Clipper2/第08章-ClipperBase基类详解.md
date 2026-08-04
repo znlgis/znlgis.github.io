@@ -585,4 +585,4 @@ internal void DumpActives()
 
 ---
 
-[上一章：高精度运算](../第07章-高精度运算) | [返回目录](../index) | [下一章：Active活动边结构](../第09章-Active活动边结构)
+[上一章：高精度运算](https://znlgis.github.io/sci/Clipper2/第07章-高精度运算/) | [返回目录](https://znlgis.github.io/sci/Clipper2/) | [下一章：Active活动边结构](https://znlgis.github.io/sci/Clipper2/第09章-Active活动边结构/)

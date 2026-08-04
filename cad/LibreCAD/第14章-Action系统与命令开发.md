@@ -1069,16 +1069,16 @@ void RS_ActionDrawTriangle::updateMouseButtonHints() {
 
 ---
 
-[上一章：实体系统详解](../第13章-实体系统详解) | [下一章：插件系统与开发实战](../第15章-插件系统与开发实战)
+[上一章：实体系统详解](https://znlgis.github.io/cad/LibreCAD/第13章-实体系统详解/) | [下一章：插件系统与开发实战](https://znlgis.github.io/cad/LibreCAD/第15章-插件系统与开发实战/)
 
 <!-- NAVIGATION -->
 
 ---
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="第13章-实体系统详解" style="text-decoration: none;">← 上一章</a>
-  <a href="./" style="text-decoration: none;">目录</a>
-  <a href="第15章-插件系统与开发实战" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/cad/LibreCAD/第14章-Action系统与命令开发/第13章-实体系统详解/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/LibreCAD/第14章-Action系统与命令开发/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/cad/LibreCAD/第14章-Action系统与命令开发/第15章-插件系统与开发实战/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

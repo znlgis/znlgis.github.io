@@ -13,16 +13,16 @@ title: 演示项目
 
 | 教程系列 | 章节数 | 难度 | 核心技术 |
 |----------|:------:|:----:|----------|
-| [GIS工具教程](gistools-tutorial/) | 10章 | ⭐ | GIS 工具使用入门 |
-| [Vue3+OpenLayers](vue3-openlayers/) | 8章 | ⭐⭐ | Vue3 WebGIS 开发 |
-| [Vue3地图大屏](vue3-map-dashboard/) | 5章 | ⭐⭐ | 数据可视化大屏 |
-| [AI智慧水务前端](ai-water-front/) | 5章 | ⭐⭐ | AI+GIS 前端应用 |
+| [GIS工具教程](https://znlgis.github.io/demos/gistools-tutorial/) | 10章 | ⭐ | GIS 工具使用入门 |
+| [Vue3+OpenLayers](https://znlgis.github.io/demos/vue3-openlayers/) | 8章 | ⭐⭐ | Vue3 WebGIS 开发 |
+| [Vue3地图大屏](https://znlgis.github.io/demos/vue3-map-dashboard/) | 5章 | ⭐⭐ | 数据可视化大屏 |
+| [AI智慧水务前端](https://znlgis.github.io/demos/ai-water-front/) | 5章 | ⭐⭐ | AI+GIS 前端应用 |
 
 ---
 
 ## 📦 详细目录
 
-- [ai-water-front](ai-water-front/)
-- [gistools-tutorial](gistools-tutorial/)
-- [vue3-openlayers](vue3-openlayers/)
-- [vue3-map-dashboard](vue3-map-dashboard/)
+- [ai-water-front](https://znlgis.github.io/demos/ai-water-front/)
+- [gistools-tutorial](https://znlgis.github.io/demos/gistools-tutorial/)
+- [vue3-openlayers](https://znlgis.github.io/demos/vue3-openlayers/)
+- [vue3-map-dashboard](https://znlgis.github.io/demos/vue3-map-dashboard/)

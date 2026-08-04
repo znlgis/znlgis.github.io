@@ -7,21 +7,21 @@ title: RobotGo 教程目录
 
 本教程结合 RobotGo 官方仓库 [go-vgo/robotgo](https://github.com/go-vgo/robotgo)，从概念与环境搭建出发，系统讲解使用 Go 语言实现桌面自动化的方方面面：鼠标键盘控制、屏幕读取、截图与图像识别、剪贴板、进程与窗口管理、全局事件监听，以及 OpenCV 图像识别与跨平台 Cgo-free 构建，最后通过综合实战项目融会贯通。每章内容详尽，配有大量代码示例，适合从入门到进阶的开发者。
 
-- [第一章：RobotGo 概述与应用场景](第01章-RobotGo概述与应用场景)
-- [第二章：环境准备与安装配置](第02章-环境准备与安装配置)
-- [第三章：快速入门：第一个自动化程序](第03章-快速入门-第一个自动化程序)
-- [第四章：鼠标控制详解](第04章-鼠标控制详解)
-- [第五章：键盘控制与文本输入](第05章-键盘控制与文本输入)
-- [第六章：屏幕与像素操作](第06章-屏幕与像素操作)
-- [第七章：屏幕截图与图像处理](第07章-屏幕截图与图像处理)
-- [第八章：Bitmap 位图与图像查找](第08章-Bitmap位图与图像查找)
-- [第九章：剪贴板操作](第09章-剪贴板操作)
-- [第十章：进程与窗口管理](第10章-进程与窗口管理)
-- [第十一章：全局事件监听（GoHook）](第11章-全局事件监听-GoHook)
-- [第十二章：OpenCV 图像识别（gcv）](第12章-OpenCV图像识别-gcv)
-- [第十三章：跨平台与 Cgo-free 构建](第13章-跨平台与Cgo-free构建)
-- [第十四章：综合实战项目](第14章-综合实战项目)
-- [第十五章：最佳实践、性能优化与常见问题](第15章-最佳实践、性能优化与常见问题)
+- [第一章：RobotGo 概述与应用场景](https://znlgis.github.io/others/robotgo/第01章-RobotGo概述与应用场景/)
+- [第二章：环境准备与安装配置](https://znlgis.github.io/others/robotgo/第02章-环境准备与安装配置/)
+- [第三章：快速入门：第一个自动化程序](https://znlgis.github.io/others/robotgo/第03章-快速入门-第一个自动化程序/)
+- [第四章：鼠标控制详解](https://znlgis.github.io/others/robotgo/第04章-鼠标控制详解/)
+- [第五章：键盘控制与文本输入](https://znlgis.github.io/others/robotgo/第05章-键盘控制与文本输入/)
+- [第六章：屏幕与像素操作](https://znlgis.github.io/others/robotgo/第06章-屏幕与像素操作/)
+- [第七章：屏幕截图与图像处理](https://znlgis.github.io/others/robotgo/第07章-屏幕截图与图像处理/)
+- [第八章：Bitmap 位图与图像查找](https://znlgis.github.io/others/robotgo/第08章-Bitmap位图与图像查找/)
+- [第九章：剪贴板操作](https://znlgis.github.io/others/robotgo/第09章-剪贴板操作/)
+- [第十章：进程与窗口管理](https://znlgis.github.io/others/robotgo/第10章-进程与窗口管理/)
+- [第十一章：全局事件监听（GoHook）](https://znlgis.github.io/others/robotgo/第11章-全局事件监听-GoHook/)
+- [第十二章：OpenCV 图像识别（gcv）](https://znlgis.github.io/others/robotgo/第12章-OpenCV图像识别-gcv/)
+- [第十三章：跨平台与 Cgo-free 构建](https://znlgis.github.io/others/robotgo/第13章-跨平台与Cgo-free构建/)
+- [第十四章：综合实战项目](https://znlgis.github.io/others/robotgo/第14章-综合实战项目/)
+- [第十五章：最佳实践、性能优化与常见问题](https://znlgis.github.io/others/robotgo/第15章-最佳实践、性能优化与常见问题/)
 
 ---
 

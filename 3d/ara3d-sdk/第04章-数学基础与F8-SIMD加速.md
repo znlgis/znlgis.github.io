@@ -285,7 +285,7 @@ for (; i < vertices.Length; i++)
 ---
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="第03章-核心基础库Core详解" style="text-decoration: none;">← 上一章</a>
-  <a href="./" style="text-decoration: none;">目录</a>
-  <a href="第05章-几何与网格建模" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/3d/ara3d-sdk/第04章-数学基础与F8-SIMD加速/第03章-核心基础库Core详解/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/3d/ara3d-sdk/第04章-数学基础与F8-SIMD加速/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/3d/ara3d-sdk/第04章-数学基础与F8-SIMD加速/第05章-几何与网格建模/" style="text-decoration: none;">下一章 →</a>
 </div>

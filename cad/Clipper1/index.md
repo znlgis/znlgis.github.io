@@ -5,12 +5,12 @@ title: Clipper1 教程目录
 
 # Clipper1 教程目录
 
-- [第一章 Clipper1概述与安装（C#版）](第01章-Clipper1概述与安装)
-- [第二章 核心数据结构](第02章-核心数据结构)
-- [第三章 布尔运算操作](第03章-布尔运算操作)
-- [第四章 多边形偏移操作](第04章-多边形偏移操作)
-- [第五章 填充规则与高级特性](第05章-填充规则与高级特性)
-- [第六章 实际应用案例与最佳实践](第06章-实际应用案例与最佳实践)
+- [第一章 Clipper1概述与安装（C#版）](https://znlgis.github.io/cad/Clipper1/第01章-Clipper1概述与安装/)
+- [第二章 核心数据结构](https://znlgis.github.io/cad/Clipper1/第02章-核心数据结构/)
+- [第三章 布尔运算操作](https://znlgis.github.io/cad/Clipper1/第03章-布尔运算操作/)
+- [第四章 多边形偏移操作](https://znlgis.github.io/cad/Clipper1/第04章-多边形偏移操作/)
+- [第五章 填充规则与高级特性](https://znlgis.github.io/cad/Clipper1/第05章-填充规则与高级特性/)
+- [第六章 实际应用案例与最佳实践](https://znlgis.github.io/cad/Clipper1/第06章-实际应用案例与最佳实践/)
 
 ---
 

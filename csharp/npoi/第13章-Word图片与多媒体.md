@@ -440,9 +440,9 @@ public class ImageDocumentExample
 ---
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="第12章-Word表格操作" style="text-decoration: none;">← 上一章</a>
-  <a href="./" style="text-decoration: none;">目录</a>
-  <a href="第14章-Word页眉页脚与页面设置" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/csharp/npoi/第13章-Word图片与多媒体/第12章-Word表格操作/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/csharp/npoi/第13章-Word图片与多媒体/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/csharp/npoi/第13章-Word图片与多媒体/第14章-Word页眉页脚与页面设置/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

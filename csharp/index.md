@@ -13,39 +13,39 @@ title: C# 教程
 
 | 教程系列 | 章节数 | 难度 | 核心技术 |
 |----------|:------:|:----:|----------|
-| [Admin.NET](Admin.NET/) | 10章 | ⭐⭐ | 前后端分离框架 |
-| [Furion 教程](Furion/) | 20章 | ⭐⭐⭐ | .NET 应用框架 |
-| [SqlSugar](SqlSugar/) | 15章 | ⭐⭐ | ORM 数据访问 |
-| [SOD 框架](sod/) | 10章 | ⭐⭐⭐ | 数据开发框架 |
-| [NPOI 教程](npoi/) | 18章 | ⭐ | Office 文档操作 |
-| [ReoGrid 教程](ReoGrid/) | 20章 | ⭐⭐ | 电子表格控件 |
-| [.NET Reactor](dotnet-reactor/) | 15章 | ⭐⭐ | 代码保护与混淆 |
+| [Admin.NET](https://znlgis.github.io/csharp/Admin.NET/) | 10章 | ⭐⭐ | 前后端分离框架 |
+| [Furion 教程](https://znlgis.github.io/csharp/Furion/) | 20章 | ⭐⭐⭐ | .NET 应用框架 |
+| [SqlSugar](https://znlgis.github.io/csharp/SqlSugar/) | 15章 | ⭐⭐ | ORM 数据访问 |
+| [SOD 框架](https://znlgis.github.io/csharp/sod/) | 10章 | ⭐⭐⭐ | 数据开发框架 |
+| [NPOI 教程](https://znlgis.github.io/csharp/npoi/) | 18章 | ⭐ | Office 文档操作 |
+| [ReoGrid 教程](https://znlgis.github.io/csharp/ReoGrid/) | 20章 | ⭐⭐ | 电子表格控件 |
+| [.NET Reactor](https://znlgis.github.io/csharp/dotnet-reactor/) | 15章 | ⭐⭐ | 代码保护与混淆 |
 
 ---
 
 ## 🎯 推荐学习路线
 
 ### 💻 .NET 企业开发
-1. [Furion 教程](Furion/) — 现代 .NET 应用框架
-2. [Admin.NET](Admin.NET/) — 快速开发平台
-3. [SqlSugar](SqlSugar/) — ORM 数据操作
-4. [SOD 框架](sod/) — 数据窗体开发
+1. [Furion 教程](https://znlgis.github.io/csharp/Furion/) — 现代 .NET 应用框架
+2. [Admin.NET](https://znlgis.github.io/csharp/Admin.NET/) — 快速开发平台
+3. [SqlSugar](https://znlgis.github.io/csharp/SqlSugar/) — ORM 数据操作
+4. [SOD 框架](https://znlgis.github.io/csharp/sod/) — 数据窗体开发
 
 ### 📄 Office 文档处理
-1. [NPOI 教程](npoi/) — Excel/Word/PPT 操作
-2. [ReoGrid 教程](ReoGrid/) — 电子表格控件
+1. [NPOI 教程](https://znlgis.github.io/csharp/npoi/) — Excel/Word/PPT 操作
+2. [ReoGrid 教程](https://znlgis.github.io/csharp/ReoGrid/) — 电子表格控件
 
 ### 🔒 代码安全
-1. [.NET Reactor](dotnet-reactor/) — 代码保护与混淆
+1. [.NET Reactor](https://znlgis.github.io/csharp/dotnet-reactor/) — 代码保护与混淆
 
 ---
 
 ## 📦 详细目录
 
-- [.NET Reactor 教程](dotnet-reactor/)
-- [Admin.NET 教程](Admin.NET/)
-- [Furion 教程](Furion/)
-- [npoi 教程](npoi/)
-- [ReoGrid 教程](ReoGrid/)
-- [sod 教程](sod/)
-- [SqlSugar 教程](SqlSugar/)
+- [.NET Reactor 教程](https://znlgis.github.io/csharp/dotnet-reactor/)
+- [Admin.NET 教程](https://znlgis.github.io/csharp/Admin.NET/)
+- [Furion 教程](https://znlgis.github.io/csharp/Furion/)
+- [npoi 教程](https://znlgis.github.io/csharp/npoi/)
+- [ReoGrid 教程](https://znlgis.github.io/csharp/ReoGrid/)
+- [sod 教程](https://znlgis.github.io/csharp/sod/)
+- [SqlSugar 教程](https://znlgis.github.io/csharp/SqlSugar/)

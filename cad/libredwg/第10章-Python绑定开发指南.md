@@ -959,16 +959,16 @@ if __name__ == '__main__':
 
 ---
 
-**下一章预告**：[第11章 - 实体与对象操作详解](../第11章-实体与对象操作详解) - 深入学习各种实体和对象的操作方法。
+**下一章预告**：[第11章 - 实体与对象操作详解](https://znlgis.github.io/cad/libredwg/第11章-实体与对象操作详解/) - 深入学习各种实体和对象的操作方法。
 
 <!-- NAVIGATION -->
 
 ---
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="第09章-格式转换实战" style="text-decoration: none;">← 上一章</a>
-  <a href="./" style="text-decoration: none;">目录</a>
-  <a href="第11章-实体与对象操作详解" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/cad/libredwg/第10章-Python绑定开发指南/第09章-格式转换实战/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/libredwg/第10章-Python绑定开发指南/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/cad/libredwg/第10章-Python绑定开发指南/第11章-实体与对象操作详解/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

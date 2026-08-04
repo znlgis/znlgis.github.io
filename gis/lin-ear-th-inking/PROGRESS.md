@@ -13,34 +13,34 @@ title: Lin.ear th.inking 博客翻译进度
 
 | 文章标题 | 原文日期 | 翻译文件 |
 |---------|---------|---------|
-| JTS Overlay - 下一代 (OverlayNG) | 2020年5月 | [2020-JTS-Overlay-Next-Generation.md](2020-JTS-Overlay-Next-Generation) |
-| JTS OverlayNG - 节点化策略 | 2020年6月 | [2020-JTS-OverlayNG-Noding-Strategies.md](2020-JTS-OverlayNG-Noding-Strategies) |
-| JTS 中的 Alpha Shapes | 2023年1月 | [2023-Alpha-Shapes-in-JTS.md](2023-Alpha-Shapes-in-JTS) |
-| JTS 拓扑关系 - 下一代 (RelateNG) | 2024年5月 | [2024-JTS-Topological-Relationships-RelateNG.md](2024-JTS-Topological-Relationships-RelateNG) |
-| JTS 中的 Coverage 清理 | 2025年4月 | [2025-Coverage-Cleaning-in-JTS.md](2025-Coverage-Cleaning-in-JTS) |
-| 使用 JTS 快速检测狭窄多边形 | 2025年7月 | [2025-Fast-Detection-Narrow-Polygons.md](2025-Fast-Detection-Narrow-Polygons) |
-| 使用 JTS 简化多边形覆盖 | 2023年3月 | [2023-Simplifying-Polygonal-Coverages.md](2023-Simplifying-Polygonal-Coverages) |
-| 验证 JTS 中的多边形覆盖 | 2022年8月 | [2022-Validating-Polygonal-Coverages.md](2022-Validating-Polygonal-Coverages) |
-| 多边形的外部和内部包络 | 2022年4月 | [2022-Outer-Inner-Polygon-Hulls.md](2022-Outer-Inner-Polygon-Hulls) |
-| DE-9IM 空间谓词的关系属性 | 2022年10月 | [2022-DE-9IM-Spatial-Predicates.md](2022-DE-9IM-Spatial-Predicates) |
-| Shapefile：好、坏与丑 | 2018年4月 | [2018-Shapefiles-Good-Bad-Ugly.md](2018-Shapefiles-Good-Bad-Ugly) |
-| JTS 中的单侧缓冲区 | 2010年11月 | [2010-Single-Sided-Buffers-in-JTS.md](2010-Single-Sided-Buffers-in-JTS) |
-| KD 树查询优化 | 2021年10月 | [2021-KdTree-Query-Optimization.md](2021-KdTree-Query-Optimization) |
-| JTS 中使用级联并集快速合并多边形 | 2007年11月 | [2007-Fast-Polygon-Merging-Cascaded-Union.md](2007-Fast-Polygon-Merging-Cascaded-Union) |
-| JTS 性能改进 | 2012年4月 | [2012-JTS-Performance-Improvements.md](2012-JTS-Performance-Improvements) |
-| FOSS4G 北美 2012 回顾 | 2012年4月 | [2012-FOSS4G-NA-Review.md](2012-FOSS4G-NA-Review) |
-| JTS 中的可变距离缓冲区 | 2019年11月 | [2019-Variable-Distance-Buffering.md](2019-Variable-Distance-Buffering) |
-| JTS 设计原则 | 2019年2月 | [2019-JTS-Design-Principles.md](2019-JTS-Design-Principles) |
-| JTS 中的随机点生成 | 2010年5月 | [2010-Random-Points-in-JTS.md](2010-Random-Points-in-JTS) |
-| JTS 中的均匀分布随机点生成 | 2015年7月 | [2015-Evenly-Distributed-Random-Points.md](2015-Evenly-Distributed-Random-Points) |
-| JTS 中修复无效几何图形 | 2021年5月 | [2021-Fixing-Invalid-Geometry-JTS.md](2021-Fixing-Invalid-Geometry-JTS) |
-| JTS TestBuilder GUI | 2019年8月 | [2019-JTS-TestBuilder-GUI.md](2019-JTS-TestBuilder-GUI) |
-| PreparedGeometry 性能优化 | 2012年11月 | [2012-PreparedGeometry-Performance.md](2012-PreparedGeometry-Performance) |
-| Java 在 OSCON 重新火热 | 2011年6月 | [2011-Java-Reheated-OSCON.md](2011-Java-Reheated-OSCON) |
-| 2012 年度回顾 | 2013年1月 | [2013-Year-In-Review-2012.md](2013-Year-In-Review-2012) |
-| JTS 中的约束 Delaunay 三角剖分 | 2014年 | [2014-Constrained-Delaunay-Triangulation.md](2014-Constrained-Delaunay-Triangulation) |
-| JTS 中的距离度量与形状相似性 | 2016年 | [2016-Distance-Metrics-Shape-Similarity.md](2016-Distance-Metrics-Shape-Similarity) |
-| JTS 精度模型与数值鲁棒性 | 2017年 | [2017-Precision-Model-Robustness.md](2017-Precision-Model-Robustness) |
+| JTS Overlay - 下一代 (OverlayNG) | 2020年5月 | [2020-JTS-Overlay-Next-Generation.md](https://znlgis.github.io/gis/lin-ear-th-inking/PROGRESS/2020-JTS-Overlay-Next-Generation/) |
+| JTS OverlayNG - 节点化策略 | 2020年6月 | [2020-JTS-OverlayNG-Noding-Strategies.md](https://znlgis.github.io/gis/lin-ear-th-inking/PROGRESS/2020-JTS-OverlayNG-Noding-Strategies/) |
+| JTS 中的 Alpha Shapes | 2023年1月 | [2023-Alpha-Shapes-in-JTS.md](https://znlgis.github.io/gis/lin-ear-th-inking/PROGRESS/2023-Alpha-Shapes-in-JTS/) |
+| JTS 拓扑关系 - 下一代 (RelateNG) | 2024年5月 | [2024-JTS-Topological-Relationships-RelateNG.md](https://znlgis.github.io/gis/lin-ear-th-inking/PROGRESS/2024-JTS-Topological-Relationships-RelateNG/) |
+| JTS 中的 Coverage 清理 | 2025年4月 | [2025-Coverage-Cleaning-in-JTS.md](https://znlgis.github.io/gis/lin-ear-th-inking/PROGRESS/2025-Coverage-Cleaning-in-JTS/) |
+| 使用 JTS 快速检测狭窄多边形 | 2025年7月 | [2025-Fast-Detection-Narrow-Polygons.md](https://znlgis.github.io/gis/lin-ear-th-inking/PROGRESS/2025-Fast-Detection-Narrow-Polygons/) |
+| 使用 JTS 简化多边形覆盖 | 2023年3月 | [2023-Simplifying-Polygonal-Coverages.md](https://znlgis.github.io/gis/lin-ear-th-inking/PROGRESS/2023-Simplifying-Polygonal-Coverages/) |
+| 验证 JTS 中的多边形覆盖 | 2022年8月 | [2022-Validating-Polygonal-Coverages.md](https://znlgis.github.io/gis/lin-ear-th-inking/PROGRESS/2022-Validating-Polygonal-Coverages/) |
+| 多边形的外部和内部包络 | 2022年4月 | [2022-Outer-Inner-Polygon-Hulls.md](https://znlgis.github.io/gis/lin-ear-th-inking/PROGRESS/2022-Outer-Inner-Polygon-Hulls/) |
+| DE-9IM 空间谓词的关系属性 | 2022年10月 | [2022-DE-9IM-Spatial-Predicates.md](https://znlgis.github.io/gis/lin-ear-th-inking/PROGRESS/2022-DE-9IM-Spatial-Predicates/) |
+| Shapefile：好、坏与丑 | 2018年4月 | [2018-Shapefiles-Good-Bad-Ugly.md](https://znlgis.github.io/gis/lin-ear-th-inking/PROGRESS/2018-Shapefiles-Good-Bad-Ugly/) |
+| JTS 中的单侧缓冲区 | 2010年11月 | [2010-Single-Sided-Buffers-in-JTS.md](https://znlgis.github.io/gis/lin-ear-th-inking/PROGRESS/2010-Single-Sided-Buffers-in-JTS/) |
+| KD 树查询优化 | 2021年10月 | [2021-KdTree-Query-Optimization.md](https://znlgis.github.io/gis/lin-ear-th-inking/PROGRESS/2021-KdTree-Query-Optimization/) |
+| JTS 中使用级联并集快速合并多边形 | 2007年11月 | [2007-Fast-Polygon-Merging-Cascaded-Union.md](https://znlgis.github.io/gis/lin-ear-th-inking/PROGRESS/2007-Fast-Polygon-Merging-Cascaded-Union/) |
+| JTS 性能改进 | 2012年4月 | [2012-JTS-Performance-Improvements.md](https://znlgis.github.io/gis/lin-ear-th-inking/PROGRESS/2012-JTS-Performance-Improvements/) |
+| FOSS4G 北美 2012 回顾 | 2012年4月 | [2012-FOSS4G-NA-Review.md](https://znlgis.github.io/gis/lin-ear-th-inking/PROGRESS/2012-FOSS4G-NA-Review/) |
+| JTS 中的可变距离缓冲区 | 2019年11月 | [2019-Variable-Distance-Buffering.md](https://znlgis.github.io/gis/lin-ear-th-inking/PROGRESS/2019-Variable-Distance-Buffering/) |
+| JTS 设计原则 | 2019年2月 | [2019-JTS-Design-Principles.md](https://znlgis.github.io/gis/lin-ear-th-inking/PROGRESS/2019-JTS-Design-Principles/) |
+| JTS 中的随机点生成 | 2010年5月 | [2010-Random-Points-in-JTS.md](https://znlgis.github.io/gis/lin-ear-th-inking/PROGRESS/2010-Random-Points-in-JTS/) |
+| JTS 中的均匀分布随机点生成 | 2015年7月 | [2015-Evenly-Distributed-Random-Points.md](https://znlgis.github.io/gis/lin-ear-th-inking/PROGRESS/2015-Evenly-Distributed-Random-Points/) |
+| JTS 中修复无效几何图形 | 2021年5月 | [2021-Fixing-Invalid-Geometry-JTS.md](https://znlgis.github.io/gis/lin-ear-th-inking/PROGRESS/2021-Fixing-Invalid-Geometry-JTS/) |
+| JTS TestBuilder GUI | 2019年8月 | [2019-JTS-TestBuilder-GUI.md](https://znlgis.github.io/gis/lin-ear-th-inking/PROGRESS/2019-JTS-TestBuilder-GUI/) |
+| PreparedGeometry 性能优化 | 2012年11月 | [2012-PreparedGeometry-Performance.md](https://znlgis.github.io/gis/lin-ear-th-inking/PROGRESS/2012-PreparedGeometry-Performance/) |
+| Java 在 OSCON 重新火热 | 2011年6月 | [2011-Java-Reheated-OSCON.md](https://znlgis.github.io/gis/lin-ear-th-inking/PROGRESS/2011-Java-Reheated-OSCON/) |
+| 2012 年度回顾 | 2013年1月 | [2013-Year-In-Review-2012.md](https://znlgis.github.io/gis/lin-ear-th-inking/PROGRESS/2013-Year-In-Review-2012/) |
+| JTS 中的约束 Delaunay 三角剖分 | 2014年 | [2014-Constrained-Delaunay-Triangulation.md](https://znlgis.github.io/gis/lin-ear-th-inking/PROGRESS/2014-Constrained-Delaunay-Triangulation/) |
+| JTS 中的距离度量与形状相似性 | 2016年 | [2016-Distance-Metrics-Shape-Similarity.md](https://znlgis.github.io/gis/lin-ear-th-inking/PROGRESS/2016-Distance-Metrics-Shape-Similarity/) |
+| JTS 精度模型与数值鲁棒性 | 2017年 | [2017-Precision-Model-Robustness.md](https://znlgis.github.io/gis/lin-ear-th-inking/PROGRESS/2017-Precision-Model-Robustness/) |
 
 ## 已知但未翻译的文章 📋
 

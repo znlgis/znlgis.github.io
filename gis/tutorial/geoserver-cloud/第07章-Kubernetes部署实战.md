@@ -785,9 +785,9 @@ kubectl get events -n geoserver --sort-by='.lastTimestamp'
 ---
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="第06章-Docker-Compose部署实战" style="text-decoration: none;">← 上一章</a>
-  <a href="./" style="text-decoration: none;">目录</a>
-  <a href="第08章-运维监控与故障排除" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/gis/tutorial/geoserver-cloud/第07章-Kubernetes部署实战/第06章-Docker-Compose部署实战/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/tutorial/geoserver-cloud/第07章-Kubernetes部署实战/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/tutorial/geoserver-cloud/第07章-Kubernetes部署实战/第08章-运维监控与故障排除/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

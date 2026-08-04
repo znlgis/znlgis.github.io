@@ -715,8 +715,8 @@ FROM cities;
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
   <span></span>
-  <a href="./" style="text-decoration: none;">目录</a>
-  <a href="第02章-安装与环境配置" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/gis/tutorial/postgis/第01章-PostGIS概述与入门/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/tutorial/postgis/第01章-PostGIS概述与入门/第02章-安装与环境配置/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

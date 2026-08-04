@@ -968,9 +968,9 @@ Gerber是PCB制造的标准文件格式。
 ---
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="第04章-原理图设计基础" style="text-decoration: none;">← 上一章</a>
-  <a href="./" style="text-decoration: none;">目录</a>
-  <a href="第06章-元器件库与封装管理" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/cad/KiCad/第05章-PCB布局设计基础/第04章-原理图设计基础/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/KiCad/第05章-PCB布局设计基础/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/cad/KiCad/第05章-PCB布局设计基础/第06章-元器件库与封装管理/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

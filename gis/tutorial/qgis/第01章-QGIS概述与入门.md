@@ -419,7 +419,7 @@ QGIS每年发布三个版本：
 
 ---
 
-**下一章**：[第02章 安装与环境配置](../第02章-安装与环境配置)
+**下一章**：[第02章 安装与环境配置](https://znlgis.github.io/gis/tutorial/qgis/第02章-安装与环境配置/)
 
 ---
 
@@ -427,10 +427,10 @@ QGIS每年发布三个版本：
 
 学完本章后，建议继续阅读以下相关教程：
 
-- **[GDAL 教程](../../gdal/)** — QGIS 底层依赖 GDAL 处理空间数据，深入理解 GDAL 将大幅提升 QGIS 使用效果
-- **[PostGIS 教程](../../postgis/)** — QGIS 与 PostGIS 是黄金组合，实现企业级空间数据管理
-- **[GeoServer 教程](../../geoserver/)** — 使用 QGIS 配置样式后通过 GeoServer 发布 Web 地图服务
-- **[OpenLayers 教程](../../openlayers/)** — 将 QGIS 制作的地图通过 Web 前端展示
+- **[GDAL 教程](https://znlgis.github.io/gis/tutorial/gdal/)** — QGIS 底层依赖 GDAL 处理空间数据，深入理解 GDAL 将大幅提升 QGIS 使用效果
+- **[PostGIS 教程](https://znlgis.github.io/gis/tutorial/postgis/)** — QGIS 与 PostGIS 是黄金组合，实现企业级空间数据管理
+- **[GeoServer 教程](https://znlgis.github.io/gis/tutorial/geoserver/)** — 使用 QGIS 配置样式后通过 GeoServer 发布 Web 地图服务
+- **[OpenLayers 教程](https://znlgis.github.io/gis/tutorial/openlayers/)** — 将 QGIS 制作的地图通过 Web 前端展示
 
 ---
 
@@ -440,8 +440,8 @@ QGIS每年发布三个版本：
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
   <span></span>
-  <a href="./" style="text-decoration: none;">目录</a>
-  <a href="第02章-安装与环境配置" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/gis/tutorial/qgis/第01章-QGIS概述与入门/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/tutorial/qgis/第01章-QGIS概述与入门/第02章-安装与环境配置/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

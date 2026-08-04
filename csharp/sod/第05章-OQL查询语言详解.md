@@ -652,9 +652,9 @@ OQL是SOD框架的核心特性之一，熟练掌握OQL可以让你高效地进�
 ---
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="第04章-实体类与ORM映射" style="text-decoration: none;">← 上一章</a>
-  <a href="./" style="text-decoration: none;">目录</a>
-  <a href="第06章-SQL-MAP技术深入" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/csharp/sod/第05章-OQL查询语言详解/第04章-实体类与ORM映射/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/csharp/sod/第05章-OQL查询语言详解/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/csharp/sod/第05章-OQL查询语言详解/第06章-SQL-MAP技术深入/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

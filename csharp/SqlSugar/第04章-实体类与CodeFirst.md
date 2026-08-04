@@ -950,4 +950,4 @@ public class MigrationVersion
 
 通过本章的学习,你应该能够熟练设计实体类并使用CodeFirst功能管理数据库结构。
 
-**下一章**: [第05章-基础CRUD操作](../第05章-基础CRUD操作)
+**下一章**: [第05章-基础CRUD操作](https://znlgis.github.io/csharp/SqlSugar/第05章-基础CRUD操作/)

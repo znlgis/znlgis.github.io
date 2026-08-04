@@ -535,7 +535,7 @@ public abstract class MappingBase : Element
 ---
 
 <div style="display:flex; justify-content:space-between; margin-top:3rem;">
-  <a href="第01章-Elements概述与快速入门">← 上一章</a>
-  <a href="./">目录</a>
-  <a href="第03章-几何系统（上）向量曲线与多边形">下一章 →</a>
+  <a href="https://znlgis.github.io/3d/elements/第02章-核心概念Element与Model/第01章-Elements概述与快速入门/">← 上一章</a>
+  <a href="https://znlgis.github.io/3d/elements/第02章-核心概念Element与Model/">目录</a>
+  <a href="https://znlgis.github.io/3d/elements/第02章-核心概念Element与Model/第03章-几何系统（上）向量曲线与多边形/">下一章 →</a>
 </div>

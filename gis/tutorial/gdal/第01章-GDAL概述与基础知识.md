@@ -575,10 +575,10 @@ GDAL 3.x 系列带来了许多重要更新：
 
 学完本章后，建议继续阅读以下相关教程：
 
-- **[PostGIS 教程](../../postgis/)** — GDAL 与 PostGIS 配合使用，实现强大的空间数据存储与处理
-- **[GeoServer 教程](../../geoserver/)** — 使用 GDAL 处理后通过 GeoServer 发布地图服务
-- **[QGIS 教程](../../qgis/)** — GDAL 是 QGIS 的核心数据引擎，两者深度集成
-- **[OpenLayers 教程](../../openlayers/)** — 前端展示 GDAL 处理后的空间数据
+- **[PostGIS 教程](https://znlgis.github.io/gis/tutorial/postgis/)** — GDAL 与 PostGIS 配合使用，实现强大的空间数据存储与处理
+- **[GeoServer 教程](https://znlgis.github.io/gis/tutorial/geoserver/)** — 使用 GDAL 处理后通过 GeoServer 发布地图服务
+- **[QGIS 教程](https://znlgis.github.io/gis/tutorial/qgis/)** — GDAL 是 QGIS 的核心数据引擎，两者深度集成
+- **[OpenLayers 教程](https://znlgis.github.io/gis/tutorial/openlayers/)** — 前端展示 GDAL 处理后的空间数据
 
 ---
 
@@ -588,8 +588,8 @@ GDAL 3.x 系列带来了许多重要更新：
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
   <span></span>
-  <a href="./" style="text-decoration: none;">目录</a>
-  <a href="第02章-GDAL安装与环境配置" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/gis/tutorial/gdal/第01章-GDAL概述与基础知识/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/tutorial/gdal/第01章-GDAL概述与基础知识/第02章-GDAL安装与环境配置/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

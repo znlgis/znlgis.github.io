@@ -1007,9 +1007,9 @@ public class OperationRequest
 ---
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="第06章-空间分析算法" style="text-decoration: none;">← 上一章</a>
-  <a href="./" style="text-decoration: none;">目录</a>
-  <a href="第08章-Shapefile文件操作" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/gis/tutorial/NetTopologySuite/第07章-GeoJSON数据处理/第06章-空间分析算法/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/tutorial/NetTopologySuite/第07章-GeoJSON数据处理/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/tutorial/NetTopologySuite/第07章-GeoJSON数据处理/第08章-Shapefile文件操作/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

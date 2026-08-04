@@ -11,18 +11,18 @@ title: 同文（TongWen）教程目录
 
 ---
 
-- [第01章：产品概述](第01章-产品概述)
-- [第02章：安装与启动](第02章-安装与启动)
-- [第03章：Studio 桌面工作台与项目管理](第03章-Studio桌面工作台与项目管理)
-- [第04章：图纸文字提取](第04章-图纸文字提取)
-- [第05章：翻译工作区](第05章-翻译工作区)
-- [第06章：术语库与翻译知识](第06章-术语库与翻译知识)
-- [第07章：回写图纸](第07章-回写图纸)
-- [第08章：质量检查与报告](第08章-质量检查与报告)
-- [第09章：AutoCAD 插件使用](第09章-AutoCAD插件使用)
-- [第10章：批量处理与命令行](第10章-批量处理与命令行)
-- [第11章：设置与配置](第11章-设置与配置)
-- [第12章：常见问题与故障排除](第12章-常见问题与故障排除)
+- [第01章：产品概述](https://znlgis.github.io/cad/TongWen/第01章-产品概述/)
+- [第02章：安装与启动](https://znlgis.github.io/cad/TongWen/第02章-安装与启动/)
+- [第03章：Studio 桌面工作台与项目管理](https://znlgis.github.io/cad/TongWen/第03章-Studio桌面工作台与项目管理/)
+- [第04章：图纸文字提取](https://znlgis.github.io/cad/TongWen/第04章-图纸文字提取/)
+- [第05章：翻译工作区](https://znlgis.github.io/cad/TongWen/第05章-翻译工作区/)
+- [第06章：术语库与翻译知识](https://znlgis.github.io/cad/TongWen/第06章-术语库与翻译知识/)
+- [第07章：回写图纸](https://znlgis.github.io/cad/TongWen/第07章-回写图纸/)
+- [第08章：质量检查与报告](https://znlgis.github.io/cad/TongWen/第08章-质量检查与报告/)
+- [第09章：AutoCAD 插件使用](https://znlgis.github.io/cad/TongWen/第09章-AutoCAD插件使用/)
+- [第10章：批量处理与命令行](https://znlgis.github.io/cad/TongWen/第10章-批量处理与命令行/)
+- [第11章：设置与配置](https://znlgis.github.io/cad/TongWen/第11章-设置与配置/)
+- [第12章：常见问题与故障排除](https://znlgis.github.io/cad/TongWen/第12章-常见问题与故障排除/)
 
 ---
 

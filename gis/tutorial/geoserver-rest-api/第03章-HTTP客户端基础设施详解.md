@@ -977,9 +977,9 @@ public async Task GetWorkspaces_ReturnsWorkspaces()
 ---
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="第02章-环境准备与客户端配置" style="text-decoration: none;">← 上一章</a>
-  <a href="./" style="text-decoration: none;">目录</a>
-  <a href="第04章-工作空间管理API实战" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/gis/tutorial/geoserver-rest-api/第03章-HTTP客户端基础设施详解/第02章-环境准备与客户端配置/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/tutorial/geoserver-rest-api/第03章-HTTP客户端基础设施详解/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/tutorial/geoserver-rest-api/第03章-HTTP客户端基础设施详解/第04章-工作空间管理API实战/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

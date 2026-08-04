@@ -7,18 +7,18 @@ title: my-opencode-deepseek-config 教程目录
 
 > 本教程基于 [znlgis/my-opencode-deepseek-config](https://github.com/znlgis/my-opencode-deepseek-config) 仓库的配置文件与设计文档整理，面向中文读者系统讲解这套 **OpenCode × DeepSeek 最优配置方案**——一个纯配置驱动的多 Agent 协作框架。教程覆盖项目定位、安装部署、模型配置、多 Agent 体系、Orchestrator 路由机制、技能与插件生态、命令别名、配置参考、全局规则解读、实战工作流、设计决策与迭代历程，以及最佳实践与定制指南。OpenCode 迭代很快，实际命令与字段请以当前版本的 `opencode --help` 与官方文档为准。
 
-- [第一章：项目概览与核心定位](01-项目概览与核心定位)
-- [第二章：安装部署与环境配置](02-安装部署与环境配置)
-- [第三章：模型配置详解](03-模型配置详解)
-- [第四章：多Agent体系完全解析](04-多Agent体系完全解析)
-- [第五章：Orchestrator路由机制深度解析](05-Orchestrator路由机制深度解析)
-- [第六章：技能体系与插件生态](06-技能体系与插件生态)
-- [第七章：命令别名完整指南](07-命令别名完整指南)
-- [第八章：配置文件完全参考](08-配置文件完全参考)
-- [第九章：全局规则AGENTS.md深度解读](09-全局规则AGENTS.md深度解读)
-- [第十章：典型工作流实战](10-典型工作流实战)
-- [第十一章：设计决策与迭代历程](11-设计决策与迭代历程)
-- [第十二章：最佳实践与定制指南](12-最佳实践与定制指南)
+- [第一章：项目概览与核心定位](https://znlgis.github.io/ai/my-opencode-deepseek-config/01-项目概览与核心定位/)
+- [第二章：安装部署与环境配置](https://znlgis.github.io/ai/my-opencode-deepseek-config/02-安装部署与环境配置/)
+- [第三章：模型配置详解](https://znlgis.github.io/ai/my-opencode-deepseek-config/03-模型配置详解/)
+- [第四章：多Agent体系完全解析](https://znlgis.github.io/ai/my-opencode-deepseek-config/04-多Agent体系完全解析/)
+- [第五章：Orchestrator路由机制深度解析](https://znlgis.github.io/ai/my-opencode-deepseek-config/05-Orchestrator路由机制深度解析/)
+- [第六章：技能体系与插件生态](https://znlgis.github.io/ai/my-opencode-deepseek-config/06-技能体系与插件生态/)
+- [第七章：命令别名完整指南](https://znlgis.github.io/ai/my-opencode-deepseek-config/07-命令别名完整指南/)
+- [第八章：配置文件完全参考](https://znlgis.github.io/ai/my-opencode-deepseek-config/08-配置文件完全参考/)
+- [第九章：全局规则AGENTS.md深度解读](https://znlgis.github.io/ai/my-opencode-deepseek-config/09-全局规则AGENTS.md深度解读/)
+- [第十章：典型工作流实战](https://znlgis.github.io/ai/my-opencode-deepseek-config/10-典型工作流实战/)
+- [第十一章：设计决策与迭代历程](https://znlgis.github.io/ai/my-opencode-deepseek-config/11-设计决策与迭代历程/)
+- [第十二章：最佳实践与定制指南](https://znlgis.github.io/ai/my-opencode-deepseek-config/12-最佳实践与定制指南/)
 
 ---
 

@@ -11,16 +11,16 @@ title: Ara3D-SDK 教程目录
 
 > 说明：本教程基于官方仓库 `main` 分支（版本 `1.6.x`）编写。Ara3D-SDK 处于活跃开发中，具体类名、方法签名可能随版本演进，请以你实际引用的 NuGet 包版本与源码为准。
 
-- [第01章：Ara3D-SDK 全景概览与学习路线](第01章-Ara3D-SDK全景概览与学习路线)
-- [第02章：环境搭建、NuGet 包体系与第一个程序](第02章-环境搭建NuGet包体系与第一个程序)
-- [第03章：核心基础库 Core 详解](第03章-核心基础库Core详解)
-- [第04章：数学基础与 F8 SIMD 加速](第04章-数学基础与F8-SIMD加速)
-- [第05章：几何与网格建模](第05章-几何与网格建模)
-- [第06章：场景模型 Models 与实例化渲染](第06章-场景模型Models与实例化渲染)
-- [第07章：文件 IO 与三维数据格式](第07章-文件IO与三维数据格式)
-- [第08章：BIM 与 IFC 数据处理](第08章-BIM与IFC数据处理)
-- [第09章：Ara3D Studio 插件开发](第09章-Ara3D-Studio插件开发)
-- [第10章：二次开发实战、构建测试与发布](第10章-二次开发实战构建测试与发布)
+- [第01章：Ara3D-SDK 全景概览与学习路线](https://znlgis.github.io/3d/ara3d-sdk/第01章-Ara3D-SDK全景概览与学习路线/)
+- [第02章：环境搭建、NuGet 包体系与第一个程序](https://znlgis.github.io/3d/ara3d-sdk/第02章-环境搭建NuGet包体系与第一个程序/)
+- [第03章：核心基础库 Core 详解](https://znlgis.github.io/3d/ara3d-sdk/第03章-核心基础库Core详解/)
+- [第04章：数学基础与 F8 SIMD 加速](https://znlgis.github.io/3d/ara3d-sdk/第04章-数学基础与F8-SIMD加速/)
+- [第05章：几何与网格建模](https://znlgis.github.io/3d/ara3d-sdk/第05章-几何与网格建模/)
+- [第06章：场景模型 Models 与实例化渲染](https://znlgis.github.io/3d/ara3d-sdk/第06章-场景模型Models与实例化渲染/)
+- [第07章：文件 IO 与三维数据格式](https://znlgis.github.io/3d/ara3d-sdk/第07章-文件IO与三维数据格式/)
+- [第08章：BIM 与 IFC 数据处理](https://znlgis.github.io/3d/ara3d-sdk/第08章-BIM与IFC数据处理/)
+- [第09章：Ara3D Studio 插件开发](https://znlgis.github.io/3d/ara3d-sdk/第09章-Ara3D-Studio插件开发/)
+- [第10章：二次开发实战、构建测试与发布](https://znlgis.github.io/3d/ara3d-sdk/第10章-二次开发实战构建测试与发布/)
 
 ---
 

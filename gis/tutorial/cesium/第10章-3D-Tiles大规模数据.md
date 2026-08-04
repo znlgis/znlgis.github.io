@@ -431,9 +431,9 @@ viewer.scene.debugShowFramesPerSecond = true;
 ---
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="第09章-地形数据处理" style="text-decoration: none;">← 上一章</a>
-  <a href="./" style="text-decoration: none;">目录</a>
-  <a href="第11章-数据格式与数据源" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/gis/tutorial/cesium/第10章-3D-Tiles大规模数据/第09章-地形数据处理/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/tutorial/cesium/第10章-3D-Tiles大规模数据/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/tutorial/cesium/第10章-3D-Tiles大规模数据/第11章-数据格式与数据源/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

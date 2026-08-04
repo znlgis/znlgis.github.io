@@ -442,4 +442,4 @@ done
 
 ---
 
-**导航**：[← 第十八章：自定义步骤与扩展开发](../第18章-自定义步骤与扩展开发) ｜ [第二十章：最佳实践与综合案例 →](../第20章-最佳实践与综合案例)
+**导航**：[← 第十八章：自定义步骤与扩展开发](https://znlgis.github.io/gis/tutorial/GeoPipeAgent/第18章-自定义步骤与扩展开发/) ｜ [第二十章：最佳实践与综合案例 →](https://znlgis.github.io/gis/tutorial/GeoPipeAgent/第20章-最佳实践与综合案例/)

@@ -883,6 +883,6 @@ public InstancedMesh CreateInstancedMesh(
 
 ---
 
-> **上一章**：[第八章：实体建模系统](../第08章-实体建模系统)
+> **上一章**：[第八章：实体建模系统](https://znlgis.github.io/cad/LightCAD/第08章-实体建模系统/)
 >
-> **下一章**：[第十章：二维绘图与视口管理](../第10章-二维绘图与视口管理)
+> **下一章**：[第十章：二维绘图与视口管理](https://znlgis.github.io/cad/LightCAD/第10章-二维绘图与视口管理/)

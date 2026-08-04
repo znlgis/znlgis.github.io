@@ -384,16 +384,16 @@ public class WMTSClientExample {
 
 ---
 
-[← 上一章：地图渲染与输出](../第12章-地图渲染与输出) | [返回目录](../index) | [下一章：空间分析与处理 →](../第14章-空间分析与处理)
+[← 上一章：地图渲染与输出](https://znlgis.github.io/gis/tutorial/geotools/第12章-地图渲染与输出/) | [返回目录](https://znlgis.github.io/gis/tutorial/geotools/) | [下一章：空间分析与处理 →](https://znlgis.github.io/gis/tutorial/geotools/第14章-空间分析与处理/)
 
 <!-- NAVIGATION -->
 
 ---
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="第12章-地图渲染与输出" style="text-decoration: none;">← 上一章</a>
-  <a href="./" style="text-decoration: none;">目录</a>
-  <a href="第14章-空间分析与处理" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/gis/tutorial/geotools/第13章-OGC服务客户端/第12章-地图渲染与输出/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/tutorial/geotools/第13章-OGC服务客户端/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/tutorial/geotools/第13章-OGC服务客户端/第14章-空间分析与处理/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

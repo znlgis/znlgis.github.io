@@ -1155,16 +1155,16 @@ tour.play(5000);
 
 ---
 
-[← 上一章：Map地图对象详解](../第04章-Map地图对象详解) | [返回目录](../index) | [下一章：Layer图层体系 →](../第06章-Layer图层体系)
+[← 上一章：Map地图对象详解](https://znlgis.github.io/gis/tutorial/openlayers/第04章-Map地图对象详解/) | [返回目录](https://znlgis.github.io/gis/tutorial/openlayers/) | [下一章：Layer图层体系 →](https://znlgis.github.io/gis/tutorial/openlayers/第06章-Layer图层体系/)
 
 <!-- NAVIGATION -->
 
 ---
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="第04章-Map地图对象详解" style="text-decoration: none;">← 上一章</a>
-  <a href="./" style="text-decoration: none;">目录</a>
-  <a href="第06章-Layer图层体系" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/gis/tutorial/openlayers/第05章-View视图与坐标系统/第04章-Map地图对象详解/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/tutorial/openlayers/第05章-View视图与坐标系统/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/tutorial/openlayers/第05章-View视图与坐标系统/第06章-Layer图层体系/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

@@ -931,16 +931,16 @@ dwgadd house.txt -o house.dwg
 
 ---
 
-**下一章预告**：[第09章 - 格式转换实战](../第09章-格式转换实战) - 学习DWG与DXF、JSON、SVG等格式的转换。
+**下一章预告**：[第09章 - 格式转换实战](https://znlgis.github.io/cad/libredwg/第09章-格式转换实战/) - 学习DWG与DXF、JSON、SVG等格式的转换。
 
 <!-- NAVIGATION -->
 
 ---
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="第07章-DWG文件读取与解析" style="text-decoration: none;">← 上一章</a>
-  <a href="./" style="text-decoration: none;">目录</a>
-  <a href="第09章-格式转换实战" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/cad/libredwg/第08章-DWG文件创建与写入/第07章-DWG文件读取与解析/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/libredwg/第08章-DWG文件创建与写入/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/cad/libredwg/第08章-DWG文件创建与写入/第09章-格式转换实战/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

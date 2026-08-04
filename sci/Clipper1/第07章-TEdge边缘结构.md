@@ -463,4 +463,4 @@ TEdge 是 Clipper 算法的核心数据结构：
 
 ---
 
-[上一章：ClipperBase基类详解](../第06章-ClipperBase基类详解) | [返回目录](../index) | [下一章：局部极小值与扫描线](../第08章-局部极小值与扫描线)
+[上一章：ClipperBase基类详解](https://znlgis.github.io/sci/Clipper1/第06章-ClipperBase基类详解/) | [返回目录](https://znlgis.github.io/sci/Clipper1/) | [下一章：局部极小值与扫描线](https://znlgis.github.io/sci/Clipper1/第08章-局部极小值与扫描线/)

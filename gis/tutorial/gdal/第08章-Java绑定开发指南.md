@@ -1389,9 +1389,9 @@ public class GdalResource implements AutoCloseable {
 ---
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="第07章-Python绑定开发指南" style="text-decoration: none;">← 上一章</a>
-  <a href="./" style="text-decoration: none;">目录</a>
-  <a href="第09章-CSharp绑定开发指南" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/gis/tutorial/gdal/第08章-Java绑定开发指南/第07章-Python绑定开发指南/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/tutorial/gdal/第08章-Java绑定开发指南/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/tutorial/gdal/第08章-Java绑定开发指南/第09章-CSharp绑定开发指南/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

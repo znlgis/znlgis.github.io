@@ -490,4 +490,4 @@ BillionMail 是一个社区驱动的项目，有以下支持渠道：
 
 ---
 
-[返回目录](../index) | [下一章：系统架构与技术栈详解](../第02章-系统架构与技术栈详解)
+[返回目录](https://znlgis.github.io/others/BillionMail/) | [下一章：系统架构与技术栈详解](https://znlgis.github.io/others/BillionMail/第02章-系统架构与技术栈详解/)

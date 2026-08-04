@@ -763,9 +763,9 @@ public class DataEntryTemplateExample
 ---
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="第06章-Excel公式与函数" style="text-decoration: none;">← 上一章</a>
-  <a href="./" style="text-decoration: none;">目录</a>
-  <a href="第08章-Excel图表与图形" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/csharp/npoi/第07章-Excel数据验证与保护/第06章-Excel公式与函数/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/csharp/npoi/第07章-Excel数据验证与保护/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/csharp/npoi/第07章-Excel数据验证与保护/第08章-Excel图表与图形/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

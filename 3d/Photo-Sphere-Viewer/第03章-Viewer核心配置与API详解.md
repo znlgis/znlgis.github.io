@@ -1201,6 +1201,6 @@ lang: {
 下一章我们将深入研究各种全景图类型（等距柱状投影、立方体贴图、鱼眼、视频全景等）的原理与适配器配置，这是将 Viewer 应用到不同数据源的关键知识。
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="第02章-环境搭建与第一个全景应用" style="text-decoration: none;">← 上一章</a>
-  <a href="第04章-全景图类型与适配器详解" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/3d/Photo-Sphere-Viewer/第03章-Viewer核心配置与API详解/第02章-环境搭建与第一个全景应用/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/3d/Photo-Sphere-Viewer/第03章-Viewer核心配置与API详解/第04章-全景图类型与适配器详解/" style="text-decoration: none;">下一章 →</a>
 </div>

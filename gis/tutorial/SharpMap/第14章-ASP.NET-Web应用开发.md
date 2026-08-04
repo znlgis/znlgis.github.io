@@ -506,9 +506,9 @@ public IActionResult GetTile(int z, int x, int y)
 ---
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="第13章-WPF桌面应用开发" style="text-decoration: none;">← 上一章</a>
-  <a href="./" style="text-decoration: none;">目录</a>
-  <a href="第15章-扩展开发与插件集成" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/gis/tutorial/SharpMap/第14章-ASP.NET-Web应用开发/第13章-WPF桌面应用开发/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/tutorial/SharpMap/第14章-ASP.NET-Web应用开发/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/tutorial/SharpMap/第14章-ASP.NET-Web应用开发/第15章-扩展开发与插件集成/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

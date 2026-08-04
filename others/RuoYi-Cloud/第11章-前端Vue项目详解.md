@@ -1060,4 +1060,4 @@ export default {
 
 ---
 
-[上一章：文件服务与存储](../第10章-文件服务与存储) | [返回目录](../index) | [下一章：数据库设计与管理](../第12章-数据库设计与管理)
+[上一章：文件服务与存储](https://znlgis.github.io/others/RuoYi-Cloud/第10章-文件服务与存储/) | [返回目录](https://znlgis.github.io/others/RuoYi-Cloud/) | [下一章：数据库设计与管理](https://znlgis.github.io/others/RuoYi-Cloud/第12章-数据库设计与管理/)

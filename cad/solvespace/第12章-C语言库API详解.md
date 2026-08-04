@@ -583,17 +583,17 @@ target_link_libraries(my_app ${SLVS_LIB})
 ---
 
 **导航**
-- 上一章: [第11章 - 命令行工具使用](../第11章-命令行工具使用)
-- 下一章: [第13章 - Python绑定开发](../第13章-Python绑定开发)
+- 上一章: [第11章 - 命令行工具使用](https://znlgis.github.io/cad/solvespace/第11章-命令行工具使用/)
+- 下一章: [第13章 - Python绑定开发](https://znlgis.github.io/cad/solvespace/第13章-Python绑定开发/)
 
 <!-- NAVIGATION -->
 
 ---
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="第11章-命令行工具使用" style="text-decoration: none;">← 上一章</a>
-  <a href="./" style="text-decoration: none;">目录</a>
-  <a href="第13章-Python绑定开发" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/cad/solvespace/第12章-C语言库API详解/第11章-命令行工具使用/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/solvespace/第12章-C语言库API详解/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/cad/solvespace/第12章-C语言库API详解/第13章-Python绑定开发/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

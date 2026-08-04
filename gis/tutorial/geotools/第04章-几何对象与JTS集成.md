@@ -1189,16 +1189,16 @@ System.out.println("buffer(0) 修复后 isValid: " + bufferFixed.isValid());
 
 ---
 
-[← 上一章：核心架构与模块设计](../第03章-核心架构与模块设计) | [返回目录](../index) | [下一章：要素模型与数据结构 →](../第05章-要素模型与数据结构)
+[← 上一章：核心架构与模块设计](https://znlgis.github.io/gis/tutorial/geotools/第03章-核心架构与模块设计/) | [返回目录](https://znlgis.github.io/gis/tutorial/geotools/) | [下一章：要素模型与数据结构 →](https://znlgis.github.io/gis/tutorial/geotools/第05章-要素模型与数据结构/)
 
 <!-- NAVIGATION -->
 
 ---
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="第03章-核心架构与模块设计" style="text-decoration: none;">← 上一章</a>
-  <a href="./" style="text-decoration: none;">目录</a>
-  <a href="第05章-要素模型与数据结构" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/gis/tutorial/geotools/第04章-几何对象与JTS集成/第03章-核心架构与模块设计/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/tutorial/geotools/第04章-几何对象与JTS集成/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/tutorial/geotools/第04章-几何对象与JTS集成/第05章-要素模型与数据结构/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

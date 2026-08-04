@@ -11,16 +11,16 @@ title: Photo-Sphere-Viewer 教程目录
 
 > 说明：本教程基于 v5.x 版本编写。Photo-Sphere-Viewer 处于活跃开发中，具体 API 签名可能随版本演进，请以官方文档为准。
 
-- [第01章：Photo-Sphere-Viewer 项目全景与学习路线](第01章-Photo-Sphere-Viewer项目全景与学习路线)
-- [第02章：环境搭建与第一个全景应用](第02章-环境搭建与第一个全景应用)
-- [第03章：Viewer 核心配置与 API 详解](第03章-Viewer核心配置与API详解)
-- [第04章：全景图类型与适配器详解](第04章-全景图类型与适配器详解)
-- [第05章：标记系统 MarkersPlugin 深度解析](第05章-标记系统MarkersPlugin深度解析)
-- [第06章：插件体系架构与自定义插件开发](第06章-插件体系架构与自定义插件开发)
-- [第07章：虚拟导览与画廊 VirtualTour 与 Gallery](第07章-虚拟导览与画廊VirtualTour与Gallery)
-- [第08章：视频全景与移动端交互](第08章-视频全景与移动端交互)
-- [第09章：地图集成与辅助功能](第09章-地图集成与辅助功能)
-- [第10章：框架集成、实战项目与部署优化](第10章-框架集成实战项目与部署优化)
+- [第01章：Photo-Sphere-Viewer 项目全景与学习路线](https://znlgis.github.io/3d/Photo-Sphere-Viewer/第01章-Photo-Sphere-Viewer项目全景与学习路线/)
+- [第02章：环境搭建与第一个全景应用](https://znlgis.github.io/3d/Photo-Sphere-Viewer/第02章-环境搭建与第一个全景应用/)
+- [第03章：Viewer 核心配置与 API 详解](https://znlgis.github.io/3d/Photo-Sphere-Viewer/第03章-Viewer核心配置与API详解/)
+- [第04章：全景图类型与适配器详解](https://znlgis.github.io/3d/Photo-Sphere-Viewer/第04章-全景图类型与适配器详解/)
+- [第05章：标记系统 MarkersPlugin 深度解析](https://znlgis.github.io/3d/Photo-Sphere-Viewer/第05章-标记系统MarkersPlugin深度解析/)
+- [第06章：插件体系架构与自定义插件开发](https://znlgis.github.io/3d/Photo-Sphere-Viewer/第06章-插件体系架构与自定义插件开发/)
+- [第07章：虚拟导览与画廊 VirtualTour 与 Gallery](https://znlgis.github.io/3d/Photo-Sphere-Viewer/第07章-虚拟导览与画廊VirtualTour与Gallery/)
+- [第08章：视频全景与移动端交互](https://znlgis.github.io/3d/Photo-Sphere-Viewer/第08章-视频全景与移动端交互/)
+- [第09章：地图集成与辅助功能](https://znlgis.github.io/3d/Photo-Sphere-Viewer/第09章-地图集成与辅助功能/)
+- [第10章：框架集成、实战项目与部署优化](https://znlgis.github.io/3d/Photo-Sphere-Viewer/第10章-框架集成实战项目与部署优化/)
 
 ---
 

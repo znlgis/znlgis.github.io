@@ -13,15 +13,15 @@ title: 源码解读教程
 
 | 教程系列 | 章节数 | 难度 | 核心技术 |
 |----------|:------:|:----:|----------|
-| [Clipper2 源码](Clipper2/) | 20章 | ⭐⭐⭐⭐ | C# 多边形裁剪库源码逐行分析 |
-| [Clipper1 源码](Clipper1/) | 20章 | ⭐⭐⭐⭐ | Clipper1 C# 源码深度解读 |
+| [Clipper2 源码](https://znlgis.github.io/sci/Clipper2/) | 20章 | ⭐⭐⭐⭐ | C# 多边形裁剪库源码逐行分析 |
+| [Clipper1 源码](https://znlgis.github.io/sci/Clipper1/) | 20章 | ⭐⭐⭐⭐ | Clipper1 C# 源码深度解读 |
 
 ---
 
 ## 📦 详细目录
 
-- [Clipper2 教程](Clipper2/) - Clipper2 多边形裁剪库 C# 源码深度解读（20章）
-- [Clipper1 教程](Clipper1/) - Clipper1 多边形裁剪库 C# 源码深度解读（20章）
+- [Clipper2 教程](https://znlgis.github.io/sci/Clipper2/) - Clipper2 多边形裁剪库 C# 源码深度解读（20章）
+- [Clipper1 教程](https://znlgis.github.io/sci/Clipper1/) - Clipper1 多边形裁剪库 C# 源码深度解读（20章）
 
 ---
 

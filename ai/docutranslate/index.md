@@ -7,18 +7,18 @@ title: DocuTranslate 教程目录
 
 > 本教程基于 [xunbu/docutranslate](https://github.com/xunbu/docutranslate) 当前公开仓库与官方文档整理，面向中文读者系统讲解这款**基于大语言模型的轻量级本地文件翻译工具** DocuTranslate 的定位、安装部署、Web 界面操作、大模型与 PDF 解析引擎配置、支持的文件格式与工作流、Client SDK 与 Workflow 编程开发、术语表与自定义提示词、REST API 服务集成、MCP 接入、环境变量与部署配置，以及最佳实践与排障。DocuTranslate 迭代很快，文中出现的命令、字段与参数请以你当前版本的 `docutranslate --help`、Web 界面、`http://127.0.0.1:8010/docs` 中的 API 文档以及仓库最新代码为准。
 
-- [第一章：DocuTranslate 项目概览与核心特性](01-项目概览与核心特性)
-- [第二章：安装、部署与快速上手](02-安装部署与快速上手)
-- [第三章：Web UI 界面操作详解](03-WebUI界面操作详解)
-- [第四章：大模型与 PDF 解析引擎配置](04-大模型与PDF解析引擎配置)
-- [第五章：支持的文件格式与工作流详解](05-支持的文件格式与工作流详解)
-- [第六章：Client SDK 编程使用](06-ClientSDK编程使用)
-- [第七章：Workflow 高级 API 开发](07-Workflow高级API开发)
-- [第八章：术语表、自定义提示词与 JSON 翻译](08-术语表与自定义提示词)
-- [第九章：REST API 与服务集成](09-RESTAPI与服务集成)
-- [第十章：MCP 集成与 AI 助手接入](10-MCP集成与AI助手接入)
-- [第十一章：环境变量与部署配置](11-环境变量与部署配置)
-- [第十二章：最佳实践与常见问题排障](12-最佳实践与常见问题排障)
+- [第一章：DocuTranslate 项目概览与核心特性](https://znlgis.github.io/ai/docutranslate/01-项目概览与核心特性/)
+- [第二章：安装、部署与快速上手](https://znlgis.github.io/ai/docutranslate/02-安装部署与快速上手/)
+- [第三章：Web UI 界面操作详解](https://znlgis.github.io/ai/docutranslate/03-WebUI界面操作详解/)
+- [第四章：大模型与 PDF 解析引擎配置](https://znlgis.github.io/ai/docutranslate/04-大模型与PDF解析引擎配置/)
+- [第五章：支持的文件格式与工作流详解](https://znlgis.github.io/ai/docutranslate/05-支持的文件格式与工作流详解/)
+- [第六章：Client SDK 编程使用](https://znlgis.github.io/ai/docutranslate/06-ClientSDK编程使用/)
+- [第七章：Workflow 高级 API 开发](https://znlgis.github.io/ai/docutranslate/07-Workflow高级API开发/)
+- [第八章：术语表、自定义提示词与 JSON 翻译](https://znlgis.github.io/ai/docutranslate/08-术语表与自定义提示词/)
+- [第九章：REST API 与服务集成](https://znlgis.github.io/ai/docutranslate/09-RESTAPI与服务集成/)
+- [第十章：MCP 集成与 AI 助手接入](https://znlgis.github.io/ai/docutranslate/10-MCP集成与AI助手接入/)
+- [第十一章：环境变量与部署配置](https://znlgis.github.io/ai/docutranslate/11-环境变量与部署配置/)
+- [第十二章：最佳实践与常见问题排障](https://znlgis.github.io/ai/docutranslate/12-最佳实践与常见问题排障/)
 
 ---
 

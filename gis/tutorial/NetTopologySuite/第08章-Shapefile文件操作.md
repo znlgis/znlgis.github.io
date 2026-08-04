@@ -903,9 +903,9 @@ public class ShapefileDatabaseImporter
 ---
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="第07章-GeoJSON数据处理" style="text-decoration: none;">← 上一章</a>
-  <a href="./" style="text-decoration: none;">目录</a>
-  <a href="第09章-PostGIS数据库集成" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/gis/tutorial/NetTopologySuite/第08章-Shapefile文件操作/第07章-GeoJSON数据处理/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/tutorial/NetTopologySuite/第08章-Shapefile文件操作/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/tutorial/NetTopologySuite/第08章-Shapefile文件操作/第09章-PostGIS数据库集成/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

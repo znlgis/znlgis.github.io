@@ -205,7 +205,7 @@ Console.WriteLine(preview.Substring(0, Math.Min(160, preview.Length)));
 ---
 
 <div style="display:flex; justify-content:space-between; margin-top:3rem;">
-  <a href="第07章-几何变换平移旋转与缩放">← 上一章</a>
-  <a href="./">目录</a>
-  <a href="第09章-声明式CsgNode树与求值器">下一章 →</a>
+  <a href="https://znlgis.github.io/3d/OpenCSG.NET/第08章-STL导出与文件格式/第07章-几何变换平移旋转与缩放/">← 上一章</a>
+  <a href="https://znlgis.github.io/3d/OpenCSG.NET/第08章-STL导出与文件格式/">目录</a>
+  <a href="https://znlgis.github.io/3d/OpenCSG.NET/第08章-STL导出与文件格式/第09章-声明式CsgNode树与求值器/">下一章 →</a>
 </div>

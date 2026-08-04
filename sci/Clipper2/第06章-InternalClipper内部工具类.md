@@ -437,4 +437,4 @@ internal static long CheckCastInt64(double val)
 
 ---
 
-[上一章：枚举类型与常量](../第05章-枚举类型与常量) | [返回目录](../index) | [下一章：高精度运算](../第07章-高精度运算)
+[上一章：枚举类型与常量](https://znlgis.github.io/sci/Clipper2/第05章-枚举类型与常量/) | [返回目录](https://znlgis.github.io/sci/Clipper2/) | [下一章：高精度运算](https://znlgis.github.io/sci/Clipper2/第07章-高精度运算/)

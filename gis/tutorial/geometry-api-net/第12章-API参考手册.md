@@ -611,8 +611,8 @@ public enum GeometryType
 ---
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="第11章-实战案例" style="text-decoration: none;">← 上一章</a>
-  <a href="./" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/tutorial/geometry-api-net/第12章-API参考手册/第11章-实战案例/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/tutorial/geometry-api-net/第12章-API参考手册/" style="text-decoration: none;">目录</a>
   <span></span>
 </div>
 

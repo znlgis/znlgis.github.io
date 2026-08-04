@@ -1069,16 +1069,16 @@ public class ParallelShapefileProcessor {
 
 ---
 
-[← 上一章：数据源访问与管理](../第06章-数据源访问与管理) | [返回目录](../index) | [下一章：GeoJSON处理实战 →](../第08章-GeoJSON处理实战)
+[← 上一章：数据源访问与管理](https://znlgis.github.io/gis/tutorial/geotools/第06章-数据源访问与管理/) | [返回目录](https://znlgis.github.io/gis/tutorial/geotools/) | [下一章：GeoJSON处理实战 →](https://znlgis.github.io/gis/tutorial/geotools/第08章-GeoJSON处理实战/)
 
 <!-- NAVIGATION -->
 
 ---
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="第06章-数据源访问与管理" style="text-decoration: none;">← 上一章</a>
-  <a href="./" style="text-decoration: none;">目录</a>
-  <a href="第08章-GeoJSON处理实战" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/gis/tutorial/geotools/第07章-Shapefile读写详解/第06章-数据源访问与管理/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/tutorial/geotools/第07章-Shapefile读写详解/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/tutorial/geotools/第07章-Shapefile读写详解/第08章-GeoJSON处理实战/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

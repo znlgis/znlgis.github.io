@@ -274,7 +274,7 @@ static void BuildFromConfig(string jsonPath, string stlPath)
 ---
 
 <div style="display:flex; justify-content:space-between; margin-top:3rem;">
-  <a href="第10章-参数化截面与拉伸建模">← 上一章</a>
-  <a href="./">目录</a>
-  <a href="第12章-源码剖析Solid内核与BSP算法">下一章 →</a>
+  <a href="https://znlgis.github.io/3d/OpenCSG.NET/第11章-CsgNode的JSON序列化/第10章-参数化截面与拉伸建模/">← 上一章</a>
+  <a href="https://znlgis.github.io/3d/OpenCSG.NET/第11章-CsgNode的JSON序列化/">目录</a>
+  <a href="https://znlgis.github.io/3d/OpenCSG.NET/第11章-CsgNode的JSON序列化/第12章-源码剖析Solid内核与BSP算法/">下一章 →</a>
 </div>

@@ -433,4 +433,4 @@ done
 
 ---
 
-**导航**：[← 第十五章：数据模型与错误体系](../第15章-数据模型与错误体系) ｜ [第十七章：Skill 文件与 AI 集成 →](../第17章-Skill文件与AI集成)
+**导航**：[← 第十五章：数据模型与错误体系](https://znlgis.github.io/gis/tutorial/GeoPipeAgent/第15章-数据模型与错误体系/) ｜ [第十七章：Skill 文件与 AI 集成 →](https://znlgis.github.io/gis/tutorial/GeoPipeAgent/第17章-Skill文件与AI集成/)

@@ -840,8 +840,8 @@ Clipper1 拥有完善的官方文档：
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
   <span></span>
-  <a href="./" style="text-decoration: none;">目录</a>
-  <a href="第02章-核心数据结构" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/cad/Clipper1/第01章-Clipper1概述与安装/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/cad/Clipper1/第01章-Clipper1概述与安装/第02章-核心数据结构/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

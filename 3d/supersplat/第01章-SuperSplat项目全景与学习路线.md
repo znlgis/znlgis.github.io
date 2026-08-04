@@ -199,6 +199,6 @@ SuperSplat 与 `@playcanvas/splat-transform`（命令行/库）互补：前者�
 ---
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="./" style="text-decoration: none;">目录</a>
-  <a href="第02章-3D高斯泼溅原理与PLY数据格式" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/3d/supersplat/第01章-SuperSplat项目全景与学习路线/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/3d/supersplat/第01章-SuperSplat项目全景与学习路线/第02章-3D高斯泼溅原理与PLY数据格式/" style="text-decoration: none;">下一章 →</a>
 </div>

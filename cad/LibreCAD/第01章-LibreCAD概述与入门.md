@@ -431,7 +431,7 @@ LibreCAD广泛应用于建筑设计领域：
 
 ---
 
-[下一章：安装与环境配置](../第02章-安装与环境配置)
+[下一章：安装与环境配置](https://znlgis.github.io/cad/LibreCAD/第02章-安装与环境配置/)
 
 <!-- NAVIGATION -->
 
@@ -439,8 +439,8 @@ LibreCAD广泛应用于建筑设计领域：
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
   <span></span>
-  <a href="./" style="text-decoration: none;">目录</a>
-  <a href="第02章-安装与环境配置" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/cad/LibreCAD/第01章-LibreCAD概述与入门/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/cad/LibreCAD/第01章-LibreCAD概述与入门/第02章-安装与环境配置/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

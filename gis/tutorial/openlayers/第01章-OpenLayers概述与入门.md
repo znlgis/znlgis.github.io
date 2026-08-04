@@ -970,7 +970,7 @@ const webMercatorCoord = fromLonLat([116.4074, 39.9042]);
 
 ---
 
-[返回目录](../index) | [下一章：环境搭建与快速开始 →](../第02章-环境搭建与快速开始)
+[返回目录](https://znlgis.github.io/gis/tutorial/openlayers/) | [下一章：环境搭建与快速开始 →](https://znlgis.github.io/gis/tutorial/openlayers/第02章-环境搭建与快速开始/)
 
 <!-- NAVIGATION -->
 
@@ -978,8 +978,8 @@ const webMercatorCoord = fromLonLat([116.4074, 39.9042]);
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
   <span></span>
-  <a href="./" style="text-decoration: none;">目录</a>
-  <a href="第02章-环境搭建与快速开始" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/gis/tutorial/openlayers/第01章-OpenLayers概述与入门/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/tutorial/openlayers/第01章-OpenLayers概述与入门/第02章-环境搭建与快速开始/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

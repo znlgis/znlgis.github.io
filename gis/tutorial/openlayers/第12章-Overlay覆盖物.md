@@ -565,16 +565,16 @@ overlayManager.clear();
 
 ---
 
-[← 上一章：Interaction交互系统](../第11章-Interaction交互系统) | [返回目录](../index) | [下一章：地图事件与动画 →](../第13章-地图事件与动画)
+[← 上一章：Interaction交互系统](https://znlgis.github.io/gis/tutorial/openlayers/第11章-Interaction交互系统/) | [返回目录](https://znlgis.github.io/gis/tutorial/openlayers/) | [下一章：地图事件与动画 →](https://znlgis.github.io/gis/tutorial/openlayers/第13章-地图事件与动画/)
 
 <!-- NAVIGATION -->
 
 ---
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="第11章-Interaction交互系统" style="text-decoration: none;">← 上一章</a>
-  <a href="./" style="text-decoration: none;">目录</a>
-  <a href="第13章-地图事件与动画" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/gis/tutorial/openlayers/第12章-Overlay覆盖物/第11章-Interaction交互系统/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/tutorial/openlayers/第12章-Overlay覆盖物/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/tutorial/openlayers/第12章-Overlay覆盖物/第13章-地图事件与动画/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

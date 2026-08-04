@@ -285,9 +285,9 @@ processing.run("qgis:importintopostgis", {
 ---
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="第15章-与GeoServer集成" style="text-decoration: none;">← 上一章</a>
-  <a href="./" style="text-decoration: none;">目录</a>
-  <a href="第17章-编程语言集成" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/gis/tutorial/postgis/第16章-与QGIS集成/第15章-与GeoServer集成/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/tutorial/postgis/第16章-与QGIS集成/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/tutorial/postgis/第16章-与QGIS集成/第17章-编程语言集成/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

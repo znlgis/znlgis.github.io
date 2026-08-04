@@ -288,7 +288,7 @@ Console.WriteLine($"实例数: {beams.Instances.Count}, 包围盒尺寸: {bounds
 ---
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="第05章-几何与网格建模" style="text-decoration: none;">← 上一章</a>
-  <a href="./" style="text-decoration: none;">目录</a>
-  <a href="第07章-文件IO与三维数据格式" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/3d/ara3d-sdk/第06章-场景模型Models与实例化渲染/第05章-几何与网格建模/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/3d/ara3d-sdk/第06章-场景模型Models与实例化渲染/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/3d/ara3d-sdk/第06章-场景模型Models与实例化渲染/第07章-文件IO与三维数据格式/" style="text-decoration: none;">下一章 →</a>
 </div>

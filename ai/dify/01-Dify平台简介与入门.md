@@ -401,8 +401,8 @@ Dify 采用现代化的微服务架构，主要组件包括：
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
   <span></span>
-  <a href="./" style="text-decoration: none;">目录</a>
-  <a href="02-Dify平台部署与环境配置" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/ai/dify/01-Dify平台简介与入门/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/ai/dify/01-Dify平台简介与入门/02-Dify平台部署与环境配置/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

@@ -518,4 +518,4 @@ public PointD(Point64 pt, double scale)
 
 ---
 
-[上一章：Clipper64裁剪类详解](../第12章-Clipper64裁剪类详解) | [返回目录](../index) | [下一章：布尔运算执行流程](../第14章-布尔运算执行流程)
+[上一章：Clipper64裁剪类详解](https://znlgis.github.io/sci/Clipper2/第12章-Clipper64裁剪类详解/) | [返回目录](https://znlgis.github.io/sci/Clipper2/) | [下一章：布尔运算执行流程](https://znlgis.github.io/sci/Clipper2/第14章-布尔运算执行流程/)

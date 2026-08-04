@@ -437,9 +437,9 @@ public class LayerViewModel : INotifyPropertyChanged
 ---
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="第12章-WinForms桌面应用开发" style="text-decoration: none;">← 上一章</a>
-  <a href="./" style="text-decoration: none;">目录</a>
-  <a href="第14章-ASP.NET-Web应用开发" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/gis/tutorial/SharpMap/第13章-WPF桌面应用开发/第12章-WinForms桌面应用开发/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/tutorial/SharpMap/第13章-WPF桌面应用开发/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/tutorial/SharpMap/第13章-WPF桌面应用开发/第14章-ASP.NET-Web应用开发/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

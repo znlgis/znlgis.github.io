@@ -759,8 +759,8 @@ image.Save("themed_map.png");
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
   <span></span>
-  <a href="./" style="text-decoration: none;">目录</a>
-  <a href="第02章-环境配置与项目创建" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/gis/tutorial/SharpMap/第01章-SharpMap概述与入门/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/tutorial/SharpMap/第01章-SharpMap概述与入门/第02章-环境配置与项目创建/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

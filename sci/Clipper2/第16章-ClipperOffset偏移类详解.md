@@ -676,4 +676,4 @@ co.Execute(10, result);
 
 ---
 
-[上一章：填充规则详解](../第15章-填充规则详解) | [返回目录](../index) | [下一章：RectClip矩形裁剪优化](../第17章-RectClip矩形裁剪优化)
+[上一章：填充规则详解](https://znlgis.github.io/sci/Clipper2/第15章-填充规则详解/) | [返回目录](https://znlgis.github.io/sci/Clipper2/) | [下一章：RectClip矩形裁剪优化](https://znlgis.github.io/sci/Clipper2/第17章-RectClip矩形裁剪优化/)

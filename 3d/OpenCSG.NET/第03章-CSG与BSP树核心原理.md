@@ -182,7 +182,7 @@ OpenCSG.NET 的 `Tree.cs` 采用了来自 DotNetCsg 的**迭代式实现**：用
 ---
 
 <div style="display:flex; justify-content:space-between; margin-top:3rem;">
-  <a href="第02章-环境搭建与第一个程序">← 上一章</a>
-  <a href="./">目录</a>
-  <a href="第04章-数学与几何基础类型">下一章 →</a>
+  <a href="https://znlgis.github.io/3d/OpenCSG.NET/第03章-CSG与BSP树核心原理/第02章-环境搭建与第一个程序/">← 上一章</a>
+  <a href="https://znlgis.github.io/3d/OpenCSG.NET/第03章-CSG与BSP树核心原理/">目录</a>
+  <a href="https://znlgis.github.io/3d/OpenCSG.NET/第03章-CSG与BSP树核心原理/第04章-数学与几何基础类型/">下一章 →</a>
 </div>

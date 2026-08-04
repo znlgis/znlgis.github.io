@@ -741,4 +741,4 @@ public enum PropertyType
 
 ---
 
-[上一章：项目部署与发布指南](../第17章-项目部署与发布指南) | [下一章：常见问题与解决方案](../第19章-常见问题与解决方案)
+[上一章：项目部署与发布指南](https://znlgis.github.io/cad/FY_Layout/第17章-项目部署与发布指南/) | [下一章：常见问题与解决方案](https://znlgis.github.io/cad/FY_Layout/第19章-常见问题与解决方案/)

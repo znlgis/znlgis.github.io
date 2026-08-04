@@ -878,9 +878,9 @@ class PropertyEditor {
 ---
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="第04章-场景编辑与模型管理" style="text-decoration: none;">← 上一章</a>
-  <a href="./" style="text-decoration: none;">目录</a>
-  <a href="第06章-粒子系统与天气系统" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/cad/Astral3D/第05章-BIM轻量化与CAD解析/第04章-场景编辑与模型管理/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/Astral3D/第05章-BIM轻量化与CAD解析/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/cad/Astral3D/第05章-BIM轻量化与CAD解析/第06章-粒子系统与天气系统/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

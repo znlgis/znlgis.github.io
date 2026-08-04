@@ -240,7 +240,7 @@ Console.WriteLine($"面数：{solid.Polygons.Count}");
 ---
 
 <div style="display:flex; justify-content:space-between; margin-top:3rem;">
-  <a href="第08章-STL导出与文件格式">← 上一章</a>
-  <a href="./">目录</a>
-  <a href="第10章-参数化截面与拉伸建模">下一章 →</a>
+  <a href="https://znlgis.github.io/3d/OpenCSG.NET/第09章-声明式CsgNode树与求值器/第08章-STL导出与文件格式/">← 上一章</a>
+  <a href="https://znlgis.github.io/3d/OpenCSG.NET/第09章-声明式CsgNode树与求值器/">目录</a>
+  <a href="https://znlgis.github.io/3d/OpenCSG.NET/第09章-声明式CsgNode树与求值器/第10章-参数化截面与拉伸建模/">下一章 →</a>
 </div>

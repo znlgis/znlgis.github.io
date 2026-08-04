@@ -30,33 +30,33 @@ title: Esri Geometry API for Java 完整教程
 
 | 章节 | 标题 | 描述 |
 |-----|------|------|
-| [第01章](第01章-框架概述与设计理念) | 框架概述与设计理念 | 框架介绍、设计理念、架构分析 |
-| [第02章](第02章-快速入门与环境配置) | 快速入门与环境配置 | 环境搭建、项目创建、Hello World |
-| [第03章](第03章-几何对象详解) | 几何对象详解 | Point、Polyline、Polygon 等 |
+| [第01章](https://znlgis.github.io/gis/tutorial/geometry-api-java/第01章-框架概述与设计理念/) | 框架概述与设计理念 | 框架介绍、设计理念、架构分析 |
+| [第02章](https://znlgis.github.io/gis/tutorial/geometry-api-java/第02章-快速入门与环境配置/) | 快速入门与环境配置 | 环境搭建、项目创建、Hello World |
+| [第03章](https://znlgis.github.io/gis/tutorial/geometry-api-java/第03章-几何对象详解/) | 几何对象详解 | Point、Polyline、Polygon 等 |
 
 ### 核心功能
 
 | 章节 | 标题 | 描述 |
 |-----|------|------|
-| [第04章](第04章-空间操作详解) | 空间操作详解 | Buffer、Union、Intersection 等 |
-| [第05章](第05章-空间关系判断) | 空间关系判断 | Contains、Intersects、Relate 等 |
-| [第06章](第06章-数据格式转换) | 数据格式转换 | JSON、GeoJSON、WKT、WKB |
-| [第07章](第07章-坐标系与空间参考) | 坐标系与空间参考 | SpatialReference、投影、测地计算 |
+| [第04章](https://znlgis.github.io/gis/tutorial/geometry-api-java/第04章-空间操作详解/) | 空间操作详解 | Buffer、Union、Intersection 等 |
+| [第05章](https://znlgis.github.io/gis/tutorial/geometry-api-java/第05章-空间关系判断/) | 空间关系判断 | Contains、Intersects、Relate 等 |
+| [第06章](https://znlgis.github.io/gis/tutorial/geometry-api-java/第06章-数据格式转换/) | 数据格式转换 | JSON、GeoJSON、WKT、WKB |
+| [第07章](https://znlgis.github.io/gis/tutorial/geometry-api-java/第07章-坐标系与空间参考/) | 坐标系与空间参考 | SpatialReference、投影、测地计算 |
 
 ### 高级特性
 
 | 章节 | 标题 | 描述 |
 |-----|------|------|
-| [第08章](第08章-OGC兼容开发) | OGC 兼容开发 | OGC Simple Feature 规范支持 |
-| [第09章](第09章-性能优化与加速) | 性能优化与加速 | 几何加速、空间索引、批量处理 |
-| [第10章](第10章-大数据集成) | 大数据集成 | Hadoop、Spark、Hive 集成 |
+| [第08章](https://znlgis.github.io/gis/tutorial/geometry-api-java/第08章-OGC兼容开发/) | OGC 兼容开发 | OGC Simple Feature 规范支持 |
+| [第09章](https://znlgis.github.io/gis/tutorial/geometry-api-java/第09章-性能优化与加速/) | 性能优化与加速 | 几何加速、空间索引、批量处理 |
+| [第10章](https://znlgis.github.io/gis/tutorial/geometry-api-java/第10章-大数据集成/) | 大数据集成 | Hadoop、Spark、Hive 集成 |
 
 ### 实战与扩展
 
 | 章节 | 标题 | 描述 |
 |-----|------|------|
-| [第11章](第11章-开发实战案例) | 开发实战案例 | 地理围栏、POI 查询、轨迹分析 |
-| [第12章](第12章-扩展开发指南) | 扩展开发指南 | 自定义算子、格式扩展、库集成 |
+| [第11章](https://znlgis.github.io/gis/tutorial/geometry-api-java/第11章-开发实战案例/) | 开发实战案例 | 地理围栏、POI 查询、轨迹分析 |
+| [第12章](https://znlgis.github.io/gis/tutorial/geometry-api-java/第12章-扩展开发指南/) | 扩展开发指南 | 自定义算子、格式扩展、库集成 |
 
 ## 快速开始
 
@@ -174,4 +174,4 @@ geometry-api-java 使用 [Apache License 2.0](https://www.apache.org/licenses/LI
 
 ---
 
-开始学习：[第01章 - 框架概述与设计理念 →](第01章-框架概述与设计理念)
+开始学习：[第01章 - 框架概述与设计理念 →](https://znlgis.github.io/gis/tutorial/geometry-api-java/第01章-框架概述与设计理念/)

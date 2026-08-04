@@ -5,21 +5,21 @@ title: SqlSugar 教程目录
 
 # SqlSugar 教程目录
 
-- [第一章：SqlSugar 简介与快速入门](第01章-SqlSugar简介与快速入门)
-- [第二章：环境配置与项目集成](第02章-环境配置与项目集成)
-- [第三章：数据库连接与配置](第03章-数据库连接与配置)
-- [第四章：实体类与CodeFirst](第04章-实体类与CodeFirst)
-- [第五章：基础CRUD操作](第05章-基础CRUD操作)
-- [第六章：高级查询与Lambda表达式](第06章-高级查询与Lambda表达式)
-- [第七章：多表联查与导航属性](第07章-多表联查与导航属性)
-- [第八章：事务处理](第08章-事务处理)
-- [第九章：分页查询与性能优化](第09章-分页查询与性能优化)
-- [第十章：分表分库与多租户](第10章-分表分库与多租户)
-- [第十一章：AOP与日志监控](第11章-AOP与日志监控)
-- [第十二章：DbFirst与代码生成](第12章-DbFirst与代码生成)
-- [第十三章：多数据库支持](第13章-多数据库支持)
-- [第十四章：仓储模式与依赖注入](第14章-仓储模式与依赖注入)
-- [第十五章：高级特性与最佳实践](第15章-高级特性与最佳实践)
+- [第一章：SqlSugar 简介与快速入门](https://znlgis.github.io/csharp/SqlSugar/第01章-SqlSugar简介与快速入门/)
+- [第二章：环境配置与项目集成](https://znlgis.github.io/csharp/SqlSugar/第02章-环境配置与项目集成/)
+- [第三章：数据库连接与配置](https://znlgis.github.io/csharp/SqlSugar/第03章-数据库连接与配置/)
+- [第四章：实体类与CodeFirst](https://znlgis.github.io/csharp/SqlSugar/第04章-实体类与CodeFirst/)
+- [第五章：基础CRUD操作](https://znlgis.github.io/csharp/SqlSugar/第05章-基础CRUD操作/)
+- [第六章：高级查询与Lambda表达式](https://znlgis.github.io/csharp/SqlSugar/第06章-高级查询与Lambda表达式/)
+- [第七章：多表联查与导航属性](https://znlgis.github.io/csharp/SqlSugar/第07章-多表联查与导航属性/)
+- [第八章：事务处理](https://znlgis.github.io/csharp/SqlSugar/第08章-事务处理/)
+- [第九章：分页查询与性能优化](https://znlgis.github.io/csharp/SqlSugar/第09章-分页查询与性能优化/)
+- [第十章：分表分库与多租户](https://znlgis.github.io/csharp/SqlSugar/第10章-分表分库与多租户/)
+- [第十一章：AOP与日志监控](https://znlgis.github.io/csharp/SqlSugar/第11章-AOP与日志监控/)
+- [第十二章：DbFirst与代码生成](https://znlgis.github.io/csharp/SqlSugar/第12章-DbFirst与代码生成/)
+- [第十三章：多数据库支持](https://znlgis.github.io/csharp/SqlSugar/第13章-多数据库支持/)
+- [第十四章：仓储模式与依赖注入](https://znlgis.github.io/csharp/SqlSugar/第14章-仓储模式与依赖注入/)
+- [第十五章：高级特性与最佳实践](https://znlgis.github.io/csharp/SqlSugar/第15章-高级特性与最佳实践/)
 
 ---
 

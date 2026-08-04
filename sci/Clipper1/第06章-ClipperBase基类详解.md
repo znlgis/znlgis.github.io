@@ -631,4 +631,4 @@ ClipperBase 是 Clipper 的基础架构类：
 
 ---
 
-[上一章：Int128高精度运算](../第05章-Int128高精度运算) | [返回目录](../index) | [下一章：TEdge边缘结构](../第07章-TEdge边缘结构)
+[上一章：Int128高精度运算](https://znlgis.github.io/sci/Clipper1/第05章-Int128高精度运算/) | [返回目录](https://znlgis.github.io/sci/Clipper1/) | [下一章：TEdge边缘结构](https://znlgis.github.io/sci/Clipper1/第07章-TEdge边缘结构/)

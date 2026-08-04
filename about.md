@@ -81,29 +81,29 @@ title: 关于
 ## 🎓 学习路线推荐
 
 ### 🌱 GIS 入门路线
-1. [GIS 基础](gis/basic/) → 了解数据格式与地图服务
-2. [QGIS 教程](gis/tutorial/qgis/) → 掌握桌面 GIS
-3. [GDAL 教程](gis/tutorial/gdal/) → 学会空间数据处理
-4. [PostGIS 教程](gis/tutorial/postgis/) → 空间数据库
-5. [GeoServer 教程](gis/tutorial/geoserver/) → 发布地图服务
-6. [OpenLayers 教程](gis/tutorial/openlayers/) → WebGIS 开发
+1. [GIS 基础](https://znlgis.github.io/about/gis/basic/) → 了解数据格式与地图服务
+2. [QGIS 教程](https://znlgis.github.io/about/gis/tutorial/qgis/) → 掌握桌面 GIS
+3. [GDAL 教程](https://znlgis.github.io/about/gis/tutorial/gdal/) → 学会空间数据处理
+4. [PostGIS 教程](https://znlgis.github.io/about/gis/tutorial/postgis/) → 空间数据库
+5. [GeoServer 教程](https://znlgis.github.io/about/gis/tutorial/geoserver/) → 发布地图服务
+6. [OpenLayers 教程](https://znlgis.github.io/about/gis/tutorial/openlayers/) → WebGIS 开发
 
 ### 🔧 .NET GIS 开发路线
-1. [NetTopologySuite](gis/tutorial/NetTopologySuite/) → .NET 空间计算
-2. [GDAL C# 绑定](gis/tutorial/gdal/) → 数据读写
-3. [SharpMap](gis/tutorial/SharpMap/) / [Mapsui](gis/tutorial/Mapsui/) → 地图渲染
-4. [OpenGIS Utils for .NET](gis/tutorial/opengis-utils-for-net/) → GIS 工具库
+1. [NetTopologySuite](https://znlgis.github.io/about/gis/tutorial/NetTopologySuite/) → .NET 空间计算
+2. [GDAL C# 绑定](https://znlgis.github.io/about/gis/tutorial/gdal/) → 数据读写
+3. [SharpMap](https://znlgis.github.io/about/gis/tutorial/SharpMap/) / [Mapsui](https://znlgis.github.io/about/gis/tutorial/Mapsui/) → 地图渲染
+4. [OpenGIS Utils for .NET](https://znlgis.github.io/about/gis/tutorial/opengis-utils-for-net/) → GIS 工具库
 
 ### 🏗️ CAD 开发路线
-1. [FreeCAD 教程](cad/FreeCAD/) → 参数化建模入门
-2. [OCCT 教程](cad/occt/) → 几何内核深入
-3. [CadQuery 教程](cad/cadquery/) → Python 参数化CAD
-4. 选择领域深化：PCB([KiCad](cad/KiCad/)) / BIM([Xbim](cad/Xbim/)) / 机械
+1. [FreeCAD 教程](https://znlgis.github.io/about/cad/FreeCAD/) → 参数化建模入门
+2. [OCCT 教程](https://znlgis.github.io/about/cad/occt/) → 几何内核深入
+3. [CadQuery 教程](https://znlgis.github.io/about/cad/cadquery/) → Python 参数化CAD
+4. 选择领域深化：PCB([KiCad](https://znlgis.github.io/about/cad/KiCad/)) / BIM([Xbim](https://znlgis.github.io/about/cad/Xbim/)) / 机械
 
 ### 🤖 AI 应用路线
-1. [Dify 平台](ai/dify/) → 低代码 AI 应用
-2. [OpenClaw](ai/openclaw/) → 多智能体网关
-3. [superpowers-zh](ai/superpowers-zh/) → AI 辅助开发实践
+1. [Dify 平台](https://znlgis.github.io/about/ai/dify/) → 低代码 AI 应用
+2. [OpenClaw](https://znlgis.github.io/about/ai/openclaw/) → 多智能体网关
+3. [superpowers-zh](https://znlgis.github.io/about/ai/superpowers-zh/) → AI 辅助开发实践
 
 ---
 

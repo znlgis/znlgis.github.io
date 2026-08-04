@@ -5,14 +5,14 @@ title: IFoxCAD 教程目录
 
 # IFoxCAD 教程目录
 
-- [第一章：IFoxCAD概述与入门](第01章-IFoxCAD概述与入门)
-- [第二章：DBTrans事务管理核心教程](第02章-DBTrans事务管理核心教程)
-- [第三章：SymbolTable符号表操作教程](第03章-SymbolTable符号表操作教程)
-- [第四章：选择集过滤器与图元选择教程](第04章-选择集过滤器与图元选择教程)
-- [第五章：扩展数据与字典操作教程](第05章-扩展数据与字典操作教程)
-- [第六章：扩展方法与实用工具教程](第06章-扩展方法与实用工具教程)
-- [第七章：图元操作与几何处理教程](第07章-图元操作与几何处理教程)
-- [第八章：IFoxCAD开发实战案例教程](第08章-IFoxCAD开发实战案例教程)
+- [第一章：IFoxCAD概述与入门](https://znlgis.github.io/cad/IFoxCAD/第01章-IFoxCAD概述与入门/)
+- [第二章：DBTrans事务管理核心教程](https://znlgis.github.io/cad/IFoxCAD/第02章-DBTrans事务管理核心教程/)
+- [第三章：SymbolTable符号表操作教程](https://znlgis.github.io/cad/IFoxCAD/第03章-SymbolTable符号表操作教程/)
+- [第四章：选择集过滤器与图元选择教程](https://znlgis.github.io/cad/IFoxCAD/第04章-选择集过滤器与图元选择教程/)
+- [第五章：扩展数据与字典操作教程](https://znlgis.github.io/cad/IFoxCAD/第05章-扩展数据与字典操作教程/)
+- [第六章：扩展方法与实用工具教程](https://znlgis.github.io/cad/IFoxCAD/第06章-扩展方法与实用工具教程/)
+- [第七章：图元操作与几何处理教程](https://znlgis.github.io/cad/IFoxCAD/第07章-图元操作与几何处理教程/)
+- [第八章：IFoxCAD开发实战案例教程](https://znlgis.github.io/cad/IFoxCAD/第08章-IFoxCAD开发实战案例教程/)
 
 ---
 

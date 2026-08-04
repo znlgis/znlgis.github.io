@@ -1247,6 +1247,6 @@ pi --theme dracula
 - **Prompt Templates：** 轻量级的参数化提示文本，通过 `{{参数}}` 占位符和 `{{#if}}` 条件渲染支持动态内容。与 Skill 的核心区别：Prompt Template 直接作为用户消息发送（而不注入系统提示词），由用户（而非 Agent 自我判断）触发。
 - **Themes 主题系统：** 内置 `dark` 和 `light` 主题，支持自定义 JSON 主题文件（定义 20+ 颜色字段和 6 个 UI 样式字段）。支持热重载（改文件即刻生效），通过 CLI 参数、settings.json、`/theme` 命令或 `Ctrl+T` 快捷键快速切换。
 
-下一章：[第九章：Extensions扩展开发](09-Extensions扩展开发) 将深入 Pi 的 **Extensions 扩展系统**——学习如何编写 TypeScript 扩展来注册自定义工具、监听生命周期事件、构建自定义 TUI 组件，真正将 Pi 改造成你专属的编码 Agent。
+下一章：[第九章：Extensions扩展开发](https://znlgis.github.io/ai/pi/08-Skills技能系统/09-Extensions扩展开发/) 将深入 Pi 的 **Extensions 扩展系统**——学习如何编写 TypeScript 扩展来注册自定义工具、监听生命周期事件、构建自定义 TUI 组件，真正将 Pi 改造成你专属的编码 Agent。
 
 {% endraw %}
