@@ -189,6 +189,9 @@
     - title: SqlSugar
       icon: 📁
       url: /csharp/SqlSugar/
+    - title: Sentry
+      icon: 📁
+      url: /csharp/sentry/
 
 - title: AI 系列
   icon: 🤖
