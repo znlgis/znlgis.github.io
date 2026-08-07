@@ -41,6 +41,9 @@ title: Lin.ear th.inking 博客翻译进度
 | JTS 中的约束 Delaunay 三角剖分 | 2014年 | [2014-Constrained-Delaunay-Triangulation.md](https://znlgis.github.io/gis/lin-ear-th-inking/PROGRESS/2014-Constrained-Delaunay-Triangulation/) |
 | JTS 中的距离度量与形状相似性 | 2016年 | [2016-Distance-Metrics-Shape-Similarity.md](https://znlgis.github.io/gis/lin-ear-th-inking/PROGRESS/2016-Distance-Metrics-Shape-Similarity/) |
 | JTS 精度模型与数值鲁棒性 | 2017年 | [2017-Precision-Model-Robustness.md](https://znlgis.github.io/gis/lin-ear-th-inking/PROGRESS/2017-Precision-Model-Robustness/) |
+| RelateNG 性能测试 | 2024年5月 | [2024-RelateNG-Performance.md](https://znlgis.github.io/gis/lin-ear-th-inking/PROGRESS/2024-RelateNG-Performance/) |
+| Hausdorff 距离的挑战 | 2026年2月 | [2026-Hausdorff-Distance-Challenge.md](https://znlgis.github.io/gis/lin-ear-th-inking/PROGRESS/2026-Hausdorff-Distance-Challenge/) |
+| JTS 中的快速 Hausdorff 距离与 isFullyWithinDistance | 2026年3月 | [2026-Fast-Hausdorff-Distance-JTS.md](https://znlgis.github.io/gis/lin-ear-th-inking/PROGRESS/2026-Fast-Hausdorff-Distance-JTS/) |
 
 ## 已知但未翻译的文章 📋
 
@@ -48,7 +51,7 @@ title: Lin.ear th.inking 博客翻译进度
 
 ## 翻译状态
 
-**已完成翻译**: 28 篇核心技术文章
+**已完成翻译**: 31 篇核心技术文章
 
 剩余的主要是年度回顾等非技术性文章。
 
@@ -90,6 +93,7 @@ title: Lin.ear th.inking 博客翻译进度
 
 ## 更新日志
 
+- **2026-08-07**: 第六批翻译，新增 3 篇文章（Hausdorff 距离挑战、快速 Hausdorff 距离实现、RelateNG 性能测试）
 - **2025-12-31**: 第五批翻译，新增 4 篇文章（2012 年度回顾、约束 Delaunay 三角剖分、距离度量与形状相似性、精度模型与鲁棒性）
 - **2025-12-31**: 第四批翻译，新增 4 篇文章（修复无效几何、TestBuilder GUI、PreparedGeometry 性能、Java/JVM 在 OSCON）
 - **2025-12-31**: 第三批翻译，新增 4 篇文章（可变距离缓冲区、JTS 设计原则、随机点生成、均匀分布随机点）

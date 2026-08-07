@@ -19,12 +19,17 @@ title: Lin.ear th.inking 博客翻译
 
 ## 文章列表
 
+### 2026年文章
+- [JTS 中的快速 Hausdorff 距离与 isFullyWithinDistance](https://znlgis.github.io/gis/lin-ear-th-inking/2026-Fast-Hausdorff-Distance-JTS/) - 全新的高性能有向 Hausdorff 距离算法
+- [Hausdorff 距离的挑战](https://znlgis.github.io/gis/lin-ear-th-inking/2026-Hausdorff-Distance-Challenge/) - Hausdorff 距离概念详解与实现难点分析
+
 ### 2025年文章
 - [JTS 中的 Coverage 清理](https://znlgis.github.io/gis/lin-ear-th-inking/2025-Coverage-Cleaning-in-JTS/) - 介绍 JTS 的多边形覆盖清理功能
 - [使用 JTS 快速检测狭窄多边形](https://znlgis.github.io/gis/lin-ear-th-inking/2025-Fast-Detection-Narrow-Polygons/) - 利用最大内切圆检测狭窄多边形
 
 ### 2024年文章
 - [JTS 拓扑关系 - 下一代 (RelateNG)](https://znlgis.github.io/gis/lin-ear-th-inking/2024-JTS-Topological-Relationships-RelateNG/) - DE-9IM 模型的新实现
+- [RelateNG 性能测试](https://znlgis.github.io/gis/lin-ear-th-inking/2024-RelateNG-Performance/) - RelateNG 在所有几何类型组合上的性能评测
 
 ### 2023年文章
 - [JTS 中的 Alpha Shapes](https://znlgis.github.io/gis/lin-ear-th-inking/2023-Alpha-Shapes-in-JTS/) - 凹包算法详解
