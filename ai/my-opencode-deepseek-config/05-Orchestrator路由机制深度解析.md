@@ -374,7 +374,8 @@ Orchestrator prompt 中定义了五条模型选择原则，构成了一个完整
 
 ### 5.5.2 层级分布
 
-Pro 层（6 个 Agent）：
+Pro 层（含 Orchestrator 共 7 个 Agent）：
+- 1 个调度者：orchestrator（入口 Agent，负责路由与协调）
 - 3 个执行者：planner、deep-worker、ui-builder
 - 2 个分析者：oracle、reviewer（均为只读）
 - 1 个咨询者：consultant
@@ -558,6 +559,8 @@ Orchestrator prompt 中包含一条特殊的直通规则：
 /oracle    → oracle             "Analyze and find the root cause of the following."
 /consult   → consultant         "Provide options and advice for the following."
 ```
+
+> **注意**：以上 8 条是 Orchestrator prompt 中显式列出的直通命令。`opencode.jsonc` 完整配置中实际定义了 18 条命令别名（详见第七章《命令别名完整指南》），涵盖 `/spec-propose`、`/spec-apply`、`/codemap` 等更多场景。Orchestrator 直通规则仅覆盖这 8 条最常用的 Agent 路由命令，其余命令由框架层面直接解析。
 
 ### 5.8.3 后台派发与结果合成
 
@@ -751,7 +754,7 @@ Phase 0 意图门控: 复合请求 — 包含 research、analysis、implementati
 
 ## 5.10 小结
 
-Orchestrator 的路由机制是整个 `my-opencode-deepseek-config` 配置中设计最密集、逻辑最精妙的部分。它以不到 130 行的 prompt 文本，构建了一个完整的任务调度系统：
+Orchestrator 的路由机制是整个 `my-opencode-deepseek-config` 配置中设计最密集、逻辑最精妙的部分。它以仅 86 行的 prompt 文本，构建了一个完整的任务调度系统：
 
 - **Phase 0 意图门控**防止动作误判，确保系统先理解再行动
 - **六类任务分类系统**为每种请求找到最合适的 Agent 链

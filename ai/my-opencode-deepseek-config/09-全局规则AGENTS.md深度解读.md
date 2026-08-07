@@ -5,9 +5,9 @@ title: 第九章：全局规则 AGENTS.md 深度解读
 
 # 第九章：全局规则 AGENTS.md 深度解读
 
-AGENTS.md 是本配置体系中**最重要、最基础**的单一文件——它定义了所有 Agent 共享的行为基线。本章将以 229 行原文为线索，从设计哲学、具体规则、工程实践三个维度逐条深度解读。读完本章，你将不仅理解"规则是什么"，更能理解"为什么这样设计"以及"这些规则如何在日常协作中约束和指导 Agent 行为"。
+AGENTS.md 是本配置体系中**最重要、最基础**的单一文件——它定义了所有 Agent 共享的行为基线。本章将以 212 行原文为线索，从设计哲学、具体规则、工程实践三个维度逐条深度解读。读完本章，你将不仅理解"规则是什么"，更能理解"为什么这样设计"以及"这些规则如何在日常协作中约束和指导 Agent 行为"。
 
-> 本章内容基于 [znlgis/my-opencode-deepseek-config](https://github.com/znlgis/my-opencode-deepseek-config) 仓库中的 `AGENTS.md` 文件（229 行）逐条解读。实际规则可能随仓库迭代更新，请以仓库最新版本为准。
+> 本章内容基于 [znlgis/my-opencode-deepseek-config](https://github.com/znlgis/my-opencode-deepseek-config) 仓库中的 `AGENTS.md` 文件（212 行）逐条解读。实际规则可能随仓库迭代更新，请以仓库最新版本为准。
 
 ---
 
@@ -48,21 +48,21 @@ AGENTS.md（全局基线） → Agent prompt（角色专属） → 默认行为
 
 这个设计体现了软件工程中的 DRY 原则（Don't Repeat Yourself）在提示工程（Prompt Engineering）领域的应用。
 
-### 9.1.4 229 行的演进历程
+### 9.1.4 212 行的演进历程
 
-AGENTS.md 并非一次性写就。根据项目文档，当前版本（v19）的 229 行是从早期版本的约 292 行精简而来，精简幅度约 **22%**。这一缩减过程本身反映了配置迭代的核心思路：
+AGENTS.md 并非一次性写就。当前版本的 212 行从早期版本的约 292 行精简而来，精简幅度约 **27%**。这一缩减过程本身反映了配置迭代的核心思路：
 
 - **删减冗余**：识别并合并重复表达的规则
 - **精炼表述**：将冗长的解释压缩为简洁的指令
 - **去除过时内容**：随着 OpenCode 框架的演进，某些规则已被框架本身内置
 
-229 行是一个非常有意识的选择——它在"足够详尽"和"Token 经济"之间找到了平衡点。
+212 行是一个非常有意识的选择——它在"足够详尽"和"Token 经济"之间找到了平衡点。
 
 ---
 
 ## 9.2 核心原则（Core Principles）逐条解读
 
-核心原则是 AGENTS.md 的灵魂——8 条原则覆盖了 Agent 行为的最底层逻辑。每一条原则背后都有深刻的工程洞察。
+核心原则是 AGENTS.md 的灵魂——10 条原则覆盖了 Agent 行为的最底层逻辑。每一条原则背后都有深刻的工程洞察。
 
 ### 原则 1：检测意图再行动
 
@@ -194,6 +194,40 @@ AGENTS.md 并非一次性写就。根据项目文档，当前版本（v19）的 
 
 **"No extra verification loops"**：验证通过就停止，不要反复验证。Agent 有时会陷入"我再检查一遍……还是不放心……再查一下"的循环，这不仅浪费 Token，还可能导致实际上没有意义的微调。
 
+### 原则 9：先回答再行动
+
+> **Answer first, then act.** When the user asks a question, answer it before making edits or running implementation commands. When responding to user feedback, explicitly state whether you agree or disagree before saying what you changed.
+
+这条原则定义了 Agent 在"回答问题"和"执行操作"之间的优先级：**先回答，后行动**。
+
+**典型场景**：用户问"这个 bug 是什么原因导致的？"——一个没有约束的 Agent 可能直接开始修改代码，而没有先给出诊断结论。用户看到 Agent 在改文件，却不知道 Agent 理解了什么。
+
+**正确流程**：
+1. 先给出分析结论：bug 根因是 X，因为 Y
+2. 然后（如果需要）执行修改
+
+**"Agree or disagree before saying what you changed"**：当用户给出反馈时，Agent 必须明确表达立场——同意还是不同意——然后再说自己改了什么。这个机制防止 Agent 无条件迎合用户而做出技术上不合理的修改。
+
+**设计意图**：确保用户始终在决策链中。Agent 是工具，不是自主决策者。先回答确保了用户始终有知情权和否决权。
+
+### 原则 10：保持简洁
+
+> **Be concise.** Keep answers short and direct. No fluff, no cheerful filler, no unnecessary preamble. Technical prose only.
+
+这条原则是所有输出质量的最终过滤层。它要求 Agent 的每一句回复都经过"是否必要"的检验。
+
+**禁止的内容**：
+- 寒暄性开场白（"很高兴为您服务！"、"当然可以，让我来帮您……"）
+- 过度礼貌用语（在不需要的语境下反复道歉或感谢）
+- 填充性修饰（"非常"、"极其"、"毫无疑问地"）
+- 非技术性闲聊
+
+**允许的内容**：直接、准确、技术性的回答。
+
+**Token 视角**：每一条废话都是浪费。在 10 条原则中，这是最"吝啬"的一条，但也是对 Token 效率贡献最大的一条——它不是一个独立的 Token 节约策略，而是贯穿所有 Agent 行为的输出准则。
+
+**实践意义**：这条原则让 Agent 的回复从"聊天机器人风格"转变为"工程师风格"——简短、准确、直奔主题。
+
 ---
 
 ## 9.3 语言约定
@@ -319,13 +353,78 @@ AGENTS.md 的语言约定解决了这两个问题：
 
 这句话揭示了 TODO 纪律的根本目的：**进度可视化**。在多 Agent 协作的场景下，Orchestrator 需要知道每个 Agent 的进展。TODO 列表是跨 Agent 的通用"进度语言"。
 
+### 9.5.3 后台任务卫生
+
+AGENTS.md 在 Multi-Step Task Discipline 末尾追加了一条容易被忽视但极其实用的规则：
+
+> **Background task hygiene.** Track task IDs and file ownership for every parallel dispatch. Never act on assumptions about a background task's result before it returns. Overlapping writers on the same file corrupt output.
+
+**核心要点**：
+
+| 规则 | 说明 |
+|------|------|
+| 追踪 task ID 和文件所有权 | 每次并行派发子 Agent 任务时，记录哪个任务操作了哪些文件 |
+| 不等结果不做假设 | 在后台任务返回结果之前，不能基于"猜测的结果"进行后续操作 |
+| 重叠写入破坏输出 | 两个 Agent 同时写同一个文件 = 数据损坏 |
+
+**典型事故场景**：Orchestrator 同时派发了两个 deep-worker 任务——任务 A 修改 `src/app.ts` 的第 42-50 行，任务 B 也修改 `src/app.ts` 的第 45-55 行。两个 Agent 分别基于原始文件做了修改，后完成的那个覆盖了先完成的修改，导致任务 A 的结果丢失。
+
+**防护机制**：通过 task ID 追踪文件所有权，确保同一个文件同一时间只有一个写入者。这条规则与 TODO 纪律的"一次一个 in_progress"原则形成呼应——即使在并行场景下，对同一资源的访问也必须串行化。
+
 ---
 
-## 9.6 上下文管理
+## 9.6 Git 安全
 
-上下文管理是大型语言模型应用中最关键的工程问题之一。AGENTS.md 用六条策略定义了完整的上下文管理方案。
+AGENTS.md 对 Git 操作定义了严格的安全边界，防止 Agent 在执行版本控制操作时误伤其他会话的工作：
 
-### 9.6.1 委托而非累积
+> - Only stage and commit files you modified in this session. Never `git add -A`, `git reset --hard`, `git checkout .`, or `git clean -fd` — those discard work from other sessions or tools that may share the same working directory.
+> - Before committing: inspect `git status`, `git diff --staged`, and `git log --oneline -10`. Stage only intended files.
+> - Never force-push, skip hooks (`--no-verify`), or amend commits without explicit user request.
+
+### 9.6.1 只提交自己修改的文件
+
+`git add -A`（暂存所有变更）在多会话共享同一工作目录的场景下是**灾难性操作**——它会将其他会话或工具产生的文件一并暂存和提交。
+
+**禁止的命令**及原因：
+
+| 禁止命令 | 风险 |
+|----------|------|
+| `git add -A` | 暂存所有文件，包括其他会话/工具的修改 |
+| `git reset --hard` | 丢弃所有未提交修改，包括他人正在进行的工作 |
+| `git checkout .` | 同上，以文件级别丢弃修改 |
+| `git clean -fd` | 删除所有未追踪文件，可能包括其他工具的输出 |
+
+### 9.6.2 提交前的强制检查
+
+每次提交前，Agent 必须执行三项检查：
+
+| 检查项 | 命令 | 目的 |
+|--------|------|------|
+| 工作区状态 | `git status` | 确认哪些文件被修改，是否有意外变更 |
+| 暂存区差异 | `git diff --staged` | 确认即将提交的内容是否符合预期 |
+| 提交历史 | `git log --oneline -10` | 了解最近的提交趋势，确保自己的提交与项目历史一致 |
+
+### 9.6.3 禁止的危险操作
+
+以下操作**除非用户明确要求**，否则一律禁止：
+
+- **Force push（`git push --force`）**：覆盖远程历史，可能导致协作者的工作丢失
+- **跳过 hooks（`--no-verify`）**：绕过 pre-commit、commit-msg 等质量检查钩子
+- **修改历史提交（`git commit --amend`）**：改变已存在的提交，可能破坏他人的工作基础
+
+**设计理念**：Git 是共享工作区的"公共资源"。Agent 是工作区中的一个"租户"，必须尊重其他租户的工作。这些规则确保 Agent 不会因为自动化操作而破坏多人协作的版本控制安全。
+
+---
+
+## 9.7 上下文管理
+
+上下文管理是大型语言模型应用中最关键的工程问题之一。AGENTS.md 用十一条策略定义了完整的上下文管理方案，开篇即定调：
+
+> Every token spent is a cost — treat context as a scarce budget.
+
+每一 Token 都是成本——不仅是金钱成本，更是上下文窗口的容量成本。AGENTS.md 的上下文管理策略可以归纳为四个维度：委托与隔离、并行化、压缩与复用、检索策略。
+
+### 9.7.1 委托而非累积
 
 > **Delegate, don't accumulate.** Large files should be read by subagents, not loaded into the orchestrator's context. Use explore agents for broad searches.
 
@@ -341,13 +440,26 @@ AGENTS.md 的语言约定解决了这两个问题：
 
 Orchestrator 的上下文中只保留：任务描述、子 Agent 的摘要报告、决策结果。原始文件内容留在子 Agent 的会话中。
 
-### 9.6.2 并行化独立读取
+### 9.7.2 委托契约
+
+> **Delegation contract.** Every delegation must specify the verification owner and allowed write scope. After a subagent rejects a task, adjust the scope or reassign — never retry the identical task on the same agent.
+
+这是 AGENTS.md 中一条新增的关键规则：每次向子 Agent 派发任务时，必须明确两点——
+
+| 要素 | 说明 |
+|------|------|
+| 验证负责人 | 谁负责确认子 Agent 的工作结果？通常是 Orchestrator 自身 |
+| 允许的写入范围 | 子 Agent 可以修改哪些文件？必须明确边界 |
+
+**子 Agent 拒绝后的处理**：如果子 Agent 拒绝了任务（依据任务拒绝契约），不要用同样的任务重试同一个 Agent。应当调整范围或重新分配给其他 Agent。重复派发相同任务给同一个 Agent 只会得到同样的拒绝结果。
+
+### 9.7.3 并行化独立读取
 
 > **Parallelize independent reads.** When you need 3+ independent files, fire all reads simultaneously.
 
 这条规则与核心原则 4（并行执行独立工作）呼应，但在上下文管理的语境下有额外含义：**并行读取不仅快，还是上下文管理的策略**。当 3 个文件同时加载，Agent 可以在一次推理中理解它们的关系，而非在 3 次推理中分别理解后再拼凑。
 
-### 9.6.3 积极压缩
+### 9.7.4 积极压缩
 
 > **Compress aggressively.** When a line of inquiry has run its course, compress it. Carry forward the plan and findings, not the raw exploration transcript.
 
@@ -360,7 +472,7 @@ Orchestrator 的上下文中只保留：任务描述、子 Agent 的摘要报告
 
 压缩的关键原则：**保留结论和计划，丢弃原始过程**。如果后续需要原始数据，可以重新检索，但情境上下文中只保留压缩后的结构性结论。
 
-### 9.6.4 话题隔离
+### 9.7.5 话题隔离
 
 > **One topic per subagent.** Don't ask a single subagent to do research AND implementation — split them.
 
@@ -374,33 +486,21 @@ Orchestrator 的上下文中只保留：任务描述、子 Agent 的摘要报告
 
 这条规则与核心原则 5（尊重角色边界）一脉相承，是角色分离在任务分配层面的具体化。
 
-### 9.6.5 缓存感知提示
+### 9.7.6 子 Agent 结果而非原始文件
 
-> **Cache-aware prompting.** Prefer stable, prefix-matched prompt structures so OpenCode's cache can reuse compute across sessions.
+> **Subagent results, not raw files.** Subagents return a concise summary directly — orchestrator consumes their result, not raw output files. The response is the API; file paths are for verification only.
 
-这是 OpenCode 框架层面的优化。OpenCode 会对提示内容做前缀匹配缓存——如果两次会话的提示开头相同，缓存的 KV 计算可以复用。
+这条规则定义了 Orchestrator 与子 Agent 之间的**信息传递协议**：子 Agent 返回的是**总结**，不是原始文件内容。
 
-**实践要求**：Agent prompt 和 AGENTS.md 的起始部分应保持稳定，不要频繁修改开头的文本。修改应在文件末尾追加或在中部调整。
+| 错误做法 | 正确做法 |
+|----------|----------|
+| 子 Agent 把读取的整个文件内容写入临时文件，Orchestrator 再读取 | 子 Agent 直接返回分析摘要作为响应 |
+| Orchestrator 解析子 Agent 的输出文件 | Orchestrator 消费子 Agent 的文本响应 |
+| 文件路径是结果传递的主要载体 | 文件路径仅用于验证（确认修改确实完成了） |
 
-### 9.6.6 交接技能
+**核心理念**："The response is the API"——子 Agent 的文本响应就是 API 返回值。不需要通过文件系统中转。这避免了文件 IO 的开销和中间状态管理的复杂性。
 
-> **Consider the handoff skill** when handing a long session to a fresh agent — it compresses to references rather than copying full context.
-
-长会话的 Agent 会话切换是上下文管理的一个典型场景。交接（handoff）技能的作用是：
-
-1. 将当前会话的**核心结论和待办事项**压缩为结构化引用
-2. 新 Agent 通过引用路径获取必要信息（而非复制全部上下文）
-3. 避免上下文复制导致的 Token 浪费和内容过时
-
----
-
-## 9.7 Token 效率
-
-> Every token spent is a cost.
-
-AGENTS.md 以这句话作为 Token 效率章节的开篇，直接点明了核心前提：**Token = 金钱**。不是比喻，是事实——每次 API 调用都是按 Token 计费的。
-
-### 9.7.1 引用路径不粘贴文件
+### 9.7.7 引用路径不粘贴文件
 
 > **Reference paths, don't paste files.** Point at `src/app.ts:42`, don't paste whole files into a prompt. Subagents can read what they need.
 
@@ -421,7 +521,7 @@ AGENTS.md 以这句话作为 Token 效率章节的开篇，直接点明了核心
 
 **为什么子 Agent 能自己读**：子 Agent 拥有文件读取工具，不需要 Orchestrator 代劳。Orchestrator 的职责是分配任务和制定决策，不是传递文件内容。
 
-### 9.7.2 检索优先
+### 9.7.8 检索优先
 
 > **Retrieval-first for fast-moving libraries.** Verify against official docs before coding (see the `verify-with-docs` skill). A hallucinated signature costs far more to debug than one lookup.
 
@@ -429,7 +529,7 @@ AGENTS.md 以这句话作为 Token 效率章节的开篇，直接点明了核心
 
 **解决**：在写代码之前，先花少量 Token 查官方文档确认 API 签名。一次查文档的 Token 消耗（几百 Token）远小于基于错误签名写代码然后反复调试的 Token 消耗（可能上千上万 Token）。
 
-### 9.7.3 懒加载技能和文档
+### 9.7.9 懒加载技能和文档
 
 > **Lazy-load skills and docs.** Load a skill only when its trigger fires; keep reference material on disk and pull it in on demand.
 
@@ -441,7 +541,7 @@ AGENTS.md 以这句话作为 Token 效率章节的开篇，直接点明了核心
 
 不相关的技能始终保持在磁盘上，不消耗上下文窗口。
 
-### 9.7.4 复用 Specialist 会话
+### 9.7.10 复用 Specialist 会话
 
 > **Reuse specialist sessions.** Prefer reusing an existing subagent session over spawning a fresh one — carried context saves tokens. Track `task_id` to resume sessions when returning to the same specialist.
 
@@ -454,7 +554,7 @@ AGENTS.md 以这句话作为 Token 效率章节的开篇，直接点明了核心
 
 `task_id` 是复用会话的关键——它让 Orchestrator 能定位并恢复到之前的 specialist 会话。
 
-### 9.7.5 用 Codemap 跳过盲目探索
+### 9.7.11 用 Codemap 跳过盲目探索
 
 > **Use codemap to skip blind exploration.** Before scattering `glob` calls across an unfamiliar repo, load the `codemap` skill for a structured overview.
 
@@ -971,7 +1071,7 @@ import { Button as MUiButton } from '@mui/material';
 
 ### 9.15.1 技能的懒加载设计
 
-技能的懒加载机制已在 9.7.3 节详述。这里补充一个关键设计点：AGENTS.md 仅描述了技能的**存在**和**位置**，没有描述每个技能的具体内容。技能的具体指令保存在各自的 `SKILL.md` 文件中，只在触发时加载。
+技能的懒加载机制已在 9.7.9 节详述。这里补充一个关键设计点：AGENTS.md 仅描述了技能的**存在**和**位置**，没有描述每个技能的具体内容。技能的具体指令保存在各自的 `SKILL.md` 文件中，只在触发时加载。
 
 ### 9.15.2 Superpowers 插件的特殊地位
 
@@ -987,13 +1087,20 @@ Superpowers 插件提供的技能是"过程型"的——它们指导 Agent **如
 
 ---
 
-## 9.16 自我验证
+## 9.16 自我验证与证据纪律
 
-自我验证章节与证据纪律章节是 AGENTS.md 中"质量闭环"的两个半环——一个讲**怎么验证**，一个讲**怎么证明已验证**。
+自我验证是 AGENTS.md 中"质量闭环"的核心机制——它定义了 Agent 在声称"完成"之前必须执行的验证步骤和必须提供的证据。
+
+> Before claiming any task complete:
+> 1. Re-read every modified file end-to-end — scan for leftover debug prints, TODOs, or incomplete logic.
+> 2. Grep for broken callers of any function you changed.
+> 3. Run tests if they exist; otherwise state what manual verification you did.
+>
+> Never claim "done" without evidence — a passing build, a clean lint, an end-to-end read, or a grep showing no broken callers. Evidence precedes assertion.
 
 ### 9.16.1 验证计划的定位
 
-> For non-trivial changes, load the `verification-before-completion` skill first to choose the narrowest verification path.
+对于非平凡修改，先加载 `verification-before-completion` skill，选择最窄的验证路径。
 
 **"最窄验证路径"** 的概念：不是所有修改都需要完整的回归测试套件。验证的范围应与修改的影响范围成正比。
 
@@ -1006,40 +1113,29 @@ Superpowers 插件提供的技能是"过程型"的——它们指导 Agent **如
 
 ### 9.16.2 实现前预陈述验证步骤
 
-> **Plan verification before implementing.** When you know what you'll change, pre-state the verification steps.
-
-这是一种**预承诺（Pre-commitment）**机制。在写代码之前，Agent 需要先写下"我会如何验证这个改动"。这有两个作用：
+在写代码之前，Agent 应当先规划验证步骤。这是一种**预承诺（Pre-commitment）**机制：
 
 1. **防止验证偷懒**：如果先写代码，完成后可能随便说"看起来没问题"。先写验证步骤，就有了必须执行的清单。
 2. **引导实现方向**：如果验证步骤很难设计，可能说明方案本身有问题——实现之前就暴露出设计的缺陷。
 
-### 9.16.3 四步完成检查
+### 9.16.3 三步完成检查
 
-> Before claiming any task is complete:
-> 1. Re-read every modified file from top to bottom
-> 2. Verify the change doesn't break callers
-> 3. If the project has tests, run them
-> 4. Check that you haven't introduced unused imports, variables, or parameters
-
-这四步是完成之前必须执行的**硬性检查**：
+源码中的 Self-Verification 定义了完成之前必须执行的三项检查：
 
 | 步骤 | 检查内容 | 防止的问题 |
 |------|----------|-----------|
 | 端到端重读 | 调试打印、TODO、不完整逻辑 | 留下半成品代码 |
 | grep 调用者 | 修改的函数是否还有兼容的调用者 | 破坏性 API 变更 |
-| 运行测试 | 已有测试是否全部通过 | 回归 bug |
-| 检查未使用引入 | 未使用的 import、变量、参数 | 代码污染 |
+| 运行测试 | 已有测试是否全部通过；如无测试则说明手动验证方式 | 回归 bug |
 
----
-
-## 9.17 证据纪律（Evidence Discipline）
+### 9.16.4 证据纪律
 
 > Never claim "done" without proof.
 > Evidence precedes assertion.
 
 证据纪律是 AGENTS.md 中最具"工程严谨性"的章节。它强制 Agent 在声称完成之前必须产生可验证的证据。
 
-### 9.17.1 可接受的证据类型
+### 9.16.5 可接受的证据类型
 
 > Before reporting completion, produce at least one verifiable piece of evidence that the task was actually accomplished:
 > - A test that passes, a build that succeeds, a lint check that's clean
@@ -1058,7 +1154,7 @@ Superpowers 插件提供的技能是"过程型"的——它们指导 Agent **如
 | 端到端重读确认 | 中 | 无自动检查的小修改 |
 | 手动验证记录 | 低（但比没有强） | 样式/UI 修改 |
 
-### 9.17.2 证据先于断言
+### 9.16.6 证据先于断言
 
 > If you cannot produce evidence, you are not done — state what remains and what blocker prevents verification.
 
@@ -1068,45 +1164,45 @@ Superpowers 插件提供的技能是"过程型"的——它们指导 Agent **如
 
 ---
 
-## 9.18 插件体系
+## 9.17 插件体系
 
 > Two plugins extend this configuration's capabilities.
 
 AGENTS.md 最后简要介绍了两个插件，它们扩展了配置的边界。
 
-### 9.18.1 Superpowers 插件
+### 9.17.1 Superpowers 插件
 
 > **superpowers (obra/superpowers)** — Provides process-oriented skills (brainstorming, systematic debugging, TDD, etc.). The `using-superpowers` bootstrap auto-injects into every session and enforces skill-first discipline: invoke the relevant skill before any response.
 
 Superpowers 的核心理念：**技能优先**——在任何回复之前，先检查是否有适用的技能。`using-superpowers` skill 会在每个会话中自动注入，确保 Agent 不会绕过技能体系。
 
-### 9.18.2 DCP 插件
+### 9.17.2 DCP 插件
 
-> **DCP (opencode-dcp)** — Autonomous context pruning and deduplication for the orchestrator. Compress when a task phase closes; subagent results survive pruning. Configured in `~/.config/opencode/dcp.jsonc`.
+> **DCP (`@tarquinen/opencode-dcp`)** — Autonomous context pruning and deduplication. Compress when a task phase closes; subagent results survive pruning. Tuned in `dcp.jsonc` (schema-verified against v3.1.14).
 
 DCP（Distributed Context Pruning，分布式上下文裁剪）解决的是上下文窗口管理问题：
 - 当一个任务阶段结束时，自动裁剪不再需要的上下文
 - 子 Agent 的结果会被保留（因为后续阶段可能需要引用）
 - 原始探索过程被移除（结论已压缩保留）
 
-这与 9.6.3 节（积极压缩）的策略一致，但 DCP 将其自动化了——不需要 Agent 手动决定何时压缩。
+这与 9.7.4 节（积极压缩）的策略一致，但 DCP 将其自动化了——不需要 Agent 手动决定何时压缩。
 
 ---
 
-## 9.19 AGENTS.md 的设计亮点总结
+## 9.18 AGENTS.md 的设计亮点总结
 
-回顾 229 行的 AGENTS.md，可以从以下几个维度总结其设计的精妙之处：
+回顾 212 行的 AGENTS.md，可以从以下几个维度总结其设计的精妙之处：
 
-### 9.19.1 Token 效率的极致体现
+### 9.18.1 Token 效率的极致体现
 
 AGENTS.md 的每一个词都经过精心推敲：
 - "Reference paths, don't paste files"（8 个词，省数千 Token）
 - "Every token spent is a cost"（5 个词，定调整篇的节俭哲学）
 - "Delegate, don't accumulate"（3 个词，定义了上下文管理的核心策略）
 
-全文 229 行承载了 18 个章节的完整规则体系，平均每个章节约 13 行——没有废话，没有重复。
+全文 212 行承载了 16 个章节的完整规则体系，平均每个章节约 13 行——没有废话，没有重复。
 
-### 9.19.2 行为一致性的保障
+### 9.18.2 行为一致性的保障
 
 在多 Agent 体系中，最危险的不是能力不足，而是**行为不一致**——同样的任务，oracle agent 改了文件，explore agent 也改了文件，结果相互覆盖。AGENTS.md 通过统一的全局规则消除了这种风险：
 
@@ -1114,7 +1210,7 @@ AGENTS.md 的每一个词都经过精心推敲：
 - 角色边界被严格执行（原则 5 + 拒绝契约）
 - 无论哪个 Agent 执行，行为基线一致
 
-### 9.19.3 防止 Agent "创造性越界"
+### 9.18.3 防止 Agent "创造性越界"
 
 AI Agent 最大的风险之一是**过度发挥**——在完成任务后"顺便"做更多事情：
 - 修复 bug 后"顺便"重构了模块（原则 2：最小改动）
@@ -1122,18 +1218,18 @@ AI Agent 最大的风险之一是**过度发挥**——在完成任务后"顺便
 - 修改代码后"顺便"调整了不相关的样式（原则 2：不碰无关代码）
 - 觉得当前方案不够好，"顺便"升级为"更好"的方案（原则 8：知道停止条件）
 
-AGENTS.md 的八条核心原则有五条直接或间接地防止了创造性越界。这不是偶然——这是设计者对 AI Agent 行为模式深刻洞察后的刻意设计。
+AGENTS.md 的十条核心原则有五条直接或间接地防止了创造性越界。这不是偶然——这是设计者对 AI Agent 行为模式深刻洞察后的刻意设计。
 
-### 9.19.4 团队协作的标准化基础
+### 9.18.4 团队协作的标准化基础
 
 如果把 AGENTS.md 视为一份"Agent 行为规范"，它是团队协作的契约基础：
 - **用户知道 Agent 会做什么**：不会偷偷改代码、不会乱建文件、不会用奇怪的文件名
 - **Agent 知道彼此的边界**：oracle 不编辑、deep-worker 不研究、orchestrator 不执行
 - **新人可以快速理解体系**：读完 AGENTS.md 就知道所有 Agent 的行为基线
 
-### 9.19.5 从 292 行到 229 行的迭代智慧
+### 9.18.5 从 292 行到 212 行的迭代智慧
 
-22% 的精简不是简单的删减，而是对规则体系的深度重构：
+27% 的精简不是简单的删减，而是对规则体系的深度重构：
 - 合并了重复表达的规则
 - 去除了已被框架内置的行为约束
 - 用更精炼的语言表达等价的约束力
@@ -1143,24 +1239,24 @@ AGENTS.md 的八条核心原则有五条直接或间接地防止了创造性越�
 
 ---
 
-## 9.20 本章小结
+## 9.19 本章小结
 
 AGENTS.md 不是一份"参考文档"——它是一份**运行时生效的约束系统**。每一条规则都在每次 Agent 调用中实时发挥作用。理解 AGENTS.md 就是理解本配置体系的"宪法"：
 
 | 章节 | 核心主题 | 关键词 |
 |------|----------|--------|
-| 核心原则 | Agent 的行为底线 | 检测意图、最小改动、角色边界 |
+| 核心原则 | Agent 的行为底线（10 条） | 检测意图、最小改动、角色边界、先回答再行动、简洁 |
 | 语言约定 | 用户界面语言 | 自动检测、中文优先 |
 | 约束条件 | 技术边界 | 双模型、纯配置 |
-| 多步骤纪律 | 任务管理 | TODO 列表、进度透明 |
-| 上下文管理 | Token 效率 | 委托、压缩、懒加载 |
-| Token 效率 | 成本控制 | 引用路径、检索优先 |
+| 多步骤纪律 | 任务管理 | TODO 列表、进度透明、后台任务卫生 |
+| Git 安全 | 版本控制安全 | 只提交自己的文件、提交前检查、禁止危险操作 |
+| 上下文管理 | Token 效率与信息传递 | 委托、压缩、懒加载、委托契约、子 Agent 结果 |
 | 拒绝契约 | 失败安全 | 拒绝比做一半更便宜 |
 | 询问 vs 继续 | 沟通策略 | 最佳默认、烧烤模式 |
 | 反模式 | 行为红线 | 无条件禁止 |
 | 质量标准 | 产出基线 | 风格匹配、无死代码 |
 | 代码风格 | 实现规范 | const 优先、早期 return |
-| 自我验证 + 证据纪律 | 质量闭环 | 验证计划、证据先于断言 |
+| 自我验证与证据纪律 | 质量闭环 | 验证计划、证据先于断言 |
 
 有了 AGENTS.md 的整体理解，后续章节（第十章实战工作流、第十二章定制指南）中的具体配置和决策都将有了参照系——你会看到每一条 Agent prompt 是如何在 AGENTS.md 的框架下发挥各自的专属作用。
 

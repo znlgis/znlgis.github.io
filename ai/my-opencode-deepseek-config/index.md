@@ -5,7 +5,7 @@ title: my-opencode-deepseek-config 教程目录
 
 # my-opencode-deepseek-config 教程目录
 
-> 本教程基于 [znlgis/my-opencode-deepseek-config](https://github.com/znlgis/my-opencode-deepseek-config) 仓库的配置文件与设计文档整理，面向中文读者系统讲解这套 **OpenCode × DeepSeek 最优配置方案**——一个纯配置驱动的多 Agent 协作框架。教程覆盖项目定位、安装部署、模型配置、多 Agent 体系、Orchestrator 路由机制、技能与插件生态、命令别名、配置参考、全局规则解读、实战工作流、设计决策与迭代历程，以及最佳实践与定制指南。OpenCode 迭代很快，实际命令与字段请以当前版本的 `opencode --help` 与官方文档为准。
+> 本教程基于 [znlgis/my-opencode-deepseek-config](https://github.com/znlgis/my-opencode-deepseek-config) 仓库 (v23) 的配置文件与设计文档整理，面向中文读者系统讲解这套 **OpenCode × DeepSeek 最优配置方案**——一个纯配置驱动的多 Agent 协作框架。教程覆盖项目定位、安装部署、模型配置、多 Agent 体系、Orchestrator 路由机制、技能与插件生态（16个技能+2个插件）、18条命令别名、配置参考、全局规则解读、实战工作流、设计决策与迭代历程（v1-v23），以及最佳实践与定制指南。OpenCode 迭代很快，实际命令与字段请以当前版本的 `opencode --help` 与官方文档为准。
 
 - [第一章：项目概览与核心定位](https://znlgis.github.io/ai/my-opencode-deepseek-config/01-项目概览与核心定位/)
 - [第二章：安装部署与环境配置](https://znlgis.github.io/ai/my-opencode-deepseek-config/02-安装部署与环境配置/)

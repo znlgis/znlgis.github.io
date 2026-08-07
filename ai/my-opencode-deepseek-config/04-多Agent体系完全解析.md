@@ -76,8 +76,8 @@ permission:
 | **核心能力** | 深度推理、复杂决策、精细分析 | 速度优先、低成本、直截了当 |
 | **适用场景** | 规划、架构、调试、审查、咨询 | 搜索、检索、简单编辑、文档 |
 | **成本倍数** | 基准 | 约 1/2 |
-| **代表性Agent** | planner, deep-worker, oracle, reviewer, consultant, ui-builder | explore, librarian, light-orchestrator |
-| **Agent数量** | 6个 | 3个（explore为hidden，不对外显式路由） |
+| **代表性Agent** | orchestrator, planner, deep-worker, oracle, reviewer, consultant, ui-builder | explore, librarian, light-orchestrator |
+| **Agent数量** | 7个 | 3个（explore为hidden，不对外显式路由） |
 | **特点** | 每个Agent有独立且细微的温度设置 | temperature统一偏低，追求确定性 |
 
 **模型选择原则**（摘自 orchestrator.md）：
@@ -224,7 +224,7 @@ Orchestrator 的派发行为受一套严格的纪律约束：
 
 ## 4.3 Pro Agent群详解
 
-Pro Agent 使用 `deepseek/deepseek-v4-pro` 模型，共 6 个。每个都有自己独特的 temperature 设置（从严谨的 oracle 0.1 到富有创造力的 consultant 0.5），体现对输出特性的精细控制。
+Pro Agent 使用 `deepseek/deepseek-v4-pro` 模型，共 7 个（含 4.2 节的 Orchestrator，本节详解其余 6 个）。每个都有自己独特的 temperature 设置（从严谨的 oracle 0.1 到富有创造力的 consultant 0.5），体现对输出特性的精细控制。
 
 ### 4.3.1 Planner（战略规划师）
 
@@ -873,7 +873,7 @@ Orchestrator 的派发纪律同样体现这些原则：「Reference paths, don't
 
 - **设计理念**：专业化分工、只读隔离、执行探索分离、模型感知路由——每一条都是对单 Agent 模式已知缺陷的系统性修正。
 - **Orchestrator**：整个体系的中央调度器，通过意图门控和六类任务分类实现精准路由。
-- **Pro Agent 群**：6 个使用 v4-pro 的 Agent 覆盖了规划、实施、分析、审查、咨询和 UI 六个关键领域。
+- **Pro Agent 群**：7 个使用 v4-pro 的 Agent 覆盖了调度、规划、实施、分析、审查、咨询和 UI 七个关键领域。
 - **Flash Agent 群**：3 个使用 v4-flash 的 Agent 承担快速的搜索、检索和简单执行任务。
 - **协作模式**：Deep 任务链、Debug 修复链、审查修复循环、并行研究模式、决策规划链——定义了 Agent 间协调的具体方式。
 - **Prompt 设计原则**：角色三段式、双层边界、模型感知差异、拒绝契约、标准化输出和上下文管理，构成了可复制的 Agent 设计方法论。
