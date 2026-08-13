@@ -347,11 +347,22 @@ dotnet add package Clipper --version 6.4.2
 
 #### 方法三：从 GitHub 获取
 
-虽然官方主要维护在 SourceForge 上，但也有一些社区维护的 GitHub 镜像：
+GitHub 仓库 [https://github.com/znlgis/Clipper1](https://github.com/znlgis/Clipper1) 是 SourceForge（polyclipping 项目）的镜像，完整保留了官方发布内容。仓库目录包括：
+
+- **C#**：C# 版源码（ClipperLib）
+- **Delphi**：Delphi 版源码
+- **C++**：C++ 版源码
+- **Documentation**：官方文档
+- **Third Party**：第三方相关资源
+- **Clipper2 beta**：Clipper2 的早期测试版目录，不建议新项目使用
+
+克隆命令：
 
 ```bash
-git clone https://github.com/AngusJohnson/Clipper1.git
+git clone https://github.com/znlgis/Clipper1.git
 ```
+
+克隆后按照方法二的步骤，将 C# 目录下的源文件加入项目即可。
 
 ### 1.3.3 验证安装
 
