@@ -49,6 +49,10 @@ Clipper2支持多种连接类型（Join Type）和端点类型（End Type），�
 
 包括闵可夫斯基和（Minkowski Sum）与闵可夫斯基差（Minkowski Difference）。这些操作在机器人路径规划、碰撞检测等领域有着重要的应用。
 
+**关于三角剖分功能的提示**
+
+从2.0版本起，Clipper2新增了约束德劳内三角剖分（Constrained Delaunay Triangulation）模块。需要特别提醒的是：当前版本中该三角剖分代码存在已知的 bug，作者正在修复中。在修复版本发布之前，建议谨慎使用三角剖分功能，生产环境可暂缓依赖该模块。
+
 ### 1.2.2 Clipper2的设计特点
 
 Clipper2在设计上具有以下显著特点：
@@ -410,6 +414,7 @@ class CoordinateConversion
         PathsD resultD = Clipper.ScalePathsD(scaledPaths, 1.0 / scale);
     }
 }
+```
 
 ### 1.6.3 精度选择建议
 
