@@ -13,16 +13,17 @@
 1. **腐蚀 ≠ 闵可夫斯基差**。闵可夫斯基差 `A ⊖ B = A ⊕ (−B)` 用于碰撞检测；形态学腐蚀定义为 `A ⊖ B = {x : x + B ⊆ A}`，实现走补集法：`A ⊖ B = (Aᶜ ⊕ Bʳ)ᶜ`，其中 Bʳ 为 B 关于原点的反射，Aᶜ 为 A 在足够大包围盒内的补集。B 关于原点对称时 Bʳ = B。
 2. **偏移即特殊形态学**。`JoinType.Round` 偏移对应圆盘结构元素，`JoinType.Square` 对应方形结构元素；Clipper2 的 `InflatePaths`/`DeflatePaths` 是偏移的简化 API。
 3. 形态学组合：开运算 = 先腐蚀后膨胀；闭运算 = 先膨胀后腐蚀；形态学梯度 = 膨胀 − 腐蚀（布尔差集）。
-4. Clipper1（ClipperLib）**没有** `MinkowskiSum` API——该方法是 Clipper2 的静态方法；Clipper1 教程中出现 `Clipper.MinkowskiSum(...)` 属于错误示例。
+4. Clipper1 v6.4.2（znlgis/Clipper1 镜像）**存在** `Clipper.MinkowskiSum(Path pattern, Path path, bool pathIsClosed)`、`MinkowskiSum(Path pattern, Paths paths, bool pathIsClosed)`、`MinkowskiDiff(Path poly1, Path poly2)`——已核对仓库源码确认。sci/Clipper1 第19章 19.4 的签名文档是正确的，无需修复，只补形态学内容。
+5. Clipper2 当前 main 分支（已核对源码）：`MinkowskiSum(PathD, PathD, bool, int precision)` 旧签名已移除，现为 3 参版本（内部委托 `Minkowski.Sum`，其 PathD 重载带 `decimalPlaces = 2` 默认参数）；`DeflatePaths` 方法**不存在**，收缩用负 delta；`ClipperOffset.Execute` 在 Clipper1 是 `Execute(ref Paths solution, double delta)`，Clipper2 是 `Execute(double delta, Paths64 solution)`，参数顺序相反。
 
 ## 已知错误清单（必须修复）
 
 | 位置 | 问题 |
 |---|---|
 | sci/Clipper2 第18章 18.6.3 | Erode 用 `MinkowskiDiff` 实现，数学上错误；且实现残缺（注释"需要更复杂的处理"） |
-| sci/Clipper1 第19章 19.4.2 | 使用 `Clipper.MinkowskiSum(circle, shape, true)`，Clipper1 无此 API |
-| cad/Clipper2 第05章 5.3.7 | 标题为 C# 版但代码为 C++（`std::vector`、`const auto&`、`std::cout`） |
-| 各系列 | 形态学内容零散，未形成"膨胀/腐蚀/开/闭/梯度"完整框架 |
+| sci/Clipper2 第18章 18.3.1、18.8.3 | `MinkowskiSum` PathD 版签名含已移除的 `precision` 参数（18.3.1 声明、18.8.3 调用 `..., true, 3`），与当前 main 分支不符 |
+| cad/Clipper2 第05章 5.3.7 | 标题为 C# 版但代码为 C++（`std::vector`、`const auto&`、`std::cout`）；且全章代码混用 `MinkowskiSum(...)` 裸调用与 `Clipper.` 前缀 |
+| 各系列 | 形态学内容零散，未形成"膨胀/腐蚀/开/闭/梯度"完整框架；腐蚀公式缺失 |
 
 ## 各文件改动明细
 
@@ -41,13 +42,13 @@
 ### sci/Clipper1（源码解读，20 章）
 
 - **第17章-ClipperOffset详解.md**：新增小节：JoinType ↔ 结构元素对应关系（源码角度）。
-- **第19章-辅助函数与工具.md**：修复 19.4.2 错误 API（改为手动闵可夫斯基和实现说明，或明确标注为 Clipper2 特性）；加入补集法腐蚀辅助函数示例。
+- **第19章-辅助函数与工具.md**：19.4 现有 MinkowskiSum/MinkowskiDiff 签名文档与 v6.4.2 一致（无需修复），补充 `MinkowskiSum(Path, Paths, bool)` 重载说明；新增小节：补集法腐蚀辅助函数 + 开闭运算实现。
 - **第20章-实际应用与最佳实践.md**：20.4.2 "先膨胀后收缩"标注为闭运算并扩充；新增形态学应用小节（开闭运算、梯度、地图综合）。
 
 ### sci/Clipper2（源码解读，20 章）
 
 - **第16章-ClipperOffset偏移类详解.md**：新增小节：JoinType ↔ 结构元素 + InflatePaths/DeflatePaths 简化 API 说明。
-- **第18章-Minkowski和与差.md**：修复 18.6.3 错误 Erode；18.6.3 扩充为完整形态学小节（补集法腐蚀完整实现、开闭运算、梯度、结构元素对称性简化）。
+- **第18章-Minkowski和与差.md**：修复 18.6.3 错误 Erode；18.6.3 扩充为完整形态学小节（补集法腐蚀完整实现、开闭运算、梯度、结构元素对称性简化）；修复 18.3.1/18.8.3 中已移除的 `precision` 参数。
 - **第20章-实际应用与最佳实践.md**：20.6.5 处交叉引用形态学小节。
 
 ### 不改动
