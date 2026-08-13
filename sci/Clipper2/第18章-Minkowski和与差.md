@@ -55,20 +55,13 @@ public static Paths64 MinkowskiSum(Path64 pattern, Path64 path, bool isClosed)
     return Minkowski(pattern, path, true, isClosed);
 }
 
-public static PathsD MinkowskiSum(PathD pattern, PathD path, bool isClosed, 
-    int precision = 2)
+public static PathsD MinkowskiSum(PathD pattern, PathD path, bool isClosed)
 {
-    InternalClipper.CheckPrecision(precision);
-    double scale = Math.Pow(10, precision);
-    
-    Path64 pattern64 = Clipper.ScalePath64(pattern, scale);
-    Path64 path64 = Clipper.ScalePath64(path, scale);
-    
-    Paths64 result64 = Minkowski(pattern64, path64, true, isClosed);
-    
-    return Clipper.ScalePathsD(result64, 1.0 / scale);
+    return Minkowski.Sum(pattern, path, isClosed);
 }
 ```
+
+说明：当前版本 Clipper 类只保留上述 3 参包装，PathD 重载内部委托给 `Minkowski.Sum`（该重载带 `int decimalPlaces = 2` 默认参数，精度固定由内部按 2 位小数处理）。早期版本教程中的 `precision` 参数已从公开 API 中移除，调用时不再需要（也无法）指定精度。
 
 ### 18.3.2 MinkowskiDiff 方法
 
@@ -307,26 +300,191 @@ Paths64 ComputeConfigurationSpace(Path64 robot, Paths64 obstacles)
 }
 ```
 
-### 18.6.3 形态学操作
+### 18.6.3 形态学基础概念
+
+二值形态学（binary morphology）是处理形状的基本工具。与 18.6.1、18.6.2 不同，本节的"膨胀""腐蚀"是形态学算子，它们与 Minkowski 运算密切相关，但**并非同义词**。
+
+设 A 为待处理形状，B 为结构元素（structuring element，通常是圆盘、方形这类较小的凸形状）。两个基本算子定义为：
+
+```
+膨胀（Dilation）：A ⊕ B = ∪_{b∈B} (A + b) = { a + b | a ∈ A, b ∈ B }
+   即结构元素 B 沿 A 的所有点平移后扫过的并集，等价于 A 与 B 的 Minkowski 和。
+
+腐蚀（Erosion）：A ⊖ B = { x | x + B ⊆ A }
+   即使得"平移后的结构元素仍完全落在 A 内部"的所有 x 的集合。
+```
+
+几何直觉：
+
+- 膨胀让形状"变胖"：填充小凹陷、弥合窄缝；
+- 腐蚀让形状"变瘦"：剔除细小突起、断开窄桥。
+
+**重要警告：Minkowski 差 A ⊕ (−B) 不是腐蚀。** Minkowski 差（18.6.1 的碰撞检测）计算的是"两个形状发生接触时参考点的位置集合"，关心 B 与 A 边界的相切关系；而腐蚀要求的是"结构元素**整个**放入形状内部"的位置集合，两者在数学上和几何上都不是一回事。若用 `MinkowskiDiff` 代替腐蚀会得到错误结果——这正是早期版本教程中 18.6.3 示例代码的缺陷（既错误地使用了 MinkowskiDiff，又引用了未定义的 ReflectPath）。腐蚀必须通过补集方法计算，见 18.6.5。
+
+### 18.6.4 形态学膨胀
+
+膨胀就是 A 与结构元素 B 的 Minkowski 和，可直接调用 `Clipper.MinkowskiSum`。先用正多边形近似一个以原点为中心的圆盘结构元素：
 
 ```csharp
-// 膨胀操作
-Paths64 Dilate(Path64 shape, Path64 structuringElement)
+using Clipper2Lib;
+
+// 圆盘结构元素（正多边形近似，中心在原点）
+public static Path64 MakeDisk(long radius, int edgeCount = 32)
 {
-    // 膨胀 = Minkowski 和
-    return Clipper.MinkowskiSum(structuringElement, shape, true);
+    Path64 disk = new Path64(edgeCount);
+    for (int i = 0; i < edgeCount; i++)
+    {
+        double angle = 2 * Math.PI * i / edgeCount;
+        disk.Add(new Point64(
+            (long)Math.Round(radius * Math.Cos(angle)),
+            (long)Math.Round(radius * Math.Sin(angle))));
+    }
+    return disk;
 }
 
-// 腐蚀操作
-Paths64 Erode(Path64 shape, Path64 structuringElement)
+// 形态学膨胀：A ⊕ B = MinkowskiSum(A, B)
+public static Paths64 MorphDilate(Path64 shape, Path64 se)
+    => Clipper.MinkowskiSum(shape, se, true);
+```
+
+示例：对三角形做半径 5 的圆盘膨胀，三个尖角被磨圆，形状整体向外扩张 5 个单位：
+
+```csharp
+Path64 triangle = new Path64 {
+    new Point64(0, 0),
+    new Point64(100, 0),
+    new Point64(50, 100)
+};
+Path64 disk = MakeDisk(5);
+Paths64 dilated = MorphDilate(triangle, disk);
+```
+
+### 18.6.5 形态学腐蚀（补集法）
+
+腐蚀不能由 Minkowski 和直接得出，但可以通过补集与 Minkowski 和来构造。设 Aᶜ 表示 A 的补集，Bʳ = { −b | b ∈ B } 表示结构元素关于原点的反射，则：
+
+```
+推导：x ∉ (A ⊖ B)
+  ⟺ 存在 b ∈ B 使 x + b ∉ A
+  ⟺ 存在 b ∈ B 使 x + b ∈ Aᶜ
+  ⟺ x ∈ Aᶜ ⊕ (−B) = Aᶜ ⊕ Bʳ
+
+取补集即得：A ⊖ B = (Aᶜ ⊕ Bʳ)ᶜ
+```
+
+几何含义："形状内部能放得下结构元素的位置" = "补集向外膨胀后剩下的部分"。因此腐蚀 = 先对补集做（反射结构元素的）Minkowski 和，再取补集。需要补集、反射、腐蚀三个函数；包围盒必须比原始形状大一圈（至少一个结构元素的直径），否则腐蚀结果会被边界截断。
+
+```csharp
+// 补集：包围盒减去 paths
+public static Paths64 Complement(Paths64 paths, Rect64 bounds)
 {
-    // 腐蚀 = Minkowski 差（的边界内部）
-    // 需要更复杂的处理...
-    Path64 reflected = ReflectPath(structuringElement);
-    Paths64 diff = Clipper.MinkowskiDiff(shape, reflected, true);
-    return diff;
+    Path64 box = Clipper.MakePath(new long[] {
+        bounds.left, bounds.top,
+        bounds.right, bounds.top,
+        bounds.right, bounds.bottom,
+        bounds.left, bounds.bottom });
+    return Clipper.Difference(new Paths64 { box }, paths, FillRule.NonZero);
+}
+
+// 结构元素关于原点的反射：B^r = {-b : b in B}
+public static Path64 ReflectPath(Path64 pattern)
+{
+    Path64 reflected = new Path64(pattern.Count);
+    foreach (Point64 pt in pattern)
+        reflected.Add(new Point64(-pt.X, -pt.Y));
+    return reflected;
+}
+
+// 形态学腐蚀：A ⊖ B = (A^c ⊕ B^r)^c
+public static Paths64 MorphErode(Path64 shape, Path64 se)
+{
+    Rect64 b = Clipper.GetBounds(shape);
+    Rect64 sb = Clipper.GetBounds(se);
+    long w = sb.right - sb.left, h = sb.bottom - sb.top;
+    Rect64 bounds = new Rect64(b.left - w, b.top - h, b.right + w, b.bottom + h);
+
+    Paths64 comp = Complement(new Paths64 { shape }, bounds);
+    Path64 seReflected = ReflectPath(se);
+    Paths64 grown = new Paths64();
+    foreach (Path64 p in comp)
+        grown.AddRange(Clipper.MinkowskiSum(p, seReflected, true));
+    return Complement(grown, bounds);
 }
 ```
+
+注意事项：
+
+- **结构元素必须以原点为中心**。反射与 Minkowski 和的平移性质都要求结构元素中心在原点，否则腐蚀结果会整体平移。
+- **结构元素对称时 Bʳ = B**，可省略 `ReflectPath`。圆盘、方形、正多边形都关于原点对称。
+- **腐蚀结果可能为空**。当结构元素比形状还大，或形状存在比结构元素更窄的区域时，A ⊖ B = ∅。继续做开运算前需先判空。
+
+### 18.6.6 开运算与闭运算
+
+膨胀与腐蚀组合出两个更常用的算子：
+
+```
+开运算（Opening）：(A ⊖ B) ⊕ B
+闭运算（Closing）：(A ⊕ B) ⊖ B
+```
+
+```csharp
+// 开运算：(A ⊖ B) ⊕ B —— 平滑凸角、剔除细小突起、断开窄桥
+public static Paths64 MorphOpen(Path64 shape, Path64 se)
+{
+    Paths64 eroded = MorphErode(shape, se);
+    Paths64 opened = new Paths64();
+    foreach (Path64 p in eroded)
+        opened.AddRange(Clipper.MinkowskiSum(p, se, true));
+    return Clipper.Union(opened, FillRule.NonZero);
+}
+
+// 闭运算：(A ⊕ B) ⊖ B —— 平滑凹角、填充细小凹陷、弥合窄缝
+public static Paths64 MorphClose(Path64 shape, Path64 se)
+{
+    Paths64 dilated = MorphDilate(shape, se);
+    Paths64 closed = new Paths64();
+    foreach (Path64 p in dilated)
+        closed.AddRange(MorphErode(p, se));
+    return Clipper.Union(closed, FillRule.NonZero);
+}
+```
+
+几何效果：
+
+- **开运算**：先腐蚀剔除比结构元素还细小的突起和窄桥，再膨胀恢复主体尺寸——结果平滑了凸角、去除了毛刺。
+- **闭运算**：先膨胀填平细小凹陷和窄缝，再腐蚀恢复主体尺寸——结果平滑了凹角、弥合了裂缝。
+
+结构元素为圆盘时，开/闭运算等价于用 `ClipperOffset` 的往返偏移（见第16章）：
+
+```csharp
+// 开 = 先收缩再膨胀
+Paths64 opened = Clipper.InflatePaths(paths, -r, JoinType.Round, EndType.Polygon);
+opened = Clipper.InflatePaths(opened,  r, JoinType.Round, EndType.Polygon);
+
+// 闭 = 先膨胀再收缩
+Paths64 closed = Clipper.InflatePaths(paths,  r, JoinType.Round, EndType.Polygon);
+closed = Clipper.InflatePaths(closed, -r, JoinType.Round, EndType.Polygon);
+```
+
+### 18.6.7 形态学梯度与组合应用
+
+形态学梯度定义为膨胀与腐蚀之差，得到形状的"边界带"：
+
+```
+Gradient(A) = (A ⊕ B) \ (A ⊖ B)
+```
+
+```csharp
+// 形态学梯度：(A ⊕ B) \ (A ⊖ B) —— 边界带
+public static Paths64 MorphGradient(Path64 shape, Path64 se)
+    => Clipper.Difference(MorphDilate(shape, se), MorphErode(shape, se), FillRule.NonZero);
+```
+
+典型应用：
+
+- **边界带提取**：梯度输出即形状边界两侧宽度约为结构元素直径的条带，可用于描边渲染与边界检测。
+- **多边形质量检查**：对比原形状与开/闭运算结果的差异，可定位过细的尖角、自相交或退化区域。
+- **地图综合（generalization）**：对建筑面先开运算剔除小于结构元素的碎块，再闭运算弥合断裂，是制图综合中形态学滤波的标准流程。
 
 ## 18.7 性能优化
 
@@ -429,7 +587,7 @@ PathD circleApprox = CreateCircleApprox(0, 0, 5.0, 32);
 PathD complexPath = LoadPathFromFile("path.dat");
 
 // 使用浮点计算
-PathsD result = Clipper.MinkowskiSum(circleApprox, complexPath, true, 3);
+PathsD result = Clipper.MinkowskiSum(circleApprox, complexPath, true);
 ```
 
 ## 18.9 注意事项
@@ -475,6 +633,8 @@ Minkowski 和与差是强大的几何运算：
 3. **应用广泛**：机器人、游戏、CAD
 4. **实现方式**：分解为平移 + 并集
 5. **优化方法**：凸壳、分段处理
+6. **形态学基础**：膨胀 = Minkowski 和；腐蚀 ≠ Minkowski 差，须用补集法 `A ⊖ B = (Aᶜ ⊕ Bʳ)ᶜ`
+7. **形态学组合**：开运算 `(A ⊖ B) ⊕ B`（剔突起、断窄桥）、闭运算 `(A ⊕ B) ⊖ B`（填凹陷、弥窄缝）、梯度 `(A ⊕ B) \ (A ⊖ B)`（边界带）
 
 正确使用这些运算可以解决许多实际问题。
 

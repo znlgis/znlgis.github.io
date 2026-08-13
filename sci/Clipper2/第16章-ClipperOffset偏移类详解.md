@@ -663,7 +663,40 @@ Paths64 result = new Paths64();
 co.Execute(10, result);
 ```
 
-## 16.13 本章小结
+## 16.13 形态学视角：偏移与结构元素
+
+从形态学的角度看，路径偏移其实就是以特定形状为结构元素的形态学膨胀或腐蚀：
+
+- **正 delta（外扩）**：等价于以圆盘（`JoinType.Round`）或方形（`JoinType.Square`）为结构元素的形态学膨胀 A ⊕ B，圆盘半径（或方形半边长）就是偏移量。
+- **负 delta（内缩）**：等价于对应的形态学腐蚀 A ⊖ B，得到的是"结构元素能完全放入形状内部"的位置集合。
+
+`InflatePaths` 是这一操作的静态简化 API，对闭合路径返回多条结果路径：
+
+```csharp
+// 膨胀（正 delta）
+Paths64 dilated = Clipper.InflatePaths(paths,  r, JoinType.Round, EndType.Polygon);
+// 腐蚀（负 delta）——没有 DeflatePaths，收缩即负 delta
+Paths64 eroded  = Clipper.InflatePaths(paths, -r, JoinType.Round, EndType.Polygon);
+```
+
+注意：**`DeflatePaths` 并不存在**。收缩操作就是传入负的 `delta`，不要在 API 中寻找对称的 Deflate 方法。
+
+多轮收缩时中间结果会积累碎屑（退化的小多边形），官方 README 的兔子示例即按此模式处理——每轮收缩后用 `SimplifyPaths` 清理：
+
+```csharp
+Paths64 paths = LoadBunnyOutline();   // 初始轮廓
+
+// 迭代收缩，每轮清理碎屑
+for (double delta = -1.0; delta > -10.0; delta -= 1.0)
+{
+    paths = Clipper.InflatePaths(paths, delta, JoinType.Round, EndType.Polygon);
+    paths = Clipper.SimplifyPaths(paths, 0.25, true);
+}
+```
+
+圆盘结构元素只能产生"各向同性"的偏移（每个方向均匀外扩）。若要使用任意形状的结构元素（如长条、十字），需要用到第18章的 Minkowski 运算：[第18章：Minkowski 和与差](https://znlgis.github.io/sci/Clipper2/第18章-Minkowski和与差/)。
+
+## 16.14 本章小结
 
 `ClipperOffset` 提供了强大的路径偏移功能：
 
