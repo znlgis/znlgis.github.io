@@ -441,7 +441,94 @@ Paths solution = new Paths();
 co.Execute(ref solution, 15);
 ```
 
-## 17.12 本章小结
+## 17.12 形态学视角：JoinType 与结构元素
+
+`ClipperOffset` 的偏移操作在数学形态学中对应"结构元素的膨胀/腐蚀"。偏移量与 `JoinType` 共同决定了结构元素的形状。
+
+### 17.12.1 结构元素对应关系
+
+- **jtRound = 圆盘结构元素**：每个顶点用圆弧过渡，等价于以半径为 `|delta|` 的圆盘做膨胀（delta > 0）或腐蚀（delta < 0）。这是形态学缓冲区的标准实现。
+- **jtSquare = 方形结构元素**：每个顶点做 45° 斜切，等价于边长为 `2|delta|` 的方形（菱形）结构元素。
+- **jtMiter = 受 MiterLimit 约束的斜接**：尖角延伸，结构元素形状受 `MiterLimit` 限制，不完全等价于标准方形或圆形。
+
+### 17.12.2 偏移方向约定
+
+偏移方向由输入多边形的顶点顺序决定：
+
+- **外轮廓需正面积方向（CCW，逆时针）**：`FixOrientations` 会把最外侧轮廓统一为逆时针方向。
+- **正 delta = 膨胀（扩张）**：外轮廓向外扩展，面积增大。
+- **负 delta = 收缩（腐蚀）**：外轮廓向内收缩，面积减小。
+
+因此，在形态学语义下，`Execute(ref solution, +r)` 是膨胀，`Execute(ref solution, -r)` 是腐蚀，前提是外轮廓保持 CCW 方向。
+
+### 17.12.3 开运算与闭运算
+
+把一次负偏移和一次正偏移串起来，即得到形态学的开/闭运算：
+
+| 组合 | 效果 |
+|------|------|
+| 先 `-r` 后 `+r` = **开运算** | 剔除细小突起、断开窄桥、磨平外凸尖角 |
+| 先 `+r` 后 `-r` = **闭运算** | 填充凹陷、弥合窄缝、补平内凹缺口 |
+
+```csharp
+const double scale = 1e6;
+Paths poly = LoadPolygons();  // 外轮廓 CCW
+
+// 开运算：先收缩（腐蚀）后膨胀，剔除小突起/窄桥
+ClipperOffset co = new ClipperOffset();
+co.AddPaths(poly, JoinType.jtRound, EndType.etClosedPolygon);
+Paths eroded = new Paths();
+co.Execute(ref eroded, -5.0 * scale);   // 注意 ref + (solution, delta)
+
+co.Clear();
+co.AddPaths(eroded, JoinType.jtRound, EndType.etClosedPolygon);
+Paths opened = new Paths();
+co.Execute(ref opened, 5.0 * scale);
+
+// 闭运算：先膨胀后收缩，填凹陷/弥窄缝
+co.Clear();
+co.AddPaths(poly, JoinType.jtRound, EndType.etClosedPolygon);
+Paths dilated = new Paths();
+co.Execute(ref dilated, 5.0 * scale);
+
+co.Clear();
+co.AddPaths(dilated, JoinType.jtRound, EndType.etClosedPolygon);
+Paths closed = new Paths();
+co.Execute(ref closed, -5.0 * scale);
+```
+
+### 17.12.4 形态学梯度
+
+形态学梯度 = 膨胀结果与腐蚀结果的差集，得到沿轮廓宽约 `2r` 的边界带：
+
+```csharp
+const double scale = 1e6;
+double r = 5.0 * scale;
+
+ClipperOffset co = new ClipperOffset();
+co.AddPaths(poly, JoinType.jtRound, EndType.etClosedPolygon);
+
+Paths dilated = new Paths();
+co.Execute(ref dilated, r);   // 膨胀
+
+co.Clear();
+co.AddPaths(poly, JoinType.jtRound, EndType.etClosedPolygon);
+Paths eroded = new Paths();
+co.Execute(ref eroded, -r);   // 腐蚀
+
+Clipper clipper = new Clipper();
+clipper.AddPaths(dilated, PolyType.ptSubject, true);
+clipper.AddPaths(eroded, PolyType.ptClip, true);
+Paths gradient = new Paths();
+clipper.Execute(ClipType.ctDifference, gradient,
+    PolyFillType.pftNonZero, PolyFillType.pftNonZero);
+```
+
+### 17.12.5 关于 InflatePaths/DeflatePaths
+
+Clipper1（v6.4.2）**没有** Clipper2 中的 `InflatePaths`/`DeflatePaths` 这类一步到位的简化 API。膨胀/腐蚀必须手动创建 `ClipperOffset`、`AddPaths`、`Execute(ref ...)` 完成。注意 `Execute` 的签名是 `Execute(ref Paths solution, double delta)`，参数顺序是 **solution 在前、delta 在后**，且 solution 以 `ref` 传递。
+
+## 17.13 本章小结
 
 本章详细分析了 ClipperOffset 类：
 
