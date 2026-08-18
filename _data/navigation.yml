@@ -226,6 +226,9 @@
     - title: OpenGIS-Skills
       icon: 📁
       url: /ai/opengis-skills/
+    - title: DeepSeek Harness
+      icon: 📁
+      url: /ai/deepseek-harness/
 
 - title: IoT 物联网
   icon: 🔌

@@ -23,6 +23,7 @@ title: AI 教程
 | [DocuTranslate](https://znlgis.github.io/ai/docutranslate/) | 12章 | ⭐⭐ | 大模型文档翻译工具 |
 | [my-opencode-deepseek-config](https://znlgis.github.io/ai/my-opencode-deepseek-config/) | 12章 | ⭐⭐⭐ | OpenCode x DeepSeek 最优配置 |
 | [OpenGIS-Skills](https://znlgis.github.io/ai/opengis-skills/) | 12章 | ⭐⭐ | AI 编程助手开源技能集 |
+| [DeepSeek Harness](https://znlgis.github.io/ai/deepseek-harness/) | 14章 | ⭐⭐⭐ | 智能体框架 |
 
 ---
 
@@ -58,3 +59,4 @@ title: AI 教程
 - [DocuTranslate 教程](https://znlgis.github.io/ai/docutranslate/)
 - [my-opencode-deepseek-config 教程](https://znlgis.github.io/ai/my-opencode-deepseek-config/)
 - [OpenGIS-Skills 教程](https://znlgis.github.io/ai/opengis-skills/)
+- [DeepSeek Harness 教程](https://znlgis.github.io/ai/deepseek-harness/)
