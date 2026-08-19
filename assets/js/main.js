@@ -308,4 +308,86 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         }
     }
+
+    // 代码块复制按钮
+    function addCopyButtons() {
+        var blocks = document.querySelectorAll('pre');
+        for (var b = 0; b < blocks.length; b++) {
+            var pre = blocks[b];
+            if (pre.querySelector('.code-copy-btn')) continue;
+            var btn = document.createElement('button');
+            btn.className = 'code-copy-btn';
+            btn.textContent = '复制';
+            btn.setAttribute('aria-label', '复制代码');
+            btn.addEventListener('click', (function(codeEl, button) {
+                return function() {
+                    var code = codeEl.querySelector('code');
+                    var text = code ? code.textContent : codeEl.textContent;
+                    if (navigator.clipboard && navigator.clipboard.writeText) {
+                        navigator.clipboard.writeText(text).then(function() {
+                            button.textContent = '已复制 ✓';
+                            button.classList.add('copied');
+                            setTimeout(function() {
+                                button.textContent = '复制';
+                                button.classList.remove('copied');
+                            }, 1500);
+                        });
+                    } else {
+                        var ta = document.createElement('textarea');
+                        ta.value = text;
+                        ta.style.position = 'fixed';
+                        ta.style.opacity = '0';
+                        document.body.appendChild(ta);
+                        ta.select();
+                        document.execCommand('copy');
+                        document.body.removeChild(ta);
+                        button.textContent = '已复制 ✓';
+                        button.classList.add('copied');
+                        setTimeout(function() {
+                            button.textContent = '复制';
+                            button.classList.remove('copied');
+                        }, 1500);
+                    }
+                };
+            })(pre, btn));
+            pre.style.position = 'relative';
+            pre.appendChild(btn);
+        }
+    }
+    addCopyButtons();
+
+    // 暗黑模式
+    var themeToggle = document.getElementById('themeToggle');
+    var root = document.documentElement;
+
+    function getPreferredTheme() {
+        var stored = localStorage.getItem('theme');
+        if (stored) return stored;
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+    }
+
+    function applyTheme(theme) {
+        root.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+        if (themeToggle) {
+            themeToggle.textContent = theme === 'dark' ? '☀️' : '🌙';
+            themeToggle.setAttribute('aria-label', theme === 'dark' ? '切换到浅色模式' : '切换到深色模式');
+        }
+    }
+
+    applyTheme(getPreferredTheme());
+
+    if (themeToggle) {
+        themeToggle.addEventListener('click', function() {
+            var current = root.getAttribute('data-theme');
+            applyTheme(current === 'dark' ? 'light' : 'dark');
+        });
+    }
+
+    // 监听系统主题变化
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+        if (!localStorage.getItem('theme')) {
+            applyTheme(e.matches ? 'dark' : 'light');
+        }
+    });
 });

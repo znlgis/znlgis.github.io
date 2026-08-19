@@ -10,20 +10,20 @@ permalink: /search.json
     {
       "title": {{ doc.title | jsonify }},
       "url": {{ doc.url | jsonify }},
-      "content": {{ doc.description | default: site.description | truncate: 500 | jsonify }},
-      "description": {{ doc.description | default: site.description | jsonify }}
+      "content": {{ doc.content | strip_html | strip_newlines | truncate: 500 | jsonify }},
+      "description": {{ doc.description | default: "" | jsonify }}
     }
     {%- assign doc_count = doc_count | plus: 1 -%}
   {%- endif -%}
 {%- endfor -%}
 {%- for page in site.pages -%}
-  {%- if page.title and page.title != "" and page.name != "search.json" -%}
+  {%- if page.title and page.title != "" and page.name != "search.json" and page.layout != "none" -%}
     {%- if doc_count > 0 -%},{%- endif -%}
     {
       "title": {{ page.title | jsonify }},
       "url": {{ page.url | jsonify }},
-      "content": {{ page.description | default: site.description | truncate: 500 | jsonify }},
-      "description": {{ page.description | default: site.description | jsonify }}
+      "content": {{ page.content | strip_html | strip_newlines | truncate: 500 | jsonify }},
+      "description": {{ page.description | default: "" | jsonify }}
     }
     {%- assign doc_count = doc_count | plus: 1 -%}
   {%- endif -%}
