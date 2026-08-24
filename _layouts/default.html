@@ -17,6 +17,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+    <script>
+        (function(){
+            var t=localStorage.getItem('theme');
+            if(!t)t=window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';
+            document.documentElement.setAttribute('data-theme',t);
+        })();
+    </script>
     <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
 </head>
 <body>
@@ -58,7 +65,7 @@
                         <a href="https://github.com/znlgis" target="_blank" rel="noopener noreferrer">GitHub</a>
                     </nav>
                 </header>
-                    <main id="main-content">
+                    <main id="main-content" role="main">
                     {% assign crumbs = page.url | remove: '/index.html' | split: '/' %}
                     {% if crumbs.size > 1 %}
                     <nav class="breadcrumb" aria-label="面包屑导航">
@@ -94,7 +101,11 @@
     </div>
     
     <!-- 移动端侧边栏切换按钮 -->
-    <button class="sidebar-toggle" id="sidebarToggle" title="显示/隐藏目录" aria-label="显示/隐藏目录导航">☰</button>
+    <button class="sidebar-toggle" id="sidebarToggle" title="显示/隐藏目录" aria-label="显示/隐藏目录导航">
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M2 4h16v1.5H2zM2 9.25h16v1.5H2zM2 14.5h16v1.5H2z"/></svg>
+    </button>
+    
+    <button class="theme-toggle" id="themeToggle" title="切换主题" aria-label="切换深色/浅色模式">🌙</button>
     
     <!-- 深色模式切换按钮 -->
     <button class="theme-toggle" id="themeToggle" title="切换深色/浅色模式" aria-label="切换深色/浅色模式">🌙</button>

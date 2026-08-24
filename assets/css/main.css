@@ -10,32 +10,26 @@
     --sidebar-width: 260px;
     --sidebar-bg: #f8f9fa;
     --sidebar-toggle-bottom: 5rem;
-    --card-bg: #f8f9fa;
-    --table-stripe: #fafbfc;
-    --table-header-bg: #f6f8fa;
     --blockquote-bg: #f6f8ff;
-    --heading-anchor-color: #999;
-    --muted-text: #666;
-    --faint-text: #999;
+    --table-stripe: #fafbfc;
+    --table-border: #dfe2e5;
+    --table-header-bg: #f6f8fa;
     --code-border: #e1e4e8;
-    --search-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    --highlight-bg: #ffffcc;
 }
 [data-theme="dark"] {
-    --text-color: #e0e0e0;
+    --text-color: #e1e4e8;
     --bg-color: #0d1117;
     --link-color: #58a6ff;
-    --border-color: #21262d;
+    --border-color: #30363d;
     --code-bg: #161b22;
     --sidebar-bg: #161b22;
-    --card-bg: #161b22;
-    --table-stripe: #161b22;
-    --table-header-bg: #161b22;
     --blockquote-bg: #161b22;
-    --heading-anchor-color: #666;
-    --muted-text: #8b949e;
-    --faint-text: #666;
+    --table-stripe: #161b22;
+    --table-border: #30363d;
+    --table-header-bg: #161b22;
     --code-border: #30363d;
-    --search-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    --highlight-bg: #2d2000;
 }
 * {
     margin: 0;
@@ -102,6 +96,39 @@ body {
 .sidebar-toggle:hover {
     background: #024ea4;
 }
+/* 主题切换按钮 */
+.theme-toggle {
+    display: none;
+    position: fixed;
+    bottom: var(--sidebar-toggle-bottom);
+    right: 1rem;
+    background: var(--link-color);
+    color: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    z-index: 1001;
+    border: none;
+    font-size: 1.1rem;
+}
+.theme-toggle:hover {
+    background: #024ea4;
+}
+@media (min-width: 901px) {
+    .theme-toggle {
+        display: flex;
+    }
+}
+@media (max-width: 900px) {
+    .theme-toggle {
+        display: flex;
+        bottom: 4.5rem;
+    }
+}
 /* 遮罩层 */
 .sidebar-overlay {
     display: none;
@@ -130,7 +157,7 @@ header h1 a {
     text-decoration: none;
 }
 header p {
-    color: var(--muted-text);
+    color: #888;
     font-size: 0.9rem;
     margin-top: 0.25rem;
 }
@@ -154,12 +181,12 @@ footer {
     padding-top: 1rem;
     border-top: 1px solid var(--border-color);
     font-size: 0.85rem;
-    color: var(--muted-text);
+    color: #888;
 }
 .busuanzi-stats {
     margin-top: 0.4rem;
     font-size: 0.8rem;
-    color: var(--faint-text);
+    color: #999;
 }
 
 /* ===== 侧边栏 ===== */
@@ -241,7 +268,7 @@ footer {
     align-items: center;
     justify-content: center;
     font-size: 0.7rem;
-    color: var(--muted-text);
+    color: #666;
     flex-shrink: 0;
     transition: transform 0.2s;
 }
@@ -278,7 +305,7 @@ footer {
     background: var(--bg-color);
     border: 1px solid var(--border-color);
     border-radius: 0 0 4px 4px;
-    box-shadow: var(--search-shadow);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     z-index: 1000;
     max-height: 280px;
     overflow-y: auto;
@@ -306,13 +333,13 @@ footer {
 }
 .search-no-results {
     padding: 0.75rem;
-    color: var(--faint-text);
+    color: #999;
     font-size: 0.8rem;
     text-align: center;
 }
 .search-loading {
     padding: 0.75rem;
-    color: var(--faint-text);
+    color: #999;
     font-size: 0.8rem;
     text-align: center;
 }
@@ -375,7 +402,7 @@ footer {
     opacity: 0;
     font-size: 0.8em;
     margin-left: 0.4rem;
-    color: var(--heading-anchor-color);
+    color: #999;
     text-decoration: none;
     transition: opacity 0.2s;
 }
@@ -443,11 +470,53 @@ pre code {
 .highlight > pre {
     padding-top: 1.8rem;
 }
+/* 代码复制按钮 */
+.code-copy-btn {
+    position: absolute;
+    top: 0.4rem;
+    right: 0.4rem;
+    background: rgba(255,255,255,0.85);
+    border: 1px solid #d1d5da;
+    border-radius: 4px;
+    padding: 0.2rem 0.5rem;
+    font-size: 0.75rem;
+    color: #586069;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.2s;
+    z-index: 2;
+    font-family: inherit;
+}
+.highlight:hover .code-copy-btn,
+.code-copy-btn:focus {
+    opacity: 1;
+}
+.code-copy-btn:hover {
+    background: #f3f4f6;
+    color: #24292e;
+}
+.code-copy-btn.copied {
+    color: #22863a;
+    border-color: #22863a;
+}
+pre > .code-copy-btn {
+    position: absolute;
+    top: 0.4rem;
+    right: 0.4rem;
+}
+pre:hover > .code-copy-btn,
+pre > .code-copy-btn:focus {
+    opacity: 1;
+}
+pre > .code-copy-btn.copied {
+    color: #22863a;
+    border-color: #22863a;
+}
 blockquote {
     border-left: 4px solid var(--link-color);
     padding: 0.6rem 1rem;
     margin: 1.2rem 0;
-    color: var(--muted-text);
+    color: #888;
     background: var(--blockquote-bg);
     border-radius: 0 4px 4px 0;
 }
@@ -461,7 +530,7 @@ table {
     font-size: 0.9rem;
 }
 th, td {
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--table-border);
     padding: 0.5rem 0.75rem;
     text-align: left;
 }
@@ -480,7 +549,7 @@ img {
     margin: 0.5rem auto;
 }
 .post-meta {
-    color: var(--muted-text);
+    color: #888;
     font-size: 0.9rem;
     margin-bottom: 1rem;
 }
@@ -507,7 +576,7 @@ img {
 }
 
 /* ===== Rouge 代码高亮 (GitHub 风格) ===== */
-.highlight .hll { background-color: #ffffcc }
+.highlight .hll { background-color: var(--highlight-bg) }
 .highlight .c { color: #6a737d } /* Comment */
 .highlight .err { color: #b31d28; background-color: #ffeef0 } /* Error */
 .highlight .k { color: #d73a49 } /* Keyword */
@@ -570,6 +639,108 @@ img {
 .highlight .vi { color: #e36209 } /* Name.Variable.Instance */
 .highlight .il { color: #005cc5 } /* Literal.Number.Integer.Long */
 
+/* ===== 暗黑模式代码高亮覆盖 ===== */
+[data-theme="dark"] .highlight .c { color: #8b949e }
+[data-theme="dark"] .highlight .err { color: #ffa198; background-color: rgba(248,81,73,0.1) }
+[data-theme="dark"] .highlight .k { color: #ff7b72 }
+[data-theme="dark"] .highlight .l { color: #79c0ff }
+[data-theme="dark"] .highlight .n { color: #c9d1d9 }
+[data-theme="dark"] .highlight .o { color: #ff7b72 }
+[data-theme="dark"] .highlight .p { color: #c9d1d9 }
+[data-theme="dark"] .highlight .cm { color: #8b949e }
+[data-theme="dark"] .highlight .cp { color: #ff7b72 }
+[data-theme="dark"] .highlight .c1 { color: #8b949e }
+[data-theme="dark"] .highlight .cs { color: #8b949e }
+[data-theme="dark"] .highlight .gd { color: #ffa198; background-color: rgba(248,81,73,0.1) }
+[data-theme="dark"] .highlight .gi { color: #7ee787; background-color: rgba(63,185,80,0.1) }
+[data-theme="dark"] .highlight .kc { color: #79c0ff }
+[data-theme="dark"] .highlight .kd { color: #ff7b72 }
+[data-theme="dark"] .highlight .kn { color: #ff7b72 }
+[data-theme="dark"] .highlight .kp { color: #ff7b72 }
+[data-theme="dark"] .highlight .kr { color: #ff7b72 }
+[data-theme="dark"] .highlight .kt { color: #79c0ff }
+[data-theme="dark"] .highlight .ld { color: #a5d6ff }
+[data-theme="dark"] .highlight .m { color: #79c0ff }
+[data-theme="dark"] .highlight .s { color: #a5d6ff }
+[data-theme="dark"] .highlight .na { color: #d2a8ff }
+[data-theme="dark"] .highlight .nb { color: #79c0ff }
+[data-theme="dark"] .highlight .nc { color: #d2a8ff }
+[data-theme="dark"] .highlight .no { color: #79c0ff }
+[data-theme="dark"] .highlight .nd { color: #d2a8ff }
+[data-theme="dark"] .highlight .ne { color: #ffa198 }
+[data-theme="dark"] .highlight .nf { color: #d2a8ff }
+[data-theme="dark"] .highlight .nt { color: #7ee787 }
+[data-theme="dark"] .highlight .nv { color: #ffa657 }
+[data-theme="dark"] .highlight .ow { color: #ff7b72 }
+[data-theme="dark"] .highlight .mb { color: #79c0ff }
+[data-theme="dark"] .highlight .mf { color: #79c0ff }
+[data-theme="dark"] .highlight .mh { color: #79c0ff }
+[data-theme="dark"] .highlight .mi { color: #79c0ff }
+[data-theme="dark"] .highlight .mo { color: #79c0ff }
+[data-theme="dark"] .highlight .sb { color: #a5d6ff }
+[data-theme="dark"] .highlight .sc { color: #a5d6ff }
+[data-theme="dark"] .highlight .sd { color: #a5d6ff }
+[data-theme="dark"] .highlight .s2 { color: #a5d6ff }
+[data-theme="dark"] .highlight .se { color: #a5d6ff }
+[data-theme="dark"] .highlight .sh { color: #a5d6ff }
+[data-theme="dark"] .highlight .si { color: #a5d6ff }
+[data-theme="dark"] .highlight .sx { color: #a5d6ff }
+[data-theme="dark"] .highlight .sr { color: #a5d6ff }
+[data-theme="dark"] .highlight .s1 { color: #a5d6ff }
+[data-theme="dark"] .highlight .ss { color: #79c0ff }
+[data-theme="dark"] .highlight .bp { color: #79c0ff }
+[data-theme="dark"] .highlight .vc { color: #ffa657 }
+[data-theme="dark"] .highlight .vg { color: #ffa657 }
+[data-theme="dark"] .highlight .vi { color: #ffa657 }
+[data-theme="dark"] .highlight .il { color: #79c0ff }
+[data-theme="dark"] .highlight .w { color: #484f58 }
+
+/* 暗黑模式下按钮与链接颜色 */
+[data-theme="dark"] .sidebar-toggle {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+}
+[data-theme="dark"] .theme-toggle {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+}
+[data-theme="dark"] .code-copy-btn {
+    background: rgba(22,27,34,0.85);
+    border-color: #30363d;
+    color: #8b949e;
+}
+[data-theme="dark"] .code-copy-btn:hover {
+    background: #21262d;
+    color: #c9d1d9;
+}
+[data-theme="dark"] .code-copy-btn.copied {
+    color: #7ee787;
+    border-color: #7ee787;
+}
+[data-theme="dark"] .home-card {
+    border-color: #30363d;
+    background: #161b22;
+}
+[data-theme="dark"] .home-card p {
+    color: #8b949e;
+}
+[data-theme="dark"] .sidebar-header h2 {
+    color: #c9d1d9;
+}
+[data-theme="dark"] header p {
+    color: #8b949e;
+}
+[data-theme="dark"] footer {
+    color: #8b949e;
+}
+[data-theme="dark"] .post-meta {
+    color: #8b949e;
+}
+[data-theme="dark"] .breadcrumb {
+    color: #8b949e;
+}
+[data-theme="dark"] .busuanzi-stats {
+    color: #6e7681;
+}
+
 /* ===== 响应式 ===== */
 @media (max-width: 900px) {
     .sidebar {
@@ -606,11 +777,6 @@ img {
     table {
         font-size: 0.85rem;
     }
-    .theme-toggle {
-        right: 1rem;
-        width: 36px;
-        height: 36px;
-    }
 }
 
 /* 首页卡片网格 */
@@ -621,17 +787,17 @@ img {
     margin: 2rem 0;
 }
 .home-card {
-    border: 1px solid var(--border-color);
+    border: 1px solid #e1e4e8;
     border-radius: 8px;
     padding: 1.2rem;
-    background: var(--card-bg);
+    background: #f8f9fa;
 }
 .home-card h3 {
     margin: 0 0 0.5rem;
 }
 .home-card p {
     font-size: 0.85rem;
-    color: var(--muted-text);
+    color: #666;
     margin: 0 0 0.8rem;
 }
 .home-card a {
@@ -657,135 +823,4 @@ img {
 .home-link-list a:hover {
     background: rgba(0,0,0,0.04);
     text-decoration: none;
-}
-[data-theme="dark"] .home-link-list a:hover {
-    background: rgba(255,255,255,0.06);
-}
-
-/* ===== 深色模式代码高亮 ===== */
-[data-theme="dark"] .highlight .hll { background-color: #2a2e35 }
-[data-theme="dark"] .highlight .c { color: #6a737d }
-[data-theme="dark"] .highlight .err { color: #f97583; background-color: #2d1215 }
-[data-theme="dark"] .highlight .k { color: #ff7b72 }
-[data-theme="dark"] .highlight .l { color: #79c0ff }
-[data-theme="dark"] .highlight .n { color: #e0e0e0 }
-[data-theme="dark"] .highlight .o { color: #ff7b72 }
-[data-theme="dark"] .highlight .p { color: #e0e0e0 }
-[data-theme="dark"] .highlight .cm { color: #6a737d }
-[data-theme="dark"] .highlight .cp { color: #ff7b72 }
-[data-theme="dark"] .highlight .c1 { color: #6a737d }
-[data-theme="dark"] .highlight .cs { color: #6a737d }
-[data-theme="dark"] .highlight .gd { color: #f97583; background-color: #2d1215 }
-[data-theme="dark"] .highlight .gi { color: #7ee787; background-color: #0d2117 }
-[data-theme="dark"] .highlight .kc { color: #79c0ff }
-[data-theme="dark"] .highlight .kd { color: #ff7b72 }
-[data-theme="dark"] .highlight .kn { color: #ff7b72 }
-[data-theme="dark"] .highlight .kp { color: #ff7b72 }
-[data-theme="dark"] .highlight .kr { color: #ff7b72 }
-[data-theme="dark"] .highlight .kt { color: #79c0ff }
-[data-theme="dark"] .highlight .ld { color: #a5d6ff }
-[data-theme="dark"] .highlight .m { color: #79c0ff }
-[data-theme="dark"] .highlight .s { color: #a5d6ff }
-[data-theme="dark"] .highlight .na { color: #d2a8ff }
-[data-theme="dark"] .highlight .nb { color: #79c0ff }
-[data-theme="dark"] .highlight .nc { color: #d2a8ff }
-[data-theme="dark"] .highlight .no { color: #79c0ff }
-[data-theme="dark"] .highlight .nd { color: #d2a8ff }
-[data-theme="dark"] .highlight .ne { color: #f97583 }
-[data-theme="dark"] .highlight .nf { color: #d2a8ff }
-[data-theme="dark"] .highlight .nt { color: #7ee787 }
-[data-theme="dark"] .highlight .nv { color: #ffa657 }
-[data-theme="dark"] .highlight .ow { color: #ff7b72 }
-[data-theme="dark"] .highlight .sb { color: #a5d6ff }
-[data-theme="dark"] .highlight .sc { color: #a5d6ff }
-[data-theme="dark"] .highlight .sd { color: #a5d6ff }
-[data-theme="dark"] .highlight .s2 { color: #a5d6ff }
-[data-theme="dark"] .highlight .se { color: #a5d6ff }
-[data-theme="dark"] .highlight .sh { color: #a5d6ff }
-[data-theme="dark"] .highlight .si { color: #a5d6ff }
-[data-theme="dark"] .highlight .sx { color: #a5d6ff }
-[data-theme="dark"] .highlight .sr { color: #a5d6ff }
-[data-theme="dark"] .highlight .s1 { color: #a5d6ff }
-[data-theme="dark"] .highlight .ss { color: #79c0ff }
-[data-theme="dark"] .highlight .bp { color: #79c0ff }
-[data-theme="dark"] .highlight .vc { color: #ffa657 }
-[data-theme="dark"] .highlight .vg { color: #ffa657 }
-[data-theme="dark"] .highlight .vi { color: #ffa657 }
-
-/* ===== 主题切换按钮 ===== */
-.theme-toggle {
-    position: fixed;
-    bottom: 2rem;
-    right: 5.5rem;
-    background: var(--link-color);
-    color: white;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-    transition: all 0.3s ease;
-    z-index: 1000;
-    border: none;
-    font-size: 1.1rem;
-}
-.theme-toggle:hover {
-    background: #024ea4;
-    transform: translateY(-3px);
-    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-}
-
-/* ===== 代码复制按钮 ===== */
-.code-copy-btn {
-    position: absolute;
-    top: 0.4rem;
-    right: 0.4rem;
-    background: var(--muted-text);
-    color: var(--bg-color);
-    border: none;
-    border-radius: 4px;
-    padding: 0.2rem 0.5rem;
-    font-size: 0.7rem;
-    cursor: pointer;
-    opacity: 0;
-    transition: opacity 0.2s;
-    z-index: 1;
-}
-.highlight:hover .code-copy-btn,
-pre:hover .code-copy-btn {
-    opacity: 1;
-}
-.code-copy-btn:hover {
-    background: var(--link-color);
-}
-
-/* ===== 打印样式 ===== */
-@media print {
-    .sidebar, .sidebar-toggle, .back-to-top, .theme-toggle,
-    .sidebar-overlay, .search-container, .skip-link,
-    .code-copy-btn, .breadcrumb, .heading-anchor { 
-        display: none !important; 
-    }
-    .content-wrapper {
-        margin-left: 0;
-        max-width: 100%;
-    }
-    .content-inner {
-        max-width: 100%;
-        padding: 0;
-    }
-    body {
-        font-size: 12pt;
-        color: #000;
-        background: #fff;
-    }
-    a { color: #000; text-decoration: underline; }
-    a[href]::after { content: " (" attr(href) ")"; font-size: 0.8em; }
-    pre, code { border: 1px solid #ccc; }
-    pre { white-space: pre-wrap; word-wrap: break-word; }
-    img { max-width: 100% !important; }
-    table { page-break-inside: avoid; }
 }
