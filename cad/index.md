@@ -28,7 +28,6 @@ title: CAD 教程
 | [LightCAD 教程](https://znlgis.github.io/cad/LightCAD/) | 20章 | ⭐⭐⭐ | Web CAD 框架 |
 | [LightningCAD 教程](https://znlgis.github.io/cad/LightningCAD/) | 11章 | ⭐⭐⭐ | 围护结构 CAD 设计 |
 | [TongWen 教程](https://znlgis.github.io/cad/TongWen/) | 12章 | ⭐⭐⭐ | CAD 图纸无损翻译 |
-| [TongWen 教程](https://znlgis.github.io/cad/TongWen/) | 12章 | ⭐⭐⭐ | CAD 图纸无损翻译 |
 | [Clipper2 教程](https://znlgis.github.io/cad/Clipper2/) | 6章 | ⭐⭐ | 多边形裁剪库 |
 | [Clipper1 教程](https://znlgis.github.io/cad/Clipper1/) | 6章 | ⭐⭐ | 多边形裁剪库 v1 |
 | [Chili3D 教程](https://znlgis.github.io/cad/chili3d/) | 7章 | ⭐⭐ | 轻量 3D 引擎 |

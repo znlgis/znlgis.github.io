@@ -217,6 +217,25 @@ document.addEventListener('DOMContentLoaded', function() {
     var sidebar = document.getElementById('sidebar');
     var overlay = document.getElementById('sidebarOverlay');
 
+    // ===== 深色模式切换 =====
+    var themeToggle = document.getElementById('themeToggle');
+    var html = document.documentElement;
+    var savedTheme = localStorage.getItem('theme');
+    if (savedTheme) {
+        html.setAttribute('data-theme', savedTheme);
+        themeToggle.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+    } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        html.setAttribute('data-theme', 'dark');
+        themeToggle.textContent = '☀️';
+    }
+    themeToggle.addEventListener('click', function() {
+        var current = html.getAttribute('data-theme');
+        var next = current === 'dark' ? 'light' : 'dark';
+        html.setAttribute('data-theme', next);
+        localStorage.setItem('theme', next);
+        themeToggle.textContent = next === 'dark' ? '☀️' : '🌙';
+    });
+
     // 移动端侧边栏切换
     function toggleSidebar() {
         sidebar.classList.toggle('show');
@@ -281,6 +300,44 @@ document.addEventListener('DOMContentLoaded', function() {
             anchor.setAttribute('aria-hidden', 'false');
             heading.appendChild(anchor);
         }
+    }
+
+    // ===== 代码块复制按钮 =====
+    var codeBlocks = document.querySelectorAll('.highlight, pre');
+    for (var i = 0; i < codeBlocks.length; i++) {
+        var block = codeBlocks[i];
+        var codeEl = block.querySelector('code');
+        if (!codeEl) continue;
+        var copyBtn = document.createElement('button');
+        copyBtn.className = 'code-copy-btn';
+        copyBtn.textContent = '复制';
+        copyBtn.setAttribute('aria-label', '复制代码');
+        copyBtn.addEventListener('click', function(e) {
+            var btn = e.target;
+            var pre = btn.closest('.highlight') || btn.closest('pre');
+            var code = pre ? pre.querySelector('code') : null;
+            if (code) {
+                var text = code.textContent;
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(text).then(function() {
+                        btn.textContent = '已复制 ✓';
+                        setTimeout(function() { btn.textContent = '复制'; }, 1500);
+                    });
+                } else {
+                    var textarea = document.createElement('textarea');
+                    textarea.value = text;
+                    textarea.style.position = 'fixed';
+                    textarea.style.opacity = '0';
+                    document.body.appendChild(textarea);
+                    textarea.select();
+                    try { document.execCommand('copy'); btn.textContent = '已复制 ✓'; } catch(ex) { btn.textContent = '失败'; }
+                    document.body.removeChild(textarea);
+                    setTimeout(function() { btn.textContent = '复制'; }, 1500);
+                }
+            }
+        });
+        block.style.position = 'relative';
+        block.appendChild(copyBtn);
     }
 
     // 高亮当前页面在目录树中的位置

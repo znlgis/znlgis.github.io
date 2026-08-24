@@ -20,6 +20,7 @@ title: C# 教程
 | [NPOI 教程](https://znlgis.github.io/csharp/npoi/) | 18章 | ⭐ | Office 文档操作 |
 | [ReoGrid 教程](https://znlgis.github.io/csharp/ReoGrid/) | 20章 | ⭐⭐ | 电子表格控件 |
 | [.NET Reactor](https://znlgis.github.io/csharp/dotnet-reactor/) | 15章 | ⭐⭐ | 代码保护与混淆 |
+| [Sentry](https://znlgis.github.io/csharp/sentry/) | 10章 | ⭐⭐ | 错误监控与性能追踪 |
 
 ---
 
@@ -49,3 +50,4 @@ title: C# 教程
 - [ReoGrid 教程](https://znlgis.github.io/csharp/ReoGrid/)
 - [sod 教程](https://znlgis.github.io/csharp/sod/)
 - [SqlSugar 教程](https://znlgis.github.io/csharp/SqlSugar/)
+- [Sentry 教程](https://znlgis.github.io/csharp/sentry/)

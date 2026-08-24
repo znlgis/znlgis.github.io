@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
+    <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
     <meta name="keywords" content="{% if page.keywords %}{{ page.keywords }}{% else %}{{ site.keywords }}{% endif %}">
     
     {% seo title=false %}
     <link rel="icon" href="{{ '/assets/logo.png' | relative_url }}">
+    <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ '/feed.xml' | relative_url }}">
     
     <!-- 不蒜子访客统计 -->
     <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
@@ -51,6 +53,7 @@
                     <nav>
                         <a href="{{ '/' | relative_url }}">首页</a>
                         <a href="{{ '/about' | relative_url }}">关于</a>
+                        <a href="{{ '/feed.xml' | relative_url }}">RSS</a>
                         <a href="https://space.bilibili.com/161342702" target="_blank" rel="noopener noreferrer">B站</a>
                         <a href="https://github.com/znlgis" target="_blank" rel="noopener noreferrer">GitHub</a>
                     </nav>
@@ -92,6 +95,9 @@
     
     <!-- 移动端侧边栏切换按钮 -->
     <button class="sidebar-toggle" id="sidebarToggle" title="显示/隐藏目录" aria-label="显示/隐藏目录导航">☰</button>
+    
+    <!-- 深色模式切换按钮 -->
+    <button class="theme-toggle" id="themeToggle" title="切换深色/浅色模式" aria-label="切换深色/浅色模式">🌙</button>
     
     <a href="#" class="back-to-top" id="backToTop" title="回到顶部">↑</a>
     
