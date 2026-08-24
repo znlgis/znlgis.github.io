@@ -34,10 +34,9 @@
             <div class="sidebar-header">
                 <h2>📚 教程目录</h2>
             </div>
-            <div style="margin: 0 0 0.75rem; padding: 0;" class="search-container">
-                <form onsubmit="return false" style="display: flex; gap: 0.3rem;">
+            <div class="sidebar-search">
+                <form class="sidebar-search-form" onsubmit="return false">
                     <input type="text" id="searchInput" placeholder="搜索教程..." autocomplete="off"
-                           style="flex: 1; padding: 0.35rem 0.5rem; border: 1px solid var(--border-color); border-radius: 4px; font-size: 0.8rem; outline: none;"
                            aria-label="搜索教程"
                            aria-controls="searchResults"
                            aria-autocomplete="list"
@@ -46,6 +45,12 @@
                 <div class="search-results" id="searchResults" role="listbox" aria-label="搜索结果"></div>
             </div>
             {% include sidebar.html %}
+            <div class="sidebar-toc" id="sidebarToc">
+                <div class="sidebar-toc-header">
+                    <h3>📑 本页目录</h3>
+                </div>
+                <nav class="sidebar-toc-list" id="tocList" aria-label="文章目录导航"></nav>
+            </div>
         </aside>
         
         <!-- 遮罩层 -->
@@ -104,10 +109,7 @@
     <button class="sidebar-toggle" id="sidebarToggle" title="显示/隐藏目录" aria-label="显示/隐藏目录导航">
         <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M2 4h16v1.5H2zM2 9.25h16v1.5H2zM2 14.5h16v1.5H2z"/></svg>
     </button>
-    
-    <button class="theme-toggle" id="themeToggle" title="切换主题" aria-label="切换深色/浅色模式">🌙</button>
-    
-    <!-- 深色模式切换按钮 -->
+
     <button class="theme-toggle" id="themeToggle" title="切换深色/浅色模式" aria-label="切换深色/浅色模式">🌙</button>
     
     <a href="#" class="back-to-top" id="backToTop" title="回到顶部">↑</a>
