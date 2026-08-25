@@ -2034,7 +2034,7 @@ qgis_process run native:reprojectlayer -- \
 - **OGC Web 服务客户端**：WMS / WFS / WCS 客户端，可直接从远程地图服务拉取数据
 - **几何运算**：基于 JTS Topology Suite 的全套几何计算
 
-**环境要求：** JDK 11+（GeoTools 21-30）；JDK 17+（GeoTools 31+）。
+**环境要求：** JDK 11+（GeoTools 21-33）；JDK 17+（GeoTools 34+）。
 
 **Maven 集成：**
 

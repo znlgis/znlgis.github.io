@@ -59,7 +59,7 @@ GeoTools 项目的发展历程可以追溯到上世纪 90 年代末：
 | 2014 | GeoTools 12 发布，支持 Java 7 |
 | 2018 | GeoTools 20 发布，支持 Java 8 |
 | 2022 | GeoTools 27 发布，支持 Java 11 |
-| 2024 | GeoTools 31+ 发布，支持 Java 17 |
+| 2025 | GeoTools 34 发布，要求 Java 17（31.x~33.x 为 Java 11） |
 
 **版本策略**：
 
@@ -540,7 +540,7 @@ mvn archetype:generate \
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
-        <geotools.version>31.0</geotools.version>
+        <geotools.version>33.6</geotools.version>
     </properties>
 
     <repositories>
