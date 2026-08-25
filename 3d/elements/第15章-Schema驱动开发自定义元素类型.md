@@ -1183,7 +1183,7 @@ if (result.Success)
 ---
 
 <div style="display:flex; justify-content:space-between; margin-top:3rem;">
-  <a href="https://znlgis.github.io/3d/elements/第15章-Schema驱动开发自定义元素类型/第14章-组件化生成/">← 上一章</a>
-  <a href="https://znlgis.github.io/3d/elements/第15章-Schema驱动开发自定义元素类型/">目录</a>
-  <a href="https://znlgis.github.io/3d/elements/第15章-Schema驱动开发自定义元素类型/第16章-实战案例综合建模项目/">下一章 →</a>
+  <a href="https://znlgis.github.io/3d/elements/第14章-组件化生成/">← 上一章</a>
+  <a href="https://znlgis.github.io/3d/elements/">目录</a>
+  <a href="https://znlgis.github.io/3d/elements/第16章-实战案例综合建模项目/">下一章 →</a>
 </div>

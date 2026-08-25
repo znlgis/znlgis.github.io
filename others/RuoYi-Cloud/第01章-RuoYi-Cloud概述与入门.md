@@ -264,7 +264,7 @@ com.ruoyi
 
 若依官方提供了在线演示环境，可以快速体验系统功能：
 
-**演示地址：** http://ruoyi.vip
+**演示地址：** https://www.ruoyi.vip
 
 **测试账号：**
 - 管理员账号：admin
@@ -277,7 +277,7 @@ com.ruoyi
 
 ### 1.4.2 文档资源
 
-**官方文档：** http://doc.ruoyi.vip
+**官方文档：** https://doc.ruoyi.vip
 
 官方文档包含：
 - 项目介绍

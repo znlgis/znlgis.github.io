@@ -945,9 +945,9 @@ manager.clear();
 ---
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/gis/tutorial/cesium/第07章-Primitive底层渲染/第06章-Entity-API实体管理/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/gis/tutorial/cesium/第07章-Primitive底层渲染/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/gis/tutorial/cesium/第07章-Primitive底层渲染/第08章-影像图层与地图服务/" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/gis/tutorial/cesium/第06章-Entity-API实体管理/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/tutorial/cesium/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/tutorial/cesium/第08章-影像图层与地图服务/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

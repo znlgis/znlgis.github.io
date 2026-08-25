@@ -938,9 +938,9 @@ dwgadd house.txt -o house.dwg
 ---
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/cad/libredwg/第08章-DWG文件创建与写入/第07章-DWG文件读取与解析/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/cad/libredwg/第08章-DWG文件创建与写入/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/cad/libredwg/第08章-DWG文件创建与写入/第09章-格式转换实战/" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/cad/libredwg/第07章-DWG文件读取与解析/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/libredwg/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/cad/libredwg/第09章-格式转换实战/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

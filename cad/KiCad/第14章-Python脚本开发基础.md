@@ -463,9 +463,9 @@ def safe_operation():
 ---
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/cad/KiCad/第14章-Python脚本开发基础/第13章-高速电路设计/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/cad/KiCad/第14章-Python脚本开发基础/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/cad/KiCad/第14章-Python脚本开发基础/第15章-Python插件开发实战/" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/cad/KiCad/第13章-高速电路设计/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/KiCad/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/cad/KiCad/第15章-Python插件开发实战/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

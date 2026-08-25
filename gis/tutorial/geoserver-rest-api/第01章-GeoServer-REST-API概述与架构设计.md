@@ -674,8 +674,8 @@ namespace GeoServerQuickStart
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
   <span></span>
-  <a href="https://znlgis.github.io/gis/tutorial/geoserver-rest-api/第01章-GeoServer-REST-API概述与架构设计/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/gis/tutorial/geoserver-rest-api/第01章-GeoServer-REST-API概述与架构设计/第02章-环境准备与客户端配置/" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/gis/tutorial/geoserver-rest-api/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/tutorial/geoserver-rest-api/第02章-环境准备与客户端配置/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

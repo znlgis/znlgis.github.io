@@ -1292,9 +1292,9 @@ Console.WriteLine("\n=== 完成 ===");
 ---
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/gis/tutorial/gdal/第09章-CSharp绑定开发指南/第08章-Java绑定开发指南/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/gis/tutorial/gdal/第09章-CSharp绑定开发指南/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/gis/tutorial/gdal/第09章-CSharp绑定开发指南/第10章-命令行工具详解/" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/gis/tutorial/gdal/第08章-Java绑定开发指南/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/tutorial/gdal/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/tutorial/gdal/第10章-命令行工具详解/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

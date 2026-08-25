@@ -1044,4 +1044,4 @@ Faux Provider 同样支持流式输出（使用 `models.stream`）——工具�
 - **中止支持**通过 `AbortSignal` 贯穿整个调用管道，被中止的消息仍可追加到上下文历史继续后续请求。
 - **错误处理**的核心理念是"永远不抛异常"——所有失败都转化为流式事件和消息状态，调用者通过 `stopReason` 和 `errorMessage` 获取信息。
 
-下一章：[第十四章：核心架构pi-agent-core代理运行时](https://znlgis.github.io/ai/pi/13-核心架构pi-ai统一LLM-API层/14-核心架构pi-agent-core代理运行时/) 将进入 pi-agent-core——看看 Agent 循环、工具执行、事件流、状态管理、消息队列这些"Agent 运行时"层是如何构建在 pi-ai 之上的。
+下一章：[第十四章：核心架构pi-agent-core代理运行时](https://znlgis.github.io/ai/pi/14-核心架构pi-agent-core代理运行时/) 将进入 pi-agent-core——看看 Agent 循环、工具执行、事件流、状态管理、消息队列这些"Agent 运行时"层是如何构建在 pi-ai 之上的。

@@ -53,9 +53,12 @@ exclude:
   - vendor
   - .bundle
   - Gemfile
+  - Gemfile.lock
   - node_modules
   - package.json
   - package-lock.json
+  - fix_cnblogs_links.py
+  - docs
 
 # 集合配置
 collections:

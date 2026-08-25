@@ -719,9 +719,9 @@ public class GeoJSONGeometryValidator {
 ---
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/gis/tutorial/geotools/第08章-GeoJSON处理实战/第07章-Shapefile读写详解/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/gis/tutorial/geotools/第08章-GeoJSON处理实战/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/gis/tutorial/geotools/第08章-GeoJSON处理实战/第09章-数据库空间数据访问/" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/gis/tutorial/geotools/第07章-Shapefile读写详解/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/tutorial/geotools/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/tutorial/geotools/第09章-数据库空间数据访问/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

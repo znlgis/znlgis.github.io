@@ -589,9 +589,9 @@ public class CacheDeploymentManager
 ---
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/gis/tutorial/geoserver-rest-api/第13章-GeoWebCache集成与缓存管理/第12章-覆盖范围与栅格数据管理/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/gis/tutorial/geoserver-rest-api/第13章-GeoWebCache集成与缓存管理/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/gis/tutorial/geoserver-rest-api/第13章-GeoWebCache集成与缓存管理/第14章-资源与模板管理/" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/gis/tutorial/geoserver-rest-api/第12章-覆盖范围与栅格数据管理/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/tutorial/geoserver-rest-api/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/tutorial/geoserver-rest-api/第14章-资源与模板管理/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

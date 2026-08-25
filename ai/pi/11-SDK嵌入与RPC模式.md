@@ -1668,4 +1668,4 @@ if __name__ == "__main__":
 | 构建完整的自定义 UI（Web、桌面等） | RPC 模式（语言无关）或 SDK（Node.js 后端） |
 | 测试 Agent 行为、单元测试 | SDK（`SessionManager.inMemory()`） |
 
-下一章：[第十二章：容器化与安全沙箱](https://znlgis.github.io/ai/pi/11-SDK嵌入与RPC模式/12-容器化与安全沙箱/) 将探讨 Pi 的容器化与安全沙箱方案——当你不信任 Agent 的 YOLO 模式、或者需要在多租户环境中安全运行时，如何用 Docker、Gondolin 微 VM 和 OpenShell 策略沙箱来隔离 Pi 的运行环境。
+下一章：[第十二章：容器化与安全沙箱](https://znlgis.github.io/ai/pi/12-容器化与安全沙箱/) 将探讨 Pi 的容器化与安全沙箱方案——当你不信任 Agent 的 YOLO 模式、或者需要在多租户环境中安全运行时，如何用 Docker、Gondolin 微 VM 和 OpenShell 策略沙箱来隔离 Pi 的运行环境。

@@ -436,7 +436,7 @@ opencode 原生支持 MCP Server，分为本地和远程两种类型：
 
 **AGENTS.md 注入**：
 
-opencode 会自动读取项目根目录的 `AGENTS.md` 文件，将其内容注入到 System Prompt 中。对于 opengis-skills 用户，可以在 AGENTS.md 中写入技能库的引用规则（详见 [第四章 4.6.2](https://znlgis.github.io/ai/opengis-skills/08-AI与Agent技能详解/04-AI工具集成指南/#462-agentsmd-集成)）。
+opencode 会自动读取项目根目录的 `AGENTS.md` 文件，将其内容注入到 System Prompt 中。对于 opengis-skills 用户，可以在 AGENTS.md 中写入技能库的引用规则（详见 [第四章 4.6.2](https://znlgis.github.io/ai/opengis-skills/04-AI工具集成指南/#462-agentsmd-集成)）。
 
 ### 8.3.2 pi：极简终端 Agent Harness
 

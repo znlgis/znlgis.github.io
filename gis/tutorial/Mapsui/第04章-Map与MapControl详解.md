@@ -789,9 +789,9 @@ writableLayer.DataHasChanged();
 ---
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/gis/tutorial/Mapsui/第04章-Map与MapControl详解/第03章-核心架构与组件设计/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/gis/tutorial/Mapsui/第04章-Map与MapControl详解/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/gis/tutorial/Mapsui/第04章-Map与MapControl详解/第05章-图层系统详解/" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/gis/tutorial/Mapsui/第03章-核心架构与组件设计/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/tutorial/Mapsui/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/tutorial/Mapsui/第05章-图层系统详解/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

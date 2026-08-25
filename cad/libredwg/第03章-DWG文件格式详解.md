@@ -834,9 +834,9 @@ if (extrusion.z < 0) {
 ---
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/cad/libredwg/第03章-DWG文件格式详解/第02章-环境搭建与安装配置/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/cad/libredwg/第03章-DWG文件格式详解/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/cad/libredwg/第03章-DWG文件格式详解/第04章-核心架构与数据结构/" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/cad/libredwg/第02章-环境搭建与安装配置/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/libredwg/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/cad/libredwg/第04章-核心架构与数据结构/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

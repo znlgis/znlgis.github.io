@@ -330,9 +330,9 @@ function createLegend(layers) {
 ---
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/gis/tutorial/openlayers/第16章-OGC服务集成/第15章-要素编辑与绘制/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/gis/tutorial/openlayers/第16章-OGC服务集成/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/gis/tutorial/openlayers/第16章-OGC服务集成/第17章-性能优化与最佳实践/" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/gis/tutorial/openlayers/第15章-要素编辑与绘制/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/tutorial/openlayers/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/tutorial/openlayers/第17章-性能优化与最佳实践/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

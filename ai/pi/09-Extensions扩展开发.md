@@ -1666,4 +1666,4 @@ pi.on("before_agent_start", async (event, ctx) => {
 
 Extension 系统是 Pi 灵活性的核心来源。掌握了它，Pi 就不再只是一个终端编码 Agent，而是一个你可以完全按自己意愿重塑的 Agent 平台。
 
-下一章：[第十章：Pi包管理与分发](https://znlgis.github.io/ai/pi/09-Extensions扩展开发/10-Pi包管理与分发/) 将学习如何通过 Pi Package 机制管理、分发和分享你的 Extensions、Skills、Prompt Templates 和 Themes。
+下一章：[第十章：Pi包管理与分发](https://znlgis.github.io/ai/pi/10-Pi包管理与分发/) 将学习如何通过 Pi Package 机制管理、分发和分享你的 Extensions、Skills、Prompt Templates 和 Themes。

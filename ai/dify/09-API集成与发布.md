@@ -733,9 +733,9 @@ Page({
 ---
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/ai/dify/09-API集成与发布/08-模型接入与配置/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/ai/dify/09-API集成与发布/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/ai/dify/09-API集成与发布/10-最佳实践与进阶技巧/" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/ai/dify/08-模型接入与配置/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/ai/dify/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/ai/dify/10-最佳实践与进阶技巧/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

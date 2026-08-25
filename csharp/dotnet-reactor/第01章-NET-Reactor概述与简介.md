@@ -517,8 +517,8 @@ title: 第01章 .NET Reactor概述与简介
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
   <span></span>
-  <a href="https://znlgis.github.io/csharp/dotnet-reactor/第01章-NET-Reactor概述与简介/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/csharp/dotnet-reactor/第01章-NET-Reactor概述与简介/第02章-安装与环境配置/" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/csharp/dotnet-reactor/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/csharp/dotnet-reactor/第02章-安装与环境配置/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

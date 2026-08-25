@@ -599,9 +599,9 @@ foreach (var group in groups)
 ---
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/gis/tutorial/NetTopologySuite/第13章-Feature与属性管理/第12章-矢量切片生成/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/gis/tutorial/NetTopologySuite/第13章-Feature与属性管理/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/gis/tutorial/NetTopologySuite/第13章-Feature与属性管理/第14章-高级功能与性能优化/" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/gis/tutorial/NetTopologySuite/第12章-矢量切片生成/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/tutorial/NetTopologySuite/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/tutorial/NetTopologySuite/第14章-高级功能与性能优化/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

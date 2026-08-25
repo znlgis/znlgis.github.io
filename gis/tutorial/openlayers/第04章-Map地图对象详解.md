@@ -1408,9 +1408,9 @@ document.getElementById('export-btn').addEventListener('click', () => {
 ---
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/gis/tutorial/openlayers/第04章-Map地图对象详解/第03章-核心概念与架构设计/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/gis/tutorial/openlayers/第04章-Map地图对象详解/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/gis/tutorial/openlayers/第04章-Map地图对象详解/第05章-View视图与坐标系统/" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/gis/tutorial/openlayers/第03章-核心概念与架构设计/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/tutorial/openlayers/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/tutorial/openlayers/第05章-View视图与坐标系统/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

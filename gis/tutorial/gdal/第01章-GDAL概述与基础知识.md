@@ -588,8 +588,8 @@ GDAL 3.x 系列带来了许多重要更新：
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
   <span></span>
-  <a href="https://znlgis.github.io/gis/tutorial/gdal/第01章-GDAL概述与基础知识/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/gis/tutorial/gdal/第01章-GDAL概述与基础知识/第02章-GDAL安装与环境配置/" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/gis/tutorial/gdal/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/tutorial/gdal/第02章-GDAL安装与环境配置/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

@@ -1069,6 +1069,6 @@ VirtualTourPlugin 与 GalleryPlugin 构成了 Photo Sphere Viewer 的多全景�
 下一章将介绍视频全景的播放与移动端交互适配。
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/3d/Photo-Sphere-Viewer/第07章-虚拟导览与画廊VirtualTour与Gallery/第06章-插件体系架构与自定义插件开发/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/3d/Photo-Sphere-Viewer/第07章-虚拟导览与画廊VirtualTour与Gallery/第08章-视频全景与移动端交互/" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/3d/Photo-Sphere-Viewer/第06章-插件体系架构与自定义插件开发/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/3d/Photo-Sphere-Viewer/第08章-视频全景与移动端交互/" style="text-decoration: none;">下一章 →</a>
 </div>

@@ -965,7 +965,7 @@ Console.WriteLine($"  PDF            : complete_plan.pdf");
 ---
 
 <div style="display:flex; justify-content:space-between; margin-top:3rem;">
-  <a href="https://znlgis.github.io/3d/elements/第10章-序列化JSON-glTF与IFC/第09章-材质光照与渲染/">← 上一章</a>
-  <a href="https://znlgis.github.io/3d/elements/第10章-序列化JSON-glTF与IFC/">目录</a>
-  <a href="https://znlgis.github.io/3d/elements/第10章-序列化JSON-glTF与IFC/第11章-空间数据结构网格拓扑与自适应网格/">下一章 →</a>
+  <a href="https://znlgis.github.io/3d/elements/第09章-材质光照与渲染/">← 上一章</a>
+  <a href="https://znlgis.github.io/3d/elements/">目录</a>
+  <a href="https://znlgis.github.io/3d/elements/第11章-空间数据结构网格拓扑与自适应网格/">下一章 →</a>
 </div>

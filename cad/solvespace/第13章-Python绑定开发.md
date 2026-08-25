@@ -727,9 +727,9 @@ if result['result'] != ResultFlag.OKAY:
 ---
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/cad/solvespace/第13章-Python绑定开发/第12章-C语言库API详解/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/cad/solvespace/第13章-Python绑定开发/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/cad/solvespace/第13章-Python绑定开发/第14章-源码架构分析/" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/cad/solvespace/第12章-C语言库API详解/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/solvespace/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/cad/solvespace/第14章-源码架构分析/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

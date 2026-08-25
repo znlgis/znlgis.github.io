@@ -1527,8 +1527,8 @@ public class BestPractices
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
   <span></span>
-  <a href="https://znlgis.github.io/csharp/Admin.NET/第05章-数据库操作与SqlSugar集成/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/csharp/Admin.NET/第05章-数据库操作与SqlSugar集成/第03章-项目架构与核心模块解析/" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/csharp/Admin.NET/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/csharp/Admin.NET/第03章-项目架构与核心模块解析/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

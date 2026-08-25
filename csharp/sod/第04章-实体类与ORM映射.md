@@ -774,9 +774,9 @@ public class UserEntity : BaseEntity
 ---
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/csharp/sod/第04章-实体类与ORM映射/第03章-快速入门与环境配置/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/csharp/sod/第04章-实体类与ORM映射/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/csharp/sod/第04章-实体类与ORM映射/第05章-OQL查询语言详解/" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/csharp/sod/第03章-快速入门与环境配置/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/csharp/sod/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/csharp/sod/第05章-OQL查询语言详解/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

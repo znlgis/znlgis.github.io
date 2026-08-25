@@ -296,7 +296,7 @@ public static int GetTag() => System.Threading.Interlocked.Increment(ref staticT
 ---
 
 <div style="display:flex; justify-content:space-between; margin-top:3rem;">
-  <a href="https://znlgis.github.io/3d/OpenCSG.NET/第12章-源码剖析Solid内核与BSP算法/第11章-CsgNode的JSON序列化/">← 上一章</a>
-  <a href="https://znlgis.github.io/3d/OpenCSG.NET/第12章-源码剖析Solid内核与BSP算法/">目录</a>
-  <a href="https://znlgis.github.io/3d/OpenCSG.NET/第12章-源码剖析Solid内核与BSP算法/第13章-实战案例冷弯C型钢檩条建模/">下一章 →</a>
+  <a href="https://znlgis.github.io/3d/OpenCSG.NET/第11章-CsgNode的JSON序列化/">← 上一章</a>
+  <a href="https://znlgis.github.io/3d/OpenCSG.NET/">目录</a>
+  <a href="https://znlgis.github.io/3d/OpenCSG.NET/第13章-实战案例冷弯C型钢檩条建模/">下一章 →</a>
 </div>

@@ -356,8 +356,8 @@ public class LayoutCmds
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
   <span></span>
-  <a href="https://znlgis.github.io/cad/FY_Layout/第01章-FY_Layout概述与入门/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/cad/FY_Layout/第01章-FY_Layout概述与入门/第02章-开发环境搭建与项目配置/" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/cad/FY_Layout/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/cad/FY_Layout/第02章-开发环境搭建与项目配置/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

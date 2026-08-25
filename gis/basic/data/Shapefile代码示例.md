@@ -77,7 +77,7 @@ graph TD
 
 ```
 
-[Shapefile文件编码参考文档](http://kikitamap.com/2015/12/21/TroubleshootingShapefile/)
+[Shapefile文件编码参考文档](https://kikitamap.com/2015/12/21/TroubleshootingShapefile/)
 
 ## 2. 写入Shapefile文件
 

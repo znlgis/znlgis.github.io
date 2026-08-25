@@ -969,9 +969,9 @@ public class ProfessionalReportExample
 ---
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/csharp/npoi/第09章-Excel高级功能-合并单元格与冻结窗格/第08章-Excel图表与图形/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/csharp/npoi/第09章-Excel高级功能-合并单元格与冻结窗格/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/csharp/npoi/第09章-Excel高级功能-合并单元格与冻结窗格/第10章-Word文档基础操作/" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/csharp/npoi/第08章-Excel图表与图形/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/csharp/npoi/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/csharp/npoi/第10章-Word文档基础操作/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

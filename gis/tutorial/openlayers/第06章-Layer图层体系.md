@@ -1073,9 +1073,9 @@ visibilityManager.restoreState('default');
 ---
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/gis/tutorial/openlayers/第06章-Layer图层体系/第05章-View视图与坐标系统/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/gis/tutorial/openlayers/第06章-Layer图层体系/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/gis/tutorial/openlayers/第06章-Layer图层体系/第07章-Source数据源详解/" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/gis/tutorial/openlayers/第05章-View视图与坐标系统/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/tutorial/openlayers/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/tutorial/openlayers/第07章-Source数据源详解/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

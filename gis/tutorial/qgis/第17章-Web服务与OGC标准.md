@@ -378,9 +378,9 @@ Web服务是现代GIS数据共享的重要方式。
 ---
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/gis/tutorial/qgis/第17章-Web服务与OGC标准/第16章-数据库集成/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/gis/tutorial/qgis/第17章-Web服务与OGC标准/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/gis/tutorial/qgis/第17章-Web服务与OGC标准/第18章-高级功能与扩展/" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/gis/tutorial/qgis/第16章-数据库集成/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/tutorial/qgis/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/tutorial/qgis/第18章-高级功能与扩展/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

@@ -889,8 +889,8 @@ FxBricks使用CadQuery构建产品开发流水线，他们开源了CAD流程文�
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
   <span></span>
-  <a href="https://znlgis.github.io/cad/cadquery/第01章-CadQuery概述与入门/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/cad/cadquery/第01章-CadQuery概述与入门/第02章-Workplane与草图系统/" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/cad/cadquery/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/cad/cadquery/第02章-Workplane与草图系统/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

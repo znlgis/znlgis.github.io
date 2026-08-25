@@ -621,9 +621,9 @@ PyQGIS是QGIS自动化和扩展的基础。
 ---
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/gis/tutorial/qgis/第14章-Python开发与PyQGIS/第13章-Processing工具箱/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/gis/tutorial/qgis/第14章-Python开发与PyQGIS/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/gis/tutorial/qgis/第14章-Python开发与PyQGIS/第15章-插件开发指南/" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/gis/tutorial/qgis/第13章-Processing工具箱/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/tutorial/qgis/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/tutorial/qgis/第15章-插件开发指南/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

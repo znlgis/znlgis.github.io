@@ -185,6 +185,6 @@ Ara3D.SDK  (net8.0-windows — 完整 Windows 技术栈)
 ---
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/3d/ara3d-sdk/第01章-Ara3D-SDK全景概览与学习路线/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/3d/ara3d-sdk/第01章-Ara3D-SDK全景概览与学习路线/第02章-环境搭建NuGet包体系与第一个程序/" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/3d/ara3d-sdk/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/3d/ara3d-sdk/第02章-环境搭建NuGet包体系与第一个程序/" style="text-decoration: none;">下一章 →</a>
 </div>

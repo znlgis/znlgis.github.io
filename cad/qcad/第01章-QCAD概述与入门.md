@@ -365,8 +365,8 @@ QCAD提供完整的官方文档：
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
   <span></span>
-  <a href="https://znlgis.github.io/cad/qcad/第01章-QCAD概述与入门/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/cad/qcad/第01章-QCAD概述与入门/第02章-安装与环境配置/" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/cad/qcad/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/cad/qcad/第02章-安装与环境配置/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

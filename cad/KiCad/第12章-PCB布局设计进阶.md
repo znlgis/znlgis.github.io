@@ -285,9 +285,9 @@ KiCad等长工具：
 ---
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/cad/KiCad/第12章-PCB布局设计进阶/第11章-原理图设计进阶/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/cad/KiCad/第12章-PCB布局设计进阶/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/cad/KiCad/第12章-PCB布局设计进阶/第13章-高速电路设计/" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/cad/KiCad/第11章-原理图设计进阶/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/KiCad/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/cad/KiCad/第13章-高速电路设计/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

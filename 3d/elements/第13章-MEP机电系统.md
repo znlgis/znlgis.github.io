@@ -1035,7 +1035,7 @@ Console.WriteLine($"共 {model.Elements.Count} 个元素");
 ---
 
 <div style="display:flex; justify-content:space-between; margin-top:3rem;">
-  <a href="https://znlgis.github.io/3d/elements/第13章-MEP机电系统/第12章-图与空间搜索/">← 上一章</a>
-  <a href="https://znlgis.github.io/3d/elements/第13章-MEP机电系统/">目录</a>
-  <a href="https://znlgis.github.io/3d/elements/第13章-MEP机电系统/第14章-组件化生成/">下一章 →</a>
+  <a href="https://znlgis.github.io/3d/elements/第12章-图与空间搜索/">← 上一章</a>
+  <a href="https://znlgis.github.io/3d/elements/">目录</a>
+  <a href="https://znlgis.github.io/3d/elements/第14章-组件化生成/">下一章 →</a>
 </div>

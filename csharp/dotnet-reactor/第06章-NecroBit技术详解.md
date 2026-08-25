@@ -803,9 +803,9 @@ NecroBit 是 .NET Reactor 最强大的保护技术，合理使用可以极大提
 ---
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/csharp/dotnet-reactor/第06章-NecroBit技术详解/第05章-加密与保护机制/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/csharp/dotnet-reactor/第06章-NecroBit技术详解/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/csharp/dotnet-reactor/第06章-NecroBit技术详解/第07章-本地代码编译/" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/csharp/dotnet-reactor/第05章-加密与保护机制/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/csharp/dotnet-reactor/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/csharp/dotnet-reactor/第07章-本地代码编译/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

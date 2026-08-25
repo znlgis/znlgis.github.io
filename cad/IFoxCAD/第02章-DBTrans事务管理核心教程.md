@@ -882,9 +882,9 @@ if (layer != null && layer.Color.ColorIndex != 1)
 ---
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/cad/IFoxCAD/第02章-DBTrans事务管理核心教程/第01章-IFoxCAD概述与入门/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/cad/IFoxCAD/第02章-DBTrans事务管理核心教程/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/cad/IFoxCAD/第02章-DBTrans事务管理核心教程/第03章-SymbolTable符号表操作教程/" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/cad/IFoxCAD/第01章-IFoxCAD概述与入门/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/IFoxCAD/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/cad/IFoxCAD/第03章-SymbolTable符号表操作教程/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

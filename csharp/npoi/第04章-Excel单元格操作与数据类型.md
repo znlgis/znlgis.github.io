@@ -1170,9 +1170,9 @@ public static class ExcelDataConverter
 ---
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/csharp/npoi/第04章-Excel单元格操作与数据类型/第03章-Excel基础操作-工作簿与工作表/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/csharp/npoi/第04章-Excel单元格操作与数据类型/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/csharp/npoi/第04章-Excel单元格操作与数据类型/第05章-Excel样式与格式化/" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/csharp/npoi/第03章-Excel基础操作-工作簿与工作表/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/csharp/npoi/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/csharp/npoi/第05章-Excel样式与格式化/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

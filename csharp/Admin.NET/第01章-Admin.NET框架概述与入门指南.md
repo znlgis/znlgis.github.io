@@ -707,9 +707,9 @@ Admin.NET是一个功能完善、开箱即用的.NET通用权限开发框架。�
 ---
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/csharp/Admin.NET/第01章-Admin.NET框架概述与入门指南/第07章-二次开发实战-创建自定义模块/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/csharp/Admin.NET/第01章-Admin.NET框架概述与入门指南/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/csharp/Admin.NET/第01章-Admin.NET框架概述与入门指南/第09章-系统部署与运维指南/" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/csharp/Admin.NET/第07章-二次开发实战-创建自定义模块/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/csharp/Admin.NET/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/csharp/Admin.NET/第09章-系统部署与运维指南/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

@@ -1058,9 +1058,9 @@ public partial class MapForm : Form
 ---
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/gis/tutorial/SharpMap/第04章-Map对象与地图管理/第03章-核心架构与类库设计/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/gis/tutorial/SharpMap/第04章-Map对象与地图管理/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/gis/tutorial/SharpMap/第04章-Map对象与地图管理/第05章-图层系统详解/" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/gis/tutorial/SharpMap/第03章-核心架构与类库设计/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/tutorial/SharpMap/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/tutorial/SharpMap/第05章-图层系统详解/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

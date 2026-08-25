@@ -354,7 +354,7 @@ compiler.Compile();  // 触发首次构建
 ---
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/3d/ara3d-sdk/第03章-核心基础库Core详解/第02章-环境搭建NuGet包体系与第一个程序/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/3d/ara3d-sdk/第03章-核心基础库Core详解/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/3d/ara3d-sdk/第03章-核心基础库Core详解/第04章-数学基础与F8-SIMD加速/" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/3d/ara3d-sdk/第02章-环境搭建NuGet包体系与第一个程序/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/3d/ara3d-sdk/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/3d/ara3d-sdk/第04章-数学基础与F8-SIMD加速/" style="text-decoration: none;">下一章 →</a>
 </div>

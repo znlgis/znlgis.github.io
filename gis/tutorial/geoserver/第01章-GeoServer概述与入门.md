@@ -421,8 +421,8 @@ GeoServer拥有活跃的开源社区，提供丰富的资源：
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
   <span></span>
-  <a href="https://znlgis.github.io/gis/tutorial/geoserver/第01章-GeoServer概述与入门/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/gis/tutorial/geoserver/第01章-GeoServer概述与入门/第02章-GeoServer安装与配置/" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/gis/tutorial/geoserver/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/tutorial/geoserver/第02章-GeoServer安装与配置/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

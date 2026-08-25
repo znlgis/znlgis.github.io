@@ -929,9 +929,9 @@ public void SafeWrite(OguLayer layer, string path, string driverName)
 ---
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/gis/tutorial/opengis-utils-for-net/第05章-GDAL引擎架构设计/第04章-统一图层模型详解/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/gis/tutorial/opengis-utils-for-net/第05章-GDAL引擎架构设计/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/gis/tutorial/opengis-utils-for-net/第05章-GDAL引擎架构设计/第06章-数据格式转换实战/" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/gis/tutorial/opengis-utils-for-net/第04章-统一图层模型详解/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/tutorial/opengis-utils-for-net/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/tutorial/opengis-utils-for-net/第06章-数据格式转换实战/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

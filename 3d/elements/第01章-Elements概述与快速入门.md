@@ -438,6 +438,6 @@ using Elements.Serialization.glTF;     // Model.ToGlTF(), Model.ToGlb()
 
 <div style="display:flex; justify-content:space-between; margin-top:3rem;">
   <span></span>
-  <a href="https://znlgis.github.io/3d/elements/第01章-Elements概述与快速入门/">目录</a>
-  <a href="https://znlgis.github.io/3d/elements/第01章-Elements概述与快速入门/第02章-核心概念Element与Model/">下一章 →</a>
+  <a href="https://znlgis.github.io/3d/elements/">目录</a>
+  <a href="https://znlgis.github.io/3d/elements/第02章-核心概念Element与Model/">下一章 →</a>
 </div>
