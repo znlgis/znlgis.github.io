@@ -30,7 +30,6 @@ jobs:
           bundle exec htmlproofer ./_site \
             --assume-extension .html \
             --checks Images,Scripts,Html,Links \
-            --internal-domains znlgis.github.io \
             --disable-external \
             --allow-hash-href \
             --ignore-empty-alt \
