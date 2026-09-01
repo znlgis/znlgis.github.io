@@ -109,7 +109,7 @@ Discover 相当于 Snuba 的"翻译层",负责：
 
 值得注意的是,`src/sentry/snuba/discover.py` 中同时支持 **MQL**（Metrics Query Language）和 **SnQL** 两条路径,这意味着 Discover 可以在原始的索引事件数据和预聚合的指标数据之间无缝切换,具体由 `allow_metric_aggregates` 和 `has_metrics` 参数控制。
 
-### 10.1.3 数据集体系：Events、Transactions 与 Discover
+### 10.1.3 数据集体系：Events、Transactions 与 Discover {#1013-数据集体系events-transactions-与-discover}
 
 Sentry 的数据按用途分为多个逻辑数据集（Dataset）,定义在 `src/sentry/snuba/dataset.py`：
 

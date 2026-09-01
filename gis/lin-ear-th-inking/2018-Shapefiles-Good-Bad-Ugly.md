@@ -187,6 +187,6 @@ Shapefile 是 GIS 历史的重要组成部分，但技术进步已经使它落�
 
 ## 参考资料
 
-- [Switch from Shapefile](http://switchfromshapefile.org/)
+- [Switch from Shapefile](https://switchfromshapefile.org/)
 - [GeoPackage 规范](https://www.geopackage.org/)
 - [GeoJSON 规范](https://geojson.org/)
