@@ -5,7 +5,7 @@ title: 第六章：Issues 问题管理全流程
 
 # 第六章：Issues 问题管理全流程
 
-- [6.1 Issue（问题）的概念与生命周期](#61-issue问题-的概念与生命周期)
+ - [6.1 Issue（问题）的概念与生命周期](#section-6-1-issue)
   - [6.1.1 什么是 Issue](#611-什么是-issue)
   - [6.1.2 GroupStatus——顶层状态](#612-groupstatus顶层状态)
   - [6.1.3 GroupSubStatus——次级状态](#613-groupsubstatus次级状态)
@@ -17,7 +17,7 @@ title: 第六章：Issues 问题管理全流程
   - [6.2.3 分组策略（Strategy）详解](#623-分组策略strategy详解)
   - [6.2.4 Grouping Config 的版本演进](#624-grouping-config-的版本演进)
   - [6.2.5 增强规则（Enhancements）](#625-增强规则enhancements)
-  - [6.2.6 Fingerprint（指纹）机制](#626-fingerprintfingerprint机制)
+   - [6.2.6 Fingerprint（指纹）机制](#section-6-2-6-fingerprint)
   - [6.2.7 完整的分组流程](#627-完整的分组流程)
 - [6.3 Issue 详情页解读](#63-issue-详情页解读)
   - [6.3.1 Issue 概览属性](#631-issue-概览属性)
@@ -26,13 +26,13 @@ title: 第六章：Issues 问题管理全流程
   - [6.3.4 Breadcrumbs 时间线](#634-breadcrumbs-时间线)
   - [6.3.5 侧边栏聚合统计](#635-侧边栏聚合统计)
 - [6.4 Issue 操作](#64-issue-操作)
-  - [6.4.1 Resolve（解决）](#641-resolveresolve解决)
-  - [6.4.2 Ignore / Archive（忽略 / 归档）](#642-ignore--archivearchive忽略--归档)
-  - [6.4.3 Assign（分配）](#643-assignassign分配)
+   - [6.4.1 Resolve（解决）](#section-6-4-1-resolve)
+   - [6.4.2 Ignore / Archive（忽略 / 归档）](#section-6-4-2-ignore-archive)
+   - [6.4.3 Assign（分配）](#section-6-4-3-assign)
   - [6.4.4 Bookmark / Subscribe（书签 / 订阅）](#644-bookmark--subscribe标记--订阅)
-  - [6.4.5 Merge（合并）](#645-mergemerge合并)
-  - [6.4.6 Delete / Remove（删除）](#646-delete--removeremove删除)
-  - [6.4.7 Reprocessing（重处理）](#647-reprocessingreprocessing重处理)
+   - [6.4.5 Merge（合并）](#section-6-4-5-merge)
+   - [6.4.6 Delete / Remove（删除）](#section-6-4-6-delete-remove)
+   - [6.4.7 Reprocessing（重处理）](#section-6-4-7-reprocessing)
 - [6.5 Issue 搜索与过滤](#65-issue-搜索与过滤)
   - [6.5.1 搜索查询语法](#651-搜索查询语法)
   - [6.5.2 预定义搜索与保存视图](#652-预定义搜索与保存视图)
@@ -57,7 +57,7 @@ title: 第六章：Issues 问题管理全流程
 
 ---
 
-## 6.1 Issue（问题）的概念与生命周期 {#61-issue问题-的概念与生命周期}
+## 6.1 Issue（问题）的概念与生命周期 {#section-6-1-issue}
 
 ### 6.1.1 什么是 Issue
 
@@ -302,7 +302,7 @@ stack.module:com.myapp.* +app
 
 `DEFAULT_ENHANCEMENTS_BASE` 当前值为 `"all-platforms:2026-01-20"`，包含约 300 条内置规则，覆盖主流平台（Python、JavaScript、Java、Ruby、PHP、Go 等）的框架识别。
 
-### 6.2.6 Fingerprint（指纹）机制 {#626-fingerprintfingerprint机制}
+### 6.2.6 Fingerprint（指纹）机制 {#section-6-2-6-fingerprint}
 
 Fingerprint 是分组系统中最灵活的机制，允许开发者**覆盖**默认的分组行为。分为三个层面：
 
@@ -454,7 +454,7 @@ Issue 详情页侧边栏展示多项聚合统计数据，帮助快速评估影�
 
 ## 6.4 Issue 操作
 
-### 6.4.1 Resolve（解决） {#641-resolveresolve解决}
+### 6.4.1 Resolve（解决） {#section-6-4-1-resolve}
 
 Resolve 是 Issue 最常见的管理操作。支持两种方式：
 
@@ -464,7 +464,7 @@ Resolve 是 Issue 最常见的管理操作。支持两种方式：
 
 Resolve 时 `resolved_at` 字段被设置为当前时间，这会在 `update_group_open_period()` 中触发 Issue 打开时段的关闭。
 
-### 6.4.2 Ignore / Archive（忽略 / 归档） {#642-ignore--archivearchive忽略--归档}
+### 6.4.2 Ignore / Archive（忽略 / 归档） {#section-6-4-2-ignore-archive}
 
 Ignore 操作的实现分为两个入口（`src/sentry/issues/status_change.py`）：
 
@@ -503,7 +503,7 @@ for group in group_list:
 
 Ignore 操作还会触发 `remove_group_from_inbox(group, action=GroupInboxRemoveAction.IGNORED)`，将 Issue 从团队的 Inbox 中移除。
 
-### 6.4.3 Assign（分配） {#643-assignassign分配}
+### 6.4.3 Assign（分配） {#section-6-4-3-assign}
 
 Assign 通过 `GroupAssignee` 模型实现。一个 Issue 可以分配给一个 Team 或一个 User。
 
@@ -525,7 +525,7 @@ def get_assignee(self) -> Team | RpcUser | None:
 - **隐式订阅**：当用户处理 Issue（Assign、Comment）时，`GroupSubscription.objects.subscribe()` 自动生效
 - **团队订阅**：Issue 被分配给团队时，团队成员可以通过团队级别的设置接收通知
 
-### 6.4.5 Merge（合并） {#645-mergemerge合并}
+### 6.4.5 Merge（合并） {#section-6-4-5-merge}
 
 Merge 操作将多个 Issue 合并为一个主 Issue，所有子 Issue 的事件都重新关联到主 Issue。
 
@@ -569,7 +569,7 @@ def handle_merge(group_list, project_lookup, acting_user):
 - 创建 `GroupRedirect` 记录，确保旧的 Short ID 可以重定向到新 Issue
 - 更新 Tags、计数等聚合数据
 
-### 6.4.6 Delete / Remove（删除） {#646-delete--removeremove删除}
+### 6.4.6 Delete / Remove（删除） {#section-6-4-6-delete-remove}
 
 删除操作通过 `delete_group_list` 函数处理：
 
@@ -581,7 +581,7 @@ def handle_merge(group_list, project_lookup, acting_user):
 
 删除操作在 90 天内可以恢复（事件数据仍在 ClickHouse 的保留期内）。
 
-### 6.4.7 Reprocessing（重处理） {#647-reprocessingreprocessing重处理}
+### 6.4.7 Reprocessing（重处理） {#section-6-4-7-reprocessing}
 
 Reprocessing 允许对已存储的事件重新运行分组算法，适用于：
 - 修改了增强规则后希望事件重新分组

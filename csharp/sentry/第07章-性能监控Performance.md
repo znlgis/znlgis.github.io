@@ -26,7 +26,7 @@ title: 第七章：性能监控（Performance）
   - [7.5.1 Apdex（应用性能指数）](#751-apdex应用性能指数)
   - [7.5.2 百分位延迟 P50/P75/P95/P99](#752-百分位延迟-p50p75p95p99)
   - [7.5.3 Failure Rate（失败率）](#753-failure-rate失败率)
-  - [7.5.4 Throughput -- TPM/TPS（吞吐量）](#754-throughput----tpmtps吞吐量)
+   - [7.5.4 Throughput -- TPM/TPS（吞吐量）](#section-7-5-4-throughput)
   - [7.5.5 指标计算的底层实现](#755-指标计算的底层实现)
 - [7.6 Performance 页面解读](#76-performance-页面解读)
   - [7.6.1 Transaction Summary 页面](#761-transaction-summary-页面)
@@ -35,7 +35,7 @@ title: 第七章：性能监控（Performance）
   - [7.6.4 Trace View 全链路视图](#764-trace-view-全链路视图)
 - [7.7 数据库查询追踪](#77-数据库查询追踪)
   - [7.7.1 SQL 查询自动 Instrumentation](#771-sql-查询自动-instrumentation)
-  - [7.7.2 N+1 查询自动检测 -- 从代码看实现](#772-n1-查询自动检测----从代码看实现)
+   - [7.7.2 N+1 查询自动检测 -- 从代码看实现](#section-7-7-2-n-plus-one)
   - [7.7.3 MN+1 状态机检测](#773-mn1-状态机检测)
   - [7.7.4 连续 DB 查询检测](#774-连续-db-查询检测)
 - [7.8 前端性能监控](#78-前端性能监控)
@@ -495,7 +495,7 @@ def timeseries_query(
 
 在 Sentry 中，Transaction 的"失败"是由 Span 的 `status` 字段判断的。如果任何一个 Span 的状态为非 `ok`，则该 Transaction 被视为失败。通过 `failure_rate()` 函数可以在 Discover 中计算失败率。
 
-### 7.5.4 Throughput -- TPM/TPS（吞吐量） {#754-throughput----tpmtps吞吐量}
+### 7.5.4 Throughput -- TPM/TPS（吞吐量） {#section-7-5-4-throughput}
 
 - **TPM（Transactions Per Minute）**：每分钟处理的 Transaction 数量。最常用的吞吐量指标。
 - **TPS（Transactions Per Second）**：每秒处理的 Transaction 数量。
@@ -620,7 +620,7 @@ Span 中的数据包含关键诊断信息：
 
 `span.hash` 字段尤为重要 —— 它将参数化后的 SQL 做哈希处理，使得结构相同但参数不同的 SQL 在聚合分析中被视为同一类查询。性能检测器依赖 `span.hash` 来判断 Span 之间的等价性。
 
-### 7.7.2 N+1 查询自动检测 -- 从代码看实现 {#772-n1-查询自动检测----从代码看实现}
+### 7.7.2 N+1 查询自动检测 -- 从代码看实现 {#section-7-7-2-n-plus-one}
 
 N+1 查询是 ORM 使用中最常见的性能反模式之一。Sentry 的 N+1 检测器（`src/sentry/issue_detection/detectors/n_plus_one_db_span_detector.py`）通过识别以下 Span 结构模式来自动发现 N+1 问题：
 

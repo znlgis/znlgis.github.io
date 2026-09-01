@@ -10,7 +10,7 @@ title: 第十章：Dashboards 与 Discover 数据分析
 - [10.1 Discover 概述：Sentry 的查询引擎](#101-discover-概述sentry-的查询引擎)
   - [10.1.1 Discover 的定位与设计哲学](#1011-discover-的定位与设计哲学)
   - [10.1.2 Discover 与 Snuba 的关系](#1012-discover-与-snuba-的关系)
-  - [10.1.3 数据集体系：Events、Transactions 与 Discover](#1013-数据集体系events-transactions-与-discover)
+   - [10.1.3 数据集体系：Events、Transactions 与 Discover](#section-10-1-3-datasets)
   - [10.1.4 Discover 查询的核心入口函数](#1014-discover-查询的核心入口函数)
 - [10.2 Discover Query 语法](#102-discover-query-语法)
   - [10.2.1 字段选择与基本过滤](#1021-字段选择与基本过滤)
@@ -109,7 +109,7 @@ Discover 相当于 Snuba 的"翻译层",负责：
 
 值得注意的是,`src/sentry/snuba/discover.py` 中同时支持 **MQL**（Metrics Query Language）和 **SnQL** 两条路径,这意味着 Discover 可以在原始的索引事件数据和预聚合的指标数据之间无缝切换,具体由 `allow_metric_aggregates` 和 `has_metrics` 参数控制。
 
-### 10.1.3 数据集体系：Events、Transactions 与 Discover {#1013-数据集体系events-transactions-与-discover}
+### 10.1.3 数据集体系：Events、Transactions 与 Discover {#section-10-1-3-datasets}
 
 Sentry 的数据按用途分为多个逻辑数据集（Dataset）,定义在 `src/sentry/snuba/dataset.py`：
 
