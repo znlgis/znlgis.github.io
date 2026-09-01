@@ -284,3 +284,6 @@
     - title: AI智慧水务前端
       icon: 📁
       url: /demos/ai-water-front/
+    - title: 360全景地图联动
+      icon: 📁
+      url: /demos/map-360-demo/

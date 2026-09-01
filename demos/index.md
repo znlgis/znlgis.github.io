@@ -17,6 +17,7 @@ title: 演示项目
 | [Vue3+OpenLayers](https://znlgis.github.io/demos/vue3-openlayers/) | 8章 | ⭐⭐ | Vue3 WebGIS 开发 |
 | [Vue3地图大屏](https://znlgis.github.io/demos/vue3-map-dashboard/) | 5章 | ⭐⭐ | 数据可视化大屏 |
 | [AI智慧水务前端](https://znlgis.github.io/demos/ai-water-front/) | 5章 | ⭐⭐ | AI+GIS 前端应用 |
+| [360全景地图联动](https://znlgis.github.io/demos/map-360-demo/) | 11章 | ⭐⭐ | 全景+地图联动开发 |
 
 ---
 
@@ -24,5 +25,6 @@ title: 演示项目
 
 - [ai-water-front](https://znlgis.github.io/demos/ai-water-front/)
 - [gistools-tutorial](https://znlgis.github.io/demos/gistools-tutorial/)
+- [map-360-demo](https://znlgis.github.io/demos/map-360-demo/)
 - [vue3-openlayers](https://znlgis.github.io/demos/vue3-openlayers/)
 - [vue3-map-dashboard](https://znlgis.github.io/demos/vue3-map-dashboard/)
