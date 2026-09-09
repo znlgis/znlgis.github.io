@@ -34,6 +34,9 @@
     - title: OpenGIS Utils .NET
       icon: 📁
       url: /gis/tutorial/opengis-utils-for-net/
+    - title: OpenGIS DAF
+      icon: 📁
+      url: /gis/tutorial/opengis-daf/
     - title: Geometry API Java
       icon: 📁
       url: /gis/tutorial/geometry-api-java/
