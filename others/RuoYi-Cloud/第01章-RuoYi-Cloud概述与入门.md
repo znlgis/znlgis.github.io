@@ -59,7 +59,7 @@ RuoYi-Cloud（若依微服务版）是一套基于Spring Boot、Spring Cloud & A
 
 ### 1.1.4 版本说明
 
-截至目前，RuoYi-Cloud最新版本为v3.6.7。主要更新包括：
+截至目前，RuoYi-Cloud最新版本为v3.6.8。主要更新包括：
 
 - 升级Spring Boot至2.7.18版本
 - 升级Spring Framework至5.3.39版本

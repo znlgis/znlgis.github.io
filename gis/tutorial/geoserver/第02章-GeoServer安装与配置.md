@@ -185,12 +185,12 @@ Binary包是最简单的安装方式，适合快速试用和开发环境。
 
 **下载和解压：**
 ```bash
-# 下载GeoServer（以3.0.0版本为例）
-wget https://sourceforge.net/projects/geoserver/files/GeoServer/3.0.0/geoserver-3.0.0-bin.zip
+# 下载GeoServer（以3.0.1版本为例）
+wget https://sourceforge.net/projects/geoserver/files/GeoServer/3.0.1/geoserver-3.0.1-bin.zip
 
 # 解压到指定目录
-unzip geoserver-3.0.0-bin.zip -d /opt/
-mv /opt/geoserver-3.0.0 /opt/geoserver
+unzip geoserver-3.0.1-bin.zip -d /opt/
+mv /opt/geoserver-3.0.1 /opt/geoserver
 
 # 设置权限
 sudo chown -R $USER:$USER /opt/geoserver
@@ -225,24 +225,24 @@ shutdown.bat
 **安装Tomcat：**
 ```bash
 # Ubuntu/Debian
-sudo apt install tomcat9
+sudo apt install tomcat11
 
 # CentOS/RHEL
 sudo yum install tomcat
 
-# 或手动安装
-wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.80/bin/apache-tomcat-9.0.80.tar.gz
-tar xzf apache-tomcat-9.0.80.tar.gz -C /opt/
-mv /opt/apache-tomcat-9.0.80 /opt/tomcat
+# 或手动安装（GeoServer 3.0 基于 Jakarta EE，需 Tomcat 11）
+wget https://dlcdn.apache.org/tomcat/tomcat-11/v11.0.14/bin/apache-tomcat-11.0.14.tar.gz
+tar xzf apache-tomcat-11.0.14.tar.gz -C /opt/
+mv /opt/apache-tomcat-11.0.14 /opt/tomcat
 ```
 
 **部署GeoServer WAR：**
 ```bash
 # 下载WAR包
-wget https://sourceforge.net/projects/geoserver/files/GeoServer/3.0.0/geoserver-3.0.0-war.zip
+wget https://sourceforge.net/projects/geoserver/files/GeoServer/3.0.1/geoserver-3.0.1-war.zip
 
 # 解压
-unzip geoserver-3.0.0-war.zip
+unzip geoserver-3.0.1-war.zip
 
 # 部署到Tomcat
 cp geoserver.war /opt/tomcat/webapps/
@@ -260,14 +260,14 @@ Docker是现代化部署的推荐方式，提供了环境隔离和便捷的版�
 **基本部署：**
 ```bash
 # 拉取官方镜像
-docker pull docker.osgeo.org/geoserver:3.0.0
+docker pull docker.osgeo.org/geoserver:3.0.1
 
 # 运行容器
 docker run -d \
   --name geoserver \
   -p 8080:8080 \
   -v /data/geoserver_data:/opt/geoserver_data \
-  docker.osgeo.org/geoserver:3.0.0
+  docker.osgeo.org/geoserver:3.0.1
 ```
 
 **使用Docker Compose：**
@@ -276,7 +276,7 @@ docker run -d \
 version: '3'
 services:
   geoserver:
-    image: docker.osgeo.org/geoserver:3.0.0
+    image: docker.osgeo.org/geoserver:3.0.1
     container_name: geoserver
     ports:
       - "8080:8080"

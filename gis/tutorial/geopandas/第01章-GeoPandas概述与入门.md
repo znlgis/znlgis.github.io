@@ -29,13 +29,13 @@ GeoPandas 最早由 **Kelsey Jordahl** 于 2013 年创建，目的是填补 Pyth
 | 2023 年 | v0.14 发布，全面拥抱 Shapely 2.0，性能大幅提升 |
 | 2024 年 | v1.0.0 发布（6月），里程碑版本，标志 API 稳定 |
 | 2025 年 | v1.1.0 发布（6月），进一步优化性能与功能 |
-| 2026 年 | v1.1.3 发布（3月），当前最新稳定版 |
+| 2026 年 | v1.1.4 发布，当前最新稳定版 |
 
 ### 1.1.3 开源社区
 
 GeoPandas 托管在 GitHub 上（[geopandas/geopandas](https://github.com/geopandas/geopandas)），采用 BSD 3-Clause 开源协议。
 
-- **GitHub Stars**：超过 4,500+
+- **GitHub Stars**：超过 5,200+
 - **贡献者**：超过 300+
 - **下载量**：每月数百万次（PyPI + conda-forge）
 - **活跃维护者**：包括 Joris Van den Bossche、Martin Fleischmann 等知名 GIS 与数据科学社区成员

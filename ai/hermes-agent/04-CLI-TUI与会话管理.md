@@ -20,7 +20,7 @@ hermes chat --toolsets web,terminal -q "..."  # 仅启用某些 toolset
 
 ```
 ┌─ Banner（横幅，可换皮肤）───────────────────────────────┐
-│ Hermes Agent v0.12.0  ☤   Profile: default             │
+│ Hermes Agent v0.21.1  ☤   Profile: default             │
 └────────────────────────────────────────────────────────┘
 ┌─ Status Bar（状态栏）─────────────────────────────────┐
 │ Model: anthropic/claude-opus-4.6  | Personality: focused│

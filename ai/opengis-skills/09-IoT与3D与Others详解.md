@@ -2647,7 +2647,7 @@ SELECT * FROM sys_user WHERE status = 1 AND tenant_id = '当前租户ID'
 
 **acme.sh** 是一个纯 Shell（POSIX sh）实现的 ACME（Automatic Certificate Management Environment）协议客户端。它的唯一使命是：**让你在 3 分钟内部署好免费的 HTTPS 证书，并且此后再也不用关心续期这件事**。
 
-acme.sh 支持 Let's Encrypt、ZeroSSL、Buypass 等遵循 ACME 协议的 CA（证书颁发机构），目前是 GitHub 上 Star 数量最高的 ACME 客户端（37k+ Stars），也是生产环境中使用最广泛的免费 SSL 证书管理工具。
+acme.sh 支持 Let's Encrypt、ZeroSSL、Buypass 等遵循 ACME 协议的 CA（证书颁发机构），目前是 GitHub 上 Star 数量最高的 ACME 客户端（47k+ Stars），也是生产环境中使用最广泛的免费 SSL 证书管理工具。
 
 **为什么需要这个技能**：HTTPS 已经不再是"电商网站才需要"的可选项——Chrome 标记 HTTP 网站为"不安全"，搜索引擎对 HTTPS 网站有排名加成，微信小程序强制要求 HTTPS 后端。acme.sh 让 SSL 证书的申请和续期从"运维噩梦"变成"一条命令的事"。
 

@@ -32,6 +32,7 @@ title: GIS 技术教程
 | [GeoPandas 教程](https://znlgis.github.io/gis/tutorial/geopandas/) | 27章 | ⭐⭐ | Python 地理数据分析 |
 | [Shapely 教程](https://znlgis.github.io/gis/tutorial/shapely/) | 20章 | ⭐⭐ | Python 几何操作 |
 | [GeoPipeAgent](https://znlgis.github.io/gis/tutorial/GeoPipeAgent/) | 20章 | ⭐⭐⭐ | AI 驱动 GIS 流水线 |
+| [OpenGIS DAF](https://znlgis.github.io/gis/tutorial/opengis-daf/) | 10章 | ⭐⭐⭐ | 方案驱动的 GIS 数据分析与质检 |
 
 > 难度说明：⭐ 入门 → ⭐⭐ 基础 → ⭐⭐⭐ 进阶 → ⭐⭐⭐⭐ 高级
 
@@ -80,6 +81,7 @@ title: GIS 技术教程
 - [NetTopologySuite 教程](https://znlgis.github.io/gis/tutorial/NetTopologySuite/)
 - [opengis-utils-for-java 教程](https://znlgis.github.io/gis/tutorial/opengis-utils-for-java/)
 - [opengis-utils-for-net 教程](https://znlgis.github.io/gis/tutorial/opengis-utils-for-net/)
+- [opengis-daf 教程](https://znlgis.github.io/gis/tutorial/opengis-daf/)
 - [openlayers 教程](https://znlgis.github.io/gis/tutorial/openlayers/)
 - [postgis 教程](https://znlgis.github.io/gis/tutorial/postgis/)
 - [qgis 教程](https://znlgis.github.io/gis/tutorial/qgis/)
