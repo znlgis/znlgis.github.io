@@ -662,7 +662,7 @@ Install-Package unvell.ReoGrid.dll
 dotnet add package unvell.ReoGrid.dll
 
 # Package Reference (csproj)
-<PackageReference Include="unvell.ReoGrid.dll" Version="3.3.0" />
+<PackageReference Include="unvell.ReoGrid.dll" Version="3.3.1" />
 ```
 
 #### 方式2：从GitHub获取源码

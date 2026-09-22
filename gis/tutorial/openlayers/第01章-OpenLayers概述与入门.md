@@ -64,7 +64,7 @@ OpenLayers 项目的发展历程经历了多个重要阶段：
 | 2023 | 8.0 | 持续改进，新特性添加 |
 | 2024 | 9.0+ | 持续改进，新特性添加 |
 | 2025 | 10.0 | image tile source，flat styles rework |
-| 2026 | 10.9.0 | GeoZarr 支持，GeoTIFF 改进 |
+| 2026 | 10.10.0 | WebGL 矢量渲染文本支持、增量瓦片渲染、GeoZarr 非空间维选择、BingMaps 源弃用 |
 
 **版本策略**：
 
@@ -734,8 +734,8 @@ const xml = wfsFormat.writeTransaction(
 <html>
 <head>
   <title>OpenLayers 快速入门</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@v10.9.0/ol.css">
-  <script src="https://cdn.jsdelivr.net/npm/ol@v10.9.0/dist/ol.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@v10.10.0/ol.css">
+  <script src="https://cdn.jsdelivr.net/npm/ol@v10.10.0/dist/ol.js"></script>
   <style>
     .map {
       width: 100%;
@@ -776,8 +776,8 @@ npm install --save-dev vite
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Hello OpenLayers</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@v10.9.0/ol.css">
-  <script src="https://cdn.jsdelivr.net/npm/ol@v10.9.0/dist/ol.js"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@v10.10.0/ol.css">
+  <script src="https://cdn.jsdelivr.net/npm/ol@v10.10.0/dist/ol.js"></script>
   <style>
     * {
       margin: 0;
