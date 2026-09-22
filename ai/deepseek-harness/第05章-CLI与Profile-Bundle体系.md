@@ -231,7 +231,7 @@ Git 托管插件的构建放行：随源码发布的插件会在安装时通过 
 pnpm dsh --profile headless "summarize this workspace"
 ```
 
-（`pnpm dsh` 是仓库源码执行形式；生产安装后直接 `dsh --profile headless "..."`。见 [examples/headless-agent/README.md](https://github.com/deepseek-ai/deepseek-harness/blob/master/examples/headless-agent/README.md)）
+（`pnpm dsh` 是仓库源码执行形式；生产安装后直接 `dsh --profile headless "..."`。见 [dsh-headless bundle README](https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/bundle/headless/README.md)）
 
 内部流程是一条严格的一次性管线：
 
@@ -248,7 +248,7 @@ pnpm dsh --profile headless "summarize this workspace"
 
 ## 5.10 cordis.yml 语法逐行拆解
 
-先交代文件定位，避免误读：`examples/headless-agent/cordis.yml` 是仓库里的**测试组合**（replay 与真实模型的 headless 编码 agent 组合，见 [cordis.yml](https://github.com/deepseek-ai/deepseek-harness/blob/master/examples/headless-agent/cordis.yml)），"不是一个第二产品入口"。但它完整展示了 Cordis 配置行语法，且与随附的 dsh-headless bundle 组合同源，非常适合逐行讲解。
+先交代文件定位，避免误读：仓库不再有顶层 `examples/`，也不再有独立的 headless 演示 `cordis.yml`。随附 headless profile 的真实组合由两层 bundle patch 叠成——共享核心 [`packages/bundle/base/cordis.patch.yml`](https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/bundle/base/cordis.patch.yml) 加上 [`packages/bundle/headless/cordis.patch.yml`](https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/bundle/headless/cordis.patch.yml)，每个随附 profile 的确切条目与叠加顺序见生成文档 [apps/cli/composition.md](https://github.com/deepseek-ai/deepseek-harness/blob/master/apps/cli/composition.md)。下面的表格是这套随附组合的**示意性拆解**（用来说明 Cordis 配置行语法），权威 `id`/`name` 以上述 patch 与 composition.md 为准，"不是一个第二产品入口"。
 
 ### 5.10.1 条目结构
 
@@ -285,11 +285,11 @@ compression: !!js "process.env.DSH_SNAPSHOT === undefined ? 'zstd' : 'none'"
 
 ### 5.10.4 组合逐行拆解
 
-下面把文件里的条目按职责分组讲解（`id` / `name` 均照录原文）。先看**地基三件套**——settings、凭据、模型适配器：
+下面把随附 headless 组合按职责分组讲解（下表是示意性拆解，具体 `id` / `name` 以 `packages/bundle/base/cordis.patch.yml` 为准）。先看**地基三件套**——settings、凭据、模型适配器：
 
 | id | name | 作用 |
 |---|---|---|
-| `settings` | `@deepseek-ai/dsh-settings-file` | 用户 settings 文档（`$DSH_HOME/settings.yaml`，热重载）；其中 `llm-deepseek:` 段可在不重启的情况下覆盖下面的 adapter 条目 |
+| `settings` | `@deepseek-ai/dsh-settings` | 用户 settings 文档（`$DSH_HOME/settings.yaml`，热重载）；其中 `llm-deepseek:` 段可在不重启的情况下覆盖下面的 adapter 条目 |
 | `credentials` | `@deepseek-ai/dsh-credentials-local` | 凭据存储：活进程环境优先于 `$DSH_HOME/.credentials.yaml`（仅属主文件、热重载）；adapter 每次请求经它解析 `DEEPSEEK_API_KEY`，所以本文件里没有任何内联 key |
 | `llm-deepseek` | `@deepseek-ai/dsh-llm-deepseek` | DeepSeek adapter：`thinking: enabled`、`reasoningEffort: max`（随附默认每次请求满 thinking）；`models` 列出 `deepseek-v4-pro` / `deepseek-v4-flash`，`contextWindow: 128000` |
 
@@ -301,9 +301,9 @@ compression: !!js "process.env.DSH_SNAPSHOT === undefined ? 'zstd' : 'none'"
 |---|---|---|
 | `subprocess` | `@deepseek-ai/dsh-subprocess-local` | bash 执行器的托管子进程组（spawn/kill/输出管道） |
 | `bash` | `@deepseek-ai/dsh-bash-local` | 本地 bash 工具，`timeoutMs: 60000`（60 秒超时） |
-| `agent-spine` | `@deepseek-ai/dsh-agent-spine-demo` | 组合骨架：预创建 `main` agent（`provider: deepseek-official`、`model: deepseek-v4-flash`、`cwd: !!js process.cwd()`）、`workspaceContext.maxBytes: 65536`、`persona` 系统提示词 |
+| `agent-loop` | `@deepseek-ai/dsh-agent-loop` | 驱动循环：预创建 `main` agent（`provider: deepseek-official`、`model: deepseek-v4-flash`、`cwd: !!js process.cwd()`）；persona 系统提示词由 base 的 `system-prompt` 条目提供 |
 
-`agent-spine` 的 `cwd: !!js process.cwd()` 决定了 agent 在哪个目录工作——这也是"调用目录即默认 workspace 根"落到配置层的具体体现。
+`agent-loop` 里 `main` agent 的 `cwd: !!js process.cwd()` 决定了 agent 在哪个目录工作——这也是"调用目录即默认 workspace 根"落到配置层的具体体现。
 
 **持久化与上下文策略**：
 

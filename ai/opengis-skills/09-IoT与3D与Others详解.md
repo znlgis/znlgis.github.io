@@ -20,6 +20,9 @@ title: 第九章：IoT / 3D / Others 详解
 | **IoT** | ke3036-keyes-pico | `iot/ke3036-keyes-pico/SKILL.md` | Keyes Raspberry Pi Pico 37合1传感器入门套件，MicroPython 嵌入式开发全指南 |
 | **3D** | supersplat | `3d/supersplat/SKILL.md` | 3D 高斯泼溅（3DGS）浏览器端编辑器——3DGS 领域的"Photoshop + 发布平台" |
 | **3D** | ara3d-sdk | `3d/ara3d-sdk/SKILL.md` | AEC 领域高性能 .NET 3D/BIM SDK，格式转换管道和网格处理引擎 |
+| **3D** | elements | `3d/elements/SKILL.md` | Hypar Elements，纯 C# 编程生成建筑/BIM 模型，支持 IFC/glTF 导出 |
+| **3D** | opencsg-net | `3d/opencsg-net/SKILL.md` | OpenCSG.NET，零依赖 .NET CSG 布尔建模库，STL 输出 |
+| **3D** | photo-sphere-viewer | `3d/photo-sphere-viewer/SKILL.md` | JavaScript 360° 全景照片/球体查看器（Three.js 驱动） |
 | **Others** | go | `others/go/SKILL.md` | Go 语言核心语法与工程实践速查，从基础到并发的完整参考 |
 | **Others** | robotgo | `others/robotgo/SKILL.md` | Go 跨平台桌面自动化库，鼠标/键盘/截图/图像识别/窗口管理 |
 | **Others** | robotgo-flow | `others/robotgo-flow/SKILL.md` | YAML 驱动的 Windows RPA 框架，声明式流程编排 + 交互式录制器 |
@@ -31,10 +34,10 @@ title: 第九章：IoT / 3D / Others 详解
 
 | 维度 | IoT | 3D | Others |
 |:-----|:----|:----|:-------|
-| 技能数量 | 1 | 2 | 6 |
+| 技能数量 | 1 | 5 | 6 |
 | 技术栈 | MicroPython | TypeScript / .NET | Go / Java / Shell / YAML |
-| 面向人群 | 嵌入式开发者 | 3D 可视化工程师 | 全栈开发者 / 运维工程师 |
-| 技能定位 | 硬件入门套件的完整编程指南 | 3DGS 编辑与 3D 格式转换 | 编程语言速查 + 开发框架 + 运维工具 |
+| 面向人群 | 嵌入式开发者 | 3D 可视化 / BIM 工程师 | 全栈开发者 / 运维工程师 |
+| 技能定位 | 硬件入门套件的完整编程指南 | 3DGS 编辑 + .NET 三维/BIM 与建筑生成 + CSG 建模 + 全景查看 | 编程语言速查 + 开发框架 + 运维工具 |
 | 与 GIS 的关联 | 通过 MQTT/HTTP 上云可与 GIS 服务对接 | 3DGS 和 BIM 是三维 GIS 的关键技术 | 通用开发技能，支撑 GIS 项目的非 GIS 部分 |
 
 ---
@@ -983,6 +986,18 @@ ara3d-sdk 在 GIS + BIM 融合场景中的典型应用：
 2. **BIM 模型在线查看器后端**：上传 IFC 文件 → 服务端 ara3d-sdk 转换为 glTF → 返回给前端 Three.js/Babylon.js 渲染
 3. **建筑性能分析**：读取 IFC 模型 → 提取围护结构几何 → 计算体形系数/窗墙比 → 输出分析报告
 4. **三维数据格式标准化**：统一项目中来自不同软件（Revit/SketchUp/Rhino）的 3D 模型到 glTF 格式
+
+---
+
+### 9.3.3 其余 3D 技能：elements、opencsg-net、photo-sphere-viewer
+
+除上述两个深度展开的技能外，3D 分类还包含另外三个技能，它们与 `supersplat`、`ara3d-sdk` 共同构成完整的 5 个 3D 技能：
+
+- **`elements`**（`3d/elements/SKILL.md`）：Hypar Elements，纯 C# 编程生成建筑与 BIM 模型的元素库，通过代码描述柱、梁、楼板、房间等建筑构件，并导出为 glTF/IFC，适合参数化、程序化的三维场景构建。
+- **`opencsg-net`**（`3d/opencsg-net/SKILL.md`）：OpenCSG.NET，零外部依赖的 .NET CSG（构造实体几何）建模库，通过并/交/差等布尔运算组合基本体，输出 STL 网格，适合工程化的实体建模与 3D 打印前处理。
+- **`photo-sphere-viewer`**（`3d/photo-sphere-viewer/SKILL.md`）：JavaScript 360° 全景照片/球体查看器，基于 Three.js 驱动，支持全景漫游、热点标注与陀螺仪，适合在 Web 端嵌入实景/街景式浏览体验。
+
+加载建议：需要**程序化生成建筑/BIM 几何**选 `elements`，需要 **.NET 端 CSG 布尔建模**选 `opencsg-net`，需要**在网页中展示 360° 全景**选 `photo-sphere-viewer`。三者与 `ara3d-sdk`（工业 BIM 处理）、`supersplat`（3DGS 影像重建）互补，覆盖从"代码生成几何"到"实景重建"再到"全景呈现"的完整 3D 链路。
 
 ---
 
@@ -3066,7 +3081,7 @@ curl -I https://blog.example.com
 
 **IoT** 领域目前只有一个技能 `ke3036-keyes-pico`，但它覆盖了从"点亮 LED"到"MQTT 上云"的完整嵌入式开发链路。如果未来 OpenGIS-Skills 增加对 ESP32、Arduino 等更多嵌入式平台的支持，IoT 分类将形成更加丰富的矩阵。
 
-**3D** 领域的两个技能分别代表了两种截然不同的技术方向：`supersplat` 站在 3D 可视化前沿（3DGS），`ara3d-sdk` 则深耕于 AEC 工业级 3D 处理。它们与 GIS 的结合点在"数字孪生"——BIM 模型（ara3d-sdk 处理）和影像重建场景（supersplat 处理）是构建城市级数字孪生的关键输入源。
+**3D** 领域的 5 个技能分别代表了多种截然不同的技术方向：`supersplat` 站在 3D 可视化前沿（3DGS），`ara3d-sdk` 深耕于 AEC 工业级 .NET 三维/BIM 处理，`elements` 以纯 C# 编程生成建筑/BIM 模型，`opencsg-net` 提供零依赖的 .NET CSG 布尔建模，`photo-sphere-viewer` 则面向 360° 全景照片浏览。它们与 GIS 的结合点在"数字孪生"——BIM 模型（ara3d-sdk、elements 处理）、实体建模结果（opencsg-net）和影像重建场景（supersplat 处理）是构建城市级数字孪生的关键输入源。
 
 **Others** 领域虽然名为"其他"，但每个技能在其专属领域内都极具深度：`go` 是从语法到并发的完整语言参考，`robotgo` + `robotgo-flow` 覆盖了桌面自动化的代码驱动和 YAML 编排两种模式，`billionmail` 是自托管邮件营销的完整解决方案，`ruoyi-cloud` 是 Java 微服务的项目启动器，`acme.sh` 是将 HTTPS 部署成本降为零的运维神器。
 

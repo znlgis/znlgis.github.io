@@ -27,6 +27,7 @@ C# 分类下共有 9 个技能，按功能类型可以划分为五大方向：We
 | **npoi** | `csharp/npoi/` | 18 章 | 文件操作 | Apache POI 的 .NET 移植，Excel/Word/PPT 读写 |
 | **reogrid** | `csharp/ReoGrid/` | 20 章 | 控件 | .NET 电子表格控件（WinForms/WPF），内置公式引擎 |
 | **dotnet-reactor** | `csharp/dotnet-reactor/` | 15 章 | 安全工具 | .NET 代码保护，混淆、加壳、反编译、许可证管理 |
+| **sentry** | `csharp/sentry/` | — | 错误监控 | Sentry .NET SDK，错误追踪与性能监控，异常聚合与上下文丰富 |
 
 ### 7.1.2 五大方向与推荐学习路线
 

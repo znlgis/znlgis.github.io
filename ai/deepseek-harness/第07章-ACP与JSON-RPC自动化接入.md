@@ -60,37 +60,19 @@ ACP 的 plugin 极薄：`apply(ctx, config)` 在 stdin/stdout 上开一个 `Agen
 - **已提交输出优先**：`session/update` 刻意用"逐 token 延迟"换"干净的自动化结果"——未提交的 provider chunk 和 retry 尝试永远不会漏出部分文本或图片；reasoning 和工具活动留在 session 日志里，通过别的接口观察。
 - **连接拥有生命周期**：一个连接释放它所有的 session；没有 per-session close。
 
-## 7.2 运行 ACP demo
+## 7.2 运行 ACP profile
 
-[demo:acp](https://github.com/deepseek-ai/deepseek-harness/blob/master/examples/acp-agent/README.md) 脚本在根 package.json 里定义为：
-
-```sh
-node --import tsx packages/examples/acp-demo/src/bin.ts --config examples/acp-agent/cordis.yml
-```
-
-在仓库根目录执行：
+仓库不再有顶层 `examples/`，也没有 `demo:acp` 脚本。ACP 面就是内置的 `acp` profile——一个 `@deepseek-ai/dsh-acp-app` 启动提供方叠在 `dsh-base` 上、只挂载 `@deepseek-ai/dsh-acp` 协议桥的自动化专用组合。要跑它，直接在装了 `dsh` 的环境里：
 
 ```sh
-pnpm run demo:acp            # 需要 DEEPSEEK_API_KEY（仓库根 .env 或环境变量）
-pnpm run demo:code-mode      # 同一协议，但走 Code Mode 工具传输
+dsh --profile acp            # 需 DEEPSEEK_API_KEY（或 dsh --profile acp 前配好 profile 凭据）
 ```
 
-`examples/acp-agent/cordis.yml` 是一份叶子组合，把 ACP app 挂到完整 agent 栈上。它加载的是一整套能力：
-
-| 层 | 条目（节选） |
-|---|---|
-| 模型适配器 | `@deepseek-ai/dsh-llm-deepseek`（thinking + reasoningEffort: max，deepseek-v4-flash / deepseek-v4-pro） |
-| 沙箱 | `dsh-sandbox-local`、`dsh-sandbox-policy`（workspace-write / danger-full-access）、`dsh-subprocess-local`、`dsh-bash-sandbox`、`dsh-fs-sandbox` |
-| 审批 | `dsh-user-approval`（ask / never 策略） |
-| ACP 主体 | `@deepseek-ai/dsh-acp-demo`（agent spine + JSONL 持久化 + 协议桥） |
-| 令牌与压缩 | `dsh-token-meter`、`dsh-compaction-basic` |
-| subagent / workflow | `dsh-subagent`、`dsh-subagent-spawn-in-process`、`dsh-tool-subagent`、`dsh-workflow-worker-thread` |
-| hooks | `dsh-hooks-claude-code`、`dsh-hooks-codex` |
-| 工具 | `dsh-tool-fs`、`dsh-tool-todo`、`dsh-tool-ralph` 等 |
+源码仓库里等价的执行形式是 `pnpm dsh --profile acp`。它从 stdin 读 newline-delimited 的 ACP JSON-RPC 帧、把协议响应写到 stdout，直到连接关闭。`dsh --profile acp --help` 会打印该 profile 应用的帮助并退出，不占用 stdio。这份 profile 的确切组成（各层插件与 patch 叠加顺序）以生成文档 [apps/cli/composition.md](https://github.com/deepseek-ai/deepseek-harness/blob/master/apps/cli/composition.md) 为准，组合包的职责与已知限制见 [dsh-acp-app bundle README](https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/bundle/acp-app/README.md)；随附配置项默认 `provider: deepseek-official`、`model: deepseek-v4-flash`，base 层负责适配器、工具、持久化、策略、subagent 与工作区。
 
 注意两个关键设计约束，它们直接决定了客户端怎么写：
 
-1. **stdout 是纯净协议信道**。`@deepseek-ai/dsh-acp-demo` 不安装任何 stdout logger，叶子里的诊断必须走 stderr。任何往 stdout 打印日志的插件都会污染 ACP JSON-RPC 帧流，客户端解析会直接崩。
+1. **stdout 是纯净协议信道**。`@deepseek-ai/dsh-acp` 桥不向 stdout 写非协议内容，profile 也禁用 HMR，叶子里的诊断必须走 stderr。任何往 stdout 打印日志的插件都会污染 ACP JSON-RPC 帧流，客户端解析会直接崩。
 2. **每次 `session/new` 创建全新 agent**，持久化到 JSONL，且不支持 load/list/resume/delete/fork——只有 fresh session。
 
 ### 7.2.1 session 工作目录与权限
@@ -260,23 +242,14 @@ Claude Code bridge 的映射关系：
 
 Python SDK 与 TypeScript `dsh-sdk-client` 是"设计孪生"：共享同一个 runtime peer、同一个协议、同样的分层（`DeepSeekHarness` ↔ 高层 owned-run API，`HarnessClient` ↔ 低层协议 client）。[protocol README](https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/sdk/protocol/README.md) 明确说 Python SDK"mirrors these shapes but does not import them"——它镜像了 TS 协议的 shape，但不 import 这些包。关键差异在"运行时发现"：Python SDK 负责找到打包好的可执行文件（bundled-runtime resolution），而 TS client 的 launch spec 完全显式（`command`/`args`），因为它是给"知道自己在拉起哪个 runtime"的 repo 内消费者用的。
 
-## 7.7 自修改 demo：pnpm run demo:cordis
+## 7.7 自指 Cordis 工具集（web 的 cordis preset）
 
-`demo:cordis` 是仓库里一个演示性质的 wrapper（[scripts/demo-cordis.mjs](https://github.com/deepseek-ai/deepseek-harness/blob/master/scripts/demo-cordis.mjs)），不是产品 CLI 特性。它把 **Cordis 工具集**叠到 Web 或 ACP 上：
+`demo:cordis` 这类演示 wrapper 已随顶层 `examples/` 一起退役。它当年演示的**自指 Cordis 工具集**并没有消失，而是成了 web profile 的正式能力：一组 `@deepseek-ai/dsh-tool-cordis`（配 `@deepseek-ai/dsh-cordis-host-runner` / `@deepseek-ai/dsh-cordis-client-runner`）插件，作为可切换的 agent preset 之一交付。想上手，以 [web-app bundle README](https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/bundle/web-app/README.md) 与其 [cordis preset 补丁](https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/bundle/web-app/presets/cordis.patch.yml) 为入口，设计动机记在 [self-referential cordis toolset 设计笔记](https://github.com/deepseek-ai/deepseek-harness/blob/master/.agents/notes/implemented/feature/2026-07-08-self-referential-cordis-toolset.zh.md)。
 
-```sh
-pnpm run demo:cordis            # 默认 Web，端口 3081
-pnpm run demo:cordis acp        # ACP 面，走 cordis-tools.cordis.yml
-```
+启用方式不再是一条 `demo:` 脚本：`dsh web` 起浏览器应用后，每个会话选一个随发行版交付的 agent preset（默认 `standard`），在 Agent 预设设置页把默认项换成 `cordis` 即可让该会话挂上这套工具（保存结果持久化到 `$DSH_HOME/profiles/web/cordis.patch.yml`）。
 
-两条路径分别 spawn：
+"self-referential"（自指）的含义不变：这份叠加给 agent 装上了**能 inspect/mount 自己插件运行时的工具**。也就是说，agent 可以观察它自身跑在哪个 Cordis context 上、注册了哪些 plugin、甚至动态挂载/卸载插件。`cordis_inspect_list` 与 `cordis_inspect_query` 提供只读的运行时发现。这是"Everything is a plugin"哲学最极致的演示——连"修改 agent 自己"这件事，都是通过再挂一个插件实现的。它同样是第 8 章 Cordis 范式的一个活样本。
 
-```text
-web: dsh web --patch examples/web-cordis/cordis.yml        (端口 3081)
-acp: acp-demo --config examples/acp-agent/cordis-tools.cordis.yml
-```
-
-"self-referential"（自指）的含义：这份叠加给 agent 装上了**能 inspect/mount 自己插件运行时的工具**。也就是说，agent 可以观察它自身跑在哪个 Cordis context 上、注册了哪些 plugin、甚至动态挂载/卸载插件。这是"Everything is a plugin"哲学最极致的演示——连"修改 agent 自己"这件事，都是通过再挂一个插件实现的。它同样是第 8 章 Cordis 范式的一个活样本。
 
 ## 7.8 三种程序化接入选型对照
 
@@ -301,7 +274,7 @@ acp: acp-demo --config examples/acp-agent/cordis-tools.cordis.yml
 
 ## 7.9 ACP 客户端最小示例
 
-下面是基于 [examples/acp-agent/README.md](https://github.com/deepseek-ai/deepseek-harness/blob/master/examples/acp-agent/README.md) 与 [dsh-acp 契约](https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/acp/acp/README.md) 整理的最小客户端。它只演示 `initialize → session/new → session/prompt → session/update` 四个环节，字段 shape 遵循 Agent Client Protocol 规范，方法名与行为以 dsh-acp 文档为准。
+下面是基于 `dsh --profile acp`（7.2 的 ACP profile）与 [dsh-acp 契约](https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/acp/acp/README.md) 整理的最小客户端。它只演示 `initialize → session/new → session/prompt → session/update` 四个环节，字段 shape 遵循 Agent Client Protocol 规范，方法名与行为以 dsh-acp 文档为准。
 
 先看线上跑的帧（stdout，每行一个 JSON-RPC 2.0）：
 
@@ -325,8 +298,8 @@ import { spawn } from 'node:child_process'
 import { createInterface } from 'node:readline'
 
 const server = spawn(
-  'node',
-  ['--import', 'tsx', 'packages/examples/acp-demo/src/bin.ts', '--config', 'examples/acp-agent/cordis.yml'],
+  'dsh',
+  ['--profile', 'acp'],
   { stdio: ['pipe', 'pipe', 'inherit'] }, // stdout 是协议信道，stderr 透传给诊断
 )
 
@@ -365,10 +338,10 @@ console.log('prompt settled:', result)
 ## 7.10 本章小结
 
 - **ACP 是面向自动化的 server**：JSON-RPC stdio，一个连接多个独立 session，只做程序化驱动、不做人机交互；对应 `packages/acp/`（`@deepseek-ai/dsh-acp`）。
-- **运行**：`pnpm run demo:acp`（需 `DEEPSEEK_API_KEY`）；stdout 纯净承载 ACP 帧，诊断走 stderr。
+- **运行**：`dsh --profile acp`（需 `DEEPSEEK_API_KEY` 与 profile 凭据）；stdout 纯净承载 ACP 帧，诊断走 stderr。
 - **SDK 层通用协议**：`packages/sdk/` 的 protocol / server / client 三件套，`JsonRpcLineTransport` 做 newline-delimited JSON-RPC 分帧；`serverInfo.name` 恒为 `deepseek-harness-sdk-runtime`。
 - **TypeScript 侧 Remote 契约**：Typert 在编译期生成 Host-for-Client 契约（`@Remote` / `@RemoteScope`），Cordis 在运行期把它 mount 到 `ctx.remote`（`$mount` / `$on` / `$dispatch`）；Host 侧入口是 `ctx.typertGateway`。
 - **hooks 包是兼容桥**：把 Claude Code / Codex 的 shell hook 翻译到 harness 的 typed interception points，canonical 做法始终是原生 Cordis plugin。
 - **Python SDK 本质是子进程 + newline-delimited JSON-RPC 封装**，是 TS `dsh-sdk-client` 的设计孪生。
-- **自修改 demo**：`pnpm run demo:cordis` 把 Cordis 工具集叠上 Web/ACP，让 agent 能 inspect/mount 自己的插件运行时。
+- **自指 Cordis 工具集**：`@deepseek-ai/dsh-tool-cordis` 叠上 Web profile（`packages/bundle/web-app/presets/cordis.patch.yml` 的 `cordis` preset），让 agent 能 inspect/mount 自己的插件运行时。
 - **选型**：headless 适合一次性任务，Python SDK 适合 Python 嵌入，ACP 适合语言无关、多 session、程序化审批的 parent agent 场景。

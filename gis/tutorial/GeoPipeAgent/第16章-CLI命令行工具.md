@@ -5,7 +5,7 @@ title: "第十六章：CLI 命令行工具完全指南"
 
 # 第十六章：CLI 命令行工具完全指南
 
-`geopipe-agent` 是 GeoPipeAgent 的命令行接口，基于 Click 框架构建，提供 9 个子命令，覆盖流水线运行、验证、步骤查询和 Skill 生成等功能。
+`geopipe-agent` 是 GeoPipeAgent 的命令行接口，基于 Click 框架构建，提供 8 个子命令，覆盖流水线运行、验证、步骤查询和 Skill 生成等功能。
 
 ---
 
@@ -420,7 +420,7 @@ done
 
 ## 16.11 本章小结
 
-本章完整介绍了 `geopipe-agent` CLI 的 9 个命令：
+本章完整介绍了 `geopipe-agent` CLI 的 8 个命令：
 
 1. **`run`**：执行流水线，`--var` 覆盖变量，`--log-level DEBUG` 调试
 2. **`validate`**：校验语法和引用，不执行步骤

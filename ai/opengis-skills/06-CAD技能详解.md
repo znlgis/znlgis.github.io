@@ -36,6 +36,7 @@ CAD（计算机辅助设计）是 OpenGIS-Skills 中第二大技能分类，共�
 | AutoCAD.NET | `tongwen` | 插件 | .NET (C#) | 工程图纸多语言无损翻译套件 |
 | 数据交换 | `libredwg` | 库 | C/Python | DWG 文件读写库，R13～2021 格式支持 |
 | 可视化 | `astral3d` | 框架 | JS/TS | 工业级 Web 3D 可视化平台，30+ 格式支持 |
+| 数据交换 | `design-drawing-svg-md` | 工具 | SVG/Markdown | 设计图 SVG+MD 双载体记录，钢结构施工图→可复现图纸描述 |
 
 ---
 

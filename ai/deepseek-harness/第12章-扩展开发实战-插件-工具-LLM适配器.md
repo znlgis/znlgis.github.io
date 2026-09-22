@@ -292,7 +292,7 @@ dsh plugin --profile tui add github:deepseek-harness/turtle-ui
 - **`packages/bundle/`** 是可安装的 profile bundle 层：`dsh-base`、`dsh-web-app`、`dsh-headless`、`dsh-acp-app`、`dsh-sdk-app`、`dsh-sdk-minimal`，各自声明 `dsh.bundle.patch` 供 profile 叠加。
 - **`apps/cli/config/examples/`** 存放可直接运行的 `cordis.yml` 组合示例（`github-review`、`mcp-memory`、`schedule`）。原顶层 `examples/` 叶子与 `packages/examples/` 演示 bundle 已从仓库移除，可运行形态由五个内置 profile 模板（`web` / `headless` / `sdk` / `sdk-minimal` / `acp`）承载。
 
-分工：产品 `dsh` launcher 拥有 Web 和 one-shot headless 执行；ACP 叶子用 `@deepseek-ai/dsh-acp-demo`；JSON-RPC 叶子用 `@deepseek-ai/dsh-sdk-jsonrpc-demo`；headless 快照叶子显式挂载 `@deepseek-ai/dsh-agent-spine-demo` 和 JSONL persistence，再用示例自己的测试 fixture 驱动。
+分工：产品 `dsh` launcher 拥有 Web 和 one-shot headless 执行；ACP 面由 `@deepseek-ai/dsh-acp-app` 启动提供方挂载 `@deepseek-ai/dsh-acp` 协议桥；SDK JSON-RPC 面由 `@deepseek-ai/dsh-sdk-app` 挂载 `@deepseek-ai/dsh-sdk-jsonrpc-server`；headless 面用 `@deepseek-ai/dsh-headless` 一次性 runner 叠在 `dsh-base` 上。录制快照语料则统一通过 `dsh --profile <name>` 加场景 patch 驱动（见 `snapshots/AGENTS.md`），不再有独立的 `-demo` 叶子包。
 
 想跑一个完整插件树、看一个最小可组合 agent 长什么样，用内置 profile 模板（如 `dsh --profile headless "任务"`）或从 `apps/cli/config/examples/` 的 `cordis.yml` 读起；想抄"一个 bundle 包怎么声明、怎么被 profile 引用"，看 `packages/bundle/*`。
 

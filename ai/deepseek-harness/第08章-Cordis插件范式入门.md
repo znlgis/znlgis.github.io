@@ -239,7 +239,7 @@ config 值需要"加载时计算"时，用 `!!js` 标签（两个感叹号）：
 - `disabled: true` 或 `disabled: !!js <表达式>` 让一行不参与挂载。`!!js` 的 disabled 每次挂载决策都重新求值。
 - **overlay** 是环境选择插件的正路：一个 overlay 补丁按 `id` 定位并整行替换 config，或插入新行。第 5 章讲过 profile/bundle 的分层顺序（bundle 顺序 → profile `cordis.patch.yml` → home 级 → `--patch` overlay），overlay 就是最外层那片"条件组合"。
 
-一个按环境选权限策略的实例（来自 [examples/acp-agent/cordis.yml](https://github.com/deepseek-ai/deepseek-harness/blob/master/examples/acp-agent/cordis.yml)）：
+一个按环境选权限策略的实例（取自仓库录制语料 [snapshots/acp/escalation-approved/cordis.yml](https://github.com/deepseek-ai/deepseek-harness/blob/master/snapshots/acp/escalation-approved/cordis.yml)；生产基线版见 `packages/bundle/base/cordis.patch.yml` 的 `sandbox-policy` 条目）：
 
 ```yaml
 - id: sandbox-policy

@@ -219,41 +219,38 @@ pipeline:
 ```yaml
 pipeline:
   name: "融合分析"
-  description: "按指定字段融合要素，统计各类别的要素数量和属性"
-
-  variables:
-    input_path: "data/parcels.shp"
+  description: "按类型字段融合面要素"
 
   steps:
-    - id: load-data
+    - id: read-data
       use: io.read_vector
       params:
-        path: "${input_path}"
+        path: "data/landuse.shp"
 
-    - id: dissolve-by-type
+    - id: dissolve
       use: vector.dissolve
       params:
-        input: "$load-data.output"
-        by: "land_type"
-        agg:
-          area_sqm: "sum"
-          parcel_count: "count"
+        input: "$read-data.output"
+        by: "landuse_type"
+        aggfunc: "first"
 
-    - id: save-dissolved
+    - id: save
       use: io.write_vector
       params:
-        input: "$dissolve-by-type.output"
-        path: "output/dissolved_by_type.geojson"
-        format: "GeoJSON"
+        input: "$dissolve.output"
+        path: "output/landuse_dissolved.geojson"
 
   outputs:
-    result: "$save-dissolved.output"
+    result: "$save.output"
+    stats: "$dissolve.stats"
 ```
 
 ### 精讲要点
 
-1. **聚合函数**：`agg` 字典定义每个字段的聚合方式，`sum`（求和）、`count`（计数）、`mean`（均值）等
-2. **融合结果**：每个 `land_type` 类别的所有要素几何合并为一个多边形，`area_sqm` 字段求和，`parcel_count` 字段计数
+1. **聚合参数是 `aggfunc`（字符串）**：`vector.dissolve` 只声明 `input` / `by` / `aggfunc` 三个参数，`aggfunc` 取值为单个聚合函数名（`first`、`sum`、`mean`、`count` 等，默认 `first`），**不是**逐字段的聚合字典。底层对应 GeoPandas 的 `gdf.dissolve(by=..., aggfunc=...)`
+2. **融合结果**：每个 `landuse_type` 类别的所有要素几何合并为一个多边形，其余属性字段按 `aggfunc` 取值（`first` 即取组内第一条记录）
+3. **`by` 可省略**：不指定 `by` 时全表融合为单一要素
+4. **该步骤仅声明 `native_python` 后端**（`backends=["native_python"]`），与 `vector.buffer`/`vector.clip`/`vector.reproject` 额外支持 `qgis_process` 不同
 
 ---
 
@@ -279,7 +276,7 @@ pipeline:
       use: vector.query
       params:
         input: "$read-data.output"
-        expr: "${filter_expression}"    # ⚠️ 注意：参数名是 expr，非 expression
+        expression: "${filter_expression}"
 
     - id: simplify
       use: vector.simplify
@@ -298,13 +295,13 @@ pipeline:
     filter_stats: "$filter.stats"
 ```
 
-> **⚠️ 注意**：`vector.query` 步骤的过滤参数名为 `expr`（不是 `expression`）。以上示例已修正。
+> **注意**：`vector.query` 步骤的过滤参数名为 `expression`（必填，Pandas query 表达式），写成 `expr` 会在执行时报 `Missing required parameter(s): ['expression']`。
 
 ### 精讲要点
 
 1. **"过滤→简化"组合**：先过滤掉小地块（面积 < 1000 m²），再对剩余要素做几何简化，减小文件体积
 2. **`simplify_tolerance` 单位**：取决于 CRS，在 EPSG:3857 中单位是米，在 EPSG:4326 中单位是度
-3. **`filter_stats` 输出**：`$filter.stats` 包含 `feature_count`（过滤后数量）和 `original_count`（原始数量）
+3. **`filter_stats` 输出**：`$filter.stats` 为 `vector.query` 写入的统计字典，包含 `input_count`（过滤前数量）、`output_count`（过滤后数量）和 `expression`（实际使用的表达式）
 
 ---
 
@@ -343,8 +340,8 @@ pipeline:
       use: qc.raster_resolution
       params:
         input: "$load-dem.output"
-        expected_x_res: 30
-        expected_y_res: 30
+        expected_x: 30
+        expected_y: 30
         tolerance: 0.5
 
   outputs:

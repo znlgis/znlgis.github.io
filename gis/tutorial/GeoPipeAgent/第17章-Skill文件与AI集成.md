@@ -210,7 +210,7 @@ Skill 生成器位于 `src/geopipe_agent/skillgen/generator.py`，提供以下�
 
 ```python
 generate_steps_reference() -> str
-    # 遍历 registry.list_all()，按类别生成 Markdown 参数表
+    # 遍历 registry.categories()，逐类别调用 registry.list_by_category()，生成 Markdown 参数表
 
 generate_pipeline_schema_doc() -> str
     # 返回预定义的 YAML Schema 文档字符串

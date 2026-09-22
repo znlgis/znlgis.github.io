@@ -5,7 +5,7 @@ title: 第八章：AI 与 Agent 技能详解
 
 # 第八章：AI 与 Agent 技能详解
 
-本章详细介绍 opengis-skills 中 `ai/` 分类下的 **8 个 AI/Agent 技能**。与 GIS、CAD、C# 等面向具体开发领域的技能不同，AI 分类的技能聚焦于**AI 工具本身的使用、配置和扩展**——它们帮助你更高效地构建 AI 应用、编排编码代理、管理多模型协作，以及用 AI 方法论提升编程质量。
+本章详细介绍 opengis-skills 中 `ai/` 分类下的 **10 个 AI/Agent 技能**。与 GIS、CAD、C# 等面向具体开发领域的技能不同，AI 分类的技能聚焦于**AI 工具本身的使用、配置和扩展**——它们帮助你更高效地构建 AI 应用、编排编码代理、管理多模型协作，以及用 AI 方法论提升编程质量。
 
 这 10 个技能覆盖了从"搭建 LLM 应用平台"到"配置终端编码代理"、从"自学习通用智能体"到"多通道个人 AI 助手"、从"AI 编程方法论"到"大模型文档翻译"的完整链路。无论你是想快速搭一个 RAG 问答机器人、配置开发环境中的 AI 编码助手、还是用大模型批量翻译技术文档，本章都能提供详尽的指导。
 
@@ -33,6 +33,8 @@ opengis-skills 的 `ai/` 分类下共包含 10 个技能文件，按应用场景
 | **openclaw** | AI 网关 | 多通道个人 AI 助手网关 | Gateway 架构、排队/缓冲/负载均衡、多端支持 |
 | **superpowers-zh** | 方法论 | 中文 AI 编程方法论 Skills 集合 | TDD、系统化调试、头脑风暴、代码审查、执行计划 |
 | **docutranslate** | 文档翻译 | 基于大模型的本地文档翻译工具 | MinerU 解析、多格式支持、排版保护、本地运行 |
+| **deepseek-harness** | Agent 框架 | 插件化 DeepSeek 智能体框架（dsh） | 插件系统、Cordis 生态、多 Agent 编排 |
+| **my-opencode-deepseek-config** | 配置参考 | OpenCode × DeepSeek 最优配置 | 模型路由、Provider 配置、Skill 集成、Token 优化 |
 
 > **关键洞察**：这 10 个技能并非互相替代，而是互补关系。dify 负责"搭应用"，opencode/pi/oh-my-openagent 负责"写代码"，hermes-agent/openclaw 负责"自主执行"，superpowers-zh 负责"方法论指导"，docutranslate 负责"文档翻译"。在一个典型的 GIS 项目中，你可能会同时用到其中 3-4 个技能。
 

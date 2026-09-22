@@ -40,6 +40,7 @@ title: 第五章：GIS 技能详解
 | .NET 组件 | `mapsui` | .NET | 跨平台 .NET 地图控件（WPF/MAUI/Avalonia/Blazor） | 8 KB |
 | 综合 | `opengis-all` | 聚合 | 一站式端到端 GIS 全流程索引（GDAL+QGIS+GeoServer） | 40 KB |
 | Java 工具集 | `geotools` | Java | Java GIS 工具集，OGC 标准参考实现 | 23 KB |
+| 空间分析 | `opengis-daf` | .NET | 方案驱动 GIS 分析与质检框架，DAG 编排、坐标/几何/属性校验 | 13 KB |
 
 **分类解读：**
 
