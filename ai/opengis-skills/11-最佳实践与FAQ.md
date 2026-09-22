@@ -21,7 +21,7 @@ Token 是 AI 工具的核心资源，理解 opengis-skills 的 Token 消耗结�
 
 **技能文件的 Token 规模分级**
 
-opengis-skills 的 67 个技能文件按规模和复杂度可分为三个等级：
+opengis-skills 的 75 个技能文件按规模和复杂度可分为三个等级：
 
 | 等级 | 文件规模 | Token 估算 | 典型示例 | 加载建议 |
 |------|----------|-----------|----------|----------|
@@ -104,7 +104,7 @@ opengis-skills 的 67 个技能文件按规模和复杂度可分为三个等级�
 - **工具链**：#gdal #arcpy #qgis #cesium #autocad
 - **语言**：#python #csharp #lisp #javascript
 
-举例：你有一批 LAS 点云文件需要转成 Cesium 3D Tiles。在根索引中搜索 `#pointCloud #3dtiles` 即可定位到 gis/pdal 和 3d/cesiumjs-api 两个技能——没有这两个标签，你可能需要翻找 67 个技能文件。
+举例：你有一批 LAS 点云文件需要转成 Cesium 3D Tiles。在根索引中搜索 `#pointCloud #3dtiles` 即可定位到 gis/pdal 和 3d/cesiumjs-api 两个技能——没有这两个标签，你可能需要翻找 75 个技能文件。
 
 **第 2 步——L2 分类索引（@category/SKILL.md）**
 
@@ -116,7 +116,7 @@ L2 索引的价值在于"对比"。同一个分类下往往有多个功能重叠
 | cad/ | autocad-lisp vs zwcad-lisp vs gstarcad-lisp | 取决于你/用户的 CAD 品牌，完全功能对等但 API 不同 |
 | ai/ | opencode vs pi vs oh-my-openagent | opencode 全功能，pi 极简隔离，oh-my-openagent 并行编排 |
 
-不加载 L2 索引就直接翻找 67 个文件，相当于在图书馆不查书目系统就一本一本翻——效率极低。
+不加载 L2 索引就直接翻找 75 个文件，相当于在图书馆不查书目系统就一本一本翻——效率极低。
 
 **第 3 步——L3 技能**
 
@@ -847,7 +847,7 @@ upstream:                    # 上游参考
 
 ### 技巧 1：优先加载 L2 分类索引（而非 L1 根索引）
 
-**原理**：L1 根索引（`SKILL.md`）约 700 行 / 10K tokens，包含全部 67 个技能的清单。L2 分类索引（如 `gis/SKILL.md`）约 80-150 行 / 1K-2.5K tokens，只包含该分类下的子技能。如果你已经知道任务属于哪个大类（例如明确是 GIS 问题），直接跳过 L1，加载 L2 索引即可——节省约 8K tokens。
+**原理**：L1 根索引（`SKILL.md`）约 700 行 / 10K tokens，包含全部 75 个技能的清单。L2 分类索引（如 `gis/SKILL.md`）约 80-150 行 / 1K-2.5K tokens，只包含该分类下的子技能。如果你已经知道任务属于哪个大类（例如明确是 GIS 问题），直接跳过 L1，加载 L2 索引即可——节省约 8K tokens。
 
 **具体操作**：
 

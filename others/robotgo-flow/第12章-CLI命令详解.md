@@ -44,14 +44,16 @@ robotgo-flow.exe run <workflow.yaml> [flags]
 | `--debug` | 布尔 | false | 调试模式，每步成功后自动保存截图 |
 | `--out dir` | 字符串 | 工作流所在目录 | 截图输出目录（默认 `screenshots/`） |
 
+> **选项的位置**：标准 `flag` 包遇到第一个位置参数就会停止解析。为此 `main.go` 内置了 `reorderFlags`，会把选项自动挪到位置参数之前——`run workflow.yaml --from 3` 与 `run --from 3 workflow.yaml` 完全等价，`--` 之后的内容仍按位置参数处理。
+
 ### 12.2.2 运行时变量的输入
 
 如果工作流定义了 `inputs`，`run` 会在执行前逐个提示用户输入变量值：
 
-- 对每个 `input` 弹出输入提示（`notify.InputBoxStd`）；
-- 若 `input.mask` 为 `true`，输入内容隐藏显示；
+- 对每个 `input` 在终端弹出输入提示（`notify.InputBoxStd`）；
+- `mask: true` 的变量会在提示中附带「CLI 模式下输入不会隐藏」的警告——CLI 无法真正隐藏回显（需要 `golang.org/x/term`），密码类输入建议使用 GUI 模式；`mask` 遮罩仅在 WPF 输入表单中生效；
 - 若 `input.required` 为 `true` 且用户留空，则报错退出；
-- 收集完毕后，调用 `exe.ResolveInputs(values)` 把 `$input.<name>` 替换为实际值。
+- 所有变量**收集完毕后一次性**调用 `exe.ResolveInputs(values)` 把 `$input.<name>` 替换为实际值（避免逐项替换时后输入的值被先前值中的 `$input.` 文本二次替换）。
 
 ### 12.2.3 常见用法
 
@@ -174,7 +176,7 @@ robotgo-flow.exe            # 无参数也显示帮助
 
 ## 12.7 退出码与错误处理
 
-`run`/`serve` 执行时，若工作流因 `abort` 策略失败，或运行时变量校验失败，进程会以非零退出码退出，并在终端打印错误信息（同时可能弹出错误提示框）。这使得 robotgo-flow 可以方便地嵌入到脚本、批处理或计划任务中——通过检查退出码判断自动化是否成功。
+`run`/`serve` 执行时，若工作流因 `abort` 策略失败，或运行时变量校验失败，进程会以非零退出码退出，并在终端 stderr 打印错误信息（`notify.PrintError` 会输出「═══ 标题 ═══」格式的失败块，附带错误截图保存路径）。这使得 robotgo-flow 可以方便地嵌入到脚本、批处理或计划任务中——通过检查退出码判断自动化是否成功。
 
 ## 12.8 典型工作流的完整命令链
 

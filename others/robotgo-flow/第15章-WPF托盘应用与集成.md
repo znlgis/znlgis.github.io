@@ -13,10 +13,10 @@ WPF 托盘应用是一个可选的图形前端，主要提供：
 
 - **系统托盘图标**：常驻任务栏，右键呼出菜单；
 - **加载并运行工作流**：图形化选择 YAML 文件；
-- **输入变量采集**：以对话框形式收集 `inputs` 定义的运行时变量；
+- **输入变量采集**：以对话框形式收集 `inputs` 定义的运行时变量（支持 `mask` 密码遮罩）；
 - **实时进度浮窗**：显示当前步骤、动作、进度条；
 - **桌面通知**：工作流成功/失败时弹出 Toast 通知；
-- **录制标签页**：一键启动交互式录制。
+- **开始 / 取消控制**：迷你面板（`MiniPanelWindow`）提供「开始运行」与「取消」按钮，取消会经引擎的协作式停止流程。
 
 整体使用流程是：**加载 YAML → 输入变量 → 执行 → 实时监控**。
 
@@ -30,6 +30,8 @@ WPF 应用与 Go 引擎之间有两种通信方式，两者都实现了统一的
 | --- | --- | --- |
 | 子进程模式 | 启动 `robotgo-flow.exe serve` 子进程，stdin/stdout 通信 | `GoProcessService` |
 | DLL 模式 | 通过 P/Invoke 调用 `robotgo-flow.dll` | `RobotgoNative` |
+
+当前托盘应用实际以 **DLL 模式**为默认引擎：`App.xaml` 启动时初始化 `RobotgoNative` 并设置回调调度，迷你面板通过 `RobotgoNative.Instance.Preload(...)` 预加载工作流。`GoProcessService` 作为同一 `IEngineService` 抽象下的备选实现保留。
 
 ### 15.2.1 子进程模式（GoProcessService）
 
@@ -57,6 +59,8 @@ DLL 模式把 Go 引擎编译为 `c-shared` 动态库（`robotgo-flow.dll`，编
 | `RobotgoPreload(path)` | 只加载工作流元信息、不执行 |
 | `RobotgoFreeString(ptr)` | 释放 Go 分配的 C 字符串 |
 
+除执行类导出外，DLL 还导出录制接口（`RobotgoRecordStart` / `RobotgoRecordCommand` / `RobotgoRecordStop`，内部驱动管道模式录制器）与交互式截图（`RobotgoCapture`）。DLL 模式下所有 robotgo 调用由 `internal/ffi` 的 `dispatch` 串行化到专用 goroutine 执行（`capture` 包也经 `SetSerialRunner` 接入同一约束），保证底层 CGo 调用不跨线程并发。
+
 `RobotgoNative` 采用**单例模式**（`Instance`），因为 DLL 全局状态不支持多实例。它在静态构造中注册回调、调用 `RobotgoInit()` 并设置 `IsAvailable`。
 
 **UTF-8 处理**：`PtrToStringUTF8` 手动逐字节读取直到空结尾——因为 .NET Framework 4.8 没有内置该方法，而默认的 `LPStr` 编组会用 ANSI/GBK 解码从而破坏 UTF-8。这是跨 .NET 版本兼容的细节。
@@ -67,7 +71,9 @@ DLL 模式的优点是**无进程间开销、集成紧密**；缺点是 Go 崩�
 
 ## 15.3 JSON-Line 协议详解
 
-无论子进程模式还是 `serve` 命令，核心都是 **JSON-Line 协议**：一行一个 JSON 对象，通过 stdin/stdout 双向传递。
+无论子进程模式还是 `serve` 命令，核心都是 **JSON-Line 协议**：一行一个 JSON 对象，通过 stdin/stdout 双向传递。协议消息类型（`Event`、`InputInfo`、`Command`）在 Go 侧由 `internal/protocol` 包**单一定义**，`serve`（子进程模式）与 `ffi`（DLL 模式）共用同一套结构，避免两侧字段漂移；C# 侧 `ProtocolMessages.cs` 与之逐字段对齐。
+
+还需注意 `serve.Run` 启动时的两个保护措施：把日志输出**改道 stderr**（否则 `[INFO]` 行会混入 stdout 的协议流）；调用 `notify.DisableInteraction` **禁用 `prompt`/`confirm` 交互动作**（否则它们会与协议解码器争抢 stdin），此时这两个动作会立即返回明确错误。
 
 ### 15.3.1 Go → 外部（事件）
 

@@ -360,7 +360,7 @@ const result = await request('session/prompt', { sessionId, content: [{ type: 't
 console.log('prompt settled:', result)
 ```
 
-注意：真实 ACP 客户端通常直接用 `@agentclientprotocol/sdk` 的 `ClientSideConnection`（仓库 devDependency 里就有，版本 `0.25.1`），它会处理 initialize/authenticate 协商和通知路由；上面的骨架只是为了展示"每行一个 JSON 帧"这一层的真相。dsh 自己的进程内客户端在 [subagent/subagent-acp](https://github.com/deepseek-ai/deepseek-harness/blob/master/subagent/subagent-acp/README.md)。
+注意：真实 ACP 客户端通常直接用 `@agentclientprotocol/sdk` 的 `ClientSideConnection`（仓库依赖声明里就有，版本 `1.4.0`），它会处理 initialize/authenticate 协商和通知路由；上面的骨架只是为了展示"每行一个 JSON 帧"这一层的真相。dsh 自己的进程内客户端在 [subagent/subagent-acp](https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/subagent/subagent-acp/README.md)。
 
 ## 7.10 本章小结
 

@@ -22,7 +22,7 @@ steps:                     # 必填：步骤列表
   - ...
 ```
 
-对应到源码，`internal/config/workflow.go` 中的 `Workflow` 结构体定义了这四个字段：`Name`、`Description`、`Inputs`、`Settings`、`Steps`。其中 `Name` 与 `Steps` 是必填项，缺失会在加载时报错。
+对应到源码，`internal/config/workflow.go` 中的 `Workflow` 结构体定义了与之对应的字段：`Name`、`Description`（元信息）、`Inputs`、`Settings`、`Steps`。其中 `Name` 与 `Steps` 是必填项，缺失会在加载时报错。
 
 ## 4.2 元信息：name 与 description
 
@@ -59,7 +59,7 @@ inputs:
 | `label` | 字符串 | 输入提示标签，显示给用户 |
 | `required` | 布尔 | 是否必填，为 `true` 时留空会报错 |
 | `placeholder` | 字符串 | 占位符文本（可选） |
-| `mask` | 布尔 | 是否隐藏输入内容（密码模式），可选 |
+| `mask` | 布尔 | 是否密码遮罩（GUI 输入框真正隐藏；CLI 下仅给出警告，不隐藏回显），可选 |
 
 ### 4.3.1 变量的引用与替换
 
@@ -82,10 +82,10 @@ inputs:
 settings:
   element_timeout: 10           # 等待元素出现的超时秒数（默认 10）
   on_error: abort               # 错误处理策略：abort / skip / retry（默认 abort）
-  max_retries: 3                # retry 模式下的最大重试次数（默认 3）
-  browser_refresh_delay: 3      # 刷新页面等待秒数
-  browser_navigation_delay: 2   # 前进/后退等待秒数
-  browser_page_load_delay: 3    # 打开 URL 等待秒数
+  max_retries: 3                # retry 模式下的最大尝试次数（含首次执行，默认 3）
+  browser_refresh_delay: 3000   # 刷新页面等待毫秒数（默认 3000）
+  browser_navigation_delay: 2000 # 前进/后退等待毫秒数（默认 2000）
+  browser_page_load_delay: 3000 # 打开 URL 等待毫秒数（默认 3000）
   human:                        # 人类行为模拟设置
     enabled: false              # 是否启用
     speed: 1.0                  # 速度系数（0.1 ~ 5.0，默认 1.0）
@@ -97,18 +97,18 @@ settings:
 | 字段 | 默认值 | 说明 |
 | --- | --- | --- |
 | `element_timeout` | 10 | 等待元素出现的默认超时（秒），必须大于 0 |
-| `on_error` | `abort` | 错误处理策略，取值 `abort`/`skip`/`retry` |
-| `max_retries` | 3 | `retry` 模式下的最大重试次数 |
-| `browser_refresh_delay` | 3 | 刷新页面后的等待时间 |
-| `browser_navigation_delay` | 2 | 前进/后退后的等待时间 |
-| `browser_page_load_delay` | 3 | 打开 URL 后的页面加载等待时间 |
+| `on_error` | `abort` | 错误处理策略，只接受 `abort`/`skip`/`retry`，其他值在加载时直接报错 |
+| `max_retries` | 3 | `retry` 模式下的最大尝试次数（含首次执行），必须为正整数 |
+| `browser_refresh_delay` | 3000 | 刷新页面后的等待时间（毫秒） |
+| `browser_navigation_delay` | 2000 | 前进/后退后的等待时间（毫秒） |
+| `browser_page_load_delay` | 3000 | 打开 URL 后的页面加载等待时间（毫秒） |
 | `human.enabled` | false | 是否启用人类行为模拟 |
 | `human.speed` | 1.0 | 速度系数，范围 0.1 ~ 5.0 |
 | `human.mistake_rate` | 0.0 | 打字错误率，范围 0.0 ~ 1.0 |
 
 关于 `on_error` 与三种错误策略，会在第 14 章详细展开；关于 `human` 人类行为模拟，会在第 11 章深入。
 
-> **关于浏览器延时的单位**：README 中的 YAML 注释以「秒」描述这几个浏览器延时字段（如「刷新页面等待秒数」）。在内部实现中，这些延时最终会转换为毫秒级的 `MilliSleep` 调用。使用时以 README 文档为准即可，实际效果就是「刷新/导航/打开页面后等待若干时间再继续」。
+> **关于浏览器延时的单位**：`browser_refresh_delay` / `browser_navigation_delay` / `browser_page_load_delay` 三个字段的单位是**毫秒**（默认分别为 3000 / 2000 / 3000），与源码中 `MilliSleep` 的调用单位一致；README 也以毫秒描述它们。`element_timeout` 与 `sleep` 动作的单位则是**秒**，注意区分。
 
 ## 4.5 步骤：steps
 
@@ -176,10 +176,11 @@ robotgo-flow 共支持 **19 种动作类型**，按类别分组如下：
 - `name` 不为空、至少一个步骤；
 - 每个步骤名称不为空、至少一个动作；
 - 每个动作非空、只设置一个动作字段；
-- **动作引用的模板文件在磁盘上真实存在**（`validateTemplates`）；
-- 坐标类动作的 `x`/`y` 字段完整（`validateMapFields`）；
+- **动作引用的模板文件在磁盘上真实存在**（`validateTemplates`，含点击/等待/输入类模板及 `prompt.into`；路径可为相对 YAML 目录的相对路径，也可为绝对路径）；
+- `drag` 的 `from`/`to`、`type` 的 `into`/`text` 均非空（`validateMapFields`）；
 - `prompt`/`confirm` 的 `title` 与 `message` 不为空；
-- `element_timeout > 0`；
+- `element_timeout > 0`；`on_error` 只能是 `abort`/`skip`/`retry`（其他值——包括大小写不符——直接报错，不会静默退化为 abort）；`max_retries` 必须为正整数；
+- `inputs` 各项的 `name` 非空、无首尾空白且不重复，`label` 非空；
 - 若启用人类模拟，`speed` 在 [0.1, 5.0]、`mistake_rate` 在 [0.0, 1.0]。
 
 > **一个容易忽视的点**：由于验证阶段会检查模板文件是否真实存在，因此**运行工作流前必须先把所有模板截图准备好**，否则加载阶段就会失败。这也是为什么推荐先用 `capture`/`record` 截好模板，再运行。

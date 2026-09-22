@@ -70,15 +70,15 @@ export DEEPSEEK_API_KEY=sk-your-key-here
 
 | 项 | 限制 |
 |---|---|
-| 支持的平台 | **仅 Linux x64 / Linux arm64 / macOS 14+ arm64** |
-| wheel 固定 tag | `py3-none-manylinux_2_28_x86_64`、`py3-none-manylinux_2_28_aarch64`、`py3-none-macosx_14_0_arm64` |
-| Windows | **不支持 agent 会话**。持久 PTY 需要 POSIX 终端底层 |
+| 支持的平台 | **Linux x64 / Linux arm64 / macOS 14+ arm64 / macOS x64 / Windows x64**（无 Windows arm64 wheel） |
+| wheel 固定 tag | `py3-none-manylinux_2_28_x86_64`、`py3-none-manylinux_2_28_aarch64`、`py3-none-macosx_14_0_arm64`、`py3-none-macosx_14_0_x86_64`、`py3-none-win_amd64` |
+| 平台 shell | Linux/macOS 用持久 `bash`；Windows 用持久 `pwsh` |
 
-原因链：持久 Bash 依赖 `node-pty`，而 `node-pty` 需要 POSIX 终端环境；macOS 上还额外需要一个原生 `-spawn-helper` sidecar（缺失即硬启动错误，即使你的组合不用 PTY 工具）。Linux wheel 不带 spawn helper，因为 `node-pty` 直接用分阶段的 `pty.node` addon。
+机制细节：持久 shell 依赖 `node-pty`——POSIX 上走分阶段的 `pty.node` addon，Windows 上走 ConPTY 原生 addon（因此持久 shell 工具换成 `pwsh`）；macOS 还额外需要一个原生 `-spawn-helper` sidecar（缺失即硬启动错误，即使你的组合不用 PTY 工具）。各平台 wheel 还各带一个 target-native 的 `-rg` 检索 sidecar（Windows 为 `-rg.exe`）。
 
 两个连带易错点：
 
-- **该 SDK 不发布 sdist**（只发 wheel）。在不受支持的平台（比如 `win_amd64` 或旧 macOS）上 `pip install` 会因找不到可用 wheel 而失败——这不是 bug，是刻意的平台门控。
+- **该 SDK 不发布 sdist**（只发 wheel）。在不受支持的平台（比如 macOS 低于 14，或 Windows arm64）上 `pip install` 会因找不到可用 wheel 而失败——这不是 bug，是刻意的平台门控。
 - **每个 wheel 只含一个 runtime 可执行**。macOS wheel 里那个 spawn helper 是必配 sidecar；缺失会让安装"不完整"并硬启动错误，所以别手动删 wheel 里的文件。
 
 ## 6.4 核心 API：DeepSeekHarness
@@ -389,7 +389,7 @@ with DeepSeekHarness(provider="deepseek-official", model="deepseek-v4-flash") as
 
 - 两个包：`deepseek-harness-sdk`（turns API + JSON-RPC 客户端）与 `deepseek-harness-runtime-bin`（捆绑 runtime，无需系统 Node.js）。
 - 安装 `python -m pip install deepseek-harness-sdk`；Python >= 3.10；依赖 `pydantic>=2.12,<3`。
-- 平台仅 Linux x64/arm64、macOS 14+ arm64；持久 PTY 需 POSIX，不支持 Windows agent 会话；只发 wheel 不发 sdist。
+- 平台为 Linux x64/arm64、macOS 14+ arm64/x64、Windows x64（持久 shell 用 `pwsh`；无 Windows arm64 wheel）；只发 wheel 不发 sdist。
 - 核心 API：`DeepSeekHarness(...)` 上下文管理器 + `harness.run(prompt, session_id=)`，返回 `result.final_response`。
 - 关键环境变量：`DEEPSEEK_API_KEY`、`DEEPSEEK_BASE_URL`、`DSH_MODEL`、`DSH_SYSTEM_PROMPT`。
 - `minimal.py` 是 SDK 调用的最小封装；`minimal.cordis.yml` 只保留持久 `bash` + `str_replace_editor`，关闭 compaction，用 `danger-full-access` 裸本地 FS。

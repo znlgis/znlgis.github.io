@@ -5,7 +5,7 @@ title: OpenGIS-Skills 教程目录
 
 # OpenGIS-Skills 教程目录
 
-> 本教程基于 [znlgis/opengis-skills](https://github.com/znlgis/opengis-skills) 仓库全面分析整理，面向中文读者系统讲解面向 AI 编程助手的开源技能集 **OpenGIS-Skills** 的设计理念、三层索引架构、SKILL.md 编写规范、AI 工具集成方式，以及涵盖 **GIS、CAD、C#、AI、IoT、3D** 六大领域的 67 个技能详解。教程还提供跨技能实战工作流组合、最佳实践与贡献指南。
+> 本教程基于 [znlgis/opengis-skills](https://github.com/znlgis/opengis-skills) 仓库全面分析整理，面向中文读者系统讲解面向 AI 编程助手的开源技能集 **OpenGIS-Skills** 的设计理念、三层索引架构、SKILL.md 编写规范、AI 工具集成方式，以及涵盖 **GIS、CAD、C#、AI、IoT、3D** 六大领域的 75 个技能详解。教程还提供跨技能实战工作流组合、最佳实践与贡献指南。
 
 - [第一章：项目概述与快速入门](https://znlgis.github.io/ai/opengis-skills/01-概述与快速入门/)
 - [第二章：三层索引架构](https://znlgis.github.io/ai/opengis-skills/02-三层索引架构/)

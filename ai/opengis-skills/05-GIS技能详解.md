@@ -5,7 +5,7 @@ title: 第五章：GIS 技能详解
 
 # 第五章：GIS 技能详解
 
-本章是教程中篇幅最长、信息密度最高的一章。我们将对 opengis-skills 仓库中全部 **23 个 GIS 技能**逐一进行深度解析。GIS 类技能覆盖从「数据获取 → 命令行处理 → 编程分析 → 空间数据库 → 地图服务 → 前端可视化」的完整链条，是 opengis-skills 仓库中规模最大的领域分类。
+本章是教程中篇幅最长、信息密度最高的一章。我们将对 opengis-skills 仓库中全部 **24 个 GIS 技能**逐一进行深度解析。GIS 类技能覆盖从「数据获取 → 命令行处理 → 编程分析 → 空间数据库 → 地图服务 → 前端可视化」的完整链条，是 opengis-skills 仓库中规模最大的领域分类。
 
 如果你是 GIS 开发者，这一章可以作为日常工作的速查手册：当你需要用 GDAL 做格式转换、用 GeoPandas 做空间分析、用 GeoServer 发布地图服务、用 CesiumJS 做三维可视化时，直接跳到对应小节获取准确的 API 签名和代码示例。每一节的撰写都基于仓库中对应 SKILL.md 的实际内容——不是从训练数据中猜测，而是对真实技能文件的系统梳理。
 
@@ -13,7 +13,7 @@ title: 第五章：GIS 技能详解
 
 ## 5.1 GIS 技能全景
 
-在深入每个技能之前，先用一张全量表格建立全局视图。下表包含全部 23 个 GIS 技能的快速索引：
+在深入每个技能之前，先用一张全量表格建立全局视图。下表包含全部 24 个 GIS 技能的快速索引：
 
 | 分类 | 技能 | 层级 | 简要说明 | 文件大小 |
 |:-----|:-----|:----:|:---------|:--------:|
@@ -1014,8 +1014,8 @@ MapGeometry mg = OperatorImportFromJson.local()
 **NuGet 安装：**
 
 ```bash
-dotnet add package Esri.Geometry.Core
-dotnet add package Esri.Geometry.Json    # 可选，System.Text.Json 支持
+dotnet add package OpenGIS.Esri.Geometry.Core
+dotnet add package OpenGIS.Esri.Geometry.Json    # 可选，System.Text.Json 支持
 ```
 
 **命名空间体系：**
@@ -1282,8 +1282,8 @@ Workspace（工作空间——命名空间隔离）
 
 ```bash
 # 二进制部署
-wget https://sourceforge.net/projects/geoserver/files/GeoServer/3.0.0/geoserver-3.0.0-bin.zip
-unzip geoserver-3.0.0-bin.zip && cd geoserver-3.0.0
+wget https://sourceforge.net/projects/geoserver/files/GeoServer/3.0.1/geoserver-3.0.1-bin.zip
+unzip geoserver-3.0.1-bin.zip && cd geoserver-3.0.1
 sh bin/startup.sh              # http://localhost:8080/geoserver  (admin/geoserver)
 
 # Docker 部署
@@ -2143,7 +2143,7 @@ CoordinateReferenceSystem crs = coverage.getCoordinateReferenceSystem2D();
 
 ## 5.10 GIS 技能选择决策树
 
-面对 23 个 GIS 技能，如何根据实际需求快速选择正确的技能（或技能组合）？以下决策树提供了从「需求描述」到「推荐技能」的完整映射关系：
+面对 24 个 GIS 技能，如何根据实际需求快速选择正确的技能（或技能组合）？以下决策树提供了从「需求描述」到「推荐技能」的完整映射关系：
 
 ```
 我需要用 GIS 技能解决什么问题？
@@ -2211,7 +2211,7 @@ CoordinateReferenceSystem crs = coverage.getCoordinateReferenceSystem2D();
 
 ## 5.11 本章小结
 
-本章对 opengis-skills 仓库中全部 **23 个 GIS 技能**进行了系统梳理，涵盖了从数据获取到前端可视化的完整处理链路。核心要点回顾：
+本章对 opengis-skills 仓库中全部 **24 个 GIS 技能**进行了系统梳理，涵盖了从数据获取到前端可视化的完整处理链路。核心要点回顾：
 
 **1. 数据处理（4 个技能）：**
 - `gdal`（CLI）：50+ 命令行工具，矢量格式转换（`ogr2ogr`）、栅格重投影（`gdalwarp`）、DEM 分析（`gdaldem`）、栅格计算（`gdal_calc`）
@@ -2249,8 +2249,8 @@ CoordinateReferenceSystem crs = coverage.getCoordinateReferenceSystem2D();
 - `opengis-utils-for-java` / `opengis-utils-for-net`：统一图层模型 + 双引擎架构的便利工具集
 
 **9. 技能选择（5.10 决策树）：**
-面对 23 个技能，按「命令行 → 编程语言 → 数据库 → 服务器 → 前端」的链条分段选择，配合 5.10 节的典型组合推荐，即可快速确定正确的技能（组合）。
+面对 24 个技能，按「命令行 → 编程语言 → 数据库 → 服务器 → 前端」的链条分段选择，配合 5.10 节的典型组合推荐，即可快速确定正确的技能（组合）。
 
 ---
 
-下一章将进入 CAD 领域，详解 opengis-skills 仓库中 19 个 CAD 技能——从 Open CASCADE Technology 几何内核到 FreeCAD 参数化建模，从 KiCad PCB 设计到 Clipper2 多边形裁剪的全链路。
+下一章将进入 CAD 领域，详解 opengis-skills 仓库中 20 个 CAD 技能——从 Open CASCADE Technology 几何内核到 FreeCAD 参数化建模，从 KiCad PCB 设计到 Clipper2 多边形裁剪的全链路。

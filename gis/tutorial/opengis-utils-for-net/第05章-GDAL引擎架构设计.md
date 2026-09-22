@@ -68,14 +68,13 @@ public class GdalEngine : GisEngine
     /// </summary>
     public override IList<DataFormatType> SupportedFormats => new List<DataFormatType>
     {
-        DataFormatType.SHP,
-        DataFormatType.GEOJSON,
         DataFormatType.FILEGDB,
         DataFormatType.GEOPACKAGE,
         DataFormatType.KML,
         DataFormatType.DXF,
-        DataFormatType.POSTGIS
-    };
+        DataFormatType.SHP,
+        DataFormatType.GEOJSON
+    };  // POSTGIS 经由 `PG:` 连接串驱动推断读写；TXT 由 GtTxtUtil 专门处理
     
     /// <summary>
     /// 创建读取器
@@ -153,40 +152,49 @@ public class GdalReader : ILayerReader
         string? spatialFilterWkt = null,
         Dictionary<string, object>? options = null)
     {
-        // 1. 参数验证
-        if (string.IsNullOrWhiteSpace(path))
-            throw new ArgumentException("Path cannot be null or empty", nameof(path));
-        
-        OgrDataSource? dataSource = null;
-        try
+        // 读取在进程级全局配置锁内串行执行：SHAPE_ENCODING 是进程级配置，
+        // 编码敏感的打开/读取需避免并发读取互相覆盖，读取结束后恢复原值
+        lock (GlobalConfigLock)
         {
-            // 2. 打开数据源
-            dataSource = Ogr.Open(path, 0); // 0 = 只读
-            if (dataSource == null)
-                throw new Exception($"Failed to open data source: {path}");
+            // 1. 参数验证
+            if (string.IsNullOrWhiteSpace(path))
+                throw new ArgumentException("Path cannot be null or empty", nameof(path));
             
-            // 3. 获取图层
-            Layer ogrLayer;
-            if (!string.IsNullOrWhiteSpace(layerName))
-            {
-                ogrLayer = dataSource.GetLayerByName(layerName);
-                if (ogrLayer == null)
-                    throw new Exception($"Layer '{layerName}' not found");
-            }
-            else
-            {
-                if (dataSource.GetLayerCount() == 0)
-                    throw new Exception("No layers found in data source");
-                ogrLayer = dataSource.GetLayerByIndex(0);
-            }
+            // 应用 options["encoding"]（Shapefile 属性编码）
+            ApplyEncodingOption(options);
             
-            // 4. 读取并转换
-            return ReadOgrLayer(ogrLayer, attributeFilter, spatialFilterWkt);
-        }
-        finally
-        {
-            // 5. 释放资源
-            dataSource?.Dispose();
+            OgrDataSource? dataSource = null;
+            try
+            {
+                // 2. 打开数据源
+                dataSource = Ogr.Open(path, 0); // 0 = 只读
+                if (dataSource == null)
+                    throw new DataSourceException($"Failed to open data source: {path}");
+                
+                // 3. 获取图层
+                Layer ogrLayer;
+                if (!string.IsNullOrWhiteSpace(layerName))
+                {
+                    ogrLayer = dataSource.GetLayerByName(layerName);
+                    if (ogrLayer == null)
+                        throw new DataSourceException($"Layer '{layerName}' not found");
+                }
+                else
+                {
+                    if (dataSource.GetLayerCount() == 0)
+                        throw new DataSourceException("No layers found in data source");
+                    ogrLayer = dataSource.GetLayerByIndex(0);
+                }
+                
+                // 4. 读取并转换
+                return ReadOgrLayer(ogrLayer, attributeFilter, spatialFilterWkt);
+            }
+            finally
+            {
+                // 5. 释放资源并恢复 SHAPE_ENCODING
+                dataSource?.Dispose();
+                RestoreShapeEncoding();
+            }
         }
     }
 }
@@ -223,31 +231,41 @@ private OguLayer ReadOgrLayer(
     var geomType = ogrLayer.GetGeomType();
     layer.GeometryType = MapOgrGeometryType(geomType);
     
-    // 3. 应用属性过滤
+    // 3. 应用属性过滤（无效过滤器抛出 FormatParseException；
+    //    GPKG 等 SQL 驱动把过滤器编译推迟到首次取要素，非法过滤同样包装为 FormatParseException）
     if (!string.IsNullOrWhiteSpace(attributeFilter))
     {
-        ogrLayer.SetAttributeFilter(attributeFilter);
+        try
+        {
+            ogrLayer.SetAttributeFilter(attributeFilter);
+        }
+        catch (System.Exception ex)
+        {
+            throw new FormatParseException($"Invalid attribute filter: {attributeFilter}", ex);
+        }
     }
     
-    // 4. 应用空间过滤
+    // 4. 应用空间过滤（无效 WKT 抛出 FormatParseException，不静默忽略）
     if (!string.IsNullOrWhiteSpace(spatialFilterWkt))
     {
         try
         {
             using var filterGeom = OSGeo.OGR.Geometry.CreateFromWkt(spatialFilterWkt);
-            if (filterGeom != null)
-            {
-                ogrLayer.SetSpatialFilter(filterGeom);
-            }
+            if (filterGeom == null)
+                throw new FormatParseException($"Invalid spatial filter WKT: {spatialFilterWkt}");
+            ogrLayer.SetSpatialFilter(filterGeom);
         }
-        catch
+        catch (FormatParseException)
         {
-            // 忽略无效的空间过滤
+            throw;
+        }
+        catch (System.Exception ex)
+        {
+            throw new FormatParseException($"Invalid spatial filter WKT: {spatialFilterWkt}", ex);
         }
     }
     
-    // 5. 读取要素
-    int fid = 1;
+    // 5. 读取要素（保留源数据 FID）
     ogrLayer.ResetReading();
     
     Feature? ogrFeature;
@@ -255,7 +273,7 @@ private OguLayer ReadOgrLayer(
     {
         using (ogrFeature)
         {
-            var feature = new OguFeature { Fid = fid++ };
+            var feature = new OguFeature { Fid = (int)ogrFeature.GetFID() };
             
             // 读取几何
             var geometry = ogrFeature.GetGeometryRef();
@@ -271,7 +289,7 @@ private OguLayer ReadOgrLayer(
                 var fieldIndex = ogrFeature.GetFieldIndex(field.Name);
                 if (fieldIndex >= 0)
                 {
-                    var value = GetFieldValue(ogrFeature, fieldIndex, field.DataType);
+                    var value = GetFieldValue(ogrFeature, fieldIndex, field.DataType, field.Name);
                     feature.SetValue(field.Name, value);
                 }
             }
@@ -287,10 +305,14 @@ private OguLayer ReadOgrLayer(
 ### 5.3.3 字段值读取
 
 ```csharp
-private object? GetFieldValue(Feature feature, int fieldIndex, FieldDataType dataType)
+private object? GetFieldValue(Feature feature, int fieldIndex, FieldDataType dataType, string fieldName)
 {
     // 检查字段是否已设置
     if (!feature.IsFieldSet(fieldIndex))
+        return null;
+    
+    // OGR 的 null 字段（如 Shapefile 空 'D' 日期字段）按空值返回，不再抛异常
+    if (feature.IsFieldNull(fieldIndex))
         return null;
     
     return dataType switch
@@ -299,12 +321,12 @@ private object? GetFieldValue(Feature feature, int fieldIndex, FieldDataType dat
         FieldDataType.LONG => feature.GetFieldAsInteger64(fieldIndex),
         FieldDataType.DOUBLE or FieldDataType.FLOAT => feature.GetFieldAsDouble(fieldIndex),
         FieldDataType.STRING => feature.GetFieldAsString(fieldIndex),
-        FieldDataType.DATE or FieldDataType.DATETIME => GetDateTimeValue(feature, fieldIndex),
+        FieldDataType.DATE or FieldDataType.DATETIME => GetDateTimeValue(feature, fieldIndex, fieldName),
         _ => feature.GetFieldAsString(fieldIndex)
     };
 }
 
-private DateTime? GetDateTimeValue(Feature feature, int fieldIndex)
+private DateTime? GetDateTimeValue(Feature feature, int fieldIndex, string fieldName)
 {
     try
     {
@@ -314,11 +336,17 @@ private DateTime? GetDateTimeValue(Feature feature, int fieldIndex)
             out int hour, out int minute, out float second,
             out int tzFlag);
         
-        return new DateTime(year, month, day, hour, minute, (int)second);
+        // 保留 GDAL 返回的小数秒
+        var wholeSeconds = (int)Math.Truncate(second);
+        var fractionalTicks = (long)Math.Round(
+            (second - wholeSeconds) * TimeSpan.TicksPerSecond, MidpointRounding.AwayFromZero);
+        
+        return new DateTime(year, month, day, hour, minute, wholeSeconds).AddTicks(fractionalTicks);
     }
-    catch
+    catch (System.Exception ex)
     {
-        return null;
+        // 无法解析的日期字段以类型化异常报告，不再静默返回 null
+        throw new FormatParseException($"Invalid date field '{fieldName}'", ex);
     }
 }
 ```
@@ -331,12 +359,11 @@ public IList<string> GetLayerNames(string path)
     if (string.IsNullOrWhiteSpace(path))
         throw new ArgumentException("Path cannot be null or empty", nameof(path));
     
-    var layerNames = new List<string>();
-    
     using var dataSource = Ogr.Open(path, 0);
     if (dataSource == null)
-        return layerNames;
+        throw new DataSourceException($"Failed to open data source: {path}");
     
+    var layerNames = new List<string>();
     var layerCount = dataSource.GetLayerCount();
     for (int i = 0; i < layerCount; i++)
     {
@@ -350,6 +377,8 @@ public IList<string> GetLayerNames(string path)
     return layerNames;
 }
 ```
+
+数据源打不开时抛出 `DataSourceException`，而不是静默返回空列表（空列表只表示数据源确实不含图层）。
 
 ## 5.4 GdalWriter深度解析
 
@@ -380,7 +409,7 @@ public class GdalWriter : ILayerWriter
         var driver = Ogr.GetDriverByName(driverName);
         
         if (driver == null)
-            throw new Exception($"Driver '{driverName}' not available");
+            throw new DataSourceException($"Driver '{driverName}' not available");
         
         // 3. 确保目录存在
         var directory = Path.GetDirectoryName(path);
@@ -389,11 +418,11 @@ public class GdalWriter : ILayerWriter
             Directory.CreateDirectory(directory);
         }
         
-        // 4. 删除已存在的文件
+        // 4. 删除已存在的文件（删除失败抛出 DataSourceException，而非忽略）
         if (File.Exists(path) || Directory.Exists(path))
         {
-            try { driver.DeleteDataSource(path); }
-            catch { /* 忽略删除错误 */ }
+            if (driver.DeleteDataSource(path) != 0)
+                throw new DataSourceException($"Failed to delete existing data source: {path}");
         }
         
         OgrDataSource? dataSource = null;
@@ -402,31 +431,37 @@ public class GdalWriter : ILayerWriter
             // 5. 创建数据源
             dataSource = driver.CreateDataSource(path, new string[] { });
             if (dataSource == null)
-                throw new Exception($"Failed to create data source: {path}");
+                throw new DataSourceException($"Failed to create data source: {path}");
             
-            // 6. 创建图层
-            var ogrGeomType = MapToOgrGeometryType(layer.GeometryType);
+            // 6. 创建图层：几何类型按首个可解析要素的 WKT 解析，
+            //    PointZ/PolylineZ 等升级为对应 25D 类型（GPKG 不再出现"声明2D却含Z几何"）；
+            //    坐标系来自 layer.Wkid；图层创建选项包含 encoding/GeoJSON 坐标精度/OVERWRITE 等
+            var ogrGeomType = ResolveOgrGeometryType(layer);
+            var layerOptions = BuildLayerOptions(options, driverName);
+            using var spatialReference = CreateSpatialReference(layer.Wkid);
             var ogrLayer = dataSource.CreateLayer(
                 layerName ?? layer.Name ?? "layer",
-                null,
+                spatialReference,
                 ogrGeomType,
-                new string[] { });
+                layerOptions);
             
             if (ogrLayer == null)
-                throw new Exception("Failed to create layer");
+                throw new DataSourceException("Failed to create layer");
             
-            // 7. 创建字段
-            foreach (var field in layer.Fields)
-            {
-                var fieldDefn = CreateOgrFieldDefn(field);
-                ogrLayer.CreateField(fieldDefn, 1);
-                fieldDefn.Dispose();
-            }
+            // 7. 创建字段：DXF 等固定 schema 驱动跳过失败字段并告警，
+            //    其余驱动创建失败即抛 DataSourceException；
+            //    字段索引按"实际创建顺序的序数"映射，
+            //    规避 GDAL 清洗字段名（如 Shapefile 截断超 10 字符名称）导致的按名查找失败
+            var createdFieldOrdinals = CreateFields(ogrLayer, layer, driverName);
+            var fieldIndexMap = BuildFieldIndexMap(layer, createdFieldOrdinals);
             
-            // 8. 写入要素
+            // 8. 写入要素：空几何要素跳过并计数告警；
+            //    非零源 FID 尽量保留（PostgreSQL 下 0 也显式保留），
+            //    FID 冲突时改用自动分配重试一次；
+            //    失败要素汇总后以 DataSourceException 报告
             foreach (var oguFeature in layer.Features)
             {
-                WriteFeature(ogrLayer, oguFeature, layer.Fields);
+                WriteFeature(ogrLayer, oguFeature, layer.Fields, fieldIndexMap);
             }
             
             // 9. 同步到磁盘
@@ -451,12 +486,16 @@ private string InferDriverName(string path, Dictionary<string, object>? options)
         return driverObj.ToString() ?? "ESRI Shapefile";
     }
     
+    // 数据库连接串没有文件扩展名，必须先按前缀识别，否则会误落默认 Shapefile 驱动
+    if (path.StartsWith("PG:", StringComparison.OrdinalIgnoreCase))
+        return "PostgreSQL";
+    
     // 根据扩展名推断
     var extension = Path.GetExtension(path).ToLowerInvariant();
     return extension switch
     {
         ".shp" => "ESRI Shapefile",
-        ".gdb" => "FileGDB",
+        ".gdb" => "OpenFileGDB",  // GDAL 3.6+ 可写，避免依赖 ESRI SDK 的 FileGDB 驱动
         ".gpkg" => "GPKG",
         ".kml" => "KML",
         ".dxf" => "DXF",
@@ -469,9 +508,15 @@ private string InferDriverName(string path, Dictionary<string, object>? options)
 ### 5.4.3 创建OGR字段定义
 
 ```csharp
-private FieldDefn CreateOgrFieldDefn(OguField field)
+private FieldDefn CreateOgrFieldDefn(OguField field, bool kmlDemoteDates = false)
 {
     var ogrType = MapToOgrFieldType(field.DataType);
+    
+    // KML 规范无日期类型：OFTDate 会让原生 KML 写驱动整体失败，
+    // 写入 KML/LIBKML 时日期降级为文本列，内容以 ISO 串保留
+    if (kmlDemoteDates && field.DataType is FieldDataType.DATE or FieldDataType.DATETIME)
+        ogrType = FieldType.OFTString;
+    
     var fieldDefn = new FieldDefn(field.Name, ogrType);
     
     // 设置字段宽度
@@ -508,46 +553,56 @@ private FieldType MapToOgrFieldType(FieldDataType dataType)
 ### 5.4.4 写入要素
 
 ```csharp
-private void WriteFeature(Layer ogrLayer, OguFeature oguFeature, IList<OguField> fields)
+private void WriteFeature(Layer ogrLayer, OguFeature oguFeature, IList<OguField> fields,
+    Dictionary<string, int> fieldIndexMap)
 {
+    // 空几何要素（如 Shapefile 的 NullShape 记录）跳过并汇总计数，不判为整层失败
     if (string.IsNullOrWhiteSpace(oguFeature.Wkt))
+    {
+        skippedNoGeometry++;
         return;
+    }
     
     Feature? ogrFeature = null;
     OSGeo.OGR.Geometry? geometry = null;
     
     try
     {
-        // 创建要素
+        // 创建要素，尽量保留非零源 FID（PostgreSQL 驱动下 0 也显式保留）
         ogrFeature = new Feature(ogrLayer.GetLayerDefn());
+        if ((oguFeature.Fid != 0 || preserveZeroFid) && ogrFeature.SetFID(oguFeature.Fid) != 0)
+            throw new System.Exception($"设置要素 FID 失败 (Fid={oguFeature.Fid})");
         
         // 设置几何
         geometry = OSGeo.OGR.Geometry.CreateFromWkt(oguFeature.Wkt);
-        if (geometry != null)
-        {
-            ogrFeature.SetGeometry(geometry);
-        }
+        if (geometry == null)
+            throw new System.Exception($"无法解析要素几何 (Fid={oguFeature.Fid})");
+        if (ogrFeature.SetGeometry(geometry) != 0)
+            throw new System.Exception($"设置要素几何失败 (Fid={oguFeature.Fid})");
         
-        // 设置属性
+        // 设置属性（按预计算的字段序数映射，不受 GDAL 名称清洗影响）
         foreach (var field in fields)
         {
-            var fieldIndex = ogrFeature.GetFieldIndex(field.Name);
-            if (fieldIndex >= 0)
+            if (fieldIndexMap.TryGetValue(field.Name, out var fieldIndex))
             {
                 var value = oguFeature.GetValue(field.Name);
-                SetFieldValue(ogrFeature, fieldIndex, value, field.DataType);
+                SetFieldValue(ogrFeature, fieldIndex, value, field.DataType, field.Name);
             }
         }
         
-        // 添加到图层
-        if (ogrLayer.CreateFeature(ogrFeature) != 0)
+        // 添加到图层；FID 冲突（GPKG/OpenFileGDB UNIQUE 约束）时改用自动分配重试一次
+        if (!TryCreateFeature(ogrLayer, ogrFeature) && (oguFeature.Fid != 0 || preserveZeroFid))
         {
-            Console.WriteLine($"Warning: Failed to create feature {oguFeature.Fid}");
+            ogrFeature.SetFID(-1);
+            TryCreateFeature(ogrLayer, ogrFeature);
         }
     }
-    catch (Exception ex)
+    catch (System.Exception ex)
     {
-        Console.WriteLine($"Warning: Error writing feature {oguFeature.Fid}: {ex.Message}");
+        // 单个要素失败不再 Console.WriteLine，而是计入失败数并以结构化日志告警，
+        // 处理完全部输入后汇总抛出 DataSourceException
+        failedCount++;
+        Logger.LogWarning(ex, "写入要素时出错 (Fid={Fid})", oguFeature.Fid);
     }
     finally
     {
@@ -556,43 +611,50 @@ private void WriteFeature(Layer ogrLayer, OguFeature oguFeature, IList<OguField>
     }
 }
 
-private void SetFieldValue(Feature feature, int fieldIndex, object? value, FieldDataType dataType)
+private void SetFieldValue(Feature feature, int fieldIndex, object? value, FieldDataType dataType,
+    string fieldName)
 {
     if (value == null)
     {
-        feature.UnsetField(fieldIndex);
+        // 优先使用 OGR null 语义（GDAL 3.3+），GeoJSON 的 WRITE_NULL_FIELDS 等选项
+        // 依赖 null 而非 unset；旧绑定不支持时回退 UnsetField
+        try { feature.SetFieldNull(fieldIndex); }
+        catch (System.Exception) { feature.UnsetField(fieldIndex); }
         return;
     }
     
     switch (dataType)
     {
         case FieldDataType.INTEGER:
-            feature.SetField(fieldIndex, Convert.ToInt32(value));
+            feature.SetField(fieldIndex, Convert.ToInt32(value, CultureInfo.InvariantCulture));
             break;
             
         case FieldDataType.LONG:
-            feature.SetField(fieldIndex, Convert.ToInt64(value));
+            feature.SetField(fieldIndex, Convert.ToInt64(value, CultureInfo.InvariantCulture));
             break;
             
         case FieldDataType.DOUBLE:
         case FieldDataType.FLOAT:
-            feature.SetField(fieldIndex, Convert.ToDouble(value));
+            feature.SetField(fieldIndex, Convert.ToDouble(value, CultureInfo.InvariantCulture));
             break;
             
         case FieldDataType.DATE:
         case FieldDataType.DATETIME:
-            if (value is DateTime dt)
-            {
-                feature.SetField(fieldIndex, 
-                    dt.Year, dt.Month, dt.Day,
-                    dt.Hour, dt.Minute, dt.Second, 0);
-            }
+            if (value is not DateTime dt)
+                throw new FormatException($"Value for date field '{fieldName}' is not a DateTime");
+            
+            // 保留毫秒小数秒
+            var seconds = dt.Second + (float)dt.Millisecond / 1000;
+            feature.SetField(fieldIndex, dt.Year, dt.Month, dt.Day, dt.Hour, dt.Minute, seconds, 0);
             break;
             
         default:
             feature.SetField(fieldIndex, value.ToString());
             break;
     }
+    
+    if (!feature.IsFieldSet(fieldIndex))
+        throw new DataSourceException($"Failed to set field '{fieldName}'");
 }
 ```
 
@@ -629,8 +691,8 @@ Console.WriteLine($"  PostgreSQL: {GdalConfiguration.IsDriverAvailable("PostgreS
 | Shapefile | ESRI Shapefile | ✅ | ✅ | 最常用格式 |
 | GeoJSON | GeoJSON | ✅ | ✅ | Web标准格式 |
 | GeoPackage | GPKG | ✅ | ✅ | OGC标准 |
-| FileGDB | FileGDB | ✅ | ✅ | 需要FileGDB SDK |
-| FileGDB | OpenFileGDB | ✅ | ❌ | 只读，无需SDK |
+| FileGDB | FileGDB | ✅ | ✅ | 依赖 ESRI FileGDB SDK，运行时可能缺失 |
+| FileGDB | OpenFileGDB | ✅ | ✅ | 无需SDK；GDAL 3.6+ 支持创建，OGU4Net 写 `.gdb` 默认使用该驱动 |
 | PostGIS | PostgreSQL | ✅ | ✅ | 需要连接字符串 |
 | KML | KML | ✅ | ✅ | Google Earth |
 | DXF | DXF | ✅ | ✅ | AutoCAD交换格式 |
@@ -660,15 +722,19 @@ var layer = OguLayerUtil.ReadLayer(
 bool hasFileGDB = GdalConfiguration.IsDriverAvailable("FileGDB");
 bool hasOpenFileGDB = GdalConfiguration.IsDriverAvailable("OpenFileGDB");
 
-if (hasFileGDB)
+if (hasOpenFileGDB)
 {
-    // 完整读写支持
+    // GDAL 3.6+ 起 OpenFileGDB 可读写，GdalWriter 对 .gdb 默认选择该驱动
     var layer = OguLayerUtil.ReadLayer(DataFormatType.FILEGDB, "data.gdb", "LayerName");
 }
-else if (hasOpenFileGDB)
+else if (hasFileGDB)
 {
-    // 只读支持
-    Console.WriteLine("FileGDB driver not available, using OpenFileGDB (read-only)");
+    // 依赖 ESRI SDK 的 FileGDB 驱动
+    Console.WriteLine("FileGDB driver is available");
+}
+else
+{
+    Console.WriteLine("No FileGDB driver available");
 }
 ```
 
@@ -865,6 +931,8 @@ var paths = new[] { "file1.shp", "file2.shp", "file3.shp" };
 var layers = await ReadMultipleFilesAsync(paths);
 ```
 
+> **注意**：`GdalReader` 的读取操作在进程级配置锁内串行执行（保护 `SHAPE_ENCODING` 等全局配置），并行读取不会带来吞吐提升；`async` 版本仅用于避免阻塞调用线程。
+
 ## 5.9 错误处理
 
 ### 5.9.1 常见错误处理
@@ -878,13 +946,15 @@ catch (ArgumentException ex)
 {
     Console.WriteLine($"参数错误: {ex.Message}");
 }
-catch (FileNotFoundException ex)
+catch (DataSourceException ex)
 {
-    Console.WriteLine($"文件不存在: {ex.FileName}");
-}
-catch (Exception ex) when (ex.Message.Contains("Failed to open"))
-{
+    // 数据源打不开、图层不存在等（类型化异常，不再依赖消息文本匹配）
     Console.WriteLine($"无法打开数据源: {ex.Message}");
+}
+catch (FormatParseException ex)
+{
+    // 无效的属性/空间过滤器、无法解析的日期字段等
+    Console.WriteLine($"解析失败: {ex.Message}");
 }
 catch (Exception ex)
 {

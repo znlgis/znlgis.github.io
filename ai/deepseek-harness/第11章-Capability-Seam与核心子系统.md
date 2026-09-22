@@ -42,7 +42,7 @@ architecture.md 举了一个模板：**shell 三件套**。`shell` 包声明 `ct
 seam 的命名有两条硬规则（来自 adding-a-package cookbook），写包时要遵守：
 
 - **单复数**：单个 engine / runtime / policy / controller / resolver / store / 当前配置，用单数 `ctx` 键；注册表或拥有多个命名成员的服务，用复数键。
-- **`local` 的用法**：只在"同主机执行是契约的一部分"时用。所以 `subprocess-local` / `fs-local` 表达"本机实现"，`subprocess-e2b` 用 vendor 名表达"远程实现"。
+- **`local` 的用法**：只在"同主机执行是契约的一部分"时用。所以 `subprocess-local` / `fs-local` 表达"本机实现"，`subprocess-ssh` 表达"远程实现"。
 
 命名不是美学问题，它直接告诉读者这个包属于 seam 的哪个角色、可不可替换。
 
@@ -79,7 +79,7 @@ seam 最容易被低估的价值，不是"代码整洁"，而是**替换的粒�
 
 > Containers, microVMs, and remote execution are sibling implementations of **whole capability seams**, not providers of `ctx.sandbox`.
 
-容器、microVM、远程执行这类隔离方案，不是往 `ctx.sandbox` 上再加一个 backend，而是把 `ctx.fs` + `ctx.subprocess` 这类整条 seam 换成另一套实现。`ctx.sandbox` 的职责窄得多——它只负责"给一个即将 spawn 的 argv 套一层文件效果策略"，并不承载执行世界本身。理解了这条分界线，就理解了为什么 E2B（远程沙箱）的接入方式不是"注册一个 sandbox provider"，而是提供了 `fs-e2b` 和 `subprocess-e2b` 两个包（见 11.8）。
+容器、microVM、远程执行这类隔离方案，不是往 `ctx.sandbox` 上再加一个 backend，而是把 `ctx.fs` + `ctx.subprocess` 这类整条 seam 换成另一套实现。`ctx.sandbox` 的职责窄得多——它只负责"给一个即将 spawn 的 argv 套一层文件效果策略"，并不承载执行世界本身。理解了这条分界线，就理解了为什么远程执行世界（SSH provider 族）的接入方式不是"注册一个 sandbox provider"，而是提供了 `fs-ssh`、`subprocess-ssh`、`sandbox-ssh` 一组包（见 11.8）。
 
 为什么这个设计值得学？因为它把"替换"的成本从 O(消费者数量) 降到了 O(seam 数量)。没有 seam 的世界里，把执行环境从本地换成远程，要改 Bash、PTY、LSP 三个工具各自的后端；有 seam 的世界里，你只换 `ctx.fs` 和 `ctx.subprocess` 两个 provider，其余消费者零改动。seam 的边界画在哪里、画多少，本质上是在决定"未来哪些东西可以被整体替换"。
 
@@ -93,9 +93,9 @@ capability-seams.md 维护了一张完整的服务图（含 mermaid 依赖图）
 | `ctx.tools` | core | `tools` | - | `agent-loop`、全部 `tool-*` 包 | 工具注册表 + 守卫执行管线（pre-policy、monotonic guard、around dispatch、post-policy、final-result observation） |
 | `ctx.systemPrompt` | core | `system-prompt` | - | `agent-loop`、`tools`、`tool-fs`、`tool-terminal`、`tool-web` | 为每一步收集 prompt 分节与面向模型的工具 schema |
 | `ctx.shell` | seam | `shell` | `bash-local`、`bash-sandbox`、`pwsh-local` | `tool-bash`、`tool-pwsh`、`hooks-claude-code`、`hooks-codex` | Bash 执行器 seam；沙箱版 / 远程版 / PowerShell 版替换 bash-local 而不碰工具层 |
-| `ctx.subprocess` | seam | `subprocess` | `subprocess-local`、`subprocess-e2b` | `bash-local`、`bash-sandbox`、`terminal-bash`、`lsp-stdio`、`subagent-acp/codex/claude-code` | 进程 seam；Bash/PTY/LSP/子 agent 的进程底座 |
+| `ctx.subprocess` | seam | `subprocess` | `subprocess-local`、`subprocess-ssh` | `bash-local`、`bash-sandbox`、`terminal-bash`、`lsp-stdio`、`subagent-acp/codex/claude-code` | 进程 seam；Bash/PTY/LSP/子 agent 的进程底座 |
 | `ctx.terminals` | seam | `terminal` | `terminal-bash` | `tool-terminal` | 持久 PTY 会话注册表；后端管终端机制，工具层管 owner-scoped 模型工具 |
-| `ctx.fs` | seam | `fs` | `fs-local`、`fs-sandbox`、`fs-e2b` | `tool-fs` | 文件系统 provider seam；`fs-observation-policy` 通过 `fs/*` 事件门贡献观测检查 |
+| `ctx.fs` | seam | `fs` | `fs-local`、`fs-sandbox`、`fs-ssh` | `tool-fs` | 文件系统 provider seam；`fs-observation-policy` 通过 `fs/*` 事件门贡献观测检查 |
 | `ctx.sandbox` | seam | `sandbox` | `sandbox-local` | `bash-sandbox`、`terminal-bash` | 进程沙箱 seam；消费者把"即将 spawn 的 argv"交给它包裹 |
 | `ctx.commands` | core | `commands` | - | - | 人类命令注册表；插件注册直接命令，不经模型 |
 | `ctx.jobs` | seam | `jobs` | `jobs-local` | `tool-bash`、`tool-terminal`、`tool-subagent`、`tool-jobs` | 后台任务注册表；后台 bash / PTY send / 子 agent 委托在这里登记 |
@@ -140,7 +140,7 @@ capability-seams.md 维护了一张完整的服务图（含 mermaid 依赖图）
 
 ### 11.4.2 fs/
 
-文件系统能力。`fs` 声明 `ctx.fs`，`fs-local`（本机）、`fs-sandbox`（按共享沙箱模式圈定写边界）、`fs-e2b`（远程）是三个实现。`tool-fs` 的 read/write/edit 全部通过 `ctx.fs` 执行。`fs-observation-policy` 通过 `fs/*` 事件门贡献"观测到的文件状态"检查。
+文件系统能力。`fs` 声明 `ctx.fs`，`fs-local`（本机）、`fs-sandbox`（按共享沙箱模式圈定写边界）、`fs-ssh`（远程，见 11.8）是三个实现。`tool-fs` 的 read/write/edit 全部通过 `ctx.fs` 执行。`fs-observation-policy` 通过 `fs/*` 事件门贡献"观测到的文件状态"检查。
 
 这里 `fs-sandbox` 的写边界来自共享沙箱模式——capability-seams.md 强调 bash 与 fs 不能圈到不同的根（两者都读同一个 `ctx.sandboxPolicy`）。这解释了为什么沙箱模式不是散落各处的开关，而是 `ctx.sandboxPolicy` 这一处权威来源。
 
@@ -150,7 +150,7 @@ capability-seams.md 维护了一张完整的服务图（含 mermaid 依赖图）
 
 ### 11.4.4 subprocess/
 
-进程底座，见 11.2。`subprocess` 声明 `ctx.subprocess`，`subprocess-local` 是本机实现，`subprocess-e2b` 是远程实现。它被 bash 执行器、PTY 后端、LSP host、以及 out-of-process 的 ACP / Codex / Claude Code 子 agent 后端共同消费。
+进程底座，见 11.2。`subprocess` 声明 `ctx.subprocess`，`subprocess-local` 是本机实现，`subprocess-ssh` 是远程实现。它被 bash 执行器、PTY 后端、LSP host、以及 out-of-process 的 ACP / Codex / Claude Code 子 agent 后端共同消费。
 
 它的词汇在 [subprocess 子系统](https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/subsystems/subprocess.md)里有完整定义：完全显式的 `SubprocessSpawnSpec`、基于偏移的输出读取器、以及受管理的 `DSH_*` 环境变量词汇。进程坐标、树/session 生命周期、stdio 处置、终端机制、kill 升级，全都由这个 seam 拥有——这也解释了为什么它是 11.2 里"换执行世界"的枢纽。
 
@@ -296,9 +296,9 @@ deadline 的职责被拆成三块（`dsh-timeout`、capability 终止、以及 t
 
 换句话说，preset 是"给单个 agent 换一套插件组合"的机制。创建 agent 时，一个 preset `cordis.yml` 被挂到该 agent 的 scope 下，于是这个 session 拥有与全局不同的能力集（对应 11.5 决策表里的"Give one session a different capability set"）。组合（composition）在这里是**按 session**的，而非全局切换，这正是 per-session composition 的含义。
 
-## 11.8 sandbox 缝与 E2B POC
+## 11.8 sandbox 缝与 SSH 远程 provider 族
 
-最后看执行安全的两块拼图：`ctx.sandbox`（进程圈定）与 E2B（远程执行世界）。
+最后看执行安全的两块拼图：`ctx.sandbox`（进程圈定）与 SSH（远程执行世界）。
 
 **`ctx.sandbox`** 的契约只有一个核心动词（[sandbox 子系统](https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/subsystems/sandbox.md)）：
 
@@ -324,7 +324,7 @@ type SandboxMode = 'read-only' | 'workspace-write' | 'danger-full-access'
 
 执行策略是**按调用**（per call）解析的：两个消费者可以在同一瞬间以不同策略圈定（bash 在 `read-only` 下跑，而一个受限子 agent 需要写自己的状态目录），一次获准的升级重试是一次带更宽策略的新调用。enforcement 是"报告出来的事实"——`full` 表示后端管住了策略承诺的每个文件效果，`partial` 表示（如旧内核 Landlock ABI、Windows ACL runner 的 Everyone/hard-link 边界）只覆盖了一部分。**静默的不圈定透传（silent unconfined passthrough）永远非法**，拿不到可用后端就抛 `SandboxUnavailableError`（`SANDBOX_UNAVAILABLE`）。
 
-`sandbox-local` 提供的后端：Linux 用 bwrap/Landlock，macOS 用 Seatbelt，Windows 用 ACL restricted-token。这就是"本地 sandbox"的完整后端清单——没有单独的 native/landlock addon 包，Landlock 只是 Linux 后端的一种机制。
+`sandbox-local` 提供的后端：Linux 用 bwrap/Landlock，macOS 用 Seatbelt，Windows 用 ACL restricted-token。这就是"本地 sandbox"的完整后端清单——Landlock 只是 Linux 后端的一种机制，其启动器（landlock-run）作为原生 addon 包 `@deepseek-ai/node-addon-system`（`native/system`）的 `/landlock-run` 子路径发布。
 
 `confine` 的返回值 `ConfinedArgv` 不止是替换后的 argv，还携带三样信息：
 
@@ -334,12 +334,12 @@ type SandboxMode = 'read-only' | 'workspace-write' | 'danger-full-access'
 
 这些细节的存在是为了一个目的：把"被沙箱拒绝"与"沙箱本身坏了"这两件事可验证地区分开，而不是混成一句"命令失败了"。这也是 seam 设计的典型手法——契约里把诊断信息结构化，而不是让消费者靠猜 stderr。
 
-**E2B POC**。远程沙箱的方向是 `packages/e2b/`，但注意它的接入方式（呼应 11.2 的边界澄清）：
+**SSH 远程 provider 族**。远程执行的方向是 `packages/ssh/`，但注意它的接入方式（呼应 11.2 的边界澄清）：
 
-- `e2b`（`ctx.e2b`）拥有**一个共享的 E2B SDK handle、远程工作目录、以及最终的沙箱处置**，让两个基础 E2B provider 落在同一个 Linux runtime 里。
-- `fs-e2b` 和 `subprocess-e2b` 分别是 `ctx.fs` 和 `ctx.subprocess` 的远程实现。
+- `ssh` 拥有**一条共享的 OpenSSH 连接、远程工作目录与安装的 helper**，让整族远程 provider 落在同一个 POSIX 主机上。
+- `fs-ssh`、`subprocess-ssh`、`sandbox-ssh` 分别是 `ctx.fs`、`ctx.subprocess` 与文件效果沙箱的远程实现。
 
-也就是说，E2B 不是 `ctx.sandbox` 的一个 provider，而是**同时替换了 `ctx.fs` 与 `ctx.subprocess` 两条 seam**。正因为 Bash / PTY / LSP 都消费 `ctx.subprocess`（11.2），把这两条 seam 指向 E2B，整个执行世界就迁到了远程 Linux 沙箱——这正是"换一个 provider 换掉整个产品"最完整的一次演示。E2B 目前是 POC（proof of concept）定位，不是生产后端。
+也就是说，SSH 族不是往 `ctx.sandbox` 上再注册一个 provider，而是**成组替换 `ctx.fs`、`ctx.subprocess` 与 `ctx.sandbox` 这些 seam**。正因为 Bash / PTY / LSP 都消费 `ctx.subprocess`（11.2），把这几条 seam 指向同一台 SSH 主机，整个执行世界就迁到了远程 POSIX 环境——这正是"换一个 provider 换掉整个产品"最完整的一次演示。历史上的 E2B 远程 POC 包已从仓库移除，远程执行世界目前由 SSH provider 族承载。
 
 想继续深入单个 seam，`docs/subsystems/` 下每个子系统页是权威参考：`shell.md`（bash 执行器）、`subprocess.md`（进程 seam）、`terminal.md`（PTY）、`filesystem.md`（fs）、`sandbox.md`（进程圈定）、`compaction.md`（压缩）、`subagent.md`（子 agent）、`lsp.md`、`web.md`、`skills.md`、`workflow.md`、`jobs.md`、`plan.md`。每页都有"它是什么、搬动的数据结构、以及由脚本生成并校验的 Cordis API 段"。
 
@@ -352,4 +352,4 @@ type SandboxMode = 'read-only' | 'workspace-write' | 'danger-full-access'
 - 新增行为查"Where new behavior goes"决策表：加 provider 注册 `ctx.llm`，加工具注册 `ctx.tools`，加 shell 后端注册 `ctx.shell`，加后台任务注册 `ctx.jobs`，加文件策略走 `ctx.fs`；从不改 loop。
 - subagent provider 谱系从"全新子 agent"延伸到"委托给另一款产品的 turn"，同一接口背后策略各异。
 - guard/ 是 loop-hygiene 守卫家族（`repeat-tool-reminder` + `timeout-policy`），是消费者而非 seam；preset/（`ctx.agentPresets`）按 session 用 `cordis.yml` 组合 agent。
-- sandbox 缝只做"按调用圈定 argv"（`read-only` / `workspace-write` / `danger-full-access`），静默透传非法；E2B 是替换 `ctx.fs` + `ctx.subprocess` 整条 seam 的 POC，不是 `ctx.sandbox` 的 provider。
+- sandbox 缝只做"按调用圈定 argv"（`read-only` / `workspace-write` / `danger-full-access`），静默透传非法；SSH provider 族是替换 `ctx.fs` + `ctx.subprocess` 整条 seam 的远程路线，不是 `ctx.sandbox` 的 provider。

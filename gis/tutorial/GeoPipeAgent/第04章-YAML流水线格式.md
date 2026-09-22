@@ -162,12 +162,13 @@ params:
 |----|------|
 | `fail` | 立即终止流水线（默认） |
 | `skip` | 跳过该步骤，继续执行后续步骤 |
-| `retry` | 自动重试最多 3 次（每次间隔递增：0.5s、1s、1.5s） |
+| `retry` | 自动重试最多 3 次（第 1、2 次重试前分别等待 0.5s、1s） |
 
 ```yaml
 - id: fetch-remote
   use: network.geocode
-  params: { address: "北京市海淀区" }
+  params:
+    addresses: ["北京市海淀区"]
   on_error: retry      # 网络请求失败时重试
 
 - id: optional-simplify

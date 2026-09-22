@@ -289,12 +289,12 @@ dsh plugin --profile tui add github:deepseek-harness/turtle-ui
 
 仓库自带两类"可运行"的示例，是学习 bundle 组装与协议驱动的最佳起点（extension-cookbook.md 原文）：
 
-- **`packages/examples/`** 是演示 bundle 包：`agent-spine-demo`（headless 快照叶子挂载它 + JSONL persistence）、`acp-demo`（ACP 叶子用 `@deepseek-ai/dsh-acp-demo`）、`jsonrpc-demo`（JSON-RPC 叶子用 `@deepseek-ai/dsh-sdk-jsonrpc-demo`）。
-- **`examples/`** 是可运行的 cordis.yml 叶子，每个叶子从 `examples/*/cordis.yml` 加载自己的插件树：`acp-agent`、`headless-agent`、`jsonrpc-agent`、`mcp-memory`、`web-cordis`、`web-schedule`。根 `demo:*` 脚本和这些叶子目录是权威清单。
+- **`packages/bundle/`** 是可安装的 profile bundle 层：`dsh-base`、`dsh-web-app`、`dsh-headless`、`dsh-acp-app`、`dsh-sdk-app`、`dsh-sdk-minimal`，各自声明 `dsh.bundle.patch` 供 profile 叠加。
+- **`apps/cli/config/examples/`** 存放可直接运行的 `cordis.yml` 组合示例（`github-review`、`mcp-memory`、`schedule`）。原顶层 `examples/` 叶子与 `packages/examples/` 演示 bundle 已从仓库移除，可运行形态由五个内置 profile 模板（`web` / `headless` / `sdk` / `sdk-minimal` / `acp`）承载。
 
 分工：产品 `dsh` launcher 拥有 Web 和 one-shot headless 执行；ACP 叶子用 `@deepseek-ai/dsh-acp-demo`；JSON-RPC 叶子用 `@deepseek-ai/dsh-sdk-jsonrpc-demo`；headless 快照叶子显式挂载 `@deepseek-ai/dsh-agent-spine-demo` 和 JSONL persistence，再用示例自己的测试 fixture 驱动。
 
-想跑一个完整插件树、看一个最小可组合 agent 长什么样，从 `examples/*/cordis.yml` 读起；想抄"一个 bundle 包怎么声明、怎么被 profile 引用"，看 `packages/examples/*`。
+想跑一个完整插件树、看一个最小可组合 agent 长什么样，用内置 profile 模板（如 `dsh --profile headless "任务"`）或从 `apps/cli/config/examples/` 的 `cordis.yml` 读起；想抄"一个 bundle 包怎么声明、怎么被 profile 引用"，看 `packages/bundle/*`。
 
 ## 12.10 贯穿示例：一个小工具插件从骨架到挂载
 
@@ -373,4 +373,4 @@ export function apply(ctx: Context) {
 - 加设置卡片：Host 半注册 namespace、browser 半注册卡片，靠 namespace join，`settingsScope` 做 revision fencing。
 - 配置要暴露：验证过的 Config 字段在 cordis.yml 可改，禁止硬编码可调参数，`DEFAULT_*` 常量不算可配置性。
 - 分发与发现：`dsh-plugin` topic + `dsh plugin --profile <name> <pnpm args>` 安装 out-of-tree 插件，web/headless 自动初始化、其它 profile 需用 `dsh plugin` 创建。
-- 演示与示例：`packages/examples/`（agent-spine / acp / jsonrpc demo）与 `examples/*/cordis.yml` 可运行叶子是学习 bundle 组装与协议驱动的权威起点。
+- 演示与示例：`packages/bundle/` 的六个内置 bundle 与 `apps/cli/config/examples/` 的 `cordis.yml` 组合示例是学习 bundle 组装与协议驱动的权威起点（原 `examples/` 与 `packages/examples/` 已移除）。

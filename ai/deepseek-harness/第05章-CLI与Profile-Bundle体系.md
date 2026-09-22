@@ -39,7 +39,7 @@ title: 第05章：CLI 与 Profile / Bundle 体系
 
 四个入口共用一个进程模型：**调用命令时所在的目录是默认 workspace 根目录**；所有模式都会加载目录中适用的 `AGENTS.md` / `CLAUDE.md` 指令（渲染预算 65,536 字节），并使用内存 SQLite 会话内容索引。
 
-`web` 与 `headless` 是随附模板，首次使用自动初始化；其他名字的 profile 必须通过 `dsh plugin` 创建（见 5.8）。
+`web`、`headless`、`sdk`、`sdk-minimal`、`acp` 是五个随附模板，首次使用自动初始化（也可用 `--from-default-profile <template>` 从模板克隆出新的自定义 profile）；其他名字的 profile 必须通过 `dsh plugin` 创建（见 5.8）。
 
 ## 5.3 启动器 flag 与 app flag 的分界
 
@@ -121,15 +121,18 @@ bundle 是 Cordis 世界里"配置行 + 代码"一起分发的格式。一个 bu
 }
 ```
 
-`dsh` 内置了三个 bundle：
+`dsh` 内置了六个 bundle：
 
 | Bundle | 职责 |
 |---|---|
 | `@deepseek-ai/dsh-base` | 第一层：原生 DeepSeek 模型适配器、settings 与凭据 provider、`web_search`、默认关闭的会话遥测 |
 | `@deepseek-ai/dsh-web-app` | Web UI、HTTP 服务器、`/api` 信任围栏、浏览器客户端 |
 | `@deepseek-ai/dsh-headless` | 无 UI 形态：不挂载 ApiProxy、Host、HTTP 服务器、Web 运行时或浏览器客户端，专注 agent spine + 本地工具 |
+| `@deepseek-ai/dsh-acp-app` | 骑在 base 上的自动化 ACP stdio 应用，挂载 ACP 桥 |
+| `@deepseek-ai/dsh-sdk-app` | 骑在 base 上的 SDK JSON-RPC stdio 应用，挂载 SDK server |
+| `@deepseek-ai/dsh-sdk-minimal` | 不依赖 base 的独立极简 SDK 应用，单个 bundle 自带完整插件树 |
 
-bundle 名称的解析顺序：**先查 dsh 安装目录，再查 profile 目录**。所以内置 bundle 永远来自当前运行的那个 `dsh` 所属安装，而树外 bundle 来自 profile 的 pnpm 管理的 `node_modules`。裸插件 `name` 在 patch 行里会沿 Node 父目录向上查找，最终到达 dsh 维护的安装后备目录 `$DSH_HOME/profiles/node_modules`（每个包一个符号链接，每次启动自动修复）。这套解析规则保证了内置 bundle 与运行中的 `dsh` 版本一致，避免"装了新版插件却跑旧版内核"的错配。
+bundle 名称的解析顺序：**先查 dsh 安装目录，再查 profile 目录**。所以内置 bundle 永远来自当前运行的那个 `dsh` 所属安装，而树外 bundle 来自 profile 的 pnpm 管理的 `node_modules`。挂载各层之前，launcher 会按这个顺序遍历安装与所选 bundle，把得到的不可变解析代装进 Node 的运行时解析器；**启动过程不再创建共享或 profile 私有的后备链接**，profile 安装的包保持原生优先级。这套解析规则保证了内置 bundle 与运行中的 `dsh` 版本一致，避免"装了新版插件却跑旧版内核"的错配。
 
 为什么要区分"base / web-app / headless"三层：base 是所有形态共享的地基（模型、凭据、遥测），web 和 headless 只是在它之上叠不同的交互层。这让 `dsh web` 和 `dsh --profile headless` 共享同一套模型适配与凭据解析逻辑，只是暴露方式不同。
 

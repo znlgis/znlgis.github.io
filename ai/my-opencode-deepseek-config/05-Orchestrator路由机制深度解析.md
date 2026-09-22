@@ -23,7 +23,7 @@ Orchestrator 的核心定位可以用一句话概括：
 
 > **"你的工作是路由，不是做事。"（Your job is routing, not doing.）**
 
-这不是一句口号，而是嵌入在 prompt 每条指令中的设计约束。Orchestrator 本身使用 `deepseek/deepseek-v4-flash` 模型——这是 v38 之后的一个重要设计决策。为什么让入口 Agent 跑在 Flash 上？因为**路由的本质是模式匹配与分类**，而不是深度推理。识别"这句话是让我查东西还是改代码"并不需要 Pro 级别的推理能力；真正需要深度推理的重活（根因分析、代码审查、重型实现）会通过后备链升级到 Pro 的 deep-worker、oracle、reviewer。
+这不是一句口号，而是嵌入在 prompt 每条指令中的设计约束。Orchestrator 本身使用 `deepseek/deepseek-flash` 模型——这是 v38 之后的一个重要设计决策。为什么让入口 Agent 跑在 Flash 上？因为**路由的本质是模式匹配与分类**，而不是深度推理。识别"这句话是让我查东西还是改代码"并不需要 Pro 级别的推理能力；真正需要深度推理的重活（根因分析、代码审查、重型实现）会通过后备链升级到 Pro 的 deep-worker、oracle、reviewer。
 
 Orchestrator 的 prompt 中明确写入了这条规则：
 
@@ -82,14 +82,15 @@ Phase 0 是每次请求经过的第一道关卡。它的任务是将用户的**�
 | `"look into X"`, `"check Y"`, `"investigate"` | 调查 | `explore` → 报告发现 |
 | `"what do you think about X?"` | 评估/建议 | `consultant` → 建议 → 等待确认 |
 | `"I'm seeing error X"`, `"Y is broken"` | 需要修复 | `oracle` → 诊断 → `deep-worker` 修复 |
-| `"refactor"`, `"improve"`, `"clean up"` | 开放式变更 | `oracle` 评估 → `planner` 建议方案 → 等待确认 |
+| `"refactor"`, `"improve"`, `"clean up"` | 开放式变更 | `oracle` 评估 → `deep-worker` 实施 → 验证 |
 | `"analyze X"`, `"audit Y"`, `"diagnose Z"` | 深度调查 | `oracle` → 分析并报告 |
 | `"optimize X"`, `"make Y faster"` | 性能优化 | `oracle` 分析 → `deep-worker` 实施 |
 | `"help me decide"`, `"should I use X or Y"` | 决策支持 | `consultant` → 评估选项 |
 | `"deploy X"`, `"release Y"` | 发布流程 | `deep-worker`（`git-release` 技能） |
-| `"add tests for X"` | 测试实现 | `deep-worker` → 实现测试 |
+| `"add tests for X"` | 测试实现 | 单个测试文件 → `light-orchestrator`（flash）；跨文件测试套件 → `deep-worker` |
 | `"write docs for X"` | 文档 | `light-orchestrator` → 生成文档 |
-| `"review X"`, `"audit security of Y"` | 审查/审计 | `reviewer` → 报告发现 |
+| `"review X"` | 审查 | `light-orchestrator`（code-review，flash 初检）→ 命中升级触发条件才 `reviewer`（pro） |
+| `"audit security of Y"` | 安全审计 | `reviewer` → 信任边界全量审查，报告发现 |
 | `"trace X"`, `"debug Y from logs"` | 根因调试 | `oracle` → 追踪完整调用链 |
 | `"simplify X"`, `"clean up Y code"` | 简化 | `light-orchestrator`（`simplify` 技能，两阶段：spawn oracle 只读分析 → 自行应用） |
 | `"map out X"`, `"show structure of Y"` | 代码库定位 | `explore`（或 `codemap` 技能）→ 结构化概览 |
@@ -182,7 +183,7 @@ deep 类任务的典型流程：
 
 #### quick（快速任务）
 
-quick 类任务由 `light-orchestrator`（运行在 deepseek-v4-flash 上）处理。覆盖范围：
+quick 类任务由 `light-orchestrator`（运行在 deepseek-flash 上）处理。覆盖范围：
 
 - 单文件改动
 - Typo 修复
@@ -199,18 +200,21 @@ escalate to `deep-worker` (v4-pro) immediately
 
 #### analysis（分析任务）
 
-analysis 类任务使用只读 Agent（`oracle` 和 `reviewer`）。这些 Agent 有硬性的权限限制——它们通过 `permission.task: deny` 禁止派发子任务，并通过 bash 白名单（仅允许 `git status/diff/log/show`、`rg` 等只读命令）确保不会修改文件：
+analysis 类任务使用只读 Agent（`oracle` 和 `reviewer`）。这些 Agent 有硬性的权限限制——它们通过 `permission.edit: deny` + `permission.task: deny` 禁止写文件与派发子任务，并通过 bash 白名单（默认 deny，仅放行 `git status/diff/log/show/blame/grep`、`rg` 只读子命令，`gh pr view/diff`、`gh issue view`、`gh api` 支持 PR 回帖）确保只读：
 
 ```yaml
 permission:
+  edit: deny
   task: deny
   bash:
+    "*": deny        # 兜底 deny 放最前（last-match-wins：后面的具体 allow 覆盖它）
     "git status*": allow
     "git diff*": allow
     "git log*": allow
     "git show*": allow
+    "git blame*": allow
+    "git grep*": allow
     "rg *": allow
-    "*": deny
 ```
 
 它们永远不会修改文件——只返回带文件行号引用的文本分析结果。
@@ -276,7 +280,7 @@ multimodal 类任务由 `vision` 处理，专门负责读取图像内容：
 - 界面视觉描述
 - 图像中的文字识别
 
-vision 运行在 `deepseek-v4-flash-vision-exp` 上（三模型矩阵中的多模态变体），是只读 Agent。它有一条铁律：**绝不臆造图像中不存在的内容**。如果任务需要基于图像理解做代码改动，vision 会升级到 `deep-worker`。
+vision 运行在原生多模态的 `deepseek-flash` 上，是专职视觉入口（可做单处轻量视觉修正）。它有一条铁律：**绝不臆造图像中不存在的内容**。如果任务需要基于图像理解做代码改动，vision 会升级到 `deep-worker`。
 
 ### 5.3.3 分类的保守性原则
 
@@ -297,15 +301,14 @@ vision 运行在 `deepseek-v4-flash-vision-exp` 上（三模型矩阵中的多�
 
 这是整个配置在**Token 效率**上最精妙的设计。Orchestrator 不是简单地将任务按内容分类，而是同时考虑**模型的成本-能力匹配**。
 
-### 5.4.1 三种模型的能力矩阵
+### 5.4.1 两种模型的能力矩阵
 
-整个配置只使用三种模型（这是 AGENTS.md 中的硬约束，三模型矩阵不可破坏）：
+整个配置只使用两个模型（这是 AGENTS.md 中的硬约束，双模型矩阵不可破坏）：
 
 | 模型 | 优势 | 最佳场景 | 相对成本 |
 |------|------|---------|---------|
 | `deepseek-v4-pro` | 深度推理、复杂决策、精细分析 | 根因分析、代码审查、重型实现、架构 | 高（input 0.66 / output 1.98）|
-| `deepseek-v4-flash` | 速度、低成本、直接执行 | 路由、搜索、查找、简单编辑、文档 | 低（input 0.22 / output 0.66）|
-| `deepseek-v4-flash-vision-exp` | 多模态（图像输入） | 截图、图片、图表识别 | 与 Flash 相同 |
+| `deepseek-flash`（原生多模态） | 速度、低成本、直接执行；图像/截图/图表识别 | 路由、搜索、查找、简单编辑、文档、视觉理解 | 低（input 0.22 / output 0.66）|
 
 > **成本说明**：以上为 USD/1M tokens 的 off-peak 价格（2026-08-16 定价）。Pro 的 input 价格是 Flash 的 **3 倍**（0.66 vs 0.22），而非早期版本所说的"一半"。因此把路由、搜索、简单编辑这类任务放在 Flash 上，节省的 Token 成本比 v23 时代更显著。cache_read 价格（Pro 0.022 / Flash 0.007）比 input 便宜约 30 倍，是提示词缓存优化的关键杠杆。
 
@@ -375,7 +378,7 @@ Orchestrator prompt 中定义了五条模型选择原则，构成了一个完整
     │   └─→ ui-builder (Flash)
     │
     ├─ 是读取图片/截图？
-    │   └─→ vision (Flash-Vision)
+    │   └─→ vision (Flash·原生多模态)
     │
     └─ 是多文件实现/新功能？
         └─→ planner (Flash) → deep-worker (Pro)
@@ -391,54 +394,55 @@ Orchestrator prompt 中定义了五条模型选择原则，构成了一个完整
 
 | Agent | 模型 | 层级 | 模式 | 用途 |
 |-------|------|------|------|------|
-| `orchestrator` | deepseek-v4-flash | Flash | primary | 入口路由、意图门控、任务派发 |
-| `solo` | deepseek-v4-pro | Pro | primary | 单模型直连、内联执行、零委派 |
-| `planner` | deepseek-v4-flash | Flash | subagent | 战略规划、架构设计、项目分解 |
+| `orchestrator` | deepseek-flash | Flash | primary | 入口路由、意图门控、任务派发 |
+| `solo` | 跟随会话（默认 deepseek-v4-pro） | Pro* | primary | 单模型直连、内联执行、零委派 |
+| `planner` | deepseek-flash | Flash | subagent | 战略规划、架构设计、项目分解 |
 | `deep-worker` | deepseek-v4-pro | Pro | subagent | 重型实现、多文件改动、复杂算法 |
 | `oracle` | deepseek-v4-pro | Pro | subagent | 代码分析、根因调试、解读 diff |
 | `reviewer` | deepseek-v4-pro | Pro | subagent | 代码审查、找 bug、质量评估 |
-| `consultant` | deepseek-v4-flash | Flash | subagent | 头脑风暴、决策支持、最佳实践 |
-| `ui-builder` | deepseek-v4-flash | Flash | subagent | 前端、UI/UX、组件、CSS |
-| `explore` | deepseek-v4-flash | Flash | subagent | 快速代码库扫描、grep、文件搜索 |
-| `librarian` | deepseek-v4-flash | Flash | subagent | 外部研究、文档查找、web 搜索 |
-| `light-orchestrator` | deepseek-v4-flash | Flash | subagent | 简单任务、单文件改动、配置调整 |
-| `vision` | deepseek-v4-flash-vision-exp | Flash-Vision | subagent | 图像识别、截图描述、多模态理解 |
+| `consultant` | deepseek-flash | Flash | subagent | 头脑风暴、决策支持、最佳实践 |
+| `ui-builder` | deepseek-flash | Flash | subagent | 前端、UI/UX、组件、CSS |
+| `explore` | deepseek-flash | Flash | subagent | 快速代码库扫描、grep、文件搜索 |
+| `librarian` | deepseek-flash | Flash | subagent | 外部研究、文档查找、web 搜索 |
+| `light-orchestrator` | deepseek-flash | Flash | subagent | 简单任务、单文件改动、配置调整 |
+| `vision` | deepseek-flash | Flash（原生多模态） | subagent | 图像识别、截图描述、多模态理解 |
 
 ### 5.5.2 层级分布
 
-Pro 层（4 个 Agent）：
-- 1 个主 Agent：solo（单模型直连，零委派）
+Pro 层（3 个专属 Pro Agent + 1 个跟随会话的主 Agent）：
+- 1 个主 Agent：solo（无显式 `model` 字段，跟随会话所选模型，默认 pro；单模型直连，零委派）
 - 1 个执行者：deep-worker
 - 2 个分析者：oracle、reviewer（均为只读）
 
-Flash 层（7 个 Agent + 5 个系统 Agent）：
+Flash 层（8 个 Agent + 5 个系统 Agent）：
 - 1 个主 Agent：orchestrator（入口路由）
 - 1 个规划者：planner
 - 1 个执行者：light-orchestrator（简单编辑）
 - 1 个咨询者：consultant
 - 1 个 UI 构建者：ui-builder
 - 2 个搜索者：explore（代码内）、librarian（代码外）
+- 1 个多模态识别者：vision（原生多模态入口）
 - 5 个系统 Agent：build、plan、title、summary、compaction（全部 Flash）
-
-Flash-Vision 层（1 个 Agent）：
-- 1 个多模态识别者：vision（只读）
 
 这个分布体现了一个设计意图：**推理密集的任务集中在 Pro 层，路由、搜索、规划、简单执行尽可能走 Flash 层**。值得注意的是，oracle 和 reviewer 虽然是只读 Agent，但因为代码审查和根因分析需要最高强度的推理，它们仍保留在 Pro 上。
 
 ### 5.5.3 只读 Agent 的权限模型
 
-分析类 Agent（oracle、reviewer、explore、librarian、vision）在定义中包含了明确的权限拒绝——通过 `permission.task: deny` 禁止派发子任务，并通过 bash 白名单限制为只读命令：
+分析类 Agent（oracle、reviewer、explore、librarian）在定义中包含了明确的权限拒绝——通过 `permission.edit: deny` 拦截写文件、`permission.task: deny` 禁止派发子任务，并以「默认 deny + 只读白名单」限制 bash 命令：
 
 ```yaml
 permission:
+  edit: deny
   task: deny
   bash:
+    "*": deny        # 兜底 deny 放最前（last-match-wins：后面的具体 allow 覆盖它）
     "git status*": allow
     "git diff*": allow
     "git log*": allow
     "git show*": allow
+    "git blame*": allow
+    "git grep*": allow
     "rg *": allow
-    "*": deny
 ```
 
 `task: deny` 意味着这些 Agent 甚至不能派发子任务——它们是完全自包含的分析单元。这防止了"只读 Agent 派发写 Agent"的意外情况。
@@ -591,7 +595,7 @@ Orchestrator 遵循 AGENTS.md 中的所有全局规则，包括：
 
 Orchestrator prompt 中包含一条特殊的直通规则：
 
-> **"If the user uses `/deep`, `/quick`, `/ui`, `/vision`, `/review`, `/plan`, `/oracle`, immediately delegate to the named agent without re-classification."**
+> **"Slash commands bypass classification.** `/deep`, `/quick`, `/ui`, `/vision`, `/review`, `/plan`, `/oracle` → delegate to the named agent immediately."
 
 这意味着用户可以通过 `/` 命令绕过整个分类和路由流程，直接命中目标 Agent。这为熟练用户提供了"快速通道"——当你明确知道该用什么 Agent 时，不需要经过 Orchestrator 的判断。
 
@@ -602,12 +606,12 @@ Orchestrator prompt 中包含一条特殊的直通规则：
 /quick     → light-orchestrator "Handle this task quickly and efficiently."
 /ui        → ui-builder         "Build or modify the UI as requested."
 /vision    → vision             "Read the attached image(s) and describe what you see..."
-/review    → reviewer           加载 code-review 技能（PR 或本地 diff）
+/review    → light-orchestrator  加载 code-review 技能（flash 初检，命中触发条件升级 reviewer；PR 或本地 diff）
 /plan      → planner            "Create a detailed plan for the following."
 /oracle    → oracle             "Analyze and find the root cause of the following."
 ```
 
-> **注意**：以上 7 条是 Orchestrator prompt 中显式列出的直通命令。早期版本（v23）中的 `/search` 和 `/consult` 已在 v38 移除——`/search` 被 explore/librarian 的自然语言路由取代，`/consult` 被 consultant 的自然语言路由取代。`opencode.jsonc` 完整配置中实际定义了 17 条命令别名（详见第七章《命令别名完整指南》），涵盖 `/spec-propose`、`/spec-apply`、`/codemap`、`/simplify`、`/learn` 等更多场景。Orchestrator 直通规则仅覆盖这 7 条最常用的 Agent 路由命令，其余命令由框架层面直接解析。
+> **注意**：以上 7 条是 Orchestrator prompt 中显式列出的直通命令。早期版本（v23）中的 `/search` 和 `/consult` 已在 v38 移除——`/search` 被 explore/librarian 的自然语言路由取代，`/consult` 被 consultant 的自然语言路由取代。`opencode.jsonc` 完整配置中实际定义了 18 条命令别名（详见第七章《命令别名完整指南》），涵盖 `/spec-propose`、`/spec-apply`、`/codemap`、`/simplify`、`/learn` 等更多场景。Orchestrator 直通规则仅覆盖这 7 条最常用的 Agent 路由命令，其余命令由框架层面直接解析。
 
 ### 5.8.3 后台派发与结果合成
 
@@ -727,16 +731,17 @@ Phase 0 意图门控: "review" → 审查/审计
     │
 分类: analysis
     │
-路由: reviewer (Pro) → 加载 code-review 技能
+路由: light-orchestrator (Flash) → 加载 code-review 技能，跑 Tier 1 初检
+      - ≤8 个逻辑文件且 ≤300 有效行、无高风险触发 → Abbreviated 路径直接出报告
+      - 命中升级触发条件（Full 路径 / 信任边界 / critical-major 需跨文件确认）
+          └─→ 委派 reviewer (Pro)，把 Tier 1 发现作为未验证线索传递
       - 若参数含 PR ref/URL → 同时加载 gh-cli 技能，发布 GitHub review（event=COMMENT）
-      - 否则 → 界定本地 diff，按有效体量缩放审查深度
       - 覆盖 correctness、security、performance 等维度
       - 按严重性分级输出（critical / major / minor / nit）
-      - 输出: severity summary + 具体 file:line 发现
       - Scope-first gate: diff >500 有效行或过于琐碎 → 报告范围计划并停止
 ```
 
-**路由解析**：审查任务。reviewer 是 Pro 模型，因为有效的代码审查需要理解设计意图、发现潜在漏洞、评估架构影响——这些都是需要深度推理的任务。v38 之后 `/review` 合并了 PR 审查与本地 diff 审查两种模式（早期版本用独立的 `/review-pr`）。
+**路由解析**：审查任务走两级模型：默认由 `light-orchestrator`（flash）初检——小 diff 的干净结果直接出完整报告（省约 67%），只有命中升级触发条件才委派 Pro 的 `reviewer`，且升级时传递 Tier 1 的未验证线索、避免重复推导。`/review` 同时覆盖 PR 审查与本地 diff 两种模式（更早期的独立 `/review-pr` 命令已移除；另有 `/deep-review` 强制 pro 全量审查）。
 
 #### 示例 5："npm 中有什么好用的日期处理库？"
 
@@ -807,7 +812,7 @@ Phase 0 意图门控: 复合请求 — 包含 research、analysis、implementati
     │
 检测到 "/vision" 命令 → 直通路由，跳过意图门控和分类
     │
-路由: vision (Flash-Vision) → 读取图像
+路由: vision (Flash·原生多模态) → 读取图像
       vision 输出: 截图显示一个编译错误：
         - 文件: src/app.ts:42
         - 错误: "Cannot find module './config'"
@@ -816,7 +821,7 @@ Phase 0 意图门控: 复合请求 — 包含 research、analysis、implementati
       Orchestrator: 若用户需要修复 → 升级 deep-worker (Pro)
 ```
 
-**路由解析**：`/vision` 命令将图像交给 vision Agent（运行在 flash-vision-exp 上）。vision 只负责描述所见，绝不臆造。如果用户接下来要求修复错误，Orchestrator 会升级到 deep-worker（Pro）处理代码改动。
+**路由解析**：`/vision` 命令将图像交给 vision Agent（运行在原生多模态的 deepseek-flash 上）。vision 以描述所见为主，绝不臆造。如果用户接下来要求修复错误，Orchestrator 会升级到 deep-worker（Pro）处理代码改动。
 
 ---
 

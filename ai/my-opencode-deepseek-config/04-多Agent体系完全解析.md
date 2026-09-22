@@ -7,7 +7,7 @@ title: 第四章：多Agent体系完全解析
 
 本章基于 `agents/` 目录下的 12 个 Agent 定义文件，结合 `AGENTS.md` 全局规则和 `orchestrator.md` 路由逻辑，逐层拆解这套纯配置驱动的多 Agent 协作体系。你将看到每个 Agent 的模型选择、权限边界、核心职责、调用时机和设计意图，以及它们如何像一支训练有素的工程团队一样协同工作。
 
-> **版本说明**：本章基于仓库 v38+ 状态。相比早期 v23 版本，Agent 体系经历了重大演进：Agent 总数从 10 增至 12（新增 `solo` 主 Agent 与 `vision` 多模态子 Agent），模型分配从「双模型」演进为「三模型」（Pro / Flash / Flash-Vision-Exp），Orchestrator 从 Pro 降级为 Flash（路由本质是模式匹配与分类，无需 Pro 推理），Planner / Consultant / UI Builder 也从 Pro 调整为 Flash。温度设置从「每 Agent 独立」收敛为「Provider 层统一」（Flash=0，Pro 默认开启思考），差异化改由 `reasoningEffort` 思考档位承担。
+> **版本说明**：本章对应仓库当前主线（v4.0.0 及后续重构）。相比早期 v23 版本，Agent 体系经历了重大演进：Agent 总数从 10 增至 12（新增 `solo` 主 Agent 与 `vision` 多模态子 Agent），模型分配曾从「双模型」扩为「三模型」（Pro / Flash / Flash-Vision-Exp），后又把 `deepseek-v4-flash` 与 `deepseek-v4-flash-vision-exp` 合并回**双模型矩阵**（Pro + 原生多模态 Flash），Orchestrator 从 Pro 降级为 Flash（路由本质是模式匹配与分类，无需 Pro 推理），Planner / Consultant / UI Builder 也从 Pro 调整为 Flash。温度设置从「每 Agent 独立」收敛为「Provider 层统一」（Flash=0，Pro 默认开启思考），差异化改由 `reasoningEffort` 思考档位承担。
 
 ---
 
@@ -40,23 +40,24 @@ title: 第四章：多Agent体系完全解析
 
 ### 4.1.3 只读隔离设计
 
-本体系将 Agent 分为两大阵营：**读写 Agent** 和 **只读 Agent**。只读 Agent 通过 OpenCode 的 `permission` 配置强制拦截写操作。当前配置中，只读约束通过 `permission.task: deny`（禁止派生子 Agent）配合 bash 白名单实现——只读 Agent 的 bash 权限被限制为 `git status/diff/log/show`、`rg`、`Get-ChildItem`、`Get-Content` 等只读命令，其余一律 `deny`：
+本体系将 Agent 分为两大阵营：**读写 Agent** 和 **只读 Agent**。只读 Agent 通过 OpenCode 的 `permission` 配置强制拦截写操作。当前配置中，只读约束通过 `permission.edit: deny`（框架层直接拦截写操作）+ `permission.task: deny`（禁止派生子 Agent）配合 bash 白名单实现——bash 权限默认 `deny`、仅放行 `git status/diff/log/show/blame/grep`、`rg` 等只读子命令；`oracle`/`reviewer` 另放行 `gh pr view/diff`、`gh issue view`、`gh api` 以支持 PR 审查回帖；`librarian` 最严格，`bash: "*": deny` 无任何白名单：
 
 ```
 permission:
+  edit: deny          # 文件写操作直接拒绝
   task: deny          # 禁止派生子Agent
   bash:
+    "*": deny         # 兜底 deny 放最前——规则匹配是 last-match-wins，后面的具体 allow 覆盖它
     "git status*": allow
     "git diff*": allow
     "git log*": allow
     "git show*": allow
+    "git blame*": allow
+    "git grep*": allow
     "rg *": allow
-    "Get-ChildItem*": allow
-    "Get-Content*": allow
-    "*": deny          # 其余命令一律拒绝
 ```
 
-四个只读 Agent 及其各自定位：
+四个只读 Agent 及其各自定位（`vision` 不在其中——它可以做轻量视觉修正）：
 
 | Agent | 只读原因 | 设计意图 |
 |-------|---------|---------|
@@ -64,7 +65,6 @@ permission:
 | `reviewer` | 代码审查者 | 审查与编写必须分离。如果将两者合并，自我审查的盲点（确认偏误、选择性忽略）几乎没有防御手段。只读 + 结构化报告格式确保审查保持独立的批判视角。 |
 | `explore` | 代码库搜索专家 | 搜索是纯信息获取行为，不应伴随修改。只读约束还能防止「边搜边改」的分散注意力模式——搜到的结果交给读写 Agent 处理，探索者专注寻找。 |
 | `librarian` | 外部研究专家 | Web 搜索和文档检索天然是只读操作。只读约束确保它返回的是原汁原味的文档内容，而非「加上自己理解的改写版本」。 |
-| `vision` | 多模态识别专家 | 读取图片、截图、图表并描述所见。只读约束确保它只报告视觉内容，绝不越界修改代码。 |
 
 这种隔离不是形式主义——它是通过 OpenCode 权限层强制执行的。只读 Agent 尝试修改文件时，OpenCode 会在框架层面拦截，Agent 自身无法绕过。
 
@@ -73,22 +73,22 @@ permission:
 更深层的设计原则是**执行与探索的完全分离**：
 
 - **执行型 Agent**（`deep-worker`、`light-orchestrator`）被明确告知：「禁止研究，禁止委托」。它们收到的是已经过充分准备的上下文——Orchestrator 或 Planner 已经把需要搜索的东西搜索完毕，把需要决策的东西决策完毕。执行者的唯一职责是实现。
-- **探索型 Agent**（`explore`、`librarian`、`oracle`、`reviewer`、`vision`）被明确告知：「只读，只返回发现」。它们没有修改代码的权限，也没有做决策的权限——决策权在 Orchestrator 或 Planner 手中。
+- **探索型 Agent**（`explore`、`librarian`、`oracle`、`reviewer`）被明确告知：「只读，只返回发现」。它们没有修改代码的权限，也没有做决策的权限——决策权在 Orchestrator 或 Planner 手中。
 
 这种分离的核心价值是**消除猜测**。当执行者不需要「研究一下这个地方怎么改」时，它就不会把上下文浪费在不必要的搜索上。当探索者不需要「顺便修一下这里」时，它就不会分心。每个 Agent 的注意力都聚焦在唯一任务上。
 
-### 4.1.5 模型感知：三模型分层
+### 4.1.5 模型感知：双模型分层
 
-这套配置使用三个模型，通过不同的分配策略形成明显的三级分工：
+这套配置使用两个模型（Flash 原生多模态），通过不同的分配策略形成明显的分层：
 
-| | Pro Agent (v4-pro) | Flash Agent (v4-flash) | Vision Agent (v4-flash-vision-exp) |
-|---|---|---|---|
-| **核心能力** | 深度推理、复杂决策、精细分析 | 速度优先、低成本、直截了当 | 多模态识别（图片/截图/图表） |
-| **适用场景** | 重型实现、根因分析、代码审查 | 路由、规划、搜索、检索、简单执行 | 读取图片、描述所见 |
-| **成本倍数** | 基准 | 约 1/3（输入） | 同 Flash |
-| **思考状态** | 默认开启 | 关闭（temperature 0） | 关闭（temperature 0） |
-| **代表性Agent** | solo(主), deep-worker, oracle, reviewer | orchestrator(主), planner, light-orchestrator, consultant, ui-builder, explore, librarian | vision |
-| **Agent数量** | 4个 | 8个 | 1个 |
+| | Pro Agent (deepseek-v4-pro) | Flash Agent (deepseek-flash，原生多模态) |
+|---|---|---|
+| **核心能力** | 深度推理、复杂决策、精细分析 | 速度优先、低成本、直截了当；图片/截图/图表识别 |
+| **适用场景** | 重型实现、根因分析、代码审查 | 路由、规划、搜索、检索、简单执行、视觉识别 |
+| **成本倍数** | 基准 | 约 1/3（输入） |
+| **思考状态** | 默认开启 | 关闭（temperature 0） |
+| **代表性Agent** | deep-worker, oracle, reviewer（solo 无显式 model，跟随会话默认 pro） | orchestrator(主), planner, light-orchestrator, consultant, ui-builder, explore, librarian, vision |
+| **Agent数量** | 3 个（另加跟随会话的 solo） | 8 个 |
 
 **模型选择原则**（摘自 AGENTS.md 与 orchestrator.md）：
 
@@ -99,26 +99,27 @@ permission:
 
 **关键洞察——为什么 Orchestrator 用 Flash 而非 Pro**：路由决策看似需要「深度推理」，但本质上是对用户意图的模式匹配与分类（「implement」→ planner→deep-worker，「look into」→ explore）。这类任务 Flash 完全胜任，且 Orchestrator 是最高频的入口 Agent，用 Flash 能显著降低成本。真正的深度推理发生在被路由到的 Pro Agent（deep-worker/oracle/reviewer）上，而非路由本身。
 
-**思考档位（reasoningEffort）**：三模型矩阵之上，还有一层请求级的思考强度控制。`reasoning_effort`（配置中为 camelCase `reasoningEffort`）是 low/high/max 三档，通过 Agent frontmatter 的 `options` 设置，深合并覆盖 `model.options`。它**不是**模型 ID——保持三模型矩阵不变的前提下，为同一模型的不同 Agent 提供差异化思考强度：
+**思考档位（reasoningEffort）**：双模型矩阵之上，还有一层请求级的思考强度控制。`reasoning_effort`（配置中为 camelCase `reasoningEffort`）是 low/high/max 三档，通过 Agent frontmatter 的 `options` 设置，深合并覆盖 `model.options`。它**不是**模型 ID——保持双模型矩阵不变的前提下，为同一模型的不同 Agent 提供差异化思考强度：
 
 | 档位 | 模型 | 思考 | 代表 Agent |
 |------|------|------|-----------|
 | trivial | Flash | 关闭 | explore, librarian, consultant, ui-builder, orchestrator |
 | mid | Flash | 开启 + reasoningEffort low | planner, light-orchestrator |
-| deep | Pro | 默认 high | deep-worker, oracle, reviewer, solo |
+| deep | Pro | 默认 high | deep-worker, oracle, reviewer |
+| 跟随会话 | 会话所选（默认 Pro） | 随该模型 | solo（无 `model` 字段） |
 
-### 4.1.6 3级代理嵌套
+### 4.1.6 2级代理嵌套
 
-OpenCode 框架的 `subagent_depth: 3` 配置（在 `opencode.jsonc` 中定义）允许最多 3 层代理嵌套。这意味着：
+OpenCode 框架的 `subagent_depth: 2` 配置（在 `opencode.jsonc` 中定义）允许最多 2 层代理嵌套——恰好覆盖实际最深链路。这意味着：
 
 ```
 Orchestrator (层级0，入口)
-  └── Planner (层级1，子代理)
-        └── Explore (层级2，孙代理，Planner探索代码)
+  └── Light Orchestrator (层级1，子代理)
+        └── Oracle / Reviewer (层级2，孙代理，/simplify 与 /review 升级用)
               └── [不允许再嵌套，深度到顶]
 ```
 
-实际使用中，典型的嵌套深度为 2 层（Orchestrator → 专业Agent → 辅助Agent），3 层上限主要用于特殊场景（如 Planner 需要派 Explore 做搜索，Explore 返回结果后 Planner 制定方案交给 Deep Worker）。
+深度恰好定为实际最深链路 `orchestrator → light-orchestrator → oracle`；其余 subagent 一律禁止委派（`task: deny`），第 3 层只是白送意外嵌套的 token 放大面，因此被砍掉。桌面 v2 端只认同值的 `experimental.subagent_depth`（顶层键被其丢弃），两处并存以保持兼容。
 
 ---
 
@@ -131,11 +132,12 @@ Orchestrator 是整个系统的「大脑」。它不亲自实现功能，不亲�
 ```
 name: orchestrator
 mode: primary          # 主入口模式，在所有非子代理场景中作为默认Agent
-model: deepseek/deepseek-v4-flash
+model: deepseek/deepseek-flash
 steps: 100             # 100步执行上限，给路由决策空间
 color: "#4A90E2"       # 蓝色，代表调度的理性与冷静
 permission:
-  task:                # 子Agent白名单（10个），其余 deny
+  task:                # 子Agent白名单（10个），默认 deny（last-match-wins：兜底 "*" 放最前）
+    "*": deny
     planner: allow
     deep-worker: allow
     oracle: allow
@@ -146,16 +148,13 @@ permission:
     librarian: allow
     light-orchestrator: allow
     vision: allow
-    "*": deny
   skill:               # 技能白名单，其余 deny
+    "*": deny
     codemap: allow
     grilling: allow
-    wait-what: allow
-    grill-with-docs: allow
-    "*": deny
 ```
 
-Orchestrator 使用 Flash 模型（v38 起从 Pro 降级）。这个选择基于对路由任务本质的判断：意图门控和任务分类是**模式匹配**而非深度推理——「implement」→ 开发链、「look into」→ 探索链，这类映射 Flash 完全胜任。Orchestrator 是最高频的入口，用 Flash 大幅降低成本；当路由到 Pro Agent 后，深度推理由它们承担。Orchestrator 的 `permission.task` 白名单限定了它能派发的 10 个子 Agent，`permission.skill` 白名单限定了它能加载的 4 个技能（codemap/grilling/wait-what/grill-with-docs）——它不亲自加载领域技能，那是被路由 Agent 的职责。
+Orchestrator 使用 Flash 模型（v38 起从 Pro 降级）。这个选择基于对路由任务本质的判断：意图门控和任务分类是**模式匹配**而非深度推理——「implement」→ 开发链、「look into」→ 探索链，这类映射 Flash 完全胜任。Orchestrator 是最高频的入口，用 Flash 大幅降低成本；当路由到 Pro Agent 后，深度推理由它们承担。Orchestrator 的 `permission.task` 白名单限定了它能派发的 10 个子 Agent，`permission.skill` 白名单限定了它能加载的 2 个技能（codemap/grilling）——被 deny 的 skill 不会进入它每轮常驻的 skill 名册，这份名单同时就是常驻上下文预算——它不亲自加载领域技能，那是被路由 Agent 的职责。
 
 ### 4.2.2 意图门控（Intent Gate）
 
@@ -202,18 +201,18 @@ Orchestrator 是模型感知路由的唯一决策点。它的 Agent 目录表明
 
 | 代理 | 模型 | 层级 | 用途 |
 |------|------|------|------|
-| `planner` | v4-flash | Flash | 战略规划、架构设计、项目拆解、决策支持 |
+| `planner` | flash | Flash | 战略规划、架构设计、项目拆解、决策支持 |
 | `deep-worker` | v4-pro | Pro | 重型实现、多文件改动、复杂算法、调试 |
 | `oracle` | v4-pro | Pro | 代码分析、根因调试、diff解读（只读） |
 | `reviewer` | v4-pro | Pro | 代码审查、bug发现、改进建议（只读） |
-| `consultant` | v4-flash | Flash | 头脑风暴、决策支持、最佳实践咨询 |
-| `ui-builder` | v4-flash | Flash | 前端、UI/UX、组件、CSS、布局 |
-| `explore` | v4-flash | Flash | 快速代码库扫描、grep、文件搜索（只读） |
-| `librarian` | v4-flash | Flash | 外部研究、文档检索、Web搜索（只读） |
-| `light-orchestrator` | v4-flash | Flash | 简单任务、单文件改动、配置调整 |
-| `vision` | v4-flash-vision-exp | Vision | 多模态识别（只读） |
+| `consultant` | flash | Flash | 头脑风暴、决策支持、最佳实践咨询 |
+| `ui-builder` | flash | Flash | 前端、UI/UX、组件、CSS、布局 |
+| `explore` | flash | Flash | 快速代码库扫描、grep、文件搜索（只读） |
+| `librarian` | flash | Flash | 外部研究、文档检索、Web搜索（只读） |
+| `light-orchestrator` | flash | Flash | 简单任务、单文件改动、配置调整 |
+| `vision` | flash | Flash（原生多模态） | 多模态识别（可执行轻量视觉修正） |
 
-**模型分配逻辑**：Pro 只保留给真正需要深度推理的 Agent——`deep-worker`（重型实现）、`oracle`（根因分析）、`reviewer`（代码审查），外加主 Agent `solo`。值得注意的是 `oracle`/`reviewer` 虽是只读，仍用 Pro——因为「理解代码」和「审查代码」本身就是深度推理任务，与是否写文件无关。反之 `planner`/`consultant`/`ui-builder` 虽承担「规划/咨询/设计」这类看似需要思考的工作，但它们的产出是方案与建议而非最终代码，Flash + `reasoningEffort: low` 已足够，成本大幅下降。
+**模型分配逻辑**：Pro 只保留给真正需要深度推理的 Agent——`deep-worker`（重型实现）、`oracle`（根因分析）、`reviewer`（代码审查），外加主 Agent `solo`（无显式 `model` 字段，跟随会话所选模型，默认 pro）。值得注意的是 `oracle`/`reviewer` 虽是只读，仍用 Pro——因为「理解代码」和「审查代码」本身就是深度推理任务，与是否写文件无关。反之 `planner`/`consultant`/`ui-builder` 虽承担「规划/咨询/设计」这类看似需要思考的工作，但它们的产出是方案与建议而非最终代码，Flash + `reasoningEffort: low` 已足够，成本大幅下降。
 
 ### 4.2.5 后备链（Fallback Chains）
 
@@ -272,7 +271,7 @@ Orchestrator 的派发行为受一套严格的纪律约束：
 
 ## 4.3 Pro Agent群详解
 
-Pro Agent 使用 `deepseek/deepseek-v4-pro` 模型，共 4 个（含主 Agent `solo`，本节详解其余 3 个子 Agent）。Pro 模型默认开启思考（thinking on），温度与 top_p 被静默忽略——差异化由 `reasoningEffort` 承担，而非温度。
+Pro 子 Agent 使用 `deepseek/deepseek-v4-pro` 模型，共 3 个（主 Agent `solo` 跟随会话模型、默认落在 pro，见 4.6 节）。Pro 模型默认开启思考（thinking on），温度与 top_p 被静默忽略——差异化由 `reasoningEffort` 承担，而非温度。
 
 ### 4.3.1 Deep Worker（重型实现者）
 
@@ -317,14 +316,21 @@ model: deepseek/deepseek-v4-pro
 steps: 40
 color: "#F39C12"      # 橙色，代表洞察与发现
 permission:
+  edit: deny          # 只读！禁止写文件
   task: deny          # 只读！禁止派生子Agent
-  bash:               # bash 白名单，其余 deny
+  bash:               # bash 白名单（兜底 deny 放最前，last-match-wins）
+    "*": deny
     "git status*": allow
     "git diff*": allow
     "git log*": allow
     "git show*": allow
+    "git blame*": allow
+    "git grep*": allow
     "rg *": allow
-    "*": deny
+    "gh pr view*": allow
+    "gh pr diff*": allow
+    "gh issue view*": allow
+    "gh api*": allow
 ```
 
 **核心职责**：Oracle 是代码库的「透视眼」——根因分析 Bug、解读 diff 和 PR、追踪数据流和控制流、识别架构问题和反模式。它提供带 `file:line` 引用的精确诊断报告。
@@ -358,14 +364,21 @@ model: deepseek/deepseek-v4-pro
 steps: 40
 color: "#27AE60"      # 绿色，代表质量与通过
 permission:
+  edit: deny          # 只读！禁止写文件
   task: deny          # 只读！禁止派生子Agent
-  bash:               # bash 白名单，其余 deny
+  bash:               # bash 白名单（兜底 deny 放最前，last-match-wins；同 Oracle，含 gh 只读命令）
+    "*": deny
     "git status*": allow
     "git diff*": allow
     "git log*": allow
     "git show*": allow
+    "git blame*": allow
+    "git grep*": allow
     "rg *": allow
-    "*": deny
+    "gh pr view*": allow
+    "gh pr diff*": allow
+    "gh issue view*": allow
+    "gh api*": allow
 ```
 
 **核心职责**：Reviewer 是质量守门人——多维度审查代码、发现真实问题、提出改进建议。它从不修改代码，只报告发现。
@@ -388,12 +401,12 @@ permission:
 
 ## 4.4 Flash Agent群详解
 
-Flash Agent 使用 `deepseek/deepseek-v4-flash` 模型，共 8 个（含主 Agent `orchestrator`，本节详解其余 7 个）。它们的共同特征是：快速、低成本、职责高度聚焦。Flash 在 Provider 层关闭思考（`thinking: {type:"disabled"}`）并设 `temperature: 0`，追求确定性与速度。
+Flash Agent 使用 `deepseek/deepseek-flash`（原生多模态）模型，共 8 个（含主 Agent `orchestrator` 与 4.5 节单列的 `vision`，本节详解其余 6 个）。它们的共同特征是：快速、低成本、职责高度聚焦。Flash 在 Provider 层关闭思考（`thinking: {type:"disabled"}`）并设 `temperature: 0`，追求确定性与速度。
 
 ### 4.4.1 Planner（战略规划师）
 
 ```
-model: deepseek/deepseek-v4-flash
+model: deepseek/deepseek-flash
 options:
   thinking: { type: enabled }      # 覆盖 Flash 默认关闭，开启思考
   reasoningEffort: low             # 低档思考强度
@@ -431,7 +444,7 @@ Handoff Plan 的设计目标是「消除后续 Agent 的猜测工作」。Deep W
 ### 4.4.2 Light Orchestrator（轻量执行者）
 
 ```
-model: deepseek/deepseek-v4-flash
+model: deepseek/deepseek-flash
 options:
   thinking: { type: enabled }      # 覆盖 Flash 默认关闭
   reasoningEffort: low
@@ -445,7 +458,7 @@ color: "#1ABC9C"      # 青色
 
 | 维度 | Light Orchestrator | Deep Worker |
 |------|-------------------|-------------|
-| 模型 | v4-flash | v4-pro |
+| 模型 | flash | v4-pro |
 | 文件范围 | 单文件 | 多文件 |
 | 逻辑复杂度 | 简单直接 | 复杂算法/逻辑 |
 | 架构影响 | 无 | 可能有 |
@@ -466,7 +479,7 @@ Do not spawn subagents.
 ### 4.4.3 Consultant（决策顾问）
 
 ```
-model: deepseek/deepseek-v4-flash
+model: deepseek/deepseek-flash
 steps: 30
 color: "#3498DB"      # 蓝色系，代表理性建议
 ```
@@ -492,7 +505,7 @@ color: "#3498DB"      # 蓝色系，代表理性建议
 ### 4.4.4 UI Builder（前端UI专家）
 
 ```
-model: deepseek/deepseek-v4-flash
+model: deepseek/deepseek-flash
 steps: 60
 color: "#E91E63"      # 粉色，代表界面设计
 ```
@@ -519,20 +532,24 @@ color: "#E91E63"      # 粉色，代表界面设计
 ### 4.4.5 Explore（代码库搜索专家）
 
 ```
-model: deepseek/deepseek-v4-flash
+model: deepseek/deepseek-flash
 steps: 40
 color: "#2ECC71"
 permission:
+  edit: deny           # 只读！禁止写文件
   task: deny           # 只读！禁止派生子Agent
-  bash:                # bash 白名单，其余 deny
+  bash:                # bash 白名单（兜底 deny 放最前，last-match-wins）
+    "*": deny
     "git status*": allow
     "git diff*": allow
     "git log*": allow
     "git show*": allow
+    "git blame*": allow
+    "git grep*": allow
     "rg *": allow
-    "Get-ChildItem*": allow
-    "Get-Content*": allow
+  skill:
     "*": deny
+    codemap: allow
 ```
 
 **核心职责**：Explore 是代码库的「地图绘制员」——回答「X 在哪里实现？」「哪些文件包含 Y？」「这个代码库用的是什么模式？」这类问题。它不实现代码，不调试逻辑，不编辑文件。
@@ -540,8 +557,8 @@ permission:
 **模型感知声明**：
 
 ```
-You run on v4-flash — fast, cheap.
-Return what you find; let the caller (typically a v4-pro agent) interpret.
+You run on deepseek-flash — fast, cheap.
+Return what you find; let the caller (typically pro) interpret.
 If a search yields ambiguous results, surface both the findings and the ambiguity
 — never make a call that belongs to the reasoning tier.
 ```
@@ -559,18 +576,17 @@ If a search yields ambiguous results, surface both the findings and the ambiguit
 ### 4.4.6 Librarian（外部研究专家）
 
 ```
-model: deepseek/deepseek-v4-flash
+model: deepseek/deepseek-flash
 steps: 30
 color: "#8E44AD"      # 深紫色
 permission:
+  edit: deny           # 只读！禁止写文件
   task: deny           # 只读！禁止派生子Agent
-  bash:                # bash 白名单，其余 deny
-    "git status*": allow
-    "git diff*": allow
-    "git log*": allow
-    "git show*": allow
-    "rg *": allow
+  bash:                # 比 explore 更严：无任何 bash 白名单
     "*": deny
+  skill:
+    "*": deny
+    verify-with-docs: allow
 ```
 
 **核心职责**：Librarian 是外部知识的「检索官」——搜索官方文档和 API 参考、查找使用示例和最佳实践、研究技术/库/框架、回答「怎么用 X？」。
@@ -601,15 +617,17 @@ ask the orchestrator to escalate to consultant (v4-pro).
 
 ## 4.5 Vision Agent（多模态识别专家）
 
-Vision Agent 使用 `deepseek/deepseek-v4-flash-vision-exp` 模型，是这套体系中的多模态专项 Agent。
+Vision Agent 使用 `deepseek/deepseek-flash` 模型，是这套体系中的多模态专项 Agent。
 
 ```
-model: deepseek/deepseek-v4-flash-vision-exp
+model: deepseek/deepseek-flash
 steps: 25
 color: "#9B59B6"      # 紫色，代表视觉识别
 permission:
-  task: deny           # 只读！禁止派生子Agent
-  bash:                # bash 白名单，其余 deny
+  task:                # 禁止派生子Agent
+    "*": deny
+  bash:                # bash 白名单（兜底 deny 放最前，last-match-wins）
+    "*": deny
     "git status*": allow
     "git diff*": allow
     "git log*": allow
@@ -617,10 +635,12 @@ permission:
     "rg *": allow
     "Get-ChildItem*": allow
     "Get-Content*": allow
+  skill:
     "*": deny
+    vision-prep: allow
 ```
 
-**核心职责**：Vision 是唯一能处理图片输入的 Agent——读取截图、图表、示意图、UI 设计稿，并描述所见内容（文字、布局、颜色、位置）。它通过 `modalities: { input: ["text","image"], output: ["text"] }` 声明图片输入能力；没有该声明，OpenCode 会把模型当作纯文本处理并拒绝 `read_image` 调用。
+**核心职责**：Vision 是专职的图片入口——读取截图、图表、示意图、UI 设计稿，并描述所见内容（文字、布局、颜色、位置）。多模态能力来自模型本身：`deepseek-flash` 是原生多模态模型，`opencode.jsonc` 中通过 `modalities: { input: ["text","image"], output: ["text"] }` 声明图像输入；没有该声明，OpenCode 会把模型当作纯文本处理并拒绝 `read_image` 调用。
 
 **工作流程**：
 
@@ -632,21 +652,21 @@ permission:
 **关键约束**：
 
 - **绝不编造图片内容**——只报告实际看到的东西。如果图片无法读取或内容不清晰，明确说明。
-- **只读**——只报告视觉内容，不修改代码。
+- **以「看」为主**——报告视觉内容；仅简单的单处视觉修正（如按设计稿改一个按钮颜色）在其范围内，超出单文件即升级。
 - **升级机制**——需要深度推理或多文件改动时，升级到 deep-worker（Pro）。
 
-**在体系中的位置**：Vision 是「多模态入口」。当用户说「看这张截图」「读这个图表」时，Orchestrator 路由到 Vision。它解决了纯文本模型（Pro/Flash）无法处理图片的根本限制——Pro 与 Flash 都是文本模型，遇到图片输入必须交给 Vision。
+**在体系中的位置**：Vision 是「多模态入口」。当用户说「看这张截图」「读这个图表」时，Orchestrator 路由到 Vision。Flash 原生多模态、是唯一的图像输入通道（Pro 不接收图片）；AGENTS.md 同时把「视觉输入 opt-in」写成硬约束——非视觉任务不传图、不生成图，只有用户明确提供图像时才走 Vision。
 
 ---
 
 ## 4.6 主 Agent：Solo（单模型内联执行器）
 
-Solo 是 v38 起新增的第二个主 Agent，代表一种与 Orchestrator 截然不同的执行哲学。
+Solo 是 2026-09 起新增的第二个主 Agent，代表一种与 Orchestrator 截然不同的执行哲学。
 
 ```
 name: solo
 mode: primary          # 主入口模式
-model: deepseek/deepseek-v4-pro   # 跟随会话默认（Pro）
+# 注意：无 model 字段——跟随会话所选模型（默认 deepseek/deepseek-v4-pro）
 steps: 100
 color: "#607D8B"      # 蓝灰色
 permission:
@@ -665,7 +685,7 @@ permission:
 
 **Solo 不处理的任务**：
 
-- **多模态/图片输入**：默认模型（v4-pro）是纯文本。告诉用户改用 `vision`；绝不猜测图片内容。
+- **多模态/图片输入**：默认会话模型（v4-pro）是纯文本。告诉用户改用 `vision`（flash 原生多模态）；绝不猜测图片内容。
 - **无法诚实完成的工作**：直接说明并解释原因；绝不输出降级或部分结果冒充完成。
 
 **与 Orchestrator 的分工**：两者都是主 Agent，用户可在会话中切换。Orchestrator 走「委派优先」路线（路由到 10 个子 Agent），Solo 走「单模型内联」路线（零委派）。Solo 适合需要全程单一模型保证、或委派开销大于任务本身的场景。
@@ -845,7 +865,7 @@ Orchestrator
   └─ 若需代码修复 → Oracle 分析 → Deep Worker 实施
 ```
 
-**关键价值**：Vision 把「图片里的信息」转化为「文本描述」，从而接入纯文本的 Agent 协作链。它只做视觉解读，代码修复交给 Oracle/Deep Worker。
+**关键价值**：Vision 把「图片里的信息」转化为「文本描述」，从而接入 Agent 协作链。它专注视觉解读，深度分析交给 Oracle、代码修复交给 Deep Worker（单处轻量视觉修正才自己动手）。
 
 ---
 
@@ -925,8 +945,8 @@ Pro Agent 和 Flash Agent 的 Prompt 存在系统性差异：
 |------|-----------|-------------|
 | **职责描述** | 强调推理、分析、决策 | 强调速度、检索、执行 |
 | **自主性** | 高度自主（如 Deep Worker 完成整个任务才停止） | 有限自主（如 Explore 只返回发现，不解释含义） |
-| **模型感知声明** | 通常无（本身就是最强的执行模型） | 有明确声明（如「I run on v4-flash — fast, cheap」） |
-| **升级机制** | 作为升级接收方 | 内置升级触发条件（如 Librarian 请求升级到 Consultant） |
+| **模型感知声明** | 通常无（本身就是最强的执行模型） | 有明确声明（如「You run on deepseek-flash — fast, cheap」） |
+| **升级机制** | 作为升级接收方 | 内置升级触发条件（如 Librarian 请求升级到 planner/oracle（pro）） |
 | **思考档位** | 默认 high（Pro 默认开启思考） | 关闭，或 mid 档（planner/light-orchestrator 开启 + reasoningEffort low） |
 
 Flash Agent 的「模型感知声明」是一个精巧的设计：
@@ -934,7 +954,7 @@ Flash Agent 的「模型感知声明」是一个精巧的设计：
 ```
 # Librarian
 When research requires deep cross-referencing or nuanced interpretation,
-ask the orchestrator to escalate to consultant (v4-pro).
+ask the orchestrator to escalate to planner or oracle (pro).
 ```
 
 这句话的效果是：当 Librarian 意识到「这个任务超出我的能力」时，它不会沉默地给出不准确的结果，而是主动发起升级。这种自省能力比事后补救高效得多——因为它在错误发生之前就阻止了错误。
@@ -1036,9 +1056,9 @@ Orchestrator 的派发纪律同样体现这些原则：「Reference paths, don't
 
 - **设计理念**：专业化分工、只读隔离、执行探索分离、模型感知路由——每一条都是对单 Agent 模式已知缺陷的系统性修正。
 - **Orchestrator**：整个体系的中央调度器，通过意图门控和任务分类实现精准路由（Flash 主 Agent）。
-- **Pro Agent 群**：4 个使用 v4-pro 的 Agent（solo 主 + deep-worker/oracle/reviewer）承担重型实现、根因分析和代码审查。
-- **Flash Agent 群**：8 个使用 v4-flash 的 Agent（orchestrator 主 + planner/light-orchestrator/consultant/ui-builder/explore/librarian）承担路由、规划、搜索、检索和简单执行。
-- **Vision Agent**：1 个使用 v4-flash-vision-exp 的 Agent 承担多模态识别。
+- **Pro Agent 群**：3 个使用 v4-pro 的 Agent（deep-worker/oracle/reviewer）承担重型实现、根因分析和代码审查；主 Agent solo 无显式模型，跟随会话（默认 pro）。
+- **Flash Agent 群**：8 个使用 deepseek-flash（原生多模态）的 Agent（orchestrator 主 + planner/light-orchestrator/consultant/ui-builder/explore/librarian/vision）承担路由、规划、搜索、检索、简单执行和多模态识别。
+- **Vision Agent**：多模态专项入口——运行在原生多模态的 deepseek-flash 上，视觉输入严格 opt-in。
 - **Solo 主 Agent**：单模型内联执行器，零委派，与 Orchestrator 的委派路线互补。
 - **协作模式**：Deep 任务链、Debug 修复链、审查修复循环、并行研究模式、决策规划链、多模态识别链——定义了 Agent 间协调的具体方式。
 - **Prompt 设计原则**：角色三段式、双层边界、模型感知差异、拒绝契约、标准化输出和上下文管理，构成了可复制的 Agent 设计方法论。

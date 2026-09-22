@@ -5,9 +5,9 @@ title: 第九章：全局规则 AGENTS.md 深度解读
 
 # 第九章：全局规则 AGENTS.md 深度解读
 
-AGENTS.md 是本配置体系中**最重要、最基础**的单一文件——它定义了所有 Agent 共享的行为基线。本章将以 218 行原文为线索，从设计哲学、具体规则、工程实践三个维度逐条深度解读。读完本章，你将不仅理解"规则是什么"，更能理解"为什么这样设计"以及"这些规则如何在日常协作中约束和指导 Agent 行为"。
+AGENTS.md 是本配置体系中**最重要、最基础**的单一文件——它定义了所有 Agent 共享的行为基线。本章将以 311 行原文为线索，从设计哲学、具体规则、工程实践三个维度逐条深度解读。读完本章，你将不仅理解"规则是什么"，更能理解"为什么这样设计"以及"这些规则如何在日常协作中约束和指导 Agent 行为"。
 
-> 本章内容基于 [znlgis/my-opencode-deepseek-config](https://github.com/znlgis/my-opencode-deepseek-config) 仓库中的 `AGENTS.md` 文件（218 行）逐条解读。实际规则可能随仓库迭代更新，请以仓库最新版本为准。
+> 本章内容基于 [znlgis/my-opencode-deepseek-config](https://github.com/znlgis/my-opencode-deepseek-config) 仓库中的 `AGENTS.md` 文件（311 行）逐条解读。实际规则可能随仓库迭代更新，请以仓库最新版本为准。
 
 ---
 
@@ -48,16 +48,16 @@ AGENTS.md（全局基线） → Agent prompt（角色专属） → 默认行为
 
 这个设计体现了软件工程中的 DRY 原则（Don't Repeat Yourself）在提示工程（Prompt Engineering）领域的应用。
 
-### 9.1.4 218 行的演进历程
+### 9.1.4 行数的演进历程
 
-AGENTS.md 并非一次性写就。当前版本的 218 行经历了多轮精简与补强：早期版本约 292 行，v20 精简至 229 行，v21 进一步压缩至 212 行，随后在 v23 补强 +15 行（引入委派契约、Job Board 等），最终在后续迭代中稳定在 218 行。这一演进过程本身反映了配置迭代的核心思路：
+AGENTS.md 并非一次性写就。当前版本的 311 行经历了多轮精简与补强：早期版本约 292 行，v20 精简至 229 行，v21 进一步压缩至 212 行，随后在 v23 补强 +15 行（引入委派契约、Job Board 等）一度稳定在 218 行；2026-09 又新增了进度/失败纪律、思考分层、插件映射表等章节，当前为 311 行。每一次增长都要过"token 收益核算"这一关。这一演进过程本身反映了配置迭代的核心思路：
 
 - **删减冗余**：识别并合并重复表达的规则
 - **精炼表述**：将冗长的解释压缩为简洁的指令
 - **去除过时内容**：随着 OpenCode 框架的演进，某些规则已被框架本身内置
 - **按需补强**：当发现新的行为漏洞（如委派契约、后台任务卫生）时，精准补充而非整体膨胀
 
-218 行是一个非常有意识的选择——它在"足够详尽"和"Token 经济"之间找到了平衡点。
+行数始终是一个有意识的选择——在"足够详尽"和"Token 经济"之间找平衡：常驻前缀每轮都计费，能删则删、确有必要才加，每一次行数变化都对应一次 token 收益核算。
 
 ---
 
@@ -137,7 +137,7 @@ AGENTS.md 并非一次性写就。当前版本的 218 行经历了多轮精简�
 
 在多 Agent 体系中，角色边界是系统架构的基石。
 
-**只读 Agent 清单**（v38+ 已扩展至 5 个，含 vision）：
+**只读 Agent 清单**（共 4 个；`vision` 不在此列——它是读写角色，可做轻量视觉修正）：
 
 | Agent | 角色 | 核心行为 |
 |-------|------|----------|
@@ -145,7 +145,6 @@ AGENTS.md 并非一次性写就。当前版本的 218 行经历了多轮精简�
 | reviewer | 代码审查 | 审查 diff，输出审查意见 |
 | explore | 代码库探索 | 搜索、定位、报告 |
 | librarian | 文档检索 | 查找文档，汇报结果 |
-| vision | 多模态识别 | 读取图片/截图，描述所见 |
 
 **为什么这些 Agent 必须只读**：一旦允许探索型 Agent 修改文件，就会打破"分析 → 决策 → 执行"的分层架构。Orchestrator 是唯一的决策层，deep-worker 是唯一的执行层。允许 oracle 直接改代码，就相当于让顾问直接操作手术刀——可能的结果是顾问的洞察力和手术的执行力双双失效。
 
@@ -166,13 +165,12 @@ AGENTS.md 并非一次性写就。当前版本的 218 行经历了多轮精简�
 
 > **Right-size the model to the task.** Prefer flash for routing, search, lookup, planning, and routine implementation; reserve pro for deep reasoning, root-cause analysis, code review, and heavy multi-file implementation. When borderline, prefer flash, then escalate.
 
-本配置体系的核心模型策略：**三模型分层**（v38+）。
+本配置体系的核心模型策略：**双模型 + 思考档位分层**（v38+ 曾扩为三模型，2026-09 起 flash 与 vision-exp 合并、回到双模型）。
 
 | 模型 | 适用任务 | 选型逻辑 |
 |------|----------|----------|
-| DeepSeek V4 Flash | 路由、搜索、查找、规划、常规实现 | 速度快、成本低、够用 |
+| DeepSeek V4 Flash（原生多模态） | 路由、搜索、查找、规划、常规实现；多模态识别（图片/截图，仅用户明确提供图像时） | 速度快、成本低、够用 |
 | DeepSeek V4 Pro | 深度推理、根因分析、代码审查、重型多文件实现 | 能力强、适合高复杂度任务 |
-| DeepSeek V4 Flash-Vision-Exp | 多模态识别（图片/截图） | 唯一支持图像输入的模型 |
 
 **"When borderline, prefer flash, then escalate"** 是一个关键的工程决策。当你不确定一个任务是否需要 Pro 时，默认用 Flash。原因：
 
@@ -264,8 +262,7 @@ DeepSeek 的提示缓存（prompt cache）以**字节级前缀**为粒度——�
 
 | 模型 | 温度 | 思考 | 说明 |
 |------|------|------|------|
-| Flash | 0 | 关闭 | 官方成本节约方案 |
-| Flash-Vision-Exp | 0 | 关闭 | 与 Flash 同成本画像 |
+| Flash（原生多模态） | 0 | 关闭 | 官方成本节约方案 |
 | Pro | 未设置 | 开启（默认） | 温度/top_p 被静默忽略 |
 
 **关键**：`options.thinking` 是 provider 透传字段（OpenAI 格式的思考开关），不是 OpenCode 原生 schema 字段。Agent 可通过 frontmatter `options.thinking` 覆盖（如 planner/light-orchestrator 在 Flash 上重新开启思考）。
@@ -294,9 +291,9 @@ DeepSeek 的 `reasoning_content` 必须在工具调用间正确往返（OpenCode
 
 ### 9.4.1 reasoning_effort 不是模型 ID
 
-> **`reasoning_effort`** is a request-level thinking-strength control (`low`/`high`/`max`), NOT a model id — set per-agent via agent frontmatter `options` (camelCase `reasoningEffort`, deep-merged over `model.options`). The 3-model matrix is inviolate.
+> **`reasoning_effort`** is a request-level thinking-strength control (`low`/`high`/`max`), NOT a model id — set per-agent via agent frontmatter `options` (camelCase `reasoningEffort`, deep-merged over `model.options`). The 2-model matrix is inviolate.
 
-`reasoning_effort`（配置中为 camelCase `reasoningEffort`，请求体中转为 snake_case）是**请求级**的思考强度控制（low/high/max），**不是模型 ID**。它通过 Agent frontmatter 的 `options` 设置（深度合并覆盖 `model.options`）。保持它不挂在模型 ID 上，是为了维持三模型矩阵的纯净。
+`reasoning_effort`（配置中为 camelCase `reasoningEffort`，请求体中转为 snake_case）是**请求级**的思考强度控制（low/high/max），**不是模型 ID**。它通过 Agent frontmatter 的 `options` 设置（深度合并覆盖 `model.options`）。保持它不挂在模型 ID 上，是为了维持双模型矩阵的纯净。
 
 ### 9.4.2 三层思考分级
 
@@ -304,7 +301,8 @@ DeepSeek 的 `reasoning_content` 必须在工具调用间正确往返（OpenCode
 |------|------|------|-----------|
 | 轻量（trivial） | Flash | 关闭（最便宜） | explore、librarian、consultant、ui-builder |
 | 中等（mid） | Flash + reasoningEffort low | 开启 + 低强度 | planner、light-orchestrator |
-| 深度（deep） | Pro | 默认高 | deep-worker、oracle、reviewer、solo |
+| 深度（deep） | Pro | 默认高 | deep-worker、oracle、reviewer |
+| 跟随会话 | 会话所选（默认 Pro） | 随该模型 | solo（无 `model` 字段） |
 
 **路由逻辑**：轻量 → Flash 关闭思考；常规但非平凡的多文件 → Flash + 低思考；深度/不确定 → Pro + 高思考。
 
@@ -386,13 +384,13 @@ AGENTS.md 的语言约定解决了这两个问题：
 
 ## 9.7 约束条件（Constraints）
 
-> - **No new models.** Only `deepseek/deepseek-v4-pro`, `deepseek/deepseek-v4-flash`, and the multimodal `deepseek/deepseek-v4-flash-vision-exp` may be used. Do not introduce others.
+> - **No new models.** Only `deepseek/deepseek-v4-pro` and the natively multimodal `deepseek/deepseek-flash` may be used. Do not introduce others.
 > - **No new dependencies** without explicit justification from the user.
 > - **Pure-config philosophy.** Prefer prompt/config changes over new tooling.
 
-### 9.7.1 仅限 DeepSeek V4 三模型
+### 9.7.1 仅限 DeepSeek V4 双模型
 
-这条约束定义了本配置的模型边界：**只有三个模型，不允许引入第四个**（v38+ 从双模型扩展为三模型，新增多模态的 vision-exp）。
+这条约束定义了本配置的模型边界：**只有两个模型，不允许引入第三个**（v38+ 曾扩展为三模型；2026-09 起 `deepseek-v4-flash` 与 `deepseek-v4-flash-vision-exp` 合并为一个原生多模态的 `deepseek-flash`，回到双模型）。
 
 **设计理由**：
 
@@ -400,10 +398,10 @@ AGENTS.md 的语言约定解决了这两个问题：
 |------|------|
 | 成本可控 | DeepSeek 的定价是业界最低水平之一，固定模型 = 固定成本预期 |
 | 行为可预测 | 每个模型的表现已知，多模型混用引入行为不确定性 |
-| 配置简单 | 三条模型路由规则即可覆盖所有场景 |
+| 配置简单 | 两个模型 × 思考档位即可覆盖所有场景 |
 | 避免模型蔓延 | 防止 Agent 在运行时"自行决定"切换模型，导致不可预测的行为 |
 
-**如果不是 DeepSeek 用户**：你可能需要修改这条规则。例如使用 Claude 模型的用户需要改为对应的三模型组合。但原则不变——**固定模型，不要混搭多个供应商**。
+**如果不是 DeepSeek 用户**：你可能需要修改这条规则。例如使用 Claude 模型的用户需要改为对应的双模型组合。但原则不变——**固定模型，不要混搭多个供应商**。
 
 ### 9.7.2 不新增依赖
 
@@ -956,7 +954,7 @@ return format(computeExpensiveThing(data));
 
 ### 9.16.1 技能的懒加载设计
 
-技能的懒加载机制是上下文管理的关键：本配置包含 25 个自定义技能 + superpowers 插件的 14 个过程技能，全部预加载会显著增加每次调用的 Token 消耗。因此技能在匹配条件满足时才通过 `skill` 工具加载。例如：
+技能的懒加载机制是上下文管理的关键：本配置包含 23 个自定义技能 + superpowers 插件的 15 个过程技能，全部预加载会显著增加每次调用的 Token 消耗。因此技能在匹配条件满足时才通过 `skill` 工具加载。例如：
 - 用户说"修复这个 bug" → 触发 `systematic-debugging` 技能加载
 - 用户说"审查代码" → 触发 `code-review` 技能加载
 
@@ -1031,33 +1029,33 @@ Superpowers 插件提供的技能是"过程型"的——它们指导 Agent **如
 
 ## 9.18 插件体系
 
-> - **superpowers** (obra/superpowers) — process skills (brainstorming, systematic debugging, TDD); skill-first discipline.
-> - **DCP** (`@tarquinen/opencode-dcp`) — autonomous context pruning + deduplication; tuned in `dcp.jsonc`.
+> - **superpowers** (obra/superpowers) — process skills ... Pin lives in `opencode.jsonc`. The plugin exposes **no model-mapping config** ... superpowers workflows map to models through the agent layer.
+> Context compression is **built-in only** — there is no DCP plugin. Compaction fires at `limit.input - compaction.reserved` (flash ~115K, pro ~148K tokens) and prunes old tool output per request.
 
-AGENTS.md 最后简要介绍了两个插件，它们扩展了配置的边界。
+AGENTS.md 的 Plugins 小节记录唯一插件及其接线映射（原 DCP 插件已移除），并显式标注「本地已有等价 skill 的项不接线」。
 
 ### 9.18.1 Superpowers 插件
 
 > **superpowers (obra/superpowers)** — process skills (brainstorming, systematic debugging, TDD); skill-first discipline.
 
-Superpowers 的核心理念：**技能优先**——在任何回复之前，先检查是否有适用的技能。`using-superpowers` skill 会在每个会话中自动注入，确保 Agent 不会绕过技能体系。本配置将其固定到 git tag `#v6.3.0`，保证行为可复现。
+Superpowers 的核心理念：**技能优先**——在任何回复之前，先检查是否有适用的技能。`using-superpowers` 的 bootstrap 注入主会话首条用户消息（v6.4.1 起子会话不再注入），确保 Agent 不会绕过技能体系。本配置将其固定到 git tag `#v6.4.1`，保证字节稳定前缀与行为可复现；插件不提供模型映射能力，接线映射（`writing-plans`→planner、`test-driven-development`/`verification-before-completion`→deep-worker、`verification-before-completion`→light-orchestrator；其余本地有等价物不接线）写在 AGENTS.md 的 Plugins 小节。
 
-### 9.18.2 DCP 插件
+### 9.18.2 ~~DCP 插件~~（已移除：压缩 100% 内置）
 
-> **DCP (`@tarquinen/opencode-dcp`)** — autonomous context pruning + deduplication; tuned in `dcp.jsonc`.
+> **Context compression is built-in only — there is no DCP plugin.** Compaction fires at `limit.input - compaction.reserved` (flash ~115K, pro ~148K tokens) and prunes old tool output per request.
 
-DCP（Distributed Context Pruning，分布式上下文裁剪）解决的是上下文窗口管理问题：
+原 `@tarquinen/opencode-dcp` 已于 2026-09 连同 `dcp.jsonc` 移除——它的两块价值（绝对值阈值提前压缩、工具调用去重）由内置 compaction 的显式 `limit.input` 工作窗口与每轮 `prune` 覆盖。历史上的上下文窗口管理诉求：
 - 当一个任务阶段结束时，自动裁剪不再需要的上下文
 - 子 Agent 的结果会被保留（因为后续阶段可能需要引用）
 - 原始探索过程被移除（结论已压缩保留）
 
-本配置将其固定到 `@3.1.15`，并在 `dcp.jsonc` 中按模型成本分层调优（Pro 在 55K/26K 触发，Flash 在 77K/38K 触发）。这与 9.3 节的缓存纪律互补——DCP 负责主动压缩，原生 compaction 负责接近溢出的兜底。
+（历史：曾固定 `@3.1.15`、按模型成本分层在 77K/38K、55K/26K 触发。）现在的实现方式：`provider.deepseek.models.<id>.limit.input` 给两个模型分别声明工作窗口（flash 131,072 / pro 163,840），触发点 = `limit.input − reserved(16000)`，即 flash 115,072 / pro 147,840 tokens——同样做到了"按模型成本分层、主动提前压缩"，且与 9.3 节的缓存纪律互补：窗口更小 → 缓存前缀更稳、命中率更高、压缩触发更晚。
 
 ---
 
 ## 9.19 AGENTS.md 的设计亮点总结
 
-回顾 218 行的 AGENTS.md，可以从以下几个维度总结其设计的精妙之处：
+回顾 311 行的 AGENTS.md，可以从以下几个维度总结其设计的精妙之处：
 
 ### 9.19.1 Token 效率的极致体现
 
@@ -1066,7 +1064,7 @@ AGENTS.md 的每一个词都经过精心推敲：
 - "Delegate, don't do"（4 个词，定义了委派的核心策略）
 - "Byte-stable prefix"（3 个词，定调整篇的缓存节俭哲学）
 
-全文 218 行承载了 17 个章节的完整规则体系——没有废话，没有重复。
+全文 311 行承载了 17 个章节的完整规则体系——没有废话，没有重复。
 
 ### 9.19.2 行为一致性的保障
 
@@ -1093,9 +1091,9 @@ AGENTS.md 的十条核心原则有多条直接或间接地防止了创造性越�
 - **Agent 知道彼此的边界**：oracle 不编辑、deep-worker 不研究、orchestrator 不执行
 - **新人可以快速理解体系**：读完 AGENTS.md 就知道所有 Agent 的行为基线
 
-### 9.19.5 从 292 行到 218 行的迭代智慧
+### 9.19.5 从 292 行到 311 行的迭代智慧
 
-从 292 行到 218 行的精简不是简单的删减，而是对规则体系的深度重构：
+从 292 行精简（一度到 218 行）再随纪律补强回到 311 行，这一过程不是简单的删减或堆砌，而是对规则体系的深度重构：
 - 合并了重复表达的规则
 - 去除了已被框架内置的行为约束
 - 用更精炼的语言表达等价的约束力
@@ -1117,7 +1115,7 @@ AGENTS.md 不是一份"参考文档"——它是一份**运行时生效的约束
 | 思考分层 | 思考强度 | reasoning_effort、三层分级 |
 | 范围优先 + 委派 | 工作纪律 | planner 先行、后台优先、委派而非亲为 |
 | 语言约定 | 用户界面语言 | 自动检测、中文优先 |
-| 约束条件 | 技术边界 | 三模型、纯配置 |
+| 约束条件 | 技术边界 | 双模型、视觉 opt-in、纯配置 |
 | 多步骤纪律 | 任务管理 | TODO 列表、原子化格式、后台任务卫生 |
 | Git 安全 | 版本控制安全 | 只提交自己的文件、提交前检查、禁止危险操作 |
 | 拒绝契约 | 失败安全 | 拒绝比做一半更便宜 |
@@ -1128,7 +1126,7 @@ AGENTS.md 不是一份"参考文档"——它是一份**运行时生效的约束
 | 代码风格 | 实现规范 | const 优先、早期 return |
 | 技能体系 | 能力扩展 | 懒加载、superpowers |
 | 自我验证与证据纪律 | 质量闭环 | 每阶段验证一次、证据先于断言 |
-| 插件体系 | 能力边界 | superpowers、DCP |
+| 插件体系 | 能力边界 | superpowers v6.4.1；压缩=内置 compaction（无 DCP） |
 
 有了 AGENTS.md 的整体理解，后续章节（第十章实战工作流、第十二章定制指南）中的具体配置和决策都将有了参照系——你会看到每一条 Agent prompt 是如何在 AGENTS.md 的框架下发挥各自的专属作用。
 
