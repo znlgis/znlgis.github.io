@@ -1,6 +1,6 @@
 # znlgis 博客
 
-GIS 开发与技术分享博客，涵盖 GIS、CAD、C#、3D、AI 等领域，共 **82 个教程系列、1123 篇文章**。
+GIS 开发与技术分享博客，涵盖 GIS、CAD、C#、3D、AI 等领域，共 **83 个教程系列、1139 篇文章**。
 
 在线访问：[https://znlgis.github.io](https://znlgis.github.io)
 
@@ -17,7 +17,7 @@ GIS 开发与技术分享博客，涵盖 GIS、CAD、C#、3D、AI 等领域，�
 | 🤖 AI 系列 | 11 | 129 | Dify · OpenClaw · DeepSeek Harness · OpenCode · OpenGIS-Skills |
 | 🔌 IoT 物联网 | 1 | 25 | KE3036-Keyes-Pico (Raspberry Pi Pico) |
 | 📖 源码解读 | 2 | 40 | Clipper2 · Clipper1 |
-| 📦 其他教程 | 6 | 87 | acme.sh · BillionMail · Go 语言 · RobotGo |
+| 📦 其他教程 | 7 | 103 | acme.sh · BillionMail · CHAGS · Go 语言 · RobotGo |
 | 🎯 项目演示 | 5 | 39 | Vue3+OpenLayers · Vue3 地图大屏 · AI 智慧水务 · 360 全景地图联动 |
 
 ## ✨ 博客特性

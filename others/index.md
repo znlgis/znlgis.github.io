@@ -15,6 +15,7 @@ title: 其他教程
 |----------|:------:|:----:|----------|
 | [acme.sh](https://znlgis.github.io/others/acme.sh/) | 10章 | ⭐⭐ | SSL证书自动化 |
 | [BillionMail](https://znlgis.github.io/others/BillionMail/) | 10章 | ⭐⭐ | 邮件营销系统 |
+| [CHAGS](https://znlgis.github.io/others/CHAGS/) | 16章 | ⭐⭐⭐ | Phaser 4 + Vue 3.5 儿童典故游戏合集 |
 | [Go 语言](https://znlgis.github.io/others/go/) | 18章 | ⭐⭐ | Go 语言学习与开发 |
 | [RobotGo](https://znlgis.github.io/others/robotgo/) | 15章 | ⭐⭐⭐ | Go 桌面自动化 |
 | [robotgo-flow](https://znlgis.github.io/others/robotgo-flow/) | 19章 | ⭐⭐⭐ | Windows RPA 自动化 |
@@ -26,6 +27,7 @@ title: 其他教程
 
 - [acme.sh 教程](https://znlgis.github.io/others/acme.sh/)
 - [BillionMail 教程](https://znlgis.github.io/others/BillionMail/)
+- [CHAGS 教程](https://znlgis.github.io/others/CHAGS/)
 - [Go 语言教程](https://znlgis.github.io/others/go/)
 - [RobotGo 教程](https://znlgis.github.io/others/robotgo/)
 - [robotgo-flow 教程](https://znlgis.github.io/others/robotgo-flow/)
