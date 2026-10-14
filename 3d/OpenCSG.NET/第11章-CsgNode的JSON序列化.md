@@ -132,8 +132,13 @@ opts.Converters.Add(new CsgNodeConverter());
 | `Trapezoid` | `TrapezoidProfile` |
 | `Capsule` | `CapsuleProfile` |
 | `LShape` | `LShapeProfile` |
+| `Polygon` | `PolygonProfile`（第 10 章的任意多边形截面） |
 
-> **注意**：即便是求值会抛异常的 `ConeNode`（第 9 章），也**能正常序列化/反序列化**——序列化和求值是两回事。你可以保存一棵含 `Cone` 的树，只是别拿它去 `Evaluate`。
+序列化与求值是两件事：树上出现任何**已注册判别式**的类型都能安全读写往返；求值能否成功则由求值器决定（如 `ConeNode` 现在已可求值，第 9 章）。
+
+### 11.4.2 写入侧的深度守卫
+
+一个防御性设计：`CsgSerialization` 的写入侧有 `MaxWriteNodeDepth = 63` 的**递归深度守卫**（`[ThreadStatic]`）——超过这个深度的节点树在序列化时会被拒绝，而不是把进程带进 `StackOverflowException`（.NET 里这种异常无法被 catch，会直接终止进程）。这是对"深树"输入（无论是人手写的还是程序生成的）的兜底保护；正常建模树远达不到 63 层。
 
 ## 11.5 嵌套树的完整 JSON
 
@@ -227,7 +232,7 @@ catch (JsonException ex)
 {
     Console.Error.WriteLine($"配置文件无效：{ex.Message}");
 }
-catch (CsgEvaluationException ex)   // 比如里面含 ConeNode
+catch (CsgEvaluationException ex)   // 业务校验失败：负半径、高度为零、空子节点列表等
 {
     Console.Error.WriteLine($"求值失败：{ex.Message}");
 }
@@ -265,16 +270,16 @@ static void BuildFromConfig(string jsonPath, string stlPath)
 
 - `CsgSerialization` 基于 `System.Text.Json`，提供 `ToJson`/`FromJson`（单树）与 `ToJson`/`FromJsonArray`（数组）四个入口；`indented` 参数控制紧凑或缩进输出。
 - 配置为 **camelCase** 命名；`Vector3D`/`Vector2D` 用紧凑的 `{x,y,z}`/`{x,y}` 表示。
-- 多态靠 **`$type` 判别式**：每个 `CsgNode`/`Profile2D` 对象的 JSON 首字段是短名 `$type`，反序列化按它分派具体类型。
-- 序列化**保真且幂等**（两次序列化文本相等）；`ConeNode` 能序列化但不能求值。
+- 多态靠 **`$type` 判别式**：每个 `CsgNode`/`Profile2D` 对象的 JSON 首字段是短名 `$type`，反序列化按它分派具体类型；截面判别式含 `Polygon`（自定义多边形）。
+- 序列化**保真且幂等**（两次序列化文本相等）；写入侧有 `MaxWriteNodeDepth = 63` 的深度守卫，深树被拒绝而非炸栈。
 - 畸形输入（缺 `$type`、未知 `$type`、null）抛 `JsonException`；加载外部 JSON 时应同时防范 `JsonException` 与 `CsgEvaluationException`。
 
-至此，声明式 API 三章（9–11）讲完。下一章我们**潜入引擎室**——剖析命令式内核 `Solid`/`Tree`/`Node` 的 BSP 算法实现细节，理解布尔运算到底是怎么算出来的。
+至此，声明式 API 三章（9–11）讲完。下一章介绍"交付与工程化"的另一半——网格导出管线与工程辅助函数库，然后回到内核，剖析 `Solid`/`Tree`/`Node` 的 BSP 算法实现细节。
 
 ---
 
 <div style="display:flex; justify-content:space-between; margin-top:3rem;">
   <a href="https://znlgis.github.io/3d/OpenCSG.NET/第10章-参数化截面与拉伸建模/">← 上一章</a>
   <a href="https://znlgis.github.io/3d/OpenCSG.NET/">目录</a>
-  <a href="https://znlgis.github.io/3d/OpenCSG.NET/第12章-源码剖析Solid内核与BSP算法/">下一章 →</a>
+  <a href="https://znlgis.github.io/3d/OpenCSG.NET/第12章-网格导出与工程辅助/">下一章 →</a>
 </div>

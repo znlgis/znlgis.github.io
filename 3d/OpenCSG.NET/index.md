@@ -7,7 +7,7 @@ title: OpenCSG.NET 使用与开发教程
 
 OpenCSG.NET 是一个**纯 C# 实现、零第三方依赖的构造实体几何（Constructive Solid Geometry，CSG）库**。它让你可以用代码创建立方体、球体、圆柱体等基础形体，再通过并集、差集、交集等布尔运算把它们组合成任意复杂的三维实体，最终导出为 STL 文件用于 3D 打印、CNC 加工或可视化。整个库基于 `netstandard2.0`，可以运行在 .NET Framework、.NET Core / .NET 5+、Mono、Unity 等几乎所有 .NET 平台上。
 
-本教程从源代码分析出发，全面覆盖 OpenCSG.NET 的项目定位、CSG 与 BSP 树原理、基础形体、布尔运算、几何变换、STL 导出、声明式 `CsgNode` 建模树、参数化截面拉伸、JSON 序列化、内核源码剖析，并通过一个"冷弯 C 型钢檩条"的工程实战案例把各章知识融会贯通，最后讲解测试、性能与二次开发。
+本教程从源代码分析出发，全面覆盖 OpenCSG.NET 的项目定位、CSG 与 BSP 树原理、基础形体、布尔运算、几何变换、STL 导出、声明式 `CsgNode` 建模树、参数化截面拉伸、JSON 序列化、网格导出管线与工程辅助函数库、内核源码剖析，并通过一个"冷弯 C 型钢檩条"的工程实战案例把各章知识融会贯通；最后讲解测试、质量与二次开发，并以专题形式讲透三视图投影与隐藏线消除子系统。
 
 ## 章节列表
 
@@ -16,17 +16,19 @@ OpenCSG.NET 是一个**纯 C# 实现、零第三方依赖的构造实体几何�
 - [第03章：CSG 与 BSP 树核心原理](https://znlgis.github.io/3d/OpenCSG.NET/第03章-CSG与BSP树核心原理/) —— 理解实体的边界表示、布尔运算的集合语义，以及 BSP 树如何完成多边形分割与分类
 - [第04章：数学与几何基础类型](https://znlgis.github.io/3d/OpenCSG.NET/第04章-数学与几何基础类型/) —— `Vector3D`/`Vector2D`/`Matrix4x4`/`Plane`/`Vertex`/`Polygon`/`BoundingBox` 等底层类型详解
 - [第05章：基础形体——立方体、球体、圆柱体](https://znlgis.github.io/3d/OpenCSG.NET/第05章-基础形体立方体球体圆柱体/) —— `Solids.Cube/Sphere/Cylinder` 的全部重载、选项类与分辨率控制
-- [第06章：布尔运算——并集、差集、交集](https://znlgis.github.io/3d/OpenCSG.NET/第06章-布尔运算并集差集交集/) —— `Union/Subtract/Intersect` 的实例与静态用法、链式组合与原点居中修复
-- [第07章：几何变换——平移、旋转与缩放](https://znlgis.github.io/3d/OpenCSG.NET/第07章-几何变换平移旋转与缩放/) —— `Translate/Scale/RotateX/Y/Z/Transform` 与 `Matrix4x4` 变换矩阵、镜像与坐标系
-- [第08章：STL 导出与文件格式](https://znlgis.github.io/3d/OpenCSG.NET/第08章-STL导出与文件格式/) —— ASCII 与二进制 STL 的写出、扇形三角化原理与常见坑
+- [第06章：布尔运算——并集、差集、交集](https://znlgis.github.io/3d/OpenCSG.NET/第06章-布尔运算并集差集交集/) —— `Union/Subtract/Intersect` 的实例与静态用法、链式组合、空集语义与原点居中修复
+- [第07章：几何变换——平移、旋转与缩放](https://znlgis.github.io/3d/OpenCSG.NET/第07章-几何变换平移旋转与缩放/) —— `Translate/Scale/RotateX/Y/Z/Transform` 与 `Matrix4x4` 变换矩阵、自动镜像判定与坐标系
+- [第08章：STL 导出与文件格式](https://znlgis.github.io/3d/OpenCSG.NET/第08章-STL导出与文件格式/) —— `CsgMesh` + `StlWriter` 新管线与经典扩展方法、扇形三角化原理与常见坑
 - [第09章：声明式 CsgNode 树与求值器](https://znlgis.github.io/3d/OpenCSG.NET/第09章-声明式CsgNode树与求值器/) —— `CsgNode` 记录体系、`CsgNodes` 工厂、`CsgEvaluator` 求值与 `TransformNode`
-- [第10章：参数化截面与拉伸建模](https://znlgis.github.io/3d/OpenCSG.NET/第10章-参数化截面与拉伸建模/) —— `Profile2D` 七种型材截面、`ExtrudeNode` 拉伸与耳切三角化、`WedgeNode` 楔形体
-- [第11章：CsgNode 的 JSON 序列化](https://znlgis.github.io/3d/OpenCSG.NET/第11章-CsgNode的JSON序列化/) —— `CsgSerialization` 的 `$type` 多态判别、驼峰命名、单节点与数组的往返读写
-- [第12章：源码剖析——Solid 内核与 BSP 算法](https://znlgis.github.io/3d/OpenCSG.NET/第12章-源码剖析Solid内核与BSP算法/) —— `Solid`/`Tree`/`Node`/`PolygonTreeNode` 迭代式实现、规范化、共面重划分与 Tag 缓存
-- [第13章：实战案例——冷弯 C 型钢檩条建模](https://znlgis.github.io/3d/OpenCSG.NET/第13章-实战案例冷弯C型钢檩条建模/) —— 完整走读 `Runner.CPurlin` 样例，参数化生成带冲孔与圆角的钢结构型材
-- [第14章：测试、性能优化与二次开发](https://znlgis.github.io/3d/OpenCSG.NET/第14章-测试性能优化与二次开发/) —— NUnit 近似测试、BenchmarkDotNet 基准、扩展新形体与 NuGet 发布流程
+- [第10章：参数化截面与拉伸建模](https://znlgis.github.io/3d/OpenCSG.NET/第10章-参数化截面与拉伸建模/) —— `Profile2D` 八种型材截面（含自定义多边形）、`ExtrudeNode` 拉伸与耳切三角化、`WedgeNode` 楔形体
+- [第11章：CsgNode 的 JSON 序列化](https://znlgis.github.io/3d/OpenCSG.NET/第11章-CsgNode的JSON序列化/) —— `CsgSerialization` 的 `$type` 多态判别、驼峰命名、往返读写与深度守卫
+- [第12章：网格导出与工程辅助](https://znlgis.github.io/3d/OpenCSG.NET/第12章-网格导出与工程辅助/) —— `CsgMesh`/`StlWriter` 网格管线、STL 读回、`Tessellation` 自适应细分与 `CsgHelpers` 工程辅助函数库
+- [第13章：源码剖析——Solid 内核与 BSP 算法](https://znlgis.github.io/3d/OpenCSG.NET/第13章-源码剖析Solid内核与BSP算法/) —— `Solid`/`Tree`/`Node`/`PolygonTreeNode` 迭代式实现、规范化、共面重划分与 Tag 缓存
+- [第14章：实战案例——冷弯 C 型钢檩条建模](https://znlgis.github.io/3d/OpenCSG.NET/第14章-实战案例冷弯C型钢檩条建模/) —— 完整走读 `Runner.CPurlin` 样例（`CpurlinModel`），参数化生成带冲孔与圆角的钢结构型材
+- [第15章：测试、性能优化与二次开发](https://znlgis.github.io/3d/OpenCSG.NET/第15章-测试性能优化与二次开发/) —— 五层测试体系、黄金基线、覆盖率门禁、双平台 CI 与 OIDC 发布、二次开发扩展点
+- [第16章：三视图投影与隐藏线消除](https://znlgis.github.io/3d/OpenCSG.NET/第16章-三视图投影与隐藏线消除/) —— `ViewProjector` 消隐管线、国标第一角三视图、Z-buffer 可见性、圆弧识别与线段清理
 
-> 共 14 章
+> 共 16 章
 
 ## 适用人群
 

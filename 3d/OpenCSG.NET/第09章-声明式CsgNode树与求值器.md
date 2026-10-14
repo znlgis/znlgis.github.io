@@ -40,8 +40,8 @@ public abstract record CsgNode;
 ```csharp
 public record BoxNode(Vector3D Center, Vector3D Size) : CsgNode;
 public record SphereNode(Vector3D Center, double Radius) : CsgNode;
-public record CylinderNode(Vector3D Center, double Radius, double Height) : CsgNode;
-public record ConeNode(Vector3D Center, double TopRadius, double BottomRadius, double Height) : CsgNode;
+public record CylinderNode(Vector3D Center, double Radius, double Height) : CsgNode;   // 沿 Y 轴
+public record ConeNode(Vector3D Center, double TopRadius, double BottomRadius, double Height) : CsgNode;  // 圆锥/圆台（本章 9.6）
 public record ExtrudeNode(Profile2D Profile, double Height) : CsgNode;   // 拉伸型材，见第10章
 public record WedgeNode(Vector3D Corner, double Width, double Depth, double Height) : CsgNode;  // 楔形，见第10章
 ```
@@ -123,9 +123,13 @@ solid.WriteStl("out", w);
 return node switch
 {
     BoxNode n       => Solids.Cube(n.Size, n.Center),
-    SphereNode n    => Solids.Sphere(n.Radius, n.Center),
+    SphereNode n    => Solids.Sphere(new SphereOptions
+    {
+        Radius = n.Radius, Center = n.Center,
+        Resolution = Tessellation.SegmentsFor(n.Radius)   // 自适应分段
+    }),
     CylinderNode n  => EvaluateCylinder(n),
-    ConeNode n      => throw new CsgEvaluationException("Cone not yet supported ..."),
+    ConeNode n      => EvaluateCone(n),
     UnionNode n     => EvaluateBool(n.Children, (a, b) => a.Union(b)),
     SubtractNode n  => EvaluateBool(n.Children, (a, b) => a.Subtract(b)),
     IntersectNode n => EvaluateBool(n.Children, (a, b) => a.Intersect(b)),
@@ -185,17 +189,47 @@ var node = Transform(
 
 理解这一点能避免"我的零件转到了奇怪的位置"这类困惑。
 
-## 9.6 ConeNode 尚未实现：一个必须知道的限制
+## 9.6 ConeNode：圆锥与圆台
 
-节点体系里定义了 `ConeNode`（圆锥/圆台），`CsgNodes.Cone(...)` 工厂也能创建它——**但 `Evaluate` 遇到它会直接抛异常**：
+节点体系里的 `ConeNode`（圆锥/圆台）**已完整实现**——`CsgEvaluator.EvaluateCone` 把它映射到一个"上下半径不等"的广义锥台：
 
 ```csharp
-ConeNode n => throw new CsgEvaluationException("Cone not yet supported (requires Solid API investigation)"),
+ConeNode n => EvaluateCone(n),
+
+private static Solid EvaluateCone(ConeNode n)
+{
+    // Center 是轴中点，轴线沿 ±Y（与 CylinderNode 口径一致，高度 span 为 Center.Y ± Height/2）
+    // 内部 = CylinderOptions { RadiusStart = BottomRadius, RadiusEnd = TopRadius }
+}
 ```
 
-这意味着：**你可以构造包含 `ConeNode` 的树、甚至序列化它，但一旦求值就会失败**。这是当前版本的已知限制。
+使用方式与其它节点无异：
 
-**规避方案**：需要圆锥/圆台时，回到命令式 API，用第 5 章讲的 **`RadiusEnd = 0` 或不等半径的 `Cylinder`** 来实现，然后（如果需要）把它作为一个独立 `Solid` 与声明式求值结果再做命令式布尔。或者，如果你在做二次开发，第 14 章会讨论如何给求值器补上圆锥支持——本质上就是把 `ConeNode` 映射到一个不等半径的 `CylinderOptions`。
+```csharp
+using Csg;
+using static Csg.CsgNodes;
+
+// 圆柱面上的"尖顶圆锥"（顶半径 0）与圆台（顶半径 > 0）
+var cone    = Cone(new Vector3D(0, 0, 0), topRadius: 0,  bottomRadius: 3, height: 6);
+var frustum = Cone(new Vector3D(0, 0, 0), topRadius: 1.5, bottomRadius: 3, height: 6);
+
+var solid = CsgEvaluator.Evaluate(Union(cone, frustum.Translate(x: 10)));  // 顶半径小于底半径
+```
+
+### 9.6.1 参数校验（求值时报错）
+
+`EvaluateCone` 对非法参数会明确抛 `CsgEvaluationException`，便于你尽早发现配方问题：
+
+- `Height <= 0` → 抛异常（"Cone height must be positive"）；
+- 任一半径为负 → 抛异常（"Cone radii must be non-negative"）；
+- **两个半径都为 0** → 抛异常（"Cone requires at least one non-zero radius"）——退化的零半径形体没有意义；
+- 单侧半径为 0 是合法的（真圆锥）。
+
+> **历史提示**：早期版本的求值器对 `ConeNode` 直接抛 "Cone not yet supported"，当时的规避方案是用命令式 `Cylinder`（`RadiusEnd = 0`）。该限制已移除——命令式与声明式两条路线都能生成圆锥/圆台，选哪条只看你的建模风格。
+
+### 9.6.2 球面的自适应细分
+
+顺带说明上表中 `SphereNode` 的求值：它不再使用固定分辨率 12，而是调用 `Tessellation.SegmentsFor(radius)`（按弦高容差自适应，第 12 章）——**大半径球面会自动加密**，不再呈现明显的多面体感。若你希望球面回到"固定 12 段"的旧口径，把全局 `Tessellation.ChordTolerance` 保持默认 0 即可（此时 `SegmentsFor` 返回 12）。
 
 ## 9.7 完整示例：用声明式树建一个支架
 
@@ -232,8 +266,9 @@ Console.WriteLine($"面数：{solid.Polygons.Count}");
 - 声明式 API 用不可变的 **`CsgNode` 记录树**描述"建模配方"，命令式 API 产出"几何结果"；二者底层统一，声明式求值时调用命令式内核。
 - 节点分四组：**图元**（Box/Sphere/Cylinder/Cone/Extrude/Wedge）、**布尔**（Union/Subtract/Intersect，带子节点列表）、**变换**（Transform）。图元节点默认**以 `Center` 居中**。
 - `CsgNodes` 提供便捷工厂；`CsgEvaluator.Evaluate` 用**模式匹配**递归求值，布尔节点**从左到右折叠**，`EvaluateAll` 批量求值。
-- **`TransformNode` 先平移后旋转**；要"原地自转再就位"需**嵌套两个 TransformNode**。
-- **`ConeNode` 尚未实现**，求值会抛异常；需要圆锥请用命令式 `Cylinder`（半径收为 0）。
+- **`TransformNode` 先平移后旋转**；要"原地自转再就位"需**嵌套两个 TransformNode**（或用第 12 章的 `CsgHelpers.Place` 一行搞定）。
+- **`ConeNode` 已完整实现**（`EvaluateCone`）：映射为不等半径的广义锥台，非法参数（高度 ≤ 0、负半径、双零半径）抛 `CsgEvaluationException`。
+- `SphereNode` 用**自适应细分**求值（`Tessellation.SegmentsFor`），大半径球面自动加密。
 
 下一章深入声明式 API 最实用的部分——**参数化截面 `Profile2D` 与拉伸建模**：如何用 H 型钢、槽钢、L 型角钢等标准截面配合 `ExtrudeNode` 生成工程型材，以及 `WedgeNode` 楔形体的原理。
 

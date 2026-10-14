@@ -1,11 +1,11 @@
 ---
 layout: default
-title: 第12章：源码剖析——Solid 内核与 BSP 算法
+title: 第13章：源码剖析——Solid 内核与 BSP 算法
 ---
 
-# 第12章：源码剖析——Solid 内核与 BSP 算法
+# 第13章：源码剖析——Solid 内核与 BSP 算法
 
-前面的章节教你"怎么用"，本章带你"看透原理"。我们潜入 OpenCSG.NET 的**引擎室**，逐层拆解 `Solid`、`Tree`、`Node`、`PolygonTreeNode` 这几个核心类，看清一次布尔运算从头到尾发生了什么。理解这些内部机制，能帮你**诊断疑难杂症**（为什么某个模型出洞、为什么慢）、**评估性能**，也为第 14 章的二次开发打底。本章偏理论，但每个结论都对应可观察的行为。
+前面的章节教你"怎么用"，本章带你"看透原理"。我们潜入 OpenCSG.NET 的**引擎室**，逐层拆解 `Solid`、`Tree`、`Node`、`PolygonTreeNode` 这几个核心类，看清一次布尔运算从头到尾发生了什么。理解这些内部机制，能帮你**诊断疑难杂症**（为什么某个模型出洞、为什么慢）、**评估性能**，也为第 15 章的二次开发打底。本章偏理论，但每个结论都对应可观察的行为。
 
 ## 12.1 Solid：一袋多边形 + 两个标志位
 
@@ -296,7 +296,7 @@ public static int GetTag() => System.Threading.Interlocked.Increment(ref staticT
 ---
 
 <div style="display:flex; justify-content:space-between; margin-top:3rem;">
-  <a href="https://znlgis.github.io/3d/OpenCSG.NET/第11章-CsgNode的JSON序列化/">← 上一章</a>
+  <a href="https://znlgis.github.io/3d/OpenCSG.NET/第12章-网格导出与工程辅助/">← 上一章</a>
   <a href="https://znlgis.github.io/3d/OpenCSG.NET/">目录</a>
-  <a href="https://znlgis.github.io/3d/OpenCSG.NET/第13章-实战案例冷弯C型钢檩条建模/">下一章 →</a>
+  <a href="https://znlgis.github.io/3d/OpenCSG.NET/第14章-实战案例冷弯C型钢檩条建模/">下一章 →</a>
 </div>
