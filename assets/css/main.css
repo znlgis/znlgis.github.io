@@ -294,6 +294,7 @@ footer {
 
 /* 侧边栏搜索 */
 .sidebar-search {
+    position: relative;
     margin: 0 0 0.75rem;
     padding: 0;
 }
@@ -412,9 +413,6 @@ footer {
 }
 
 /* ===== 搜索 ===== */
-.search-container {
-    position: relative;
-}
 .search-results {
     display: none;
     position: absolute;
@@ -461,8 +459,7 @@ footer {
     border-radius: 2px;
     color: inherit;
 }
-.search-no-results,
-.search-loading {
+.search-no-results {
     padding: 0.75rem;
     color: #999;
     font-size: 0.8rem;
@@ -532,7 +529,7 @@ code {
     padding: 0.15rem 0.4rem;
     border-radius: 3px;
     font-size: 0.88em;
-    font-family: "JetBrains Mono", SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
     border: 1px solid var(--code-border);
     transition: background var(--transition), border-color var(--transition);
 }

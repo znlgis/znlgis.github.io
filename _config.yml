@@ -58,7 +58,9 @@ exclude:
   - package.json
   - package-lock.json
   - fix_cnblogs_links.py
+  - scripts
   - docs
+  - gis/lin-ear-th-inking/PROGRESS.md
 
 # 集合配置
 collections:
@@ -67,7 +69,6 @@ collections:
     permalink: /:title/
 
 # GitHub Pages 安全模式
-profile: false
 lsi: false
 
 # 默认值

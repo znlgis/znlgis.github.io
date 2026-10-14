@@ -33,4 +33,5 @@ jobs:
             --disable-external \
             --allow-hash-href \
             --ignore-empty-alt \
-            --ignore-status-codes "0,403,429"
+            --ignore-status-codes "0,403,429" \
+            --swap-urls "^https\://znlgis\.github\.io:/"

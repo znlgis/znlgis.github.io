@@ -1041,7 +1041,7 @@ def segment_markdown(md_content: str) -> list[Segment]:
 ```
 
 翻译时，LLM 被要求：
-1. 保留所有 Markdown 标记（`##`、`|表格|`、`![图片](https://znlgis.github.io/ai/opengis-skills/08-AI与Agent技能详解/path/)`、行内代码 `` ` `` 等）
+1. 保留所有 Markdown 标记（`##`、`|表格|`、`![图片](path)`、行内代码 `` ` `` 等）
 2. 不翻译代码块和命令行示例（保留原样）
 3. 术语翻译参考 glossary 文件
 4. 遇到不确定的术语时保持原文并添加 `(注:原文xxx)` 注释

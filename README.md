@@ -1,6 +1,6 @@
 # znlgis 博客
 
-GIS 开发与技术分享博客，涵盖 GIS、CAD、C#、3D、AI 等领域，共 **83 个教程系列、1139 篇文章**。
+GIS 开发与技术分享博客，涵盖 GIS、CAD、C#、3D、AI 等领域，共 **83 个教程系列、1140 篇文章**。
 
 在线访问：[https://znlgis.github.io](https://znlgis.github.io)
 
@@ -10,9 +10,9 @@ GIS 开发与技术分享博客，涵盖 GIS、CAD、C#、3D、AI 等领域，�
 |------|--------|--------|----------|
 | 🌍 GIS 教程 | 20 | 315 | GDAL · GeoServer · PostGIS · QGIS · OpenLayers · CesiumJS |
 | 📖 GIS 基础 | 4 | 12 | 数据格式 · 地图服务 · 开发环境 · 开发技巧 |
-| 📝 博客翻译 | 1 | 32 | Lin.ear th.inking |
+| 📝 博客翻译 | 1 | 31 | Lin.ear th.inking |
 | 📐 CAD 开发 | 19 | 258 | FreeCAD · OCCT · KiCad · OpenSCAD · CadQuery · Xbim |
-| 🧊 3D 开发 | 5 | 60 | SuperSplat · Ara3D-SDK · Photo-Sphere-Viewer · Elements |
+| 🧊 3D 开发 | 5 | 62 | SuperSplat · Ara3D-SDK · Photo-Sphere-Viewer · Elements |
 | 💻 C# 开发 | 8 | 126 | Admin.NET · Furion · NPOI · ReoGrid · SqlSugar |
 | 🤖 AI 系列 | 11 | 129 | Dify · OpenClaw · DeepSeek Harness · OpenCode · OpenGIS-Skills |
 | 🔌 IoT 物联网 | 1 | 25 | KE3036-Keyes-Pico (Raspberry Pi Pico) |
@@ -73,6 +73,14 @@ bundle exec jekyll serve
 bundle exec jekyll build
 ```
 
+### 站内链接自检
+
+本地无 Ruby 环境时，可用零依赖的 Node 脚本检查站内链接（含路径大小写校验，GitHub Pages 为大小写敏感环境）：
+
+```bash
+node scripts/check-internal-links.js
+```
+
 ### 目录结构
 
 ```
@@ -93,6 +101,7 @@ bundle exec jekyll build
 ├── sci/                 # 源码解读
 ├── others/              # 其他教程
 ├── demos/               # 项目演示
+├── scripts/             # 本地检查脚本（不参与构建）
 ├── index.html           # 首页
 ├── about.md             # 关于页
 ├── 404.md               # 404 页面
@@ -102,6 +111,8 @@ bundle exec jekyll build
 ## 🔗 关于内部链接
 
 `.md` 文件中的内部链接使用完整的 `https://znlgis.github.io/...` URL，而非相对路径（如 `/gis/tutorial/gdal/`）。原因是当文章被第三方网站转载、引用或在 GitHub/Gitee 等平台浏览时，相对路径无法正确解析，读者会遇到 404。使用完整 URL 可以确保无论在哪个平台引用，链接都能直接跳转到对应页面。
+
+CI 构建流程会把该域名的链接重写为站内路径逐一校验（htmlproofer `--swap-urls`），断链会导致构建失败，因此新增或调整页面路径后需同步更新站内引用。
 
 ## 📄 许可证
 

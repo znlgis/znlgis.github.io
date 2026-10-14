@@ -34,47 +34,17 @@ title: 关于
 
 ## 📊 教程内容
 
-### GIS 开发（19个系列）
-- GDAL 完整教程（15章）
-- GeoServer 系列（8章）
-- GeoServer REST API 系列（18章）
-- QGIS 完整教程（20章）
-- PostGIS 系列（18章）
-- CesiumJS 系列（18章）
-- GeoTools 系列（17章）
-- OpenLayers 系列（18章）
-- NetTopologySuite 系列（15章）
-- SharpMap 系列（17章）
-- Mapsui 系列（16章）
-- GeoServer Cloud 系列（10章）
-- OpenGIS Utils for Java / .NET
-- Esri Geometry API for Java / .NET
-- GeoPipeAgent / GeoPandas / Shapely
+{% assign total_series = 0 %}{% for section in site.data.navigation %}{% assign total_series = total_series | plus: section.children.size %}{% endfor %}
 
-### CAD 开发（18个系列）
-- FreeCAD 完整教程（30章）
-- OCCT 几何内核教程（18章）
-- KiCad EDA教程（18章）
-- OpenSCAD 脚本化CAD（16章）
-- Xbim BIM开发（16章）
-- LibreCAD / QCAD / SolveSpace
-- CadQuery / Clipper1 / Clipper2
-- IFoxCAD / FY_Layout / LightCAD
-- LibreDWG / Astral3D / Chili3D
+共 **{{ total_series }} 个教程系列**，按分类整理如下（与侧边栏目录树一致）：
 
-### C# 开发（8个系列）
-- Admin.NET 框架（10章）
-- Furion 框架（20章）
-- NPOI Office操作（18章）
-- ReoGrid 电子表格（20章）
-- SqlSugar ORM（15章）
-- SOD 框架 / .NET Reactor
+{% for section in site.data.navigation %}
+### {{ section.icon }} {{ section.title }}（{{ section.children | size }} 个系列）
 
-### AI 系列（5个系列）
-- Dify AI应用平台（10章）
-- oh-my-openagent（10章）
-- OpenClaw 多智能体网关（12章）
-- superpowers-zh / hermes-agent
+{% for item in section.children %}- [{{ item.title }}](https://znlgis.github.io{{ item.url }})
+{% endfor %}
+
+{% endfor %}
 
 ---
 

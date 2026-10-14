@@ -286,7 +286,7 @@ document.addEventListener('DOMContentLoaded', function() {
             anchor.className = 'heading-anchor';
             anchor.href = '#' + heading.id;
             anchor.textContent = '#';
-            anchor.setAttribute('aria-hidden', 'false');
+            anchor.setAttribute('aria-label', '链接到本节');
             heading.appendChild(anchor);
         }
     }
@@ -447,6 +447,7 @@ document.addEventListener('DOMContentLoaded', function() {
             var normalizedPath = currentPath.replace(/\/$/, '');
             if (normalizedPath === normalizedHref || normalizedPath.indexOf(normalizedHref + '/') === 0) {
                 link.classList.add('active');
+                link.setAttribute('aria-current', 'page');
                 var parent = link.closest('.tree-children');
                 while (parent) {
                     parent.classList.add('expanded');
