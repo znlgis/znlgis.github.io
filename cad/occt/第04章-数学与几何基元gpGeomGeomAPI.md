@@ -161,3 +161,15 @@ Handle(Geom_BSplineSurface) surf =
 - 调试自由曲面可以输出 `Poles()`、`Knots()`、`Multiplicities()` 与 `Degree()` 检查。
 
 掌握 `gp`、`Geom`、`Geom2d`、`GeomAPI` 与 Adaptor 之后，便可以从纯几何过渡到 B-Rep 拓扑结构。下一章我们将进入 `TopoDS` 与 `BRep`。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/cad/occt/第03章-基础类与底层框架FoundationClasses/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/occt/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/cad/occt/第05章-拓扑数据结构TopoDS与BRep/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

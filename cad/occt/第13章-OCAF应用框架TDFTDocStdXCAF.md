@@ -159,3 +159,15 @@ ct->SetColor(lp, Quantity_Color(Quantity_NOC_RED), XCAFDoc_ColorSurf);
 - 命令行批处理工具（用普通 STEP/glTF 直接处理）。
 
 OCAF 是 OCCT 应用从“算法库”升级到“CAD 应用”的关键。下一章我们看 OCCT 的官方 Python 替代品——Tcl 驱动的 Draw Test Harness。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/cad/occt/第12章-数据交换STEPIGESSTLglTFOBJ/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/occt/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/cad/occt/第14章-Draw测试框架与TCL扩展/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

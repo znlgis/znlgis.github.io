@@ -1417,3 +1417,15 @@ class Program
 6. **自动化工具**：创建了完整的代码生成工具，大幅提高开发效率
 
 通过本章的学习，您应该能够快速从数据库生成完整的项目代码，并保持代码与数据库的同步。在下一章中，我们将学习SqlSugar的多数据库支持功能。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/csharp/SqlSugar/第11章-AOP与日志监控/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/csharp/SqlSugar/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/csharp/SqlSugar/第13章-多数据库支持/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

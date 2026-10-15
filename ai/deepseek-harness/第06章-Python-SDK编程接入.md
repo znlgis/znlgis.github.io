@@ -353,3 +353,15 @@ with DeepSeekHarness(provider="deepseek-official", model="deepseek-v4-flash") as
 - `danger-full-access` 只在一次性 checkout 或容器内使用。
 - 三种程序化入口：headless（一次性 CLI）、Python SDK（编程控制）、ACP（外部协议客户端，见第 7 章）。
 - 生命周期细节：runtime 惰性启动、`events` 仅 root 而 `notifications` 含后代、`session_prompt()` 返回 `MessageId`；SDK 始终以 `--profile <name>` 拉起内置 `dsh`，配置来自 profile 层 → home patch → `patches` 顺序叠加，缺 `dsh_home` 即启动报错，无隐式兜底。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/ai/deepseek-harness/第05章-CLI与Profile-Bundle体系/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/ai/deepseek-harness/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/ai/deepseek-harness/第07章-ACP与JSON-RPC自动化接入/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

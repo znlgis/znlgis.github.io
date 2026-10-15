@@ -192,3 +192,15 @@ JTS 的外部和内部多边形包络功能为几何简化和空间分析提供�
 - [GEOS ConcaveHull 类](https://libgeos.org/doxygen/classgeos_1_1algorithm_1_1hull_1_1ConcaveHull.html)
 - [JTS GitHub 仓库](https://github.com/locationtech/jts)
 - [Concave Hull 算法论文](https://arxiv.org/pdf/1309.7829)
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/2022-Validating-Polygonal-Coverages/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/2022-DE-9IM-Spatial-Predicates/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

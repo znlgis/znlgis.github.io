@@ -1263,3 +1263,15 @@ Event
 - 花 10 分钟将 Sentry SDK 集成到你正在开发的一个实际项目中。
 - 故意触发几个不同类型的错误，观察它们在 Sentry 控制台中的展示效果。
 - 邀请一位同事加入你的 Sentry 组织，体验一下 Issue 的分配和协作流程。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/csharp/sentry/第02章-Sentry架构全景/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/csharp/sentry/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/csharp/sentry/第04章-开发环境搭建/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

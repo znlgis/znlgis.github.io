@@ -161,3 +161,15 @@ OCCT 不内置“表达式”，但通过 `gp_Trsf`、`TopLoc_Location` 与 `BRe
 - **共享 TShape 误改**：拓扑修改前应 `BRepBuilderAPI_Copy(shape, true /*copyGeom*/)`。
 
 掌握了几何与拓扑的数据层，下一章开始进入 OCCT 的“算法层”——从 `BRepBuilderAPI`/`BRepPrimAPI` 到布尔运算、局部操作和高级建模。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/cad/occt/第05章-拓扑数据结构TopoDS与BRep/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/occt/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/cad/occt/第07章-建模算法概览BRepBuilderAPI与BRepPrimAPI/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

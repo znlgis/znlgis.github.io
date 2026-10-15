@@ -17,9 +17,8 @@ title: Windows下的GDAL环境配置
 
 ![win2](https://znlgis.github.io/gis/basic/env/img/win2.png)
 
-输入国内源
-http://gwmodel.whu.edu.cn/mirrors/osgeo4w
-默认的源是国外的，下载比较慢。
+选择下载源
+默认的源是国外的，下载比较慢；原教程推荐的国内源（gwmodel.whu.edu.cn）已失效，请直接使用官方源，或自行查找仍可用的镜像源。
 
 ![win3](https://znlgis.github.io/gis/basic/env/img/win3.png)
 
@@ -50,3 +49,15 @@ C:\OSGeo4W\bin
 %PYTHONHOME%\Scripts
 
 到此GDAL环境基本配置完成。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <span></span>
+  <a href="https://znlgis.github.io/gis/basic/env/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/basic/env/在Ubuntu WSL2里配置GDAL Docker环境/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

@@ -13,7 +13,7 @@ title: CAD 教程
 
 | 教程系列 | 章节数 | 难度 | 核心技术 |
 |----------|:------:|:----:|----------|
-| [FreeCAD 教程](https://znlgis.github.io/cad/FreeCAD/) | 30章 | ⭐⭐⭐ | Python 参数化 CAD |
+| [FreeCAD 教程](https://znlgis.github.io/cad/FreeCAD/) | 18章 | ⭐⭐⭐ | Python 参数化 CAD |
 | [OCCT 教程](https://znlgis.github.io/cad/occt/) | 18章 | ⭐⭐⭐⭐ | 几何内核 OpenCASCADE |
 | [OpenSCAD 教程](https://znlgis.github.io/cad/openscad/) | 16章 | ⭐⭐ | 脚本化 CSG 建模 |
 | [CadQuery 教程](https://znlgis.github.io/cad/cadquery/) | 10章 | ⭐⭐⭐ | Python 参数化建模 |

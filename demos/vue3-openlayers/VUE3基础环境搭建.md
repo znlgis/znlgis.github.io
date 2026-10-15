@@ -28,6 +28,8 @@ npm install webpack -g
 npm install  webpack-cli -g
 ```
 
+> 注：这是 Vue CLI 时代的历史做法。当前 Vue3 项目以 Vite 为主流构建工具，无需全局安装 webpack（见下文"安装vite"）。
+
 ## 安装vue-cli
 
 Vue CLI（命令行界面）是一个用于快速Vue.js开发的完整系统，为Vue生态系统提供了一个标准的工具基线。它允许开发者快速搭建新项目、向现有项目添加功能以及处理项目特定任务，如构建、测试和代码检查。以下是其核心功能：
@@ -42,6 +44,8 @@ Vue CLI（命令行界面）是一个用于快速Vue.js开发的完整系统，�
 ```bash
 npm install -g @vue/cli
 ```
+
+> 注：Vue CLI 已进入维护模式，新项目建议改用 Vite 脚手架，例如 `npm create vite@latest`。
 
 ## 安装vue-router
 
@@ -93,8 +97,10 @@ Vuex 的一些主要用途：
 在 Vue 应用中使用 Vuex，可以极大地提高应用的可维护性和开发效率。
 
 ```Bash
-npm install vuex@next -g
+npm install pinia
 ```
+
+> 注：Vue3 官方推荐的状态管理库现为 Pinia（Vuex 已进入维护模式），新项目优先使用 Pinia。
 
 ## 安装element-plus
 
@@ -167,3 +173,15 @@ ESLint 的配置通常在项目的根目录下的 `.eslintrc` 文件或 `package
 - `package-lock.json`: 锁定项目依赖的版本，确保在不同环境下安装的依赖版本一致。
 - `README.md`: 项目的说明文件，通常包含项目介绍、安装和使用指南。
 - `vue.config.js`: Vue CLI 的配置文件，用于自定义项目的构建和开发服务器等配置。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/demos/vue3-openlayers/NVM及NODE开发环境搭建/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/demos/vue3-openlayers/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/demos/vue3-openlayers/OpenLayers简介/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

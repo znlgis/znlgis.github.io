@@ -5,7 +5,7 @@ title: 第03章：Studio 桌面工作台与项目管理
 
 # 第03章：Studio 桌面工作台与项目管理
 
-> **产品官网**：[https://shandianweihu.com/](https://shandianweihu.com/) — 获取最新产品信息、版本更新和下载安装包。
+> **厂商发布渠道**：[厂商站点](https://shandianweihu.com/) — 获取最新产品信息、版本更新和下载安装包。
 
 ---
 
@@ -507,4 +507,16 @@ Studio 中有多种类型的对话框，用于收集用户输入或请求确认�
 
 ---
 
-> **产品官网**：[https://shandianweihu.com/](https://shandianweihu.com/) — 获取最新产品信息、版本更新和下载安装包。
+> **厂商发布渠道**：[厂商站点](https://shandianweihu.com/) — 获取最新产品信息、版本更新和下载安装包。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/cad/TongWen/第02章-安装与启动/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/TongWen/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/cad/TongWen/第04章-图纸文字提取/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

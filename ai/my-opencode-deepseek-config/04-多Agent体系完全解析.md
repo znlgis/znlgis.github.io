@@ -1068,6 +1068,18 @@ Orchestrator 的派发纪律同样体现这些原则：「Reference paths, don't
 ---
 
 > **参考资料**
-> - [my-opencode-deepseek-config/agents/](https://github.com/znlgis/my-opencode-deepseek-config/tree/main/agents) — 12 个 Agent 定义文件
-> - [AGENTS.md](https://github.com/znlgis/my-opencode-deepseek-config/blob/main/AGENTS.md) — 全局规则
-> - [opencode.jsonc](https://github.com/znlgis/my-opencode-deepseek-config/blob/main/opencode.jsonc) — OpenCode 配置
+> - [my-opencode-deepseek-config/agents/](https://github.com/znlgis/my-opencode-deepseek-config/tree/main/opencode/agents) — 12 个 Agent 定义文件
+> - [AGENTS.md](https://github.com/znlgis/my-opencode-deepseek-config/blob/main/opencode/AGENTS.md) — 全局规则
+> - [opencode.jsonc](https://github.com/znlgis/my-opencode-deepseek-config/blob/main/opencode/opencode.jsonc) — OpenCode 配置
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/ai/my-opencode-deepseek-config/03-模型配置详解/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/ai/my-opencode-deepseek-config/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/ai/my-opencode-deepseek-config/05-Orchestrator路由机制深度解析/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

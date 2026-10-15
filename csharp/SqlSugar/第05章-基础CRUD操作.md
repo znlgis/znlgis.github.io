@@ -1418,3 +1418,15 @@ public class UserListDto
 通过本章的学习,你应该能够熟练使用SqlSugar进行各种数据库操作,并能够根据实际需求选择合适的操作方式。
 
 **下一章**: [第06章-高级查询与Lambda表达式](https://znlgis.github.io/csharp/SqlSugar/第06章-高级查询与Lambda表达式/)
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/csharp/SqlSugar/第04章-实体类与CodeFirst/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/csharp/SqlSugar/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/csharp/SqlSugar/第06章-高级查询与Lambda表达式/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

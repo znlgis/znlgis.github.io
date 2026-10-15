@@ -281,3 +281,15 @@ model.SaveAs("HelloIfc.ifc");
 - 编辑后用回环 SaveAs/Open + 第三方校验工具验证。
 
 下一章我们专门拆解 IFC 中的**属性集、量集、材料、分类**——这些"语义"信息，往往才是 BIM 项目最有价值的部分。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/cad/Xbim/第07章-IFC数据查询过滤与LINQ检索/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/Xbim/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/cad/Xbim/第09章-属性集量集材料与分类系统/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

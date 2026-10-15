@@ -353,3 +353,15 @@ session log 是贯穿后续章节的重要概念，这里先给一句话预告�
 - 每个 session 有列表与历史，持久化为 session log，其完整语义见第十章。
 
 > 下一步：[第四章：模型配置与供应商体系](https://znlgis.github.io/ai/deepseek-harness/第04章-模型配置与供应商体系/)深入配置自定义端点、视觉模型与排障。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/ai/deepseek-harness/第02章-安装与环境配置/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/ai/deepseek-harness/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/ai/deepseek-harness/第04章-模型配置与供应商体系/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

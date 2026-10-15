@@ -189,3 +189,15 @@ npm test
 ## 7.13 本章小结
 
 并行 Agent 适合独立问题域，子 Agent 驱动开发适合按计划高质量执行，Git Worktree 提供工作区隔离。三者结合后，AI 不再是一个在同一上下文里越做越乱的助手，而是由控制者协调的多角色工程流程。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/ai/superpowers-zh/06-代码审查反馈处理与分支收尾/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/ai/superpowers-zh/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/ai/superpowers-zh/08-中国特色Skills与本土团队落地/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

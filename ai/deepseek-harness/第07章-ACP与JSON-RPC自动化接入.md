@@ -17,7 +17,7 @@ ACP（Agent Client Protocol，[agentclientprotocol.com](https://agentclientproto
 
 > It is an interoperability transport, not a presentation or human-interaction layer.
 
-翻译过来：ACP 组是把 harness 的 agent 通过 ACP 协议暴露给**程序化客户端**的传输层，不是给人用的界面层。它对应的包是 [packages/acp/acp/](https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/acp/acp/README.md)（npm 名 `@deepseek-ai/dsh-acp`）。配套的进程外 subagent *客户端* 不在这个组里，而在 [subagent/subagent-acp](https://github.com/deepseek-ai/deepseek-harness/blob/master/subagent/subagent-acp/README.md)，因为它实现的是 subagent provider 接口。
+翻译过来：ACP 组是把 harness 的 agent 通过 ACP 协议暴露给**程序化客户端**的传输层，不是给人用的界面层。它对应的包是 [packages/acp/acp/](https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/acp/acp/README.md)（npm 名 `@deepseek-ai/dsh-acp`）。配套的进程外 subagent *客户端* 不在这个组里，而在 [subagent/subagent-acp](https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/subagent/subagent-acp/README.md)，因为它实现的是 subagent provider 接口。
 
 ACP 的传输形态，就是本章标题里的另一半——**JSON-RPC stdio**：
 
@@ -203,15 +203,15 @@ Client 业务包依赖这个 facade，而不是 Gateway 实现或单个 Remote �
 
 ## 7.5 hooks 包：Claude Code / Codex 的 hook bridge
 
-[packages/hooks/](https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/hooks/README.md) 是另一个"外部协议桥接到 harness"的例子，但桥接对象不是 RPC，而是 **shell hook**。
+[packages/experimental/](https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/experimental/README.md) 是另一个"外部协议桥接到 harness"的例子，但桥接对象不是 RPC，而是 **shell hook**。
 
 Claude Code 和 Codex 都允许用户通过一份 `hooks.json` 在生命周期点挂 shell 命令。hooks 子系统让用户把已有的那份配置原样搬过来——point 一个 bridge plugin 到现成的 `hooks.json`，那些外部 shell hook 就能在 harness 的**类型化拦截点**上运行。
 
 | 包 | 角色 | 形态 |
 |---|---|---|
-| [`hook-protocol/`](https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/hooks/hook-protocol/README.md) | 共享 shell-hook 协议库 | library |
-| [`hooks-claude-code/`](https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/hooks/hooks-claude-code/README.md) | Claude Code hook bridge | plugin |
-| [`hooks-codex/`](https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/hooks/hooks-codex/README.md) | Codex hook bridge | plugin |
+| [`hook-protocol/`](https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/experimental/hook-protocol/README.md) | 共享 shell-hook 协议库 | library |
+| [`hooks-claude-code/`](https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/experimental/hooks-claude-code/README.md) | Claude Code hook bridge | plugin |
+| [`hooks-codex/`](https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/experimental/hooks-codex/README.md) | Codex hook bridge | plugin |
 
 这里要厘清一个概念层级：**canonical 扩展面本身是 harness 的 typed interception points**（`agent/pre-step`、`tools/pre-execute` 等）。一个"原生 hook"就是一个挂在那些扩展点上的普通 Cordis plugin——它更强，有类型化返回、没有序列化边界。这两个包只是把外部 shell-hook 协议翻译到同一扩展面上的 **bridge**。
 
@@ -244,7 +244,7 @@ Python SDK 与 TypeScript `dsh-sdk-client` 是"设计孪生"：共享同一个 r
 
 ## 7.7 自指 Cordis 工具集（web 的 cordis preset）
 
-`demo:cordis` 这类演示 wrapper 已随顶层 `examples/` 一起退役。它当年演示的**自指 Cordis 工具集**并没有消失，而是成了 web profile 的正式能力：一组 `@deepseek-ai/dsh-tool-cordis`（配 `@deepseek-ai/dsh-cordis-host-runner` / `@deepseek-ai/dsh-cordis-client-runner`）插件，作为可切换的 agent preset 之一交付。想上手，以 [web-app bundle README](https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/bundle/web-app/README.md) 与其 [cordis preset 补丁](https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/bundle/web-app/presets/cordis.patch.yml) 为入口，设计动机记在 [self-referential cordis toolset 设计笔记](https://github.com/deepseek-ai/deepseek-harness/blob/master/.agents/notes/implemented/feature/2026-07-08-self-referential-cordis-toolset.zh.md)。
+`demo:cordis` 这类演示 wrapper 已随顶层 `examples/` 一起退役。它当年演示的**自指 Cordis 工具集**并没有消失，而是成了 web profile 的正式能力：一组 `@deepseek-ai/dsh-tool-cordis`（配 `@deepseek-ai/dsh-cordis-host-runner` / `@deepseek-ai/dsh-cordis-client-runner`）插件，作为可切换的 agent preset 之一交付。想上手，以 [web-app bundle README](https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/bundle/web-app/README.md) 与其 [cordis preset 补丁](https://github.com/deepseek-ai/deepseek-harness/blob/master/packages/bundle/web-app/presets/cordis.patch.yml) 为入口，设计动机记在 [self-referential cordis toolset 设计笔记](https://github.com/deepseek-ai/deepseek-harness/blob/master/.agents/notes/archived/feature/2026-07-08-self-referential-cordis-toolset.zh.md)。
 
 启用方式不再是一条 `demo:` 脚本：`dsh web` 起浏览器应用后，每个会话选一个随发行版交付的 agent preset（默认 `standard`），在 Agent 预设设置页把默认项换成 `cordis` 即可让该会话挂上这套工具（保存结果持久化到 `$DSH_HOME/profiles/web/cordis.patch.yml`）。
 
@@ -345,3 +345,15 @@ console.log('prompt settled:', result)
 - **Python SDK 本质是子进程 + newline-delimited JSON-RPC 封装**，是 TS `dsh-sdk-client` 的设计孪生。
 - **自指 Cordis 工具集**：`@deepseek-ai/dsh-tool-cordis` 叠上 Web profile（`packages/bundle/web-app/presets/cordis.patch.yml` 的 `cordis` preset），让 agent 能 inspect/mount 自己的插件运行时。
 - **选型**：headless 适合一次性任务，Python SDK 适合 Python 嵌入，ACP 适合语言无关、多 session、程序化审批的 parent agent 场景。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/ai/deepseek-harness/第06章-Python-SDK编程接入/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/ai/deepseek-harness/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/ai/deepseek-harness/第08章-Cordis插件范式入门/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

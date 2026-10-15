@@ -9,7 +9,7 @@ title: 第08章：装配设计Assembly
 
 装配设计用于组织多个零件的空间关系。单个零件解决"形状是什么"，装配解决"零件之间如何定位、连接、运动和替换"。
 
-从 FreeCAD 1.1.0 起，Assembly 工作台从第三方插件升格为**核心工作台**，内置在官方安装包中，无需额外安装。工作台采用 Joint 约束系统，提供固定约束、旋转关节、圆柱关节、滑动关节、球关节、距离约束、平面贴合、角度约束等约束类型，取代旧版 A2plus 等的独立装配方案。
+从 FreeCAD 1.0（2024-11）起，Assembly 工作台从第三方插件升格为**核心工作台**，内置在官方安装包中，无需额外安装。工作台采用 Joint 约束系统，提供固定约束、旋转关节、圆柱关节、滑动关节、球关节、距离约束、平面贴合、角度约束等约束类型，取代旧版 A2plus 等的独立装配方案。
 
 装配常见任务：
 
@@ -215,3 +215,15 @@ Assembly 工作台对外部零件采用链接引用。如果修改了外部零�
 **大型装配体性能建议**
 
 当装配体包含几十个以上零件时，可在菜单 **视图 → 显示模式** 中选择"简易表示"（Simplified representation），降低图形负载。对于暂不编辑的零部件，右键 → "冻结"可将其排除在重计算之外。标准件（螺栓、垫圈）使用简化模型（去除螺纹和倒角）能显著提升性能。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/cad/FreeCAD/第07章-参数化表达式与Spreadsheet/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/FreeCAD/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/cad/FreeCAD/第09章-工程图TechDraw/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

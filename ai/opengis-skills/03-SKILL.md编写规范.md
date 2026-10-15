@@ -252,7 +252,7 @@ tags:
 当项目仓库不可用（如已私有化或 404）时，应在引用块中标注警告：
 
 ```markdown
-> **项目地址：** <https://github.com/znlgis/geopipe-agent>（仓库已404/私有，暂不可用）
+> **项目地址：** `znlgis/geopipe-agent`（仓库已404/私有，暂不可用）
 >
 > **许可证：** MIT
 >
@@ -937,3 +937,15 @@ spatialite mydata.sqlite ".loadshp roads result" -c UTF-8
 6. **写完后对照检查清单自检**——确保 frontmatter、代码可运行性、格式一致性全部到位
 
 下一章将介绍如何将编写好的 SKILL.md 集成到不同的 AI 编程工具中，让它们真正"学会"这些技能。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/ai/opengis-skills/02-三层索引架构/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/ai/opengis-skills/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/ai/opengis-skills/04-AI工具集成指南/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

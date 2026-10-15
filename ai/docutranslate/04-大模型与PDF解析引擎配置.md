@@ -153,3 +153,15 @@ result.save(fmt="markdown")
 - 想离线翻译就用 Ollama / LM Studio 本地模型。
 - 翻译 PDF 才需要 MinerU：在线 MinerU 免费但 Token 14 天有效且内容上云；本地 MinerU 全离线但需自行部署。
 - 记住：大模型负责「翻译」，MinerU 负责「把 PDF 变文本」，二者独立配置。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/ai/docutranslate/03-WebUI界面操作详解/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/ai/docutranslate/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/ai/docutranslate/05-支持的文件格式与工作流详解/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

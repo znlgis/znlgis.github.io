@@ -260,3 +260,15 @@ def my_custom_skill():
 ---
 
 **导航**：[← 第十六章：CLI 命令行工具](https://znlgis.github.io/gis/tutorial/GeoPipeAgent/第16章-CLI命令行工具/) ｜ [第十八章：自定义步骤与扩展 →](https://znlgis.github.io/gis/tutorial/GeoPipeAgent/第18章-自定义步骤与扩展开发/)
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/gis/tutorial/GeoPipeAgent/第16章-CLI命令行工具/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/tutorial/GeoPipeAgent/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/tutorial/GeoPipeAgent/第18章-自定义步骤与扩展开发/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

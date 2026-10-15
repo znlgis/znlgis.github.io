@@ -282,3 +282,15 @@ OpenCode 会在发送前压缩过大图片，避免巨大的 base64 负载吃 To
 ## 9.7 小结
 
 省 Token 的本质是**管理上下文、分层用模、消除浪费**三件事。OpenCode 把这三件事都做成了显式配置：`compaction`/`prune`、`small_model`/变体/推理强度、`plan` 默认 + `steps` + 只读子代理 + MCP 克制。把第九章的清单逐条落到你的 `opencode.json` 里，你就拥有了一套「又快又省」的最优化配置。下一章给出可直接套用的完整配置模板，并讲解最佳实践与排障。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/ai/opencode/08-工具权限与MCP扩展/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/ai/opencode/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/ai/opencode/10-最佳实践完整配置模板与排障/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

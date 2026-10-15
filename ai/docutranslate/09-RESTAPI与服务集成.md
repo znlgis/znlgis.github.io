@@ -129,3 +129,15 @@ docutranslate -i --host 0.0.0.0
 - 翻译走「提交任务 → 轮询状态 → 下载结果」的异步模式。
 - 服务化部署用环境变量预置模型配置，并注意鉴权、限流与输出持久化。
 - 下一章讲另一种「服务化」形态——把 DocuTranslate 作为 MCP 服务器接入 AI 助手。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/ai/docutranslate/08-术语表与自定义提示词/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/ai/docutranslate/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/ai/docutranslate/10-MCP集成与AI助手接入/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

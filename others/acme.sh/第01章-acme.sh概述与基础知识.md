@@ -165,7 +165,6 @@ acme.sh 支持多个 CA，**当前默认 CA 为 ZeroSSL**（注意：早期版�
 | ZeroSSL（默认） | `zerossl` | `https://acme.zerossl.com/v2/DV90` | 默认 CA，每域名免费 3 张证书 |
 | Let's Encrypt | `letsencrypt` | `https://acme-v02.api.letsencrypt.org/directory` | 最知名的免费 CA |
 | Let's Encrypt (测试) | `letsencrypt_test` | staging URL | 仅用于测试，证书不受信任 |
-| Buypass | `buypass` | `https://api.buypass.com/acme/directory` | 挪威 CA，有效期 180 天 |
 | SSL.com | `ssl_com` | `https://acme.ssl.com/sslcom-dv-rsa` | 付费 CA，支持 ACME 免费 DV |
 | Google Public CA | `google` | `https://dv.acme-v02.api.pki.goog/directory` | Google 公共 CA（需要 Google 账户） |
 | DigiCert | `digicert` | `https://acme.digicert.com/v2/OV` | 主要用于 OV 证书 |
@@ -185,11 +184,6 @@ acme.sh 支持多个 CA，**当前默认 CA 为 ZeroSSL**（注意：早期版�
 - 中国大陆访问：偶有网络波动，但总体可用
 - 适用于：大多数场景的首选之一
 
-**Buypass**
-- 证书有效期：**180 天**（比 Let's Encrypt 和 ZeroSSL 更长，减少续期频率）
-- 特点：挪威公司，GDPR 合规性好
-- 适用于：希望减少续期操作频率的场景
-
 **Google Public CA**
 - 证书有效期：90 天
 - 特点：Google 背书，可信度高
@@ -207,8 +201,8 @@ acme.sh --set-default-ca --server letsencrypt
 # 将默认 CA 切换回 ZeroSSL
 acme.sh --set-default-ca --server zerossl
 
-# 将默认 CA 切换为 Buypass
-acme.sh --set-default-ca --server buypass
+# 注意：acme.sh 3.1.6 起已移除 Buypass（其免费证书已于 2025-10-15 停止签发），
+# 不要再使用 --server buypass，可在 letsencrypt / zerossl / google 之间切换
 
 # 仅对单次申请使用特定 CA（不修改默认值）
 acme.sh --issue --server letsencrypt -d example.com --dns dns_cf
@@ -333,7 +327,19 @@ www.example.org   ""         n/a                  LetsEncrypt 2024-02-01T10:00:0
 - acme.sh 是纯 Shell 实现的 ACME 协议客户端，零依赖、跨平台、支持 200+ DNS API
 - SSL/TLS 证书分为 DV/OV/EV 三级，acme.sh 主要申请免费 DV 证书
 - ACME 协议通过 HTTP-01 或 DNS-01 挑战验证域名所有权
-- 默认 CA 为 ZeroSSL，可随时切换为 Let's Encrypt、Buypass 等
+- 默认 CA 为 ZeroSSL，可随时切换为 Let's Encrypt 等（Buypass 已于 acme.sh 3.1.6 移除）
 - 证书文件包括私钥、域名证书、完整证书链，推荐使用 `fullchain.cer` 配置 HTTPS
 
 下一章将介绍 acme.sh 的安装方法和初始配置。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <span></span>
+  <a href="https://znlgis.github.io/others/acme.sh/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/others/acme.sh/第02章-安装与快速入门/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

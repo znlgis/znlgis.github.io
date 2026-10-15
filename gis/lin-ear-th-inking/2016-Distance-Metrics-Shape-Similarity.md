@@ -415,3 +415,15 @@ JTS 提供了丰富的距离度量工具：
 - [JTS DiscreteHausdorffDistance API](https://locationtech.github.io/jts/javadoc/org/locationtech/jts/algorithm/distance/DiscreteHausdorffDistance.html)
 - [Hausdorff Distance - Wikipedia](https://en.wikipedia.org/wiki/Hausdorff_distance)
 - [Fréchet Distance - Wikipedia](https://en.wikipedia.org/wiki/Fr%C3%A9chet_distance)
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/2017-Precision-Model-Robustness/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/2015-Evenly-Distributed-Random-Points/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

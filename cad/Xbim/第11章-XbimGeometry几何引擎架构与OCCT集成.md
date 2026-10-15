@@ -251,3 +251,15 @@ warn: Boolean Cut failed for #1234 IfcExtrudedAreaSolid x IfcOpeningElement #456
 掌握它需要理解 OCCT 的 B-Rep 数据结构、容差系统、布尔算法。如果你做过 OCCT 二次开发，就会发现 Xbim.Geometry 几乎就是"IFC 形状 → OCCT 形状"的一对一映射。
 
 下一章我们会具体走完一遍：从 `IfcExtrudedAreaSolid` 到三角网格的全过程，以及布尔运算、扫掠、放样、面修复等高级几何。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/cad/Xbim/第10章-空间结构构件与IfcRelationship关系网络/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/Xbim/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/cad/Xbim/第12章-几何表达布尔运算与三角网格生成/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

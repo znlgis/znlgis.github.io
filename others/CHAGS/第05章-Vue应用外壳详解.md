@@ -398,3 +398,15 @@ export function installBackButtonHandler(route: Ref<Route>): void {
 - 错误处理遵循一条原则：**给玩家一句人话，给开发与自动化完整细节**。
 
 下一章进入数据侧：内容模型与典故 JSON —— 「换典故 = 换内容」这条产品承诺的底层实现。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/others/CHAGS/第04章-核心契约与游戏生命周期/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/others/CHAGS/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/others/CHAGS/第06章-内容数据模型与典故JSON/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

@@ -352,3 +352,15 @@ HERMES_LOG_LEVEL=debug hermes          # 看运行时日志
 - **MCP + Context Files + 内置工具 + 技能**四件套，几乎能覆盖你 95% 的工程任务。
 
 下一章我们把 Hermes "扩散"出去：消息网关与 15+ 平台接入。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/ai/hermes-agent/07-技能记忆与自学习闭环/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/ai/hermes-agent/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/ai/hermes-agent/09-消息网关与多平台接入/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

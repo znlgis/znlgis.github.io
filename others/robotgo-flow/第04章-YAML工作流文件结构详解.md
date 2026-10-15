@@ -236,3 +236,15 @@ steps:
 ## 4.9 小结
 
 本章我们系统拆解了 YAML 工作流文件的完整结构：顶层的 `name`/`description`/`inputs`/`settings`/`steps` 四大部分；`inputs` 运行时变量的定义与 `$input.<name>` 替换机制；`settings` 全局设置的每个字段与默认值；步骤与动作的组织规则（尤其是「一个动作项只能有一个动作字段」）；以及框架的加载、编码转换、默认值填充与多层验证流程。下一章开始，我们进入动作详解，先从鼠标操作讲起。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/others/robotgo-flow/第03章-快速入门-第一个RPA工作流/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/others/robotgo-flow/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/others/robotgo-flow/第05章-动作详解-鼠标操作/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

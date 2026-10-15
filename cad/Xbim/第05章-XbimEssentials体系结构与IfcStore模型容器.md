@@ -303,3 +303,15 @@ model.SaveAs("output.ifc");
 - 扩展方法是优雅地操作 IFC 模型的关键工具。
 
 下一章我们将深入 IO 层，看看 STEP21、ifcXML、ifcZIP 是如何在 Xbim 中被解析和写出的。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/cad/Xbim/第04章-XbimCommon通用框架与EXPRESS元模型/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/Xbim/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/cad/Xbim/第06章-IFC模型读取解析与STEPXMLZip序列化/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

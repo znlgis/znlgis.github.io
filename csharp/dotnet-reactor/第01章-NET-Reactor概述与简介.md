@@ -505,7 +505,7 @@ title: 第01章 .NET Reactor概述与简介
 - [.NET Reactor 官方网站](https://www.eziriz.com/)
 - [.NET Reactor 帮助文档](https://www.eziriz.com/help/index.html)
 - [.NET Reactor Visual Studio 扩展](https://marketplace.visualstudio.com/items?itemName=Eziriz.dotNetReactor)
-- [Eziriz 支持论坛](https://www.eziriz.com/forum/)
+- [Eziriz 官方支持](https://www.eziriz.com/support.htm)
 
 ---
 

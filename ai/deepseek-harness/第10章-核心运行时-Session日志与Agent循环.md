@@ -443,3 +443,15 @@ turn flow 里的事件分两种 dispatch 语义（第 8 章讲过 Cordis 的 `ct
 - 错误恢复经 `agent/request-error` waterfall（`llm-retry` 重试、`compaction-basic` 处理上下文溢出），取消由 `aborted` reason 与 `agent/turn-stopping` 表达。
 - 持久化契约要求每条事件无损落盘；`session/end-seed` 区分 seed 历史与 live 工作。
 - 整个循环是第 8 章 Cordis 范式的展开：插件用 waterfall 事件拼出 agent 循环，无一环节不可替换。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/ai/deepseek-harness/第09章-源码架构与仓库布局/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/ai/deepseek-harness/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/ai/deepseek-harness/第11章-Capability-Seam与核心子系统/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

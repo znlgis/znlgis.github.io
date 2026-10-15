@@ -164,3 +164,15 @@ robotgo-flow run workflow.yaml
 ## 3.8 小结
 
 本章我们完整地走通了一个 robotgo-flow 工作流的生命周期：理解了「YAML + 模板截图 + 运行命令」三要素，编写了一份登录表单的工作流，用 `capture` 截取了模板，用 `run` 命令执行（并演示了 `--from` 与 `--debug`），最后从宏观上梳理了框架内部的执行流程。你现在应该对 robotgo-flow 的工作方式有了直观认识。从下一章开始，我们将系统深入 YAML 工作流文件的每一个字段。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/others/robotgo-flow/第02章-环境准备与编译构建/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/others/robotgo-flow/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/others/robotgo-flow/第04章-YAML工作流文件结构详解/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

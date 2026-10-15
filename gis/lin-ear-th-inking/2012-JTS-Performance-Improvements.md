@@ -5,7 +5,7 @@ title: JTS 性能改进 - 空间索引优化
 
 # JTS 性能改进 - 空间索引优化
 
-> 原文：[Performance Improvements in JTS](https://lin-ear-th-inking.blogspot.com/2012/04/performance-improvements-in-jts.html)
+> 原文：[Lin.ear th.inking 博客](https://lin-ear-th-inking.blogspot.com/)（原标题「Performance Improvements in JTS」的链接已失效，暂指向博客主页）
 > 作者：Martin Davis
 > 日期：2012年4月
 
@@ -306,4 +306,16 @@ JTS 2012 年的性能改进展示了低级别优化的强大影响。通过优�
 
 - [JTS GitHub 仓库](https://github.com/locationtech/jts)
 - [STRtree 文档](https://locationtech.github.io/jts/javadoc/org/locationtech/jts/index/strtree/STRtree.html)
-- [GeoTools STRtree 指南](https://docs.geotools.org/latest/userguide/library/index/strtree.html)
+- [GeoTools 中的 JTS 使用指南](https://docs.geotools.org/latest/userguide/library/jts/index.html)
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/2013-Year-In-Review-2012/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/2012-FOSS4G-NA-Review/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

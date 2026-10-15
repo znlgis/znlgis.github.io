@@ -74,7 +74,7 @@ PostGIS 的发展历程可以追溯到 2001 年：
 - 活跃的社区支持
 
 **2. 功能强大**
-- 支持 1000+ 空间函数
+- 支持数百个空间函数（官方文档按类别列出约 300 个 ST_* 函数）
 - 完整的 OGC 标准支持
 - 先进的空间索引技术
 
@@ -258,7 +258,7 @@ FROM delivery_points dp;
 | 特性 | PostGIS | Oracle Spatial | SQL Server Spatial | MySQL Spatial |
 |------|---------|----------------|-------------------|---------------|
 | 开源性 | ✓ 完全开源 | ✗ 商业软件 | ✗ 商业软件 | ✓ 开源 |
-| 空间函数数量 | 1000+ | 500+ | 200+ | 50+ |
+| 空间函数数量 | 数百 | 500+ | 200+ | 50+ |
 | OGC 标准支持 | 完全 | 完全 | 部分 | 部分 |
 | 栅格支持 | ✓ | ✓ | ✗ | ✗ |
 | 拓扑支持 | ✓ | ✓ | ✗ | ✗ |
@@ -285,7 +285,7 @@ FROM delivery_points dp;
 |------|---------|---------|---------------|
 | 数据模型 | 关系型 | 文档型 | 文档型 |
 | 空间索引 | GiST, BRIN | 2dsphere | BKD Tree |
-| 空间函数 | 1000+ | 20+ | 10+ |
+| 空间函数 | 数百 | 20+ | 10+ |
 | 复杂分析 | 强 | 弱 | 弱 |
 | SQL 支持 | ✓ | ✗ | ✗ |
 | 事务支持 | 完整 | 有限 | ✗ |
@@ -532,7 +532,7 @@ WHERE ST_SRID(geom) = 4326;
 **官方资源**
 - PostGIS 官方文档：https://postgis.net/documentation/
 - PostgreSQL 官方文档：https://www.postgresql.org/docs/
-- PostGIS Workshop：https://postgis.net/workshops/
+- PostGIS Workshop：https://postgis.net/workshops/postgis-intro/
 
 **推荐书籍**
 - 《PostGIS in Action》（第三版）

@@ -200,3 +200,15 @@ OCCT 自有 CI 使用 `testgrid` + `testdiff` 对比基准。第三方项目可�
 - 自定义 plugin，把项目内部命令暴露给 Draw 做调试。
 
 掌握 Draw 后，OCCT 的“调试维度”立刻提升一档。下一章我们集中讨论 OCCT 在曲面建模与自由形状领域的能力。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/cad/occt/第13章-OCAF应用框架TDFTDocStdXCAF/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/occt/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/cad/occt/第15章-曲面建模与自由形状/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

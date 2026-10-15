@@ -1135,3 +1135,15 @@ OBJ / STL / STEP / IFC / DWG / RVT
 2. **平台分化明显**：桌面端（FreeCAD、QCAD、KiCad）、浏览器端（Chili3D、Astral3D、LightCAD）、.NET 企业端（IFoxCAD、Xbim）三类各有专属技能。不要用桌面端的技能去解决 Web 端的问题。
 
 3. **真实项目需要组合**：没有哪个单技能能覆盖一个真实的工程场景。一个标准的"读取 DWG→解析 BIM 几何→转换格式→Web 展示"流程，就需要 `libredwg` + `xbim` + `occt` + `astral3d` 四个技能接力完成。学会按决策树选择和按推荐组合搭配，是高效使用 CAD 技能的关键。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/ai/opengis-skills/05-GIS技能详解/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/ai/opengis-skills/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/ai/opengis-skills/07-CSharp技能详解/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

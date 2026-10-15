@@ -93,3 +93,15 @@ STRtree（Sort-Tile-Recursive 树）的实现得到了改进：
 - [JTS GitHub 仓库](https://github.com/locationtech/jts)
 - [FOSS4G 北美会议](https://foss4gna.org/)
 - [GEOS 项目](https://libgeos.org/)
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/2014-Constrained-Delaunay-Triangulation/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/2012-JTS-Performance-Improvements/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

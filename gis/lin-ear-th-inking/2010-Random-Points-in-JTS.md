@@ -384,3 +384,15 @@ JTS 提供了在多边形内生成随机点的基础能力。根据应用需求�
 - [JTS RandomPointsBuilder](https://locationtech.github.io/jts/javadoc/org/locationtech/jts/shape/random/RandomPointsBuilder.html)
 - [Halton 序列 - 维基百科](https://en.wikipedia.org/wiki/Halton_sequence)
 - [点密度图 - Esri 文档](https://developers.arcgis.com/documentation/mapping-and-location-services/data-visualization/data-driven-styles/dot-density/)
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/2010-Single-Sided-Buffers-in-JTS/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/2007-Fast-Polygon-Merging-Cascaded-Union/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

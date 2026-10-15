@@ -1167,3 +1167,15 @@ const agent = createTestAgent({
 - **Harness 测试工具**让扩展开发者和核心贡献者可以在不启动完整 TUI 的情况下，用 Mock 模型和可控工具对 Agent 进行确定性的单元测试和集成测试。
 
 下一章：[第十五章：核心架构pi-tui终端UI库](https://znlgis.github.io/ai/pi/15-核心架构pi-tui终端UI库/) 将深入 Pi 的第三个核心包——`pi-tui`，揭开 Pi 那个无闪烁、保留滚动缓冲区、支持差异化渲染的终端 UI 框架的设计秘密。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/ai/pi/13-核心架构pi-ai统一LLM-API层/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/ai/pi/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/ai/pi/15-核心架构pi-tui终端UI库/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

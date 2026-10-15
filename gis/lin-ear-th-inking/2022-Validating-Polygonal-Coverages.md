@@ -227,3 +227,15 @@ if (!validator.isValid()) {
 
 - [JTS Coverage 包文档](https://locationtech.github.io/jts/javadoc/org/locationtech/jts/coverage/package-summary.html)
 - [NetTopologySuite CoverageValidator](https://nettopologysuite.github.io/NetTopologySuite/api/NetTopologySuite.Coverage.CoverageValidator.html)
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/2023-Simplifying-Polygonal-Coverages/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/2022-Outer-Inner-Polygon-Hulls/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

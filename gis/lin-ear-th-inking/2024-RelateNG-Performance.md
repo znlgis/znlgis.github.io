@@ -129,3 +129,15 @@ RelateNG 性能远超 Relate。这得益于其分析交集矩阵模式并仅执�
 - [JTS 拓扑关系 - 下一代 (RelateNG)](https://znlgis.github.io/gis/lin-ear-th-inking/2024-JTS-Topological-Relationships-RelateNG/)
 - [JTS Overlay - 下一代 (OverlayNG)](https://znlgis.github.io/gis/lin-ear-th-inking/2020-JTS-Overlay-Next-Generation/)
 - [JTS 性能改进](https://znlgis.github.io/gis/lin-ear-th-inking/2012-JTS-Performance-Improvements/)
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/2024-JTS-Topological-Relationships-RelateNG/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/2023-Alpha-Shapes-in-JTS/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

@@ -100,3 +100,15 @@ Hausdorff 距离作为相似性度量远比最短距离有用，因为它提供�
 - [JTS 中使用级联并集快速合并多边形](https://znlgis.github.io/gis/lin-ear-th-inking/2007-Fast-Polygon-Merging-Cascaded-Union/)
 - [JTS 中的距离度量与形状相似性](https://znlgis.github.io/gis/lin-ear-th-inking/2016-Distance-Metrics-Shape-Similarity/)
 - [JTS 性能改进](https://znlgis.github.io/gis/lin-ear-th-inking/2012-JTS-Performance-Improvements/)
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/2026-Fast-Hausdorff-Distance-JTS/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/2025-Coverage-Cleaning-in-JTS/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

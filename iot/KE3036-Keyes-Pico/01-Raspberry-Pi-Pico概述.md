@@ -101,14 +101,15 @@ def ws2812():
 
 ### 1.2.3 模拟输入
 
-Pico 提供 3 个外部 ADC 通道：
+Pico 的 ADC 共有 5 个通道，其中 3 个可对外使用（另外两个为 VSYS 监测与内部温度传感器）：
 
 | ADC 通道 | GPIO 引脚 |
 |----------|-----------|
 | ADC0 | GP26 |
 | ADC1 | GP27 |
 | ADC2 | GP28 |
-| ADC3 | 内部温度传感器 |
+| ADC3 | GP29（VSYS 电压监测，板内未引出） |
+| ADC4 | 内部温度传感器 |
 
 **注意**：MicroPython 将 ADC 值映射到 16 位范围（0-65535），而非原生的 12 位（0-4095）。
 
@@ -259,3 +260,15 @@ BOOTSEL 按钮用于进入固件烧录模式：
 5. 3.3V 逻辑电平，注意电平兼容性
 
 下一章将介绍 MicroPython 开发环境的搭建。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <span></span>
+  <a href="https://znlgis.github.io/iot/KE3036-Keyes-Pico/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/iot/KE3036-Keyes-Pico/02-MicroPython环境搭建/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

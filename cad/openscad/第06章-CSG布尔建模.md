@@ -151,3 +151,15 @@ rounded_plate();
 - 是否把复杂布尔分阶段组织，便于定位问题？
 - F6 渲染是否有非流形、自交或空对象警告？
 - 导出后是否在切片软件或网格检查工具中确认闭合？
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/cad/openscad/第05章-基础几何与变换/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/openscad/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/cad/openscad/第07章-二维图形拉伸与投影/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

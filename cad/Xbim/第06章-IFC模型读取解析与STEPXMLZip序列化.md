@@ -220,3 +220,15 @@ public static void IterateAllProducts(IfcStore model)
 - 处理大型模型时，**EsentModel + 实体/反向缓存**是必备技巧。
 
 下一章我们将进入更"应用化"的话题：怎样用 LINQ 与 Xbim 提供的查询 API 高效地"问"模型问题。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/cad/Xbim/第05章-XbimEssentials体系结构与IfcStore模型容器/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/Xbim/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/cad/Xbim/第07章-IFC数据查询过滤与LINQ检索/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

@@ -78,25 +78,25 @@ PostGIS本身并不直接支持分布式数据库，但是可以通过PostgreSQL
 
 4. **postgis_raster**：这个扩展提供了对栅格数据的支持。栅格数据是一种由像素组成的地理数据，常用于表示地形、气候、土壤类型等连续变化的地理现象。
 
-5. **postgis_net**：这个扩展提供了对网络数据模型的支持。网络数据模型是一种描述地理对象之间连接性的数据模型，常用于表示和查询道路、河流、电力线等网络结构。
+5. **pgrouting**：由 pgRouting 项目提供的独立扩展（并非 PostGIS 自带），支持网络分析与路由计算，如最短路径、旅行时间等，可用于道路、河流、电力线等网络结构。
 
-6. **postgis_pointcloud**：这个扩展提供了对点云数据的支持。点云数据是一种由大量地理坐标点组成的地理数据，常用于表示和查询三维地形、建筑物、植被等地理对象。
+6. **pointcloud**：点云扩展（同样独立于 PostGIS 发布，无 postgis_ 前缀），提供对点云数据的支持。点云数据由大量地理坐标点组成，常用于表示和查询三维地形、建筑物、植被等。
 
-7. **postgis_hstore**：这个扩展提供了对存储键值对的支持，这对于存储半结构化数据非常有用。
+7. **hstore**：PostgreSQL 附带的键值对扩展（无 postgis_ 前缀），提供对存储键值对的支持，对存储半结构化数据非常有用。
 
-8. **postgis_osm**：这个扩展提供了对导入OpenStreetMap数据的支持。
+8. **osm2pgsql**：这不是 PostGIS 扩展，而是把 OpenStreetMap 数据导入 PostgreSQL/PostGIS 的独立工具，并不存在 postgis_osm 扩展。
 
 9. **postgis_fdw**：这个扩展提供了对远程PostGIS服务器的外部数据包装器，允许你查询远程PostGIS数据库，就像它们是本地表一样。
 
-10. **postgis_gist**：这个扩展提供了对PostGIS的GiST（通用搜索树）索引的支持，这可以显著提高空间查询的性能。
+10. **GiST 索引**：PostGIS 的 GiST（通用搜索树）索引能力内置于 postgis 扩展中，建索引时直接使用即可，不存在单独的 postgis_gist 扩展。
 
-11. **postgis_pgrouting**：这个扩展提供了在PostGIS数据库中执行路由操作的功能。它可以用来计算最短路径、旅行时间和其他与路由相关的计算。
+11. **geohash 函数**：geohash 的编码和解码（ST_GeoHash 等）内置于 PostGIS 核心函数中，无需单独扩展，也不存在 postgis_geohash 扩展。
 
-12. **postgis_geohash**：这个扩展提供了对编码和解码geohashes的功能，geohashes是一种以紧凑字符串格式表示地理坐标的方式。
+12. **fuzzystrmatch**：PostgreSQL 附带的扩展（无 postgis_ 前缀），提供确定字符串之间的相似性和距离的功能。
 
-13. **postgis_fuzzystrmatch**：这个扩展提供了确定字符串之间的相似性和距离的功能。
+13. **address_standardizer**：PostGIS 附带的扩展（无 postgis_ 前缀），用于将给定的地址解析为标准格式，可配合 address_standardizer_data_us 使用。
 
-14. **postgis_address_standardizer**：这个扩展用于将给定的地址解析为标准格式。
+> 注：以上扩展名以官方发布为准，安装时用 `CREATE EXTENSION <扩展名>` 启用。
 
 ## 默认建图层SQL
 
@@ -117,3 +117,15 @@ comment on column test_layer.shape is '图形';
 comment on column test_layer.test is '测试字段';
 
 ```
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/gis/basic/data/FileGDB代码示例/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/basic/data/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/basic/data/PostGIS代码操作简介/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

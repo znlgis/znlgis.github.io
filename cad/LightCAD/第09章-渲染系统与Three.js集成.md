@@ -886,3 +886,15 @@ public InstancedMesh CreateInstancedMesh(
 > **上一章**：[第八章：实体建模系统](https://znlgis.github.io/cad/LightCAD/第08章-实体建模系统/)
 >
 > **下一章**：[第十章：二维绘图与视口管理](https://znlgis.github.io/cad/LightCAD/第10章-二维绘图与视口管理/)
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/cad/LightCAD/第08章-实体建模系统/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/LightCAD/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/cad/LightCAD/第10章-二维绘图与视口管理/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

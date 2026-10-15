@@ -905,7 +905,7 @@ setInterval(() => {
     const viewer = new Viewer({
       container: document.getElementById('viewer'),
       // 使用一张示例全景图（替换为你的图片）
-      panorama: 'https://photo-sphere-viewer-data.netlify.app/pano/Velisches-Silver/IMG_0577.JPG',
+      panorama: 'https://photo-sphere-viewer-data.netlify.app/assets/sphere.jpg',
       defaultZoomLvl: 30,
       navbar: [
         'zoom',

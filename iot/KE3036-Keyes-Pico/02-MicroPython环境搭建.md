@@ -35,11 +35,13 @@ MicroPython 是 Python 3 的精简高效实现，专为微控制器设计。它�
 
 ### 2.2.1 下载固件
 
-从树莓派官网下载最新的 MicroPython 固件：
+从树莓派官网或 MicroPython 官网下载最新的 MicroPython 固件：
 
 1. 访问 https://www.raspberrypi.com/documentation/microcontrollers/
 2. 点击 "MicroPython" 部分
 3. 下载 `.uf2` 格式固件文件
+
+也可以直接访问 MicroPython 官方固件下载页 https://micropython.org/download/RPI_PICO/ 选择对应板型的 `.uf2`（Pico、Pico W、Pico 2、Pico 2 W 的固件互不通用，请勿混用）。
 
 ### 2.2.2 烧录步骤
 
@@ -62,7 +64,7 @@ MicroPython 是 Python 3 的精简高效实现，专为微控制器设计。它�
 ```python
 >>> import sys
 >>> sys.implementation
-(name='micropython', version=(1, 22, 0), ...)
+(name='micropython', version=(1, 29, 0), ...)
 ```
 
 ---
@@ -297,11 +299,11 @@ except Exception as e:
 
 ## 2.9 替代开发环境
 
-### 2.9.1 VS Code + Pico-W-Go
+### 2.9.1 VS Code + MicroPico
 
 1. 安装 VS Code
-2. 安装 Pico-W-Go 扩展
-3. 配置 Python 路径
+2. 安装 MicroPico 扩展（Pico-W-Go 已停止维护，不建议再使用；也可使用官方的 "Raspberry Pi Pico" 扩展）
+3. 在命令面板执行 MicroPico: Configure project 并连接设备
 
 ### 2.9.2 PyCharm + MicroPython 插件
 
@@ -309,19 +311,19 @@ except Exception as e:
 2. 安装 MicroPython 插件
 3. 配置设备连接
 
-### 2.9.3 命令行工具
+### 2.9.3 命令行工具（mpremote）
 
-使用 `ampy` 或 `rshell` 进行文件传输：
+使用官方维护的 `mpremote` 进行文件传输与调试（`ampy` 已归档停止维护，不建议再使用）：
 
 ```bash
-# 安装 ampy
-pip install adafruit-ampy
+# 安装 mpremote
+pip install mpremote
 
 # 上传文件
-ampy --port /dev/ttyACM0 put main.py
+mpremote cp main.py :main.py
 
 # 运行文件
-ampy --port /dev/ttyACM0 run main.py
+mpremote run main.py
 ```
 
 ---
@@ -337,3 +339,15 @@ ampy --port /dev/ttyACM0 run main.py
 5. 了解库文件管理方法
 
 下一章将深入讲解 GPIO 基础与引脚配置。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/iot/KE3036-Keyes-Pico/01-Raspberry-Pi-Pico概述/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/iot/KE3036-Keyes-Pico/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/iot/KE3036-Keyes-Pico/03-GPIO基础与引脚配置/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

@@ -20,7 +20,7 @@ hermes chat --toolsets web,terminal -q "..."  # 仅启用某些 toolset
 
 ```
 ┌─ Banner（横幅，可换皮肤）───────────────────────────────┐
-│ Hermes Agent v0.21.1  ☤   Profile: default             │
+│ Hermes Agent v0.22.1  ☤   Profile: default             │
 └────────────────────────────────────────────────────────┘
 ┌─ Status Bar（状态栏）─────────────────────────────────┐
 │ Model: anthropic/claude-opus-4.6  | Personality: focused│
@@ -368,3 +368,15 @@ curl http://localhost:8000/v1/chat/completions \
 - 会用一次性 prompt 模式和 API server 把 Hermes 嵌入其它工具链。
 
 下一章我们深入"模型层"：让 Hermes 真正发挥它"模型自由度"。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/ai/hermes-agent/03-安装初始化与首次对话/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/ai/hermes-agent/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/ai/hermes-agent/05-模型供应商与配置体系/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

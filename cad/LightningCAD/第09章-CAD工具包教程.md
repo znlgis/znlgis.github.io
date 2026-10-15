@@ -808,3 +808,15 @@ LightningCAD 内置了便捷的用户反馈通道。在操作向导或菜单中�
 ---
 
 > **本章小结**：CAD 工具包（Kit）是 LightningCAD 中不可或缺的辅助工具集合。从轴网生成到图纸管理，从快捷键配置到自动备份，这些工具覆盖了深化设计工作中的通用需求。熟练掌握这些工具，将显著提升您的日常工作效率。如有更多问题，请通过"问题反馈"功能（9.9）联系我们的技术支持团队。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/cad/LightningCAD/第08章-图纸校验与输出/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/LightningCAD/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/cad/LightningCAD/第10章-高级功能与技巧/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

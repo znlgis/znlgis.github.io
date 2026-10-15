@@ -1250,3 +1250,15 @@ pi --theme dracula
 下一章：[第九章：Extensions扩展开发](https://znlgis.github.io/ai/pi/09-Extensions扩展开发/) 将深入 Pi 的 **Extensions 扩展系统**——学习如何编写 TypeScript 扩展来注册自定义工具、监听生命周期事件、构建自定义 TUI 组件，真正将 Pi 改造成你专属的编码 Agent。
 
 {% endraw %}
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/ai/pi/07-工具系统内置工具与权限控制/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/ai/pi/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/ai/pi/09-Extensions扩展开发/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

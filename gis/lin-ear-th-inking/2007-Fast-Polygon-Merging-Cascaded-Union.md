@@ -271,3 +271,15 @@ public class UnionBenchmark {
 - [CascadedPolygonUnion JavaDoc](https://locationtech.github.io/jts/javadoc/org/locationtech/jts/operation/union/CascadedPolygonUnion.html)
 - [GEOS CascadedPolygonUnion](https://libgeos.org/doxygen/classgeos_1_1operation_1_1geounion_1_1CascadedPolygonUnion.html)
 - [PostGIS ST_Union](https://postgis.net/docs/ST_Union.html)
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/2010-Random-Points-in-JTS/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/" style="text-decoration: none;">目录</a>
+  <span></span>
+</div>
+
+<!-- /NAVIGATION -->

@@ -60,3 +60,15 @@ OpenLayers中的Formats主要用于处理地理空间数据的读写和解析，
 ## 二、第三方插件
 
 [官方地址](https://openlayers.org/3rd-party/)
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/demos/vue3-openlayers/OpenLayers简介/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/demos/vue3-openlayers/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/demos/vue3-openlayers/preparation/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

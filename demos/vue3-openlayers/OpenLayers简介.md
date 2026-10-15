@@ -11,8 +11,10 @@ OpenLayers 是一个强大的、开源的 JavaScript 地图库，用于在网页
 ## 安装vue3-openlayers
 
 ```Bash
-npm install vue3-openlayers -g
+npm install vue3-openlayers
 ```
+
+> 说明：vue3-openlayers 应作为项目本地依赖安装，不要加 `-g`。v12 的 peerDependencies 要求 ol ^10.6.0、vue ^3.5.0，安装时注意版本匹配。
 
 ## openlayers的优缺点
 
@@ -34,3 +36,15 @@ npm install vue3-openlayers -g
 ## 官方地址
 
 [OpenLayers官方网站](https://openlayers.org/)
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/demos/vue3-openlayers/VUE3基础环境搭建/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/demos/vue3-openlayers/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/demos/vue3-openlayers/vue3-openlayers基础知识简介/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

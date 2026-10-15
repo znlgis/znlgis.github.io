@@ -118,3 +118,15 @@ Alpha Shapes 为 JTS 用户提供了一种强大且灵活的方式来生成紧�
 - [GEOS ConcaveHull 类参考](https://libgeos.org/doxygen/classgeos_1_1algorithm_1_1hull_1_1ConcaveHull.html)
 - [Alpha-Concave Hull 论文](https://arxiv.org/pdf/1309.7829)
 - [JTS GitHub 仓库](https://github.com/locationtech/jts)
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/2024-RelateNG-Performance/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/2023-Simplifying-Polygonal-Coverages/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

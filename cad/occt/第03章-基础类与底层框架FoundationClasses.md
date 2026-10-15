@@ -182,3 +182,15 @@ try {
 - 避免直接操作底层指针，OCCT 的内存模型与拷贝语义可能让你踩坑。
 
 掌握 FoundationClasses 之后，下一章我们将深入数学与几何基元，开始接触 OCCT 真正的几何世界。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/cad/occt/第02章-源码获取编译与开发环境配置/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/occt/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/cad/occt/第04章-数学与几何基元gpGeomGeomAPI/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

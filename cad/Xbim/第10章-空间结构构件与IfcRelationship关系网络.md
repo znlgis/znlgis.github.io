@@ -258,3 +258,15 @@ foreach (var p in model.Instances.OfType<IIfcProduct>())
 - 写出"合规、能被各家软件读懂"的 IFC，关键在于**正确建立关系**，而不是堆砌实体。
 
 下一章开始我们进入 Xbim 的另一半重头戏 —— 几何引擎 `XbimGeometry`。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/cad/Xbim/第09章-属性集量集材料与分类系统/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/Xbim/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/cad/Xbim/第11章-XbimGeometry几何引擎架构与OCCT集成/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

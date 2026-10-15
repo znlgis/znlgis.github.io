@@ -480,3 +480,15 @@ motor_control(0)
    - 占空比：0-65535
 
 下一章将学习 I2C 通信协议。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/iot/KE3036-Keyes-Pico/15-压力与摇杆传感器/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/iot/KE3036-Keyes-Pico/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/iot/KE3036-Keyes-Pico/17-I2C通信协议详解/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

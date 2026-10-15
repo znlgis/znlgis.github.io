@@ -335,3 +335,15 @@ public string WriteBcfIssues(IdsValidationResult res, string bcfPath)
 - 完成了一个端到端的 BIM 质量平台实例。
 
 Xbim 不只是"读 IFC 的库"，而是 .NET 生态中最完整的 Open BIM 工具集。希望本教程能帮助你在 BIM 二次开发的道路上走得更远，也欢迎参与到 [`xBimTeam`](https://github.com/xBimTeam) 的开源贡献中。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/cad/Xbim/第15章-IDS模型校验BCF协同与生态扩展/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/Xbim/" style="text-decoration: none;">目录</a>
+  <span></span>
+</div>
+
+<!-- /NAVIGATION -->

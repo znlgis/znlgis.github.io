@@ -203,3 +203,15 @@ TDD 并不等于必须有完善测试框架。若项目没有测试框架，可�
 ## 5.13 本章小结
 
 TDD 防止未验证实现，系统化调试防止猜测式修复，完成前验证防止虚假完成。三者共同构成 superpowers-zh 的质量底座。只要坚持这三条，AI 编程的可靠性会显著提升；一旦跳过，AI 很容易回到「快速生成、慢速返工」的老路。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/ai/superpowers-zh/04-需求澄清方案设计与计划编写/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/ai/superpowers-zh/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/ai/superpowers-zh/06-代码审查反馈处理与分支收尾/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

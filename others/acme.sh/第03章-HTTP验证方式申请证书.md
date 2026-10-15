@@ -358,3 +358,15 @@ acme.sh --install-cert -d example.com \
 - **Nginx/Apache 模式**：自动处理 Web 服务器配置
 
 HTTP 验证最大的限制是：**无法申请通配符证书**，且要求域名能通过公网访问到服务器 80 端口。下一章将介绍功能更强大的 DNS-01 验证方式。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/others/acme.sh/第02章-安装与快速入门/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/others/acme.sh/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/others/acme.sh/第04章-DNS验证方式申请证书/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

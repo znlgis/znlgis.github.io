@@ -190,3 +190,15 @@ Shapefile 是 GIS 历史的重要组成部分，但技术进步已经使它落�
 - [Switch from Shapefile](https://switchfromshapefile.org/)
 - [GeoPackage 规范](https://www.geopackage.org/)
 - [GeoJSON 规范](https://geojson.org/)
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/2019-JTS-TestBuilder-GUI/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/2014-Constrained-Delaunay-Triangulation/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

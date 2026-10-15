@@ -95,3 +95,15 @@ FreeCAD 的路径可视化是基础检查，正式加工前还应在机床控制
 ## 9. 安全提醒
 
 CAM 教程只能说明软件流程，不能替代机床培训。真实加工必须由具备安全知识的人操作，佩戴防护，确认夹紧，空运行验证，低速试切，并随时准备急停。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/cad/FreeCAD/第11章-SurfaceMesh与逆向工程/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/FreeCAD/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/cad/FreeCAD/第13章-FEM仿真分析/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

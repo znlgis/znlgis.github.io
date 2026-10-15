@@ -166,3 +166,15 @@ for (int i = 0; i < 6; ++i) {
 - 复杂 wire 可用 `BRepBuilderAPI_MakePolygon` + `Closed()` 简化。
 
 掌握 BuilderAPI 与 PrimAPI 后，你已经能造出大部分零件的“雏形”。下一章我们进入 CAD 内核最受关注的话题：布尔运算与高级建模。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/cad/occt/第06章-建模数据与几何表达ModelingData/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/occt/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/cad/occt/第08章-布尔运算与高级建模BOPAlgoBRepAlgoAPI/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

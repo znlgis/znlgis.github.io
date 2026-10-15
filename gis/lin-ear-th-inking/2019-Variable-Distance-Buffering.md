@@ -297,3 +297,15 @@ if (!result.isValid()) {
 - [JTS BufferOp JavaDoc](https://locationtech.github.io/jts/javadoc/org/locationtech/jts/operation/buffer/BufferOp.html)
 - [JTS CascadedPolygonUnion](https://locationtech.github.io/jts/javadoc/org/locationtech/jts/operation/union/CascadedPolygonUnion.html)
 - [Lin.ear th.inking 2019 年博客归档](https://lin-ear-th-inking.blogspot.com/2019/)
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/2020-JTS-OverlayNG-Noding-Strategies/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/2019-JTS-Design-Principles/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

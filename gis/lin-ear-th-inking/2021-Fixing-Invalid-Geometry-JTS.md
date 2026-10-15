@@ -310,3 +310,15 @@ JTS 提供了完整的几何验证和修复工具链：
 - [JTS GeometryFixer JavaDoc](https://locationtech.github.io/jts/javadoc/org/locationtech/jts/geom/util/GeometryFixer.html)
 - [OGC Simple Features 规范](https://www.ogc.org/standards/sfa)
 - [PostGIS 几何有效性](https://postgis.net/docs/using_postgis_dbmanagement.html)
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/2021-KdTree-Query-Optimization/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/2020-JTS-Overlay-Next-Generation/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

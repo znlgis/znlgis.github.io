@@ -109,3 +109,15 @@ PostGIS提供了两种主要的空间数据类型：`GEOMETRY`和`GEOGRAPHY`。�
 4. **空间函数支持**：`GEOMETRY`类型支持更多的空间函数，而`GEOGRAPHY`类型只支持一部分空间函数。
 
 在选择使用`GEOMETRY`还是`GEOGRAPHY`时，你应该根据你的具体需求和数据来决定。如果你需要处理全球数据，并且需要准确的距离和面积计算，那么`GEOGRAPHY`可能是更好的选择。如果你需要处理本地或区域数据，或者需要使用更多的空间函数，那么`GEOMETRY`可能是更好的选择。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/gis/basic/data/PostGIS数据库操作简介/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/basic/data/" style="text-decoration: none;">目录</a>
+  <span></span>
+</div>
+
+<!-- /NAVIGATION -->

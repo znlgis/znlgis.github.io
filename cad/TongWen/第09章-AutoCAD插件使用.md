@@ -5,7 +5,7 @@ title: 第09章：AutoCAD 插件使用
 
 # 第09章：AutoCAD 插件使用
 
-> **产品官网**：[https://shandianweihu.com/](https://shandianweihu.com/)
+> **厂商发布渠道**：[厂商站点](https://shandianweihu.com/)
 
 ---
 
@@ -838,4 +838,16 @@ AutoCAD 插件共提供 22 个命令行命令，按使用频率和功能分为�
 
 > **下一步**：完成本章学习后，你可以继续阅读第10章了解更多高级功能，或参考《第02章：项目创建与管理》学习如何在 Studio 端管理翻译项目。
 >
-> **产品官网**：[https://shandianweihu.com/](https://shandianweihu.com/)
+> **厂商发布渠道**：[厂商站点](https://shandianweihu.com/)
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/cad/TongWen/第08章-质量检查与报告/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/TongWen/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/cad/TongWen/第10章-批量处理与命令行/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

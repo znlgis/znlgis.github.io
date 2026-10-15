@@ -281,3 +281,15 @@ var spaceByElement = model.Instances.OfType<IIfcRelContainedInSpatialStructure>(
 `Xbim.Ifc4.Interfaces.IIfc*` + LINQ + INVERSE 缓存 + 扩展方法，构成了 Xbim 查询能力的"黄金四件套"。掌握它们后，绝大多数"提取信息 / 出报表 / 写检查器"的需求都能在几十行代码内完成。
 
 下一章我们从"读"切到"写"：如何用 Xbim 创建合法、合规、可被其他软件读懂的 IFC 实体。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/cad/Xbim/第06章-IFC模型读取解析与STEPXMLZip序列化/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/Xbim/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/cad/Xbim/第08章-IFC模型创建编辑与事务管理/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

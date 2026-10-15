@@ -29,14 +29,14 @@ GeoPandas 最早由 **Kelsey Jordahl** 于 2013 年创建，目的是填补 Pyth
 | 2023 年 | v0.14 发布，全面拥抱 Shapely 2.0，性能大幅提升 |
 | 2024 年 | v1.0.0 发布（6月），里程碑版本，标志 API 稳定 |
 | 2025 年 | v1.1.0 发布（6月），进一步优化性能与功能 |
-| 2026 年 | v1.1.4 发布，当前最新稳定版 |
+| 2026 年 | v1.2.0 发布（9月），支持 GeoParquet 2.0 等新特性，当前最新稳定版 |
 
 ### 1.1.3 开源社区
 
 GeoPandas 托管在 GitHub 上（[geopandas/geopandas](https://github.com/geopandas/geopandas)），采用 BSD 3-Clause 开源协议。
 
 - **GitHub Stars**：超过 5,200+
-- **贡献者**：超过 300+
+- **贡献者**：超过 250+
 - **下载量**：每月数百万次（PyPI + conda-forge）
 - **活跃维护者**：包括 Joris Van den Bossche、Martin Fleischmann 等知名 GIS 与数据科学社区成员
 
@@ -401,13 +401,14 @@ properties_proj['到最近学校距离'] = properties_proj.geometry.apply(
 
 ```python
 import geopandas as gpd
+import geodatasets  # pip install geodatasets
 import matplotlib.pyplot as plt
 
 # ========================================
 # 步骤 1：读取数据
 # ========================================
-# 使用 GeoPandas 内置的世界各国数据集
-world = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
+# 读取示例数据（GeoPandas 1.0 起内置示例数据迁移到 geodatasets 包）
+world = gpd.read_file(geodatasets.get_path("naturalearth.land"))
 
 # 查看数据概览
 print("数据形状:", world.shape)
@@ -591,3 +592,15 @@ print("\n分析完成！数据已导出。")
 > - [GeoPandas GitHub 仓库](https://github.com/geopandas/geopandas)
 > - [Shapely 文档](https://shapely.readthedocs.io/)
 > - [pandas 文档](https://pandas.pydata.org/docs/)
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <span></span>
+  <a href="https://znlgis.github.io/gis/tutorial/geopandas/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/tutorial/geopandas/第02章-安装与环境配置/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

@@ -306,10 +306,10 @@ dotnet add package Clipper
 
 **指定版本：**
 
-如果需要安装特定版本（最新稳定版为 6.4.2），可以使用：
+如果需要安装特定版本（NuGet 上最新为 6.4.0；6.4.2 仅随 SourceForge 源码包发布，未上架 NuGet），可以使用：
 
 ```bash
-dotnet add package Clipper --version 6.4.2
+dotnet add package Clipper --version 6.4.0
 ```
 
 安装完成后，NuGet 会自动：
@@ -767,7 +767,7 @@ namespace ClipperDemo
 Clipper1 拥有完善的官方文档：
 
 **在线文档**
-- 官方网站：http://www.angusj.com/delphi/clipper.php
+- 源码发布（SourceForge，原站 angusj.com 的 Clipper1 页面已下线）：https://sourceforge.net/projects/polyclipping/
 - API 参考：http://www.angusj.com/delphi/clipper/documentation/Docs/Overview/_Body.htm
 - 包含详细的类、方法、枚举说明
 

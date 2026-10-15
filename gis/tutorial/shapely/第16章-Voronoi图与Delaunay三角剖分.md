@@ -473,3 +473,15 @@ print(f"三角形数: {len(result.geoms)}")
 - `tolerance` 参数可合并近邻点
 - `extend_to` 参数控制 Voronoi 图的范围
 - 泰森多边形法是 GIS 中最经典的应用之一
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/gis/tutorial/shapely/第15章-PreparedGeometry与性能优化/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/tutorial/shapely/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/tutorial/shapely/第17章-shapely-ops高级操作/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

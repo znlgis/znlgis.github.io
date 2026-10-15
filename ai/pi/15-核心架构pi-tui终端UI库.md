@@ -2024,3 +2024,15 @@ pi-tui 暴露了以下扩展点，供 pi-coding-agent 和 Extensions 使用：
 pi-tui 的设计哲学与 Pi 整体一致：**"做好一件事，留下干净的扩展点"**。它不追求成为一个"通用终端 UI 框架"——它只做 Pi 需要的那些事，并把它们做到极致。但也正因为它的核心抽象足够干净（`Component` + `render()` + `layout()` + 差分渲染），它天然具备了可扩展性——你可以在此基础上构建任何你需要的终端 UI 组件。
 
 至此，本教程的三个核心架构章节（第十三章 pi-ai、第十四章 pi-agent-core、第十五章 pi-tui）全部结束。从 LLM API 层到 Agent 运行时再到终端 UI 框架，你已经掌握了 Pi 的完整技术栈。现在你已经不是 Pi 的用户——你是 Pi 的**建造者**。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/ai/pi/14-核心架构pi-agent-core代理运行时/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/ai/pi/" style="text-decoration: none;">目录</a>
+  <span></span>
+</div>
+
+<!-- /NAVIGATION -->

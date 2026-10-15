@@ -192,3 +192,15 @@ boolean matches = geomA.relate(geomB, customPattern);
 - [DE-9IM 维基百科](https://en.wikipedia.org/wiki/DE-9IM)
 - [OGC Simple Features 规范](https://www.ogc.org/standards/sfa)
 - [PostGIS DE-9IM 教程](https://postgis.net/workshops/postgis-intro/de9im.html)
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/2022-Outer-Inner-Polygon-Hulls/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/2021-KdTree-Query-Optimization/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

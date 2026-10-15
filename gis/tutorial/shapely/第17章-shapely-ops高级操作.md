@@ -529,3 +529,15 @@ for i, part in enumerate(parts.geoms):
 - `polygonize_full` 的诊断输出对调试线段网络问题很有帮助
 - `split` 前确保分割器与目标几何精确相交
 - `snap` 可解决微小间隙导致的拓扑问题
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/gis/tutorial/shapely/第16章-Voronoi图与Delaunay三角剖分/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/tutorial/shapely/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/tutorial/shapely/第18章-与第三方库集成/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

@@ -85,7 +85,7 @@ Xbim 至今主要经历以下大版本：
 - **v5**：引入 `IfcStore` 高层封装、统一 IFC2x3/IFC4 接口（`Xbim.Ifc4.Interfaces`）。
 - **v5.1+**：开始支持 .NET Standard 2.0，托管侧逐步实现跨平台；几何引擎仍依赖 Windows + OCCT 原生库。
 - **v6**：标志性的版本。引入了 .NET 标准的依赖注入（`Microsoft.Extensions.DependencyInjection`）模式，通过 `XbimServices` 暴露内部服务（日志、几何引擎、Tessellator 等）；正式支持 `.netstandard2.0`、`.netstandard2.1`、`.net6.0`、`net8.0`。
-- **v6.x**：完善对 IFC4x3（基础设施扩展）的支持、改进几何引擎稳定性、跟进 OCCT 7.6.3。最新发布为 6.0.517（2026年4月）。6.0 系列自 2025 年底开始，标志着 Xbim 全面进入 v6 大版本时代。
+- **v6.x**：完善对 IFC4x3（基础设施扩展）的支持、改进几何引擎稳定性、跟进 OCCT 7.6.3。最新发布为 6.0.517（2025年4月）。6.0 系列自 2024 年底开始（2024 年 12 月已发布 6.0.489），标志着 Xbim 全面进入 v6 大版本时代。
 
 Xbim 的版本号同时会出现在 `Xbim.Essentials`、`Xbim.Geometry`、`Xbim.CobieExpress`、`Xbim.WindowsUI` 等多个 NuGet 包上，发布通过 Azure DevOps Pipelines + MyGet（develop / master 分支预发布）+ NuGet（正式发布）三段流水线完成。
 
@@ -188,3 +188,15 @@ class Program
 8. 完成一个综合性的 BIM 工具链项目（导出报表、模型对比、合规检查或 Web 查看器）。
 
 下一章我们将动手搭建开发环境，把 `XbimEssentials` 与 `XbimGeometry` 仓库克隆到本地、成功编译并运行第一个示例。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <span></span>
+  <a href="https://znlgis.github.io/cad/Xbim/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/cad/Xbim/第02章-开发环境搭建源码获取与编译/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

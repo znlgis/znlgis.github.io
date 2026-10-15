@@ -302,3 +302,15 @@ PreparedGeometry 是 JTS 中用于优化空间谓词性能的关键工具：
 - [GEOS Prepared Geometry](https://libgeos.org/doxygen/classgeos_1_1geom_1_1prep_1_1PreparedGeometry.html)
 - [Shapely Prepared Geometry](https://shapely.readthedocs.io/en/stable/manual.html#prepared-geometry-operations)
 - [GeoTools DE-9IM 文档](https://docs.geotools.org/maintenance/userguide/library/jts/dim9.html)
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/2012-FOSS4G-NA-Review/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/2011-Java-Reheated-OSCON/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

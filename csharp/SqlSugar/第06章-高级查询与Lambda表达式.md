@@ -1367,3 +1367,15 @@ public class UserWithOrdersDto
 通过本章的学习,你应该能够构建复杂的数据库查询,并能够根据实际需求进行性能优化。
 
 **下一章**: [第07章-多表联查与导航属性](https://znlgis.github.io/csharp/SqlSugar/第07章-多表联查与导航属性/)
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/csharp/SqlSugar/第05章-基础CRUD操作/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/csharp/SqlSugar/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/csharp/SqlSugar/第07章-多表联查与导航属性/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

@@ -353,3 +353,15 @@ type SandboxMode = 'read-only' | 'workspace-write' | 'danger-full-access'
 - subagent provider 谱系从"全新子 agent"延伸到"委托给另一款产品的 turn"，同一接口背后策略各异。
 - guard/ 是 loop-hygiene 守卫家族（`repeat-tool-reminder` + `timeout-policy`），是消费者而非 seam；preset/（`ctx.agentPresets`）按 session 用 `cordis.yml` 组合 agent。
 - sandbox 缝只做"按调用圈定 argv"（`read-only` / `workspace-write` / `danger-full-access`），静默透传非法；SSH provider 族是替换 `ctx.fs` + `ctx.subprocess` 整条 seam 的远程路线，不是 `ctx.sandbox` 的 provider。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/ai/deepseek-harness/第10章-核心运行时-Session日志与Agent循环/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/ai/deepseek-harness/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/ai/deepseek-harness/第12章-扩展开发实战-插件-工具-LLM适配器/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

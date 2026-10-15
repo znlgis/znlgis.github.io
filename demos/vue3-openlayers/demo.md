@@ -25,3 +25,15 @@ npm install vue3-openlayers
 npm install axios
 npm install base-64
 ```
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/demos/vue3-openlayers/docker/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/demos/vue3-openlayers/" style="text-decoration: none;">目录</a>
+  <span></span>
+</div>
+
+<!-- /NAVIGATION -->

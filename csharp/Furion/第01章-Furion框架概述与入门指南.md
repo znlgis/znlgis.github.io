@@ -62,7 +62,7 @@ Furion自诞生以来，始终紧跟.NET生态的发展步伐，经历了多个�
 | 2023年 | Furion 4.x | 支持.NET 7/8，性能大幅提升 |
 | 2024年 | Furion 4.9+ | 支持.NET 8/9，持续演进 |
 | 2025年 | Furion 4.9.x | 支持.NET 9/10，稳定性持续增强 |
-| 2026年 | Furion 4.9.9.94 | 全面支持.NET 10，最新稳定版本 |
+| 2026年 | Furion 4.9.9.96 | 全面支持.NET 10，最新稳定版本 |
 | 预览版 | Furion 5.0.0 (Preview) | 面向下一代.NET的预览版本 |
 
 ### 2.2 版本特性演进
@@ -90,7 +90,7 @@ Furion自诞生以来，始终紧跟.NET生态的发展步伐，经历了多个�
 - 性能持续优化
 - 完善文档和社区生态
 
-**Furion 4.9.9.94（2026年，最新稳定版）**
+**Furion 4.9.9.96（2026年，最新稳定版）**
 
 - 全面支持.NET 10
 - 最新的Source Generator优化和性能改进
@@ -188,7 +188,7 @@ Furion建立在以下核心技术栈之上：
 
 | 技术 | 版本要求 | 用途 |
 |------|---------|------|
-| .NET SDK | 8.0 / 9.0 / 10.0+ | 运行时平台（最新版4.9.9.94支持.NET 10） |
+| .NET SDK | 8.0 / 9.0 / 10.0+ | 运行时平台（最新版 4.9.9.96 支持 .NET 10） |
 | ASP.NET Core | 6.0+ | Web框架基础 |
 | Entity Framework Core | 6.0+ | ORM数据访问 |
 | Swagger/OpenAPI | 最新版 | API文档生成 |
@@ -570,3 +570,15 @@ Furion作为一款国产.NET开源框架，以其零入侵、极简设计、高�
 通过本章的学习，你应该对Furion框架有了一个全面的了解，包括它的设计理念、核心功能、适用场景以及与其他框架的对比。在接下来的章节中，我们将一步步深入Furion的各项功能，从环境搭建到实际开发，全面掌握Furion框架的使用。
 
 > **下一章预告**：第二章将详细介绍Furion的开发环境搭建和项目创建过程，带你从零开始构建一个完整的Furion项目。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <span></span>
+  <a href="https://znlgis.github.io/csharp/Furion/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/csharp/Furion/第02章-环境搭建与项目创建/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

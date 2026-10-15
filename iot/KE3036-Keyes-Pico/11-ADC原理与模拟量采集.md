@@ -501,3 +501,15 @@ filtered = median_filter(adc, 5)
    - 定时采样保证频率稳定
 
 下一章将学习环境光与紫外线传感器。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/iot/KE3036-Keyes-Pico/10-蜂鸣器与声音输出/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/iot/KE3036-Keyes-Pico/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/iot/KE3036-Keyes-Pico/12-环境光与紫外线传感器/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

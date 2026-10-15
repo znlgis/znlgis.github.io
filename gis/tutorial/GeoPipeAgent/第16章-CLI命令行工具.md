@@ -434,3 +434,15 @@ done
 ---
 
 **导航**：[← 第十五章：数据模型与错误体系](https://znlgis.github.io/gis/tutorial/GeoPipeAgent/第15章-数据模型与错误体系/) ｜ [第十七章：Skill 文件与 AI 集成 →](https://znlgis.github.io/gis/tutorial/GeoPipeAgent/第17章-Skill文件与AI集成/)
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/gis/tutorial/GeoPipeAgent/第15章-数据模型与错误体系/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/tutorial/GeoPipeAgent/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/tutorial/GeoPipeAgent/第17章-Skill文件与AI集成/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

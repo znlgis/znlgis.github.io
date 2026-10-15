@@ -42,7 +42,7 @@ title: 第六章：Docker Compose 部署实战
 │         └────────────────────┼────────────────────┘             │
 │                              │                                  │
 │  ┌─────────────────────────────────────────────────────────┐   │
-│  │   Discovery   │   Config   │   RabbitMQ                 │   │
+│  │   Consul      │   Config   │   RabbitMQ                 │   │
 │  └─────────────────────────────────────────────────────────┘   │
 │                              │                                  │
 │  ┌─────────────────────────────────────────────────────────┐   │
@@ -58,7 +58,7 @@ title: 第六章：Docker Compose 部署实战
 | 服务 | 必需性 | 说明 |
 |------|--------|------|
 | Gateway | 必需 | API 网关，统一入口 |
-| Discovery | Docker Compose 必需 | 服务发现 |
+| Consul | Docker Compose 必需 | 服务注册与发现 |
 | Config | Docker Compose 必需 | 配置服务 |
 | RabbitMQ | 必需 | 事件总线 |
 | PostgreSQL | pgconfig 必需 | 目录存储 |
@@ -118,7 +118,7 @@ geoserver-cloud-deploy/
 # ===================
 # 版本配置
 # ===================
-TAG=3.0.0.0
+TAG=3.0.1.1
 POSTGRES_VERSION=15-alpine
 RABBITMQ_VERSION=3-management-alpine
 
@@ -220,19 +220,17 @@ services:
     networks:
       - gscloud-net
 
-  discovery:
-    image: geoservercloud/geoserver-cloud-discovery:${TAG}
-    container_name: gscloud-discovery
-    user: ${GS_USER}
-    environment:
-      JAVA_OPTS: -Xms256m -Xmx512m
+  consul:
+    image: hashicorp/consul:1.22.5
+    container_name: gscloud-consul
+    command: agent -server -bootstrap-expect=1 -ui -client=0.0.0.0
     ports:
-      - "8761:8761"
+      - "8500:8500"
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8761/actuator/health"]
-      interval: 10s
+      test: ["CMD", "consul", "info"]
+      interval: 5s
       timeout: 5s
-      retries: 10
+      retries: 3
     restart: unless-stopped
     networks:
       - gscloud-net
@@ -242,11 +240,11 @@ services:
     container_name: gscloud-config
     user: ${GS_USER}
     depends_on:
-      discovery:
+      consul:
         condition: service_healthy
     environment:
       JAVA_OPTS: -Xms256m -Xmx512m
-      EUREKA_SERVER_URL: http://discovery:8761/eureka
+      SPRING_CLOUD_CONSUL_HOST: consul
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]
       interval: 10s
@@ -265,14 +263,14 @@ services:
     container_name: gscloud-gateway
     user: ${GS_USER}
     depends_on:
-      discovery:
+      consul:
         condition: service_healthy
       config:
         condition: service_healthy
     environment:
       JAVA_OPTS: ${JAVA_OPTS_GATEWAY}
       SPRING_PROFILES_ACTIVE: pgconfig
-      EUREKA_SERVER_URL: http://discovery:8761/eureka
+      SPRING_CLOUD_CONSUL_HOST: consul
       GEOSERVER_BASE_PATH: ${GEOSERVER_BASE_PATH}
     ports:
       - "${GATEWAY_PORT}:8080"
@@ -293,7 +291,7 @@ services:
     image: geoservercloud/geoserver-cloud-wms:${TAG}
     user: ${GS_USER}
     depends_on:
-      discovery:
+      consul:
         condition: service_healthy
       config:
         condition: service_healthy
@@ -304,7 +302,7 @@ services:
     environment:
       JAVA_OPTS: ${JAVA_OPTS_WMS}
       SPRING_PROFILES_ACTIVE: pgconfig
-      EUREKA_SERVER_URL: http://discovery:8761/eureka
+      SPRING_CLOUD_CONSUL_HOST: consul
       GEOSERVER_BASE_PATH: ${GEOSERVER_BASE_PATH}
       PGCONFIG_HOST: ${PGCONFIG_HOST}
       PGCONFIG_PORT: ${PGCONFIG_PORT}
@@ -335,7 +333,7 @@ services:
     image: geoservercloud/geoserver-cloud-wfs:${TAG}
     user: ${GS_USER}
     depends_on:
-      discovery:
+      consul:
         condition: service_healthy
       config:
         condition: service_healthy
@@ -346,7 +344,7 @@ services:
     environment:
       JAVA_OPTS: ${JAVA_OPTS_WFS}
       SPRING_PROFILES_ACTIVE: pgconfig
-      EUREKA_SERVER_URL: http://discovery:8761/eureka
+      SPRING_CLOUD_CONSUL_HOST: consul
       GEOSERVER_BASE_PATH: ${GEOSERVER_BASE_PATH}
       PGCONFIG_HOST: ${PGCONFIG_HOST}
       PGCONFIG_PORT: ${PGCONFIG_PORT}
@@ -372,7 +370,7 @@ services:
     image: geoservercloud/geoserver-cloud-wcs:${TAG}
     user: ${GS_USER}
     depends_on:
-      discovery:
+      consul:
         condition: service_healthy
       config:
         condition: service_healthy
@@ -383,7 +381,7 @@ services:
     environment:
       JAVA_OPTS: ${JAVA_OPTS_WCS}
       SPRING_PROFILES_ACTIVE: pgconfig
-      EUREKA_SERVER_URL: http://discovery:8761/eureka
+      SPRING_CLOUD_CONSUL_HOST: consul
       GEOSERVER_BASE_PATH: ${GEOSERVER_BASE_PATH}
       PGCONFIG_HOST: ${PGCONFIG_HOST}
       PGCONFIG_PORT: ${PGCONFIG_PORT}
@@ -409,7 +407,7 @@ services:
     image: geoservercloud/geoserver-cloud-rest:${TAG}
     user: ${GS_USER}
     depends_on:
-      discovery:
+      consul:
         condition: service_healthy
       config:
         condition: service_healthy
@@ -420,7 +418,7 @@ services:
     environment:
       JAVA_OPTS: ${JAVA_OPTS_REST}
       SPRING_PROFILES_ACTIVE: pgconfig
-      EUREKA_SERVER_URL: http://discovery:8761/eureka
+      SPRING_CLOUD_CONSUL_HOST: consul
       GEOSERVER_BASE_PATH: ${GEOSERVER_BASE_PATH}
       PGCONFIG_HOST: ${PGCONFIG_HOST}
       PGCONFIG_PORT: ${PGCONFIG_PORT}
@@ -446,7 +444,7 @@ services:
     image: geoservercloud/geoserver-cloud-webui:${TAG}
     user: ${GS_USER}
     depends_on:
-      discovery:
+      consul:
         condition: service_healthy
       config:
         condition: service_healthy
@@ -457,7 +455,7 @@ services:
     environment:
       JAVA_OPTS: ${JAVA_OPTS_WEBUI}
       SPRING_PROFILES_ACTIVE: pgconfig
-      EUREKA_SERVER_URL: http://discovery:8761/eureka
+      SPRING_CLOUD_CONSUL_HOST: consul
       GEOSERVER_BASE_PATH: ${GEOSERVER_BASE_PATH}
       PGCONFIG_HOST: ${PGCONFIG_HOST}
       PGCONFIG_PORT: ${PGCONFIG_PORT}
@@ -483,7 +481,7 @@ services:
     image: geoservercloud/geoserver-cloud-gwc:${TAG}
     user: ${GS_USER}
     depends_on:
-      discovery:
+      consul:
         condition: service_healthy
       config:
         condition: service_healthy
@@ -494,7 +492,7 @@ services:
     environment:
       JAVA_OPTS: ${JAVA_OPTS_GWC}
       SPRING_PROFILES_ACTIVE: pgconfig
-      EUREKA_SERVER_URL: http://discovery:8761/eureka
+      SPRING_CLOUD_CONSUL_HOST: consul
       GEOSERVER_BASE_PATH: ${GEOSERVER_BASE_PATH}
       PGCONFIG_HOST: ${PGCONFIG_HOST}
       PGCONFIG_PORT: ${PGCONFIG_PORT}
@@ -558,8 +556,8 @@ docker compose up -d --scale wms=3 --scale wfs=2 --scale gwc=2
 # 查看服务实例
 docker compose ps
 
-# 查看 Eureka 注册情况
-curl http://localhost:8761/eureka/apps | jq '.applications.application[] | {name: .name, instances: [.instance[].instanceId]}'
+# 查看 Consul 注册情况
+curl http://localhost:8500/v1/catalog/services | jq
 
 # 测试负载均衡
 for i in {1..10}; do
@@ -685,15 +683,15 @@ scrape_configs:
     static_configs:
       - targets: ['localhost:9090']
 
-  # GeoServer Cloud 服务 - 通过 Eureka 发现
+  # GeoServer Cloud 服务 - 通过 Consul 发现
   - job_name: 'geoserver-cloud'
-    eureka_sd_configs:
-      - server: 'http://discovery:8761/eureka'
+    consul_sd_configs:
+      - server: 'consul:8500'
         refresh_interval: 30s
     relabel_configs:
-      - source_labels: [__meta_eureka_app_name]
+      - source_labels: [__meta_consul_service]
         target_label: application
-      - source_labels: [__meta_eureka_app_instance_instanceId]
+      - source_labels: [__meta_consul_service_id]
         target_label: instance
 
   # 直接配置方式（备选）

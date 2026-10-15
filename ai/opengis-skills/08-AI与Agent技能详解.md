@@ -304,7 +304,7 @@ opencode 是一个**开源、模型无关、终端优先**的 AI 编码代理。
 
 ```json
 {
-  "$schema": "https://opencode.ai/schema.json",
+  "$schema": "https://opencode.ai/config.json",
   "model": {
     "provider": "deepseek",
     "model": "deepseek-v4-pro",
@@ -495,7 +495,7 @@ pi 是一个**极简、安全的终端 Agent Harness**（TypeScript monorepo）�
 oh-my-openagent 是 opencode 的**增强层和编排层**，解决单个 opencode 实例在三方面上的局限：多模型并行协作、代码智能工具缺失、与外部系统（MCP）的深度集成。
 
 - **定位**：OpenCode 插件/增强系统（非独立代理）
-- **仓库地址**：[https://github.com/znlgis/oh-my-openagent](https://github.com/znlgis/oh-my-openagent)
+- **仓库地址**：[https://github.com/code-yeongyu/oh-my-openagent](https://github.com/code-yeongyu/oh-my-openagent)
 
 **核心能力**：
 
@@ -568,7 +568,7 @@ interface OpenCodePlugin {
 
 hermes-agent 是一个**终端优先、具备自学习能力的通用 AI 智能体**。与传统 Agent 不同，hermes-agent 能从每次执行中积累经验，逐渐优化自己的行为模式。
 
-- **仓库地址**：[https://github.com/znlgis/hermes-agent](https://github.com/znlgis/hermes-agent)
+- **仓库地址**：[https://github.com/NousResearch/hermes-agent](https://github.com/NousResearch/hermes-agent)
 - **设计哲学**：Agent 不应该每次从零开始——它应该像人类一样越用越熟练。
 
 **自学习机制**：
@@ -660,7 +660,7 @@ hermes-agent 的学习效果随着使用次数的增加而增强：
 
 openclaw 是一个**多通道个人 AI 助手网关**，核心理念是"一个入口管理所有 AI 服务"——它将多个 AI 后端（dify、opencode、hermes-agent 等）统一到同一个入口，通过不同的客户端（终端、Web、IM）接入。
 
-- **仓库地址**：[https://github.com/znlgis/openclaw](https://github.com/znlgis/openclaw)
+- **仓库地址**：[https://github.com/openclaw/openclaw](https://github.com/openclaw/openclaw)
 - **设计哲学**：AI 工具太多导致入口碎片化——需要一个统一的 Gateway 来管理。
 
 **Gateway 架构**：
@@ -967,7 +967,7 @@ superpowers-zh 和 opengis-skills 的设计者有意将两者定位为互补关�
 
 docutranslate 是一个**基于大模型的本地文档翻译工具**，专门解决 GIS、CAD 等技术文档中术语一致性和排版保留的翻译难题。
 
-- **仓库地址**：[https://github.com/znlgis/docutranslate](https://github.com/znlgis/docutranslate)
+- **仓库地址**：[https://github.com/xunbu/docutranslate](https://github.com/xunbu/docutranslate)
 - **核心能力**：PDF/Word/Excel/Markdown/字幕文件 → 大模型翻译 → 保留原排版输出
 - **安全特性**：本地运行，数据不出机器
 
@@ -1254,3 +1254,15 @@ opengis-skills 中的 CAD 分类包含 `cad/tongwen/SKILL.md`——一个 AutoCA
 6. **docutranslate** 解决 GIS/CAD 技术文档翻译的痛点——术语一致、排版保留、本地安全。
 
 这 10 个技能覆盖了从"搭应用"到"写代码"、从"学方法"到"译文档"的完整 AI 工具链。结合前几章介绍的 GIS、CAD、C# 等领域的 65 个技能，opengis-skills 为用户提供了在 AI 辅助下完成专业领域开发的完整能力闭环。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/ai/opengis-skills/07-CSharp技能详解/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/ai/opengis-skills/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/ai/opengis-skills/09-IoT与3D与Others详解/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

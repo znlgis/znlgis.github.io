@@ -68,3 +68,15 @@ Gateway 读取 `~/.openclaw/openclaw.json` 并严格校验 schema。配置错误
 ## 3.8 小结
 
 理解 Gateway 后，OpenClaw 的其他功能都更清晰：通道是入口，Agent 是执行者，工具是行动力，技能是方法，插件是扩展，安全策略则由 Gateway 统一协调。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/ai/openclaw/02-安装环境准备与快速上手/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/ai/openclaw/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/ai/openclaw/04-配置体系模型接入与认证管理/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

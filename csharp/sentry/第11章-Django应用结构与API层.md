@@ -1298,3 +1298,15 @@ Sentry 的公开 API 文档托管在 [docs.sentry.io/api/](https://docs.sentry.i
 ---
 
 *（第十一章完）*
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/csharp/sentry/第10章-Dashboards与Discover数据分析/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/csharp/sentry/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/csharp/sentry/第12章-事件摄取管道深度解析/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

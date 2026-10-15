@@ -107,3 +107,15 @@ RobotGo 的核心优势在于：**Go 语言的工程化能力**（静态类型�
 ## 1.8 小结
 
 本章我们认识了 RobotGo 的整体定位：一个用 Go 编写的、跨平台的桌面自动化库，能够控制鼠标键盘、读取屏幕、处理图像、管理进程窗口并监听全局事件。我们梳理了它的技术背景与生态子库，了解了它支持的平台架构，并讨论了自动化测试、RPA、游戏脚本、AI 计算机使用等典型应用场景。下一章，我们将正式动手，搭建 RobotGo 的开发环境。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <span></span>
+  <a href="https://znlgis.github.io/others/robotgo/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/others/robotgo/第02章-环境准备与安装配置/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

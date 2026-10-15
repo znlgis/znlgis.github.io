@@ -49,7 +49,7 @@ print(f"点在多边形内: {polygon.contains(point)}")  # True
 | 几何维度 | 二维笛卡尔平面（支持 Z 坐标存储但不参与计算） |
 | 底层引擎 | 基于 GEOS（C/C++ 几何计算引擎） |
 | 标准兼容 | 遵循 OGC Simple Features 规范 |
-| Python 版本 | 支持 Python 3.8+ |
+| Python 版本 | Shapely 2.2 需 Python 3.11+；2.1 需 Python 3.10+ |
 | 线程安全 | GEOS 操作时释放 GIL，支持多线程 |
 
 ---
@@ -102,8 +102,9 @@ Shapely 的技术基础深植于一条成熟的开源几何计算链条：
 | 2019 | 1.7 | 引入了对 NumPy 数组的初步支持 |
 | 2022 | 2.0 | **重大版本更新**：不可变几何体、向量化操作、NumPy 深度集成 |
 | 2023 | 2.0.1-2.0.6 | 持续修复和性能改进 |
-| 2025 | 2.1.0 | transform_coordseq、M 坐标支持（4月发布） |
-| 2025 | 2.1.2 | 性能改进与 Bug 修复（9月发布），当前最新稳定版 |
+| 2025 | 2.1.0 | M/ZM 坐标支持（4月发布） |
+| 2025 | 2.1.2 | 性能改进与 Bug 修复（9月发布） |
+| 2026 | 2.2.0 | transform_coordseq、get_segments、minimum_width、coverage_clean、split 等新顶层函数（10月发布），当前最新稳定版 |
 
 ### 1.2.3 Shapely 2.0 的重大变化
 
@@ -606,3 +607,15 @@ import geopandas as gpd  # 空间数据框分析
 - **快速上手**：创建点线面、缓冲区、交集运算
 
 下一章我们将详细介绍 Shapely 的安装与环境配置。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <span></span>
+  <a href="https://znlgis.github.io/gis/tutorial/shapely/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/tutorial/shapely/第02章-安装与环境配置/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

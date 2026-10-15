@@ -11,10 +11,10 @@ title: 第十八章：WPF平台集成
 
 ```bash
 # NuGet包管理器
-Install-Package unvell.ReoGrid.WPF
+Install-Package unvell.ReoGridWPF.dll -Version 3.3.0
 
 # .NET CLI
-dotnet add package unvell.ReoGrid.WPF
+dotnet add package unvell.ReoGridWPF.dll --version 3.3.0
 ```
 
 ### 18.1.2 XAML配置
@@ -23,10 +23,10 @@ dotnet add package unvell.ReoGrid.WPF
 <Window x:Class="WpfApp.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:rg="clr-namespace:unvell.ReoGrid.WPF;assembly=unvell.ReoGrid.WPF"
+        xmlns:rg="clr-namespace:unvell.ReoGrid;assembly=unvell.ReoGrid"
         Title="ReoGrid WPF Demo" Height="600" Width="800">
     <Grid>
-        <rg:WorksheetControl x:Name="worksheetControl"/>
+        <rg:ReoGridControl x:Name="worksheetControl"/>
     </Grid>
 </Window>
 ```
@@ -46,7 +46,7 @@ public partial class MainWindow : Window
     
     private void InitializeWorksheet()
     {
-        var worksheet = worksheetControl.Worksheet;
+        var worksheet = worksheetControl.CurrentWorksheet;
         
         // 设置数据
         worksheet["A1"] = "姓名";
@@ -112,7 +112,7 @@ public class WorksheetViewModel : INotifyPropertyChanged
 
 ```xml
 <Window.Resources>
-    <Style TargetType="{x:Type rg:WorksheetControl}">
+    <Style TargetType="{x:Type rg:ReoGridControl}">
         <Setter Property="Background" Value="White"/>
         <Setter Property="BorderBrush" Value="Gray"/>
         <Setter Property="BorderThickness" Value="1"/>

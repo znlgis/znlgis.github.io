@@ -95,3 +95,15 @@ Hole 工具比简单 Pocket 更适合工程孔。它可以定义通孔、盲孔�
 7. 创建工程图和导出文件。
 
 不要急于在早期添加大量圆角，也不要在草图里画出所有细节。特征化建模的目标是让设计意图分层清晰。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/cad/FreeCAD/第04章-草图Sketcher约束建模/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/FreeCAD/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/cad/FreeCAD/第06章-Part工作台与几何内核/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

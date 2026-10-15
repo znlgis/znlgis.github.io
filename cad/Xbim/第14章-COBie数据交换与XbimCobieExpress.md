@@ -160,3 +160,15 @@ cobie.ImportFromTable("output.xlsx", out var report);
 - `CobieModel` 与 `IfcStore` 同样基于 `Xbim.Common.IModel`，开发体验一致。
 
 下一章我们继续看 Open BIM 生态：IDS 模型校验与 BCF 协同。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/cad/Xbim/第13章-场景管理Wexbim文件与3D可视化/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/Xbim/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/cad/Xbim/第15章-IDS模型校验BCF协同与生态扩展/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

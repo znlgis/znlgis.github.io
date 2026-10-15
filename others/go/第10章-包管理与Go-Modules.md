@@ -241,3 +241,15 @@ myproject/
 本章讲解了 Go 的包机制与现代依赖管理。包通过首字母大小写控制可见性，`init` 函数完成包初始化。Go Modules 是官方的依赖管理标准，通过 `go.mod` 声明依赖、`go.sum` 保证完整性，配合 `go mod tidy`、`go get` 等命令管理依赖。合理的项目目录结构（cmd/internal/pkg）和 GOPROXY 代理配置，是构建可维护 Go 工程的基础。
 
 下一章我们将系统学习 Go 标准库。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/others/go/第09章-并发进阶-sync包与并发控制/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/others/go/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/others/go/第11章-标准库详解/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

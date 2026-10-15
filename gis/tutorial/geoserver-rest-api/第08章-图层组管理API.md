@@ -918,7 +918,7 @@ public static class LayerGroupErrorHandler
 ---
 
 **相关资源**：
-- [GeoServer 图层组文档](https://docs.geoserver.org/latest/en/user/data/webadmin/layergroups.html)
+- [GeoServer REST API 文档（图层组）](https://docs.geoserver.org/latest/en/user/rest/api/)
 - [GeoServer REST API - Layer Groups](https://docs.geoserver.org/latest/en/api/#1.0.0/layergroups.yaml)
 
 <!-- NAVIGATION -->

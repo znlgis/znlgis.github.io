@@ -807,3 +807,15 @@ Sentry 的架构设计本质上是一个**从单体到分布式渐进演进**的
 3. 关键路径（Relay、Kafka、Snuba）从一开始就被设计为可独立扩展的服务，使得架构可以在不重写核心逻辑的情况下从单体扩展到分布式。
 
 这种设计使得同一份代码库可以同时服务三种截然不同的部署场景，极大地降低了维护成本。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/csharp/sentry/第01章-Sentry简介与核心概念/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/csharp/sentry/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/csharp/sentry/第03章-Sentry快速上手/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

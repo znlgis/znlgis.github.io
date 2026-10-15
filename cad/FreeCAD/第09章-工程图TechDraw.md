@@ -111,3 +111,15 @@ TechDraw 页面引用模型对象。模型变化后，页面需要更新。如�
 6. 导出 PDF。
 
 完成后修改支架长度参数，重计算模型和图纸，观察尺寸更新情况。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/cad/FreeCAD/第08章-装配设计Assembly/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/FreeCAD/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/cad/FreeCAD/第10章-Draft二维绘图与BIM建筑/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

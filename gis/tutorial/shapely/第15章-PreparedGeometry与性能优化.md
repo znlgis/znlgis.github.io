@@ -1021,3 +1021,15 @@ print(f"吞吐量: {n_points/elapsed:.0f} 点/秒")
 6. 分批处理超大数据
 
 掌握这些优化技术，可以让你的空间分析程序从"能跑"变成"跑得快"，从处理千级数据到处理百万级数据。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/gis/tutorial/shapely/第14章-几何验证与修复/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/tutorial/shapely/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/tutorial/shapely/第16章-Voronoi图与Delaunay三角剖分/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

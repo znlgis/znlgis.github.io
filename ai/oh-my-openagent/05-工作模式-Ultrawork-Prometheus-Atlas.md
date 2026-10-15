@@ -411,3 +411,15 @@ Atlas 主要通过 `/start-work` 进入。你不需要手动切 Atlas——`/sta
 - **Atlas**：`/start-work` ── 拿计划落地，永不丢上下文。
 
 下一章我们将进入 **Category 与 Skill 系统**——理解 OmO 是怎么把"模型 + 工具 + 领域知识"打包成一个可重用单元的。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/ai/oh-my-openagent/04-智能体全景详解/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/ai/oh-my-openagent/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/ai/oh-my-openagent/06-Category与Skill系统/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

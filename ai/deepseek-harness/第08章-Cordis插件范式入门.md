@@ -357,3 +357,15 @@ export function apply(ctx: Context, config: Config) {
 - **cordis.yml**：条目含 `name`/`id`/`inject`/`config`/`disabled`；`!!js`（不是 `!js`）只在 `config` 与 `disabled` 求值；环境选择用 overlay；config 经 schema 校验、坏配置大声失败。
 - **`@deepseek-ai/cordis`** 是每个 harness 包的 peerDependency，vendored 共享单实例。
 - **最小插件骨架** = 类型声明合并 + 配置 schema + Service 子类 + `apply` 里的 effect 注册 + `cordis.yml` 挂载；这是第 9-12 章的共同基石。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/ai/deepseek-harness/第07章-ACP与JSON-RPC自动化接入/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/ai/deepseek-harness/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/ai/deepseek-harness/第09章-源码架构与仓库布局/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

@@ -31,6 +31,8 @@ Ara3D-SDK 基于 **.NET 8**。你需要准备：
 | `Ara3D.Utils.Wpf`（ext/） | `net8.0-windows` | WPF 仅 Windows |
 | `Ara3D.IfcLoader`（ext/） | `net8.0-windows` | `web-ifc-library.dll` 为 x64 Windows 原生库 |
 
+> 补充说明：main 分支已将 Revit/BOS/IFC 相关工程迁出至 `ara3d/bim-open-toolkit` 仓库；本文的包引用不受影响（NuGet 上的 v1.6.1 仍包含这些包）。
+
 因此，如果你的项目要引用 `Ara3D.SDK` 或 `Ara3D.SDK.IO`，`.csproj` 中的目标框架应写成：
 
 ```xml

@@ -152,3 +152,15 @@ Coverage 清理是 JTS 对空间数据质量管理的重要贡献。它使得处
 
 - [JTS CoverageCleaner Pull Request](https://github.com/locationtech/jts/pull/1126)
 - [NetTopologySuite Coverage 命名空间](https://nettopologysuite.github.io/NetTopologySuite/api/NetTopologySuite.Coverage.html)
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/2026-Hausdorff-Distance-Challenge/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/2025-Fast-Detection-Narrow-Polygons/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

@@ -199,10 +199,10 @@ dotnet add package ProjNet
 
 ### 1.3.1 环境要求
 
-- **.NET 版本**：.NET Standard 2.0 或更高版本
+- **.NET 版本**：包目标框架为 .NET Standard 2.0/2.1
   - .NET Framework 4.6.1+
   - .NET Core 2.0+
-  - .NET 5.0/6.0/7.0/8.0
+  - .NET 8/9/10（推荐 .NET 8 或 .NET 10；.NET 6 已于 2024-11 结束支持）
 - **开发工具**：
   - Visual Studio 2019/2022
   - JetBrains Rider
@@ -240,8 +240,8 @@ Install-Package ProjNet
     <PackageReference Include="NetTopologySuite" Version="2.6.0" />
     <PackageReference Include="NetTopologySuite.Features" Version="2.2.0" />
     <PackageReference Include="NetTopologySuite.IO.GeoJSON" Version="4.0.0" />
-    <PackageReference Include="NetTopologySuite.IO.Esri.Shapefile" Version="1.0.0" />
-    <PackageReference Include="ProjNet" Version="2.0.0" />
+    <PackageReference Include="NetTopologySuite.IO.Esri.Shapefile" Version="1.2.0" />
+    <PackageReference Include="ProjNet" Version="2.1.0" />
 </ItemGroup>
 ```
 

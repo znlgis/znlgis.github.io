@@ -202,3 +202,15 @@ robotgo-flow.exe run login.yaml
 ## 12.9 小结
 
 本章我们系统梳理了 robotgo-flow CLI 的四个子命令：`run` 执行工作流（`--from` 从指定步骤恢复、`--debug` 每步截图、`--out` 指定截图目录，并在执行前收集 `inputs`）；`record` 交互式录制工作流；`capture` 交互式截取单个模板；`serve` 提供 JSON-Line 服务供 GUI 调用。同时介绍了 `version`/`help` 辅助命令、退出码机制与典型命令链。下一章，我们深入 `record` 录制器与 `capture` 截图工具的实战细节。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/others/robotgo-flow/第11章-人类行为模拟/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/others/robotgo-flow/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/others/robotgo-flow/第13章-交互式录制器与截图工具实战/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

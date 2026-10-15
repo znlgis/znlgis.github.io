@@ -204,7 +204,7 @@ IFoxCAD可以通过以下几种方式获取：
 
 如果需要修改或扩展IFoxCAD，可以从GitHub克隆源码：
 ```
-git clone https://github.com/znlgis/IFoxCAD.git
+git clone https://github.com/InspireFunction/IFoxCAD.git
 ```
 
 然后使用Visual Studio打开IFoxCAD.sln解决方案文件，编译生成所需的dll。
@@ -263,7 +263,7 @@ namespace MyPlugin
 
 ### 1.4.1 IFoxCAD的版本说明
 
-目前IFoxCAD的最新版本为v0.9.10，同时也维护着多个历史版本。每个版本都有其特点和适用场景：
+目前IFoxCAD的最新版本为v0.9.12（以 NuGet 上的 IFox.CAD.ACAD 包为准），同时也维护着多个历史版本。每个版本都有其特点和适用场景：
 
 - **0.5版本**：早期稳定版本，API相对稳定
 - **0.6版本**：过渡版本，进行了一些API调整
@@ -533,7 +533,7 @@ IFoxCAD的官方文档是学习的首选资源：
 
 **GitHub仓库**
 
-- 源码仓库：https://github.com/znlgis/IFoxCAD
+- 源码仓库：https://github.com/InspireFunction/IFoxCAD
 - 可以在Issues中提交问题和建议
 
 ### 1.7.2 社区交流

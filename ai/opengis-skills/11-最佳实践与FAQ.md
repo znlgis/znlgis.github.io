@@ -21,7 +21,7 @@ Token 是 AI 工具的核心资源，理解 opengis-skills 的 Token 消耗结�
 
 **技能文件的 Token 规模分级**
 
-opengis-skills 的 75 个技能文件按规模和复杂度可分为三个等级：
+opengis-skills 的 76 个技能文件按规模和复杂度可分为三个等级：
 
 | 等级 | 文件规模 | Token 估算 | 典型示例 | 加载建议 |
 |------|----------|-----------|----------|----------|
@@ -104,7 +104,7 @@ opengis-skills 的 75 个技能文件按规模和复杂度可分为三个等级�
 - **工具链**：#gdal #arcpy #qgis #cesium #autocad
 - **语言**：#python #csharp #lisp #javascript
 
-举例：你需要把一批栅格影像做投影变换后再在前端三维地球上展示。在根索引中搜索 `#raster #3d` 即可分别定位到 gis/gdal 和 gis/cesiumjs 两个技能——没有这两个标签，你可能需要翻找 75 个技能文件。
+举例：你需要把一批栅格影像做投影变换后再在前端三维地球上展示。在根索引中搜索 `#raster #3d` 即可分别定位到 gis/gdal 和 gis/cesiumjs 两个技能——没有这两个标签，你可能需要翻找 76 个技能文件。
 
 **第 2 步——L2 分类索引（@category/SKILL.md）**
 
@@ -235,7 +235,7 @@ AI 工具的上下文管理机制决定了你需要了解如何在同一个会�
 
 为特定 Agent 角色绑定固定的技能集合，例如定义一个 `gis-expert` Agent，其 system prompt 中包含常驻的 gis 技能引用。
 
-> **核心结论**：截至 2025 年 7 月，主流 AI 工具**均不支持**跨会话技能缓存。每次新会话都需要重新加载。因此，优化单次会话的技能加载策略（11.1.1-11.1.3）比期待跨会话缓存更务实。
+> **核心结论**：截至 2026 年，主流 AI 工具**均不支持**跨会话技能缓存。每次新会话都需要重新加载。因此，优化单次会话的技能加载策略（11.1.1-11.1.3）比期待跨会话缓存更务实。
 
 ---
 
@@ -847,7 +847,7 @@ upstream:                    # 上游参考
 
 ### 技巧 1：优先加载 L2 分类索引（而非 L1 根索引）
 
-**原理**：L1 根索引（`SKILL.md`）约 700 行 / 10K tokens，包含全部 75 个技能的清单。L2 分类索引（如 `gis/SKILL.md`）约 80-150 行 / 1K-2.5K tokens，只包含该分类下的子技能。如果你已经知道任务属于哪个大类（例如明确是 GIS 问题），直接跳过 L1，加载 L2 索引即可——节省约 8K tokens。
+**原理**：L1 根索引（`SKILL.md`）约 700 行 / 10K tokens，包含全部 76 个技能的清单。L2 分类索引（如 `gis/SKILL.md`）约 80-150 行 / 1K-2.5K tokens，只包含该分类下的子技能。如果你已经知道任务属于哪个大类（例如明确是 GIS 问题），直接跳过 L1，加载 L2 索引即可——节省约 8K tokens。
 
 **具体操作**：
 
@@ -1180,3 +1180,15 @@ opengis-skills 仓库中的所有内容都是**公开知识**——GDAL 的 API 
 | 上游更新了要不要升级 | 11.3.1 上游版本追踪 |
 | 遇到具体问题了 | 11.4 FAQ + 11.5 排障指南 |
 | 关心安全和隐私 | 11.7 安全与隐私 |
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/ai/opengis-skills/10-实战工作流组合/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/ai/opengis-skills/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/ai/opengis-skills/12-贡献指南与社区/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

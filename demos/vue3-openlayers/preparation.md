@@ -13,3 +13,15 @@ title: 课程知识准备
 6. [Element Plus](https://element-plus.org/zh-CN/#/zh-CN)
 7. [OpenLayers](https://openlayers.org/)
 8. [vue3-openlayers](https://vue3openlayers.netlify.app/)
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/demos/vue3-openlayers/vue3-openlayers基础知识简介/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/demos/vue3-openlayers/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/demos/vue3-openlayers/functional-requirement/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

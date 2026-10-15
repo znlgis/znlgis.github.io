@@ -180,3 +180,15 @@ JTS 的覆盖简化功能为处理边缘匹配的多边形数据提供了强大�
 - [JTS Coverage 包文档](https://locationtech.github.io/jts/javadoc/org/locationtech/jts/coverage/package-summary.html)
 - [Visvalingam-Whyatt 算法](https://en.wikipedia.org/wiki/Visvalingam%E2%80%93Whyatt_algorithm)
 - [JTS GitHub 仓库](https://github.com/locationtech/jts)
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/2023-Alpha-Shapes-in-JTS/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/2022-Validating-Polygonal-Coverages/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

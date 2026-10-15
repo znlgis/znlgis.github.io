@@ -416,3 +416,15 @@ acme.sh --issue --dns dns_ali -d example.com
 - **DNS 别名模式**：适合主域名 DNS 无 API 的场景
 
 下一章将专门介绍 acme.sh 与中国各大主流云服务商的集成使用。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/others/acme.sh/第03章-HTTP验证方式申请证书/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/others/acme.sh/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/others/acme.sh/第05章-国内云服务商集成使用/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

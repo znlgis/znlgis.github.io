@@ -189,3 +189,15 @@ TopoDS_Shape r2 = BRepAlgoAPI_Fuse(r1, boss);
 - 使用 `tools/MessageView` 监控警告。
 
 布尔运算是 CAD 中最“动手即出错”的部分，务必在熟悉容差体系与诊断手段后再处理工程数据。下一章我们看局部操作。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/cad/occt/第07章-建模算法概览BRepBuilderAPI与BRepPrimAPI/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/occt/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/cad/occt/第09章-局部操作圆角倒角抽壳偏置扫掠/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

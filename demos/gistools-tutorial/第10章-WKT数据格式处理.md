@@ -453,3 +453,15 @@ WKT作为GIS几何数据的标准文本表示格式，在数据格式转换中�
 - 使用WKT进行不同几何格式之间的转换
 - 根据场景选择合适的数据格式
 - 正确处理WKT转换中的精度和效率问题
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/demos/gistools-tutorial/第09章-国土TXT格式/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/demos/gistools-tutorial/" style="text-decoration: none;">目录</a>
+  <span></span>
+</div>
+
+<!-- /NAVIGATION -->

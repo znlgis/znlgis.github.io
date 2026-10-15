@@ -679,7 +679,7 @@ public class TechnicalDocumentExample
         template.CreateH2("3. 基本使用");
         template.CreateBody("以下是NPOI的基本使用方法和示例代码。在实际项目中，你可以根据需要进行扩展和定制。");
         
-        template.CreateNote("NPOI支持.NET Framework 4.0及以上版本，以及.NET Core和.NET 5+。");
+        template.CreateNote("NPOI 支持 .NET Framework 4.7.2 及以上版本，以及 .NET Core / .NET 5+。");
         template.CreateNote("在服务器环境下使用时，请注意内存管理和资源释放。", "警告");
         
         template.AddEmptyLine();

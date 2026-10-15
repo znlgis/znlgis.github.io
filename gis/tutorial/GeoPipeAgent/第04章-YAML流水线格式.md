@@ -385,3 +385,15 @@ pipeline:
 ---
 
 **导航**：[← 第三章：快速上手](https://znlgis.github.io/gis/tutorial/GeoPipeAgent/第03章-快速上手/) ｜ [第五章：变量与步骤引用 →](https://znlgis.github.io/gis/tutorial/GeoPipeAgent/第05章-变量与步骤引用/)
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/gis/tutorial/GeoPipeAgent/第03章-快速上手/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/tutorial/GeoPipeAgent/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/tutorial/GeoPipeAgent/第05章-变量与步骤引用/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

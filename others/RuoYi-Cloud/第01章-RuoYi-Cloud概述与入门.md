@@ -16,7 +16,7 @@ RuoYi-Cloud（若依微服务版）是一套基于Spring Boot、Spring Cloud & A
 ### 1.1.2 项目特点
 
 **技术架构先进**
-- 采用Spring Boot 2.7.x + Spring Cloud 2021.x + Spring Cloud Alibaba 2021.x技术栈
+- 采用JDK 17 + Spring Boot 4.0.3 + Spring Cloud 2025.1.0 + Spring Cloud Alibaba 2025.1.0.0技术栈（以v3.6.8版本为准）
 - 注册中心和配置中心选用阿里巴巴开源的Nacos
 - 流量控制框架选用阿里巴巴开源的Sentinel
 - 分布式事务选用阿里巴巴开源的Seata
@@ -42,10 +42,11 @@ RuoYi-Cloud（若依微服务版）是一套基于Spring Boot、Spring Cloud & A
 
 | 技术 | 版本 | 说明 |
 |------|------|------|
-| Spring Boot | 2.7.18 | 基础框架 |
-| Spring Cloud | 2021.0.9 | 微服务框架 |
-| Spring Cloud Alibaba | 2021.0.6.1 | 阿里云微服务套件 |
-| Nacos | 2.x | 注册中心、配置中心 |
+| JDK | 17 | 运行环境（Spring Boot 4 最低要求 17） |
+| Spring Boot | 4.0.3 | 基础框架（master 分支为 4.1.0） |
+| Spring Cloud | 2025.1.0 | 微服务框架（master 分支为 2025.1.2） |
+| Spring Cloud Alibaba | 2025.1.0.0 | 阿里云微服务套件 |
+| Nacos | 3.x（镜像 v3.0.2） | 注册中心、配置中心 |
 | Sentinel | 1.8.x | 流量控制、熔断降级 |
 | Seata | 1.6.x | 分布式事务 |
 | Spring Boot Admin | 2.7.16 | 服务监控 |
@@ -61,10 +62,9 @@ RuoYi-Cloud（若依微服务版）是一套基于Spring Boot、Spring Cloud & A
 
 截至目前，RuoYi-Cloud最新版本为v3.6.8。主要更新包括：
 
-- 升级Spring Boot至2.7.18版本
-- 升级Spring Framework至5.3.39版本
-- 升级Logback至1.2.13版本
-- 升级Tomcat至9.0.112版本
+- 构建环境要求 JDK 17 起
+- 升级Spring Boot至4.0.3版本
+- 升级Spring Cloud至2025.1.0、Spring Cloud Alibaba至2025.1.0.0
 - 优化安全配置，修复已知漏洞
 - 增强系统稳定性和性能
 

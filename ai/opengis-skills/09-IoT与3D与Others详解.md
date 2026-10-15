@@ -3086,3 +3086,15 @@ curl -I https://blog.example.com
 **Others** 领域虽然名为"其他"，但每个技能在其专属领域内都极具深度：`go` 是从语法到并发的完整语言参考，`robotgo` + `robotgo-flow` 覆盖了桌面自动化的代码驱动和 YAML 编排两种模式，`billionmail` 是自托管邮件营销的完整解决方案，`ruoyi-cloud` 是 Java 微服务的项目启动器，`acme.sh` 是将 HTTPS 部署成本降为零的运维神器。
 
 十二个技能虽然在领域上彼此独立，但在实际项目中常常组合使用——一个完整的 GIS 平台可能同时涉及 Go 后端（`go`）、微服务框架（`ruoyi-cloud`）、HTTPS 证书（`acme.sh`）和自动化测试（`robotgo-flow`）。理解每个技能的边界和能力，才能在需要时准确选择和组合它们。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/ai/opengis-skills/08-AI与Agent技能详解/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/ai/opengis-skills/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/ai/opengis-skills/10-实战工作流组合/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

@@ -162,3 +162,15 @@ plate_thickness = 4;
 1. **表达式思维**：尺寸来自公式而不是手工改多个数字。
 2. **组合思维**：复杂形体来自模块组合和布尔运算。
 3. **生成思维**：阵列、曲线、孔位、齿形都可以由列表和循环生成。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/cad/openscad/第02章-安装环境与开发工作流/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/openscad/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/cad/openscad/第04章-参数变量函数模块作用域/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

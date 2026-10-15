@@ -276,3 +276,15 @@ permission:
 ## 6.8 小结
 
 本章你学会了内置 Agent 的分工、用 JSON/Markdown 自定义 Agent、关键配置项（尤其是 `model`、`steps`、`temperature`、推理强度透传与权限），以及默认 Agent 与子代理调用控制。**「按任务分层用模 + 只读子代理隔离上下文 + 限制步数 + 收紧权限」是 OpenCode 成本优化的四大支柱**，第九章会把它们组装成完整方案。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/ai/opencode/05-模型与Provider接入配置/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/ai/opencode/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/ai/opencode/07-自定义命令规则与上下文/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

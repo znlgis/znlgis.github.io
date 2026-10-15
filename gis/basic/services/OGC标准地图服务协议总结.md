@@ -15,11 +15,11 @@ WMS（Web Map Service）是OGC（Open Geospatial Consortium）定义的一种地
 
 3. **获取特性信息**：客户端可以发送一个GetFeatureInfo请求，获取地图上特定位置的特性信息。这个请求需要指定一个地图坐标和一个像素容差。
 
-4. **支持多种格式**：WMS支持多种图像格式，包括PNG、JPEG、GIF和SVG。客户端可以在GetMap请求中指定所需的格式。
+4. **支持多种格式**：WMS 1.3.0 约定的常规输出格式为 PNG、GIF 和 JPEG（SVG 等格式属于个别服务器的扩展）。客户端可以在GetMap请求中指定所需的格式。
 
 5. **支持多种坐标系统**：WMS支持多种坐标系统，包括地理坐标系统（如WGS84）和投影坐标系统（如Web Mercator）。客户端可以在GetMap请求中指定所需的坐标系统。
 
-6. **支持样式**：WMS支持服务器端和客户端样式。服务器端样式是预定义的，可以在GetCapabilities响应中获取。客户端样式可以让客户端指定自己的渲染规则。
+6. **支持样式**：WMS基础协议只支持服务器预定义的命名样式，这些样式可以在GetCapabilities响应中获取；客户端自定义渲染规则需要SLD（Styled Layer Descriptor）扩展支持。
 
 ## 2. WFS
 
@@ -63,7 +63,7 @@ WMTS（Web Map Tile Service）是OGC（Open Geospatial Consortium）定义的一
 
 4. **支持多种坐标系统**：WMTS支持多种坐标系统，包括地理坐标系统（如WGS84）和投影坐标系统（如Web Mercator）。每个瓦片矩阵集都对应一个坐标系统。
 
-5. **高性能**：由于WMTS使用预渲染的地图瓦片，因此它通常比WMS和WFS更快。这使得WMTS非常适合用于实时数据和大规模数据。
+5. **高性能**：由于WMTS使用预渲染的地图瓦片，因此它通常比WMS和WFS更快。这使WMTS适合高并发底图浏览和大规模数据发布（预渲染瓦片有一定滞后，不适合实时数据）。
 
 ## 5. WPS
 
@@ -92,3 +92,15 @@ CSW（Catalogue Service for the Web）是OGC（Open Geospatial Consortium）定�
 4. **支持多种查询语言**：CSW支持多种查询语言，包括CQL（Contextual Query Language）和Filter Encoding。客户端可以在GetRecords请求中指定所需的查询语言。
 
 5. **支持多种元数据模式**：CSW支持多种元数据模式，包括ISO 19115、Dublin Core和FGDC。客户端可以在GetRecords请求中指定所需的元数据模式。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <span></span>
+  <a href="https://znlgis.github.io/gis/basic/services/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/basic/services/其他地图服务协议/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

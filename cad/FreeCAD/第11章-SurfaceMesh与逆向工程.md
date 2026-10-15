@@ -93,3 +93,15 @@ Surface 工作台用于创建和修补曲面。适合：
 3. 生成 Shape。
 4. 尝试转换为 Solid。
 5. 对比直接使用 STL 与重建参数化模型的差异。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/cad/FreeCAD/第10章-Draft二维绘图与BIM建筑/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/FreeCAD/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/cad/FreeCAD/第12章-CAM数控加工/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

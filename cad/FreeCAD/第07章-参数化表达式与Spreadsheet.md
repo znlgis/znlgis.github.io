@@ -100,3 +100,15 @@ Spreadsheet 是 FreeCAD 中组织参数的常用方式。典型步骤：
 - 工程图尺寸是否更新。
 - 导出 STEP/STL 是否是最新状态。
 - 文件中是否残留无用对象或实验对象。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/cad/FreeCAD/第06章-Part工作台与几何内核/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/FreeCAD/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/cad/FreeCAD/第08章-装配设计Assembly/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

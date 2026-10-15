@@ -1398,3 +1398,15 @@ Access-Control-Expose-Headers: X-Sentry-Error, X-Sentry-Direct-Hit,
 ---
 
 本章深入解析了 Sentry REST API 的完整开发生态——从 `Endpoint` 基类的 `dispatch` 流程，到 `OrganizationPermission`/`ProjectPermission` 的分层权限体系，到 `Serializer.get_attrs` 的两阶段批量序列化优化，再到 `@cell_silo_endpoint` 的 Silo 架构适配和 `@extend_schema` 的文档自动化。掌握这些模式后，新增一个安全、高性能、文档齐全的 API 端点只需要半小时而不是半天。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/csharp/sentry/第13章-数据模型与存储层/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/csharp/sentry/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/csharp/sentry/第15章-Relay与项目配置系统/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

@@ -116,3 +116,15 @@ FreeCAD API 很大，不建议死记。有效策略：
 - 阅读 `src/Mod` 中工作台 Python 文件。
 - 搜索对象属性和方法。
 - 用小宏验证每个 API。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/cad/FreeCAD/第13章-FEM仿真分析/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/FreeCAD/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/cad/FreeCAD/第15章-插件与自定义工作台开发/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

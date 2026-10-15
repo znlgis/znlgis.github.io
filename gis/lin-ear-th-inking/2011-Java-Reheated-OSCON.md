@@ -220,3 +220,15 @@ import org.geotools.referencing.CRS;
 - [Java SE 7 特性](https://www.oracle.com/java/technologies/javase/jdk7-relnotes.html)
 - [OSCON 历史](https://www.oreilly.com/conferences/oscon.html)
 - [JVM 语言](https://en.wikipedia.org/wiki/List_of_JVM_languages)
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/2012-PreparedGeometry-Performance/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/2017-Precision-Model-Robustness/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

@@ -404,6 +404,18 @@ Geometry simplified = simplifier.getResultGeometry();
 ## 参考资料
 
 - [JTS PrecisionModel API](https://locationtech.github.io/jts/javadoc/org/locationtech/jts/geom/PrecisionModel.html)
-- [JTS OverlayNG 文档](https://github.com/locationtech/jts/blob/master/doc/OverlayNGDesign.md)
+- [JTS OverlayNG API 文档](https://locationtech.github.io/jts/javadoc/org/locationtech/jts/operation/overlayng/OverlayNG.html)
 - [Snap Rounding - Wikipedia](https://en.wikipedia.org/wiki/Snap_rounding)
 - [浮点数问题 - What Every Computer Scientist Should Know About Floating-Point Arithmetic](https://docs.oracle.com/cd/E19957-01/806-3568/ncg_goldberg.html)
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/2011-Java-Reheated-OSCON/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/2016-Distance-Metrics-Shape-Similarity/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

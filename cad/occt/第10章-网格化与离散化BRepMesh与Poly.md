@@ -153,3 +153,15 @@ OCCT 自带的 `Poly_MakerOfCDT`、`Poly_CoherentTriangulation` 提供网格一�
 - 异常：`Standard_OutOfRange`/`NumericError` 通常意味着面退化，先做 `ShapeFix`。
 
 完成网格化后，OCCT 的几何 → 拓扑 → 离散 链路就已经齐全。下一章我们抽身到“可视化”，讲 V3d/AIS/Graphic3d 体系。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/cad/occt/第09章-局部操作圆角倒角抽壳偏置扫掠/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/occt/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/cad/occt/第11章-可视化框架V3dAISGraphic3dPrs3d/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

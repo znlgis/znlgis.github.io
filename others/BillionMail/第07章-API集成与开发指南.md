@@ -1347,3 +1347,15 @@ while True:
 6. **SDK 和实战案例**：实际应用场景的代码示例
 
 通过 API，可以将 BillionMail 的强大功能无缝集成到任何应用中，实现自动化的邮件营销和通知系统。在下一章中，我们将探讨如何进行高级功能配置和性能优化。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/others/BillionMail/第06章-邮件营销功能实战/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/others/BillionMail/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/others/BillionMail/第08章-高级功能与性能优化/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

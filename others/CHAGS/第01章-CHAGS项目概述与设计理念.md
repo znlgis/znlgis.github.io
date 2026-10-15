@@ -175,3 +175,15 @@ http://127.0.0.1:5183/?lang=en#/play/pangu                  # 英文界面 + 英
 - **第 15–16 章（规范与经验）**：儿童向设计规范、踩坑记录与常见问题。
 
 后续章节引用的所有代码都来自仓库当前版本，示例经过精简，但接口与行为与源码一致。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <span></span>
+  <a href="https://znlgis.github.io/others/CHAGS/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/others/CHAGS/第02章-技术栈与工程结构/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

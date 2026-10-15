@@ -297,3 +297,15 @@ func main() {
 本章讲解了使用 Go 标准库 `net/http` 构建 Web 服务的完整流程：路由（含 Go 1.22 增强）、请求解析、响应生成、中间件、优雅关闭、HTTP 客户端和模板渲染。Go 的标准库已能胜任绝大多数 Web 开发需求，而 Gin、Echo 等框架则在便利性上更进一步。掌握这些知识，你已具备开发生产级 Web 服务的能力。
 
 下一章我们将学习 Go 的数据库编程。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/others/go/第14章-内存管理与运行时/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/others/go/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/others/go/第16章-数据库编程/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

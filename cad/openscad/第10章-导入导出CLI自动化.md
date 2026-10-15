@@ -130,3 +130,15 @@ OpenSCAD 官方仓库自身包含 GitHub Actions、CircleCI、本地 CI 说明�
 - 图片导出相机是否固定？
 - CI 是否能复现本地结果？
 - 大型二进制导出是否需要 Git LFS 或构建产物管理？
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/cad/openscad/第09章-列表推导递归与算法建模/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/openscad/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/cad/openscad/第11章-预览渲染网格精度与性能优化/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

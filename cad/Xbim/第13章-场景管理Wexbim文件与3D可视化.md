@@ -284,3 +284,15 @@ XbimXplorer 也对应有键盘快捷键。建议在企业项目中保留这些�
 - LayerStyler、Clipping、多模型联动是 BIM 工具最常用的高阶功能。
 
 下一章开始进入 Open BIM 生态的其他主流模块：COBie、IDS、BCF。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/cad/Xbim/第12章-几何表达布尔运算与三角网格生成/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/Xbim/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/cad/Xbim/第14章-COBie数据交换与XbimCobieExpress/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

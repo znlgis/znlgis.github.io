@@ -1407,3 +1407,15 @@ echo "=== 部署完成 ==="
 ```
 
 通过本章的学习，你已经全面掌握了 Furion 应用从开发到部署的完整流程，包括多种部署方式、CI/CD 流水线、监控告警、安全加固等关键环节。合理的部署策略和运维实践能够确保应用的高可用性和稳定性。在下一章中，我们将总结最佳实践与常见问题。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/csharp/Furion/第18章-模板引擎与视图/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/csharp/Furion/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/csharp/Furion/第20章-最佳实践与常见问题/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

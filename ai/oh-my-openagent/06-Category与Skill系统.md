@@ -368,3 +368,15 @@ Sisyphus / Atlas
 ```
 
 下一章我们把视角从"高层抽象"切回"工具实现层"，看 OmO 是怎么用 Hashline、LSP、AST-Grep、Tmux 把 Agent 变成有 IDE 级精度的开发者。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/ai/oh-my-openagent/05-工作模式-Ultrawork-Prometheus-Atlas/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/ai/oh-my-openagent/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/ai/oh-my-openagent/07-核心工具链/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

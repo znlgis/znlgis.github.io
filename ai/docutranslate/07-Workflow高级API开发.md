@@ -178,3 +178,15 @@ if __name__ == "__main__":
 - 配置分层：TranslatorConfig（翻译）+ ConverterConfig（解析）+ ExporterConfig（导出）→ WorkflowConfig（总）。
 - 各格式工作流导入路径规整，格式差异集中在少数格式特定选项。
 - 下一章讲三项跨工作流的高级能力：术语表、自定义提示词与 JSON 翻译。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/ai/docutranslate/06-ClientSDK编程使用/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/ai/docutranslate/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/ai/docutranslate/08-术语表与自定义提示词/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

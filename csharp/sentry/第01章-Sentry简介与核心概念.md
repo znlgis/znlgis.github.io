@@ -29,7 +29,7 @@ Sentry 是当前业界使用最广泛的实时错误监控与调试平台。其�
 
 从技术实现的角度，Sentry 是一个**全栈应用性能监控（APM）与错误追踪系统**。它由服务器端（Sentry Server）和众多语言的客户端 SDK（Sentry SDK）共同组成。SDK 嵌入到你的应用程序中，在运行时自动捕获未处理的异常、程序崩溃、性能瓶颈、用户反馈等信息，将其序列化后发送到 Sentry 服务器；服务器端负责接收、存储、聚合、去重、告警以及可视化展示。
 
-Sentry 的核心能力远不止"错误日志收集"。截至当前版本（v26.8.0-dev），它已经演进为覆盖以下领域的综合可观测性平台：
+Sentry 的核心能力远不止"错误日志收集"。截至当前版本（self-hosted 稳定版 26.9.0），它已经演进为覆盖以下领域的综合可观测性平台：
 
 | 能力模块 | 说明 |
 |---|---|
@@ -78,13 +78,13 @@ Sentry 的起源可以追溯到 2008 年。当时 Sentry 创始人 David Cramer 
 
 ### 版本号策略
 
-自 2021 年起，Sentry 转向**日历化版本（CalVer）**，格式为 `YY.MINOR.PATCH`。当前版本为 **26.8.0.dev0**（来自 `setup.cfg`）。这意味着：
+自 2021 年起，Sentry 转向**日历化版本（CalVer）**，格式为 `YY.MINOR.PATCH`。当前版本为 **26.9.0**（CalVer）。这意味着：
 
 - 主版本号 `26` 对应年份 2026
 - 次要版本号 `8` 表示当年的第 8 个次要发布
 - 补丁版本号和 `.dev0` 后缀表示开发中状态
 
-代码库变更记录在 `CHANGES` 文件中，该文件目前已积累超过 23,000 行，记录了从早期版本到最新 `26.7.2` 的每一项功能、修复和改进。
+代码库变更记录在 `CHANGES` 文件中，该文件目前已积累超过 23,000 行，记录了从早期版本到最新 `26.9.0` 的每一项功能、修复和改进。
 
 ### 当前技术栈概览
 
@@ -579,3 +579,15 @@ Sentry 的 FSL 协议在开源社区引发过争议。支持者认为它保护�
 ---
 
 以上是 Sentry 的核心概念与背景介绍。在下一章中，我们将开始动手实践——注册 Sentry 账号、创建 Organization 和 Project、获取 DSN、并在 .NET 应用中完成 SDK 的初始化配置。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <span></span>
+  <a href="https://znlgis.github.io/csharp/sentry/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/csharp/sentry/第02章-Sentry架构全景/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

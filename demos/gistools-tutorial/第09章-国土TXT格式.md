@@ -655,3 +655,15 @@ txtCoord.setY(coordinate.getY());  // 北方向
 5. **实践案例**：格式转换、数据验证、坐标转换
 
 下一章将介绍不同数据格式之间的转换方法总结。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/demos/gistools-tutorial/第08章-PostGIS数据库/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/demos/gistools-tutorial/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/demos/gistools-tutorial/第10章-WKT数据格式处理/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

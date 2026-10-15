@@ -208,3 +208,15 @@ FOSS4G 北美 2012 展示了开源地理空间技术的活力和潜力。会议�
 - [FOSS4G 会议记录](https://www.foss4gna.org/)
 - [OSGeo 基金会](https://www.osgeo.org/)
 - [FOSS4G 学术论文](https://www.osgeo.org/foundation-news/foss4g-conference-academic-proceedings-full-proceedings-individual-papers-available-online/)
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/2012-JTS-Performance-Improvements/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/2012-PreparedGeometry-Performance/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

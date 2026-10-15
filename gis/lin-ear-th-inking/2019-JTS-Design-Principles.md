@@ -239,3 +239,15 @@ JTS 的设计原则——几何统一性和"无意外"——是其成功的关�
 - [JTS GitHub 仓库](https://github.com/locationtech/jts)
 - [OGC Simple Features 规范](https://www.ogc.org/standards/sfa)
 - [Lin.ear th.inking 博客](https://lin-ear-th-inking.blogspot.com/)
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/2019-Variable-Distance-Buffering/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/2019-JTS-TestBuilder-GUI/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

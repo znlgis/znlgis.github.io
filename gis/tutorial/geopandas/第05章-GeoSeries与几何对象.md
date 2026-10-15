@@ -605,7 +605,7 @@ print(gs.area)
 ```python
 import geopandas as gpd
 
-world = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
+world = gpd.read_file(geodatasets.get_path("naturalearth.land"))
 
 # 错误：直接在地理坐标系下计算面积（单位是平方度）
 area_wrong = world.area
@@ -1100,7 +1100,7 @@ print(residents[['编号', '最近医院距离', '最近医院']])
 ```python
 import geopandas as gpd
 
-world = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
+world = gpd.read_file(geodatasets.get_path("naturalearth.land"))
 
 # 原始顶点数
 original_vertices = world.geometry.apply(
@@ -1263,3 +1263,15 @@ gs.scale(xfact, yfact)     # 缩放
 > - [Shapely 几何对象文档](https://shapely.readthedocs.io/en/stable/geometry.html)
 > - [OGC Simple Features 规范](https://www.ogc.org/standard/sfa/)
 > - [Shapely 2.0 迁移指南](https://shapely.readthedocs.io/en/stable/migration.html)
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/gis/tutorial/geopandas/第04章-GeoDataFrame基础操作/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/tutorial/geopandas/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/tutorial/geopandas/第06章-坐标参考系统/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

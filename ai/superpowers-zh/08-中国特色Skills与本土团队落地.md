@@ -265,3 +265,15 @@ npm install -D @commitlint/cli @commitlint/config-conventional husky
 ## 8.12 本章小结
 
 中国特色 Skills 不是把英文规则翻译成中文，而是把中文团队真实协作环境纳入 AI 编程流程。它们能让 superpowers-zh 从个人效率工具变成团队工程规范的一部分。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/ai/superpowers-zh/07-并行智能体子智能体与Git-Worktree/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/ai/superpowers-zh/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/ai/superpowers-zh/09-MCP构建工作流执行与自定义Skill/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

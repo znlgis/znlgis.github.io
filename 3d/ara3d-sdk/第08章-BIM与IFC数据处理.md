@@ -102,6 +102,8 @@ public class BimObject
 
 ## 6. 加载 IFC——Ara3D.IfcLoader
 
+> 版本说明：main 分支已将 Revit/BOS/IFC 相关工程迁出至 `ara3d/bim-open-toolkit` 仓库；NuGet 包引用不受影响（v1.6.1 仍包含 `Ara3D.IfcLoader`），本章内容对包使用者依然适用。
+
 `Ara3D.IfcLoader` 负责读 IFC。它采用**混合策略**：
 
 - **几何**：通过 P/Invoke 调用原生 `web-ifc`（`ext/` 目录下的 `web-ifc-library.dll`，来自著名的 [ThatOpen/web-ifc](https://github.com/ThatOpen/engine_web-ifc) 项目）——工业级、快速的 IFC 几何三角化；

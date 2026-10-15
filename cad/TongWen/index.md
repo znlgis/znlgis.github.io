@@ -5,7 +5,7 @@ title: 同文（TongWen）教程目录
 
 # 同文（TongWen）教程目录
 
-> **产品官网**：[https://shandianweihu.com/](https://shandianweihu.com/) — 获取最新版本、查阅在线文档、下载安装包。
+> **厂商发布渠道**：[厂商站点](https://shandianweihu.com/) — 厂商对外站点，可获取安装包与文档；该站点未单列同文产品页面，产品资料以随包文档为准。
 
 同文（TongWen）是一套面向工程图纸的本地优先 CAD/BIM 无损翻译套件，支持 AutoCAD 2019—2026 多版本。以下教程从入门到精通，系统讲解同文各项功能的使用方法。
 

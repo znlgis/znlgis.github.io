@@ -168,7 +168,7 @@ button.irq(trigger=Pin.IRQ_FALLING, handler=button_callback)
 |------|------|
 | `Pin.IRQ_RISING` | 上升沿触发（低→高） |
 | `Pin.IRQ_FALLING` | 下降沿触发（高→低） |
-| `Pin.IRQ_RISING | Pin.IRQ_FALLING` | 双边沿触发 |
+| `Pin.IRQ_RISING \| Pin.IRQ_FALLING` | 双边沿触发 |
 
 ### 3.4.4 按键防抖
 
@@ -218,7 +218,7 @@ Pico 的每个 GPIO 引脚可以配置为多种功能：
 PINS = {
     'LED': 0,           # GP0 - LED 输出
     'BUTTON': 15,       # GP15 - 按钮输入
-    'BUZZER': 21,       # GP21 - 蜂鸣器 PWM
+    'BUZZER': 20,       # GP20 - 蜂鸣器 PWM
     'TEMP_SENSOR': 26,  # GP26/ADC0 - 温度传感器
     'I2C_SDA': 20,      # GP20 - I2C 数据线
     'I2C_SCL': 21,      # GP21 - I2C 时钟线
@@ -398,3 +398,15 @@ led.blink(5)
 5. 连接 5V 设备需要电平转换
 
 下一章将介绍 Keyes IO 扩展板的使用方法。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/iot/KE3036-Keyes-Pico/02-MicroPython环境搭建/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/iot/KE3036-Keyes-Pico/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/iot/KE3036-Keyes-Pico/04-IO扩展板与传感器接线规范/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

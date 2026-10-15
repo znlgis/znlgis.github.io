@@ -314,3 +314,15 @@ JTS 提供了完整的三角剖分功能：
 - [JTS VoronoiDiagramBuilder API](https://locationtech.github.io/jts/javadoc/org/locationtech/jts/triangulate/VoronoiDiagramBuilder.html)
 - [Delaunay 三角剖分 - Wikipedia](https://en.wikipedia.org/wiki/Delaunay_triangulation)
 - [约束 Delaunay 三角剖分 - Wikipedia](https://en.wikipedia.org/wiki/Constrained_Delaunay_triangulation)
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/2018-Shapefiles-Good-Bad-Ugly/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/2013-Year-In-Review-2012/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

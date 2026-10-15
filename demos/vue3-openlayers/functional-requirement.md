@@ -14,3 +14,15 @@ title: 功能需求
 ## 2. 服务管理
 
 树状管理各种地图服务，包括添加、删除、修改、查看等操作。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/demos/vue3-openlayers/preparation/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/demos/vue3-openlayers/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/demos/vue3-openlayers/docker/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

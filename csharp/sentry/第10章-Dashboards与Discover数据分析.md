@@ -1281,3 +1281,15 @@ query_results = bulk_snuba_queries(
 10. 使用 `referrer` 追踪查询来源 —— 每个 Discover 查询都应带上明确的 `referrer` 值,以便在 Snuba 的慢查询日志中定位瓶颈。
 11. 时序查询合理设置 `rollup` 值 —— rollup 越小,时间桶越多,产生更多的 ClickHouse 分区扫描。对于 7 天以上的时间范围,建议 `rollup >= 1h`。
 12. 利用 `transform_alias_to_input_format=True` 时注意开销 —— 该选项会对每个聚合函数进行反向格式转换,仅在需要时开启。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/csharp/sentry/第09章-Releases与源码映射/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/csharp/sentry/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/csharp/sentry/第11章-Django应用结构与API层/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

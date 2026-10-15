@@ -282,17 +282,18 @@ SECRET_KEY=your_secret_key
 
 **初始化数据库**：
 ```bash
-# 运行数据库迁移
-poetry run flask db upgrade
+# 后端目录为 api/，上游已由 poetry 迁移到 uv（api/ 内含 uv.lock）
+uv sync
+uv run flask db upgrade
 ```
 
 **启动后端服务**：
 ```bash
-# 启动 API 服务
-poetry run flask run --host=0.0.0.0 --port=5001
+# 启动 API 服务（在 api/ 目录下执行）
+uv run flask run --host=0.0.0.0 --port=5001
 
 # 在另一个终端启动 Worker
-poetry run celery -A app.celery worker -l INFO
+uv run celery -A app.celery worker -l INFO
 ```
 
 ### 2.3.4 前端部署

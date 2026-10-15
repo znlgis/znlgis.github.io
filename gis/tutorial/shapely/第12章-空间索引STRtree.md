@@ -730,3 +730,15 @@ print(f"空间连接结果数: {join_result.shape[1]}")
 5. 对大数据集，先分区再建索引
 
 空间索引是处理大规模空间数据的基础，掌握 STRtree 的使用可以让您的空间分析程序获得数量级的性能提升。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/gis/tutorial/shapely/第11章-线性参考/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/tutorial/shapely/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/tutorial/shapely/第13章-序列化与反序列化/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

@@ -378,3 +378,15 @@ lcd.print(" Pico")
    - 图形和文字
 
 下一章将学习舵机与电机控制。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/iot/KE3036-Keyes-Pico/21-超声波测距系统/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/iot/KE3036-Keyes-Pico/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/iot/KE3036-Keyes-Pico/23-舵机与电机控制/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

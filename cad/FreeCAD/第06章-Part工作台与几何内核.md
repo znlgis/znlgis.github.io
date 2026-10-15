@@ -94,3 +94,15 @@ Part 模块是脚本建模的重要入口。常见思路：
 - 重计算后导出。
 
 脚本建模适合规则化模型，如参数化支架、阵列零件、管道、格栅、夹具和批量导出。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/cad/FreeCAD/第05章-PartDesign实体特征建模/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/FreeCAD/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/cad/FreeCAD/第07章-参数化表达式与Spreadsheet/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

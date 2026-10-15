@@ -231,3 +231,15 @@ wr.Perform(doc, fileInfo, Message_ProgressRange());
 - 巨型装配（>50K 零件）建议拆分多文件 + 引用。
 
 数据交换贯穿 CAD 与下游工具链。下一章我们将进入 OCAF，让 OCCT 应用具备“工程文档”的能力。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/cad/occt/第11章-可视化框架V3dAISGraphic3dPrs3d/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/occt/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/cad/occt/第13章-OCAF应用框架TDFTDocStdXCAF/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

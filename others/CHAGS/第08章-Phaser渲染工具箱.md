@@ -298,3 +298,15 @@ export interface GrabTarget {
 - 拖拽控制器的教训（Phaser 4 hitArea 坐标问题）与输入锁的教训（连点跳页）说明：**工具箱层是修一次、全仓受益的地方**。
 
 下一章进入平台层：存档、音频与运行环境适配 —— 讲清楚「游戏不碰环境」这条铁律背后的实现。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/others/CHAGS/第07章-玩法模板库详解/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/others/CHAGS/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/others/CHAGS/第09章-平台适配层与音频实现/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

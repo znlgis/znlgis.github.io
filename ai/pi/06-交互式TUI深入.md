@@ -1017,3 +1017,15 @@ pi install npm:@nord/pi-theme
 Pi 的 TUI 就是它最强的交互界面。掌握本章的所有内容，意味着你对 Pi 的操作进入了"肌肉记忆"阶段——不再需要看键盘、不再需要猜测某个功能在哪里——你的全部注意力可以放在真正重要的事情上：和 Pi 一起写好代码。
 
 下一章：[第七章：工具系统内置工具与权限控制](https://znlgis.github.io/ai/pi/07-工具系统内置工具与权限控制/) 将转向 Pi 的**工具系统**：四个核心工具（`read`、`write`、`edit`、`bash`）+ 三个可选只读工具（`grep`、`find`、`ls`）的精确语义，以及如何通过 CLI 参数和配置精确控制模型的工具范围。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/ai/pi/05-配置体系全解/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/ai/pi/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/ai/pi/07-工具系统内置工具与权限控制/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

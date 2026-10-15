@@ -99,3 +99,15 @@ Draft 阵列可快速生成重复对象，如柱网、栏杆、孔位、构件�
 4. 创建楼板。
 5. 用 BIM 组织楼层。
 6. 导出 IFC 并重新导入检查。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/cad/FreeCAD/第09章-工程图TechDraw/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/FreeCAD/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/cad/FreeCAD/第11章-SurfaceMesh与逆向工程/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

@@ -266,3 +266,15 @@ JTS TestBuilder 是一个不可或缺的工具：
 - [JTS GitHub 仓库](https://github.com/locationtech/jts)
 - [JetBrains IDE 插件](https://plugins.jetbrains.com/plugin/21252-jts-test-builder)
 - [Eclipse Newsletter - JTS TestBuilder](https://www.eclipse.org/community/eclipse_newsletter/2018/december/jts.php)
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/2019-JTS-Design-Principles/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/2018-Shapefiles-Good-Bad-Ugly/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

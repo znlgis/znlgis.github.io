@@ -25,7 +25,7 @@ GDAL 的安装方式多种多样，根据操作系统和使用场景的不同，
 
 | 使用场景 | 推荐版本 | 理由 |
 |---------|---------|------|
-| 生产环境 | 3.4.x LTS 或 3.6.x | 稳定性高 |
+| 生产环境 | 3.12.x / 3.13.x | 当前受维护分支 |
 | 学习开发 | 最新稳定版 | 功能最全 |
 | 旧系统兼容 | 2.4.x | 兼容性好 |
 | 云原生应用 | 3.6.x+ | COG 支持完善 |
@@ -106,7 +106,7 @@ set PROJ_LIB=%OSGEO4W_ROOT%\share\proj
 gdalinfo --version
 
 :: 输出示例：
-:: GDAL 3.13.1, released 2026/06/05
+:: GDAL 3.13.3, released 2026/08/18
 
 :: 查看支持的格式
 gdalinfo --formats
@@ -136,7 +136,7 @@ conda activate gdal_env
 conda install -c conda-forge gdal
 
 :: 或指定版本
-conda install -c conda-forge gdal=3.13.1
+conda install -c conda-forge gdal=3.13.3
 ```
 
 **步骤 3：验证安装**
@@ -282,9 +282,9 @@ git clone https://github.com/OSGeo/gdal.git
 cd gdal
 
 # 或下载发布版本
-wget https://github.com/OSGeo/gdal/releases/download/v3.13.1/gdal-3.13.1.tar.gz
-tar -xzf gdal-3.13.1.tar.gz
-cd gdal-3.13.1
+wget https://github.com/OSGeo/gdal/releases/download/v3.13.3/gdal-3.13.3.tar.gz
+tar -xzf gdal-3.13.3.tar.gz
+cd gdal-3.13.3
 ```
 
 **步骤 3：配置和编译**
@@ -368,7 +368,7 @@ Docker 是部署 GDAL 的理想方式，提供了完全隔离和可复制的环�
 docker pull ghcr.io/osgeo/gdal:ubuntu-full-latest
 
 # 或指定版本
-docker pull ghcr.io/osgeo/gdal:ubuntu-full-3.13.1
+docker pull ghcr.io/osgeo/gdal:ubuntu-full-3.13.3
 
 # 运行容器
 docker run -it --rm ghcr.io/osgeo/gdal:ubuntu-full-latest gdalinfo --version
@@ -397,7 +397,7 @@ docker run -it --rm \
 
 ```dockerfile
 # Dockerfile
-FROM ghcr.io/osgeo/gdal:ubuntu-full-3.13.1
+FROM ghcr.io/osgeo/gdal:ubuntu-full-3.13.3
 
 # 安装额外的 Python 包
 RUN pip install numpy pandas rasterio
@@ -428,10 +428,10 @@ docker run -v /data:/data my-gdal-app
 ```bash
 # 查看系统 GDAL 版本
 gdal-config --version
-# 输出: 3.13.1
+# 输出: 3.13.3
 
 # 安装匹配版本的 Python 绑定
-pip install GDAL==3.13.1
+pip install GDAL==3.13.3
 ```
 
 **常见问题解决：**
@@ -517,7 +517,7 @@ conda activate my_gis_env
     <dependency>
         <groupId>org.gdal</groupId>
         <artifactId>gdal</artifactId>
-        <version>3.13.1</version>
+        <version>3.13.3</version>
     </dependency>
 </dependencies>
 ```
@@ -563,7 +563,7 @@ java -Djava.library.path=/usr/lib/jni -jar myapp.jar
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
-        <gdal.version>3.13.1</gdal.version>
+        <gdal.version>3.13.3</gdal.version>
     </properties>
 
     <dependencies>
@@ -633,7 +633,7 @@ dotnet add package MaxRev.Gdal.Universal
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="MaxRev.Gdal.Universal" Version="3.13.1.100" />
+        <PackageReference Include="MaxRev.Gdal.Universal" Version="3.13.3.580" />
     </ItemGroup>
 </Project>
 ```

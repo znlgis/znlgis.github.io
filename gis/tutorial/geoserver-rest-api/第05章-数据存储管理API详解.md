@@ -325,7 +325,7 @@ public class DataStoreMigrator
 ---
 
 **相关资源**：
-- [GeoServer 数据存储文档](https://docs.geoserver.org/latest/en/user/data/webadmin/stores.html)
+- [GeoServer REST API 文档（数据存储）](https://docs.geoserver.org/latest/en/user/rest/api/)
 - [PostGIS 配置](https://docs.geoserver.org/latest/en/user/data/database/postgis.html)
 
 <!-- NAVIGATION -->

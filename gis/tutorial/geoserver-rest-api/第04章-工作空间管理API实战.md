@@ -1090,7 +1090,7 @@ public class WorkspaceCache
 ---
 
 **相关资源**：
-- [GeoServer 工作空间文档](https://docs.geoserver.org/latest/en/user/data/webadmin/workspaces.html)
+- [GeoServer REST API 文档（工作空间）](https://docs.geoserver.org/latest/en/user/rest/api/)
 - [GeoServer REST API - Workspaces](https://docs.geoserver.org/latest/en/api/#1.0.0/workspaces.yaml)
 
 <!-- NAVIGATION -->

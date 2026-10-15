@@ -77,16 +77,15 @@ Kubernetes（K8s）是当今最流行的容器编排平台，为 GeoServer Cloud
 
 **使用 Standalone 配置文件**
 
-不再需要 Eureka 和 Config Server，改用 Kubernetes 原生服务发现：
+不再需要 Consul 和 Config Server，改用 Kubernetes 原生服务发现：
 
 ```yaml
 spring:
   profiles:
     active: standalone,pgconfig
-    
-eureka:
-  client:
-    enabled: false
+  cloud:
+    consul:
+      enabled: false  # 禁用 Consul
 ```
 
 **使用 K8s Service 进行服务发现**
@@ -181,7 +180,7 @@ kubectl get pods -n geoserver -w
 # 全局配置
 global:
   image:
-    tag: "3.0.0.0"
+    tag: "3.0.1.1"
     pullPolicy: IfNotPresent
   
   # 管理员账户
@@ -686,7 +685,7 @@ helm install gs-cloud geoserver-cloud/geoserver-cloud \
 # 更新镜像版本
 helm upgrade gs-cloud geoserver-cloud/geoserver-cloud \
     --namespace geoserver \
-    --set global.image.tag=3.0.0.0
+    --set global.image.tag=3.0.1.1
 
 # 或修改 values.yaml 后升级
 helm upgrade gs-cloud geoserver-cloud/geoserver-cloud \
@@ -770,7 +769,7 @@ kubectl get events -n geoserver --sort-by='.lastTimestamp'
 
 ## 7.11 思考题
 
-1. Kubernetes 原生服务发现与 Eureka 相比有什么优势？
+1. Kubernetes 原生服务发现与 Consul 相比有什么优势？
 
 2. 如何设计一个跨可用区的高可用 GeoServer Cloud 部署？
 

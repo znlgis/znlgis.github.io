@@ -191,3 +191,15 @@ MCP 服务器的默认行为主要通过环境变量控制（在客户端配置�
 - 配置时用虚拟环境 Python 完整路径，或用 uvx 免安装。
 - 工具集覆盖提交、查询、下载、取消、术语表加载与配置查询；模型信息通过 `env` 环境变量注入。
 - 下一章系统整理所有环境变量与部署配置。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/ai/docutranslate/09-RESTAPI与服务集成/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/ai/docutranslate/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/ai/docutranslate/11-环境变量与部署配置/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

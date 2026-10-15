@@ -839,3 +839,15 @@ Orchestrator 的路由机制是整个 `my-opencode-deepseek-config` 配置中设
 这些机制协同工作，使得 Orchestrator 能够像一个经验丰富的技术主管一样，对每一个请求做出"该找谁、用什么模型、走什么流程"的精准判断——而不是简单地"收到一个请求，随便派给一个 Agent"。
 
 理解 Orchestrator 的路由机制，是理解整个配置运作方式的关键。下一章（第六章：技能体系与插件生态）将深入解析 Skills 和 Plugins 如何在 Agent 之上提供可复用的能力封装。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/ai/my-opencode-deepseek-config/04-多Agent体系完全解析/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/ai/my-opencode-deepseek-config/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/ai/my-opencode-deepseek-config/06-技能体系与插件生态/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

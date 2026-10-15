@@ -419,7 +419,7 @@ qgis_process --skip-loading-plugins list
 
 **文件规模：** 主文件约 15 KB（483 行）。`reference/` 子目录包含 `steps-reference.md`（步骤库完整参考，24 KB）和 `pipeline-schema.md`（管道配置规范）。
 
-**注意：** 项目仓库 [github.com/znlgis/geopipe-agent](https://github.com/znlgis/geopipe-agent) 当前不可访问（404/私有）。技能文件标注了此警告，建议使用者以参考为主。
+**注意：** 项目仓库 `znlgis/geopipe-agent` 当前不可访问（404/私有）。技能文件标注了此警告，建议使用者以参考为主。
 
 **核心能力：**
 
@@ -2255,3 +2255,15 @@ CoordinateReferenceSystem crs = coverage.getCoordinateReferenceSystem2D();
 ---
 
 下一章将进入 CAD 领域，详解 opengis-skills 仓库中 20 个 CAD 技能——从 Open CASCADE Technology 几何内核到 FreeCAD 参数化建模，从 KiCad PCB 设计到 Clipper2 多边形裁剪的全链路。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/ai/opengis-skills/04-AI工具集成指南/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/ai/opengis-skills/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/ai/opengis-skills/06-CAD技能详解/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

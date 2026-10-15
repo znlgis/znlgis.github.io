@@ -351,3 +351,15 @@ export function placeLevel(content: AllusionContent): PlaceLevel {
 - 双语采用「中文基准 + 翻译补丁」结构，避免把 JSON 写成双语大杂烩（细节见第 11 章）。
 
 下一章进入「让第 30 个典故变便宜」的关键设计：玩法模板库。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/others/CHAGS/第05章-Vue应用外壳详解/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/others/CHAGS/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/others/CHAGS/第07章-玩法模板库详解/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

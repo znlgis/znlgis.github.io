@@ -60,8 +60,8 @@ GDAL 的发展历程反映了地理空间开源社区的成长：
 | 2022 | GDAL 3.5 发布，性能持续优化 |
 | 2023 | GDAL 3.7 发布，支持更多现代格式 |
 | 2024 | GDAL 3.9 发布，增强云原生与性能优化 |
-| 2025 | GDAL 3.11+ 发布，持续优化与新格式支持 |
-| 2026 | GDAL 3.13 发布，统一CLI命令行工具、波段代数API、Zarr V3 支持 |
+| 2025 | GDAL 3.11 引入统一的 gdal 命令行前端；3.12 引入栅格波段代数 API、Zarr V3 支持（sharding） |
+| 2026 | GDAL 3.13 发布，gdal CLI 新增 vector combine/dissolve 等子命令 |
 
 ### 1.1.3 GDAL 的主要特点
 
@@ -508,7 +508,7 @@ GDAL 3.x 系列带来了许多重要更新：
 
 | 需求 | 推荐版本 |
 |-----|---------|
-| 生产环境稳定性 | GDAL 3.10.x LTS |
+| 生产环境稳定性 | GDAL 3.12.x / 3.13.x（当前受维护分支） |
 | 最新功能 | GDAL 3.13.x+ |
 | 旧系统兼容 | GDAL 2.4.x |
 | 云原生应用 | GDAL 3.10.x+ |
@@ -527,7 +527,7 @@ GDAL 3.x 系列带来了许多重要更新：
 ### 1.6.2 学习资料
 
 **官方文档：**
-- [GDAL 文档](https://gdal.org/documentation.html)
+- [GDAL 文档](https://gdal.org/en/latest/)
 - [驱动程序列表](https://gdal.org/drivers/raster/index.html)
 - [API 参考](https://gdal.org/api/index.html)
 - [教程](https://gdal.org/tutorials/index.html)

@@ -2368,3 +2368,15 @@ def before_send(event, hint):
 ---
 
 > **本章小结**：Sentry SDK 的设计遵循统一的分层架构——从应用层的全局异常抓取，到 Scope/Hub/Client 的事件构建与修饰，再到 Transport 的网络传输。事件数据结构的精心设计（29 个核心字段和接口）保证了跨语言、跨平台的统一诊断体验。事件从 SDK 上报到服务端持久化的完整链路涉及 Relay 网关、Kafka 队列、Ingest Consumer、Normalizer 规范化、EventManager 保存等多个阶段，每个阶段都有专门的优化和防护机制。理解这些原理，有助于在实际项目中更高效地使用 Sentry，也帮助在排查 SDK 相关问题时有更清晰的思路。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/csharp/sentry/第04章-开发环境搭建/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/csharp/sentry/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/csharp/sentry/第06章-Issues问题管理全流程/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

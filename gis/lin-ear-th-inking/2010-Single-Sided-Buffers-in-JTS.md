@@ -264,3 +264,15 @@ left_buffer = single_sided_buffer(line, 10, side='left')
 - [JTS BufferParameters JavaDoc](https://locationtech.github.io/jts/javadoc/org/locationtech/jts/operation/buffer/BufferParameters.html)
 - [JTS BufferOp JavaDoc](https://locationtech.github.io/jts/javadoc/org/locationtech/jts/operation/buffer/BufferOp.html)
 - [QGIS 单侧缓冲区算法](https://docs.qgis.org/latest/en/docs/user_manual/processing_algs/qgis/vectorgeometry.html#single-sided-buffer)
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/2015-Evenly-Distributed-Random-Points/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/2010-Random-Points-in-JTS/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

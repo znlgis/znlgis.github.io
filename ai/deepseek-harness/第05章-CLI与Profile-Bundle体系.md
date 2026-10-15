@@ -136,7 +136,7 @@ bundle 名称的解析顺序：**先查 dsh 安装目录，再查 profile 目录
 
 为什么要区分"base / web-app / headless"三层：base 是所有形态共享的地基（模型、凭据、遥测），web 和 headless 只是在它之上叠不同的交互层。这让 `dsh web` 和 `dsh --profile headless` 共享同一套模型适配与凭据解析逻辑，只是暴露方式不同。
 
-遥测默认关闭这一点值得单独强调：base 挂载的是"已禁用的会话遥测"，任何非空 `DSH_TELEMETRY_DISABLED` 都是硬关闭。因为随附 base **没有遥测脱敏规则**，一旦显式开启，导出内容可能包含消息文本、工具参数与结果、workspace 路径——默认关闭是刻意的部署决策（见仓库 [telemetry default-off note](https://github.com/deepseek-ai/deepseek-harness/blob/master/.agents/notes/implemented/feature/2026-08-10-telemetry-default-off.md)）。
+遥测默认关闭这一点值得单独强调：base 挂载的是"已禁用的会话遥测"，任何非空 `DSH_TELEMETRY_DISABLED` 都是硬关闭。因为随附 base **没有遥测脱敏规则**，一旦显式开启，导出内容可能包含消息文本、工具参数与结果、workspace 路径——默认关闭是刻意的部署决策（见仓库 [telemetry default-off note](https://github.com/deepseek-ai/deepseek-harness/blob/master/.agents/notes/archived/feature/2026-08-10-telemetry-default-off.md)）。
 
 ## 5.6 组合顺序与覆盖语义
 
@@ -281,7 +281,7 @@ compression: !!js "process.env.DSH_SNAPSHOT === undefined ? 'zstd' : 'none'"
 
 ### 5.10.3 disabled 条目
 
-条目还可以带一个 `disabled` 字段，在**每次挂载决策时**（针对 loader 上下文）求值；为真时该条目加载但停用。环境需要选择插件时，官方推荐用 overlay（patch 层）而不是在源文件里改 disabled——保持组合文件的可复用性（见 [Cordis Primer](https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/user/cordis-primer.md) 的 Loader Configuration 一节）。
+条目还可以带一个 `disabled` 字段，在**每次挂载决策时**（针对 loader 上下文）求值；为真时该条目加载但停用。环境需要选择插件时，官方推荐用 overlay（patch 层）而不是在源文件里改 disabled——保持组合文件的可复用性（见 [Cordis Primer](https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/cordis-primer.md) 的 Loader Configuration 一节）。
 
 ### 5.10.4 组合逐行拆解
 
@@ -403,3 +403,15 @@ pnpm dsh --profile headless "run the tests"
 - cordis.yml 条目 = `id` + `name` + `config`，`config` 用 `!!js` 惰性求值，条目可带 `disabled` 字段；行序即依赖声明。
 - 核心环境变量：`DEEPSEEK_API_KEY`、`DEEPSEEK_BASE_URL`、`DSH_HOME`、`DSH_PERMISSION_MODE`、`DSH_TELEMETRY_DISABLED` 等。
 - 信号语义：首次信号优雅排空（5 秒 dispose），`SIGTERM` 退 0、`SIGINT` 退 130，二次信号强退；`cordis.patch.yml` 热重载。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/ai/deepseek-harness/第04章-模型配置与供应商体系/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/ai/deepseek-harness/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/ai/deepseek-harness/第06章-Python-SDK编程接入/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

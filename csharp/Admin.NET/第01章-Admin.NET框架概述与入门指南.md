@@ -603,9 +603,9 @@ Admin.NET完美支持国产化环境：
 - CSDN、博客园等平台有相关实践文章
 
 **开源组件**：
-- Furion文档：https://dotnetchina.gitee.io/furion
+- Furion文档：https://furion.net
 - SqlSugar文档：https://www.donet5.com/Home/Doc
-- vue-next-admin文档：https://lyt-top.gitee.io/vue-next-admin-doc-preview/
+- vue-next-admin 项目（GitHub）：https://github.com/lyt-Top/vue-next-admin
 
 ---
 
@@ -707,9 +707,9 @@ Admin.NET是一个功能完善、开箱即用的.NET通用权限开发框架。�
 ---
 
 <div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/csharp/Admin.NET/第07章-二次开发实战-创建自定义模块/" style="text-decoration: none;">← 上一章</a>
+  <span></span>
   <a href="https://znlgis.github.io/csharp/Admin.NET/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/csharp/Admin.NET/第09章-系统部署与运维指南/" style="text-decoration: none;">下一章 →</a>
+  <a href="https://znlgis.github.io/csharp/Admin.NET/第02章-环境搭建与项目运行/" style="text-decoration: none;">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

@@ -282,3 +282,15 @@ llama.cpp 的 `llama-server`（默认 `http://127.0.0.1:8080/v1`）等其它 Ope
 ## 5.11 小结
 
 本章你掌握了：模型 ID 格式、默认模型与加载优先级、`small_model` 分流、模型选项与变体、Provider 超时与缓存、OpenCode Zen、本地模型接入、以及 Provider 白/黑名单。其中 `small_model`、变体切换、`setCacheKey`、`reasoningEffort`/`textVerbosity`、本地模型，都是第九章「Token 优化」会反复使用的核心工具。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/ai/opencode/04-配置体系详解与优先级/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/ai/opencode/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/ai/opencode/06-Agent与子代理自定义/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

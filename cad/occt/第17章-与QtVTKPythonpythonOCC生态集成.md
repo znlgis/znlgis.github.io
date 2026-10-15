@@ -163,3 +163,15 @@ OCCT 与商业内核（Parasolid、ACIS、CGM）通过中性格式（STEP/IGES/J
 - 嵌入式：仅链接核心 toolkit + 网格预生成。
 
 OCCT 的生态很丰富，选择正确组合可以让团队更快达成目标。下一章给出综合实战，把整个教程串成一个完整案例。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/cad/occt/第16章-性能优化并发与最佳实践/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/occt/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/cad/occt/第18章-二次开发实战与综合案例/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

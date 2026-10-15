@@ -585,3 +585,15 @@ Shapely 2.0 迁移的核心要点：
 - 先修复破坏性变更，再逐步利用新功能
 - 优先将循环操作转为向量化操作以获得性能提升
 - 参考官方迁移文档获取最新信息
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/gis/tutorial/shapely/第18章-与第三方库集成/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/tutorial/shapely/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/tutorial/shapely/第20章-实战案例与最佳实践/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

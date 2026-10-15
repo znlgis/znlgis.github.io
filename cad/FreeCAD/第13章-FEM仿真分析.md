@@ -91,3 +91,15 @@ CAD 模型用于制造时包含圆角、倒角、螺纹和小孔，但仿真不�
 ## 9. 仿真边界
 
 FreeCAD FEM 适合学习和中小模型分析。正式工程验证应结合规范、试验、专业求解器和经验审查。不要仅凭一次仿真云图做安全关键决策。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/cad/FreeCAD/第12章-CAM数控加工/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/FreeCAD/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/cad/FreeCAD/第14章-Python脚本宏与自动化/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

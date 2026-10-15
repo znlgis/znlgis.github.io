@@ -1087,3 +1087,15 @@ C# 技能分类虽然只有 9 个技能，但它们覆盖了 .NET 生态中从�
 无论你处于 .NET 开发旅程的哪个阶段——初学者通过 furion 快速上手 Web API，中级开发者通过 admin-net-backend 学习完整项目架构，高级工程师通过 sqlsugar 和 sod 理解 ORM 设计思想，商业软件作者通过 dotnet-reactor 保护成果——C# 技能分类都能提供对应的知识支撑。
 
 下一章将进入 **GIS 技能详解**，带你深入 GDAL、GeoServer、PostGIS 等地理信息系统的核心技能。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/ai/opengis-skills/06-CAD技能详解/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/ai/opengis-skills/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/ai/opengis-skills/08-AI与Agent技能详解/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

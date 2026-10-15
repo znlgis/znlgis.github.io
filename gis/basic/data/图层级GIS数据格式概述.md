@@ -127,3 +127,15 @@ title: 图层级GIS数据格式概述
 5. **PostGIS**：如果你需要一个开源的GIS扩展，提供强大的空间分析功能，支持OGC的Simple Features for SQL规范，可以利用PostgreSQL强大的数据库功能，支持大数据，那么PostGIS可能是一个好选择。然而，PostGIS的学习曲线可能会比较陡峭，安装和配置可能会有一些复杂，处理非常大的数据集时，性能可能会下降。
 
 ## 10. 学习建议
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <span></span>
+  <a href="https://znlgis.github.io/gis/basic/data/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/basic/data/Shapefile代码示例/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

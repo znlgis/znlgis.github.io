@@ -566,3 +566,15 @@ for (WktFeature feature : layer.getFeatures()) {
 5. **实践案例**：批量处理、裁剪、合并等常见操作
 
 下一章将介绍GeoJSON格式的处理方法。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/demos/gistools-tutorial/第05章-空间计算操作/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/demos/gistools-tutorial/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/demos/gistools-tutorial/第07章-GeoJSON处理/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

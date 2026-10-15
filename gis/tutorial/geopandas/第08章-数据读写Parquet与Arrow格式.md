@@ -956,3 +956,15 @@ convert_to_parquet("old_data.shp", "new_data.parquet")
 - 中间缓存数据可使用 Feather 格式
 
 下一章我们将学习 GeoPandas 与数据库的交互，包括 PostGIS 和 Spatialite 的读写操作。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/gis/tutorial/geopandas/第07章-数据读写矢量文件格式/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/tutorial/geopandas/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/tutorial/geopandas/第09章-数据读写数据库IO/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

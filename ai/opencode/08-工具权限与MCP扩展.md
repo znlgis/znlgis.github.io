@@ -302,3 +302,15 @@ LSP 让模型获得诊断、跳转等语言智能，能减少「猜代码」式�
 ## 8.8 小结
 
 本章你掌握了内置工具集、权限系统（allow/ask/deny、对象语法、外部目录、默认值与安全实践）、MCP 接入与其 Token 风险、以及插件、格式化器、LSP 等配套扩展。**收紧权限、裁剪工具、克制启用 MCP**，既是安全实践，也是省 Token 的直接手段——下一章将把这些线索汇总为系统化的最优化方案。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/ai/opencode/07-自定义命令规则与上下文/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/ai/opencode/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/ai/opencode/09-Token优化与高效省钱配置/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

@@ -152,3 +152,15 @@ DocuTranslate 支持 `docx`、`xlsx` **保持原格式翻译**（不支持老式
 - 论文用 MinerU + 开公式/代码识别；小说用分块并发 + 术语表；Office 文档用保持格式 + 插入模式。
 - 界面上的每一项配置，背后都对应 SDK / API 的一个参数，理解了界面也就理解了后续编程接口。
 - 下一章我们专门讲最容易卡住新手的两块配置：大模型 API 与 PDF 解析引擎。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/ai/docutranslate/02-安装部署与快速上手/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/ai/docutranslate/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/ai/docutranslate/04-大模型与PDF解析引擎配置/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

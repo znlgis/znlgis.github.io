@@ -64,9 +64,11 @@ GeoServer的核心依赖是Java运行环境。不同版本的GeoServer对Java版
 | GeoServer版本 | 支持的Java版本 |
 |--------------|---------------|
 | 3.0.x及以上 | Java 17, 21 |
-| 2.26.x | Java 11, 17, 21 |
+| 2.28.x | Java 17, 21 |
+| 2.27.x | Java 11, 17 |
+| 2.26.x | Java 11, 17 |
 | 2.24.x-2.25.x | Java 11, 17 |
-| 2.20.x-2.23.x | Java 11, 17 |
+| 2.20.x-2.23.x | Java 8, 11 |
 | 2.15.x-2.19.x | Java 8, 11 |
 | 2.9.x-2.14.x | Java 8 |
 
@@ -231,7 +233,7 @@ sudo apt install tomcat11
 sudo yum install tomcat
 
 # 或手动安装（GeoServer 3.0 基于 Jakarta EE，需 Tomcat 11）
-wget https://dlcdn.apache.org/tomcat/tomcat-11/v11.0.14/bin/apache-tomcat-11.0.14.tar.gz
+wget https://archive.apache.org/dist/tomcat/tomcat-11/v11.0.14/bin/apache-tomcat-11.0.14.tar.gz
 tar xzf apache-tomcat-11.0.14.tar.gz -C /opt/
 mv /opt/apache-tomcat-11.0.14 /opt/tomcat
 ```

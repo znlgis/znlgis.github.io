@@ -1509,3 +1509,15 @@ relay.project_configs.post_v3.pending      # v3 端点标记为 pending 的配�
 配置系统通过 Options Store 的分层查找机制、Project Options 的 Epoch 默认值机制、Feature Flags 的 FlagPole 集成、以及防抖缓存（Debounce Cache）的分散加载机制，实现了高可用、低延迟的配置分发。数据清理规则的组织-项目两级合并设计，确保了安全策略的层次性和不可绕过性。
 
 理解 Relay 和项目配置系统，对于在生产环境中正确部署和调优 Sentry、以及排查事件丢失或配置不及时生效等问题至关重要。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/csharp/sentry/第14章-REST-API开发指南/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/csharp/sentry/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/csharp/sentry/第16章-前端架构与组件体系/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

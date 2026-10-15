@@ -415,75 +415,103 @@ MyFootprintWizard().register()
 pip install kicad-python
 ```
 
+注意包名与模块名不同：分发包名为 `kicad-python`，导入时模块名为 `kipy`。该绑定通过 IPC API 与运行中的 KiCad 通信，需在 KiCad 中启用相关插件支持。
+
 ### 15.4.2 IPC API基础
 
+API 为方法调用风格（`get_board()`、`get_footprints()`），没有 `.board`、`.footprints` 之类的属性：
+
 ```python
-from kicad import KiCad
+from kipy import KiCad
+from kipy.geometry import Vector2
 
 # 连接到运行中的KiCad实例
 kicad = KiCad()
 
-# 获取当前板
-board = kicad.board
+# 获取当前打开的板
+board = kicad.get_board()
 
 # 获取封装
-for fp in board.footprints:
-    print(f"{fp.reference}: {fp.value}")
+for fp in board.get_footprints():
+    print(f"{fp.reference_field.text.value}: {fp.value_field.text.value}")
 
-# 移动封装
-fp = board.footprints[0]
-fp.position = (100.0, 50.0)  # 毫米
-
-# 刷新
-board.refresh()
+# 移动封装（位置用 Vector2 表示，from_xy_mm 按毫米构造）
+footprints = board.get_footprints()
+footprints[0].position = Vector2.from_xy_mm(100.0, 50.0)
+board.update_items(footprints)
 ```
 
 ### 15.4.3 IPC API高级用法
 
+创建走线、过孔等对象后，用 `create_items()` 写入板，用 `save()` 保存；没有 `add_track()` / `add_via()` / `board.save()` 这类便捷方法：
+
 ```python
-from kicad import KiCad
-from kicad.board import BoardLayer
+from kipy import KiCad
+from kipy.board_types import BoardLayer, Track, Via
+from kipy.geometry import Vector2
+from kipy.util import from_mm
 
 kicad = KiCad()
-board = kicad.board
+board = kicad.get_board()
 
-# 添加走线
-track = board.add_track(
-    start=(10.0, 10.0),
-    end=(50.0, 10.0),
-    width=0.25,
-    layer=BoardLayer.F_Cu,
-    net="GND"
-)
+# 走线：内部单位为纳米，用 from_mm 做换算
+track = Track()
+track.start = Vector2.from_xy_mm(10.0, 10.0)
+track.end = Vector2.from_xy_mm(50.0, 10.0)
+track.width = from_mm(0.25)
+track.layer = BoardLayer.BL_F_Cu
 
-# 添加过孔
-via = board.add_via(
-    position=(30.0, 30.0),
-    diameter=0.8,
-    drill=0.4,
-    net="VCC"
-)
+# 过孔
+via = Via()
+via.position = Vector2.from_xy_mm(30.0, 30.0)
+via.diameter = from_mm(0.8)
+via.drill_diameter = from_mm(0.4)
 
-# 保存
+# 批量写入并保存
+board.create_items([track, via])
 board.save()
 ```
+
+更多示例（连接、导出、批量修改等）可参考官方文档与仓库示例：https://docs.kicad.org/kicad-python/
 
 ## 15.5 插件发布
 
 ### 15.5.1 插件元数据
 
-```python
-# metadata.json
+```json
 {
-    "name": "My Plugin",
-    "description": "A useful KiCad plugin",
-    "author": "Your Name",
-    "maintainer": "your@email.com",
-    "version": "1.0.0",
-    "kicad_version": "10.0",
-    "license": "MIT"
+  "$schema": "https://go.kicad.org/pcm/schemas/v1",
+  "identifier": "com.example.myplugin",
+  "name": "My Plugin",
+  "description": "A useful KiCad plugin",
+  "type": "plugin",
+  "author": {
+    "name": "Your Name",
+    "contact": { "web": "https://example.com" }
+  },
+  "maintainer": {
+    "name": "Your Name",
+    "contact": { "web": "https://example.com" }
+  },
+  "license": "MIT",
+  "resources": {
+    "homepage": "https://example.com/myplugin"
+  },
+  "versions": [
+    {
+      "version": "1.0.0",
+      "status": "stable",
+      "kicad_version": "10.0",
+      "download_url": "https://example.com/myplugin-1.0.0.zip",
+      "download_sha256": "<zip 文件的 SHA-256>",
+      "download_size": 12345,
+      "install_size": 45678
+    }
+  ]
 }
 ```
+
+字段并非平铺结构：`identifier` 为反向域名，`type` 取 plugin/library/theme，作者与维护者是带 `name`/`contact` 的对象，版本信息统一放在 `versions[]` 数组内（含 `kicad_version`、`kicad_version_max`、`download_url`、`download_sha256` 等）。提交前请对照 metadata 仓库中的 `schema-v1.json`/`schema-v2.json` 与现有包示例核实。
 
 ### 15.5.2 通过PCM发布
 

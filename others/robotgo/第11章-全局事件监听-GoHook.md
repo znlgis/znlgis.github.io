@@ -237,3 +237,15 @@ func main() {
 ## 11.10 小结
 
 本章我们学习了基于 gohook 子库的全局事件监听：用 `Register` 注册热键回调、用 `Start`/`Process`/`End` 控制监听生命周期、用低层事件通道消费原始事件、用 `AddEvent`/`AddEvents` 阻塞等待单次事件，并通过“热键触发自动粘贴”示例把监听与控制结合起来。至此，RobotGo 主库及核心子库的能力已基本讲完。下一章我们进入进阶话题——基于 OpenCV 的图像识别。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/others/robotgo/第10章-进程与窗口管理/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/others/robotgo/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/others/robotgo/第12章-OpenCV图像识别-gcv/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

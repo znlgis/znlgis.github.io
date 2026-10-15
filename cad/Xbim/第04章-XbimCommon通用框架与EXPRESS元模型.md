@@ -363,3 +363,15 @@ foreach (var prop in et2.Properties.Values.Where(p => p.EntityAttribute.State !=
 理解了它，再看 `Xbim.Ifc.IfcStore`、`Xbim.Geometry.Engine.IXbimGeometryEngine`、`Xbim.IO.Step21` 等模块就只是"用这套抽象具体实现某个能力"。
 
 下一章我们把焦点上移到**应用层**入口 `Xbim.Ifc.IfcStore`。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/cad/Xbim/第03章-IFC标准与BuildingSMART数据模型基础/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/Xbim/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/cad/Xbim/第05章-XbimEssentials体系结构与IfcStore模型容器/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

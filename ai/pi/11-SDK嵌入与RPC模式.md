@@ -1669,3 +1669,15 @@ if __name__ == "__main__":
 | 测试 Agent 行为、单元测试 | SDK（`SessionManager.inMemory()`） |
 
 下一章：[第十二章：容器化与安全沙箱](https://znlgis.github.io/ai/pi/12-容器化与安全沙箱/) 将探讨 Pi 的容器化与安全沙箱方案——当你不信任 Agent 的 YOLO 模式、或者需要在多租户环境中安全运行时，如何用 Docker、Gondolin 微 VM 和 OpenShell 策略沙箱来隔离 Pi 的运行环境。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/ai/pi/10-Pi包管理与分发/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/ai/pi/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/ai/pi/12-容器化与安全沙箱/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

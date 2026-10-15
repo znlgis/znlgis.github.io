@@ -13,7 +13,7 @@ title: 第12章：扩展开发实战：插件 / 工具 / LLM 适配器
 - [docs/cookbook/adding-a-package.md](https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/cookbook/adding-a-package.md)
 - [docs/cookbook/adding-a-tool.md](https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/cookbook/adding-a-tool.md)
 - [docs/cookbook/adding-an-llm-adapter.md](https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/cookbook/adding-an-llm-adapter.md)
-- [docs/cookbook/adding-a-conversation-node.md](https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/cookbook/adding-a-conversation-node.md)
+- [docs/subsystems/conversation.md](https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/subsystems/conversation.md)
 - [docs/cookbook/adding-a-settings-card.md](https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/cookbook/adding-a-settings-card.md)
 
 老规矩：developer preview，会有破坏性变更。包名、类型名、事件名以 master 为准。
@@ -30,7 +30,7 @@ title: 第12章：扩展开发实战：插件 / 工具 / LLM 适配器
 | 加一个 workspace 包 | [adding-a-package.md](https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/cookbook/adding-a-package.md) |
 | 加一个面向模型的工具 | [adding-a-tool.md](https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/cookbook/adding-a-tool.md) |
 | 加一个 LLM 适配器 | [adding-an-llm-adapter.md](https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/cookbook/adding-an-llm-adapter.md) |
-| 加一个 Web Client Chat 节点 | [adding-a-conversation-node.md](https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/cookbook/adding-a-conversation-node.md) |
+| 加一个 Web Client Chat 节点 | [conversation.md](https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/subsystems/conversation.md) |
 | 加一个设置卡片 | [adding-a-settings-card.md](https://github.com/deepseek-ai/deepseek-harness/blob/master/docs/cookbook/adding-a-settings-card.md) |
 
 cookbook 还给了四个"插件形状"作为范式：工具插件（注册 `ctx.tools`）、hook 插件（`tools/pre-execute` 上返回类型化决策）、UI 插件（从 `session/event` 渲染、经 `agent.followup()` / `agent.steer()` 回写）、外部协议驱动（把 wire peer 适配到 `ctx.agents`）。写任何扩展前先对号入座，能少走一半弯路。
@@ -184,7 +184,7 @@ export function apply(ctx: Context, config: Config) {
 
 ## 12.5 加 Conversation Node
 
-Web Client Chat 视图的"业务行"通过 `ConversationNodeDefinition` + keyed renderer 实现（第 11 章决策表里的 "Add a Web Client Chat node"）。完整示例太长，这里只摘结构骨架（取自 adding-a-conversation-node.md，以 review job 为例）：
+Web Client Chat 视图的"业务行"通过 `ConversationNodeDefinition` + keyed renderer 实现（第 11 章决策表里的 "Add a Web Client Chat node"）。完整示例太长，这里只摘结构骨架（取自 docs/subsystems/conversation.md，以 review job 为例）：
 
 ```ts
 const reviewDefinition: ConversationNodeDefinition<ReviewState> = {
@@ -374,3 +374,15 @@ export function apply(ctx: Context) {
 - 配置要暴露：验证过的 Config 字段在 cordis.yml 可改，禁止硬编码可调参数，`DEFAULT_*` 常量不算可配置性。
 - 分发与发现：`dsh-plugin` topic + `dsh plugin --profile <name> <pnpm args>` 安装 out-of-tree 插件，web/headless 自动初始化、其它 profile 需用 `dsh plugin` 创建。
 - 演示与示例：`packages/bundle/` 的六个内置 bundle 与 `apps/cli/config/examples/` 的 `cordis.yml` 组合示例是学习 bundle 组装与协议驱动的权威起点（原 `examples/` 与 `packages/examples/` 已移除）。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/ai/deepseek-harness/第11章-Capability-Seam与核心子系统/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/ai/deepseek-harness/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/ai/deepseek-harness/第13章-测试体系与贡献指南/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

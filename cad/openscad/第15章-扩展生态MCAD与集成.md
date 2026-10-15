@@ -108,3 +108,15 @@ OpenSCAD 可以做生成式几何，但不等于优化器。若需要拓扑优�
 - 导入导出单位是否一致？
 - 发布文件是否区分源代码和生成产物？
 - 非程序用户是否有足够说明修改参数？
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/cad/openscad/第14章-构建测试调试与贡献/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/openscad/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/cad/openscad/第16章-常见问题与最佳实践/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

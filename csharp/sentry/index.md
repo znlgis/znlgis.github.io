@@ -5,7 +5,7 @@ title: Sentry 教程目录
 
 # Sentry 教程目录
 
-本教程基于 Sentry 官方代码库（版本 26.8.0-dev）的深度源码分析，全面覆盖 Sentry 的使用方法与开发实战。
+本教程基于 Sentry 官方代码库（Sentry 26.x 代码库，当前 self-hosted 稳定版为 26.9.0；.NET SDK 版本线为 6.12.1）的深度源码分析，全面覆盖 Sentry 的使用方法与开发实战。
 
 ---
 

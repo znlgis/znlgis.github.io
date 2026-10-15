@@ -145,3 +145,15 @@ graph TD
 ## 3. Shapefile代码操作的原则
 
 - 默认使用UTF-8编码格式，根据实际情况处理编码问题
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/gis/basic/data/图层级GIS数据格式概述/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/basic/data/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/basic/data/GeoJSON代码示例/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

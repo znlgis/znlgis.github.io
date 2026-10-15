@@ -104,7 +104,8 @@ public void Refresh()           // 完全刷新（数据+图形）
 public void RefreshGraphics()   // 仅刷新图形
 public void RefreshData()       // 仅刷新数据
 
-// 获取地图信息
+// 获取地图信息（Mapsui 5.x 的 Map 未提供 GetMapInfo，
+// 下面是教程自行封装的扩展方法，内部基于 map.Info 事件与图层查询实现）
 public MapInfo GetMapInfo(
     MPoint screenPosition,      // 屏幕坐标
     Viewport viewport,          // 视口
@@ -320,10 +321,10 @@ public class MapInitializer
     private static void ConfigureNavigation(Map map)
     {
         // 缩放限制
-        map.Navigator.ZoomLimits = new MMinMax(100, 100000000);
+        map.Navigator.OverrideZoomBounds = new MMinMax(100, 100000000);
         
         // 平移限制（可选）
-        // map.Navigator.PanLimits = new MRect(...);
+        // map.Navigator.OverridePanBounds = new MRect(...);
         
         // 旋转（默认启用）
         map.Navigator.RotationLock = false;
@@ -721,7 +722,7 @@ public class PerformanceOptimizer
         // 避免添加过多图层
         
         // 2. 使用适当的缩放限制
-        map.Navigator.ZoomLimits = new MMinMax(100, 50000000);
+        map.Navigator.OverrideZoomBounds = new MMinMax(100, 50000000);
         
         // 3. 配置合理的数据获取策略
         foreach (var layer in map.Layers.OfType<TileLayer>())

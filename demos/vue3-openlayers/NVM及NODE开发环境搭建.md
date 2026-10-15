@@ -32,9 +32,9 @@ npm_mirror: https://npmmirror.com/mirrors/npm/
 
 ### 3.2 安装指定版本
 
-选择一个版本安装，比如 nvm install 20.15.0
+选择一个版本安装，比如 nvm install 22
 
-安装完成后必须执行命令使用该版本，比如 nvm use 20.15.0
+安装完成后必须执行命令使用该版本，比如 nvm use 22
 
 ## 4. 配置系统变量
 
@@ -88,3 +88,15 @@ NVM_SYMLINK：nvm 配置 nodejs 的软链接，nvm use 版本号 时会自动创
 ```shell
     %NVM_SYMLINK%\node_global\node_modules
 ```
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <span></span>
+  <a href="https://znlgis.github.io/demos/vue3-openlayers/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/demos/vue3-openlayers/VUE3基础环境搭建/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

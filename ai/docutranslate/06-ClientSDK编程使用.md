@@ -218,3 +218,15 @@ asyncio.run(translate_multiple())
 - 翻译 PDF 记得加 `convert_engine` 和 MinerU 相关参数。
 - `Result` 用 `save()` 落盘、`export()` 拿 Base64、`supported_formats` 查可用格式。
 - 需要更精细控制（自定义转换器 / 导出器）时，进入下一章的 Workflow API。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/ai/docutranslate/05-支持的文件格式与工作流详解/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/ai/docutranslate/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/ai/docutranslate/07-Workflow高级API开发/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

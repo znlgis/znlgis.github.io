@@ -59,3 +59,15 @@ ssh -N -L 18789:127.0.0.1:18789 user@host
 ## 9.7 小结
 
 Control UI、节点、Canvas 和语音扩展了 OpenClaw 的交互边界，也扩大了攻击面。使用时始终考虑设备配对、节点能力、网络访问、工具策略和隐私权限。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/ai/openclaw/08-安全模型访问控制与沙箱实践/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/ai/openclaw/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/ai/openclaw/10-自动化远程访问日志与排障/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

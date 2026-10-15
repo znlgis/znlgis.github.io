@@ -107,3 +107,15 @@ Sketcher 会显示草图自由度。完全约束并不意味着草图一定正�
 6. 通过极阵列或后续 Pattern 生成多个孔。
 
 这个练习可以理解中心、半径、孔径、对称和阵列之间的参数关系。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/cad/FreeCAD/第03章-界面工作台与基础操作/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/FreeCAD/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/cad/FreeCAD/第05章-PartDesign实体特征建模/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

@@ -185,3 +185,15 @@ src/csharp/
 ## 15.8 小结
 
 本章我们讲解了 WPF 托盘应用与集成：它提供托盘图标、变量采集、实时进度浮窗与桌面通知，通过统一的 `IEngineService` 抽象支持「子进程模式」（`GoProcessService` 启动 `serve` 子进程）与「DLL 模式」（`RobotgoNative` 经 P/Invoke 调 `robotgo-flow.dll`）两种通信方式。我们详解了 JSON-Line 协议的事件与命令、`serve` 的交互时序、事件如何驱动界面，以及 C# 项目结构。下一章，我们从整体上剖析框架的架构与源码组织。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/others/robotgo-flow/第14章-错误处理容错与调试/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/others/robotgo-flow/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/others/robotgo-flow/第16章-架构设计与源码剖析/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

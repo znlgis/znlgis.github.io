@@ -178,11 +178,9 @@ viewer.setState('Visible', viewpoint.components.visibility.exceptions);
 | [XbimSamples](https://github.com/xBimTeam/XbimSamples) | 官方示例代码（C# + .NET） |
 | [Xbim.IFC4x3](https://github.com/xBimTeam/XbimEssentials) 中已合并 | 基础设施扩展（桥/隧/路/铁/水利） |
 | [Xbim.CodeGeneration](https://github.com/xBimTeam/XbimEssentials) | 从 EXPRESS 自动生成实体类 |
-| [BIMOpenSchemaIfcDb](https://github.com/CDIC-IBA/BIMOpenSchemaIfcDb) | 第三方：基于 Xbim 的关系数据库映射 |
-| [XbimXplorerPlugins](https://github.com/xBimTeam/XbimWindowsUI/tree/master/XbimXplorerPlugins) | XbimXplorer 插件示例 |
+| [XbimXplorer / PluginSystem](https://github.com/xBimTeam/XbimWindowsUI/tree/master/XbimXplorer/PluginSystem) | XbimXplorer 插件系统与示例 |
 | [BimSurfer](https://github.com/opensourceBIM/BIMsurfer) | 与 Xbim 类似定位的 Web 查看器，可对比学习 |
 | [IFCViewer (Xeokit)](https://xeokit.io/) | 商业 + 开源混合的 Web 渲染器 |
-| [IfcDoc](https://github.com/buildingSMART/IfcDoc) | buildingSMART 官方的 IFC 文档生成器 |
 
 ## 5. 把它们组合成 BIM 工具链
 
@@ -236,3 +234,15 @@ Open BIM 不只是"会读 .ifc"——还包括：
 - **COBie** 完成资产交付（上一章），与 IDS、BCF 共同构成"模型质量 + 协同 + 移交"三角。
 
 通过 Xbim，你可以在 .NET 单一技术栈内覆盖以上所有标准。下一章我们做综合实战，把 16 章所学串起来。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/cad/Xbim/第14章-COBie数据交换与XbimCobieExpress/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/Xbim/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/cad/Xbim/第16章-综合实战构建IFC处理与BIM应用/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

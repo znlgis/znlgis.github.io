@@ -161,3 +161,15 @@ MaximumInscribedCircle 算法支持：
 - [JTS MaximumInscribedCircle JavaDoc](https://locationtech.github.io/jts/javadoc/org/locationtech/jts/algorithm/construct/MaximumInscribedCircle.html)
 - [PostGIS ST_MaximumInscribedCircle](https://postgis.net/docs/ST_MaximumInscribedCircle.html)
 - [GeoPandas maximum_inscribed_circle](https://geopandas.org/en/latest/docs/reference/api/geopandas.GeoSeries.maximum_inscribed_circle.html)
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/2025-Coverage-Cleaning-in-JTS/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/2024-JTS-Topological-Relationships-RelateNG/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

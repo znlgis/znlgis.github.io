@@ -1045,3 +1045,15 @@ Faux Provider 同样支持流式输出（使用 `models.stream`）——工具�
 - **错误处理**的核心理念是"永远不抛异常"——所有失败都转化为流式事件和消息状态，调用者通过 `stopReason` 和 `errorMessage` 获取信息。
 
 下一章：[第十四章：核心架构pi-agent-core代理运行时](https://znlgis.github.io/ai/pi/14-核心架构pi-agent-core代理运行时/) 将进入 pi-agent-core——看看 Agent 循环、工具执行、事件流、状态管理、消息队列这些"Agent 运行时"层是如何构建在 pi-ai 之上的。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/ai/pi/12-容器化与安全沙箱/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/ai/pi/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/ai/pi/14-核心架构pi-agent-core代理运行时/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

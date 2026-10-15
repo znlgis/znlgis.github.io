@@ -226,7 +226,7 @@ Elements 使用 `allOf` + `$ref` 实现类型继承。以下对比三种常见�
 
 `allOf` 相当于 C# 的 `: BaseClass`。代码生成器会将 `allOf` 中的所有 `$ref` 合并，生成的 C# 类将继承被引用类型的所有属性。
 
-> 注意：新版本的 Elements 序列化已从 Newtonsoft.Json 迁移到 System.Text.Json。这影响了某些特性的处理方式（如 `JsonProperty` 变为 `JsonPropertyName`，不再支持 `Required` 参数等），但 Schema 定义格式保持不变。
+> 注意：仓库里有一个把序列化从 Newtonsoft.Json 迁移到 System.Text.Json 的改动（PR #870），但截至本教程依据的版本**尚未合并发布**。上游当前仍使用 Newtonsoft.Json 13.0.3，生成的代码用 `[JsonProperty]`（支持 `Required` 参数）；本章示例按现状给出，Schema 定义格式不受影响。
 
 ## 15.3 Schema 目录组织
 
@@ -587,30 +587,30 @@ public partial class MyFurniture
 [JsonConverter(typeof(JsonInheritanceConverter), new object[] { "discriminator" })]
 public partial class ConstructionProgress : Element
 {
-    [JsonPropertyName("PhaseName")]
+    [JsonProperty("PhaseName")]
     public string PhaseName { get; set; }
 
-    [JsonPropertyName("PlannedStart")]
+    [JsonProperty("PlannedStart")]
     public string PlannedStart { get; set; }
 
-    [JsonPropertyName("PlannedEnd")]
+    [JsonProperty("PlannedEnd")]
     public string PlannedEnd { get; set; }
 
-    [JsonPropertyName("ActualStart")]
+    [JsonProperty("ActualStart")]
     public string ActualStart { get; set; }
 
-    [JsonPropertyName("ActualEnd")]
+    [JsonProperty("ActualEnd")]
     public string ActualEnd { get; set; }
 
-    [JsonPropertyName("ProgressPercent")]
+    [JsonProperty("ProgressPercent")]
     [DefaultValue(0)]
     public double ProgressPercent { get; set; } = 0;
 
-    [JsonPropertyName("Status")]
+    [JsonProperty("Status")]
     [DefaultValue("planned")]
     public string Status { get; set; } = "planned";
 
-    [JsonPropertyName("AssignedContractor")]
+    [JsonProperty("AssignedContractor")]
     public string AssignedContractor { get; set; }
 }
 ```
@@ -643,25 +643,25 @@ using Elements;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace MyProject
 {
     [JsonConverter(typeof(JsonInheritanceConverter), new object[] { "discriminator" })]
     public partial class MyFurniture : GeometricElement
     {
-        [JsonPropertyName("Style")]
+        [JsonProperty("Style")]
         public string Style { get; set; }
 
-        [JsonPropertyName("Width")]
+        [JsonProperty("Width")]
         [DefaultValue(1.0)]
         public double Width { get; set; } = 1.0;
 
-        [JsonPropertyName("Depth")]
+        [JsonProperty("Depth")]
         [DefaultValue(1.0)]
         public double Depth { get; set; } = 1.0;
 
-        [JsonPropertyName("Height")]
+        [JsonProperty("Height")]
         [DefaultValue(0.75)]
         public double Height { get; set; } = 0.75;
 
@@ -694,25 +694,25 @@ namespace MyProject
 
 - **`[JsonConverter(typeof(JsonInheritanceConverter), ...)]`**：注册自定义 JSON 转换器，处理多态反序列化
 - **`partial class`**：必须保持 `partial`，方便你扩展
-- **`[JsonPropertyName]`**：System.Text.Json 的属性名映射（替代了旧版的 `[JsonProperty]`）
+- **`[JsonProperty]`**：Newtonsoft.Json 的属性名映射（上游当前使用的序列化框架）
 - **`[JsonConstructor]`**：标记 JSON 反序列化使用的构造函数
 - **参数顺序**：生成器按 properties 定义顺序排列参数，基类参数（如 `Transform`、`Material`）排在末尾
 - **无参构造函数**：始终生成一个无参构造函数，用于 `Activator.CreateInstance` 等场景
 - **`[DefaultValue]`**：标记默认值（目前仅用于文档和工具提示，不影响序列化行为）
 
-### 15.7.2 版本迁移说明
+### 15.7.2 序列化迁移状态（PR #870）
 
-如果你参考较旧版本的 Elements 文档或代码，可能看到以下差异：
+把序列化从 Newtonsoft.Json 迁移到 System.Text.Json 的改动仍在 [hypar-io/Elements PR #870](https://github.com/hypar-io/Elements/pull/870) 中，**尚未合并发布**。上游当前版本（2.4.0-alpha 系列）仍使用 Newtonsoft.Json 13.0.3，本章示例与之一致。若该 PR 将来合并，可能出现如下差异：
 
-| 旧版 (Newtonsoft.Json) | 新版 (System.Text.Json) |
+| 现状（Newtonsoft.Json，当前上游） | PR #870 提案（System.Text.Json，未发布） |
 | --- | --- |
-| `[JsonProperty("name")]` | `[JsonPropertyName("name")]` |
-| `using Newtonsoft.Json;` | `using System.Text.Json.Serialization;` |
+| `[JsonProperty("name")]` | `JsonPropertyName`（属性名映射特性） |
+| `using Newtonsoft.Json;` | `using Newtonsoft.Json;` |
 | `JsonConverter(typeof(JsonInheritanceConverter), "discriminator")` | `JsonConverter(typeof(JsonInheritanceConverter), new object[] { "discriminator" })` |
 | `out errors` 反序列化参数 | 不再支持（`ModelConverter` 内部处理） |
 | `[JsonProperty(Required = Required.Always)]` | 不支持（需通过 `required` 关键字或自定义验证） |
 
-本教程的代码示例基于当前主流版本。如果遇到反序列化兼容性问题，请参考 [hypar-io/Elements PR #870](https://github.com/hypar-io/Elements/pull/870)。
+> 本教程的代码示例基于上游现状（Newtonsoft.Json）。如遇到反序列化兼容性问题，请先核对 PR #870 的合并状态。
 
 ## 15.8 实战示例
 
@@ -805,30 +805,30 @@ else
 using Elements;
 using System;
 using System.ComponentModel;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 
 namespace MyProject.Elements
 {
     [JsonConverter(typeof(JsonInheritanceConverter), new object[] { "discriminator" })]
     public partial class FurnitureElement : GeometricElement
     {
-        [JsonPropertyName("Length")]
+        [JsonProperty("Length")]
         [DefaultValue(1.0)]
         public double Length { get; set; } = 1.0;
 
-        [JsonPropertyName("Width")]
+        [JsonProperty("Width")]
         [DefaultValue(0.6)]
         public double Width { get; set; } = 0.6;
 
-        [JsonPropertyName("Height")]
+        [JsonProperty("Height")]
         [DefaultValue(0.75)]
         public double Height { get; set; } = 0.75;
 
-        [JsonPropertyName("Category")]
+        [JsonProperty("Category")]
         [DefaultValue("desk")]
         public string Category { get; set; } = "desk";
 
-        [JsonPropertyName("MaterialName")]
+        [JsonProperty("MaterialName")]
         [DefaultValue("橡木")]
         public string MaterialName { get; set; } = "橡木";
 
@@ -1174,7 +1174,7 @@ if (result.Success)
 - **JSON Schema 语法**：draft-07 标准，`discriminator` 多态标记，`allOf` 继承，`x-namespace` 命名空间
 - **代码生成引擎**：`TypeGenerator` → NJsonSchema 解析 → `CSharpGenerator` → DotLiquid 模板 → `.g.cs` 文件
 - **两个实战示例**：`FurnitureElement`（几何类，extrude 长方体）和 `ConstructionPhase`（数据类，施工进度管理）
-- **`.g.cs` 约定**：partial 类、`[JsonConstructor]`、`[JsonPropertyName]`，手写代码与生成代码分离
+- **`.g.cs` 约定**：partial 类、`[JsonConstructor]`、`[JsonProperty]`，手写代码与生成代码分离
 
 掌握了 Schema 驱动开发后，你可以将 Elements 从"使用内置类型建模"升级为"定义领域类型 → 自动生成代码 → 构建专属 BIM 数据模型"，真正将建筑模型变成可编程、可扩展的代码资产。
 

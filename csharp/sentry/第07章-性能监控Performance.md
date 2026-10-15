@@ -61,7 +61,7 @@ title: 第七章：性能监控（Performance）
 
 性能监控（Performance Monitoring）是 Sentry 从 **9.x 版本**开始引入的分布式追踪（Distributed Tracing）能力。它使得 Sentry 不再仅仅是一个"错误日志收集系统"，而是演进为一款覆盖错误追踪与性能分析的全栈 APM 平台。
 
-> **版本说明**：本章内容基于 Sentry 代码库 `26.8.0.dev0` 版本。代码引用路径均为相对于仓库根目录的相对路径。
+> **版本说明**：本章内容基于 Sentry 26.x 代码库（self-hosted 稳定版 26.9.0）。代码引用路径均为相对于仓库根目录的相对路径。
 
 ---
 
@@ -1140,3 +1140,15 @@ Sentry 的动态采样系统（Dynamic Sampling）是一套**自适应采样决�
 - **稀有路径**：动态采样提升了稀有路径的覆盖率，因此带来的偏差恰恰是有益的——它帮助开发者发现"不易察觉"的性能问题。
 
 在 Sentry 的 Discover 查询中，`count()` 以外的聚合函数（`p50()`, `p95()`, `avg()`）通常不需要手动外推，但 `count()` 和 `count_unique()` 需要结合采样上下文做修正。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/csharp/sentry/第06章-Issues问题管理全流程/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/csharp/sentry/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/csharp/sentry/第08章-告警规则与通知体系/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

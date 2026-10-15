@@ -284,3 +284,15 @@ for n := range square(gen(2, 3, 4)) {
 本章深入讲解了 Go 并发编程的核心：goroutine 是极轻量的并发执行单元，channel 是它们之间类型安全的通信管道。我们学习了无缓冲/有缓冲 channel 的语义、channel 的关闭与遍历、`select` 多路复用与超时控制，以及 Worker Pool、Pipeline 等经典并发模式。掌握"通过通信共享内存"的思想，是写好 Go 并发程序的关键。
 
 下一章我们将学习并发进阶内容：`sync` 包提供的传统同步原语及更多并发控制工具。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/others/go/第07章-错误处理机制/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/others/go/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/others/go/第09章-并发进阶-sync包与并发控制/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

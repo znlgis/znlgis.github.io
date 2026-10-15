@@ -1133,3 +1133,15 @@ AGENTS.md 不是一份"参考文档"——它是一份**运行时生效的约束
 ---
 
 > **下一章**：[第十章：典型工作流实战](https://znlgis.github.io/ai/my-opencode-deepseek-config/10-典型工作流实战/) —— 将本章的规则落实到具体的日常开发场景中。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/ai/my-opencode-deepseek-config/08-配置文件完全参考/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/ai/my-opencode-deepseek-config/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/ai/my-opencode-deepseek-config/10-典型工作流实战/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

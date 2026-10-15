@@ -192,3 +192,15 @@ Skill 讲究匹配场景。简单解释性问题不需要进入完整开发流�
 ## 3.10 本章小结
 
 `using-superpowers` 是 superpowers-zh 的总开关。它要求 AI 在行动前先判断适用 Skill，避免凭惯性直接编码。理解这套路由机制后，后续学习每个 Skill 才有意义。否则即使安装了 20 个 Skills，AI 也可能只把它们当作可选参考，而不是必须遵守的工程纪律。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/ai/superpowers-zh/02-安装部署与工具适配/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/ai/superpowers-zh/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/ai/superpowers-zh/04-需求澄清方案设计与计划编写/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

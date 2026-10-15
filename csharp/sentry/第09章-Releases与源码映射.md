@@ -1875,3 +1875,15 @@ def get_unused_filter(cls, cutoff_date: datetime) -> Q:
 本章详细解析了 Sentry 中 Release 体系的全貌：从 Release 的核心数据模型（包括 SemVer 解析、物料化统计字段）到各种创建方式（SDK 自动创建、CLI、API 及其幂等性设计），从 Commit 关联机制（`set_commits`、`set_refs`、Suspect Commits 推断）到 Deploy 部署追踪与通知，从 Source Maps 的原理与上传流程（sentry-cli、Webpack/Vite Plugin、API 上传）到 Artifact Bundles 的现代制品管理架构，从 Release 健康度（Crash-free Rate、Adoption、Session 统计）到回归检测和版本对比，最后到 Release 的归档、合并与安全删除。
 
 理解 Release 体系是高效使用 Sentry 的关键——没有 Release 数据，Sentry 只能告诉你"有错误发生了"，而有了 Release 数据，Sentry 能告诉你"这个错误是从哪个版本引入的、由哪些 Commit 导致的、影响了多少用户、是否比上个版本更差"。这就是 Release 的核心价值。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/csharp/sentry/第08章-告警规则与通知体系/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/csharp/sentry/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/csharp/sentry/第10章-Dashboards与Discover数据分析/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

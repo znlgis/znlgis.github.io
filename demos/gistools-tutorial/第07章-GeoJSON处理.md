@@ -599,3 +599,15 @@ public String prepareForWeb(WktLayer layer) {
 5. **优化技巧**：简化、字段筛选、精度控制
 
 下一章将介绍PostGIS数据库的交互操作。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/demos/gistools-tutorial/第06章-Shapefile处理/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/demos/gistools-tutorial/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/demos/gistools-tutorial/第08章-PostGIS数据库/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

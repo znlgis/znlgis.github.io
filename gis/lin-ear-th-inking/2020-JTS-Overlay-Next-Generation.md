@@ -86,3 +86,15 @@ OverlayNG 标志着空间叠加技术的重大进步，使 JTS 及其移植版�
 - [JTS OverlayNG 官方文档](https://locationtech.github.io/jts/javadoc/org/locationtech/jts/operation/overlayng/package-summary.html)
 - [JTS GitHub 仓库](https://github.com/locationtech/jts)
 - [NetTopologySuite OverlayNG 移植](https://github.com/NetTopologySuite/NetTopologySuite)
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/2021-Fixing-Invalid-Geometry-JTS/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/2020-JTS-OverlayNG-Noding-Strategies/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

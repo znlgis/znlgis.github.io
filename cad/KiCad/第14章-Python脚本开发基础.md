@@ -297,16 +297,19 @@ exec(open("/path/to/script.py").read())
 ### 14.5.2 命令行执行
 
 ```bash
-# 使用kicad-cli执行Python脚本
-kicad-cli pcb python-script \
-    --script my_script.py \
-    myboard.kicad_pcb
+# kicad-cli 没有 pcb python-script 子命令，不能用它直接执行脚本。
+# 可行的方式：用 KiCad 自带的 Python 解释器运行脚本
+"C:\Program Files\KiCad\10.0\bin\python.exe" my_script.py
 
-# 传递参数
-kicad-cli pcb python-script \
-    --script my_script.py \
-    --define "PARAM1=value1" \
-    myboard.kicad_pcb
+# 脚本内部自行载入板文件（参数由脚本自己解析，如 argparse）：
+#   import pcbnew
+#   board = pcbnew.LoadBoard("myboard.kicad_pcb")
+#   ...
+#   pcbnew.SaveBoard("myboard_out.kicad_pcb", board)
+
+# kicad-cli 的 pcb 子命令只有 drc、export *、import、render、
+# upgrade、downgrade、diff，导出类工作可直接交给命令行，例如：
+kicad-cli pcb export gerbers myboard.kicad_pcb
 ```
 
 ## 14.6 实用脚本示例

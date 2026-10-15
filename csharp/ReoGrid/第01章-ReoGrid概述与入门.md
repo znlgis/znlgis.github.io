@@ -144,12 +144,19 @@ public class DataAnalysisPanel
         sheet["F1"] = "总计";
         sheet["F2"] = "=SUM(A2:E2)";
         
-        // 创建图表
-        var chart = sheet.CreateChart(
-            ChartType.Column,
-            new RangePosition("A1:E10"),
-            new RangePosition("H1:N15")
-        );
+        // 创建图表：B2:E10 为数值区，A2:A10 为行标题，B1:E1 为列标题
+        var chart = new unvell.ReoGrid.Chart.ColumnChart
+        {
+            Location = new unvell.ReoGrid.Graphics.Point(320, 20),
+            Size = new unvell.ReoGrid.Graphics.Size(360, 220),
+            Title = "订单统计",
+            DataSource = new unvell.ReoGrid.Chart.WorksheetChartDataSource(
+                sheet, sheet.Ranges["A2:A10"], sheet.Ranges["B2:E10"])
+            {
+                CategoryNameRange = sheet.Ranges["B1:E1"],
+            },
+        };
+        sheet.FloatingObjects.Add(chart);
     }
 }
 ```

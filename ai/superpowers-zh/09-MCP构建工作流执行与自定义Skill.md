@@ -243,3 +243,15 @@ description: 何时使用这个 Skill
 ## 9.13 本章小结
 
 `mcp-builder` 扩展 AI 能调用的外部能力，`workflow-runner` 扩展 AI 的多角色协作方式，`writing-skills` 扩展方法论本身。掌握这三者后，你不仅能使用 superpowers-zh，还能围绕团队实际问题持续扩展它。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/ai/superpowers-zh/08-中国特色Skills与本土团队落地/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/ai/superpowers-zh/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/ai/superpowers-zh/10-团队实战落地排障与最佳实践/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

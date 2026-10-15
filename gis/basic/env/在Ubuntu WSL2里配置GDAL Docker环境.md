@@ -62,22 +62,36 @@ sudo vim /etc/docker/daemon.json
 
 {
   "registry-mirrors": [
-    "https://docker.mirrors.ustc.edu.cn",
-    "https://ghcr.nju.edu.cn"
+    "https://docker.m.daocloud.io",
+    "https://docker.1ms.run"
   ]
 }
 
 ```
 
+> 说明：公共加速器的可用性会随时间变化，若上述地址失效，请自行查找仍可用的 Docker Hub 加速器。
+
 ## GDAL Dockerfile
 
 ```Dockerfile
-# GDAL官方镜像为基础，不要用最新的镜像，因为最新的镜像可能会有问题，用官网最新稳定版本即可，FULL版本的兼容性最好但体积最大
-# 需要配置国内源 https://ghcr.nju.edu.cn
-FROM ghcr.nju.edu.cn/osgeo/gdal:ubuntu-full-3.8.5
+# GDAL官方镜像为基础，不要用 latest 标签，用固定的稳定版本标签，FULL 版本兼容性最好但体积最大
+# 通过南京大学的 ghcr 代理拉取镜像 https://ghcr.nju.edu.cn
+FROM ghcr.nju.edu.cn/osgeo/gdal:ubuntu-full-3.13.3
 # 设置中文编码
 ENV LANG=C.UTF-8
 ENV LC_ALL=C.UTF-8
 # 设置时区为上海
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo 'Asia/Shanghai' >/etc/timezone
 ```
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/gis/basic/env/Windows下的GDAL环境配置/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/basic/env/" style="text-decoration: none;">目录</a>
+  <span></span>
+</div>
+
+<!-- /NAVIGATION -->

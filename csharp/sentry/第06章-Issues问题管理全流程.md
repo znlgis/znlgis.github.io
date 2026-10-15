@@ -1085,3 +1085,15 @@ API 的完整文档在 Sentry 服务器运行后可通过 `/api/0/` 的 Swagger/
 ---
 
 **本章小结**：Issue 是 Sentry 错误监控的核心抽象，连接了原始事件数据与开发者的日常工作流。从事件到来时的分组算法（Grouping Strategies），到 Issue 状态的精细管理（GroupStatus + GroupSubStatus），再到自动分配、告警触发和 API 集成，整个体系构成了一个完整的闭环。理解这些底层机制，能够帮助开发团队更精准地配置分组规则，更高效地管理问题生命周期，以及更好地利用 API 实现自定义工作流集成。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/csharp/sentry/第05章-SDK集成与事件上报机制/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/csharp/sentry/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/csharp/sentry/第07章-性能监控Performance/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

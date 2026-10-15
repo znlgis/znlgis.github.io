@@ -206,3 +206,15 @@ RobotGo 生态里有三种“看屏幕找东西”的层次，适用场景各不
 ## 8.10 小结
 
 本章我们学习了基于 `bitmap` 子库的位图查找：如何从截图或文件获取位图、保存位图，以及用 `Find` / `FindAll` 在屏幕上定位目标小图的位置。我们梳理了“截模板→查找→点击”的典型工作流，并对比了像素颜色、位图查找、OpenCV 三种识别方式的取舍。下一章我们回到主库，讲解更基础但同样重要的剪贴板操作。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/others/robotgo/第07章-屏幕截图与图像处理/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/others/robotgo/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/others/robotgo/第09章-剪贴板操作/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

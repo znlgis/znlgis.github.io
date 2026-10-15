@@ -64,7 +64,7 @@ SqlSugar自诞生以来，经历了多个重要的版本迭代：
 | **3.x** | 2017年 | 引入CodeFirst和DbFirst |
 | **4.x** | 2018-2019年 | 性能大幅优化，增加分表功能 |
 | **5.x** | 2020-至今 | 支持.NET Core/.NET 5+，增加多租户、分布式事务等企业特性 |
-| **5.1.4.221** | 截至 2026 年 9 月 | 最新稳定版，支持.NET Standard 2.1、.NET Core 3.1至.NET 10 |
+| **5.1.4.207 / 5.1.4.221** | 截至 2026 年 10 月 | `SqlSugar` 聚合包最新稳定版为 5.1.4.207，`SqlSugarCore` 主包为 5.1.4.221，均支持 .NET Standard 2.1、.NET Core 3.1 至 .NET 10 |
 
 ### 2.2 里程碑事件
 
@@ -77,7 +77,7 @@ SqlSugar自诞生以来，经历了多个重要的版本迭代：
 - **2021-2023年**：持续优化，支持.NET 6/7/8，增加更多数据库支持
 - **2024年至今**：支持.NET 9，持续优化和完善
 - **2025年**：支持.NET 10预览版
-- **2026年**：持续迭代，最新稳定版 5.1.4.221 全面支持.NET Core 3.1至.NET 10和.NET Standard 2.1
+- **2026年**：持续迭代，最新稳定版（SqlSugarCore 5.1.4.221 / SqlSugar 聚合包 5.1.4.207）全面支持 .NET Core 3.1 至 .NET 10 和 .NET Standard 2.1
 
 ### 2.3 社区发展
 
@@ -551,3 +551,15 @@ SqlSugar提供商业技术支持服务：
 5. 思考：SqlSugar与你之前使用的ORM框架有什么不同？
 
 下一章：[第二章：环境配置与项目集成](https://znlgis.github.io/csharp/SqlSugar/第02章-环境配置与项目集成/)
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <span></span>
+  <a href="https://znlgis.github.io/csharp/SqlSugar/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/csharp/SqlSugar/第02章-环境配置与项目集成/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

@@ -65,7 +65,7 @@ CesiumJS 的发展历程是 Web 三维地理可视化技术演进的缩影：
 | 2023 | CesiumJS 持续优化云原生支持 |
 | 2024 | 增强 AI 集成与实时数据流支持 |
 | 2025 | CesiumJS 持续更新，性能优化与 WebGPU 探索 |
-| 2026 | CesiumJS 1.145：GeoJsonPrimitive、MVTDataProvider、Gaussian Splat 支持、Panorama 支持、火星(Mars)支持、BENTLEY_materials_planar_fill 平面填充、矢量贴地渲染 |
+| 2026 | CesiumJS 1.146：GeoJsonPrimitive、MVTDataProvider、Gaussian Splat 支持、Panorama 支持、火星(Mars)支持、BENTLEY_materials_planar_fill 平面填充、矢量贴地渲染 |
 
 ### 1.1.3 CesiumJS 的核心特点
 
@@ -293,8 +293,8 @@ Cesium.Ion.defaultAccessToken = 'your_access_token';
 
 // 加载 Cesium ion 资源
 const viewer = new Cesium.Viewer('cesiumContainer', {
-    terrainProvider: Cesium.createWorldTerrain(),
-    imageryProvider: Cesium.createWorldImagery()
+    terrain: Cesium.Terrain.fromWorldTerrain(),
+    baseLayer: Cesium.ImageryLayer.fromWorldImagery()
 });
 ```
 
@@ -358,11 +358,9 @@ CesiumJS 常与以下技术配合使用：
 #### 案例1：智慧城市三维可视化
 
 ```javascript
-// 加载城市建筑 3D Tiles
+// 加载城市建筑 3D Tiles（fromUrl 为异步 API，调用处需 await）
 const cityBuildings = viewer.scene.primitives.add(
-    new Cesium.Cesium3DTileset({
-        url: 'https://your-server/city/tileset.json'
-    })
+    await Cesium.Cesium3DTileset.fromUrl('https://your-server/city/tileset.json')
 );
 
 // 设置建筑样式
@@ -421,10 +419,10 @@ viewer.dataSources.add(dataSource);
 
 ```javascript
 // 加载高精度地形
-viewer.terrainProvider = Cesium.createWorldTerrain({
+viewer.scene.setTerrain(Cesium.Terrain.fromWorldTerrain({
     requestWaterMask: true,
     requestVertexNormals: true
-});
+}));
 
 // 启用地形遮挡
 viewer.scene.globe.depthTestAgainstTerrain = true;
@@ -457,8 +455,8 @@ viewer.entities.add({
 | 1.41 - 1.80 | 2018-2021 | 性能优化，glTF 2.0，模块化 |
 | 1.81 - 1.100 | 2021-2023 | 3D Tiles Next，云优化，TypeScript 支持 |
 | 1.100 - 1.130 | 2023-2025 | 持续优化，新特效，AI 集成 |
-| 1.130 - 1.142 | 2025-2026 | GeoJsonPrimitive，MVTDataProvider，Gaussian Splat 支持，Panorama 支持，火星(Mars)支持 |
-| 1.142 | 2026-06 | 当前最新稳定版 |
+| 1.130 - 1.146 | 2025-2026 | GeoJsonPrimitive，MVTDataProvider，Gaussian Splat 支持，Panorama 支持，火星(Mars)支持 |
+| 1.146 | 2026-10 | 当前最新稳定版 |
 
 ### 1.5.2 模块化结构
 

@@ -20,7 +20,7 @@ const viewer = new Cesium.Viewer('cesiumContainer', {
     mapProjection: new Cesium.GeographicProjection(), // 地图投影
     
     // ===== 地形配置 =====
-    terrainProvider: Cesium.createWorldTerrain({
+    terrain: Cesium.Terrain.fromWorldTerrain({
         requestWaterMask: true,            // 水体遮罩
         requestVertexNormals: true         // 顶点法线（光照）
     }),
@@ -288,7 +288,7 @@ shadowMap.maximumDistance = 10000;           // 最大阴影距离
 
 ```javascript
 // ===== Cesium World Terrain（推荐）=====
-viewer.terrainProvider = Cesium.createWorldTerrain({
+viewer.scene.setTerrain(Cesium.Terrain.fromWorldTerrain({
     requestWaterMask: true,                  // 水体遮罩
     requestVertexNormals: true               // 顶点法线
 });

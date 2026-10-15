@@ -137,7 +137,7 @@ public class HealthReport
 ---
 
 **相关资源**：
-- [GeoServer 监控文档](https://docs.geoserver.org/latest/en/user/community/monitoring/index.html)
+- [GeoServer 监控插件文档](https://docs.geoserver.org/latest/en/user/extensions/monitoring/index.html)
 
 <!-- NAVIGATION -->
 

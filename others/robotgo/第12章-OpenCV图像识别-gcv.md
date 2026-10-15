@@ -194,3 +194,15 @@ func opencv() {
 ## 12.10 小结
 
 本章我们学习了基于 gcv 子库的 OpenCV 图像识别：它通过模板匹配与特征匹配提供了比位图查找更鲁棒的图像定位能力。我们掌握了基于文件（`FindImgFile`）和基于内存（`FindImg` / `FindAllImg` / `Find` / `FindAll` / `FindX`）的多种查找方式、结果解析与点击，并对比了位图查找与 OpenCV 查找的取舍。下一章我们将探讨 RobotGo 的跨平台开发与新兴的 Cgo-free 构建方式。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/others/robotgo/第11章-全局事件监听-GoHook/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/others/robotgo/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/others/robotgo/第13章-跨平台与Cgo-free构建/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

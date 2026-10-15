@@ -301,3 +301,15 @@ Xbim 团队为此专门提供了 [`Xbim.IDS.Validator`](https://github.com/xBimT
 - buildingSMART 还制定了 MVD、IDS、BCF、COBie 等配套标准。
 
 下一章我们将打开 `Xbim.Common`，看看 Xbim 是如何把 EXPRESS 元模型搬进 .NET 内存的。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/cad/Xbim/第02章-开发环境搭建源码获取与编译/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/Xbim/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/cad/Xbim/第04章-XbimCommon通用框架与EXPRESS元模型/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

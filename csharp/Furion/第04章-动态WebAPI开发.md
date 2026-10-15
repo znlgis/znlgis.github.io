@@ -1384,3 +1384,15 @@ public class OptimizedService : IDynamicApiController
 - **接口分组**通过`ApiDescriptionSettings`实现，方便API文档组织
 
 > **下一章预告**：第五章将详细介绍Furion的依赖注入与服务注册机制，包括接口标记注入、构造函数注入、属性注入等多种注入方式。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/csharp/Furion/第03章-项目架构与核心设计/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/csharp/Furion/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/csharp/Furion/第05章-依赖注入与服务注册/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

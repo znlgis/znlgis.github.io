@@ -440,3 +440,15 @@ done
 ---
 
 **导航**：[← 第十八章：自定义步骤与扩展开发](https://znlgis.github.io/gis/tutorial/GeoPipeAgent/第18章-自定义步骤与扩展开发/) ｜ [第二十章：最佳实践与综合案例 →](https://znlgis.github.io/gis/tutorial/GeoPipeAgent/第20章-最佳实践与综合案例/)
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/gis/tutorial/GeoPipeAgent/第18章-自定义步骤与扩展开发/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/tutorial/GeoPipeAgent/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/tutorial/GeoPipeAgent/第20章-最佳实践与综合案例/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

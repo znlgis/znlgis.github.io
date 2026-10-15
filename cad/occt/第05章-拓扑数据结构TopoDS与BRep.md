@@ -191,3 +191,15 @@ BRepTools::Read(s, "in.brep", b);
 ## 15. 小结
 
 `TopoDS` + `BRep` 构成 OCCT 的“骨架 + 血肉”：骨架描述拓扑层级与朝向，血肉提供几何与容差。理解共享 TShape、Location、Orientation 三件套与多重几何附着，是阅读 OCCT 源码与实现自定义算法的基础。下一章我们把视角拉远，看看 ModelingData 模块如何组织几何与拓扑数据。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/cad/occt/第04章-数学与几何基元gpGeomGeomAPI/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/occt/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/cad/occt/第06章-建模数据与几何表达ModelingData/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

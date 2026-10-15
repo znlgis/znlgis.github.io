@@ -229,7 +229,7 @@ print(f"  几何类型: {gdf.geom_type.unique()}")
 import geopandas as gpd
 
 # 假设已有 GeoDataFrame
-gdf = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
+gdf = gpd.read_file(geodatasets.get_path("naturalearth.land"))
 
 # 查看前 N 行
 print(gdf.head())      # 默认前5行
@@ -416,7 +416,7 @@ print("当前操作的几何:", gdf_service.geometry.name)
 ```python
 import geopandas as gpd
 
-world = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
+world = gpd.read_file(geodatasets.get_path("naturalearth.land"))
 
 # loc - 基于标签
 print(world.loc[0])               # 第一行
@@ -511,7 +511,7 @@ print(filtered.columns.tolist())
 ```python
 import geopandas as gpd
 
-world = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
+world = gpd.read_file(geodatasets.get_path("naturalearth.land"))
 
 # 添加常规列
 world['大洲中文'] = world['continent'].map({
@@ -597,7 +597,7 @@ world = world.dropna(subset=['pop_est'])
 ```python
 import geopandas as gpd
 
-world = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
+world = gpd.read_file(geodatasets.get_path("naturalearth.land"))
 
 # 按单列排序
 world_sorted = world.sort_values('pop_est', ascending=False)
@@ -642,7 +642,7 @@ print(continent_areas)
 ```python
 import geopandas as gpd
 
-world = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
+world = gpd.read_file(geodatasets.get_path("naturalearth.land"))
 
 # 按大洲融合（几何合并 + 属性聚合）
 continents = world.dissolve(
@@ -681,7 +681,7 @@ import geopandas as gpd
 import pandas as pd
 
 # 空间数据
-world = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
+world = gpd.read_file(geodatasets.get_path("naturalearth.land"))
 
 # 属性数据（普通 DataFrame）
 gdp_per_capita = pd.DataFrame({
@@ -804,7 +804,7 @@ print(nearest_result)
 ```python
 import geopandas as gpd
 
-world = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
+world = gpd.read_file(geodatasets.get_path("naturalearth.land"))
 
 # 查看当前 CRS
 print("原始 CRS:", world.crs)  # EPSG:4326
@@ -864,7 +864,7 @@ gdf['date'] = pd.to_datetime(gdf['date_str'])
 ```python
 import geopandas as gpd
 
-world = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
+world = gpd.read_file(geodatasets.get_path("naturalearth.land"))
 
 # 逐行迭代（注意：速度较慢，应尽量避免）
 for idx, row in world.head(3).iterrows():
@@ -889,7 +889,7 @@ for feature in world.head(3).iterfeatures():
 ```python
 import geopandas as gpd
 
-world = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
+world = gpd.read_file(geodatasets.get_path("naturalearth.land"))
 
 # 对列应用函数
 world['name_len'] = world['name'].apply(len)
@@ -938,7 +938,7 @@ gdf['dist'] = gdf.distance(target)
 ```python
 import geopandas as gpd
 
-world = gpd.read_file(gpd.datasets.get_path('naturalearth_lowres'))
+world = gpd.read_file(geodatasets.get_path("naturalearth.land"))
 
 # 深拷贝（默认）- 完全独立的副本
 world_copy = world.copy()
@@ -1099,3 +1099,15 @@ gdf = gpd.read_file("data.geojson")
 > - [GeoPandas GeoDataFrame 文档](https://geopandas.org/en/stable/docs/reference/geodataframe.html)
 > - [pandas DataFrame 文档](https://pandas.pydata.org/docs/reference/frame.html)
 > - [GeoPandas 合并数据指南](https://geopandas.org/en/stable/docs/user_guide/mergingdata.html)
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/gis/tutorial/geopandas/第03章-核心架构与数据模型/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/tutorial/geopandas/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/gis/tutorial/geopandas/第05章-GeoSeries与几何对象/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

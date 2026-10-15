@@ -252,3 +252,15 @@ go build -race
 本章讲解了 Go 并发的进阶工具：`sync.Mutex`/`RWMutex` 保护共享状态，`WaitGroup` 等待 goroutine 完成，`Once` 实现单次初始化，`sync.Map` 和 `atomic` 提供并发安全的数据访问，`context` 统一管理取消与超时。配合 `-race` 竞态检测器，可以构建出正确、高效的并发程序。channel 与锁各有适用场景，应根据问题选择最清晰的方案。
 
 下一章我们将学习 Go 的包管理与 Go Modules。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/others/go/第08章-并发编程-Goroutine与Channel/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/others/go/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/others/go/第10章-包管理与Go-Modules/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

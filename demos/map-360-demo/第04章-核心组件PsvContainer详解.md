@@ -286,3 +286,15 @@ App.vue 通过 `psvRef` 引用 PsvContainer 实例，调用其暴露的 `gotoMar
 ## 4.13 下一步
 
 理解了核心组件后，进入 [第05章 全景与地图双向联动机制](https://znlgis.github.io/demos/map-360-demo/第05章-全景与地图双向联动机制/) 深入理解联动原理。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/demos/map-360-demo/第03章-项目结构解析/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/demos/map-360-demo/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/demos/map-360-demo/第05章-全景与地图双向联动机制/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

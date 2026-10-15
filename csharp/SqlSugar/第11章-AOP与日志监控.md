@@ -1141,3 +1141,15 @@ public class AuditLog
 8. **审计日志**：构建了完善的数据操作审计系统
 
 通过本章的学习，您应该能够构建可监控、可审计的数据访问层，为系统的运维和问题排查提供强有力的支持。在下一章中，我们将学习SqlSugar的DbFirst与代码生成功能。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/csharp/SqlSugar/第10章-分表分库与多租户/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/csharp/SqlSugar/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/csharp/SqlSugar/第12章-DbFirst与代码生成/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

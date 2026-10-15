@@ -17,7 +17,7 @@ Hypar Elements（简称 Elements）是由 Hypar 公司（hypar-io）开源的**�
 | --- | --- |
 | GitHub 仓库 | [hypar-io/Elements](https://github.com/hypar-io/Elements) |
 | NuGet 包 | `Hypar.Elements` |
-| 当前版本 | 2.4.x |
+| 当前版本 | 2.4.0-alpha（预发布：GitHub Release 停在 2.4.0-alpha.8，NuGet 已发布 2.4.0-alpha.12） |
 | 技术栈 | C# / .NET Standard 2.0 + .NET 6.0 |
 | 许可协议 | MIT |
 | 坐标系 | 右手坐标系，+Z 向上 |
@@ -213,7 +213,7 @@ Elements 2.1 引入了"表示实例"（RepresentationInstance）架构，将**�
 
 | 组件 | 最低版本 | 说明 |
 | --- | --- | --- |
-| .NET SDK | 6.0+ | Elements.csproj 目标 net6.0 |
+| .NET SDK | 6.0+ | Elements.csproj 目标 netstandard2.0 |
 | IDE | Visual Studio 2022 / Rider / VS Code | 任意 .NET IDE |
 | 操作系统 | Windows / Linux / macOS | 无 OS 限制 |
 | NuGet 源 | nuget.org | `Hypar.Elements` 包发布在官方 NuGet |

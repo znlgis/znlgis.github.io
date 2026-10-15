@@ -196,3 +196,15 @@ OCCT 仓库 `samples/qt/Common` 提供 `OcctView` 模板。要点：
 OCCT 7.6+ 支持 Vulkan + Web (Emscripten)：用 `samples/webgl` 作为起点，可把模型可视化嵌入浏览器。
 
 可视化体系完成后，CAD 应用基本可以“可见可点”。下一章我们看 OCCT 强大的“数据交换”模块。
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <a href="https://znlgis.github.io/cad/occt/第10章-网格化与离散化BRepMesh与Poly/" style="text-decoration: none;">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/occt/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/cad/occt/第12章-数据交换STEPIGESSTLglTFOBJ/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->

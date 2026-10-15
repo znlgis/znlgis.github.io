@@ -9,18 +9,18 @@ title: LightCAD概述与入门
 
 ### 1.1.1 项目定位与背景
 
-LightCAD是由启道软件（Qidao Soft）开发的一款专业级开源CAD平台，基于.NET 10构建，采用C#语言编写。作为一个完整的二维/三维计算机辅助设计系统，LightCAD致力于为建筑工程设计、机械制图、参数化建模等领域提供一个功能丰富且高度可扩展的设计解决方案。
+LightCAD是由启道软件（Qidao Soft）开发的一款专业级开源CAD平台，基于.NET 8构建，采用C#语言编写。作为一个完整的二维/三维计算机辅助设计系统，LightCAD致力于为建筑工程设计、机械制图、参数化建模等领域提供一个功能丰富且高度可扩展的设计解决方案。
 
 LightCAD的设计理念源于对主流CAD系统的深入分析和改进。它不仅提供了传统CAD系统所具备的绑图、建模和标注功能，还通过模块化架构和插件系统，让开发者能够根据行业需求进行深度定制和二次开发。
 
 ### 1.1.2 项目仓库信息
 
-- **GitHub仓库地址**：[https://github.com/znlgis/lightcad1](https://github.com/znlgis/lightcad1)
+- **源码获取**：源码暂未公开发布；项目主页：[http://www.qidaosoft.com/Feiyang.html](http://www.qidaosoft.com/Feiyang.html)。代码参考见公开仓库 [znlgis/FY_Layout](https://github.com/znlgis/FY_Layout) 的 `Libs/LightCAD.*.dll` 程序集
 - **开发语言**：C#
-- **目标框架**：.NET 10（Windows平台）
+- **目标框架**：.NET 8（Windows平台，以官方发布为准）
 - **渲染引擎**：Three.js4Net + OpenTK
 - **UI框架**：Windows Forms + Avalonia
-- **许可协议**：启道软件开源许可
+- **许可协议**：CC BY-SA 4.0
 
 ### 1.1.3 核心特性
 
@@ -35,7 +35,7 @@ LightCAD具备以下核心特性：
 7. **DWG/DXF兼容**：通过ODA SDK实现与AutoCAD格式的完整兼容
 8. **丰富的字体支持**：内置50+种SHX字体和多种TrueType字体
 9. **视图构建系统**：支持正交投影、截面视图、详图等多种视图生成方式
-10. **跨平台潜力**：基于.NET 10，具备跨平台运行的技术基础
+10. **跨平台潜力**：基于.NET 8，具备跨平台运行的技术基础
 
 ## 1.2 LightCAD整体架构概览
 
@@ -89,12 +89,12 @@ LightCAD采用严格的分层架构设计，从底层到上层的依赖关系如
 
 ## 1.3 技术栈详解
 
-### 1.3.1 .NET 10平台
+### 1.3.1 .NET 8平台
 
-LightCAD基于微软最新的长期支持版（LTS）.NET 10平台构建。选择.NET 10的主要原因包括：
+LightCAD基于.NET 8平台构建（据上游公开信息，实际以官方发布为准）。选择.NET 8的主要原因包括：
 
-- **高性能**：.NET 10在JIT编译、GC（垃圾回收）和整体运行时性能上都有显著提升
-- **跨平台支持**：虽然当前主要面向Windows，但.NET 10为未来的跨平台扩展预留了可能性
+- **高性能**：.NET 8在JIT编译、GC（垃圾回收）和整体运行时性能上都有显著提升
+- **跨平台支持**：虽然当前主要面向Windows，但.NET 8为未来的跨平台扩展预留了可能性
 - **现代C#语言特性**：支持模式匹配、记录类型、全局using等现代语法
 - **长期支持**：作为LTS版本，可以获得微软的长期安全更新和技术支持
 
@@ -149,7 +149,7 @@ LightCAD使用混合UI架构：
 | 对比维度 | LightCAD | AutoCAD |
 |----------|----------|---------|
 | 开源性 | 开源 | 商业闭源 |
-| 开发语言 | C# (.NET 10) | C++/ObjectARX |
+| 开发语言 | C# (.NET 8) | C++/ObjectARX |
 | 文件格式 | 兼容DWG/DXF | 原生DWG |
 | 插件系统 | Weikio Plugin Framework | ObjectARX/.NET API |
 | 二次开发 | C# | C++/C#/LISP/VBA |
@@ -216,20 +216,14 @@ LightCAD的开源特性和清晰的架构设计，使其成为学习CAD系统内
 
 ### 1.6.1 获取源代码
 
-```bash
-# 从GitHub克隆仓库
-git clone https://github.com/znlgis/lightcad1.git
-
-# 进入项目目录
-cd lightcad1
-```
+LightCAD 源码暂未公开发布，无法通过公开仓库克隆。项目信息以主页 [http://www.qidaosoft.com/Feiyang.html](http://www.qidaosoft.com/Feiyang.html) 为准；如需代码层面的参考，公开仓库 [znlgis/FY_Layout](https://github.com/znlgis/FY_Layout) 的 `Libs/` 目录下提供了一批 `LightCAD.*.dll` 程序集，可结合其中的插件示例学习 API 用法。
 
 ### 1.6.2 项目结构一览
 
-克隆完成后，可以看到以下项目结构：
+源码到手后，项目结构大致如下（以官方发布为准）：
 
 ```
-lightcad1/
+LightCAD源码根目录/
 ├── LightCAD1.sln                    # 解决方案文件
 ├── src/
 │   ├── LightCAD.MathLib/            # 数学库
@@ -257,8 +251,8 @@ lightcad1/
 
 ### 1.6.3 编译与运行
 
-1. 使用Visual Studio 2026打开`LightCAD1.sln`
-2. 确保已安装.NET 10 SDK
+1. 使用Visual Studio 2022打开解决方案文件（如已获取源码）
+2. 确保已安装.NET 8 SDK
 3. 将`LightCAD.WinForm`设为启动项目
 4. 按F5编译并运行
 
@@ -304,10 +298,22 @@ lightcad1/
 
 ## 1.8 本章小结
 
-本章介绍了LightCAD的基本概念、核心特性和整体架构。LightCAD是一个功能完整、架构清晰的开源CAD平台，基于.NET 10构建，采用模块化分层设计，集成了Two.js/Three.js和OpenGL双渲染引擎，支持插件扩展和行业定制。
+本章介绍了LightCAD的基本概念、核心特性和整体架构。LightCAD是一个功能完整、架构清晰的开源CAD平台，基于.NET 8构建，采用模块化分层设计，集成了ThreeJs4Net与OpenTK渲染引擎，支持插件扩展和行业定制。
 
 通过后续章节的学习，您将逐步深入LightCAD的各个核心模块，最终具备独立进行CAD二次开发的能力。
 
 ---
 
 > **下一章**：[第二章：开发环境搭建与项目配置](https://znlgis.github.io/cad/LightCAD/第02章-开发环境搭建与项目配置/)
+
+<!-- NAVIGATION -->
+
+---
+
+<div style="display: flex; justify-content: space-between; margin: 20px 0;">
+  <span></span>
+  <a href="https://znlgis.github.io/cad/LightCAD/" style="text-decoration: none;">目录</a>
+  <a href="https://znlgis.github.io/cad/LightCAD/第02章-开发环境搭建与项目配置/" style="text-decoration: none;">下一章 →</a>
+</div>
+
+<!-- /NAVIGATION -->
