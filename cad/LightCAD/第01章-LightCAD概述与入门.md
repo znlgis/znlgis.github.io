@@ -15,7 +15,7 @@ LightCAD的设计理念源于对主流CAD系统的深入分析和改进。它不
 
 ### 1.1.2 项目仓库信息
 
-- **源码获取**：源码暂未公开发布；项目主页：[http://www.qidaosoft.com/Feiyang.html](http://www.qidaosoft.com/Feiyang.html)。代码参考见公开仓库 [znlgis/FY_Layout](https://github.com/znlgis/FY_Layout) 的 `Libs/LightCAD.*.dll` 程序集
+- **源码获取**：源码暂未公开发布；项目主页为 www.qidaosoft.com/Feiyang.html（该站点仅支持 HTTP，请手动访问）。代码参考见公开仓库 [znlgis/FY_Layout](https://github.com/znlgis/FY_Layout) 的 `Libs/LightCAD.*.dll` 程序集
 - **开发语言**：C#
 - **目标框架**：.NET 8（Windows平台，以官方发布为准）
 - **渲染引擎**：Three.js4Net + OpenTK
@@ -216,7 +216,7 @@ LightCAD的开源特性和清晰的架构设计，使其成为学习CAD系统内
 
 ### 1.6.1 获取源代码
 
-LightCAD 源码暂未公开发布，无法通过公开仓库克隆。项目信息以主页 [http://www.qidaosoft.com/Feiyang.html](http://www.qidaosoft.com/Feiyang.html) 为准；如需代码层面的参考，公开仓库 [znlgis/FY_Layout](https://github.com/znlgis/FY_Layout) 的 `Libs/` 目录下提供了一批 `LightCAD.*.dll` 程序集，可结合其中的插件示例学习 API 用法。
+LightCAD 源码暂未公开发布，无法通过公开仓库克隆。项目信息以 www.qidaosoft.com/Feiyang.html（该站点仅支持 HTTP，请手动访问）公布的渠道为准；如需代码层面的参考，公开仓库 [znlgis/FY_Layout](https://github.com/znlgis/FY_Layout) 的 `Libs/` 目录下提供了一批 `LightCAD.*.dll` 程序集，可结合其中的插件示例学习 API 用法。
 
 ### 1.6.2 项目结构一览
 
