@@ -5,7 +5,7 @@ title: 第五章：GIS 技能详解
 
 # 第五章：GIS 技能详解
 
-本章是教程中篇幅最长、信息密度最高的一章。我们将对 opengis-skills 仓库中全部 **24 个 GIS 技能**逐一进行深度解析。GIS 类技能覆盖从「数据获取 → 命令行处理 → 编程分析 → 空间数据库 → 地图服务 → 前端可视化」的完整链条，是 opengis-skills 仓库中规模最大的领域分类。
+本章是教程中篇幅最长、信息密度最高的一章。我们对核心 **24 个 GIS 技能**逐一深度解析，并收录 2026 年 10 月新增的 8 个技能（MapServer、QGIS Server、Leaflet、PROJ、GRASS GIS、PDAL、Mapbox GL JS、Deck.gl）。GIS 类技能覆盖从「数据获取 → 命令行处理 → 编程分析 → 空间数据库 → 地图服务 → 前端可视化」的完整链条，是 opengis-skills 仓库中规模最大的领域分类。
 
 如果你是 GIS 开发者，这一章可以作为日常工作的速查手册：当你需要用 GDAL 做格式转换、用 GeoPandas 做空间分析、用 GeoServer 发布地图服务、用 CesiumJS 做三维可视化时，直接跳到对应小节获取准确的 API 签名和代码示例。每一节的撰写都基于仓库中对应 SKILL.md 的实际内容——不是从训练数据中猜测，而是对真实技能文件的系统梳理。
 
@@ -13,12 +13,12 @@ title: 第五章：GIS 技能详解
 
 ## 5.1 GIS 技能全景
 
-在深入每个技能之前，先用一张全量表格建立全局视图。下表包含全部 24 个 GIS 技能的快速索引：
+在深入每个技能之前，先用一张全量表格建立全局视图。下表包含全部 32 个 GIS 技能的快速索引（核心 24 个 + 2026 年 10 月新增 8 个）：
 
 | 分类 | 技能 | 层级 | 简要说明 | 文件大小 |
 |:-----|:-----|:----:|:---------|:--------:|
 | 数据处理 | `gdal` | CLI | GDAL/OGR 命令行工具，50+ 命令覆盖矢量和栅格处理 | 12 KB |
-| 数据处理 | `gdal-api` | API | GDAL/OGR 的 C/C++/Python/Java/.NET 四语言编程接口 | 42 KB |
+| 数据处理 | `gdal-api` | API | GDAL/OGR 的 C/C++/Python/Java/.NET 四语言编程接口 | 15 KB |
 | 数据处理 | `qgis-process` | CLI | QGIS 200+ 算法的 Headless 命令行批量处理 | 17 KB |
 | 数据处理 | `geopipe-agent` | YAML | AI 原生 GIS ETL 流水线引擎，声明式 YAML 管道 | 15 KB |
 | 空间数据库 | `postgis` | SQL | PostgreSQL 空间扩展，1000+ 空间函数和 GiST 索引 | 8 KB |
@@ -41,13 +41,21 @@ title: 第五章：GIS 技能详解
 | 综合 | `opengis-all` | 聚合 | 一站式端到端 GIS 全流程索引（GDAL+QGIS+GeoServer） | 40 KB |
 | Java 工具集 | `geotools` | Java | Java GIS 工具集，OGC 标准参考实现 | 23 KB |
 | 空间分析 | `opengis-daf` | .NET | 方案驱动 GIS 分析与质检框架，DAG 编排、坐标/几何/属性校验 | 13 KB |
+| 数据处理 | `proj` | CLI/库 | 坐标转换与投影库，proj/cs2cs/cct 工具与 EPSG 数据库 | 12 KB |
+| 数据处理 | `grass-gis` | CLI | GRASS GIS 模块化栅格/矢量空间分析套件，支持 Headless 批处理 | 15 KB |
+| 数据处理 | `pdal` | CLI/API | 点云处理库（LAS/LAZ/COPC），流水线 JSON 与 Python 绑定 | 13 KB |
+| 地图服务器 | `mapserver` | Server | C 语言老牌 OGC 地图服务器，Mapfile 配置与 SLD 样式 | 12 KB |
+| 地图服务器 | `qgis-server` | Server | QGIS 工程驱动的 OGC 地图服务（WMS/WFS/WMTS） | 13 KB |
+| Web 可视化 | `leaflet` | JS | 轻量级 2D Web 地图库，移动端友好、插件生态丰富 | 11 KB |
+| Web 可视化 | `mapbox-gl-js` | JS | 矢量瓦片 WebGL 地图库，Style Spec 与数据驱动样式 | 17 KB |
+| Web 可视化 | `deck-gl` | JS | GPU 大规模数据可视化图层框架（百万级点/聚合/热力图） | 20 KB |
 
 **分类解读：**
 
-- **数据处理类**（4 个）：gdal 和 qgis-process 面向命令行场景，gdal-api 面向编程集成，geopipe-agent 则是 AI 原生 YAML 流水线引擎——四种方式覆盖从手动处理到全自动管道的不同需求
+- **数据处理类**（7 个）：gdal 和 qgis-process 面向命令行场景，gdal-api 面向编程集成，geopipe-agent 则是 AI 原生 YAML 流水线引擎；2026 年 10 月新增的 proj（坐标转换）、grass-gis（空间分析）、pdal（点云处理）补强了专业处理能力——从手动处理到全自动管道均有覆盖
 - **几何运算类**（5 个）：jts 是 Java 生态的几何运算标准，经由 GEOS 影响 shapely（Python）和 NetTopologySuite（.NET），geometry-api-java 和 geometry-api-net 则是 Esri 体系的几何方案
-- **地图服务器类**（3 个）：geoserver 是单体部署，geoserver-rest-api 实现自动化管理，geoserver-cloud 将单体拆分为微服务
-- **Web 可视化类**（2 个）：openlayers 统治 2D Web 地图，cesiumjs 统治 3D 地球可视化
+- **地图服务器类**（5 个）：geoserver 是单体部署，geoserver-rest-api 实现自动化管理，geoserver-cloud 将单体拆分为微服务；新增的 mapserver 与 qgis-server 提供更多 OGC 服务端选择
+- **Web 可视化类**（5 个）：openlayers 统治 2D Web 地图，cesiumjs 统治 3D 地球可视化；新增的 leaflet、mapbox-gl-js、deck-gl 覆盖轻量 2D 地图与 GPU 大规模数据可视化
 - **工具集与综合类**（4 个）：geotools 是 Java GIS 的标准工具集，opengis-utils 系列提供跨语言的便利封装，opengis-all 则是一站式全流程索引
 
 ---
@@ -225,7 +233,7 @@ done
 
 **技能定位：** 当命令行 `ogr2ogr` 无法满足需求时——比如需要逐要素处理、嵌入到更大的数据处理管道、或者在代码中动态构建几何——就轮到 gdal-api 上场。
 
-**文件规模：** 约 42 KB（1478 行），是 GIS 类中最大的单一技能文件，深度覆盖四种语言的 API。
+**文件规模：** 主文件约 15 KB（368 行），`reference/` 子目录另有 `vector-api.md` 和 `raster-api.md` 拆分文件，深度覆盖四种语言的 API。
 
 **支持语言：** GDAL 核心以 C++ 实现，通过 SWIG 生成 Python、Java、C# 三种语言绑定，各语言 API 与 C++ 保持一致的类与方法命名。
 
@@ -2144,7 +2152,7 @@ CoordinateReferenceSystem crs = coverage.getCoordinateReferenceSystem2D();
 
 ## 5.10 GIS 技能选择决策树
 
-面对 24 个 GIS 技能，如何根据实际需求快速选择正确的技能（或技能组合）？以下决策树提供了从「需求描述」到「推荐技能」的完整映射关系：
+面对 32 个 GIS 技能，如何根据实际需求快速选择正确的技能（或技能组合）？以下决策树提供了从「需求描述」到「推荐技能」的完整映射关系：
 
 ```
 我需要用 GIS 技能解决什么问题？
@@ -2212,13 +2220,16 @@ CoordinateReferenceSystem crs = coverage.getCoordinateReferenceSystem2D();
 
 ## 5.11 本章小结
 
-本章对 opengis-skills 仓库中全部 **24 个 GIS 技能**进行了系统梳理，涵盖了从数据获取到前端可视化的完整处理链路。核心要点回顾：
+本章对 opengis-skills 仓库中 **24 个核心 GIS 技能**进行了系统梳理，并收录了 2026 年 10 月新增的 8 个技能（MapServer、QGIS Server、Leaflet、PROJ、GRASS GIS、PDAL、Mapbox GL JS、Deck.gl），涵盖了从数据获取到前端可视化的完整处理链路。核心要点回顾：
 
-**1. 数据处理（4 个技能）：**
+**1. 数据处理（7 个技能）：**
 - `gdal`（CLI）：50+ 命令行工具，矢量格式转换（`ogr2ogr`）、栅格重投影（`gdalwarp`）、DEM 分析（`gdaldem`）、栅格计算（`gdal_calc`）
 - `gdal-api`（API）：C++/Python/Java/.NET 四语言编程绑定，200+ 驱动全覆盖
 - `qgis-process`（CLI）：Headless 批量运行 QGIS 200+ 算法，支持 JSON 输入输出
 - `geopipe-agent`（YAML）：AI 原生声明式 GIS ETL 管道，10 种 QC 检查，多后端支持
+- `proj`（CLI/库）：坐标转换与投影库，`projinfo`/`cs2cs`/`cct` 工具链与 proj.db EPSG 数据库
+- `grass-gis`（CLI）：GRASS GIS 模块化空间分析套件，`grass --exec` 支持 Headless 与 CI
+- `pdal`（CLI/API）：点云 ETL 流水线（LAS/LAZ/COPC），JSON 管道与 Python 绑定，含地面分类与 DEM 生成
 
 **2. 空间数据库（1 个技能）：**
 - `postgis`：PostgreSQL 空间扩展，geometry/geography 双类型，GiST 索引，1000+ 空间函数
@@ -2228,17 +2239,22 @@ CoordinateReferenceSystem crs = coverage.getCoordinateReferenceSystem2D();
 - Python 生态：`shapely`（GEOS 绑定，双 API 模式）、`geopandas`（pandas DataFrame 风格空间分析）
 - .NET 生态：`nettopologysuite`（JTS .NET 移植）
 
-**4. 地图服务（3 个技能）：**
+**4. 地图服务（5 个技能）：**
 - `geoserver`：单体部署与配置，SLD/CSS/YSLD 多样式语言，GeoWebCache 瓦片缓存
 - `geoserver-rest-api`：RESTful 自动化管理接口，Workspace/Store/Layer/Style 的完整 CRUD
 - `geoserver-cloud`：微服务拆分，Kubernetes 编排，PgConfig 集中配置
+- `mapserver`：C 语言老牌 OGC 地图服务器，Mapfile 配置 + SLD 样式 + CGI/FastCGI 部署
+- `qgis-server`：以 QGIS 工程（.qgs/.qgz）为数据源发布 WMS/WFS/WMTS，支持 Docker 部署
 
 **5. QGIS 生态（1 个技能）：**
 - `pyqgis`：QGIS Python 绑定，独立脚本 + 插件开发 + Processing 算法调用
 
-**6. Web 可视化（2 个技能）：**
+**6. Web 可视化（5 个技能）：**
 - `cesiumjs`：WebGL 3D 地球，3D Tiles/CZML/glTF 模型/地形和影像
 - `openlayers`：2D Web 地图，WMS/WFS/矢量瓦片/交互与控件
+- `leaflet`：轻量级 2D Web 地图库，移动端友好，插件生态丰富
+- `mapbox-gl-js`：矢量瓦片 WebGL 地图库，Style Spec 与数据驱动表达式（v2+ 需 access token，开源替代为 MapLibre GL JS）
+- `deck-gl`：GPU 渲染的大规模数据可视化图层（百万级点、聚合、热力图）
 
 **7. .NET 组件（2 个技能）：**
 - `sharpmap`：传统 WinForms 地图（维护旧项目用）
@@ -2250,11 +2266,11 @@ CoordinateReferenceSystem crs = coverage.getCoordinateReferenceSystem2D();
 - `opengis-utils-for-java` / `opengis-utils-for-net`：统一图层模型 + 双引擎架构的便利工具集
 
 **9. 技能选择（5.10 决策树）：**
-面对 24 个技能，按「命令行 → 编程语言 → 数据库 → 服务器 → 前端」的链条分段选择，配合 5.10 节的典型组合推荐，即可快速确定正确的技能（组合）。
+面对 32 个技能，按「命令行 → 编程语言 → 数据库 → 服务器 → 前端」的链条分段选择，配合 5.10 节的典型组合推荐，即可快速确定正确的技能（组合）。
 
 ---
 
-下一章将进入 CAD 领域，详解 opengis-skills 仓库中 20 个 CAD 技能——从 Open CASCADE Technology 几何内核到 FreeCAD 参数化建模，从 KiCad PCB 设计到 Clipper2 多边形裁剪的全链路。
+下一章将进入 CAD 领域，详解 opengis-skills 仓库中 21 个 CAD 技能——从 Open CASCADE Technology 几何内核到 FreeCAD 参数化建模，从 KiCad PCB 设计到 Clipper2 多边形裁剪的全链路。
 
 <!-- NAVIGATION -->
 

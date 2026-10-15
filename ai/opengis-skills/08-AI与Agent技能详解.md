@@ -5,9 +5,9 @@ title: 第八章：AI 与 Agent 技能详解
 
 # 第八章：AI 与 Agent 技能详解
 
-本章详细介绍 opengis-skills 中 `ai/` 分类下的 **10 个 AI/Agent 技能**。与 GIS、CAD、C# 等面向具体开发领域的技能不同，AI 分类的技能聚焦于**AI 工具本身的使用、配置和扩展**——它们帮助你更高效地构建 AI 应用、编排编码代理、管理多模型协作，以及用 AI 方法论提升编程质量。
+本章详细介绍 opengis-skills 中 `ai/` 分类下的 **14 个 AI/Agent 技能**。与 GIS、CAD、C# 等面向具体开发领域的技能不同，AI 分类的技能聚焦于**AI 工具本身的使用、配置和扩展**——它们帮助你更高效地构建 AI 应用、编排编码代理、管理多模型协作，以及用 AI 方法论提升编程质量。
 
-这 10 个技能覆盖了从"搭建 LLM 应用平台"到"配置终端编码代理"、从"自学习通用智能体"到"多通道个人 AI 助手"、从"AI 编程方法论"到"大模型文档翻译"的完整链路。无论你是想快速搭一个 RAG 问答机器人、配置开发环境中的 AI 编码助手、还是用大模型批量翻译技术文档，本章都能提供详尽的指导。
+这 14 个技能覆盖了从"搭建 LLM 应用平台"到"配置终端编码代理"、从"自学习通用智能体"到"多通道个人 AI 助手"、从"AI 编程方法论"到"大模型文档翻译"的完整链路。无论你是想快速搭一个 RAG 问答机器人、配置开发环境中的 AI 编码助手、还是用大模型批量翻译技术文档，本章都能提供详尽的指导。
 
 阅读本章后，你将能够：
 
@@ -21,7 +21,7 @@ title: 第八章：AI 与 Agent 技能详解
 
 ## 8.1 AI 技能全景
 
-opengis-skills 的 `ai/` 分类下共包含 10 个技能文件，按应用场景可分为五大类：
+opengis-skills 的 `ai/` 分类下共包含 14 个技能文件，按应用场景可分为五大类：
 
 | 技能 | 类型 | 一句话说明 | 核心能力 |
 |------|------|-----------|----------|
@@ -35,8 +35,12 @@ opengis-skills 的 `ai/` 分类下共包含 10 个技能文件，按应用场景
 | **docutranslate** | 文档翻译 | 基于大模型的本地文档翻译工具 | MinerU 解析、多格式支持、排版保护、本地运行 |
 | **deepseek-harness** | Agent 框架 | 插件化 DeepSeek 智能体框架（dsh） | 插件系统、Cordis 生态、多 Agent 编排 |
 | **my-opencode-deepseek-config** | 配置参考 | OpenCode × DeepSeek 最优配置 | 模型路由、Provider 配置、Skill 集成、Token 优化 |
+| **langchain** | 应用框架 | LLM 应用开发框架，LCEL 链式编排 + LangGraph Agent | LCEL 管道、工具调用、RAG 管道、LangGraph 短期记忆、自然语言查询 PostGIS 等 GIS 工作流 |
+| **llamaindex** | RAG 框架 | 面向私有数据的 RAG 与索引框架 | 文档加载/解析、VectorStoreIndex、查询与聊天引擎、Workflow、FunctionAgent 工具调用 |
+| **ollama** | 本地推理 | 本地运行开源大模型，提供 OpenAI 兼容 API | 模型拉取管理、Modelfile、REST API（generate/chat/embed）、GPU 卸载与上下文调优 |
+| **huggingface-transformers** | 模型库 | Hugging Face 模型推理与微调框架 | pipeline() 推理、AutoModel/AutoTokenizer、Trainer 微调、BGE 中文嵌入 |
 
-> **关键洞察**：这 10 个技能并非互相替代，而是互补关系。dify 负责"搭应用"，opencode/pi/oh-my-openagent 负责"写代码"，hermes-agent/openclaw 负责"自主执行"，superpowers-zh 负责"方法论指导"，docutranslate 负责"文档翻译"。在一个典型的 GIS 项目中，你可能会同时用到其中 3-4 个技能。
+> **关键洞察**：这 14 个技能并非互相替代，而是互补关系。dify 负责"搭应用"，opencode/pi/oh-my-openagent 负责"写代码"，hermes-agent/openclaw 负责"自主执行"，superpowers-zh 负责"方法论指导"，docutranslate 负责"文档翻译"。在一个典型的 GIS 项目中，你可能会同时用到其中 3-4 个技能。
 
 ### 8.1.1 技能之间的协作关系
 
@@ -1165,7 +1169,7 @@ opengis-skills 中的 CAD 分类包含 `cad/tongwen/SKILL.md`——一个 AutoCA
 
 ## 8.7 AI 技能选择决策树
 
-面对 8 个 AI 技能，如何快速选择最合适的？以下决策树帮助你根据任务场景做出选择：
+面对 14 个 AI 技能，如何快速选择最合适的？以下决策树帮助你根据任务场景做出选择：
 
 ```
 需要 AI/Agent 技能？
@@ -1234,7 +1238,7 @@ opengis-skills 中的 CAD 分类包含 `cad/tongwen/SKILL.md`——一个 AutoCA
 
 ## 本章小结
 
-本章详细介绍了 opengis-skills 中 `ai/` 分类下的 8 个 AI/Agent 技能，按应用场景分为五大类：
+本章详细介绍了 opengis-skills 中 `ai/` 分类下的 14 个 AI/Agent 技能，按应用场景分为五大类：
 
 | 分类 | 技能 | 核心价值 |
 |------|------|----------|
@@ -1253,7 +1257,7 @@ opengis-skills 中的 CAD 分类包含 `cad/tongwen/SKILL.md`——一个 AutoCA
 5. **superpowers-zh** 提供了 AI 编程的"方法论层"——指导你"怎么用好 AI"，与 opengis-skills 的"知识层"（AI 应该知道什么）互补。
 6. **docutranslate** 解决 GIS/CAD 技术文档翻译的痛点——术语一致、排版保留、本地安全。
 
-这 10 个技能覆盖了从"搭应用"到"写代码"、从"学方法"到"译文档"的完整 AI 工具链。结合前几章介绍的 GIS、CAD、C# 等领域的 65 个技能，opengis-skills 为用户提供了在 AI 辅助下完成专业领域开发的完整能力闭环。
+这 14 个技能覆盖了从"搭应用"到"写代码"、从"学方法"到"译文档"的完整 AI 工具链。结合前几章介绍的 GIS、CAD、C# 等领域的 62 个技能，opengis-skills 为用户提供了在 AI 辅助下完成专业领域开发的完整能力闭环。
 
 <!-- NAVIGATION -->
 
