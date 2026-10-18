@@ -293,3 +293,6 @@
     - title: 360全景地图联动
       icon: 📁
       url: /demos/map-360-demo/
+    - title: CHAGS 典故游戏（在线试玩）
+      icon: 🎮
+      url: /chags/
