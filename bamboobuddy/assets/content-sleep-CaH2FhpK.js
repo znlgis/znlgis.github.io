@@ -1,0 +1,1 @@
+var e={intro:`天黑了，哄竹竹睡觉吧。`,done:`晚安，竹竹睡着啦。`,retry:`先做这一步，再往下哦。`,levelScript:{room:`bedroom`,steps:[{id:`curtain`,icon:`curtain`,label:`拉窗帘`},{id:`lamp`,icon:`lamp`,label:`关灯`},{id:`blanket`,icon:`blanket`,label:`盖被子`},{id:`pat`,icon:`pat`,label:`拍拍睡`}]}};export{e as default};

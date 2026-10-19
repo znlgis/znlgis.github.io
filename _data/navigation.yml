@@ -274,6 +274,9 @@
     - title: CHAGS
       icon: 📁
       url: /others/CHAGS/
+    - title: BambooBuddy
+      icon: 📁
+      url: /others/BambooBuddy/
 
 - title: 项目演示
   icon: 🎯
@@ -296,3 +299,6 @@
     - title: CHAGS 典故游戏（在线试玩）
       icon: 🎮
       url: /chags/
+    - title: BambooBuddy 熊猫养成（在线试玩）
+      icon: 🎮
+      url: /bamboobuddy/

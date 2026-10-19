@@ -1,0 +1,1 @@
+var e={intro:`竹竿要开合啦，看准了跳过去！`,done:`跳得真好，身体棒棒！`,retry:`没关系，等下一次再跳。`,levelScript:{room:`yard`,bpm:84,jumps:8,zone:.3}};export{e as default};

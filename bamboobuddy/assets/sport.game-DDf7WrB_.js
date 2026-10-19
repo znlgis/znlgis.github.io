@@ -1,0 +1,1 @@
+var e={intro:`The poles will open and close — jump at the right time!`,done:`Great jumping — strong and healthy!`,retry:`It’s okay — wait for the next one.`,levelScript:{room:`yard`,bpm:84,jumps:8,zone:.3}};export{e as default};

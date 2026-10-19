@@ -1,0 +1,1 @@
+var e={intro:`帮竹竹把衣服穿好吧！`,done:`穿好衣服，竹竹要出门玩啦！`,retry:`这不是它的位置，再试试。`,levelScript:{room:`closet`,items:[{id:`hat`,slot:`hat`,color:`#7aa05c`,x:.16,y:.5},{id:`bib`,slot:`bib`,color:`#f2c14e`,x:.38,y:.5},{id:`backpack`,slot:`backpack`,color:`#e07a6a`,x:.62,y:.5},{id:`shoes`,slot:`shoes`,color:`#55798f`,x:.84,y:.5}]}};export{e as default};

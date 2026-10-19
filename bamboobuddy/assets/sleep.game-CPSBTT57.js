@@ -1,0 +1,1 @@
+var e={intro:`It’s dark. Let’s help Bamboo sleep.`,done:`Good night, Bamboo is asleep.`,retry:`This step comes first.`,levelScript:{room:`bedroom`,steps:[{id:`curtain`,icon:`curtain`,label:`Pull curtain`},{id:`lamp`,icon:`lamp`,label:`Turn off light`},{id:`blanket`,icon:`blanket`,label:`Tuck in`},{id:`pat`,icon:`pat`,label:`Pat to sleep`}]}};export{e as default};
