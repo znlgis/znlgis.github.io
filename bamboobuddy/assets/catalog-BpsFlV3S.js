@@ -1,0 +1,1 @@
+var e=[{id:`popstar`,emoji:`⭐`,color:`#f7e2ae`,nameKey:`arcade.popstar.name`,descKey:`arcade.popstar.desc`},{id:`bounce`,emoji:`🏓`,color:`#cfe3ee`,nameKey:`arcade.bounce.name`,descKey:`arcade.bounce.desc`},{id:`tetris`,emoji:`🧱`,color:`#d7e8c6`,nameKey:`arcade.tetris.name`,descKey:`arcade.tetris.desc`}];function t(t){return e.find(e=>e.id===t)}export{t as n,e as t};

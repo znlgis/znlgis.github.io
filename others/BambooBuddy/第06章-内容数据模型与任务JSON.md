@@ -43,7 +43,7 @@ export { loadTask } from './loadTask';
 
 `package.json` 的 `exports` 把这三条路径锁死，外壳侧的 eslint 规则再把 `/full` 这条封掉（第 2 章、第 5 章都提过）。
 
-把账算一遍就更清楚了。本次构建的产物里，首屏 `index-<hash>.js` 是 149,841 字节、共享的 `common-<hash>.js` 是 111,340 字节、英文补丁 `en-<hash>.js` 是 6,260 字节，而十个详情 chunk（`content-<id>-<hash>.js`）在 209–720 字节之间。zod 4.6.7 如果被主入口带进来，按 CHAGS 的实测是 24.7 KB gzip —— 那会是一笔超过首屏三分之一的单点支出，而它换来的东西（在浏览器里校验十条已经在构建期校验过的 JSON）一次都不会失败。
+把账算一遍就更清楚了。本次构建的产物里，首屏 `index-<hash>.js` 是 137,128 字节（另加 CSS 与两个 `modulepreload` 共享 chunk）、共享的 `common-<hash>.js` 是 96,763 字节、英文补丁 `en-<hash>.js` 是 8,985 字节，而十个详情 chunk（`content-<id>-<hash>.js`）在 209–720 字节之间。zod 4.6.7 如果被主入口带进来，按 CHAGS 的实测是 24.7 KB gzip —— 那会是一笔超过首屏三分之一的单点支出，而它换来的东西（在浏览器里校验十条已经在构建期校验过的 JSON）一次都不会失败。
 
 拆两半还有第二个好处：`content:check` 变成了唯一的内容门禁。因为详情不在首屏路径上，它就可以「贵」一点 —— 递归校验关卡脚本、递归找残留中文、要求每个模板都被真实内容用到。这些检查放在浏览器里是负担，放在 CI 里是资产。
 
@@ -89,7 +89,7 @@ export const SLOT_LABELS_EN: Record<TimeSlot, string> = { morning: 'Morning', no
 
 中文时段名给内容侧与调试输出用；界面上的时段标题走 `@bamboo/i18n` 的 `time.*` 键（第 12 章），所以英文界面里不会漏出「早上」。
 
-typecheck 能挡住这七处里的三处：`registry` 是 `Record<TaskId, GameLoader>`，少一行就报属性缺失；`TASKS` 在模块加载时自检 `task.id !== id`；`templateSchemas` 用 `satisfies Record<TemplateId, ZodType>` 要求模板键齐全。剩下四处（`package.json` 的 `exports` 子路径、`manifest.id`、存档键、testid）没有编译期关联，靠 `content:check` 与 e2e 兜底。这也解释了为什么一个十条内容的游戏愿意写 33 个单测加四套 e2e：**同一个字符串出现在七个地方，就必须有工具替人数。**
+typecheck 能挡住这七处里的三处：`registry` 是 `Record<TaskId, GameLoader>`，少一行就报属性缺失；`TASKS` 在模块加载时自检 `task.id !== id`；`templateSchemas` 用 `satisfies Record<TemplateId, ZodType>` 要求模板键齐全。剩下四处（`package.json` 的 `exports` 子路径、`manifest.id`、存档键、testid）没有编译期关联，靠 `content:check` 与 e2e 兜底。这也解释了为什么一个十条内容的游戏愿意写 167 个单测加五套 e2e：**同一个字符串出现在七个地方，就必须有工具替人数。**
 
 ## 6.3 tasks/<id>.json：一条摘要的 15 个字段
 
@@ -457,6 +457,8 @@ export function ensureSummaries(locale: Locale): Promise<void> {
 英文详情的加载表也值得看一眼：`EN_LOADERS` 与 `ZH_LOADERS` 是两张并排的 `Record<TaskId, () => Promise<...>>`，十条一眼能对出「哪个文件对应哪个任务」。它们刻意没有合并成一张表，因为两者返回的类型不同（`TaskDetailExtra` vs `DetailPatch`），合并会让 `loadTask` 里多一次类型断言 —— 而那张表是十个任务里唯一需要人手维护的「登记点」，宁可让它难写错一点、好读一点。
 
 双语的三层在这一章只出现了两层半：摘要补丁与详情补丁是「内容」，界面文案在 `@bamboo/i18n`（第 12 章），第三层是语音 —— `platform.audio.speak(text, locale)` 按语言挑嗓音，而 `text` 正是这里合并出来 `intro` / `done` / `retry` 或日记行。所以一份漏翻的英文详情不会只影响眼睛：它会用中文嗓音念英文，或者用英文嗓音念中文。`content:check` 的「英文标题不得与中文相同」「英文内容零中文残留」两条，本质上是在守语音通道。
+
+还有一处边界要记住：**内容层只管那十条任务**。第 17 章的三款隐藏小游戏没有 `tasks/*.json`、没有 `details/*.game.json`，`content:check` 也不检查它们——它们的「内容」是种子与常量，写在 `games/arcade/src/*.logic.ts` 里。这不是漏掉了统一，而是有意的划分：内容 JSON 的价值在于「换一条任务不写代码」，而三款街机的关卡是程序生成的，没有可运营的内容可换。
 
 到这里，内容层的三个问题都答完了：一条内容长什么样、它在什么时机被读、它怎么被守住。下一章进入这些内容真正被消费的地方——八个玩法模板，看同一份 `levelScript` 如何变成可玩的交互。
 

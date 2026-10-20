@@ -15,11 +15,11 @@ title: 第08章 - Phaser渲染工具箱
 - `GameObjects` 里的 `Container` / `Graphics` / `Text` / `Zone` / `Rectangle`
 - `Input` / `Tweens` / `Time` / `Math` / `Geom` / `Structs` / `Utils` / `Display` / `Events`
 
-physics、tilemaps、sound、animations、particles、loader(image)、shader、mesh、renderTexture 这些系统一个都没用到——声音由自研的 WebAudio 层负责（第 9 章），所有美术都是 `Graphics` 画出来的，没有一个位图要加载。于是 `scripts/build-phaser-trim.mjs` 把 Phaser 按这份清单重新打包，结果约 859.7 KiB 原始 / 221.4 KiB gzip，**gzip 减少 36%**；本次构建产物里那份 `apps/site/dist/assets/vendor-phaser-zPpKQHLK.js` 是 876,874 字节，`.version` 里记录的 gzip 是 227,189 字节。
+physics、tilemaps、sound、animations、particles、loader(image)、shader、mesh、renderTexture 这些系统一个都没用到——声音由自研的 WebAudio 层负责（第 9 章），所有美术都是 `Graphics` 画出来的，没有一个位图要加载。于是 `scripts/build-phaser-trim.mjs` 把 Phaser 按这份清单重新打包，结果 880,506 字节原始 / 227,189 字节 gzip（记录在 `vendor/.version`），**gzip 减少约 36%**；本次构建产物里那份 `apps/site/dist/assets/vendor-phaser-zPpKQHLK.js` 是 876,874 字节（gzip 220.6 KB，rolldown 又做了一遍摇树与压缩）。
 
 这笔账值得算，是因为十个玩法共用同一份 Phaser：首屏虽然不加载它（点开一个玩法才下载），但孩子每换一个玩法、每次清缓存回来都要重新下。少 36% 对移动网络与安卓 WebView 是实打实的差别。
 
-本次构建的 41 个文件把这条边界显示得很清楚：首屏只有 `index-<hash>.js` 149,841 字节 + `index-<hash>.css` 20,592 字节（gzip 合计 56.8 KB，与 `check-size.mjs` 的口径一致）；`common-<hash>.js` 111,340 字节是进玩法前才拉起的共享 chunk；十个玩法的入口 chunk 在 342–8,189 字节之间（刷牙 / 洗手 / 洗澡只有 342–344 字节，场景代码在共享的 `scrub-<hash>.js` 里）；`vendor-phaser-<hash>.js` 876,874 字节（gzip 227,189）只在 `PlayView` 被拉起的那一刻才进入下载队列。也就是说，**一个不玩任何任务的孩子，永远不会为游戏引擎付流量。**
+本次构建的 53 个文件把这条边界显示得很清楚：首屏只有 `index-<hash>.js` 137,128 字节 + `index-<hash>.css` 21,885 字节，加上 `index.html` 里两个 `modulepreload` 的共享 chunk（11,390 + 6,231 字节），gzip 合计 58.9 KB（原始 172.5 KB），与 `check-size.mjs` 的口径一致；`common-<hash>.js` 96,763 字节（gzip 27.8 KB）是进玩法前才拉起的共享 chunk；十个日常玩法的入口 chunk 在 340–8,225 字节之间（刷牙 / 洗手 / 洗澡只有 340–342 字节，场景代码在共享的 `scrub-<hash>.js` 里）；三款隐藏小游戏的入口 chunk 是 11,612–14,593 字节（gzip 4.2–5.5 KB），公共底座与确定性随机在共享的 `rng-<hash>.js`（4,447 字节）里；`vendor-phaser-<hash>.js` 876,874 字节（gzip 220.6 KB）只在 `PlayView` 或 `ArcadePlayView` 被拉起的那一刻才进入下载队列。也就是说，**一个不玩任何任务的孩子，永远不会为游戏引擎付流量。**
 
 ## 8.2 裁剪的原理、清单与风险
 
@@ -275,6 +275,8 @@ protected addButton(x, y, label, onClick, opts: ButtonOptions = {}): Phaser.Game
   const face = this.add.graphics();
   roundRect(face, -w / 2, -h / 2, w, h, h / 2, color, THEME.outline, 5);
 
+  // 命中区按「左上角原点」给整颗按钮；传居中矩形会缩到左上 1/4（8.8 详述）
+  setContainerHitArea(container, w, h);
   container.on('pointerdown', () => {
     if (opts.disabled) return;
     this.sfx('tap');
@@ -309,7 +311,7 @@ protected finishTask(opts: CompletionOptions = {}): void {
 }
 ```
 
-`starsForSession()` 把 mistakes 折成星数：0–1 次失误 3 星、2–3 次 2 星、更多则 1 星。注意它**不是**「全对才 3 星」——孩子第一次点歪不该只拿一颗星。完成卡片是一张 600×720 的圆角卡：中间一只 `excited` + `hearts` 的竹竹、三颗半径 44 的星星（未点亮用 `paperDeep` 底 + `grey` 边）、一句夸奖、以及两个出口（「再玩一次」= `exit('replay')`、「收下」= `exit('complete')`）。两个按钮的坐标必须与 `@bamboo/templates/layout` 的 `COMPLETE_LAYOUT` 保持一致，因为 **e2e 要点它们**——完成卡片是 Phaser 内绘的，没有 DOM testid，只能靠坐标。
+`starsForSession()` 把 mistakes 折成星数：0–1 次失误 3 星、2–3 次 2 星、更多则 1 星。注意它**不是**「全对才 3 星」——孩子第一次点歪不该只拿一颗星。完成卡片是一张 600×720 的圆角卡：中间一只 `excited` + `hearts` 的竹竹、三颗半径 44 的星星（未点亮用 `paperDeep` 底 + `grey` 边）、一句夸奖、以及两个出口（「再玩一次」= `exit('replay')`、「收下」= `exit('complete')`）。两个按钮各 270×108、中心在 `W/2 ± 150`（`W = 750`，即 525 / 225），中间留 30px 间隙——**不能更宽**：它们原先各 300 宽、中心只隔 220，重叠的 80px 里上层按钮会抢走下层按钮右半边的点击，孩子点「再来一局」却回了任务页。坐标同样必须与 `@bamboo/templates/layout` 的 `COMPLETE_LAYOUT`（`accept: { x: 525, y: 1093 }`、`replay: { x: 225, y: 1093 }`）保持一致，因为 **e2e 要点它们**——完成卡片是 Phaser 内绘的，没有 DOM testid，只能靠坐标。
 
 音效键在契约里一共十二个（`tap` / `correct` / `retry` / `pop` / `bubble` / `water` / `chew` / `jump` / `sleep` / `unlock` / `complete` / `sparkle`），场景只写「发生了什么」而不是「播哪个音」，具体波形由平台层合成（第 9 章）；需要音高变化的场合则走 `audio.tone(freq, durationMs)`，例如节奏模板里 `registerTap` 算出的 `440 + streak * 45`。`reducedMotion` 是另一个贯穿基类的能力：它同时关掉相机淡入（`fadeIn`）、完成时的白闪（`cameras.main.flash`）与各种补间——系统开了「减少动态效果」的设备上，一局游戏仍然完整可玩，只是不再晃。
 
@@ -353,23 +355,77 @@ export const UI = {
 
 `Scale.FIT` 还有一个附带好处：它在不同手机上的表现是「等比缩放 + 上下留黑边或背景色」，而不是拉伸。设计里所有圆形（细菌、星星、心形、按钮）在任何屏幕上都不会变成椭圆，这对儿童产品的视觉稳定性很重要。容器侧的分工也很清楚——`apps/site/src/style.css` 只写 `touch-action: none` 与 `overflow: hidden`，画布尺寸完全交给 `ScaleManager`，Vue 不参与游戏内的布局计算。
 
-## 8.8 拖拽与命中测试：不用 setInteractive 的 hitArea
+## 8.8 命中区：一个被推翻的结论与三种取点方式
 
-`packages/phaser-kit/src/drag.ts` 只有 90 行，却省掉了后面无数个诡异 bug：
+这一节在 2026-10-20 被一次真实故障改写过。原来的标题是「不用 setInteractive 的 hitArea」，结论是「Container 的命中区不可靠，按钮一律自己算距离」。现在的结论反过来：**容器的命中区本身没问题，错的是我们喂给它的矩形**。这个反转值得完整记录，因为「引擎有 bug」是一个太舒服的结论，它会让人放弃定位。
+
+### 8.8.1 症状：点几次才偶尔有反应
+
+修复前的表现是全站性的：按钮点正中间没反应，点边缘偶尔能触发；Pixel 5 的触摸模拟下复现率最高，桌面鼠标也能撞上。因为只有按钮有问题、拖拽与点选都正常，第一反应很容易落到「Phaser 的 Container 命中测试不可靠」——这也是这条弯路走了很久的原因。
+
+真正的解释在 `InputManager.pointWithinHitArea`：它先把指针换算到 GameObject 的局部坐标，**再加上一次 `displayOrigin`**；而 Container 的 `displayOrigin` 恒等于 `(width / 2, height / 2)`。旧写法是：
 
 ```ts
-/**
- * 不依赖 GameObject 的命中区域，而是「按下时抓住最近的、在半径内的目标」。
- *
- * 原因（CHAGS 实测踩坑）：Container 的 setInteractive(hitArea) 在 Phaser 4 里的
- * 局部坐标约定与直觉不符，会出现「点在 A 上却抓到 80 像素外的 B」。
- * 自己算距离既确定，又对小朋友更友好 —— 手指粗、点不准也能抓住。
- */
+// 修复前：视觉上居中，命中上错位
+container.setSize(w, h);
+container.setInteractive(
+  new Phaser.Geom.Rectangle(-w / 2, -h / 2, w, h),
+  Phaser.Geom.Rectangle.Contains,
+);
 ```
 
-接口本身很小：`add({ obj, radius, enabled?, onGrab?, onDrop? })` / `remove(obj)` / `destroy()`。控制器监听整个场景的 `pointerdown` / `pointermove` / `pointerup` / `pointerupoutside`，按下时在全部目标里挑「距离指针最近且在 `radius` 内」的那个（`enabled?.()` 为假则跳过，用于「已经放好的不能再拖」），移动时按抓取偏移跟随，松手时回调 `onDrop`。`pointerupoutside` 是必须的：手指滑出画布再松开，只监听 `pointerup` 会让对象永远粘在指针上。
+设指针的局部横坐标为 `x`，参与判定的其实是 `x + w / 2`，命中条件 `-w/2 ≤ x + w/2 ≤ w/2` 等价于 `x ∈ [-w, 0]`。视觉按钮占 `[-w/2, w/2]`，两个区间相交的部分正好是**左上 1/4**；点正中心时 `x = 0` 恰好压在命中区边界上，指针抖一两个像素就在命中与落空之间跳。这就是「点好几次才偶尔有反应」的全部原因，与手势、与设备、与 Phaser 版本都无关。
 
-模板里的取数习惯是「判定半径 > 视觉大小」：
+### 8.8.2 修法：把矩形改成左上角原点
+
+修复只有 27 行，落在 `packages/phaser-kit/src/hitArea.ts`：
+
+```ts
+// packages/phaser-kit/src/hitArea.ts
+export function setContainerHitArea(
+  container: Phaser.GameObjects.Container,
+  width: number,
+  height: number,
+): void {
+  container.setSize(width, height);
+  container.setInteractive(
+    new Phaser.Geom.Rectangle(0, 0, width, height),
+    Phaser.Geom.Rectangle.Contains,
+  );
+}
+```
+
+注释里写清了三件事：Phaser 3 / 4 行为一致；Container 的 `displayOrigin` 是 `(w/2, h/2)` 且会被命中测试再加一次；传 `(0, 0, w, h)` 等价于 `setSize(w, h)` 之后无参 `setInteractive()`（Phaser 自己用的就是 `Rectangle(0, 0, width, height)`）。显式写出来不是为了炫技，而是为了**把原因留在代码旁边**——下一个改按钮的人不用再踩一遍。
+
+`BaseScene.addButton` 与 `ArcadeScene.addBigButton` 统一改用它，十个日常玩法与三款小游戏的按钮（HUD、方向键、完成卡）同时恢复。值得注意的是引擎的默认行为本来就是对的：`tapAnywhere()` 的整屏 `Zone`、俄罗斯方块棋盘的 `Zone` 都只调 `setInteractive()`、不传矩形，所以它们一直正常——错的只有「显式传了一个居中矩形」这一种写法。
+
+### 8.8.3 顺手暴露的第二个坑：按钮重叠
+
+命中区修好之后，完成卡片立刻出现新问题：点「再来一局」的右半边会回到任务页。原因是两个按钮各 300 宽、中心只隔 220，视觉上叠了 80px；命中区修好之后上层按钮真的能挡住下层按钮——以前几乎点不到，所以没人发现。修法是各缩到 270 宽、中心改成 `W/2 ± 150`：
+
+```ts
+// packages/phaser-kit/src/baseScene.ts（节选，省略 fontSize 与 color）
+const again = this.addButton(this.W / 2 - 150, top + cardH + 96, this.tr('complete.replay'),
+  () => this.exit('replay'), { width: 270, height: 108 });
+const accept = this.addButton(this.W / 2 + 150, top + cardH + 96, this.tr('complete.accept'),
+  () => this.exit('complete'), { width: 270, height: 108 });
+```
+
+570 宽的按钮组放在 600 宽的卡片里，左右各留 15px，中间留 30px。`@bamboo/templates/layout` 的 `COMPLETE_LAYOUT` 同步改成 `accept: { x: 525, y: 1093 }`、`replay: { x: 225, y: 1093 }`——那两个数不是装饰，e2e 要点它们。
+
+顺手把 e2e 的点法也改了：刷牙冲水按钮改成点 `(x + 120, y + 30)`，并新增一条「点『收下』右下角 (x + 90, y + 30) 也能离开这一局」的回归用例。**点正中心是测试自己的习惯，孩子真实按的是按钮中心偏下。** 只点正中心，等于只验证了「命中区恰好包含中心点」，而这恰好是旧 bug 唯一能通过的位置。
+
+### 8.8.4 拖拽仍然自己算距离（理由换了）
+
+`packages/phaser-kit/src/drag.ts` 只有 90 行，它不依赖 GameObject 的命中区，而是「按下时抓住最近的、在半径内的目标」：
+
+```ts
+export function createDragController(scene: Phaser.Scene): DragController
+```
+
+接口很小：`add({ obj, radius, enabled?, onGrab?, onDrop? })` / `remove(obj)` / `destroy()`。控制器监听整个场景的 `pointerdown` / `pointermove` / `pointerup` / `pointerupoutside`，按下时挑「距离指针最近且在 `radius` 内」的目标（`enabled?.()` 为假则跳过，用于「已经放好的不能再拖」），移动时按抓取偏移跟随，松手回调 `onDrop`。`pointerupoutside` 是必须的：手指滑出画布再松开，只监听 `pointerup` 会让对象永远粘在指针上。
+
+文件头的注释仍留着旧结论（「Container 的 setInteractive(hitArea) 局部坐标约定与直觉不符」），要结合本节读：**它描述的故障现象是真的，根因就是 8.8.1 的 displayOrigin**。而拖拽继续自己算距离的理由与命中区无关——它要的是「比视觉更大」的容错，而 `setInteractive` 只能精确到对象自己的边界：
 
 | 模板 | 抓取半径 | 判定半径 |
 |---|---|---|
@@ -380,15 +436,31 @@ export const UI = {
 
 `springBack(scene, obj, x, y)` 是松手时的统一动作：先 `killTweensOf(obj)`（避免上一次回弹的补间还在和这一次抢位置），再用 `Back.easeOut` 在 240ms 内弹回原位。放对了则走另一条路——把对象 `remove` 出控制器、补到目标位置并淡出，孩子立刻知道「这件不用再拖了」。
 
-不是所有点击都走 `createDragController`。order、pick、learn 三个模板是「点选」，它们自己算矩形或圆：
+### 8.8.5 第三种：点选类模板的显式矩形
+
+order、pick、learn 三个模板既不用容器命中区，也不用拖拽控制器，它们自己算矩形或圆：
 
 ```ts
-// pick.ts：安慰按钮的命中（不使用 Phaser 的容器命中区）
+// packages/templates/src/pick.ts：安慰按钮的命中
 Math.abs(pointer.x - COMFORT.cx) <= COMFORT.w / 2 &&
 Math.abs(pointer.y - COMFORT.cy) <= COMFORT.h / 2
 ```
 
-这是同一个决定的两面：**命中判定自己算，规则就写在眼前，测试也能照抄同一组数字。**
+这么写不是「绕开引擎」，而是「没有对应的 GameObject 可点」：安慰按钮是场景里画出来的药丸（`COMFORT = { cx: 375, cy: 1254, w: 460, h: 104 }`），情绪脸是五张画出来的脸，睡前道具分散在整屏。它们的位置由布局常量决定，判定用同一组数字，测试也能照抄——**规则写在眼前**，比给每个绘制物挂一个透明 Zone 更直接。
+
+### 8.8.6 三条纪律
+
+1. **Container 一律走 `setContainerHitArea(container, w, h)`**，不写居中矩形；`setSize` 与 `setInteractive` 的顺序不能反。
+2. **命中区只覆盖可见部分，按钮之间留 ≥30px 间隙**。叠在一起的按钮，谁在上层谁抢点击——这是修好命中区之后才会暴露的问题。
+3. **e2e 点右下角，不只点正中心**。真实手指按的是按钮中心偏下，测试应当按同一个位置；「点正中心」恰好是旧 bug 唯一能通过的地方。
+
+三种取点方式的适用场合，一张表够了：
+
+| 方式 | 用在哪 | 为什么 |
+|---|---|---|
+| `setContainerHitArea` | 所有容器按钮（`BaseScene.addButton`、`ArcadeScene.addBigButton`） | 矩形与视觉一致，自动获得层级、`disabled` 与 `pointerdown` 事件 |
+| `createDragController` | scrub / feed / dress / tidy 的拖拽物 | 需要「比视觉大一圈」的抓取容错，还要跨对象挑最近的一个 |
+| 显式矩形 | order / pick / learn 的点选物 | 命中形状是画出来的，没有 GameObject；判定与布局共用同一组常量 |
 
 ## 8.9 与外壳的分工边界
 
