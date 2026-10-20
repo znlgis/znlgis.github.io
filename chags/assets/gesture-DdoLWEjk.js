@@ -1,0 +1,1 @@
+function e(){let e=null;return{begin(t){return e===null&&(e=t.id,!0)},isActive(t){return e!==null&&t.id===e},end(t){e===t.id&&(e=null)},reset(){e=null}}}export{e as t};

@@ -5,113 +5,93 @@ title: 第06章 - 内容数据模型与典故JSON
 
 # 第06章 - 内容数据模型与典故JSON
 
-## 6.1 为什么内容必须与代码分离
+## 6.1 一条内容由什么组成
 
-CHAGS 的产品承诺里有一条：合集要能长到 30–100 个典故，且**新增典故 = 加一个包 + 一份 JSON**。要做到这一点，典故的一切（故事、寓意、复习题、关卡参数）都必须以数据形式存在，代码只负责解释数据。
+「换内容 = 换 JSON」是这个项目的核心承诺。为了让这条承诺在 53 个条目上仍然成立，内容被拆成**三层**：
 
-`packages/content` 就是这个数据层，它由四部分组成：
+| 层 | 文件 | 谁读它 | 什么时候加载 |
+|---|---|---|---|
+| 摘要 | `packages/content/src/entries/<id>.json` | 大厅、图鉴、复习页头、注册表单测 | 首屏（静态 import） |
+| 详情 | `packages/content/src/entries/<id>.game.json` | 游戏包、复习题 | 进游戏时按条目动态 import |
+| 英文补丁 | `packages/content/src/i18n/en/<id>.json` 与 `<id>.game.json` | 切英文时 | 摘要补丁在切语言时加载、详情补丁随条目加载 |
 
-```
-packages/content/src/
-├─ schema.ts            # AllusionSchema（zod）：一切内容的形状与约束
-├─ allusions/*.json     # 十二份典故内容（中文为基准语言）
-├─ allusions/index.ts   # 构建期 zod 解析 + 查询函数（getAllusion / stageScript ...）
-├─ i18n/en/*.json       # 英文翻译补丁（结构镜像，只写需要翻译的字段）
-├─ i18n/index.ts        # patchFor(locale, id)
-├─ locale.ts            # LOCALES / DEFAULT_LOCALE / speechLang
-└─ localize.ts          # mergeLocalized / validatePatch
-```
+当前一共 **53 条**内容：十七部典故 + 三十六计 36 计。每一条都恰好有 2 幕故事、3 道复习题（含 1 道迁移题）、1–3 段玩法脚本 —— 这三条不是倡议，是 schema 里写死的。
 
-关键理念：**校验在构建期，而不是运行时**。`allusions/index.ts` 在被 import 的瞬间就用 zod 解析全部十二份 JSON，内容里任何一个字段写错，开发服务器会立刻报错，而不是等孩子点开才发现。
+## 6.2 摘要：EntrySummarySchema
 
-## 6.2 AllusionSchema 逐字段
+摘要只装「渲染卡片需要的那一小部分」，字段分四组：
+
+| 组 | 字段 |
+|---|---|
+| 标识与分组 | `id`（只允许小写字母 / 数字 / 连字符）、`group`（必须登记在 `GROUPS` 里）、`kind`（`history` / `myth` / `legend` / `fable` / `strategy`） |
+| 展示 | `title`、`pinyin`、`dynasty`、`era`、`yearApprox`（公元前为负数）、`ageRange`、`moral`（≤90 字）、`keywords`（2–6 个） |
+| 出处 | `source.book` / `source.chapter?` / `source.quote` |
+| 分组专属 | `stratagem: { number, set }?`、`transfer?`、`thinkingTag?` |
+
+schema 里两条 `refine` 值得单独抄出来：
 
 ```ts
-export const AllusionSchema = z
-  .object({
-    id: z.string().regex(/^[a-z0-9-]+$/, 'id 只能是小写字母、数字与连字符'),
-    /** 信史 / 神话 / 传说：典故馆要分开呈现（神话落在时间轴最左端） */
-    kind: z.enum(['history', 'myth', 'legend']).default('history'),
-    title: z.string().min(1),
-    pinyin: z.string().min(1),
-    dynasty: z.string().min(1),
-    era: z.string().min(1),
-    /** 用于历史长卷排序，公元前为负数 */
-    yearApprox: z.number().int(),
-    figures: z.array(z.string().min(1)).min(1),
-    source: SourceSchema,
-    /** 一句话寓意，孩子能听懂 */
-    moral: z.string().min(1).max(90),
-    keywords: z.array(z.string().min(1)).min(2).max(6),
-    ageRange: z.tuple([z.number().int(), z.number().int()]),
-    story: z.array(StoryBeatSchema).min(2).max(6),
-    keyMoment: KeyMomentSchema,
-    misconceptions: z.array(z.string().min(1)).min(1),
-    quiz: z.array(QuizQuestionSchema).min(2),
-    game: z.object({
-      /** 主玩法模板，用于缩略图与筛选 */
-      template: z.string().min(1),
-      /** 实际参与编排的各段脚本，按顺序执行 */
-      stages: z.array(GameStageSchema).min(1).max(3),
-    }),
+export const EntrySummarySchema = z
+  .object(summaryFields)
+  .refine((v) => (v.group === 'stratagem') === (v.stratagem !== undefined), {
+    message: '三十六计必须写 stratagem（序号 / 套），典故组不许写',
+    path: ['stratagem'],
   })
-  // ... 五条 refine 规则见 6.3
+  .refine((v) => v.stratagem === undefined || v.stratagem.set === Math.ceil(v.stratagem.number / 6), {
+    message: 'stratagem.set 与序号对不上：第 n 套 = 序号 6(n−1)+1 … 6n',
+    path: ['stratagem', 'set'],
+  });
 ```
 
-每个字段的用途与约束：
+第一条是**双向**的：典故组写了 `stratagem` 也报错。这样「三十六计被悄悄归到典故里」或「典故抄了一条计策字段」都会在构建期炸出来。第二条把「第几套」与「第几计」的算术关系固化下来，免得出现「第 7 计标成胜战计」。
 
-| 字段 | 约束 | 用途 |
-|---|---|---|
-| `id` | 小写字母 / 数字 / 连字符 | 三处对账的关键字：内容、注册表、游戏包 |
-| `kind` | `history` / `myth` / `legend`，默认 history | 典故馆徽章；神话的 `yearApprox` 为负数，排在最前 |
-| `title` / `pinyin` / `figures` | 非空 | 大厅卡片、典故卡 |
-| `dynasty` / `era` | 非空 | 卡片上的朝代信息 |
-| `yearApprox` | 整数，公元前为负 | 排序；将来历史长卷的横轴 |
-| `source` | `{ book, chapter?, quote }` | 典故卡的出处与原文引用 |
-| `moral` | ≤ 90 字 | 一句话寓意，孩子能听懂 |
-| `keywords` | 2–6 个 | 卡片标签、复习关联 |
-| `ageRange` | 二元组 | 大厅展示 |
-| `story` | 2–6 幕 | 分幕绘本的正文与旁白 |
-| `keyMoment` | 见 6.5 | 教学核心的数据锚点 |
-| `misconceptions` | ≥ 1 条 | 常见误解（用于生成干扰项、复习材料） |
-| `quiz` | ≥ 2 题，含 ≥ 1 道 transfer | 复习测验 |
-| `game.template` | 主模板 id | 缩略图与筛选（如 `grow`、`substitution`） |
-| `game.stages` | 1–3 段，`{ template, levelScript }` | 实际编排；`levelScript` 的形状由模板 schema 校验 |
+一条真实的战略摘要（`entries/mantian-guohai.json`，逐字）：
 
-## 6.3 五条「物理不可绕过」的内容规则
+```json
+{
+  "id": "mantian-guohai",
+  "group": "stratagem",
+  "kind": "strategy",
+  "title": "瞒天过海",
+  "pinyin": "Mán tiān guò hǎi",
+  "dynasty": "唐",
+  "era": "唐朝初期 · 约一千四百年前",
+  "yearApprox": 645,
+  "source": {
+    "book": "《三十六计·胜战计》",
+    "chapter": "瞒天过海",
+    "quote": "备周则意怠，常见则不疑。阴在阳之内，不在阳之对。"
+  },
+  "moral": "把大事藏在最平常的样子里：越显眼的东西，越要看着不起眼。",
+  "keywords": ["平常的样子", "藏", "渡海"],
+  "ageRange": [7, 10],
+  "stratagem": { "number": 1, "set": 1 },
+  "thinkingTag": "不露声色",
+  "transfer": "准备一个惊喜时，先别急着说，悄悄把每一步做好。"
+}
+```
 
-schema 末尾的五条 `refine` 是整个数据模型里最值得学习的部分 —— 它们把**教学与质量要求写成了数据结构不可违反的约束**：
+三个「孩子视角」的设计都在这份 JSON 里：`era` 写「唐朝初期 · 约一千四百年前」而不是「贞观十九年」；`moral` 是孩子能听懂的一句话；`transfer` 是「今天可以怎么用」。`content:check` 会强制三十六计必须有 `thinkingTag` 与 `transfer`（`transfer` 至少 12 字）。
+
+## 6.3 详情：EntryDetailSchema
 
 ```ts
-.refine((v) => v.quiz.every((q) => q.answer < q.options.length), {
-  message: 'quiz 的 answer 下标越界',
-  path: ['quiz'],
-})
-.refine((v) => v.keyMoment.options.filter((o) => o.isCanonical).length === 1, {
-  message: 'keyMoment 必须恰好有一个 isCanonical 选项',
-  path: ['keyMoment'],
-})
-.refine((v) => v.story.some((b) => b.id === v.keyMoment.beatId), {
-  message: 'keyMoment.beatId 必须存在于 story 中',
-  path: ['keyMoment', 'beatId'],
-})
-.refine((v) => new Set(v.story.map((b) => b.id)).size === v.story.length, {
-  message: 'story 的 beat id 不能重复',
-  path: ['story'],
-})
-.refine((v) => v.quiz.some((q) => q.kind === 'transfer'), {
-  message: '至少需要一道 transfer（迁移）题，否则无法验证“真的记住了”',
-  path: ['quiz'],
-});
+const detailFields = {
+  figures: z.array(z.string().min(1)).min(1),
+  // ★ 恰好两幕：drawBeat 契约目前只会画两幅图
+  story: z.array(StoryBeatSchema).length(2),
+  keyMoment: KeyMomentSchema,
+  misconceptions: z.array(z.string().min(1)).min(1),
+  // 每条内容固定 3 道（含 1 道 transfer）
+  quiz: z.array(QuizQuestionSchema).length(3),
+  game: z.object({
+    template: z.enum(TEMPLATE_IDS),
+    stages: z.array(GameStageSchema).min(1).max(3),
+  }),
+};
 ```
 
-逐条对应一个真实风险：
-
-1. **选项下标越界** → 答题时点「第二项」却指向不存在的选项；
-2. **标准答案必须唯一** → 关键抉择题恰好一个 `isCanonical: true`，多了少了都说明内容设计没想清楚；
-3. **关键抉择必须长在故事上** → `keyMoment.beatId` 必须命中某一幕，避免内容重组后悬挂；
-4. **幕 id 不能重复** → 事件里的 `beat:enter:<id>` 依赖唯一性；
-5. **必须有一道迁移题** → 记忆题（`recall`）只能证明「记得」，迁移题（`transfer`）才验证「理解」。两者在 schema 里是显式区分的：
+四个子结构：
 
 ```ts
 export const QuizQuestionSchema = z.object({
@@ -122,235 +102,266 @@ export const QuizQuestionSchema = z.object({
   answer: z.number().int().min(0),
   explanation: z.string().min(1),
 });
-```
 
-## 6.4 故事：每一幕都是「一屏一句话」
-
-```ts
 export const StoryBeatSchema = z.object({
   id: z.string().min(1),
   title: z.string().min(1),
-  /** 屏幕上的一句话。中日文卡得紧，英文天然更长，所以上限按英文给 */
-  text: z.string().max(90),
-  narration: z.string().min(1),   // 旁白可以更长，TTS 会完整读出来
-  illustration: z.string().min(1).default('none'),
+  text: z.string().max(90),      // 屏幕上一句话，上限按英文给
+  narration: z.string().min(1),  // 配音文本，可以更长
 });
-```
 
-`text` 的 90 字符上限是**为英文留的**：中文一句话十几个字，英文翻译可能三十个字母起步。这条限制直接塑造了叙事的写法 —— 每屏只说一件事，剩下的放进 `narration` 由语音讲。
-
-`illustration: 'none'` 是阶段 0 的占位：美术全部由游戏包用几何图形绘制（`drawBeat` 回调）。将来换成真图片时，把文件放进 `games/<id>/public` 并改这个字段即可，`content:check` 会提示确认资源就位。
-
-## 6.5 keyMoment：数据保留、渲染放弃
-
-```ts
 export const KeyMomentSchema = z.object({
   beatId: z.string().min(1),
   question: z.string().min(1),
   options: z.array(KeyMomentOptionSchema).min(2).max(4),
   reveal: z.string().min(1),
 });
-```
 
-这里有一个重要的产品历史，写进教程值得单独说明：第一版曹冲称象把关键抉择渲染成了「三选一的文字选择题」，被判定「太死板、文字太多、说教」。重做后，**关键抉择改由交互本身承载**（玩家自己撞见秤被压垮、自己做代换），`keyMoment` 数据则转为提供两样东西：
-
-- `reveal` —— 完成关键动作时屏幕上那句揭晓语（例如盘古的「盘古倒下了，可他的眼睛成了日月，血液成了江河 —— 世界是他留下的。」）；
-- `options` 与 `misconceptions` —— 复习测验与干扰项的素材。
-
-也就是说，这个字段仍然在「教学核心」的位置上，只是不再等于一张选择题卡片。数据模型服务于教学，而不是反过来。
-
-## 6.6 game.stages：一个典故可以由多段玩法拼成
-
-```ts
 export const GameStageSchema = z.object({
-  template: z.string().min(1),
-  levelScript: z.unknown(),
+  template: z.enum(TEMPLATE_IDS),
+  levelScript: z.unknown(),      // 各模板自己的 schema 在 templates 包里
 });
 ```
 
-`levelScript` 在内容 schema 里是 `unknown`，它的真实形状由**模板层的 schema** 校验（`packages/templates/src/schemas.ts` 的 `templateSchemas` 注册表，第 7 章）。这样做的好处是内容 schema 不需要知道所有模板；代价是要求 `content:check` 做两遍校验 —— 第一遍对着注册表校验每段脚本，第二遍在合并译文后再校验一次（第 11 章）。
+几条硬约束及其理由：
 
-当前十二个典故的编排分布：
-
-```
-caochong-elephant  substitution
-pangu              tap → place
-houyi              aim
-nuwa               place
-jingwei            tap
-kuafu              tap（hold 模式）
-yugong             tap（带三条里程碑）
-shennong           sort（带 probe 先尝后分）
-dayu               tap（堵）→ trace（疏）
-taigong            wait
-fenghuo            beacon（专属场景，数据登记在模板层）
-qiren              place
-```
-
-## 6.7 完整示例：盘古开天辟地的内容 JSON
-
-以 `packages/content/src/allusions/pangu.json` 为例，看数据与玩法如何对应（此处为节选，斜体为注释）：
-
-```jsonc
-{
-  "id": "pangu",
-  "title": "盘古开天辟地",
-  "pinyin": "pán gǔ kāi tiān pì dì",
-  "kind": "myth",
-  "dynasty": "上古",
-  "era": "上古·神话",
-  "yearApprox": -9999,                       // 历史长卷的最左端
-  "figures": ["盘古"],
-  "source": {
-    "book": "《三五历纪》",
-    "chapter": "三国·吴 徐整 整理",
-    "quote": "天地混沌如鸡子，盘古生其中。万八千岁，天地开辟，阳清为天，阴浊为地。"
-  },
-  "moral": "他把自己，变成了整个世界。",
-  "keywords": ["混沌", "分开", "化身"],
-  "ageRange": [7, 10],
-
-  "story": [                                  // 两幕，每屏一句话
-    { "id": "s1", "title": "还没有天地",
-      "text": "很久很久以前，天和地还没有分开。",
-      "narration": "很久很久以前，天和地还没有分开。",
-      "illustration": "none" },
-    { "id": "s2", "title": "一个大鸡蛋",
-      "text": "宇宙像一个鸡蛋，盘古睡在里面。",
-      "narration": "宇宙像一个鸡蛋，盘古就睡在里面。",
-      "illustration": "none" }
-  ],
-
-  "keyMoment": {                              // 关键抉择（数据层）
-    "beatId": "s2",
-    "question": "盘古倒下了，可这个世界是从哪里来的？",
-    "options": [
-      { "id": "nothing", "text": "什么都没有了", "isCanonical": false, "hint": "" },
-      { "id": "body", "text": "他的身体变成了天地万物", "isCanonical": true, "hint": "" },
-      { "id": "wake", "text": "他又醒过来了", "isCanonical": false, "hint": "" }
-    ],
-    "reveal": "盘古倒下了，可他的眼睛成了日月，血液成了江河 —— 世界是他留下的。"
-  },
-
-  "misconceptions": ["盘古倒下就什么都没有了", "天地本来就在那里"],
-  "quiz": [
-    { "id": "q1", "kind": "recall",   /* 左眼右眼变成什么 */ },
-    { "id": "q2", "kind": "recall",   /* 撑了多久 */ },
-    { "id": "q3", "kind": "transfer", /* 哪个也是「变成了别的东西」：毛毛虫变蝴蝶 */ }
-  ],
-
-  "game": {
-    "template": "tap",                        // 主模板（展示用）
-    "stages": [
-      { "template": "tap", "levelScript": {
-          "mode": "tap",
-          "targetValue": 18000,               // 撑天目标：一万八千年
-          "stepValue": 600,                   // 每次点击 +600 → 30 次点满
-          "unit": "年",
-          "resistance": 0.35,                 // 后半程视觉上更吃力
-          "hint": "点一点，把天撑高",
-          "milestones": []
-      } },
-      { "template": "place", "levelScript": {
-          "slots": [                          // 世界上的六个空槽
-            { "id": "sun",  "x": 170, "y": 300, "kind": "sun",  "radius": 62 },
-            { "id": "moon", "x": 580, "y": 300, "kind": "moon", "radius": 62 },
-            /* stars / wind / river / grass ... */
-          ],
-          "orbs": [                           // 底部托盘里的六团光
-            { "id": "leftEye",  "slotId": "sun",   "x": 105, "y": 1226, "kind": "eye",
-              "speak": "左眼变成了太阳" },
-            { "id": "rightEye", "slotId": "moon",  "x": 215, "y": 1226, "kind": "eye",
-              "speak": "右眼变成了月亮" }
-            /* hair / breath / blood / skin ... */
-          ]
-      } }
-    ]
-  }
-}
-```
-
-几个值得注意的数据细节：
-
-- `targetValue / stepValue = 18000 / 600 = 30` 次点满。tap 模板的 schema 强制**整除**（「否则永远点不满」），单测里还有一条断言直接验证「正好 30 次」；
-- `slots` 与 `orbs` 通过 `slotId` 建立映射，校验要求**数量一致、槽位 id 不重复、一个槽位只能有一个光球**；
-- 每个 orb 带一句 `speak`（「左眼变成了太阳」）—— 归位时用**语音**说出原文，用听不用看；
-- 方位有语义：日月星辰的 `y < 640`（上半屏），江河草木在下方。单测里直接断言了这个分区。
-
-## 6.8 构建期解析与查询函数
-
-`allusions/index.ts` 在模块加载时就完成解析：
-
-```ts
-export const allusions: AllusionContent[] = [
-  AllusionSchema.parse(raw),          // 曹冲称象
-  AllusionSchema.parse(rawPangu),
-  AllusionSchema.parse(rawHouyi),
-  /* ... 共 12 个 */
-];
-```
-
-导出的查询函数是外壳与游戏包共用的数据入口：
-
-| 函数 | 用途 |
+| 约束 | 理由 |
 |---|---|
-| `stageScript(content, template)` | 取某典故某个模板的阶段脚本；缺失时**早失败**（「别等玩到一半才发现」） |
-| `localizedAllusion(content, locale)` | 应用翻译补丁（中文基准直接返回） |
-| `getAllusion(id, locale)` | 按 id 取某个典故（游戏宿主用） |
-| `allusionsFor(locale)` | 取全部典故（大厅/图鉴用） |
-| `allusionsByYear(locale)` | 按年代排序（大厅当前用 `yearApprox` 排序） |
+| `story` 恰好 2 幕 | `drawBeat` 只会画两幅（`index: 0 | 1`），允许 2–6 幕时第 3 幕会**静默复用**第 2 幕插图 |
+| `quiz` 恰好 3 道 | 复习页固定 3 题，不会出现「有的 2 题有的 3 题」导致体验不一致 |
+| 至少 1 道 `kind: 'transfer'` | 迁移题才是「真的记住了」的证据，全是记忆题等于考背诵 |
+| `keyMoment.options` 恰好 1 个 `isCanonical` | 关键抉择必须有唯一正解，否则没有「揭晓」可谈 |
+| `keyMoment.beatId` 必须存在于 `story` | 揭晓语挂在哪一幕上，不能指向不存在的幕 |
+| `story` 的 beat id 不重复 | 事件里的 `beat:enter:s1` 要靠它做唯一定位 |
+| `stages` 1–3 段 | 一条内容可以拆成「撑天 + 化身」两段，但不会变成十段 |
+
+## 6.4 分组：三层结构的唯一事实来源
+
+`packages/content/src/groups.ts` 只有 60 行左右，却是大厅、图鉴、内容体检三处的共同输入：
 
 ```ts
-/** 取某个典故里指定模板的阶段脚本；缺了就早失败，别等玩到一半才发现 */
-export function stageScript(content: AllusionContent, template: string): unknown {
-  const stage = content.game.stages.find((s) => s.template === template);
-  if (!stage) {
-    throw new Error('典故 ' + content.id + ' 缺少 ' + template + ' 阶段脚本');
+export interface GameGroup {
+  id: string;
+  /** 排在前面的组先显示 */
+  order: number;
+  /**
+   * 组内怎么排序：
+   * - year：按 yearApprox —— 典故用（历史长卷从上古走到明清）
+   * - index：按内容数组里的登记顺序 —— 三十六计用（按计策序号排，年代反而会打乱）
+   */
+  orderBy: 'year' | 'index';
+}
+
+/** 三十六计一共六套（胜战 / 敌战 / 攻战 / 混战 / 并战 / 败战），套名是界面文案，见 i18n */
+export const STRATAGEM_SETS = 6;
+
+export const GROUPS = [
+  { id: 'allusion', order: 10, orderBy: 'year' },
+  { id: 'stratagem', order: 20, orderBy: 'index' },
+] as const satisfies readonly GameGroup[];
+```
+
+加一个新分组只要三步（注释里写得很清楚）：
+
+1. 在 `GROUPS` 里加一行（`id` / `order` / `orderBy`）；
+2. 在 `packages/i18n/src/messages.ts` 补 `group.<id>.title` / `.note` / `.empty` —— 少写一个就**编译报错**；
+3. 把内容加进来并写明 `"group": "<id>"`。schema **刻意不给默认值**：忘了写就在构建期报错，免得三十六计的游戏被悄悄归到「典故」里。
+
+`groupBy()` 还有一个容易被忽略的行为：**空组也会返回**。一个组暂时没有内容时，它必须在大厅里占一个位置显示成「敬请期待」—— 否则「分组」就只是数据结构里的一行，用户看不到。
+
+## 6.5 TEMPLATE_IDS：26 个模板的唯一事实源
+
+```ts
+export const TEMPLATE_IDS = [
+  // 典故
+  'substitution', 'tap', 'place', 'aim', 'sort', 'trace', 'wait', 'beacon',
+  'mark', 'split', 'burrow', 'butcher',
+  // 三十六计 第一~四辑
+  'ruse', 'siege', 'borrow', 'stillness', 'window',
+  'show', 'twoline', 'read', 'matchup',
+  'probe', 'lure', 'chase',
+  'swap', 'chain',
+] as const;
+
+export type TemplateId = (typeof TEMPLATE_IDS)[number];
+```
+
+26 个 id 的分工：
+
+- **24 个共享场景模板**：`packages/templates` 里有对应的 `./<id>` 场景子路径，多个游戏复用（如 `tap` 被盘古 / 精卫 / 夸父 / 愚公共用）；
+- **2 个游戏专属场景**：`beacon`（烽火戏诸侯）与 `butcher`（庖丁解牛）—— 场景实现在 game 包里，但数据登记在模板层，这样内容体检能用对应的 schema 校验关卡脚本；
+- 开局 `story` 与典故卡 `reward` 是**所有游戏共用**的场景，不算模板 id；盘古的 `chaos` 连模板 id 都没有，是纯专属场景。
+
+这份列表以前只写在 game-kit 的联合类型里，而 templates 的注册表是 `Record<string, ZodType>` —— 三者之间没有任何编译期约束。现在：内容 schema 用 `z.enum(TEMPLATE_IDS)`，templates 注册表用 `Record<TemplateId, ZodType>`，写错或漏登记都是 `pnpm typecheck` 错误；9 个「预留但从未实现」的 id（`match` / `order` / `drag` / `board` / `timing` / `react` / `branch` / `build` / `grow`）已经删除。
+
+## 6.6 三层加载：首屏只买摘要
+
+三层的入口在 `packages/content/package.json` 的 `exports` 里已经分好：
+
+```json
+"exports": {
+  ".": "./src/index.ts",
+  "./full": "./src/entries/detail.ts"
+}
+```
+
+**`@chags/content`（默认入口）只导出摘要侧**，而且刻意**不导出 schema.ts 的运行时对象**：
+
+```ts
+// ★ 这里刻意不导出 schema.ts 的运行时对象（EntrySummarySchema 等）：
+// z.object(...) 是真实副作用，只要这个入口引用 schema.ts，zod 就会跟着进首屏
+// （实测 24.7 KB gzip / 首屏的 29%）。需要 zod 的地方走 '@chags/content/full'。
+export * from './locale';
+export * from './groups';
+export * from './localize';
+export * from './i18n';
+export * from './entries';
+export * from './split';
+export { stageScript } from './stage';
+export { loadEntry } from './loadEntry';
+```
+
+摘要数组本身用「结构窄化」而不是运行时 parse：
+
+```ts
+type RawSummary = Omit<EntrySummary, 'group' | 'kind' | 'ageRange'> & {
+  group: string; kind: string; ageRange: number[];
+};
+const summaryOf = (raw: RawSummary): EntrySummary => raw as EntrySummary;
+
+export const entrySummaries: EntrySummary[] = [summaryOf(raw), summaryOf(rawPangu), /* …53 条 */];
+```
+
+漏字段、类型不对在 `pnpm typecheck` 就红；枚举值与取值范围由构建期 `pnpm content:check` 的 zod 校验兜底。两层校验各管一段，运行时一次 parse 都不做。
+
+进游戏时走的则是 `loadEntry()`：
+
+```ts
+export async function loadEntry(id: string, locale: Locale): Promise<ContentEntry | undefined> {
+  const summary = entrySummaries.find((entry) => entry.id === id);
+  if (summary === undefined) return undefined;
+
+  const { loadDetail, loadDetailPatch } = await import('./entries/loaders');
+  const detail = await loadDetail(id);
+  let content: ContentEntry = { ...summary, ...detail };
+  if (locale === DEFAULT_LOCALE) return content;
+
+  const summaryPatch = patchFor(locale, id);
+  if (summaryPatch !== undefined) content = mergeLocalized(content, summaryPatch);
+  const detailPatch = await loadDetailPatch(id);
+  if (detailPatch !== undefined) content = mergeLocalized(content, detailPatch);
+  return content;
+}
+```
+
+`entries/loaders.ts` 是整个仓库唯一使用 `import.meta.glob` 的地方：
+
+```ts
+const DETAIL = import.meta.glob<{ default: EntryDetail }>('./*.game.json');
+const EN_DETAIL = import.meta.glob<{ default: unknown }>('../i18n/en/*.game.json');
+
+export async function loadDetail(id: string): Promise<EntryDetail> {
+  const loader = DETAIL['./' + id + '.game.json'];
+  if (loader === undefined) throw new Error('找不到内容详情：' + id);
+  return (await loader()).default;
+}
+```
+
+效果：打开一局只下自己那 **1–2 KB** 内容；以前 `loadEntry` 只有一次 `import('./entries/detail')`，Vite 把 53 条中文详情 + 53 条英文详情补丁打进同一个 chunk（**83.4 KB gzip**），打开任何一局都要把全部内容下下来。
+
+## 6.7 英文补丁：合并、校验、漏翻三件套
+
+英文不是「把 JSON 写成双语大杂烩」，而是**结构镜像的补丁**：
+
+```ts
+export function mergeLocalized<T>(base: T, patch: Json): T {
+  if (patch === undefined) return base;
+  if (Array.isArray(base) && Array.isArray(patch)) {
+    return base.map((item, index) =>
+      index < patch.length ? mergeLocalized(item, patch[index]) : item,
+    ) as unknown as T;
   }
-  return stage.levelScript;
+  if (isPlainObject(base) && isPlainObject(patch)) {
+    const out: Record<string, unknown> = { ...base };
+    for (const [key, value] of Object.entries(patch)) {
+      out[key] = key in out ? mergeLocalized(out[key], value) : value;
+    }
+    return out as T;
+  }
+  return patch as T;
 }
 ```
 
-游戏包里的 `logic.ts` 就是「取脚本 + zod 解析」两行：
+- **对象递归合并、数组按下标逐个合并** —— 所以英文补丁必须与原文等长，翻译不能「增删一条故事」；
+- `validatePatch()` 检查「字段必须存在、数组必须等长」，`content:check` 对 53 条 × 全语言跑一遍；
+- `findCjk()` 找出合并后仍含中日韩字符的字段路径 —— **判据只有这一份**，内容体检与 `localize.test.ts` 共用（以前 26 个游戏测试各抄一份，一共 28 份，改规则要改 28 处）。
 
-```ts
-// games/pangu/src/logic.ts —— 纯逻辑：不碰 Phaser，可以直接单测
-export function tapLevel(content: AllusionContent): TapLevel {
-  return TapLevelSchema.parse(stageScript(content, 'tap'));
-}
-export function placeLevel(content: AllusionContent): PlaceLevel {
-  return PlaceLevelSchema.parse(stageScript(content, 'place'));
-}
+补丁的**加载时机**也是分层的：摘要补丁收在 `i18n/en.ts`，53 份约 9 KB gzip，只在切英文时 `ensurePatches()`；详情补丁由 `loadEntry()` 随条目加载。中文用户永远不为它们付首屏成本。
+
+一个曾经的真实 bug 记在这里当路标：`entries/detail.ts` 的 `localizedEntry()` 一开始只合了详情那一份补丁，结果英文卡面与顶栏露出中文 —— 而 `content:check`（自己把两半拼起来查）与双语巡检（只截图、不认字）都拦不住。现在两份补丁都合，并且 `localize.test.ts` 直接对「运行时取到的英文完整条目」扫中文。
+
+## 6.8 内容体检：content:check 的八类检查
+
+`pnpm content:check` 跑的是 `packages/templates/src/cli/check-content.ts`，它把「内容写对了吗」拆成八类可判定的问题：
+
+| # | 检查 | 失败示例 |
+|---|---|---|
+| 1 | 每段关卡脚本符合其模板 schema（`templateSchemas[stage.template].safeParse`） | `aim 脚本 targets.3.r: 必须是正数` |
+| 2 | `keyMoment.beatId` 在 `story` 里 | `keyMoment.beatId 不在 story 中` |
+| 3 | 至少一道 `transfer` 题 | `缺少 transfer（迁移）题` |
+| 4 | id 与标题唯一 | `标题重复："女娲补天" 同时属于 nuwa 与 nuwa-2` |
+| 5 | 分组必须登记过 | `xx 的分组没有登记："stratagem2"` |
+| 6 | 三十六计的登记顺序 == 计策序号；`thinkingTag` 与 `transfer` 必填 | `三十六计的登记顺序必须与计策序号一致` |
+| 7 | 每条的摘要 / 详情英文补丁都存在，结构对得上（`validatePatch`） | `caochong-elephant 摘要译文 story[0].text: 数组长度不一致` |
+| 8 | 合并译文后重新过 schema 与模板 schema，且不得残留中文（`findCjk`） | `第 12 计 的 en 版里还有中文，漏翻字段：source.quote` |
+
+第 8 条里最不起眼的一步是「合并之后，每一段关卡脚本还要重新过一遍模板 schema」：`game.stages[].levelScript` 在内容 schema 里是 `unknown`，如果只查内容 schema，英文译文把 `unit` 写成 `"baskets"` 就能绕过所有检查，直到玩家打开游戏才报错。
+
+跑一次的输出长这样（节选）：
+
+```
+校验 53 个内容条目…
+
+· 曹冲称象 (caochong-elephant)
+  · 信史 / 2 幕故事 / 3 道复习题 / 3 段玩法：substitution → place → tap
+…
+分组：
+  · allusion（17 个）
+  · stratagem（36 个）
+三十六计：36 计
+  · 第 1 计（第 1 套）瞒天过海｜不露声色
+…
+内容校验通过 ✅
 ```
 
-## 6.9 新增一份内容的步骤（概览）
+## 6.9 从 JSON 到卡片：一次数据流动
 
-完整流程在实战章（第 12 章）用一个新典故走一遍，这里先给检查清单：
+把本章的零件串起来，一条内容的完整旅程是：
 
-1. 新建 `packages/content/src/allusions/<id>.json`，`id` 与文件名一致（小写、连字符）；
-2. 在 `allusions/index.ts` 加 `import` 与一行 `AllusionSchema.parse(raw)`；
-3. 新建英文补丁 `packages/content/src/i18n/en/<id>.json`（结构镜像，只写需要翻译的字段），并在 `i18n/index.ts` 的 `patches.en` 注册；
-4. 运行 `pnpm content:check`：校验内容 schema、模板关卡脚本、译文完整性与“漏翻字段”；
-5. 写游戏包、注册注册表（第 12 章详述）。
+```
+entries/<id>.json            → entrySummaries（首屏）→ HallView / AlbumView 渲染卡片
+entries/<id>.game.json       → loaders（按条目 chunk）→ loadEntry() 合并
+i18n/en/<id>.json            → ensurePatches（切英文时）→ mergeLocalized 覆盖摘要
+i18n/en/<id>.game.json       → 随条目加载 → mergeLocalized 覆盖详情
+                              ↓
+                       ContentEntry（已翻译）
+                              ↓  createGameContext
+              ctx.content —— 游戏只读，且不知道语言的存在
+                              ↓  stageScript(ctx.content, 'tap') + asLevel
+                        模板的强类型关卡脚本
+```
 
-## 6.10 内容设计的经验条目
+两个「唯一事实来源」在终点汇合：**内容侧**决定「有哪些条目、属于哪组、第几计」，**注册表侧**决定「哪条能点开」。两边对不上时 `registry.test.ts` 会当场报错（第 13 章）。
 
-从十二份内容里可以总结出几条可直接复用的经验：
+## 6.10 小结
 
-- **故事短**：两个幕起步，最多六个；每屏一句话。孩子是来「做」的，不是来读的；
-- **`text` 按英文长度设限**：中文看着很短的一句话，翻成英文可能超限；schema 的上限按英文设，逼着内容写得更精简；
-- **`misconceptions` 是真实素材**：写内容时先想清楚「孩子会怎么想错」，疑难点才立得住；
-- **迁移题比记忆题值钱**：`transfer` 题问的是「哪个和它是同一类」，答对了才算理解（盘古的迁移题是「毛毛虫变蝴蝶」）；
-- **年代可以夸张但要有据**：神话用 `yearApprox: -9999` 落在最左端，是产品决策而非历史考据；但 `source.quote` 必须是真引用 —— 儿童教育产品的信任建立在这一条上。
+- 内容分三层：摘要进首屏、详情按条目懒加载、英文补丁再分两半按需加载；这套拆分把首屏的内容成本从 65.4 KB 压到几乎没有；
+- 摘要与详情各有自己的 schema，且都用「结构窄化 + 构建期 zod」替代「运行时 parse」；
+- 分组表是合集结构的唯一事实来源，空组也要在大厅占位；
+- 26 个模板 id 写在内容层，是契约、注册表、内容三处共同的类型来源；
+- 内容体检把「写错内容」变成构建期错误：模板脚本、迁移题、唯一性、序号、双语完整性、漏翻，八类问题各有判据。
 
-## 6.11 小结
-
-- 内容是 JSON + zod schema，构建期解析、构建期校验，十二份典故一次全过才算通过；
-- 五条 refine 规则把教学要求（唯一标准答案、迁移题、抉择挂在故事上）变成了数据约束；
-- `game.stages` 支持一个典故由多段模板拼成，脚本形状由模板层校验；
-- 双语采用「中文基准 + 翻译补丁」结构，避免把 JSON 写成双语大杂烩（细节见第 11 章）。
-
-下一章进入「让第 30 个典故变便宜」的关键设计：玩法模板库。
+下一章进入玩法层：模板库如何用二十四个场景支撑五十三个条目。
 
 <!-- NAVIGATION -->
 
