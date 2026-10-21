@@ -22,6 +22,9 @@
     - title: QGIS 教程
       icon: 📁
       url: /gis/tutorial/qgis/
+    - title: GeoLibre
+      icon: 📁
+      url: /gis/tutorial/GeoLibre/
     - title: PostGIS 教程
       icon: 📁
       url: /gis/tutorial/postgis/

@@ -33,6 +33,7 @@ title: GIS 技术教程
 | [Shapely 教程](https://znlgis.github.io/gis/tutorial/shapely/) | 20章 | ⭐⭐ | Python 几何操作 |
 | [GeoPipeAgent](https://znlgis.github.io/gis/tutorial/GeoPipeAgent/) | 20章 | ⭐⭐⭐ | AI 驱动 GIS 流水线 |
 | [OpenGIS DAF](https://znlgis.github.io/gis/tutorial/opengis-daf/) | 10章 | ⭐⭐⭐ | 方案驱动的 GIS 数据分析与质检 |
+| [GeoLibre 教程](https://znlgis.github.io/gis/tutorial/GeoLibre/) | 26章 | ⭐⭐⭐ | 云原生 GIS 平台 · 浏览器 / 桌面 / 移动端 |
 
 > 难度说明：⭐ 入门 → ⭐⭐ 基础 → ⭐⭐⭐ 进阶 → ⭐⭐⭐⭐ 高级
 
@@ -89,3 +90,4 @@ title: GIS 技术教程
 - [GeoPipeAgent 教程](https://znlgis.github.io/gis/tutorial/GeoPipeAgent/)
 - [geopandas 教程](https://znlgis.github.io/gis/tutorial/geopandas/)
 - [shapely 教程](https://znlgis.github.io/gis/tutorial/shapely/)
+- [GeoLibre 教程](https://znlgis.github.io/gis/tutorial/GeoLibre/)
