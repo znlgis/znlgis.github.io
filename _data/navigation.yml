@@ -84,6 +84,13 @@
       icon: 📁
       url: /gis/basic/dev/
 
+- title: GIS 业务全景
+  icon: 🏘️
+  children:
+    - title: 房产测绘业务全景
+      icon: 📁
+      url: /gis/bpc/fcch/
+
 - title: 博客翻译
   icon: 📝
   children:
