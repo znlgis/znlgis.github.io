@@ -10,8 +10,8 @@
     <link rel="icon" href="{{ '/assets/logo.png' | relative_url }}">
     <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ '/feed.xml' | relative_url }}">
     
-    <!-- 不蒜子访客统计 -->
-    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <!-- 不蒜子访客统计 v3.6.9（官方 CDN：https://cdn.busuanzi.cc） -->
+    <script defer src="https://cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js"></script>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -91,13 +91,93 @@
                 </main>
                 <footer>
                     <p>&copy; {{ site.time | date: '%Y' }} {{ site.author }}. 使用 <a href="https://pages.github.com/" target="_blank" rel="noopener noreferrer">GitHub Pages</a> 托管.</p>
-                    <p class="busuanzi-stats">
-                        <span id="busuanzi_container_site_uv">本站访客数 <span id="busuanzi_value_site_uv"></span> 人</span>
-                        &nbsp;|&nbsp;
-                        <span id="busuanzi_container_site_pv">本站总访问量 <span id="busuanzi_value_site_pv"></span> 次</span>
-                        &nbsp;|&nbsp;
-                        <span id="busuanzi_container_page_pv">本页访问量 <span id="busuanzi_value_page_pv"></span> 次</span>
-                    </p>
+                    <div class="busuanzi-stats" id="busuanziStats" data-busuanzi-state="loading">
+                        <span class="busuanzi-group">
+                            <span class="busuanzi-label">今日</span>
+                            <span class="busuanzi-item">访问量 <span class="busuanzi-value" id="busuanzi_today_pv">--</span> 次</span>
+                            <span class="busuanzi-item">访客数 <span class="busuanzi-value" id="busuanzi_today_uv">--</span> 人</span>
+                        </span>
+                        <span class="busuanzi-group">
+                            <span class="busuanzi-label">本站累计</span>
+                            <span class="busuanzi-item">访问量 <span class="busuanzi-value" id="busuanzi_site_pv">--</span> 次</span>
+                            <span class="busuanzi-item">访客数 <span class="busuanzi-value" id="busuanzi_site_uv">--</span> 人</span>
+                        </span>
+                        <span class="busuanzi-group">
+                            <span class="busuanzi-label">本页</span>
+                            <span class="busuanzi-item">阅读量 <span class="busuanzi-value" id="busuanzi_page_pv">--</span> 次</span>
+                            <span class="busuanzi-item">访客数 <span class="busuanzi-value" id="busuanzi_page_uv">--</span> 人</span>
+                        </span>
+                        <span class="busuanzi-group busuanzi-group-platform">
+                            <span class="busuanzi-label busuanzi-label--plain">不蒜子已接入</span>
+                            <span class="busuanzi-item"><span class="busuanzi-value" id="hosts_count">--</span> 个站点</span>
+                        </span>
+                    </div>
+                    <script>
+                        /* 不蒜子 v3.6.9 只按响应键名回填元素，不做失败兜底；
+                           脚本被拦截或接口异常时，把占位符收起来，避免页脚长期显示「--」。 */
+                        (function () {
+                            var el = document.getElementById('busuanziStats');
+                            if (!el) return;
+                            var cells = el.querySelectorAll('.busuanzi-value');
+                            var platform = el.querySelector('.busuanzi-group-platform');
+                            var settled = false;
+                            var poll, soft, hard;
+
+                            /* 本地/未接入域名接口会回「域名/IP已被禁用」，脚本被拦截时也非数字，
+                               只有纯数字才认作有效统计值，避免把提示语显示成访问量 */
+                            function read(node) {
+                                var text = (node.textContent || '').replace(/\s*个\s*$/, '').trim();
+                                return /^\d[\d,]*$/.test(text) ? text.replace(/,/g, '') : '';
+                            }
+                            function scan() {
+                                var done = 0;
+                                var total = 0;
+                                for (var i = 0; i < cells.length; i++) {
+                                    if (cells[i].id === 'hosts_count') continue;
+                                    total++;
+                                    if (read(cells[i])) done++;
+                                }
+                                return { done: done, total: total };
+                            }
+                            function paint(state) {
+                                for (var i = 0; i < cells.length; i++) {
+                                    var value = read(cells[i]);
+                                    cells[i].textContent = value
+                                        ? value.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+                                        : '--';
+                                }
+                                /* 平台接入站点数是附加信息，接口没给出时整组收起 */
+                                if (platform) platform.hidden = !read(document.getElementById('hosts_count'));
+                                el.setAttribute('data-busuanzi-state', state);
+                            }
+                            function settle(state) {
+                                if (settled) return;
+                                settled = true;
+                                paint(state);
+                                clearInterval(poll);
+                                clearTimeout(soft);
+                                clearTimeout(hard);
+                            }
+
+                            poll = setInterval(function () {
+                                if (settled) return;
+                                var s = scan();
+                                if (s.done === s.total) settle('loaded');
+                            }, 250);
+
+                            /* 8 秒还没回数就先藏起来，但继续等；30 秒仍未齐才定稿 */
+                            soft = setTimeout(function () {
+                                if (settled) return;
+                                paint(scan().done === 0 ? 'failed' : 'partial');
+                            }, 8000);
+
+                            hard = setTimeout(function () {
+                                if (settled) return;
+                                var s = scan();
+                                settle(s.done === 0 ? 'failed' : (s.done === s.total ? 'loaded' : 'partial'));
+                            }, 30000);
+                        })();
+                    </script>
                 </footer>
             </div>
         </div>

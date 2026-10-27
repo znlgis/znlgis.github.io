@@ -46,7 +46,7 @@ GIS 开发与技术分享博客，涵盖 GIS、CAD、C#、3D、AI 等领域，�
 - [GitHub Pages](https://pages.github.com/) — 托管服务
 - [Rouge](https://github.com/rouge-ruby/rouge) — 代码语法高亮
 - [Noto Sans SC](https://fonts.google.com/noto/specimen/Noto+Sans+SC) — 中文字体
-- [不蒜子](https://busuanzi.ibruce.info/) — 访客统计
+- [不蒜子](https://www.busuanzi.cc/) v3.6.9 — 访客统计（今日、本站累计、本页的 PV/UV）
 
 ### Jekyll 插件
 

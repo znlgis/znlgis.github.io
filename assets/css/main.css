@@ -260,10 +260,56 @@ footer {
     color: var(--text-muted);
     line-height: 1.8;
 }
+/* 不蒜子访客统计 v3.6.9 */
 .busuanzi-stats {
-    margin-top: 0.4rem;
+    margin-top: 0.6rem;
     font-size: 0.8rem;
     color: #999;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.35rem 1.1rem;
+}
+.busuanzi-group {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.4rem;
+    white-space: nowrap;
+}
+.busuanzi-group[hidden] {
+    display: none;
+}
+.busuanzi-label {
+    color: inherit;
+    opacity: 0.75;
+}
+.busuanzi-label::after {
+    content: "：";
+}
+.busuanzi-label--plain::after {
+    content: "";
+}
+.busuanzi-item {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.15rem;
+}
+.busuanzi-value {
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+    color: var(--text-secondary);
+    min-width: 1ch;
+}
+.busuanzi-group-platform {
+    flex-basis: 100%;
+    color: var(--text-muted);
+    opacity: 0.85;
+}
+.busuanzi-stats[data-busuanzi-state="partial"] {
+    opacity: 0.6;
+}
+.busuanzi-stats[data-busuanzi-state="failed"] {
+    display: none;
 }
 
 /* ===== 侧边栏 ===== */
@@ -995,6 +1041,9 @@ h4:hover .heading-anchor {
 [data-theme="dark"] .busuanzi-stats {
     color: #6e7681;
 }
+[data-theme="dark"] .busuanzi-value {
+    color: #8b949e;
+}
 [data-theme="dark"] blockquote {
     color: #8b949e;
     border-left-color: #58a6ff;
@@ -1046,6 +1095,12 @@ h4:hover .heading-anchor {
     }
     .home-link-list {
         grid-template-columns: 1fr;
+    }
+    .busuanzi-stats {
+        gap: 0.3rem 0.75rem;
+    }
+    .busuanzi-group-platform {
+        flex-basis: 100%;
     }
 }
 
