@@ -5,7 +5,7 @@ title: 第五章：GIS 技能详解
 
 # 第五章：GIS 技能详解
 
-本章是教程中篇幅最长、信息密度最高的一章。我们对核心 **24 个 GIS 技能**逐一深度解析，并收录 2026 年 10 月新增的 8 个技能（MapServer、QGIS Server、Leaflet、PROJ、GRASS GIS、PDAL、Mapbox GL JS、Deck.gl）。GIS 类技能覆盖从「数据获取 → 命令行处理 → 编程分析 → 空间数据库 → 地图服务 → 前端可视化」的完整链条，是 opengis-skills 仓库中规模最大的领域分类。
+本章是教程中篇幅最长、信息密度最高的一章。我们对核心 **24 个 GIS 技能**逐一深度解析，并收录分批新增的 16 个技能（MapServer、QGIS Server、Leaflet、PROJ、GRASS GIS、PDAL、Mapbox GL JS、Deck.gl，以及 GeoLibre、GeoNode、DuckDB Spatial、SpatiaLite、WhiteboxTools、Kepler.gl、ProjNet、BruTile）。GIS 类技能覆盖从「数据获取 → 命令行处理 → 编程分析 → 空间数据库 → 地图服务 → 前端可视化」的完整链条，是 opengis-skills 仓库中规模最大的领域分类。
 
 如果你是 GIS 开发者，这一章可以作为日常工作的速查手册：当你需要用 GDAL 做格式转换、用 GeoPandas 做空间分析、用 GeoServer 发布地图服务、用 CesiumJS 做三维可视化时，直接跳到对应小节获取准确的 API 签名和代码示例。每一节的撰写都基于仓库中对应 SKILL.md 的实际内容——不是从训练数据中猜测，而是对真实技能文件的系统梳理。
 
@@ -13,7 +13,7 @@ title: 第五章：GIS 技能详解
 
 ## 5.1 GIS 技能全景
 
-在深入每个技能之前，先用一张全量表格建立全局视图。下表包含全部 32 个 GIS 技能的快速索引（核心 24 个 + 2026 年 10 月新增 8 个）：
+在深入每个技能之前，先用一张全量表格建立全局视图。下表包含全部 40 个 GIS 技能的快速索引（核心 24 个 + 分批新增 16 个）：
 
 | 分类 | 技能 | 层级 | 简要说明 | 文件大小 |
 |:-----|:-----|:----:|:---------|:--------:|
@@ -49,6 +49,14 @@ title: 第五章：GIS 技能详解
 | Web 可视化 | `leaflet` | JS | 轻量级 2D Web 地图库，移动端友好、插件生态丰富 | 11 KB |
 | Web 可视化 | `mapbox-gl-js` | JS | 矢量瓦片 WebGL 地图库，Style Spec 与数据驱动样式 | 17 KB |
 | Web 可视化 | `deck-gl` | JS | GPU 大规模数据可视化图层框架（百万级点/聚合/热力图） | 20 KB |
+| 平台应用 | `geolibre` | Web/桌面 | 云原生 GIS 应用（Tauri + React），浏览器/桌面/Notebook/MCP 四形态 | 15 KB |
+| 平台应用 | `geonode` | Server | 地理空间 CMS：Django + GeoServer + PostGIS 的数据门户与 REST API v2 | 14 KB |
+| 空间数据库 | `duckdb-spatial` | SQL | DuckDB 空间扩展，ST_Read 直读矢量、空间 SQL 与 GeoParquet 输出 | 15 KB |
+| 空间数据库 | `spatialite` | SQL | SQLite 空间扩展，单文件空间数据库、RTree 索引与 Shapefile 互转 | 15 KB |
+| 空间分析 | `whitebox-tools` | CLI | Rust 地形/水文/LiDAR 分析引擎，CLI + Python 双入口 | 11 KB |
+| Web 可视化 | `kepler-gl` | React | React/Redux 地理可视化组件库，另有 Jupyter 小组件 | 12 KB |
+| .NET 组件 | `projnet4geoapi` | .NET | .NET 坐标参考系与投影引擎（NuGet ProjNet 2.x），需自备 WKT | 12 KB |
+| .NET 组件 | `brutile` | .NET | .NET 瓦片访问库，HTTP 瓦片源 + MBTiles 离线 | 12 KB |
 
 **分类解读：**
 
@@ -68,7 +76,7 @@ title: 第五章：GIS 技能详解
 
 **技能定位：** GDAL（Geospatial Data Abstraction Library）是地理空间数据处理的事实标准。这个技能聚焦于 GDAL/OGR 的命令行接口，即 **50+ 个 CLI 工具**的完整指南。
 
-**文件规模：** 主文件约 12 KB（452 行）。`reference/` 子目录包含 `vector-tools.md`（矢量工具完整参数表）和 `raster-tools.md`（栅格工具完整参数表）。
+**文件规模：** 主文件约 13 KB（488 行）。`reference/` 子目录包含 `vector-tools.md`（矢量工具完整参数表）和 `raster-tools.md`（栅格工具完整参数表）。
 
 **命令行体系：** GDAL 3.9 引入了统一的新式 CLI 接口，同时也保留传统命令行风格：
 
@@ -2150,9 +2158,48 @@ CoordinateReferenceSystem crs = coverage.getCoordinateReferenceSystem2D();
 
 ---
 
-## 5.10 GIS 技能选择决策树
+## 5.10 新增技能速览（16 个）
 
-面对 32 个 GIS 技能，如何根据实际需求快速选择正确的技能（或技能组合）？以下决策树提供了从「需求描述」到「推荐技能」的完整映射关系：
+为保持本章主线的连贯，前九节深度解析的是 24 个核心技能；本节集中介绍后续分批新增的 16 个技能，每个给出定位、典型触发场景与最常用的一条命令。它们的完整 API 与工作流见各自 SKILL.md。
+
+### 5.10.1 数据与服务端补充（8 个）
+
+| 技能 | 定位 | 典型触发 | 一条命令上手 |
+|------|------|---------|-------------|
+| `proj` | 坐标转换与投影引擎 | CRS 报错、`Cannot find proj.db`、EPSG 查询 | `projinfo EPSG:4490` |
+| `grass-gis` | 模块化栅格/矢量分析套件 | 需要 r.*/v.*/t.* 模块或 `grass --exec` 批处理 | `grass --tmp-project EPSG:3857 --exec g.region -p` |
+| `pdal` | 点云流水线 | LAS/LAZ 转换、裁剪、SMRF 地面分类、出 DEM | `pdal translate in.las out.laz` |
+| `mapserver` | C 语言 OGC 服务端 | mapfile 驱动 WMS/WFS、FastCGI 部署 | `mapserv -v` |
+| `qgis-server` | QGIS 工程直发 OGC 服务 | 把 .qgs/.qgz 发布为 WMS/WFS/WMTS | `curl ".../qgis_mapserv.fcgi?MAP=/data/a.qgz&SERVICE=WMS&REQUEST=GetCapabilities"` |
+| `leaflet` | 轻量 2D Web 地图 | 移动端友好、插件生态、GeoJSON 叠加 | `L.map('map').setView([39.9,116.4], 10)` |
+| `mapbox-gl-js` | 矢量瓦片 WebGL 地图 | Style Spec、数据驱动样式、3D 建筑 | `new maplibregl.Map({ style, container })` |
+| `deck-gl` | GPU 大规模可视化 | 百万级点、聚合、热力、与 MapLibre 叠加 | `new MapboxOverlay({ layers: [new ScatterplotLayer(...)] })` |
+
+### 5.10.2 云原生、分析与平台（8 个）
+
+| 技能 | 定位 | 典型触发 | 一条命令上手 |
+|------|------|---------|-------------|
+| `geolibre` | 云原生 GIS 应用 | 想在浏览器/桌面直接做 GIS，不搭服务端 | `pip install geolibre==3.5.1` |
+| `geonode` | 地理空间 CMS | 需要数据门户、元数据编目、REST API v2 上传 | `docker compose up -d`（官方 compose） |
+| `duckdb-spatial` | 列式空间 SQL | 直接对 Shapefile/Parquet 跑空间 SQL | `INSTALL spatial; LOAD spatial; SELECT * FROM ST_Read('a.shp');` |
+| `spatialite` | 单文件空间数据库 | 嵌入式/桌面应用需要空间 SQL | `spatialite mydata.sqlite "SELECT spatialite_version();"` |
+| `whitebox-tools` | 地形/水文/ LiDAR 分析 | 批量水文分析、洼地填充、流向累积 | `whitebox_tools --run=Slope --dem=in.tif --output=slope.tif` |
+| `kepler-gl` | React/Redux 地理可视化 | 数据探索式可视化、时间轴动画、Jupyter | `npm i kepler.gl` 后 `addDataToMap` |
+| `projnet4geoapi` | .NET 投影引擎 | SharpMap/Mapsui 里做坐标转换 | `CoordinateSystemServices.FromWkt(wkt)` |
+| `brutile` | .NET 瓦片访问 | 自建瓦片源、MBTiles 离线包 | `var schema = new TileSchema();` |
+
+### 5.10.3 如何判断该用哪一个
+
+- **要「算」而不是「画」**：`whitebox-tools`（地形水文）、`duckdb-spatial` / `spatialite`（空间 SQL）、`grass-gis`（成套模块）。
+- **要「发布」**：`geoserver*`（Java 全家桶）、`mapserver`（C，轻）、`qgis-server`（QGIS 工程直发）、`geonode`（门户）。
+- **要「看图」**：`cesiumjs`（3D）、`openlayers` / `leaflet`（2D 底图）、`mapbox-gl-js`（矢量瓦片）、`deck-gl` / `kepler-gl`（大规模数据）、`geolibre`（开箱即用）。
+- **.NET 技术栈**：`nettopologysuite` + `projnet4geoapi`（几何 + 投影）、`mapsui` / `sharpmap`（控件）、`brutile`（瓦片）。
+
+---
+
+## 5.11 GIS 技能选择决策树
+
+面对 40 个 GIS 技能，如何根据实际需求快速选择正确的技能（或技能组合）？以下决策树提供了从「需求描述」到「推荐技能」的完整映射关系：
 
 ```
 我需要用 GIS 技能解决什么问题？
@@ -2218,9 +2265,9 @@ CoordinateReferenceSystem crs = coverage.getCoordinateReferenceSystem2D();
 
 ---
 
-## 5.11 本章小结
+## 5.12 本章小结
 
-本章对 opengis-skills 仓库中 **24 个核心 GIS 技能**进行了系统梳理，并收录了 2026 年 10 月新增的 8 个技能（MapServer、QGIS Server、Leaflet、PROJ、GRASS GIS、PDAL、Mapbox GL JS、Deck.gl），涵盖了从数据获取到前端可视化的完整处理链路。核心要点回顾：
+本章对 opengis-skills 仓库中 **24 个核心 GIS 技能**进行了系统梳理，并收录了分批新增的 16 个技能（MapServer、QGIS Server、Leaflet、PROJ、GRASS GIS、PDAL、Mapbox GL JS、Deck.gl、GeoLibre、GeoNode、DuckDB Spatial、SpatiaLite、WhiteboxTools、Kepler.gl、ProjNet、BruTile），涵盖了从数据获取到前端可视化的完整处理链路。核心要点回顾：
 
 **1. 数据处理（7 个技能）：**
 - `gdal`（CLI）：50+ 命令行工具，矢量格式转换（`ogr2ogr`）、栅格重投影（`gdalwarp`）、DEM 分析（`gdaldem`）、栅格计算（`gdal_calc`）
@@ -2256,7 +2303,7 @@ CoordinateReferenceSystem crs = coverage.getCoordinateReferenceSystem2D();
 - `mapbox-gl-js`：矢量瓦片 WebGL 地图库，Style Spec 与数据驱动表达式（v2+ 需 access token，开源替代为 MapLibre GL JS）
 - `deck-gl`：GPU 渲染的大规模数据可视化图层（百万级点、聚合、热力图）
 
-**7. .NET 组件（2 个技能）：**
+**7. .NET 组件（4 个技能）：**
 - `sharpmap`：传统 WinForms 地图（维护旧项目用）
 - `mapsui`：跨平台现代 .NET 地图控件（WPF/MAUI/Avalonia/Blazor，新项目首选）
 
@@ -2266,7 +2313,7 @@ CoordinateReferenceSystem crs = coverage.getCoordinateReferenceSystem2D();
 - `opengis-utils-for-java` / `opengis-utils-for-net`：统一图层模型 + 双引擎架构的便利工具集
 
 **9. 技能选择（5.10 决策树）：**
-面对 32 个技能，按「命令行 → 编程语言 → 数据库 → 服务器 → 前端」的链条分段选择，配合 5.10 节的典型组合推荐，即可快速确定正确的技能（组合）。
+面对 40 个技能，按「命令行 → 编程语言 → 数据库 → 服务器 → 前端」的链条分段选择，配合 5.11 节的典型组合推荐，即可快速确定正确的技能（组合）。
 
 ---
 

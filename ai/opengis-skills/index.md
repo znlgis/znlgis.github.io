@@ -5,7 +5,9 @@ title: OpenGIS-Skills 教程目录
 
 # OpenGIS-Skills 教程目录
 
-> 本教程基于 [znlgis/opengis-skills](https://github.com/znlgis/opengis-skills) 仓库全面分析整理，面向中文读者系统讲解面向 AI 编程助手的开源技能集 **OpenGIS-Skills** 的设计理念、三层索引架构、SKILL.md 编写规范、AI 工具集成方式，以及涵盖 **GIS、CAD、C#、AI、IoT、3D** 六大领域（外加 **Others** 与 **demos** 两个分类，共 8 个分类）的 96 个技能详解。教程还提供跨技能实战工作流组合、最佳实践与贡献指南。
+> 本教程基于 [znlgis/opengis-skills](https://github.com/znlgis/opengis-skills) 仓库全面分析整理，面向中文读者系统讲解面向 AI 编程助手的开源技能集 **OpenGIS-Skills** 的设计理念、三层索引架构、SKILL.md 编写规范、AI 工具集成方式，以及涵盖 **GIS、CAD、C#、AI、IoT、3D** 六大领域（外加 **Others** 与 **demos** 两个分类，共 8 个分类）的 114 个技能详解。教程还提供跨技能实战工作流组合、最佳实践与贡献指南。
+>
+> **工具无关**：仓库全部内容为纯 Markdown，不依赖任何特定 Agent 产品的运行时、私有工具名或专有 API——Claude Code、Cursor、Cline、GitHub Copilot、Codex、Gemini CLI、OpenCode、DeepSeek Harness 等都可直接读取；技能里不出现 `skill(...)` 之类的私有加载语法，也不假设宿主具备哪些工具。
 
 - [第一章：项目概述与快速入门](https://znlgis.github.io/ai/opengis-skills/01-概述与快速入门/)
 - [第二章：三层索引架构](https://znlgis.github.io/ai/opengis-skills/02-三层索引架构/)

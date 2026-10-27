@@ -5,7 +5,7 @@ title: 第九章：IoT / 3D / Others 详解
 
 # 第九章：IoT / 3D / Others 详解
 
-在 OpenGIS-Skills 的六大领域中，GIS（32 个技能）和 CAD（21 个技能）占据了技能总数的将近三分之二。但前四大领域之外的 IoT、3D 和 Others 三个分类合计 16 个技能，同样在实际开发中扮演着不可或缺的角色。本章聚焦这三个"小领域"，逐一深入解析每个技能的核心功能、使用场景、代码示例和典型工作流。
+在 OpenGIS-Skills 的六大领域中，GIS（40 个技能）和 CAD（21 个技能）占据了技能总数的一半以上。前四大领域之外的 IoT、3D 和 Others 三个分类合计 20 个技能，同样在实际开发中扮演着不可或缺的角色。本章聚焦这三个"小领域"，逐一深入解析每个技能的核心功能、使用场景、代码示例和典型工作流。
 
 本章的阅读价值在于：这些技能覆盖了从嵌入式硬件到 Web 3D 再到微服务架构和运维部署的广阔技术栈，你在其中几乎一定能找到与自己日常开发相关的部分。无论你是 Go 开发者、嵌入式爱好者、3D 可视化工程师、Java 微服务架构师还是运维工程师，都能在本章获得立即可用的知识。
 
@@ -13,12 +13,14 @@ title: 第九章：IoT / 3D / Others 详解
 
 ## 9.1 技能全景
 
-在深入每个技能之前，先通过一张总览表建立全局认知。IoT、3D 和 Others 三个分类共 16 个技能：
+在深入每个技能之前，先通过一张总览表建立全局认知。IoT、3D 和 Others 三个分类共 20 个技能：
 
 | 分类 | 技能 | 文件路径 | 说明 |
 |:-----|:-----|:---------|:-----|
 | **IoT** | ke3036-keyes-pico | `iot/ke3036-keyes-pico/SKILL.md` | Keyes Raspberry Pi Pico 37合1传感器入门套件，MicroPython 嵌入式开发全指南 |
 | **IoT** | node-red | `iot/node-red/SKILL.md` | 低代码物联网数据流编排——可视化节点编辑，MQTT 发布/订阅与 HTTP API 集成 |
+| **IoT** | home-assistant | `iot/home-assistant/SKILL.md` | 本地优先家居自动化平台——YAML 自动化、REST/WebSocket API 与 MQTT 集成 |
+| **IoT** | esphome | `iot/esphome/SKILL.md` | 用 YAML 生成 ESP32/ESP8266 固件，OTA 升级与 Home Assistant 原生 API 直连 |
 | **3D** | supersplat | `3d/supersplat/SKILL.md` | 3D 高斯泼溅（3DGS）浏览器端编辑器——3DGS 领域的"Photoshop + 发布平台" |
 | **3D** | ara3d-sdk | `3d/ara3d-sdk/SKILL.md` | AEC 领域高性能 .NET 3D/BIM SDK，格式转换管道和网格处理引擎 |
 | **3D** | elements | `3d/elements/SKILL.md` | Hypar Elements，纯 C# 编程生成建筑/BIM 模型，支持 IFC/glTF 导出 |
@@ -33,16 +35,18 @@ title: 第九章：IoT / 3D / Others 详解
 | **Others** | acme.sh | `others/acme.sh/SKILL.md` | 纯 Shell ACME 协议客户端，Let's Encrypt / ZeroSSL 免费 SSL 证书全自动管理 |
 | **Others** | chags | `others/chags/SKILL.md` | 中国历史典故儿童游戏合集（Vue3 + Phaser，中英双语） |
 | **Others** | docker-compose | `others/docker-compose/SKILL.md` | 声明式多容器 Docker 编排，单文件 compose.yaml 管理服务/网络/卷 |
+| **Others** | bamboobuddy | `others/bamboobuddy/SKILL.md` | 儿童日常习惯养成小游戏——pnpm workspace + Vue3 外壳 + Phaser 玩法包 |
+| **Others** | ffmpeg | `others/ffmpeg/SKILL.md` | 音视频转码与切片——抽帧做纹理、HLS 切片、RTSP 拉流，配套 ffprobe 先探后转 |
 
 **三个分类的特点对比**：
 
 | 维度 | IoT | 3D | Others |
 |:-----|:----|:----|:-------|
-| 技能数量 | 2 | 6 | 8 |
-| 技术栈 | MicroPython / Node-RED | TypeScript / .NET / Python | Go / Java / Shell / YAML / Docker |
+| 技能数量 | 4 | 6 | 10 |
+| 技术栈 | MicroPython / ESPHome YAML / Node-RED | TypeScript / .NET / Python | Go / Java / Shell / YAML / Docker / FFmpeg CLI |
 | 面向人群 | 嵌入式开发者 | 3D 可视化 / BIM 工程师 | 全栈开发者 / 运维工程师 |
 | 技能定位 | 硬件入门套件的完整编程指南 + 低代码数据流编排 | 3DGS 编辑 + .NET 三维/BIM 与建筑生成 + CSG 建模 + 全景查看 + 点云/网格处理 | 编程语言速查 + 开发框架 + 运维工具 + 容器编排 + 游戏合集 |
-| 与 GIS 的关联 | 通过 MQTT/HTTP 上云可与 GIS 服务对接 | 3DGS 和 BIM 是三维 GIS 的关键技术 | 通用开发技能，支撑 GIS 项目的非 GIS 部分 |
+| 与 GIS 的关联 | 通过 MQTT/HTTP 上云可与 GIS 服务对接 | 3DGS 和 BIM 是三维 GIS 的关键技术 | 通用开发技能，支撑 GIS 项目的非 GIS 部分（FFmpeg 常用于视频/全景素材处理） |
 
 ---
 
@@ -50,7 +54,7 @@ title: 第九章：IoT / 3D / Others 详解
 
 ### 9.2.1 技能概述
 
-**ke3036-keyes-pico** 是 IoT 分类下的两个技能之一，面向 Keyes Raspberry Pi Pico 37合1传感器入门套件。这是市面上常见的树莓派 Pico 学习套件之一，包含 LED、按键、蜂鸣器、DHT11 温湿度传感器、超声波测距模块、红外接收器、OLED 显示屏、伺服电机、步进电机等 37 种常用电子模块。
+**ke3036-keyes-pico** 是 IoT 分类下四个技能之一，面向 Keyes Raspberry Pi Pico 37合1传感器入门套件。这是市面上常见的树莓派 Pico 学习套件之一，包含 LED、按键、蜂鸣器、DHT11 温湿度传感器、超声波测距模块、红外接收器、OLED 显示屏、伺服电机、步进电机等 37 种常用电子模块。
 
 该技能文件为 AI 编程助手注入完整的 MicroPython 嵌入式开发知识，覆盖 GPIO 控制、I2C/SPI 通信、PWM 输出、ADC 采样、Wi-Fi 网络通信和 MQTT 物联网协议——从"点亮第一个 LED"到"传感器数据通过 MQTT 上云"的完整学习路径。
 
@@ -3082,9 +3086,9 @@ curl -I https://blog.example.com
 
 ## 9.6 本章小结
 
-本章完整介绍了 OpenGIS-Skills 中 IoT、3D 和 Others 三个分类共 16 个技能的核心功能、使用方法和典型场景。
+本章完整介绍了 OpenGIS-Skills 中 IoT、3D 和 Others 三个分类共 20 个技能的核心功能、使用方法和典型场景。
 
-**IoT** 领域目前有两个技能：`ke3036-keyes-pico` 覆盖了从"点亮 LED"到"MQTT 上云"的完整嵌入式开发链路，`node-red` 则提供低代码的数据流编排与 MQTT/HTTP 集成能力。如果未来 OpenGIS-Skills 增加对 ESP32、Arduino 等更多嵌入式平台的支持，IoT 分类将形成更加丰富的矩阵。
+**IoT** 领域目前有四个技能：`ke3036-keyes-pico` 覆盖了从"点亮 LED"到"MQTT 上云"的完整嵌入式开发链路，`node-red` 提供低代码的数据流编排与 MQTT/HTTP 集成能力，`home-assistant` 面向本地优先的家居自动化平台（YAML 自动化 + REST/WebSocket API），`esphome` 则用 YAML 直接生成 ESP32/ESP8266 固件并支持 OTA——两者与 Node-RED 组合即可覆盖「设备固件 → 数据流 → 平台自动化」的完整闭环。
 
 **3D** 领域的 6 个技能分别代表了多种截然不同的技术方向：`supersplat` 站在 3D 可视化前沿（3DGS），`ara3d-sdk` 深耕于 AEC 工业级 .NET 三维/BIM 处理，`elements` 以纯 C# 编程生成建筑/BIM 模型，`opencsg-net` 提供零依赖的 .NET CSG 布尔建模，`photo-sphere-viewer` 面向 360° 全景照片浏览，`open3d` 则提供 Python 端的点云/网格处理、配准与重建能力。它们与 GIS 的结合点在"数字孪生"——BIM 模型（ara3d-sdk、elements 处理）、实体建模结果（opencsg-net）和影像重建场景（supersplat 处理）是构建城市级数字孪生的关键输入源。
 

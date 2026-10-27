@@ -21,15 +21,15 @@ Token 是 AI 工具的核心资源，理解 opengis-skills 的 Token 消耗结�
 
 **技能文件的 Token 规模分级**
 
-opengis-skills 的 96 个技能文件按规模和复杂度可分为三个等级：
+opengis-skills 的 114 个技能文件按规模和复杂度可分为三个等级：
 
 | 等级 | 文件规模 | Token 估算 | 典型示例 | 加载建议 |
 |------|----------|-----------|----------|----------|
-| **小型** | 100-300 行 | 约 1.5K-4K tokens | cad/tongwen、ai/pi、gis/cesiumjs | 几乎无负担，可放心加载 |
-| **中型** | 300-800 行 | 约 4K-12K tokens | gis/postgis、cad/clipper2、ai/dify、csharp/sqlsugar | 最常见的技能规模，1-2 个同时加载安全 |
-| **大型** | 800-1500+ 行 | 约 12K-25K+ tokens | gis/gdal-api、gis/opengis-all、ai/opencode | 内容详实，建议单独加载或只加载需要的部分 |
-| **L1 索引** | ~700 行 | 约 10K tokens | SKILL.md（根索引） | 标签搜索和浏览用，不建议长期占用上下文 |
-| **L2 索引** | 50-150 行 | 约 0.8K-2.5K tokens | gis/SKILL.md、cad/SKILL.md、ai/SKILL.md | 理想的"导航层"，优先加载 |
+| **小型** | 130-250 行 | 约 1.5K-4K tokens | ai/pi、ai/openclaw、ai/superpowers-zh | 几乎无负担，可放心加载 |
+| **中型** | 250-400 行 | 约 4K-9K tokens | gis/postgis、cad/clipper2、ai/dify、csharp/sqlsugar | 最常见的技能规模，1-2 个同时加载安全 |
+| **大型** | 400-500 行 | 约 9K-13K tokens | gis/gdal（488）、gis/opengis-utils-for-net（490）、3d/ara3d-sdk（481） | 已接近 500 行上限，按需加载并优先读章节标题定位 |
+| **L1 索引** | ~350 行 | 约 6K tokens | SKILL.md（根索引） | 标签搜索和浏览用，不建议长期占用上下文 |
+| **L2 索引** | 55-155 行 | 约 1K-3K tokens | gis/SKILL.md（152）、cad/SKILL.md（121）、ai/SKILL.md（92） | 理想的"导航层"，优先加载 |
 
 **Token 消耗的典型场景分析**
 
@@ -104,7 +104,7 @@ opengis-skills 的 96 个技能文件按规模和复杂度可分为三个等级�
 - **工具链**：#gdal #arcpy #qgis #cesium #autocad
 - **语言**：#python #csharp #lisp #javascript
 
-举例：你需要把一批栅格影像做投影变换后再在前端三维地球上展示。在根索引中搜索 `#raster #3d` 即可分别定位到 gis/gdal 和 gis/cesiumjs 两个技能——没有这两个标签，你可能需要翻找 96 个技能文件。
+举例：你需要把一批栅格影像做投影变换后再在前端三维地球上展示。在根索引中搜索 `#raster #3d` 即可分别定位到 gis/gdal 和 gis/cesiumjs 两个技能——没有这两个标签，你可能需要翻找 114 个技能文件。
 
 **第 2 步——L2 分类索引（@category/SKILL.md）**
 
@@ -116,7 +116,7 @@ L2 索引的价值在于"对比"。同一个分类下往往有多个功能重叠
 | cad/ | ifoxcad vs lightningcad vs tongwen 都面向 AutoCAD 二次开发 | 取决于你要做的能力：通用二开框架、围护深化插件、工程图纸翻译 |
 | ai/ | opencode vs pi vs oh-my-openagent | opencode 全功能，pi 极简隔离，oh-my-openagent 并行编排 |
 
-不加载 L2 索引就直接翻找 96 个文件，相当于在图书馆不查书目系统就一本一本翻——效率极低。
+不加载 L2 索引就直接翻找 114 个文件，相当于在图书馆不查书目系统就一本一本翻——效率极低。
 
 **第 3 步——L3 技能**
 
@@ -652,7 +652,7 @@ upstream:                    # 上游参考
 | 1 | **如何知道该加载哪个技能？** | 最可靠的方式是两步定位法。第一步：加载根索引 `@SKILL.md`，使用标签搜索功能定位大类。例如你的问题是"把 GeoJSON 转成 Shapefile"，在根索引中搜索 `#conversion #vector` 即可定位到 `gis/gdal` 和 `gis/geopandas`。第二步：加载 L2 索引确认具体技能，然后加载 L3 技能执行任务。如果标签搜索不生效（部分工具不支持），直接在提示词中描述你的需求，让 AI 推荐应该加载哪个技能。 |
 | 2 | **多个技能同时加载会冲突吗？** | 不会冲突。opengis-skills 的每个技能文件是独立的知识单元，设计上遵循"无副作用"原则——技能之间不存在互相依赖或覆盖关系。你可以安全地同时加载 2-3 个 L3 技能（例如同时加载 `gis/gdal-api` 和 `gis/geopandas`，一个做格式转换一个做矢量分析）。唯一的限制是 Token 预算（见 11.1.1），建议同时加载的技能不超过 3 个。 |
 | 3 | **技能内容过时了怎么办？** | 有三种解决路径，按推荐优先级排列：（1）向 [znlgis/opengis-skills](https://github.com/znlgis/opengis-skills) 提交 Issue，详细说明哪个技能的哪个部分需要更新（附上官方文档链接作为证据），维护者通常会在一周内响应；（2）如果急需使用，可以 Fork 仓库后手动修改 SKILL.md，同时在 Issue 中附上你的修改供维护者参考；（3）短期方案：在 AI 对话中明确告知"请使用 GDAL 3.9 版本的 API"（如果技能基于 3.8 但你用的是 3.9），AI 会在技能知识和你的要求之间取平衡。 |
-| 4 | **为什么有些技能文件超过 1000 行？** | 大型技能文件（如 `gis/gdal-api` 约 1500 行、`ai/opencode` 约 1200 行、`gis/opengis-all` 约 900 行）之所以庞大，是因为它们覆盖的工具本身功能极其丰富。但请注意：**核心使用部分通常在前 500 行**（元数据 + 快速入门 + 常用命令/API），后面的内容按难度递增排列（进阶用法、参数详解、边界情况、性能优化）。实际使用中 80% 的任务在前 500 行内就能找到答案。此外，部分大型技能的详细参数参考放在 `reference/` 子目录中（如果技能有这个子目录），不需要一次性全部加载，按需查阅即可。 |
+| 4 | **单个技能文件有多大？超长内容怎么组织？** | 仓库对主文件设了 **≤500 行的硬约束**（CI 校验），当前最大的三份是 `gis/opengis-utils-for-net`（490 行）、`gis/gdal`（488 行）、`3d/ara3d-sdk`（481 行），最小的约 140 行。当工具本身参数极多时，完整参数表与高级示例会被拆到同目录的 `reference/` 子目录（如 `gis/gdal/reference/vector-tools.md`），主文件只保留高频用法 + 一个指向 reference 的说明。这样做的好处是：AI 加载主文件即可覆盖 80% 的任务，需要细节时再按需读取 reference，不必一次性吃掉整份长文档。 |
 | 5 | **技能适用于哪些 AI 工具？** | opengis-skills 设计为工具无关的**纯文本知识文件**。任何支持 `@文件路径` 语法或能将文件内容注入上下文的 AI 编程工具都可以使用。明确验证过的工具包括：**Claude Code**（原生 skills 支持）、**Cursor**（`.cursorrules` + 手动引用）、**Cline / Roo Code**（`.clinerules` + `@file`）、**VS Code Copilot Chat**（`#file:` 语法）、**OpenCode**（原生 skills 目录配置）、**Cody**（`@file` 命令）、**Continue**（`@docs` 添加本地文档）、**DeepSeek Chat**（手动粘贴或通过工具桥接）。详见第四章的完整集成指南。 |
 | 6 | **如何在不联网的环境使用？** | 完全支持离线使用。步骤：（1）在联网环境中提前 `git clone https://github.com/znlgis/opengis-skills.git` 到本地路径（例如 `D:\skills\opengis-skills` 或 `~/.skills/opengis-skills`）；（2）将整个目录拷贝到离线环境的相同路径，或通过 U 盘/内网传输；（3）在 AI 工具中使用本地绝对路径引用，例如 `@D:/skills/opengis-skills/gis/gdal-api/SKILL.md`。注意：技能文件是静态文本，不涉及任何网络请求——一旦文件在本地，加载和使用完全离线。 |
 | 7 | **技能可以用中文提问吗？** | 完全可以，而且这是设计意图。opengis-skills 的技能文件正文以中文撰写（YAML 元数据中的 `description` 字段按 Anthropic 规范使用英文），面向中文 GIS 开发者。你可以在提示词中使用中文描述需求，AI 会根据技能文件中的中文知识生成中文回复和中文注释的代码。例如："请参考 @gis/gdal-api/SKILL.md，帮我写一个用 GDAL 重投影 GeoTIFF 的 Python 脚本"——完全自然流畅。 |
@@ -847,7 +847,7 @@ upstream:                    # 上游参考
 
 ### 技巧 1：优先加载 L2 分类索引（而非 L1 根索引）
 
-**原理**：L1 根索引（`SKILL.md`）约 700 行 / 10K tokens，包含全部 96 个技能的清单。L2 分类索引（如 `gis/SKILL.md`）约 80-150 行 / 1K-2.5K tokens，只包含该分类下的子技能。如果你已经知道任务属于哪个大类（例如明确是 GIS 问题），直接跳过 L1，加载 L2 索引即可——节省约 8K tokens。
+**原理**：L1 根索引（`SKILL.md`）约 350 行 / 6K tokens，包含全部 114 个技能的清单。L2 分类索引（如 `gis/SKILL.md`）约 55-155 行 / 1K-3K tokens，只包含该分类下的子技能。如果你已经知道任务属于哪个大类（例如明确是 GIS 问题），直接跳过 L1，加载 L2 索引即可——节省约 4K tokens。
 
 **具体操作**：
 
@@ -923,7 +923,7 @@ upstream:                    # 上游参考
 
 ### 技巧 5：大技能（如 gdal-api）只加载需要的子部分
 
-**原理**：大型技能文件（如 `gis/gdal-api` 约 1500 行 / 20K tokens）的结构通常遵循"金字塔"设计——前 500 行是核心内容（快速开始 + 常用 API），后面 1000 行是进阶内容（详细参数 + 边缘情况 + 性能调优）。如果你需要的只是最常用的 3-5 个 API，前 500 行已经足够。
+**原理**：主文件（≤500 行，通常 10-20K tokens）只放核心内容：快速开始 + 常用 API + 一个端到端工作流；完整参数表与边缘情况在 `reference/` 里。如果你需要的只是最常用的 3-5 个 API，主文件就够了，不必展开 reference。
 
 **具体操作方式**（取决于工具）：
 
@@ -933,7 +933,7 @@ upstream:                    # 上游参考
 | Cursor | 使用 `@file:start-end` 语法（如果支持），或手动指定章节名 |
 | 其他工具 | 手动复制前 500 行内容到对话框，加说明"以下内容来自 gdal-api 技能的核心部分" |
 
-**适用此技巧的大技能**：`gis/gdal-api`（~1500 行）、`ai/opencode`（~1200 行）、`gis/opengis-all`（~900 行）、`csharp/sqlsugar`（~800 行）。
+**适用此技巧的技能**：带 `reference/` 子目录的 20 个技能，例如 `gis/gdal`（主文件 488 行 + 3 个 reference）、`gis/gdal-api`（351 行 + 2 个）、`gis/geopipe-agent`（290 行 + 6 个）。
 
 ### 技巧 6：将技能设置为工具的全局配置而非每次对话都加载
 
@@ -953,13 +953,13 @@ upstream:                    # 上游参考
 
 ### 技巧 7：使用 reference/ 子目录的文件代替全量主文件
 
-**原理**：部分大型技能在目录下包含了 `reference/` 子目录，其中按主题拆分了更小的参考文件。例如 `gis/gdal-api/reference/` 下可能有 `warp-reference.md`、`translate-reference.md`、`ogr-reference.md` 等，每个文件只覆盖一个特定主题。如果你只需要 GDAL Warp 的详细参数，加载 `warp-reference.md`（可能只有 200 行 / 3K tokens）比加载完整的 gdal-api（1500 行 / 20K tokens）节省 85%。
+**原理**：20 个参数密集的技能在目录下带 `reference/` 子目录，按主题拆成更小的参考文件——主 SKILL.md 只保留高频用法，完整参数表、边界情况与高级示例放在 reference 里。例如 `gis/gdal/reference/` 下有 `vector-tools.md`、`raster-tools.md`、`data-formats.md`；`gis/gdal-api/reference/` 下是 `vector-api.md`、`raster-api.md`。只查某个主题时，加载对应 reference（通常 100-300 行）比整篇重读更省上下文。
 
 **使用方式**：
 
 ```
-不是: @gis/gdal-api/SKILL.md （全部 1500 行）
-而是: @gis/gdal-api/reference/warp-reference.md （仅 Warp 的 200 行）
+不是: @gis/gdal/SKILL.md （主文件 488 行，含全部章节）
+而是: @gis/gdal/reference/vector-tools.md （只看矢量工具的完整参数表）
 
 前提: 你已经在 L2 索引或之前的会话中了解 gdal-api 的概貌和常用命令
 误区: 如果没有概貌知识直接跳到 reference/，可能缺乏上下文
