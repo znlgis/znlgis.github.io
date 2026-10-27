@@ -10,3 +10,4 @@ title: GIS 教程
 - [GIS 技术教程](https://znlgis.github.io/gis/tutorial/)
 - [GIS 业务全景合集（BPC）](https://znlgis.github.io/gis/bpc/)
 - [房产测绘业务全景教程](https://znlgis.github.io/gis/bpc/fcch/)
+- [CAD 图纸翻模三维模型全景教程](https://znlgis.github.io/gis/bpc/cadfm/)

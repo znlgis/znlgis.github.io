@@ -90,6 +90,9 @@
     - title: 房产测绘业务全景
       icon: 📁
       url: /gis/bpc/fcch/
+    - title: CAD 图纸翻模三维模型全景
+      icon: 📁
+      url: /gis/bpc/cadfm/
 
 - title: 博客翻译
   icon: 📝

@@ -1,6 +1,6 @@
 # znlgis 博客
 
-GIS 开发与技术分享博客，涵盖 GIS、CAD、C#、3D、AI 等领域，共 **88 个教程系列、1211 篇文章**。
+GIS 开发与技术分享博客，涵盖 GIS、CAD、C#、3D、AI 等领域，共 **89 个教程系列、1230 篇文章**。
 
 在线访问：[https://znlgis.github.io](https://znlgis.github.io)
 
@@ -10,7 +10,7 @@ GIS 开发与技术分享博客，涵盖 GIS、CAD、C#、3D、AI 等领域，�
 |------|--------|--------|----------|
 | 🌍 GIS 教程 | 21 | 341 | GDAL · GeoServer · PostGIS · QGIS · GeoLibre · OpenLayers · CesiumJS |
 | 📖 GIS 基础 | 4 | 12 | 数据格式 · 地图服务 · 开发环境 · 开发技巧 |
-| 🏘️ GIS 业务全景 | 1 | 28 | 房产测绘业务全景 |
+| 🏘️ GIS 业务全景 | 2 | 47 | 房产测绘业务全景 · CAD 图纸翻模三维模型全景 |
 | 📝 博客翻译 | 1 | 31 | Lin.ear th.inking |
 | 📐 CAD 开发 | 19 | 258 | FreeCAD · OCCT · KiCad · OpenSCAD · CadQuery · Xbim |
 | 🧊 3D 开发 | 5 | 62 | SuperSplat · Ara3D-SDK · Photo-Sphere-Viewer · Elements |
