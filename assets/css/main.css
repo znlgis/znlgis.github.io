@@ -1326,6 +1326,121 @@ img {
     padding-bottom: 0.5rem;
 }
 
+/* ===== 11b. 索引页（.is-index）=====
+   103 个分类索引页的正文结构各不相同（29 种组合），但都由「标题 / 简介 /
+   章节链接列表 / 共 N 章」这几块拼成。这里只按「main 的直接子元素」作用域
+   统一外框，不改写内容：章节列表渲染成卡片，学习路线保持普通有序列表。  */
+.is-index main > h1 {
+    margin-bottom: 0.4rem;
+}
+
+/* 导语：H1 之后的第一个段落 */
+.is-index main > h1 + p {
+    color: var(--text-secondary);
+    font-size: var(--fs-md);
+    margin-top: 0.25rem;
+    margin-bottom: 1rem;
+}
+
+/* 索引页的分节标题：去掉 H2 下划线，改用左侧色条，避免与正文 H2 混淆 */
+.is-index main > h2 {
+    border-bottom: none;
+    padding: 0 0 0 0.7rem;
+    border-left: 3px solid var(--accent);
+    font-size: var(--fs-lg);
+    margin-top: 2.25rem;
+}
+
+/* 章节清单：直接子级 UL → 卡片列表 */
+.is-index main > ul {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0 1.25rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 0.5rem;
+    counter-reset: index-item;
+}
+
+.is-index main > ul > li {
+    margin: 0;
+}
+
+.is-index main > ul > li > a {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    padding: 0.6rem 0.85rem;
+    border: 1px solid var(--border-muted);
+    border-radius: var(--radius-sm);
+    background: var(--surface-raised);
+    color: var(--text-primary);
+    font-size: var(--fs-base);
+    line-height: 1.5;
+    transition: border-color var(--transition), background var(--transition),
+        color var(--transition), transform var(--transition);
+}
+
+.is-index main > ul > li > a::before {
+    counter-increment: index-item;
+    content: counter(index-item, decimal-leading-zero);
+    flex-shrink: 0;
+    font-size: var(--fs-xs);
+    font-variant-numeric: tabular-nums;
+    color: var(--text-muted);
+}
+
+.is-index main > ul > li > a:hover {
+    border-color: var(--accent);
+    background: var(--accent-softer);
+    color: var(--accent);
+    text-decoration: none;
+    transform: translateX(2px);
+}
+
+/* 学习路线这类有序列表保持普通样式，只收紧间距 */
+.is-index main > ol {
+    margin: 0.75rem 0 1.25rem;
+    padding-left: 1.4rem;
+}
+
+.is-index main > ol > li {
+    margin: 0.35rem 0;
+    color: var(--text-secondary);
+}
+
+/* 结尾的「共 N 章」等短句降级为次要信息 */
+.is-index main > p:last-child,
+.is-index main > p.chapter-count {
+    margin-top: 1.25rem;
+    color: var(--text-muted);
+    font-size: var(--fs-sm);
+}
+
+/* 索引页相邻分隔线不叠成双线；统一上下间距 */
+.is-index main > hr {
+    margin: 1.75rem 0;
+}
+
+.is-index main > hr + hr {
+    display: none;
+}
+
+/* 索引页表格与正文表格同样宽，但字号略小 */
+.is-index main > .table-wrapper {
+    margin: 1rem 0 1.5rem;
+}
+
+.is-index main > .table-wrapper table {
+    font-size: var(--fs-sm);
+}
+
+@media (max-width: 600px) {
+    .is-index main > ul {
+        grid-template-columns: 1fr;
+    }
+}
+
 /* ===== 12. 响应式与动效偏好 ===== */
 @media (max-width: 900px) {
     .sidebar {

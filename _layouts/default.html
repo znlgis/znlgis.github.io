@@ -31,7 +31,20 @@
     </script>
     <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
 </head>
-<body>
+{%- comment -%}
+    页面类型 class：首页 is-home，目录索引页 is-index，其余（章节页、单页）is-page。
+    本站 permalink 为 pretty，所有页面 URL 都以 "/" 结尾，因此索引页不能只看 URL，
+    还要看源文件名（index.md / index.html），否则章节页会被误判成索引页。
+{%- endcomment -%}
+{%- assign page_basename = page.path | default: '' | split: '/' | last -%}
+{%- if page.url == '/' or page.url == '' -%}
+    {%- assign body_class = 'is-page is-home' -%}
+{%- elsif page_basename == 'index.md' or page_basename == 'index.html' -%}
+    {%- assign body_class = 'is-index' -%}
+{%- else -%}
+    {%- assign body_class = 'is-page' -%}
+{%- endif -%}
+<body class="{{ body_class }}">
     <a href="#main-content" class="skip-link">跳转到主要内容</a>
 
     <div class="page-wrapper">
