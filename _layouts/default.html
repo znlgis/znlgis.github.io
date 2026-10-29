@@ -72,10 +72,10 @@
                     <p class="site-title"><a href="{{ '/' | relative_url }}">{{ site.title }}</a></p>
                     <p>{{ site.description }}</p>
 
-                    {%- assign nav_pages = '/:/首页,/about/:关于' | split: ',' -%}
+                    {%- assign nav_pages = '/|首页,/about/|关于' | split: ',' -%}
                     <nav aria-label="站点导航">
                         {%- for entry in nav_pages -%}
-                            {%- assign parts = entry | split: ':' -%}
+                            {%- assign parts = entry | split: '|' -%}
                             {%- assign np_url = parts[0] -%}
                             {%- assign np_title = parts[1] -%}
                             {%- assign np_full = np_url | append: '/' -%}
