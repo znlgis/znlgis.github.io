@@ -225,8 +225,8 @@ public class SelectLargeElements : SimpleCommand
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/3d/ara3d-sdk/第08章-BIM与IFC数据处理/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/3d/ara3d-sdk/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/3d/ara3d-sdk/第10章-二次开发实战构建测试与发布/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/3d/ara3d-sdk/第08章-BIM与IFC数据处理/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/3d/ara3d-sdk/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/3d/ara3d-sdk/第10章-二次开发实战构建测试与发布/" class="chapter-nav__next">下一章 →</a>
 </div>

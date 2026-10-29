@@ -291,10 +291,10 @@ App.vue 通过 `psvRef` 引用 PsvContainer 实例，调用其暴露的 `gotoMar
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/demos/map-360-demo/第03章-项目结构解析/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/demos/map-360-demo/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/demos/map-360-demo/第05章-全景与地图双向联动机制/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/demos/map-360-demo/第03章-项目结构解析/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/demos/map-360-demo/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/demos/map-360-demo/第05章-全景与地图双向联动机制/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

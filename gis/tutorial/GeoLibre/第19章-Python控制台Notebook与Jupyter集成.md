@@ -971,3 +971,11 @@ wheel **打包了 GeoLibre 的 web 构建**。import 时包启动一个小的 lo
 
 **练习 6（R 与 Shiny）**
 用 R 包做一个含 `sf` 图层的地图，`save_project` 后在 GeoLibre 网页版打开。再写一个最小 Shiny 应用，用 `geolibre_proxy` 在按钮点击时改视图，并读出 `input$<outputId>_project` 里的中心坐标。
+
+---
+
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/gis/tutorial/GeoLibre/第18章-AI助手MCP与智能体技能/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/tutorial/GeoLibre/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/gis/tutorial/GeoLibre/第20章-制图输出故事地图与分享嵌入/" class="chapter-nav__next">下一章 →</a>
+</div>

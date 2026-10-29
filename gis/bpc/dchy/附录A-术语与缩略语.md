@@ -68,4 +68,8 @@ title: 附录A 术语与缩略语
 
 ---
 
-**上一篇**：[第17章 结论与行动建议](https://znlgis.github.io/gis/bpc/dchy/第17章-结论与行动建议/)　|　**返回目录**：[多测合一业务全景教程](https://znlgis.github.io/gis/bpc/dchy/)　|　**下一篇**：[附录B 主要标准规范清单](https://znlgis.github.io/gis/bpc/dchy/附录B-主要标准规范清单/)
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/gis/bpc/dchy/第17章-结论与行动建议/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/bpc/dchy/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/gis/bpc/dchy/附录B-主要标准规范清单/" class="chapter-nav__next">下一章 →</a>
+</div>

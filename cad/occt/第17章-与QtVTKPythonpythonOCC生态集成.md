@@ -168,10 +168,10 @@ OCCT 的生态很丰富，选择正确组合可以让团队更快达成目标。
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/cad/occt/第16章-性能优化并发与最佳实践/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/cad/occt/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/cad/occt/第18章-二次开发实战与综合案例/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/cad/occt/第16章-性能优化并发与最佳实践/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/occt/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/cad/occt/第18章-二次开发实战与综合案例/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

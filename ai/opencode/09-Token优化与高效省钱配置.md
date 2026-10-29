@@ -287,10 +287,10 @@ OpenCode 会在发送前压缩过大图片，避免巨大的 base64 负载吃 To
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/ai/opencode/08-工具权限与MCP扩展/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/ai/opencode/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/ai/opencode/10-最佳实践完整配置模板与排障/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/ai/opencode/08-工具权限与MCP扩展/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/ai/opencode/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/ai/opencode/10-最佳实践完整配置模板与排障/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

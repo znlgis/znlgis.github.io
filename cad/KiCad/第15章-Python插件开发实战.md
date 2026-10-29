@@ -566,10 +566,10 @@ board.save()
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/cad/KiCad/第14章-Python脚本开发基础/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/cad/KiCad/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/cad/KiCad/第16章-源码架构与编译环境/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/cad/KiCad/第14章-Python脚本开发基础/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/KiCad/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/cad/KiCad/第16章-源码架构与编译环境/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

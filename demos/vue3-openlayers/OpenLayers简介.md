@@ -41,10 +41,10 @@ npm install vue3-openlayers
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/demos/vue3-openlayers/VUE3基础环境搭建/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/demos/vue3-openlayers/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/demos/vue3-openlayers/vue3-openlayers基础知识简介/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/demos/vue3-openlayers/VUE3基础环境搭建/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/demos/vue3-openlayers/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/demos/vue3-openlayers/vue3-openlayers基础知识简介/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

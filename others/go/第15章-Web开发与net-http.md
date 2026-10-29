@@ -302,10 +302,10 @@ func main() {
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/others/go/第14章-内存管理与运行时/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/others/go/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/others/go/第16章-数据库编程/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/others/go/第14章-内存管理与运行时/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/others/go/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/others/go/第16章-数据库编程/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

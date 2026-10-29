@@ -493,5 +493,8 @@ GB 5749-2022《生活饮用水卫生标准》是水质管理的强制性依据�
 
 ---
 
-**上一章**：[第03章 水务业务全景与GIS应用地图](https://znlgis.github.io/gis/bpc/shuiwu/第03章-水务业务全景与GIS应用地图/)　|　**返回目录**：[GIS 在水务业务中的应用全景教程](https://znlgis.github.io/gis/bpc/shuiwu/)　|　**下一章**：[第05章 排水与防涝业务中的GIS应用](https://znlgis.github.io/gis/bpc/shuiwu/第05章-排水与防涝业务中的GIS应用/)
-
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/gis/bpc/shuiwu/第03章-水务业务全景与GIS应用地图/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/bpc/shuiwu/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/gis/bpc/shuiwu/第05章-排水与防涝业务中的GIS应用/" class="chapter-nav__next">下一章 →</a>
+</div>

@@ -588,10 +588,10 @@ public class CompleteDocumentExample
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/csharp/npoi/第13章-Word图片与多媒体/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/csharp/npoi/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/csharp/npoi/第15章-PowerPoint演示文稿操作/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/csharp/npoi/第13章-Word图片与多媒体/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/csharp/npoi/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/csharp/npoi/第15章-PowerPoint演示文稿操作/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

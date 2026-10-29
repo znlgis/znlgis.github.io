@@ -215,8 +215,8 @@ global using Ara3D.Utils;
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/3d/ara3d-sdk/第01章-Ara3D-SDK全景概览与学习路线/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/3d/ara3d-sdk/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/3d/ara3d-sdk/第03章-核心基础库Core详解/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/3d/ara3d-sdk/第01章-Ara3D-SDK全景概览与学习路线/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/3d/ara3d-sdk/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/3d/ara3d-sdk/第03章-核心基础库Core详解/" class="chapter-nav__next">下一章 →</a>
 </div>

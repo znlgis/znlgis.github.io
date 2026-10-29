@@ -350,10 +350,10 @@ console.log('prompt settled:', result)
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/ai/deepseek-harness/第06章-Python-SDK编程接入/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/ai/deepseek-harness/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/ai/deepseek-harness/第08章-Cordis插件范式入门/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/ai/deepseek-harness/第06章-Python-SDK编程接入/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/ai/deepseek-harness/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/ai/deepseek-harness/第08章-Cordis插件范式入门/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

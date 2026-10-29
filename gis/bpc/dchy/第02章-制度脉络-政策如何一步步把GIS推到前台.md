@@ -175,4 +175,8 @@ title: 第02章 制度脉络：政策如何一步步把 GIS 推到前台
 
 ---
 
-**上一章**：[第01章 多测合一：一次被低估的空间数据改革](https://znlgis.github.io/gis/bpc/dchy/第01章-多测合一-一次被低估的空间数据改革/)　|　**返回目录**：[多测合一业务全景教程](https://znlgis.github.io/gis/bpc/dchy/)　|　**下一章**：[第03章 业务解剖：多测合一到底要解决哪些测绘问题](https://znlgis.github.io/gis/bpc/dchy/第03章-业务解剖-多测合一到底要解决哪些测绘问题/)
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/gis/bpc/dchy/第01章-多测合一-一次被低估的空间数据改革/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/bpc/dchy/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/gis/bpc/dchy/第03章-业务解剖-多测合一到底要解决哪些测绘问题/" class="chapter-nav__next">下一章 →</a>
+</div>

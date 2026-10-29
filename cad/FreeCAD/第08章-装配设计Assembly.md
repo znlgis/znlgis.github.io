@@ -220,10 +220,10 @@ Assembly 工作台对外部零件采用链接引用。如果修改了外部零�
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/cad/FreeCAD/第07章-参数化表达式与Spreadsheet/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/cad/FreeCAD/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/cad/FreeCAD/第09章-工程图TechDraw/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/cad/FreeCAD/第07章-参数化表达式与Spreadsheet/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/FreeCAD/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/cad/FreeCAD/第09章-工程图TechDraw/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

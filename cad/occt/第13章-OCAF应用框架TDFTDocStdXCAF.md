@@ -164,10 +164,10 @@ OCAF 是 OCCT 应用从“算法库”升级到“CAD 应用”的关键。下�
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/cad/occt/第12章-数据交换STEPIGESSTLglTFOBJ/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/cad/occt/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/cad/occt/第14章-Draw测试框架与TCL扩展/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/cad/occt/第12章-数据交换STEPIGESSTLglTFOBJ/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/occt/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/cad/occt/第14章-Draw测试框架与TCL扩展/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

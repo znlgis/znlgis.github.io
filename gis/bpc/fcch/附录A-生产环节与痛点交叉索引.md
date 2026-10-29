@@ -43,4 +43,8 @@ title: 附录A 生产环节与痛点交叉索引
 
 ---
 
-**上一章**：[第23章 研究局限与后续方向](https://znlgis.github.io/gis/bpc/fcch/第23章-研究局限与后续方向/)　|　**返回目录**：[房产测绘业务全景教程](https://znlgis.github.io/gis/bpc/fcch/)　|　**下一章**：[附录B 术语与缩略语](https://znlgis.github.io/gis/bpc/fcch/附录B-术语与缩略语/)
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/gis/bpc/fcch/第23章-研究局限与后续方向/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/bpc/fcch/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/gis/bpc/fcch/附录B-术语与缩略语/" class="chapter-nav__next">下一章 →</a>
+</div>

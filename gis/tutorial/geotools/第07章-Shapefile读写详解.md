@@ -1075,10 +1075,10 @@ public class ParallelShapefileProcessor {
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/gis/tutorial/geotools/第06章-数据源访问与管理/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/gis/tutorial/geotools/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/gis/tutorial/geotools/第08章-GeoJSON处理实战/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/gis/tutorial/geotools/第06章-数据源访问与管理/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/tutorial/geotools/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/gis/tutorial/geotools/第08章-GeoJSON处理实战/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

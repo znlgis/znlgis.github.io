@@ -289,10 +289,10 @@ for n := range square(gen(2, 3, 4)) {
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/others/go/第07章-错误处理机制/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/others/go/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/others/go/第09章-并发进阶-sync包与并发控制/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/others/go/第07章-错误处理机制/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/others/go/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/others/go/第09章-并发进阶-sync包与并发控制/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

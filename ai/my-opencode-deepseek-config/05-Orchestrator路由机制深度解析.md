@@ -844,10 +844,10 @@ Orchestrator 的路由机制是整个 `my-opencode-deepseek-config` 配置中设
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/ai/my-opencode-deepseek-config/04-多Agent体系完全解析/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/ai/my-opencode-deepseek-config/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/ai/my-opencode-deepseek-config/06-技能体系与插件生态/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/ai/my-opencode-deepseek-config/04-多Agent体系完全解析/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/ai/my-opencode-deepseek-config/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/ai/my-opencode-deepseek-config/06-技能体系与插件生态/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

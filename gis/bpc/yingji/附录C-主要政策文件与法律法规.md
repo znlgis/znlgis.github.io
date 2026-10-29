@@ -36,4 +36,8 @@ title: 附录C 主要政策文件与法律法规
 
 ---
 
-**上一章**：[附录B 主要标准规范](https://znlgis.github.io/gis/bpc/yingji/附录B-主要标准规范/)　|　**返回目录**：[应急管理 GIS 应用全景教程](https://znlgis.github.io/gis/bpc/yingji/)　|　**下一章**：[附录D 缩略语对照](https://znlgis.github.io/gis/bpc/yingji/附录D-缩略语对照/)
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/gis/bpc/yingji/附录B-主要标准规范/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/bpc/yingji/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/gis/bpc/yingji/附录D-缩略语对照/" class="chapter-nav__next">下一章 →</a>
+</div>

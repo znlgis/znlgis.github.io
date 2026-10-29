@@ -208,10 +208,10 @@ TDD 防止未验证实现，系统化调试防止猜测式修复，完成前验�
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/ai/superpowers-zh/04-需求澄清方案设计与计划编写/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/ai/superpowers-zh/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/ai/superpowers-zh/06-代码审查反馈处理与分支收尾/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/ai/superpowers-zh/04-需求澄清方案设计与计划编写/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/ai/superpowers-zh/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/ai/superpowers-zh/06-代码审查反馈处理与分支收尾/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

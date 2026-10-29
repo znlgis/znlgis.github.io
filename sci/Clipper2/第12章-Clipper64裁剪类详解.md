@@ -706,4 +706,8 @@ clipper.Execute(ClipType.Union, FillRule.NonZero, union);
 
 ---
 
-[上一章：OutRec与OutPt输出结构](https://znlgis.github.io/sci/Clipper2/第11章-OutRec与OutPt输出结构/) | [返回目录](https://znlgis.github.io/sci/Clipper2/) | [下一章：ClipperD浮点裁剪类](https://znlgis.github.io/sci/Clipper2/第13章-ClipperD浮点裁剪类/)
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/sci/Clipper2/第11章-OutRec与OutPt输出结构/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/sci/Clipper2/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/sci/Clipper2/第13章-ClipperD浮点裁剪类/" class="chapter-nav__next">下一章 →</a>
+</div>

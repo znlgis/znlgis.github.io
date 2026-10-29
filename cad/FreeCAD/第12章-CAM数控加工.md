@@ -100,10 +100,10 @@ CAM 教程只能说明软件流程，不能替代机床培训。真实加工必�
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/cad/FreeCAD/第11章-SurfaceMesh与逆向工程/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/cad/FreeCAD/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/cad/FreeCAD/第13章-FEM仿真分析/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/cad/FreeCAD/第11章-SurfaceMesh与逆向工程/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/FreeCAD/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/cad/FreeCAD/第13章-FEM仿真分析/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

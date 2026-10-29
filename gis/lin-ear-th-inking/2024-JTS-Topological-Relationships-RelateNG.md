@@ -138,10 +138,10 @@ RelateNG 代表了 JTS 空间关系计算的重大进步。它提供了更高效
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/2025-Fast-Detection-Narrow-Polygons/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/2024-RelateNG-Performance/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/2025-Fast-Detection-Narrow-Polygons/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/2024-RelateNG-Performance/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

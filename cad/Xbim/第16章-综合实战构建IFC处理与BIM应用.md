@@ -340,10 +340,9 @@ Xbim 不只是"读 IFC 的库"，而是 .NET 生态中最完整的 Open BIM 工�
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/cad/Xbim/第15章-IDS模型校验BCF协同与生态扩展/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/cad/Xbim/" style="text-decoration: none;">目录</a>
-  <span></span>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/cad/Xbim/第15章-IDS模型校验BCF协同与生态扩展/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/Xbim/" class="chapter-nav__dir">目录</a>
 </div>
 
 <!-- /NAVIGATION -->

@@ -104,10 +104,10 @@ Draft 阵列可快速生成重复对象，如柱网、栏杆、孔位、构件�
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/cad/FreeCAD/第09章-工程图TechDraw/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/cad/FreeCAD/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/cad/FreeCAD/第11章-SurfaceMesh与逆向工程/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/cad/FreeCAD/第09章-工程图TechDraw/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/FreeCAD/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/cad/FreeCAD/第11章-SurfaceMesh与逆向工程/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

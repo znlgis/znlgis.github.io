@@ -162,10 +162,10 @@ CGO_ENABLED=0 GOOS=linux GOARCH=arm64 go build -tags wayland .
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/others/robotgo/第12章-OpenCV图像识别-gcv/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/others/robotgo/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/others/robotgo/第14章-综合实战项目/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/others/robotgo/第12章-OpenCV图像识别-gcv/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/others/robotgo/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/others/robotgo/第14章-综合实战项目/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

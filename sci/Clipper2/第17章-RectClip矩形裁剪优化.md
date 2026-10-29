@@ -574,4 +574,8 @@ RectClip 提供了优化的矩形裁剪：
 
 ---
 
-[上一章：ClipperOffset偏移类详解](https://znlgis.github.io/sci/Clipper2/第16章-ClipperOffset偏移类详解/) | [返回目录](https://znlgis.github.io/sci/Clipper2/) | [下一章：Minkowski和与差](https://znlgis.github.io/sci/Clipper2/第18章-Minkowski和与差/)
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/sci/Clipper2/第16章-ClipperOffset偏移类详解/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/sci/Clipper2/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/sci/Clipper2/第18章-Minkowski和与差/" class="chapter-nav__next">下一章 →</a>
+</div>

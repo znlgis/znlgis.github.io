@@ -367,10 +367,10 @@ i18n/en/<id>.game.json       → 随条目加载 → mergeLocalized 覆盖详情
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/others/CHAGS/第05章-Vue应用外壳详解/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/others/CHAGS/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/others/CHAGS/第07章-玩法模板库详解/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/others/CHAGS/第05章-Vue应用外壳详解/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/others/CHAGS/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/others/CHAGS/第07章-玩法模板库详解/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

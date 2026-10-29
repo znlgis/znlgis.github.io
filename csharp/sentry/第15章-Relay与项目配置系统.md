@@ -1514,10 +1514,10 @@ relay.project_configs.post_v3.pending      # v3 端点标记为 pending 的配�
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/csharp/sentry/第14章-REST-API开发指南/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/csharp/sentry/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/csharp/sentry/第16章-前端架构与组件体系/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/csharp/sentry/第14章-REST-API开发指南/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/csharp/sentry/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/csharp/sentry/第16章-前端架构与组件体系/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

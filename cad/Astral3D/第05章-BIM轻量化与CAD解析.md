@@ -877,10 +877,10 @@ class PropertyEditor {
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/cad/Astral3D/第04章-场景编辑与模型管理/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/cad/Astral3D/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/cad/Astral3D/第06章-粒子系统与天气系统/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/cad/Astral3D/第04章-场景编辑与模型管理/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/Astral3D/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/cad/Astral3D/第06章-粒子系统与天气系统/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

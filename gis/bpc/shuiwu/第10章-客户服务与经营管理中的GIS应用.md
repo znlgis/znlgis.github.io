@@ -236,5 +236,8 @@ title: 第10章 客户服务与经营管理中的GIS应用
 
 ---
 
-**上一章**：[第09章 工程建设与资产管理中的GIS应用](https://znlgis.github.io/gis/bpc/shuiwu/第09章-工程建设与资产管理中的GIS应用/)　|　**返回目录**：[GIS 在水务业务中的应用全景教程](https://znlgis.github.io/gis/bpc/shuiwu/)　|　**下一章**：[第11章 技术架构与数据治理](https://znlgis.github.io/gis/bpc/shuiwu/第11章-技术架构与数据治理/)
-
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/gis/bpc/shuiwu/第09章-工程建设与资产管理中的GIS应用/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/bpc/shuiwu/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/gis/bpc/shuiwu/第11章-技术架构与数据治理/" class="chapter-nav__next">下一章 →</a>
+</div>

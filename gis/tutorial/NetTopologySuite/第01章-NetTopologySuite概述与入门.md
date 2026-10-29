@@ -627,10 +627,9 @@ Console.WriteLine($"几何数量: {multiPolygon.NumGeometries}");
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <span></span>
-  <a href="https://znlgis.github.io/gis/tutorial/NetTopologySuite/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/gis/tutorial/NetTopologySuite/第02章-环境配置与项目创建/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/gis/tutorial/NetTopologySuite/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/gis/tutorial/NetTopologySuite/第02章-环境配置与项目创建/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

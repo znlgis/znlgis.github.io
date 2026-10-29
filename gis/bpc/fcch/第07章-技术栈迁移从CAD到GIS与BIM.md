@@ -97,4 +97,8 @@ BIM与房产测绘的结合点在于构件语义。BIM模型中的墙、柱、�
 
 ---
 
-**上一章**：[第06章 行业格局与市场结构](https://znlgis.github.io/gis/bpc/fcch/第06章-行业格局与市场结构/)　|　**返回目录**：[房产测绘业务全景教程](https://znlgis.github.io/gis/bpc/fcch/)　|　**下一章**：[第08章 制度改革与政策环境](https://znlgis.github.io/gis/bpc/fcch/第08章-制度改革与政策环境/)
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/gis/bpc/fcch/第06章-行业格局与市场结构/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/bpc/fcch/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/gis/bpc/fcch/第08章-制度改革与政策环境/" class="chapter-nav__next">下一章 →</a>
+</div>

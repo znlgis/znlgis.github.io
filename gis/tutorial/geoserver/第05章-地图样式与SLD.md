@@ -982,10 +982,10 @@ GeoServer支持CSS样式语言，提供了更简洁的样式定义方式：
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/gis/tutorial/geoserver/第04章-OGC标准服务/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/gis/tutorial/geoserver/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/gis/tutorial/geoserver/第06章-安全管理与访问控制/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/gis/tutorial/geoserver/第04章-OGC标准服务/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/tutorial/geoserver/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/gis/tutorial/geoserver/第06章-安全管理与访问控制/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

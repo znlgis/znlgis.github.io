@@ -3,39 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="color-scheme" content="light dark">
     <title>{% if page.title %}{{ page.title }} | {% endif %}{{ site.title }}</title>
     <meta name="keywords" content="{% if page.keywords %}{{ page.keywords }}{% else %}{{ site.keywords }}{% endif %}">
-    
+
     {% seo title=false %}
     <link rel="icon" href="{{ '/assets/logo.png' | relative_url }}">
     <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ '/feed.xml' | relative_url }}">
-    
+
     <!-- 不蒜子访客统计 v3.6.9（官方 CDN：https://cdn.busuanzi.cc） -->
     <script defer src="https://cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js"></script>
-    
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
     <script>
-        (function(){
-            var t=localStorage.getItem('theme');
-            if(!t)t=window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';
-            document.documentElement.setAttribute('data-theme',t);
+        /* 在首帧前定主题，避免深色用户看到白闪 */
+        (function () {
+            try {
+                var t = localStorage.getItem('theme');
+                if (!t) t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                document.documentElement.setAttribute('data-theme', t);
+            } catch (e) {
+                document.documentElement.setAttribute('data-theme', 'light');
+            }
         })();
     </script>
     <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
 </head>
-<body>
+{%- comment -%}
+    页面类型 class：首页 is-home，目录索引页 is-index，其余（章节页、单页）is-page。
+    本站 permalink 为 pretty，所有页面 URL 都以 "/" 结尾，因此索引页不能只看 URL，
+    还要看源文件名（index.md / index.html），否则章节页会被误判成索引页。
+{%- endcomment -%}
+{%- assign page_basename = page.path | default: '' | split: '/' | last -%}
+{%- if page.url == '/' or page.url == '' -%}
+    {%- assign body_class = 'is-page is-home' -%}
+{%- elsif page_basename == 'index.md' or page_basename == 'index.html' -%}
+    {%- assign body_class = 'is-index' -%}
+{%- else -%}
+    {%- assign body_class = 'is-page' -%}
+{%- endif -%}
+<body class="{{ body_class }}">
     <a href="#main-content" class="skip-link">跳转到主要内容</a>
+
     <div class="page-wrapper">
         <!-- 左侧目录树 -->
-        <aside class="sidebar" id="sidebar" role="navigation" aria-label="教程目录导航">
+        <aside class="sidebar" id="sidebar" role="complementary" aria-label="教程目录导航">
             <div class="sidebar-header">
-                <h2>📚 教程目录</h2>
+                <h2>教程目录</h2>
             </div>
+
             <div class="sidebar-search">
-                <form class="sidebar-search-form" onsubmit="return false">
-                    <input type="text" id="searchInput" placeholder="搜索教程..." autocomplete="off"
+                <form class="sidebar-search-form" role="search" onsubmit="return false">
+                    <input type="text" id="searchInput" placeholder="搜索教程…" autocomplete="off"
                            aria-label="搜索教程"
                            aria-controls="searchResults"
                            aria-autocomplete="list"
@@ -43,52 +64,91 @@
                 </form>
                 <div class="search-results" id="searchResults" role="listbox" aria-label="搜索结果"></div>
             </div>
+
             {% include sidebar.html %}
+
             <div class="sidebar-toc" id="sidebarToc">
                 <div class="sidebar-toc-header">
-                    <h3>📑 本页目录</h3>
+                    <h3>本页目录</h3>
                 </div>
                 <nav class="sidebar-toc-list" id="tocList" aria-label="文章目录导航"></nav>
             </div>
         </aside>
-        
-        <!-- 遮罩层 -->
+
+        <!-- 移动端遮罩层 -->
         <div class="sidebar-overlay" id="sidebarOverlay"></div>
-        
+
         <!-- 主内容区域 -->
         <div class="content-wrapper">
             <div class="content-inner">
                 <header>
                     <p class="site-title"><a href="{{ '/' | relative_url }}">{{ site.title }}</a></p>
                     <p>{{ site.description }}</p>
-                    <nav>
-                        <a href="{{ '/' | relative_url }}">首页</a>
-                        <a href="{{ '/about' | relative_url }}">关于</a>
+
+                    {%- assign nav_pages = '/|首页,/about/|关于' | split: ',' -%}
+                    <nav aria-label="站点导航">
+                        {%- for entry in nav_pages -%}
+                            {%- assign parts = entry | split: '|' -%}
+                            {%- assign np_url = parts[0] -%}
+                            {%- assign np_title = parts[1] -%}
+                            {%- assign np_full = np_url | append: '/' -%}
+                            <a href="{{ np_url | relative_url }}"
+                               {% if page.url == np_full or page.url == np_url %}aria-current="page"{% endif %}>{{ np_title }}</a>
+                        {%- endfor -%}
                         <a href="https://space.bilibili.com/161342702" target="_blank" rel="noopener noreferrer">B站</a>
                         <a href="https://github.com/znlgis" target="_blank" rel="noopener noreferrer">GitHub</a>
                     </nav>
                 </header>
-                    <main id="main-content" role="main">
-                    {% assign crumbs = page.url | remove: '/index.html' | split: '/' %}
-                    {% if crumbs.size > 1 %}
+
+                <main id="main-content" role="main">
+                    {%- assign crumbs = page.url | remove: '/index.html' | remove_first: '/' | split: '/' -%}
+                    {%- if crumbs.size > 1 -%}
+                    {%- assign top_titles = 'gis|GIS 教程,cad|CAD 教程,csharp|C# 教程,ai|AI 教程,iot|IoT 物联网,3d|3D 开发,others|其他教程,sci|源码解读,demos|演示项目' | split: ',' -%}
+                    {%- assign top_seg = crumbs[0] -%}
+                    {%- assign top_title = '' -%}
+                    {%- for pair in top_titles -%}
+                        {%- assign parts = pair | split: '|' -%}
+                        {%- if parts[0] == top_seg -%}{%- assign top_title = parts[1] -%}{%- endif -%}
+                    {%- endfor -%}
+                    {%- assign parent_path = '' -%}
+                    {%- for crumb in crumbs -%}
+                        {%- unless forloop.last -%}{%- assign parent_path = parent_path | append: '/' | append: crumb -%}{%- endunless -%}
+                    {%- endfor -%}
+                    {%- assign series_parent = parent_path | append: '/' -%}
+                    {%- assign series_title = '' -%}
+                    {%- assign series_url = '' -%}
+                    {%- for section in site.data.navigation -%}
+                        {%- for item in section.children -%}
+                            {%- if item.url == series_parent -%}
+                                {%- assign series_title = item.title -%}
+                                {%- assign series_url = series_parent -%}
+                            {%- endif -%}
+                        {%- endfor -%}
+                    {%- endfor -%}
                     <nav class="breadcrumb" aria-label="面包屑导航">
-                        {% assign crumb_path = '' %}
                         <a href="{{ '/' | relative_url }}">首页</a>
-                        {% for crumb in crumbs offset: 1 %}
-                            {% if forloop.last %}
-                                <span>›</span> <span>{{ page.title | default: crumb }}</span>
-                            {% else %}
-                                {% assign crumb_path = crumb_path | append: '/' | append: crumb %}
-                                <span>›</span> <a href="{{ crumb_path | relative_url }}">{{ crumb }}</a>
-                            {% endif %}
-                        {% endfor %}
+                        {%- if top_title != '' -%}
+                        <span aria-hidden="true">›</span>
+                        <a href="{{ '/' | append: top_seg | relative_url }}/">{{ top_title }}</a>
+                        {%- endif -%}
+                        {%- if series_title != '' -%}
+                        <span aria-hidden="true">›</span>
+                        <a href="{{ series_url | relative_url }}">{{ series_title }}</a>
+                        {%- endif -%}
+                        <span aria-hidden="true">›</span>
+                        {%- assign crumb_last = crumbs | last -%}
+                        {%- assign crumb_title = page.title | default: crumb_last -%}
+                        <span class="current" aria-current="page">{{ crumb_title }}</span>
                     </nav>
-                    {% endif %}
+                    {%- endif -%}
+
                     {% if page.date %}
                     <p class="post-meta">{{ page.date | date: "%Y年%m月%d日" }}</p>
                     {% endif %}
+
                     {{ content }}
                 </main>
+
                 <footer>
                     <p>&copy; {{ site.time | date: '%Y' }} {{ site.author }}. 使用 <a href="https://pages.github.com/" target="_blank" rel="noopener noreferrer">GitHub Pages</a> 托管.</p>
                     <div class="busuanzi-stats" id="busuanziStats" data-busuanzi-state="loading">
@@ -182,16 +242,24 @@
             </div>
         </div>
     </div>
-    
+
     <!-- 移动端侧边栏切换按钮 -->
-    <button class="sidebar-toggle" id="sidebarToggle" title="显示/隐藏目录" aria-label="显示/隐藏目录导航">
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M2 4h16v1.5H2zM2 9.25h16v1.5H2zM2 14.5h16v1.5H2z"/></svg>
+    <button class="fab sidebar-toggle" id="sidebarToggle" type="button"
+            title="显示/隐藏目录" aria-label="显示/隐藏目录导航" aria-controls="sidebar" aria-expanded="false">
+        <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2 4h16v1.6H2zM2 9.2h16v1.6H2zM2 14.4h16v1.6H2z"/></svg>
     </button>
 
-    <button class="theme-toggle" id="themeToggle" title="切换深色/浅色模式" aria-label="切换深色/浅色模式">🌙</button>
-    
-    <a href="#" class="back-to-top" id="backToTop" title="回到顶部">↑</a>
-    
+    <!-- 右侧浮动操作按钮 -->
+    <div class="fab-stack">
+        <button class="fab theme-toggle" id="themeToggle" type="button" title="切换深色/浅色模式" aria-label="切换深色/浅色模式">
+            <svg class="icon-moon" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2a8 8 0 1 0 8 8 6.2 6.2 0 0 1-8-8z"/></svg>
+            <svg class="icon-sun" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 6.5a3.5 3.5 0 1 0 0 7 3.5 3.5 0 0 0 0-7zM9.2 1h1.6v2.6H9.2zM9.2 16.4h1.6V19H9.2zM1 9.2h2.6v1.6H1zM16.4 9.2H19v1.6h-2.6zM3.5 4.6l1.1-1.1 1.9 1.9-1.1 1.1zM13.5 14.6l1.1-1.1 1.9 1.9-1.1 1.1zM4.6 16.5l-1.1-1.1 1.9-1.9 1.1 1.1zM14.6 6.5l-1.1-1.1 1.9-1.9 1.1 1.1z"/></svg>
+        </button>
+        <a class="fab back-to-top" id="backToTop" href="#top" title="回到顶部" aria-label="回到顶部">
+            <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 3.2 3.4 10l1.2 1.2L9.2 6.6V17h1.6V6.6l4.6 4.6 1.2-1.2z"/></svg>
+        </a>
+    </div>
+
     <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
 </body>
 </html>

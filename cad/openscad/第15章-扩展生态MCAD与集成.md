@@ -113,10 +113,10 @@ OpenSCAD 可以做生成式几何，但不等于优化器。若需要拓扑优�
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/cad/openscad/第14章-构建测试调试与贡献/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/cad/openscad/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/cad/openscad/第16章-常见问题与最佳实践/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/cad/openscad/第14章-构建测试调试与贡献/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/openscad/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/cad/openscad/第16章-常见问题与最佳实践/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

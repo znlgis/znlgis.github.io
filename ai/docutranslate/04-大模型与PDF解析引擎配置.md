@@ -158,10 +158,10 @@ result.save(fmt="markdown")
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/ai/docutranslate/03-WebUI界面操作详解/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/ai/docutranslate/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/ai/docutranslate/05-支持的文件格式与工作流详解/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/ai/docutranslate/03-WebUI界面操作详解/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/ai/docutranslate/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/ai/docutranslate/05-支持的文件格式与工作流详解/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

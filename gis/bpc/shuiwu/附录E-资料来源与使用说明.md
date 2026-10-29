@@ -19,4 +19,7 @@ title: 附录E 资料来源与使用说明
 
 ---
 
-**上一章**：[附录D 缩略语对照](https://znlgis.github.io/gis/bpc/shuiwu/附录D-缩略语对照/)　|　**返回目录**：[GIS 在水务业务中的应用全景教程](https://znlgis.github.io/gis/bpc/shuiwu/)　|　**回到开头**：[前言](https://znlgis.github.io/gis/bpc/shuiwu/前言/)
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/gis/bpc/shuiwu/附录D-缩略语对照/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/bpc/shuiwu/" class="chapter-nav__dir">目录</a>
+</div>

@@ -590,10 +590,10 @@ target_link_libraries(my_app ${SLVS_LIB})
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/cad/solvespace/第11章-命令行工具使用/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/cad/solvespace/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/cad/solvespace/第13章-Python绑定开发/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/cad/solvespace/第11章-命令行工具使用/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/solvespace/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/cad/solvespace/第13章-Python绑定开发/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

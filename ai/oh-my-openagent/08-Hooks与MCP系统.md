@@ -384,10 +384,10 @@ OmO 不是用提示词去乞求模型守规矩，而是用 Hook + 工具权限�
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/ai/oh-my-openagent/07-核心工具链/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/ai/oh-my-openagent/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/ai/oh-my-openagent/09-命令模型回退与配置参考/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/ai/oh-my-openagent/07-核心工具链/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/ai/oh-my-openagent/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/ai/oh-my-openagent/09-命令模型回退与配置参考/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

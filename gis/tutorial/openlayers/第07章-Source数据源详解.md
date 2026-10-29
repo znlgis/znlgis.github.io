@@ -1033,10 +1033,10 @@ const kmlData = converter.convert(features, 'geojson', 'kml');
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/gis/tutorial/openlayers/第06章-Layer图层体系/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/gis/tutorial/openlayers/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/gis/tutorial/openlayers/第08章-矢量数据与样式/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/gis/tutorial/openlayers/第06章-Layer图层体系/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/tutorial/openlayers/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/gis/tutorial/openlayers/第08章-矢量数据与样式/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

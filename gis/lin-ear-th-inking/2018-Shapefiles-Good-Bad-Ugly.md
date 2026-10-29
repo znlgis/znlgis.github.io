@@ -195,10 +195,10 @@ Shapefile 是 GIS 历史的重要组成部分，但技术进步已经使它落�
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/2019-JTS-TestBuilder-GUI/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/2014-Constrained-Delaunay-Triangulation/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/2019-JTS-TestBuilder-GUI/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/2014-Constrained-Delaunay-Triangulation/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

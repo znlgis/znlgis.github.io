@@ -180,5 +180,8 @@ GIS 的真正价值体现在分析能力上。水务场景中高频使用的分�
 
 ---
 
-**上一章**：[第01章 导论：水务行业为什么需要一张“会思考的地图”](https://znlgis.github.io/gis/bpc/shuiwu/第01章-导论水务行业为什么需要一张会思考的地图/)　|　**返回目录**：[GIS 在水务业务中的应用全景教程](https://znlgis.github.io/gis/bpc/shuiwu/)　|　**下一章**：[第03章 水务业务全景与GIS应用地图](https://znlgis.github.io/gis/bpc/shuiwu/第03章-水务业务全景与GIS应用地图/)
-
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/gis/bpc/shuiwu/第01章-导论水务行业为什么需要一张会思考的地图/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/bpc/shuiwu/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/gis/bpc/shuiwu/第03章-水务业务全景与GIS应用地图/" class="chapter-nav__next">下一章 →</a>
+</div>

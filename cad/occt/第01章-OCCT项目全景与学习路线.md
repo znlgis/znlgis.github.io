@@ -121,10 +121,9 @@ OCCT 是一个传统的 C++ 库，但它采用了若干独特的设计：
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <span></span>
-  <a href="https://znlgis.github.io/cad/occt/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/cad/occt/第02章-源码获取编译与开发环境配置/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/cad/occt/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/cad/occt/第02章-源码获取编译与开发环境配置/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

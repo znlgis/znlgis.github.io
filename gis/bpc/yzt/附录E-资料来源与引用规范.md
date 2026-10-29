@@ -30,4 +30,7 @@ title: 附录E 资料来源与引用规范
 
 ---
 
-**上一章**：[附录D 数据口径与来源说明](https://znlgis.github.io/gis/bpc/yzt/附录D-数据口径与来源说明/)　|　**返回目录**：[GIS 在自然资源“一张图”业务中的应用全景教程](https://znlgis.github.io/gis/bpc/yzt/)　|　**下一章**：—
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/gis/bpc/yzt/附录D-数据口径与来源说明/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/bpc/yzt/" class="chapter-nav__dir">目录</a>
+</div>

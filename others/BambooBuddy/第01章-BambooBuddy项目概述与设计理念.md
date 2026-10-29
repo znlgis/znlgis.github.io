@@ -276,10 +276,9 @@ BambooBuddy/
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <span></span>
-  <a href="https://znlgis.github.io/others/BambooBuddy/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/others/BambooBuddy/第02章-技术栈与工程结构/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/others/BambooBuddy/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/others/BambooBuddy/第02章-技术栈与工程结构/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

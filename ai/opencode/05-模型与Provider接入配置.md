@@ -287,10 +287,10 @@ llama.cpp 的 `llama-server`（默认 `http://127.0.0.1:8080/v1`）等其它 Ope
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/ai/opencode/04-配置体系详解与优先级/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/ai/opencode/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/ai/opencode/06-Agent与子代理自定义/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/ai/opencode/04-配置体系详解与优先级/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/ai/opencode/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/ai/opencode/06-Agent与子代理自定义/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

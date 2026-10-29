@@ -1101,7 +1101,9 @@ setInterval(() => {
 
 掌握 MarkersPlugin 之后，你的全景应用就从"静态观赏"升级到了"深度交互"。在下一章中，我们将深入 Photo-Sphere-Viewer 的**插件体系架构**，学习如何开发自定义插件，真正按照自己的需求扩展 PSV 的能力边界。
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/3d/Photo-Sphere-Viewer/第04章-全景图类型与适配器详解/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/3d/Photo-Sphere-Viewer/第06章-插件体系架构与自定义插件开发/" style="text-decoration: none;">下一章 →</a>
+---
+
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/3d/Photo-Sphere-Viewer/第04章-全景图类型与适配器详解/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/3d/Photo-Sphere-Viewer/第06章-插件体系架构与自定义插件开发/" class="chapter-nav__next">下一章 →</a>
 </div>

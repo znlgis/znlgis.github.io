@@ -835,3 +835,11 @@ export_html(path=..., out_path="counties.html", title="Population by county")
 
 **练习 6（agent skill）**
 把 `skills/geolibre/` 装到 `~/.claude/skills/`，开一个新会话，让智能体"做一张能发的地图"。观察它是否先调 `list_catalog`、是否先 `list_layer_properties` 再 `classify_layer`、是否以 `export_html` 收尾。哪一步没做到，就在 `SKILL.md` 里找到对应规则，说明它为什么存在。
+
+---
+
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/gis/tutorial/GeoLibre/第17章-点云与LiDAR分析/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/tutorial/GeoLibre/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/gis/tutorial/GeoLibre/第19章-Python控制台Notebook与Jupyter集成/" class="chapter-nav__next">下一章 →</a>
+</div>

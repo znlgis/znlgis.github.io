@@ -65,4 +65,8 @@ title: 附录D 多测合一成果数据字典设计建议
 
 ---
 
-**上一篇**：[附录C 主要政策与法规文件清单](https://znlgis.github.io/gis/bpc/dchy/附录C-主要政策与法规文件清单/)　|　**返回目录**：[多测合一业务全景教程](https://znlgis.github.io/gis/bpc/dchy/)　|　**下一篇**：[附录E 成果质检规则清单（建议）](https://znlgis.github.io/gis/bpc/dchy/附录E-成果质检规则清单/)
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/gis/bpc/dchy/附录C-主要政策与法规文件清单/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/bpc/dchy/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/gis/bpc/dchy/附录E-成果质检规则清单/" class="chapter-nav__next">下一章 →</a>
+</div>

@@ -197,10 +197,10 @@ Skill 讲究匹配场景。简单解释性问题不需要进入完整开发流�
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/ai/superpowers-zh/02-安装部署与工具适配/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/ai/superpowers-zh/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/ai/superpowers-zh/04-需求澄清方案设计与计划编写/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/ai/superpowers-zh/02-安装部署与工具适配/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/ai/superpowers-zh/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/ai/superpowers-zh/04-需求澄清方案设计与计划编写/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

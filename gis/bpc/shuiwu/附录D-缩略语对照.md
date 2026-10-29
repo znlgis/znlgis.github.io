@@ -34,4 +34,8 @@ title: 附录D 缩略语对照
 
 ---
 
-**上一章**：[附录C 主要政策文件](https://znlgis.github.io/gis/bpc/shuiwu/附录C-主要政策文件/)　|　**返回目录**：[GIS 在水务业务中的应用全景教程](https://znlgis.github.io/gis/bpc/shuiwu/)　|　**下一章**：[附录E 资料来源与使用说明](https://znlgis.github.io/gis/bpc/shuiwu/附录E-资料来源与使用说明/)
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/gis/bpc/shuiwu/附录C-主要政策文件/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/bpc/shuiwu/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/gis/bpc/shuiwu/附录E-资料来源与使用说明/" class="chapter-nav__next">下一章 →</a>
+</div>

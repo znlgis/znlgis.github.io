@@ -267,5 +267,8 @@ BIM 与 GIS 融合的第一道坎是坐标。BIM 模型通常在项目局部坐�
 
 ---
 
-**上一章**：[第08章 水资源与水行政管理中的GIS应用](https://znlgis.github.io/gis/bpc/shuiwu/第08章-水资源与水行政管理中的GIS应用/)　|　**返回目录**：[GIS 在水务业务中的应用全景教程](https://znlgis.github.io/gis/bpc/shuiwu/)　|　**下一章**：[第10章 客户服务与经营管理中的GIS应用](https://znlgis.github.io/gis/bpc/shuiwu/第10章-客户服务与经营管理中的GIS应用/)
-
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/gis/bpc/shuiwu/第08章-水资源与水行政管理中的GIS应用/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/bpc/shuiwu/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/gis/bpc/shuiwu/第10章-客户服务与经营管理中的GIS应用/" class="chapter-nav__next">下一章 →</a>
+</div>

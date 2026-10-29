@@ -92,10 +92,10 @@ public class ImportExportOptions
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/csharp/ReoGrid/第11章-图表与可视化/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/csharp/ReoGrid/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/csharp/ReoGrid/第13章-打印与页面设置/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/csharp/ReoGrid/第11章-图表与可视化/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/csharp/ReoGrid/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/csharp/ReoGrid/第13章-打印与页面设置/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

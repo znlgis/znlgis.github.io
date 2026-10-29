@@ -970,3 +970,11 @@ GeoLibre 的点云靠 deck.gl 覆盖画布渲染，而覆盖层的视口计算�
 
 **练习 6（边界条件）**
 把一个点云图层加入项目后，切换到 Cesium 渲染引擎。记录发生了什么、GeoLibre 是否给出提示。再切回 MapLibre，用分屏（一侧 Cesium、一侧 MapLibre）复现一次，说明为什么"不报错但什么都不画"是最容易误判的失败模式。
+
+---
+
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/gis/tutorial/GeoLibre/第16章-遥感影像与影像分析/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/tutorial/GeoLibre/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/gis/tutorial/GeoLibre/第18章-AI助手MCP与智能体技能/" class="chapter-nav__next">下一章 →</a>
+</div>

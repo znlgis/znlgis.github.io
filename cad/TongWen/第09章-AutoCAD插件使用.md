@@ -844,10 +844,10 @@ AutoCAD 插件共提供 22 个命令行命令，按使用频率和功能分为�
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/cad/TongWen/第08章-质量检查与报告/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/cad/TongWen/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/cad/TongWen/第10章-批量处理与命令行/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/cad/TongWen/第08章-质量检查与报告/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/TongWen/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/cad/TongWen/第10章-批量处理与命令行/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

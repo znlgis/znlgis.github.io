@@ -281,10 +281,10 @@ permission:
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/ai/opencode/05-模型与Provider接入配置/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/ai/opencode/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/ai/opencode/07-自定义命令规则与上下文/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/ai/opencode/05-模型与Provider接入配置/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/ai/opencode/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/ai/opencode/07-自定义命令规则与上下文/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

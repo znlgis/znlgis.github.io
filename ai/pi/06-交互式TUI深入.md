@@ -1022,10 +1022,10 @@ Pi 的 TUI 就是它最强的交互界面。掌握本章的所有内容，意味
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/ai/pi/05-配置体系全解/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/ai/pi/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/ai/pi/07-工具系统内置工具与权限控制/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/ai/pi/05-配置体系全解/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/ai/pi/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/ai/pi/07-工具系统内置工具与权限控制/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

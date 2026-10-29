@@ -534,10 +534,10 @@ for i, part in enumerate(parts.geoms):
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/gis/tutorial/shapely/第16章-Voronoi图与Delaunay三角剖分/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/gis/tutorial/shapely/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/gis/tutorial/shapely/第18章-与第三方库集成/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/gis/tutorial/shapely/第16章-Voronoi图与Delaunay三角剖分/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/tutorial/shapely/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/gis/tutorial/shapely/第18章-与第三方库集成/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

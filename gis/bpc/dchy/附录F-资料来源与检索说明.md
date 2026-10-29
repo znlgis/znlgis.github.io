@@ -118,4 +118,7 @@ title: 附录F 资料来源与检索说明
 
 ---
 
-**上一篇**：[附录E 成果质检规则清单（建议）](https://znlgis.github.io/gis/bpc/dchy/附录E-成果质检规则清单/)　|　**返回目录**：[多测合一业务全景教程](https://znlgis.github.io/gis/bpc/dchy/)
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/gis/bpc/dchy/附录E-成果质检规则清单/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/bpc/dchy/" class="chapter-nav__dir">目录</a>
+</div>

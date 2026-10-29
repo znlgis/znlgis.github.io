@@ -458,10 +458,9 @@ WKT作为GIS几何数据的标准文本表示格式，在数据格式转换中�
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/demos/gistools-tutorial/第09章-国土TXT格式/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/demos/gistools-tutorial/" style="text-decoration: none;">目录</a>
-  <span></span>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/demos/gistools-tutorial/第09章-国土TXT格式/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/demos/gistools-tutorial/" class="chapter-nav__dir">目录</a>
 </div>
 
 <!-- /NAVIGATION -->

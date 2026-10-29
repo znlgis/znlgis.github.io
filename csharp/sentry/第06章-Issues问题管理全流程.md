@@ -1090,10 +1090,10 @@ API 的完整文档在 Sentry 服务器运行后可通过 `/api/0/` 的 Swagger/
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/csharp/sentry/第05章-SDK集成与事件上报机制/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/csharp/sentry/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/csharp/sentry/第07章-性能监控Performance/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/csharp/sentry/第05章-SDK集成与事件上报机制/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/csharp/sentry/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/csharp/sentry/第07章-性能监控Performance/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

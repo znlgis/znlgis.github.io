@@ -307,10 +307,10 @@ LSP 让模型获得诊断、跳转等语言智能，能减少「猜代码」式�
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/ai/opencode/07-自定义命令规则与上下文/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/ai/opencode/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/ai/opencode/09-Token优化与高效省钱配置/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/ai/opencode/07-自定义命令规则与上下文/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/ai/opencode/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/ai/opencode/09-Token优化与高效省钱配置/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

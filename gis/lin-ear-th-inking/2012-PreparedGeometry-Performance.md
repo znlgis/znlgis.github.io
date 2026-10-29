@@ -307,10 +307,10 @@ PreparedGeometry 是 JTS 中用于优化空间谓词性能的关键工具：
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/2012-FOSS4G-NA-Review/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/2011-Java-Reheated-OSCON/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/2012-FOSS4G-NA-Review/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/2011-Java-Reheated-OSCON/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

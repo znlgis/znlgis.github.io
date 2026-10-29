@@ -1286,10 +1286,10 @@ query_results = bulk_snuba_queries(
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/csharp/sentry/第09章-Releases与源码映射/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/csharp/sentry/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/csharp/sentry/第11章-Django应用结构与API层/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/csharp/sentry/第09章-Releases与源码映射/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/csharp/sentry/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/csharp/sentry/第11章-Django应用结构与API层/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

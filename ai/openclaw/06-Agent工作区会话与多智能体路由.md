@@ -102,10 +102,10 @@ Agent 工作区和会话决定 OpenClaw 的长期记忆与执行环境。个人�
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/ai/openclaw/05-多通道消息接入与聊天平台配置/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/ai/openclaw/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/ai/openclaw/07-工具技能插件与能力扩展/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/ai/openclaw/05-多通道消息接入与聊天平台配置/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/ai/openclaw/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/ai/openclaw/07-工具技能插件与能力扩展/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

@@ -1412,10 +1412,10 @@ echo "=== 部署完成 ==="
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/csharp/Furion/第18章-模板引擎与视图/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/csharp/Furion/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/csharp/Furion/第20章-最佳实践与常见问题/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/csharp/Furion/第18章-模板引擎与视图/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/csharp/Furion/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/csharp/Furion/第20章-最佳实践与常见问题/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

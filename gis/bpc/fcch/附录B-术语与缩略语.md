@@ -67,4 +67,8 @@ title: 附录B 术语与缩略语
 
 ---
 
-**上一章**：[附录A 生产环节与痛点交叉索引](https://znlgis.github.io/gis/bpc/fcch/附录A-生产环节与痛点交叉索引/)　|　**返回目录**：[房产测绘业务全景教程](https://znlgis.github.io/gis/bpc/fcch/)　|　**下一章**：[附录C 主要依据文献](https://znlgis.github.io/gis/bpc/fcch/附录C-主要依据文献/)
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/gis/bpc/fcch/附录A-生产环节与痛点交叉索引/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/bpc/fcch/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/gis/bpc/fcch/附录C-主要依据文献/" class="chapter-nav__next">下一章 →</a>
+</div>

@@ -158,10 +158,10 @@ OCCT 自带的 `Poly_MakerOfCDT`、`Poly_CoherentTriangulation` 提供网格一�
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/cad/occt/第09章-局部操作圆角倒角抽壳偏置扫掠/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/cad/occt/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/cad/occt/第11章-可视化框架V3dAISGraphic3dPrs3d/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/cad/occt/第09章-局部操作圆角倒角抽壳偏置扫掠/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/occt/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/cad/occt/第11章-可视化框架V3dAISGraphic3dPrs3d/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

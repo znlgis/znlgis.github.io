@@ -357,10 +357,10 @@ HERMES_LOG_LEVEL=debug hermes          # 看运行时日志
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/ai/hermes-agent/07-技能记忆与自学习闭环/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/ai/hermes-agent/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/ai/hermes-agent/09-消息网关与多平台接入/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/ai/hermes-agent/07-技能记忆与自学习闭环/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/ai/hermes-agent/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/ai/hermes-agent/09-消息网关与多平台接入/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

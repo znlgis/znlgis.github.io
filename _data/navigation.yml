@@ -2,6 +2,7 @@
 # 每个条目支持: title, icon, url (链接) 或 children (子菜单)
 
 - title: GIS 教程
+  id: gis
   icon: 🌍
   children:
     - title: GDAL 教程
@@ -69,6 +70,7 @@
       url: /gis/tutorial/shapely/
 
 - title: GIS 基础
+  id: gis-basic
   icon: 📖
   children:
     - title: 数据格式
@@ -85,6 +87,7 @@
       url: /gis/basic/dev/
 
 - title: GIS 业务全景
+  id: gis-bpc
   icon: 🏘️
   children:
     - title: 房产测绘业务全景
@@ -107,6 +110,7 @@
       url: /gis/bpc/yzt/
 
 - title: 博客翻译
+  id: translation
   icon: 📝
   children:
     - title: Lin.ear th.inking
@@ -114,6 +118,7 @@
       url: /gis/lin-ear-th-inking/
 
 - title: CAD 开发
+  id: cad
   icon: 📐
   children:
     - title: IFoxCAD
@@ -175,6 +180,7 @@
       url: /cad/Xbim/
 
 - title: 3D 开发
+  id: 3d
   icon: 🧊
   children:
     - title: SuperSplat
@@ -194,6 +200,7 @@
       url: /3d/OpenCSG.NET/
 
 - title: C# 开发
+  id: csharp
   icon: 💻
   children:
     - title: Admin.NET
@@ -222,6 +229,7 @@
       url: /csharp/sentry/
 
 - title: AI 系列
+  id: ai
   icon: 🤖
   children:
     - title: Dify 平台
@@ -259,6 +267,7 @@
       url: /ai/deepseek-harness/
 
 - title: IoT 物联网
+  id: iot
   icon: 🔌
   children:
     - title: KE3036-Keyes-Pico
@@ -266,6 +275,7 @@
       url: /iot/KE3036-Keyes-Pico/
 
 - title: 源码解读
+  id: sci
   icon: 📖
   children:
     - title: Clipper2
@@ -276,6 +286,7 @@
       url: /sci/Clipper1/
 
 - title: 其他教程
+  id: others
   icon: 📦
   children:
     - title: acme.sh
@@ -304,6 +315,7 @@
       url: /others/BambooBuddy/
 
 - title: 项目演示
+  id: demos
   icon: 🎯
   children:
     - title: GIS工具教程

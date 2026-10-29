@@ -583,10 +583,9 @@ IFoxCAD的官方文档是学习的首选资源：
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <span></span>
-  <a href="https://znlgis.github.io/cad/IFoxCAD/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/cad/IFoxCAD/第02章-DBTrans事务管理核心教程/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/cad/IFoxCAD/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/cad/IFoxCAD/第02章-DBTrans事务管理核心教程/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

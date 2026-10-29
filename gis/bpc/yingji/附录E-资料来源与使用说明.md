@@ -85,4 +85,7 @@ title: 附录E 资料来源与使用说明
 
 ---
 
-**上一章**：[附录D 缩略语对照](https://znlgis.github.io/gis/bpc/yingji/附录D-缩略语对照/)　|　**返回目录**：[应急管理 GIS 应用全景教程](https://znlgis.github.io/gis/bpc/yingji/)
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/gis/bpc/yingji/附录D-缩略语对照/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/bpc/yingji/" class="chapter-nav__dir">目录</a>
+</div>

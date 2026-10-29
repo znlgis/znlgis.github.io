@@ -188,5 +188,8 @@ GIS 应用地图显示，供水输配与防洪抗旱是当前最成熟的两个�
 
 ---
 
-**上一章**：[第02章 GIS技术体系及其在水务场景中的适配](https://znlgis.github.io/gis/bpc/shuiwu/第02章-GIS技术体系及其在水务场景中的适配/)　|　**返回目录**：[GIS 在水务业务中的应用全景教程](https://znlgis.github.io/gis/bpc/shuiwu/)　|　**下一章**：[第04章 供水业务中的GIS应用](https://znlgis.github.io/gis/bpc/shuiwu/第04章-供水业务中的GIS应用/)
-
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/gis/bpc/shuiwu/第02章-GIS技术体系及其在水务场景中的适配/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/bpc/shuiwu/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/gis/bpc/shuiwu/第04章-供水业务中的GIS应用/" class="chapter-nav__next">下一章 →</a>
+</div>

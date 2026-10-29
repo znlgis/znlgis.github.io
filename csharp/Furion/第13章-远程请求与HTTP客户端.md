@@ -983,4 +983,8 @@ public class PaymentService
 
 ---
 
-**上一章**: [第12章-定时任务](https://znlgis.github.io/csharp/Furion/第12章-定时任务/) | [返回目录](https://znlgis.github.io/csharp/Furion/) | **下一章**: [第14章-对象映射](https://znlgis.github.io/csharp/Furion/第14章-对象映射/)
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/csharp/Furion/第12章-定时任务/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/csharp/Furion/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/csharp/Furion/第14章-对象映射/" class="chapter-nav__next">下一章 →</a>
+</div>

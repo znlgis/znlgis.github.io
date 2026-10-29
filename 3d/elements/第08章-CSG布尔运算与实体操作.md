@@ -1118,8 +1118,8 @@ model.ToGlTF("staircase_constructed.glb");
 
 ---
 
-<div style="display:flex; justify-content:space-between; margin-top:3rem;">
-  <a href="https://znlgis.github.io/3d/elements/第07章-空间开洞与地形/">← 上一章</a>
-  <a href="https://znlgis.github.io/3d/elements/">目录</a>
-  <a href="https://znlgis.github.io/3d/elements/第09章-材质光照与渲染/">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/3d/elements/第07章-空间开洞与地形/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/3d/elements/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/3d/elements/第09章-材质光照与渲染/" class="chapter-nav__next">下一章 →</a>
 </div>

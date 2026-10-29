@@ -305,10 +305,9 @@ SolveSpace使用 `.slvs` 作为原生文件格式。文件是纯文本格式，�
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <span></span>
-  <a href="https://znlgis.github.io/cad/solvespace/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/cad/solvespace/第02章-安装与环境配置/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/cad/solvespace/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/cad/solvespace/第02章-安装与环境配置/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

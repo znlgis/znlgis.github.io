@@ -813,10 +813,10 @@ LightningCAD 内置了便捷的用户反馈通道。在操作向导或菜单中�
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/cad/LightningCAD/第08章-图纸校验与输出/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/cad/LightningCAD/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/cad/LightningCAD/第10章-高级功能与技巧/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/cad/LightningCAD/第08章-图纸校验与输出/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/LightningCAD/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/cad/LightningCAD/第10章-高级功能与技巧/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

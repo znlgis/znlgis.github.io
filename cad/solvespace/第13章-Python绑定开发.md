@@ -726,10 +726,10 @@ if result['result'] != ResultFlag.OKAY:
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/cad/solvespace/第12章-C语言库API详解/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/cad/solvespace/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/cad/solvespace/第14章-源码架构分析/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/cad/solvespace/第12章-C语言库API详解/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/solvespace/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/cad/solvespace/第14章-源码架构分析/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

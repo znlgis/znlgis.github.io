@@ -342,10 +342,10 @@ const onDown = (pointer: Phaser.Input.Pointer): void => {
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/others/CHAGS/第07章-玩法模板库详解/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/others/CHAGS/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/others/CHAGS/第09章-平台适配层与音频实现/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/others/CHAGS/第07章-玩法模板库详解/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/others/CHAGS/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/others/CHAGS/第09章-平台适配层与音频实现/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->
