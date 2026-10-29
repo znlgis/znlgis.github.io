@@ -970,8 +970,6 @@ const webMercatorCoord = fromLonLat([116.4074, 39.9042]);
 
 ---
 
-[返回目录](https://znlgis.github.io/gis/tutorial/openlayers/) | [下一章：环境搭建与快速开始 →](https://znlgis.github.io/gis/tutorial/openlayers/第02章-环境搭建与快速开始/)
-
 <!-- NAVIGATION -->
 
 ---

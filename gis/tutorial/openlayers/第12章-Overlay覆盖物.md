@@ -565,8 +565,6 @@ overlayManager.clear();
 
 ---
 
-[← 上一章：Interaction交互系统](https://znlgis.github.io/gis/tutorial/openlayers/第11章-Interaction交互系统/) | [返回目录](https://znlgis.github.io/gis/tutorial/openlayers/) | [下一章：地图事件与动画 →](https://znlgis.github.io/gis/tutorial/openlayers/第13章-地图事件与动画/)
-
 <!-- NAVIGATION -->
 
 ---

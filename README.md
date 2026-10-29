@@ -54,6 +54,23 @@ GIS 开发与技术分享博客，涵盖 GIS、CAD、C#、3D、AI 等领域，�
 - `jekyll-seo-tag` — SEO 元标签
 - `jekyll-sitemap` — 站点地图
 
+## ✍️ 新增教程
+
+新增教程请先读 [CONTRIBUTING.md](CONTRIBUTING.md)。要点：**样式集中在 `assets/css`、交互集中在 `assets/js`，内容文件只写结构**；章节页末尾用 `.chapter-nav` 组件，站内链接写成 `https://znlgis.github.io/...` 绝对形式。
+
+批量新建一个系列时用脚手架，而不是逐个手写：
+
+```bash
+node scripts/new-tutorial.js --dir gis/tutorial/xxx --title "XXX" --chapters 18 --nav gis
+```
+
+提交前本地跑一遍（CI 也会跑，任何一项失败都会让 PR 变红）：
+
+```bash
+node scripts/check-style-consistency.js   # 章节导航 / 内联样式 / 相对链接 / front matter / H1
+node scripts/check-internal-links.js      # 站内链接是否都指向存在的页面
+```
+
 ## 🚧 本地开发
 
 ### 环境要求

@@ -742,8 +742,6 @@ public class HelloGeoTools {
 
 ---
 
-[返回目录](https://znlgis.github.io/gis/tutorial/geotools/) | [下一章：环境搭建与快速开始 →](https://znlgis.github.io/gis/tutorial/geotools/第02章-环境搭建与快速开始/)
-
 <!-- NAVIGATION -->
 
 ---

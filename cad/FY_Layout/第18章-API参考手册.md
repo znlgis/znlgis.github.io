@@ -743,5 +743,6 @@ public enum PropertyType
 
 <div class="chapter-nav">
   <a href="https://znlgis.github.io/cad/FY_Layout/第17章-项目部署与发布指南/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/FY_Layout/" class="chapter-nav__dir">目录</a>
   <a href="https://znlgis.github.io/cad/FY_Layout/第19章-常见问题与解决方案/" class="chapter-nav__next">下一章 →</a>
 </div>

@@ -614,8 +614,6 @@ public class OGCGeometryValidator {
 
 ---
 
-[← 上一章：坐标系与空间参考](https://znlgis.github.io/gis/tutorial/geometry-api-java/第07章-坐标系与空间参考/) | [下一章：性能优化与加速 →](https://znlgis.github.io/gis/tutorial/geometry-api-java/第09章-性能优化与加速/)
-
 <!-- NAVIGATION -->
 
 ---

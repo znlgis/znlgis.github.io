@@ -419,8 +419,6 @@ QGIS每年发布三个版本：
 
 ---
 
-**下一章**：[第02章 安装与环境配置](https://znlgis.github.io/gis/tutorial/qgis/第02章-安装与环境配置/)
-
 ---
 
 ## 📖 推荐阅读

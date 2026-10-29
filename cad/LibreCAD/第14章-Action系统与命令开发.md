@@ -1069,8 +1069,6 @@ void RS_ActionDrawTriangle::updateMouseButtonHints() {
 
 ---
 
-[上一章：实体系统详解](https://znlgis.github.io/cad/LibreCAD/第13章-实体系统详解/) | [下一章：插件系统与开发实战](https://znlgis.github.io/cad/LibreCAD/第15章-插件系统与开发实战/)
-
 <!-- NAVIGATION -->
 
 ---

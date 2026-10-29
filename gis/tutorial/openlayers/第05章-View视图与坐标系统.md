@@ -1155,8 +1155,6 @@ tour.play(5000);
 
 ---
 
-[← 上一章：Map地图对象详解](https://znlgis.github.io/gis/tutorial/openlayers/第04章-Map地图对象详解/) | [返回目录](https://znlgis.github.io/gis/tutorial/openlayers/) | [下一章：Layer图层体系 →](https://znlgis.github.io/gis/tutorial/openlayers/第06章-Layer图层体系/)
-
 <!-- NAVIGATION -->
 
 ---

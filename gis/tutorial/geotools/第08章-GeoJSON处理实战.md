@@ -712,8 +712,6 @@ public class GeoJSONGeometryValidator {
 
 ---
 
-[← 上一章：Shapefile读写详解](https://znlgis.github.io/gis/tutorial/geotools/第07章-Shapefile读写详解/) | [返回目录](https://znlgis.github.io/gis/tutorial/geotools/) | [下一章：数据库空间数据访问 →](https://znlgis.github.io/gis/tutorial/geotools/第09章-数据库空间数据访问/)
-
 <!-- NAVIGATION -->
 
 ---

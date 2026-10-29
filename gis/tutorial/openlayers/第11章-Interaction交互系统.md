@@ -523,8 +523,6 @@ interactionManager.activate('draw-point');
 
 ---
 
-[← 上一章：Control控件系统](https://znlgis.github.io/gis/tutorial/openlayers/第10章-Control控件系统/) | [返回目录](https://znlgis.github.io/gis/tutorial/openlayers/) | [下一章：Overlay覆盖物 →](https://znlgis.github.io/gis/tutorial/openlayers/第12章-Overlay覆盖物/)
-
 <!-- NAVIGATION -->
 
 ---

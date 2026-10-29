@@ -384,8 +384,6 @@ public class WMTSClientExample {
 
 ---
 
-[← 上一章：地图渲染与输出](https://znlgis.github.io/gis/tutorial/geotools/第12章-地图渲染与输出/) | [返回目录](https://znlgis.github.io/gis/tutorial/geotools/) | [下一章：空间分析与处理 →](https://znlgis.github.io/gis/tutorial/geotools/第14章-空间分析与处理/)
-
 <!-- NAVIGATION -->
 
 ---

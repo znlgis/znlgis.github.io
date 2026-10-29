@@ -380,8 +380,6 @@ public class MyDataStoreFactory implements DataStoreFactorySpi {
 
 ---
 
-[← 上一章：性能优化与最佳实践](https://znlgis.github.io/gis/tutorial/geotools/第15章-性能优化与最佳实践/) | [返回目录](https://znlgis.github.io/gis/tutorial/geotools/) | [下一章：实战案例分析 →](https://znlgis.github.io/gis/tutorial/geotools/第17章-实战案例分析/)
-
 <!-- NAVIGATION -->
 
 ---

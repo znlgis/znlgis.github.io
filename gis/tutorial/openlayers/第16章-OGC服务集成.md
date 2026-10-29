@@ -323,8 +323,6 @@ function createLegend(layers) {
 
 ---
 
-[← 上一章：要素编辑与绘制](https://znlgis.github.io/gis/tutorial/openlayers/第15章-要素编辑与绘制/) | [返回目录](https://znlgis.github.io/gis/tutorial/openlayers/) | [下一章：性能优化与最佳实践 →](https://znlgis.github.io/gis/tutorial/openlayers/第17章-性能优化与最佳实践/)
-
 <!-- NAVIGATION -->
 
 ---

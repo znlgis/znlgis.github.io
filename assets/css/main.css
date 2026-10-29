@@ -1441,6 +1441,24 @@ img {
     }
 }
 
+/* 404 页 */
+.notfound {
+    padding: 2rem 0;
+    text-align: center;
+}
+
+.notfound__icon {
+    margin: 0;
+    font-size: 4rem;
+    line-height: 1.2;
+}
+
+.notfound__text {
+    margin: 0.5rem 0 0;
+    font-size: var(--fs-md);
+    color: var(--text-secondary);
+}
+
 /* ===== 12. 响应式与动效偏好 ===== */
 @media (max-width: 900px) {
     .sidebar {

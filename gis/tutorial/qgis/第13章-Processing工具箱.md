@@ -531,10 +531,6 @@ Processing是QGIS自动化的核心。
 
 ---
 
-**上一章**：[第12章 数据编辑与数字化](https://znlgis.github.io/gis/tutorial/qgis/第12章-数据编辑与数字化/)
-
-**下一章**：[第14章 Python开发与PyQGIS](https://znlgis.github.io/gis/tutorial/qgis/第14章-Python开发与PyQGIS/)
-
 <!-- NAVIGATION -->
 
 ---

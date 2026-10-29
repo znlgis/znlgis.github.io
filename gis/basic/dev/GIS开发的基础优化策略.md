@@ -38,3 +38,9 @@ title: GIS开发的基础优化策略
 - 善用工具
 
 ## 5. 一些思考
+
+---
+
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/gis/basic/dev/" class="chapter-nav__dir">目录</a>
+</div>

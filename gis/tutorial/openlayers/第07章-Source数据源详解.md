@@ -1027,8 +1027,6 @@ const kmlData = converter.convert(features, 'geojson', 'kml');
 
 ---
 
-[← 上一章：Layer图层体系](https://znlgis.github.io/gis/tutorial/openlayers/第06章-Layer图层体系/) | [返回目录](https://znlgis.github.io/gis/tutorial/openlayers/) | [下一章：矢量数据与样式 →](https://znlgis.github.io/gis/tutorial/openlayers/第08章-矢量数据与样式/)
-
 <!-- NAVIGATION -->
 
 ---

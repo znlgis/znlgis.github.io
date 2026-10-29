@@ -1066,8 +1066,6 @@ visibilityManager.restoreState('default');
 
 ---
 
-[← 上一章：View视图与坐标系统](https://znlgis.github.io/gis/tutorial/openlayers/第05章-View视图与坐标系统/) | [返回目录](https://znlgis.github.io/gis/tutorial/openlayers/) | [下一章：Source数据源详解 →](https://znlgis.github.io/gis/tutorial/openlayers/第07章-Source数据源详解/)
-
 <!-- NAVIGATION -->
 
 ---

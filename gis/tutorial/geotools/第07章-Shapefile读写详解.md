@@ -1069,8 +1069,6 @@ public class ParallelShapefileProcessor {
 
 ---
 
-[← 上一章：数据源访问与管理](https://znlgis.github.io/gis/tutorial/geotools/第06章-数据源访问与管理/) | [返回目录](https://znlgis.github.io/gis/tutorial/geotools/) | [下一章：GeoJSON处理实战 →](https://znlgis.github.io/gis/tutorial/geotools/第08章-GeoJSON处理实战/)
-
 <!-- NAVIGATION -->
 
 ---

@@ -369,10 +369,6 @@ Web服务是现代GIS数据共享的重要方式。
 
 ---
 
-**上一章**：[第16章 数据库集成](https://znlgis.github.io/gis/tutorial/qgis/第16章-数据库集成/)
-
-**下一章**：[第18章 高级功能与扩展](https://znlgis.github.io/gis/tutorial/qgis/第18章-高级功能与扩展/)
-
 <!-- NAVIGATION -->
 
 ---

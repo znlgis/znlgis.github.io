@@ -1401,8 +1401,6 @@ document.getElementById('export-btn').addEventListener('click', () => {
 
 ---
 
-[← 上一章：核心概念与架构设计](https://znlgis.github.io/gis/tutorial/openlayers/第03章-核心概念与架构设计/) | [返回目录](https://znlgis.github.io/gis/tutorial/openlayers/) | [下一章：View视图与坐标系统 →](https://znlgis.github.io/gis/tutorial/openlayers/第05章-View视图与坐标系统/)
-
 <!-- NAVIGATION -->
 
 ---

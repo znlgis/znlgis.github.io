@@ -671,8 +671,6 @@ map.addControl(toolbar);
 
 ---
 
-[← 上一章：栅格数据与瓦片服务](https://znlgis.github.io/gis/tutorial/openlayers/第09章-栅格数据与瓦片服务/) | [返回目录](https://znlgis.github.io/gis/tutorial/openlayers/) | [下一章：Interaction交互系统 →](https://znlgis.github.io/gis/tutorial/openlayers/第11章-Interaction交互系统/)
-
 <!-- NAVIGATION -->
 
 ---
