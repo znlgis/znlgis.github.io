@@ -11,3 +11,7 @@ title: GIS 教程
 - [GIS 业务全景合集（BPC）](https://znlgis.github.io/gis/bpc/)
 - [房产测绘业务全景教程](https://znlgis.github.io/gis/bpc/fcch/)
 - [CAD 图纸翻模三维模型全景教程](https://znlgis.github.io/gis/bpc/cadfm/)
+- [多测合一业务全景教程](https://znlgis.github.io/gis/bpc/dchy/)
+- [GIS 在水务业务中的应用全景教程](https://znlgis.github.io/gis/bpc/shuiwu/)
+- [应急管理 GIS 应用全景教程](https://znlgis.github.io/gis/bpc/yingji/)
+- [自然资源“一张图”应用全景教程](https://znlgis.github.io/gis/bpc/yzt/)
