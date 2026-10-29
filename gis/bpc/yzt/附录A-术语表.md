@@ -58,4 +58,8 @@ title: 附录A 术语表
 
 ---
 
-**上一章**：[第16章 结论与建议](https://znlgis.github.io/gis/bpc/yzt/第16章-结论与建议/)　|　**返回目录**：[GIS 在自然资源“一张图”业务中的应用全景教程](https://znlgis.github.io/gis/bpc/yzt/)　|　**下一章**：[附录B 主要标准规范](https://znlgis.github.io/gis/bpc/yzt/附录B-主要标准规范/)
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/gis/bpc/yzt/第16章-结论与建议/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/bpc/yzt/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/gis/bpc/yzt/附录B-主要标准规范/" class="chapter-nav__next">下一章 →</a>
+</div>

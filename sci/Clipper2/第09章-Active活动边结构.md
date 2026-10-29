@@ -542,4 +542,8 @@ internal void DumpAEL()
 
 ---
 
-[上一章：ClipperBase基类详解](https://znlgis.github.io/sci/Clipper2/第08章-ClipperBase基类详解/) | [返回目录](https://znlgis.github.io/sci/Clipper2/) | [下一章：Vertex与LocalMinima](https://znlgis.github.io/sci/Clipper2/第10章-Vertex与LocalMinima/)
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/sci/Clipper2/第08章-ClipperBase基类详解/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/sci/Clipper2/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/sci/Clipper2/第10章-Vertex与LocalMinima/" class="chapter-nav__next">下一章 →</a>
+</div>

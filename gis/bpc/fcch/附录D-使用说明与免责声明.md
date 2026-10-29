@@ -39,4 +39,7 @@ title: 附录D 使用说明与免责声明
 
 ---
 
-**上一章**：[附录C 主要依据文献](https://znlgis.github.io/gis/bpc/fcch/附录C-主要依据文献/)　|　**返回目录**：[房产测绘业务全景教程](https://znlgis.github.io/gis/bpc/fcch/)
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/gis/bpc/fcch/附录C-主要依据文献/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/bpc/fcch/" class="chapter-nav__dir">目录</a>
+</div>

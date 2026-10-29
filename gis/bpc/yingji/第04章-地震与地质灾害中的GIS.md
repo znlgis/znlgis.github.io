@@ -363,4 +363,8 @@ GIS 在这一环的作用常被低估。它不只是画落区，更是把责任�
 
 ---
 
-**上一章**：[第03章 应急管理业务全景与 GIS 应用地图](https://znlgis.github.io/gis/bpc/yingji/第03章-应急管理业务全景与GIS应用地图/)　|　**返回目录**：[应急管理 GIS 应用全景教程](https://znlgis.github.io/gis/bpc/yingji/)　|　**下一章**：[第05章 洪涝、台风与城市内涝](https://znlgis.github.io/gis/bpc/yingji/第05章-洪涝台风与城市内涝/)
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/gis/bpc/yingji/第03章-应急管理业务全景与GIS应用地图/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/bpc/yingji/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/gis/bpc/yingji/第05章-洪涝台风与城市内涝/" class="chapter-nav__next">下一章 →</a>
+</div>

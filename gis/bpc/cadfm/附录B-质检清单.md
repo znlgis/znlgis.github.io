@@ -57,4 +57,8 @@ title: 附录B 质检清单（可直接使用）
 
 ---
 
-**上一章**：[附录A 术语表](https://znlgis.github.io/gis/bpc/cadfm/附录A-术语表/)　|　**返回目录**：[CAD 图纸翻模三维模型全景教程](https://znlgis.github.io/gis/bpc/cadfm/)　|　**下一章**：[附录C 交付模板要点](https://znlgis.github.io/gis/bpc/cadfm/附录C-交付模板要点/)
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/gis/bpc/cadfm/附录A-术语表/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/bpc/cadfm/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/gis/bpc/cadfm/附录C-交付模板要点/" class="chapter-nav__next">下一章 →</a>
+</div>

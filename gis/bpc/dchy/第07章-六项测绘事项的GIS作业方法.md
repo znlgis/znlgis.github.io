@@ -302,4 +302,8 @@ title: 第07章 六项测绘事项的 GIS 作业方法
 
 ---
 
-**上一章**：[第06章 从 CAD 到 GIS：一段被严重低估的路](https://znlgis.github.io/gis/bpc/dchy/第06章-从CAD到GIS-一段被严重低估的路/)　|　**返回目录**：[多测合一业务全景教程](https://znlgis.github.io/gis/bpc/dchy/)　|　**下一章**：[第08章 二三维一体化与新技术](https://znlgis.github.io/gis/bpc/dchy/第08章-二三维一体化与新技术/)
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/gis/bpc/dchy/第06章-从CAD到GIS-一段被严重低估的路/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/bpc/dchy/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/gis/bpc/dchy/第08章-二三维一体化与新技术/" class="chapter-nav__next">下一章 →</a>
+</div>

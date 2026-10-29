@@ -631,4 +631,8 @@ docker-compose up -d --scale ruoyi-system=3
 
 ---
 
-[上一章：数据库设计与管理](https://znlgis.github.io/others/RuoYi-Cloud/第12章-数据库设计与管理/) | [返回目录](https://znlgis.github.io/others/RuoYi-Cloud/) | [下一章：二次开发指南](https://znlgis.github.io/others/RuoYi-Cloud/第14章-二次开发指南/)
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/others/RuoYi-Cloud/第12章-数据库设计与管理/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/others/RuoYi-Cloud/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/others/RuoYi-Cloud/第14章-二次开发指南/" class="chapter-nav__next">下一章 →</a>
+</div>

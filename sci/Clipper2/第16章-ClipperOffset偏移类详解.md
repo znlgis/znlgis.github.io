@@ -709,4 +709,8 @@ for (double delta = -1.0; delta > -10.0; delta -= 1.0)
 
 ---
 
-[上一章：填充规则详解](https://znlgis.github.io/sci/Clipper2/第15章-填充规则详解/) | [返回目录](https://znlgis.github.io/sci/Clipper2/) | [下一章：RectClip矩形裁剪优化](https://znlgis.github.io/sci/Clipper2/第17章-RectClip矩形裁剪优化/)
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/sci/Clipper2/第15章-填充规则详解/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/sci/Clipper2/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/sci/Clipper2/第17章-RectClip矩形裁剪优化/" class="chapter-nav__next">下一章 →</a>
+</div>

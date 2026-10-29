@@ -46,4 +46,8 @@ title: 附录C 主要依据文献
 
 ---
 
-**上一章**：[附录B 术语与缩略语](https://znlgis.github.io/gis/bpc/fcch/附录B-术语与缩略语/)　|　**返回目录**：[房产测绘业务全景教程](https://znlgis.github.io/gis/bpc/fcch/)　|　**下一章**：[附录D 使用说明与免责声明](https://znlgis.github.io/gis/bpc/fcch/附录D-使用说明与免责声明/)
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/gis/bpc/fcch/附录B-术语与缩略语/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/bpc/fcch/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/gis/bpc/fcch/附录D-使用说明与免责声明/" class="chapter-nav__next">下一章 →</a>
+</div>

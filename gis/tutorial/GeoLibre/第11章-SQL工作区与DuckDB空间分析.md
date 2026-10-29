@@ -706,3 +706,11 @@ export interface DuckDbCapability {
 - 仓库文档：`docs/user-guide/sql-workspace.md`、`docs/tutorials/spatial-sql.md`、`docs/architecture.md`（DuckDB 小节）、`docs/tutorials/source-code-deep-dive-zh.md`（第 2 节）
 - 源码：`apps/geolibre-desktop/src/lib/{sql-workspace,sql-table-names,sql-cloud-urls,pglite-sql,pglite-workspace,sedona-workspace}.ts`、`apps/geolibre-desktop/src/components/panels/SqlWorkspacePanel.tsx`、`packages/processing/src/types.ts`
 - 相关章节：[第05章 数据添加与格式支持](https://znlgis.github.io/gis/tutorial/GeoLibre/第05章-数据添加与格式支持/)、[第09章 坐标系统、投影与测量](https://znlgis.github.io/gis/tutorial/GeoLibre/第09章-坐标系统投影与测量/)、[第10章 属性表、数据编辑与字段采集](https://znlgis.github.io/gis/tutorial/GeoLibre/第10章-属性表数据编辑与字段采集/)、[第12章 地理处理工具箱](https://znlgis.github.io/gis/tutorial/GeoLibre/第12章-地理处理工具箱/)
+
+---
+
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/gis/tutorial/GeoLibre/第10章-属性表数据编辑与字段采集/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/tutorial/GeoLibre/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/gis/tutorial/GeoLibre/第12章-地理处理工具箱/" class="chapter-nav__next">下一章 →</a>
+</div>

@@ -51,4 +51,8 @@ title: 附录A 术语表
 
 ---
 
-**上一章**：[第16章 结论与建议](https://znlgis.github.io/gis/bpc/shuiwu/第16章-结论与建议/)　|　**返回目录**：[GIS 在水务业务中的应用全景教程](https://znlgis.github.io/gis/bpc/shuiwu/)　|　**下一章**：[附录B 主要标准规范](https://znlgis.github.io/gis/bpc/shuiwu/附录B-主要标准规范/)
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/gis/bpc/shuiwu/第16章-结论与建议/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/bpc/shuiwu/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/gis/bpc/shuiwu/附录B-主要标准规范/" class="chapter-nav__next">下一章 →</a>
+</div>

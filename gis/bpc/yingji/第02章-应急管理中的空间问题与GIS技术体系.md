@@ -333,4 +333,8 @@ title: 第02章 应急管理中的空间问题与 GIS 技术体系
 
 ---
 
-**上一章**：[第01章 导论：应急管理为什么需要一张“能救命的地图”](https://znlgis.github.io/gis/bpc/yingji/第01章-导论应急管理为什么需要一张能救命的地图/)　|　**返回目录**：[应急管理 GIS 应用全景教程](https://znlgis.github.io/gis/bpc/yingji/)　|　**下一章**：[第03章 应急管理业务全景与 GIS 应用地图](https://znlgis.github.io/gis/bpc/yingji/第03章-应急管理业务全景与GIS应用地图/)
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/gis/bpc/yingji/第01章-导论应急管理为什么需要一张能救命的地图/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/bpc/yingji/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/gis/bpc/yingji/第03章-应急管理业务全景与GIS应用地图/" class="chapter-nav__next">下一章 →</a>
+</div>

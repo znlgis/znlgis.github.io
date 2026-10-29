@@ -552,4 +552,8 @@ Clipper1（v6.4.2）**没有** Clipper2 中的 `InflatePaths`/`DeflatePaths` 这
 
 ---
 
-[上一章：填充规则详解](https://znlgis.github.io/sci/Clipper1/第16章-填充规则详解/) | [返回目录](https://znlgis.github.io/sci/Clipper1/) | [下一章：偏移算法实现](https://znlgis.github.io/sci/Clipper1/第18章-偏移算法实现/)
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/sci/Clipper1/第16章-填充规则详解/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/sci/Clipper1/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/sci/Clipper1/第18章-偏移算法实现/" class="chapter-nav__next">下一章 →</a>
+</div>

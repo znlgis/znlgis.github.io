@@ -687,3 +687,10 @@ BibTeX 与 APA 条目可从仓库根的 `CITATION.cff` 获取，也可用 GitHub
 4. **对比写作**：以“给一个没有 GIS 背景的同事解释为什么不用 Google Earth 做这份工作”为题，写一段 200 字说明，至少引用本章两个对比维度。
 5. **许可检查**：为一个准备商用的地图应用列出需要核对的第三方许可清单（GeoLibre 本体、底图提供商、影像服务、数据源），并说明 MIT 覆盖到哪里、不覆盖到哪里。
 6. **架构复述**：不看本章，用自己的话画出“数据入口 → store → MapCanvas → MapController.syncLayers”的单向数据流，并解释为什么 UI 不能直接改 MapLibre 对象。
+
+---
+
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/gis/tutorial/GeoLibre/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/gis/tutorial/GeoLibre/第02章-安装部署与快速上手/" class="chapter-nav__next">下一章 →</a>
+</div>

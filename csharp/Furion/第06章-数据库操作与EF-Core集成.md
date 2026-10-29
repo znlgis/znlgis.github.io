@@ -1036,4 +1036,8 @@ public class PerformanceService : IDynamicApiController
 
 ---
 
-**上一章**: [第05章-依赖注入与服务注册](https://znlgis.github.io/csharp/Furion/第05章-依赖注入与服务注册/) | [返回目录](https://znlgis.github.io/csharp/Furion/) | **下一章**: [第07章-数据验证与异常处理](https://znlgis.github.io/csharp/Furion/第07章-数据验证与异常处理/)
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/csharp/Furion/第05章-依赖注入与服务注册/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/csharp/Furion/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/csharp/Furion/第07章-数据验证与异常处理/" class="chapter-nav__next">下一章 →</a>
+</div>

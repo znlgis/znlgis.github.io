@@ -347,4 +347,8 @@ title: 第03章 应急管理业务全景与 GIS 应用地图
 
 ---
 
-**上一章**：[第02章 应急管理中的空间问题与 GIS 技术体系](https://znlgis.github.io/gis/bpc/yingji/第02章-应急管理中的空间问题与GIS技术体系/)　|　**返回目录**：[应急管理 GIS 应用全景教程](https://znlgis.github.io/gis/bpc/yingji/)　|　**下一章**：[第04章 地震与地质灾害中的 GIS](https://znlgis.github.io/gis/bpc/yingji/第04章-地震与地质灾害中的GIS/)
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/gis/bpc/yingji/第02章-应急管理中的空间问题与GIS技术体系/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/bpc/yingji/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/gis/bpc/yingji/第04章-地震与地质灾害中的GIS/" class="chapter-nav__next">下一章 →</a>
+</div>

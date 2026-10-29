@@ -408,4 +408,7 @@ RuoYi系列框架包含多个版本，可根据实际需求选择：
 
 ---
 
-[返回目录](https://znlgis.github.io/others/RuoYi-Cloud/) | [下一章：系统架构详解](https://znlgis.github.io/others/RuoYi-Cloud/第02章-系统架构详解/)
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/others/RuoYi-Cloud/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/others/RuoYi-Cloud/第02章-系统架构详解/" class="chapter-nav__next">下一章 →</a>
+</div>
