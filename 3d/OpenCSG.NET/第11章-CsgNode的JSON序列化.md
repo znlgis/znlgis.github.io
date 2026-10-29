@@ -278,8 +278,8 @@ static void BuildFromConfig(string jsonPath, string stlPath)
 
 ---
 
-<div style="display:flex; justify-content:space-between; margin-top:3rem;">
-  <a href="https://znlgis.github.io/3d/OpenCSG.NET/第10章-参数化截面与拉伸建模/">← 上一章</a>
-  <a href="https://znlgis.github.io/3d/OpenCSG.NET/">目录</a>
-  <a href="https://znlgis.github.io/3d/OpenCSG.NET/第12章-网格导出与工程辅助/">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/3d/OpenCSG.NET/第10章-参数化截面与拉伸建模/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/3d/OpenCSG.NET/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/3d/OpenCSG.NET/第12章-网格导出与工程辅助/" class="chapter-nav__next">下一章 →</a>
 </div>

@@ -73,10 +73,10 @@ Gateway 读取 `~/.openclaw/openclaw.json` 并严格校验 schema。配置错误
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/ai/openclaw/02-安装环境准备与快速上手/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/ai/openclaw/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/ai/openclaw/04-配置体系模型接入与认证管理/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/ai/openclaw/02-安装环境准备与快速上手/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/ai/openclaw/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/ai/openclaw/04-配置体系模型接入与认证管理/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

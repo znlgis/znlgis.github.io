@@ -944,10 +944,10 @@ manager.clear();
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/gis/tutorial/cesium/第06章-Entity-API实体管理/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/gis/tutorial/cesium/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/gis/tutorial/cesium/第08章-影像图层与地图服务/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/gis/tutorial/cesium/第06章-Entity-API实体管理/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/tutorial/cesium/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/gis/tutorial/cesium/第08章-影像图层与地图服务/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

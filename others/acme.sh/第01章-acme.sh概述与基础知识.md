@@ -336,10 +336,9 @@ www.example.org   ""         n/a                  LetsEncrypt 2024-02-01T10:00:0
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <span></span>
-  <a href="https://znlgis.github.io/others/acme.sh/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/others/acme.sh/第02章-安装与快速入门/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/others/acme.sh/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/others/acme.sh/第02章-安装与快速入门/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

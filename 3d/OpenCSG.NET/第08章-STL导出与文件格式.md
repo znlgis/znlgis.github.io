@@ -257,8 +257,8 @@ Console.WriteLine($"ascii: {asc.TriangleCount} 面 / {asc.Bytes} 字节");
 
 ---
 
-<div style="display:flex; justify-content:space-between; margin-top:3rem;">
-  <a href="https://znlgis.github.io/3d/OpenCSG.NET/第07章-几何变换平移旋转与缩放/">← 上一章</a>
-  <a href="https://znlgis.github.io/3d/OpenCSG.NET/">目录</a>
-  <a href="https://znlgis.github.io/3d/OpenCSG.NET/第09章-声明式CsgNode树与求值器/">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/3d/OpenCSG.NET/第07章-几何变换平移旋转与缩放/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/3d/OpenCSG.NET/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/3d/OpenCSG.NET/第09章-声明式CsgNode树与求值器/" class="chapter-nav__next">下一章 →</a>
 </div>

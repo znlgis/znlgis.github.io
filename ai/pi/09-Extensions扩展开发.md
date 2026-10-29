@@ -1672,10 +1672,10 @@ Extension 系统是 Pi 灵活性的核心来源。掌握了它，Pi 就不再只
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/ai/pi/08-Skills技能系统/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/ai/pi/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/ai/pi/10-Pi包管理与分发/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/ai/pi/08-Skills技能系统/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/ai/pi/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/ai/pi/10-Pi包管理与分发/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

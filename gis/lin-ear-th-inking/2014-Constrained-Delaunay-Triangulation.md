@@ -319,10 +319,10 @@ JTS 提供了完整的三角剖分功能：
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/2018-Shapefiles-Good-Bad-Ugly/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/2013-Year-In-Review-2012/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/2018-Shapefiles-Good-Bad-Ugly/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/2013-Year-In-Review-2012/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

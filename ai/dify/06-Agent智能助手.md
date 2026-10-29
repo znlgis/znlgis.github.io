@@ -704,10 +704,10 @@ else:
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/ai/dify/05-工作流编排/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/ai/dify/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/ai/dify/07-工具与插件系统/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/ai/dify/05-工作流编排/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/ai/dify/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/ai/dify/07-工具与插件系统/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

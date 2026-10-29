@@ -244,10 +244,10 @@ JTS 的设计原则——几何统一性和"无意外"——是其成功的关�
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/2019-Variable-Distance-Buffering/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/2019-JTS-TestBuilder-GUI/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/2019-Variable-Distance-Buffering/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/2019-JTS-TestBuilder-GUI/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

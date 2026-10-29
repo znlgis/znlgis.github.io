@@ -183,10 +183,10 @@ if __name__ == "__main__":
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/ai/docutranslate/06-ClientSDK编程使用/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/ai/docutranslate/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/ai/docutranslate/08-术语表与自定义提示词/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/ai/docutranslate/06-ClientSDK编程使用/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/ai/docutranslate/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/ai/docutranslate/08-术语表与自定义提示词/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

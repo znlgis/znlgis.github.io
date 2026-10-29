@@ -1145,10 +1145,10 @@ Sentry 的动态采样系统（Dynamic Sampling）是一套**自适应采样决�
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/csharp/sentry/第06章-Issues问题管理全流程/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/csharp/sentry/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/csharp/sentry/第08章-告警规则与通知体系/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/csharp/sentry/第06章-Issues问题管理全流程/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/csharp/sentry/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/csharp/sentry/第08章-告警规则与通知体系/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

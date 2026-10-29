@@ -150,8 +150,8 @@ SuperSplat 在加载模型后，会为每个高斯点维护一组**状态位**�
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/3d/supersplat/第01章-SuperSplat项目全景与学习路线/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/3d/supersplat/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/3d/supersplat/第03章-在线编辑器使用入门与视图操作/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/3d/supersplat/第01章-SuperSplat项目全景与学习路线/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/3d/supersplat/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/3d/supersplat/第03章-在线编辑器使用入门与视图操作/" class="chapter-nav__next">下一章 →</a>
 </div>

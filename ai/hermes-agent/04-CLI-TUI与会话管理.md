@@ -373,10 +373,10 @@ curl http://localhost:8000/v1/chat/completions \
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/ai/hermes-agent/03-安装初始化与首次对话/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/ai/hermes-agent/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/ai/hermes-agent/05-模型供应商与配置体系/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/ai/hermes-agent/03-安装初始化与首次对话/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/ai/hermes-agent/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/ai/hermes-agent/05-模型供应商与配置体系/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

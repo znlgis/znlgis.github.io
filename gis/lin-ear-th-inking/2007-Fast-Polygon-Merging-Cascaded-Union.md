@@ -276,10 +276,9 @@ public class UnionBenchmark {
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/2010-Random-Points-in-JTS/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/" style="text-decoration: none;">目录</a>
-  <span></span>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/2010-Random-Points-in-JTS/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/lin-ear-th-inking/" class="chapter-nav__dir">目录</a>
 </div>
 
 <!-- /NAVIGATION -->

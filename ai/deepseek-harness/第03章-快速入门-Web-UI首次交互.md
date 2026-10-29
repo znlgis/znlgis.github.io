@@ -358,10 +358,10 @@ session log 是贯穿后续章节的重要概念，这里先给一句话预告�
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/ai/deepseek-harness/第02章-安装与环境配置/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/ai/deepseek-harness/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/ai/deepseek-harness/第04章-模型配置与供应商体系/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/ai/deepseek-harness/第02章-安装与环境配置/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/ai/deepseek-harness/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/ai/deepseek-harness/第04章-模型配置与供应商体系/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

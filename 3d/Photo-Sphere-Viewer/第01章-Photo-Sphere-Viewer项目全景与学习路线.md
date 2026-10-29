@@ -452,7 +452,7 @@ PSV 的核心渲染能力完全依赖 Three.js，要深入理解 PSV 的内部�
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/3d/Photo-Sphere-Viewer/" style="text-decoration: none;">← 目录</a>
-  <a href="https://znlgis.github.io/3d/Photo-Sphere-Viewer/第02章-环境搭建与第一个全景应用/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/3d/Photo-Sphere-Viewer/" class="chapter-nav__dir">← 目录</a>
+  <a href="https://znlgis.github.io/3d/Photo-Sphere-Viewer/第02章-环境搭建与第一个全景应用/" class="chapter-nav__next">下一章 →</a>
 </div>

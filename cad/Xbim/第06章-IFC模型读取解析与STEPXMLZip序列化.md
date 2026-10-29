@@ -225,10 +225,10 @@ public static void IterateAllProducts(IfcStore model)
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/cad/Xbim/第05章-XbimEssentials体系结构与IfcStore模型容器/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/cad/Xbim/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/cad/Xbim/第07章-IFC数据查询过滤与LINQ检索/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/cad/Xbim/第05章-XbimEssentials体系结构与IfcStore模型容器/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/Xbim/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/cad/Xbim/第07章-IFC数据查询过滤与LINQ检索/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

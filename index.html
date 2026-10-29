@@ -13,46 +13,29 @@ title: 首页
 
 <p>无论你是 GIS 初学者还是资深开发者，这里都有适合你的教程。选择感兴趣的方向开始学习：</p>
 
-<!-- 卡片锚点映射（对应下方 navigation.yml 遍历顺序）：
-     GIS教程=section-1, CAD开发=section-4, C#开发=section-6,
-     AI系列=section-7, IoT物联网=section-8, 3D开发=section-5 -->
+{%- assign featured = "gis,cad,csharp,ai,iot,3d" | split: "," -%}
 <div class="home-card-grid">
-  <div class="home-card">
-    <h3>🌍 GIS 开发</h3>
-    <p>GDAL &middot; GeoServer &middot; PostGIS &middot; QGIS &middot; OpenLayers &middot; Cesium</p>
-    <a href="#section-1">浏览教程</a>
-  </div>
-  <div class="home-card">
-    <h3>📐 CAD 开发</h3>
-    <p>FreeCAD &middot; OCCT &middot; KiCad &middot; OpenSCAD &middot; CadQuery &middot; Xbim</p>
-    <a href="#section-4">浏览教程</a>
-  </div>
-  <div class="home-card">
-    <h3>💻 C# 开发</h3>
-    <p>Admin.NET &middot; Furion &middot; NPOI &middot; ReoGrid &middot; SqlSugar</p>
-    <a href="#section-6">浏览教程</a>
-  </div>
-  <div class="home-card">
-    <h3>🤖 AI 应用</h3>
-    <p>Dify &middot; OpenClaw &middot; hermes-agent &middot; OpenCode</p>
-    <a href="#section-7">浏览教程</a>
-  </div>
-  <div class="home-card">
-    <h3>🔌 IoT 物联网</h3>
-    <p>Raspberry Pi Pico &middot; MicroPython &middot; 传感器</p>
-    <a href="#section-8">浏览教程</a>
-  </div>
-  <div class="home-card">
-    <h3>🧊 3D 开发</h3>
-    <p>SuperSplat &middot; Ara3D-SDK &middot; 高斯泼溅 &middot; BIM</p>
-    <a href="#section-5">浏览教程</a>
-  </div>
+  {%- for fid in featured -%}
+    {%- for section in site.data.navigation -%}
+      {%- if section.id == fid -%}
+      <div class="home-card">
+        <h3>{{ section.icon }} {{ section.title }}</h3>
+        <p>
+          {%- for item in section.children limit: 6 -%}
+            {{ item.title | remove: " 教程" }}{% unless forloop.last %} &middot; {% endunless %}
+          {%- endfor -%}
+        </p>
+        <a href="#section-{{ section.id }}">浏览教程</a>
+      </div>
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endfor -%}
 </div>
 
----
+<hr>
 
 {%- for section in site.data.navigation -%}
-<h2 id="section-{{ forloop.index }}">{{ section.icon }} {{ section.title }}</h2>
+<h2 id="section-{{ section.id }}">{{ section.icon }} {{ section.title }}</h2>
 <div class="category-section">
   <ul class="home-link-list">
   {%- for item in section.children -%}

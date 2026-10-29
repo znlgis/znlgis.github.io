@@ -520,10 +520,9 @@ Mapsui 5.1.0 是当前的主要版本，带来了多项重要改进：
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <span></span>
-  <a href="https://znlgis.github.io/gis/tutorial/Mapsui/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/gis/tutorial/Mapsui/第02章-环境搭建与快速开始/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/gis/tutorial/Mapsui/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/gis/tutorial/Mapsui/第02章-环境搭建与快速开始/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

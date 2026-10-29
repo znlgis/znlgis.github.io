@@ -929,10 +929,9 @@ public class BatchProcessor
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/cad/IFoxCAD/第07章-图元操作与几何处理教程/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/cad/IFoxCAD/" style="text-decoration: none;">目录</a>
-  <span></span>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/cad/IFoxCAD/第07章-图元操作与几何处理教程/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/IFoxCAD/" class="chapter-nav__dir">目录</a>
 </div>
 
 <!-- /NAVIGATION -->

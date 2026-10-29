@@ -1006,10 +1006,10 @@ public class OperationRequest
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/gis/tutorial/NetTopologySuite/第06章-空间分析算法/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/gis/tutorial/NetTopologySuite/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/gis/tutorial/NetTopologySuite/第08章-Shapefile文件操作/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/gis/tutorial/NetTopologySuite/第06章-空间分析算法/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/tutorial/NetTopologySuite/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/gis/tutorial/NetTopologySuite/第08章-Shapefile文件操作/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

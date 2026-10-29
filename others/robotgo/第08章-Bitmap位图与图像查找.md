@@ -211,10 +211,10 @@ RobotGo 生态里有三种“看屏幕找东西”的层次，适用场景各不
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/others/robotgo/第07章-屏幕截图与图像处理/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/others/robotgo/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/others/robotgo/第09章-剪贴板操作/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/others/robotgo/第07章-屏幕截图与图像处理/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/others/robotgo/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/others/robotgo/第09章-剪贴板操作/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

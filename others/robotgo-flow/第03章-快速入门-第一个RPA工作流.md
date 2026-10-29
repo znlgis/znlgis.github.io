@@ -169,10 +169,10 @@ robotgo-flow run workflow.yaml
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/others/robotgo-flow/第02章-环境准备与编译构建/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/others/robotgo-flow/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/others/robotgo-flow/第04章-YAML工作流文件结构详解/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/others/robotgo-flow/第02章-环境准备与编译构建/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/others/robotgo-flow/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/others/robotgo-flow/第04章-YAML工作流文件结构详解/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

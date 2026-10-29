@@ -310,10 +310,9 @@ LightCAD源码根目录/
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <span></span>
-  <a href="https://znlgis.github.io/cad/LightCAD/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/cad/LightCAD/第02章-开发环境搭建与项目配置/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/cad/LightCAD/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/cad/LightCAD/第02章-开发环境搭建与项目配置/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

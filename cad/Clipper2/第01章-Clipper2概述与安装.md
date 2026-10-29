@@ -562,10 +562,9 @@ A: 建议将坐标缩放到合适的范围。过大的坐标可能导致溢出�
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <span></span>
-  <a href="./" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/cad/Clipper2/第02章-核心数据结构/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="./" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/cad/Clipper2/第02章-核心数据结构/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

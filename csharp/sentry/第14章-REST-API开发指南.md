@@ -1403,10 +1403,10 @@ Access-Control-Expose-Headers: X-Sentry-Error, X-Sentry-Direct-Hit,
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/csharp/sentry/第13章-数据模型与存储层/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/csharp/sentry/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/csharp/sentry/第15章-Relay与项目配置系统/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/csharp/sentry/第13章-数据模型与存储层/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/csharp/sentry/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/csharp/sentry/第15章-Relay与项目配置系统/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

@@ -150,8 +150,7 @@ class Program
 
 ---
 
-<div style="display:flex; justify-content:space-between; margin-top:3rem;">
-  <span></span>
-  <a href="https://znlgis.github.io/3d/OpenCSG.NET/">目录</a>
-  <a href="https://znlgis.github.io/3d/OpenCSG.NET/第02章-环境搭建与第一个程序/">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/3d/OpenCSG.NET/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/3d/OpenCSG.NET/第02章-环境搭建与第一个程序/" class="chapter-nav__next">下一章 →</a>
 </div>

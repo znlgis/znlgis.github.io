@@ -742,10 +742,10 @@ Provider系统是实现参数化BIM组件的关键技术，掌握它可以创建
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/cad/FY_Layout/第09章-三维渲染与模型生成/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/cad/FY_Layout/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/cad/FY_Layout/第11章-UI界面开发与命令系统/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/cad/FY_Layout/第09章-三维渲染与模型生成/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/FY_Layout/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/cad/FY_Layout/第11章-UI界面开发与命令系统/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

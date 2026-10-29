@@ -377,10 +377,10 @@ Web服务是现代GIS数据共享的重要方式。
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/gis/tutorial/qgis/第16章-数据库集成/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/gis/tutorial/qgis/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/gis/tutorial/qgis/第18章-高级功能与扩展/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/gis/tutorial/qgis/第16章-数据库集成/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/tutorial/qgis/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/gis/tutorial/qgis/第18章-高级功能与扩展/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

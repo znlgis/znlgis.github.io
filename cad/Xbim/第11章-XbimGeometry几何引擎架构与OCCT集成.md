@@ -256,10 +256,10 @@ warn: Boolean Cut failed for #1234 IfcExtrudedAreaSolid x IfcOpeningElement #456
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/cad/Xbim/第10章-空间结构构件与IfcRelationship关系网络/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/cad/Xbim/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/cad/Xbim/第12章-几何表达布尔运算与三角网格生成/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/cad/Xbim/第10章-空间结构构件与IfcRelationship关系网络/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/Xbim/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/cad/Xbim/第12章-几何表达布尔运算与三角网格生成/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

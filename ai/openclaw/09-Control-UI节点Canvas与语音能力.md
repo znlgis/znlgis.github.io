@@ -64,10 +64,10 @@ Control UI、节点、Canvas 和语音扩展了 OpenClaw 的交互边界，也�
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/ai/openclaw/08-安全模型访问控制与沙箱实践/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/ai/openclaw/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/ai/openclaw/10-自动化远程访问日志与排障/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/ai/openclaw/08-安全模型访问控制与沙箱实践/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/ai/openclaw/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/ai/openclaw/10-自动化远程访问日志与排障/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

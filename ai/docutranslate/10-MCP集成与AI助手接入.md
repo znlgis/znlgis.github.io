@@ -196,10 +196,10 @@ MCP 服务器的默认行为主要通过环境变量控制（在客户端配置�
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/ai/docutranslate/09-RESTAPI与服务集成/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/ai/docutranslate/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/ai/docutranslate/11-环境变量与部署配置/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/ai/docutranslate/09-RESTAPI与服务集成/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/ai/docutranslate/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/ai/docutranslate/11-环境变量与部署配置/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

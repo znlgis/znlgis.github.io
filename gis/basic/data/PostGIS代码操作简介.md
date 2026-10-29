@@ -114,10 +114,9 @@ PostGIS提供了两种主要的空间数据类型：`GEOMETRY`和`GEOGRAPHY`。�
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/gis/basic/data/PostGIS数据库操作简介/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/gis/basic/data/" style="text-decoration: none;">目录</a>
-  <span></span>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/gis/basic/data/PostGIS数据库操作简介/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/basic/data/" class="chapter-nav__dir">目录</a>
 </div>
 
 <!-- /NAVIGATION -->

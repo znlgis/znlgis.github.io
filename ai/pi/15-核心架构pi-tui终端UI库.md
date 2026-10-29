@@ -2029,10 +2029,9 @@ pi-tui 的设计哲学与 Pi 整体一致：**"做好一件事，留下干净的
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/ai/pi/14-核心架构pi-agent-core代理运行时/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/ai/pi/" style="text-decoration: none;">目录</a>
-  <span></span>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/ai/pi/14-核心架构pi-agent-core代理运行时/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/ai/pi/" class="chapter-nav__dir">目录</a>
 </div>
 
 <!-- /NAVIGATION -->

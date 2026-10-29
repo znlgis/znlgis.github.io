@@ -508,10 +508,10 @@ led.fade_to(100, duration=2)
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/iot/KE3036-Keyes-Pico/04-IO扩展板与传感器接线规范/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/iot/KE3036-Keyes-Pico/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/iot/KE3036-Keyes-Pico/06-按键与触摸传感器/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/iot/KE3036-Keyes-Pico/04-IO扩展板与传感器接线规范/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/iot/KE3036-Keyes-Pico/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/iot/KE3036-Keyes-Pico/06-按键与触摸传感器/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

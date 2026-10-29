@@ -196,10 +196,10 @@ BRepTools::Read(s, "in.brep", b);
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/cad/occt/第04章-数学与几何基元gpGeomGeomAPI/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/cad/occt/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/cad/occt/第06章-建模数据与几何表达ModelingData/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/cad/occt/第04章-数学与几何基元gpGeomGeomAPI/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/occt/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/cad/occt/第06章-建模数据与几何表达ModelingData/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

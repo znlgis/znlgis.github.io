@@ -135,10 +135,10 @@ OpenSCAD 官方仓库自身包含 GitHub Actions、CircleCI、本地 CI 说明�
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/cad/openscad/第09章-列表推导递归与算法建模/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/cad/openscad/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/cad/openscad/第11章-预览渲染网格精度与性能优化/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/cad/openscad/第09章-列表推导递归与算法建模/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/openscad/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/cad/openscad/第11章-预览渲染网格精度与性能优化/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

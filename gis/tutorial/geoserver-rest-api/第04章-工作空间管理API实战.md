@@ -1097,10 +1097,10 @@ public class WorkspaceCache
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/gis/tutorial/geoserver-rest-api/第03章-HTTP客户端基础设施详解/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/gis/tutorial/geoserver-rest-api/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/gis/tutorial/geoserver-rest-api/第05章-数据存储管理API详解/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/gis/tutorial/geoserver-rest-api/第03章-HTTP客户端基础设施详解/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/tutorial/geoserver-rest-api/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/gis/tutorial/geoserver-rest-api/第05章-数据存储管理API详解/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

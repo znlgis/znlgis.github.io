@@ -1146,10 +1146,10 @@ public class AuditLog
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/csharp/SqlSugar/第10章-分表分库与多租户/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/csharp/SqlSugar/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/csharp/SqlSugar/第12章-DbFirst与代码生成/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/csharp/SqlSugar/第10章-分表分库与多租户/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/csharp/SqlSugar/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/csharp/SqlSugar/第12章-DbFirst与代码生成/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

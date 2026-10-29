@@ -49,10 +49,10 @@ docker run --name nginx -v //d/docker/data/nginx/nginx.conf:/etc/nginx/nginx.con
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/demos/vue3-openlayers/functional-requirement/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/demos/vue3-openlayers/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/demos/vue3-openlayers/demo/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/demos/vue3-openlayers/functional-requirement/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/demos/vue3-openlayers/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/demos/vue3-openlayers/demo/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

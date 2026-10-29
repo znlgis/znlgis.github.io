@@ -209,8 +209,8 @@ DataTableExportUtils.WriteSqlite(bim.ToDataTable(), "building.db");
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/3d/ara3d-sdk/第07章-文件IO与三维数据格式/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/3d/ara3d-sdk/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/3d/ara3d-sdk/第09章-Ara3D-Studio插件开发/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/3d/ara3d-sdk/第07章-文件IO与三维数据格式/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/3d/ara3d-sdk/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/3d/ara3d-sdk/第09章-Ara3D-Studio插件开发/" class="chapter-nav__next">下一章 →</a>
 </div>

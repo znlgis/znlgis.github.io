@@ -88,10 +88,9 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && echo 'Asia/Shangh
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/gis/basic/env/Windows下的GDAL环境配置/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/gis/basic/env/" style="text-decoration: none;">目录</a>
-  <span></span>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/gis/basic/env/Windows下的GDAL环境配置/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/basic/env/" class="chapter-nav__dir">目录</a>
 </div>
 
 <!-- /NAVIGATION -->

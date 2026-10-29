@@ -358,10 +358,10 @@ with DeepSeekHarness(provider="deepseek-official", model="deepseek-v4-flash") as
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/ai/deepseek-harness/第05章-CLI与Profile-Bundle体系/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/ai/deepseek-harness/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/ai/deepseek-harness/第07章-ACP与JSON-RPC自动化接入/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/ai/deepseek-harness/第05章-CLI与Profile-Bundle体系/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/ai/deepseek-harness/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/ai/deepseek-harness/第07章-ACP与JSON-RPC自动化接入/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

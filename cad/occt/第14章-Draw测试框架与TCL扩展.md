@@ -205,10 +205,10 @@ OCCT 自有 CI 使用 `testgrid` + `testdiff` 对比基准。第三方项目可�
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/cad/occt/第13章-OCAF应用框架TDFTDocStdXCAF/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/cad/occt/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/cad/occt/第15章-曲面建模与自由形状/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/cad/occt/第13章-OCAF应用框架TDFTDocStdXCAF/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/occt/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/cad/occt/第15章-曲面建模与自由形状/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

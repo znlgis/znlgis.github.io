@@ -265,10 +265,10 @@ def my_custom_skill():
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/gis/tutorial/GeoPipeAgent/第16章-CLI命令行工具/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/gis/tutorial/GeoPipeAgent/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/gis/tutorial/GeoPipeAgent/第18章-自定义步骤与扩展开发/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/gis/tutorial/GeoPipeAgent/第16章-CLI命令行工具/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/tutorial/GeoPipeAgent/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/gis/tutorial/GeoPipeAgent/第18章-自定义步骤与扩展开发/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

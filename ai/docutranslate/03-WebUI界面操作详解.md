@@ -157,10 +157,10 @@ DocuTranslate 支持 `docx`、`xlsx` **保持原格式翻译**（不支持老式
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/ai/docutranslate/02-安装部署与快速上手/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/ai/docutranslate/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/ai/docutranslate/04-大模型与PDF解析引擎配置/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/ai/docutranslate/02-安装部署与快速上手/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/ai/docutranslate/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/ai/docutranslate/04-大模型与PDF解析引擎配置/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

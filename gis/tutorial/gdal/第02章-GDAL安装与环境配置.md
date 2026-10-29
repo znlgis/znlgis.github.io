@@ -1046,10 +1046,10 @@ except Exception as e:
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/gis/tutorial/gdal/第01章-GDAL概述与基础知识/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/gis/tutorial/gdal/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/gis/tutorial/gdal/第03章-GDAL核心架构与数据模型/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/gis/tutorial/gdal/第01章-GDAL概述与基础知识/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/tutorial/gdal/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/gis/tutorial/gdal/第03章-GDAL核心架构与数据模型/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

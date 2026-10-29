@@ -239,10 +239,10 @@ Open BIM 不只是"会读 .ifc"——还包括：
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/cad/Xbim/第14章-COBie数据交换与XbimCobieExpress/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/cad/Xbim/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/cad/Xbim/第16章-综合实战构建IFC处理与BIM应用/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/cad/Xbim/第14章-COBie数据交换与XbimCobieExpress/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/Xbim/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/cad/Xbim/第16章-综合实战构建IFC处理与BIM应用/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

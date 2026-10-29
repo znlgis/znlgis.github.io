@@ -112,10 +112,10 @@ Sketcher 会显示草图自由度。完全约束并不意味着草图一定正�
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/cad/FreeCAD/第03章-界面工作台与基础操作/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/cad/FreeCAD/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/cad/FreeCAD/第05章-PartDesign实体特征建模/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/cad/FreeCAD/第03章-界面工作台与基础操作/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/FreeCAD/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/cad/FreeCAD/第05章-PartDesign实体特征建模/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

@@ -1185,10 +1185,10 @@ opengis-skills 仓库中的所有内容都是**公开知识**——GDAL 的 API 
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/ai/opengis-skills/10-实战工作流组合/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/ai/opengis-skills/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/ai/opengis-skills/12-贡献指南与社区/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/ai/opengis-skills/10-实战工作流组合/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/ai/opengis-skills/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/ai/opengis-skills/12-贡献指南与社区/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

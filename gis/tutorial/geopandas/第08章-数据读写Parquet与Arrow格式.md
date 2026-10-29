@@ -961,10 +961,10 @@ convert_to_parquet("old_data.shp", "new_data.parquet")
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/gis/tutorial/geopandas/第07章-数据读写矢量文件格式/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/gis/tutorial/geopandas/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/gis/tutorial/geopandas/第09章-数据读写数据库IO/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/gis/tutorial/geopandas/第07章-数据读写矢量文件格式/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/gis/tutorial/geopandas/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/gis/tutorial/geopandas/第09章-数据读写数据库IO/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->

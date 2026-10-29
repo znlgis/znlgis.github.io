@@ -99,10 +99,10 @@ Part 模块是脚本建模的重要入口。常见思路：
 
 ---
 
-<div style="display: flex; justify-content: space-between; margin: 20px 0;">
-  <a href="https://znlgis.github.io/cad/FreeCAD/第05章-PartDesign实体特征建模/" style="text-decoration: none;">← 上一章</a>
-  <a href="https://znlgis.github.io/cad/FreeCAD/" style="text-decoration: none;">目录</a>
-  <a href="https://znlgis.github.io/cad/FreeCAD/第07章-参数化表达式与Spreadsheet/" style="text-decoration: none;">下一章 →</a>
+<div class="chapter-nav">
+  <a href="https://znlgis.github.io/cad/FreeCAD/第05章-PartDesign实体特征建模/" class="chapter-nav__prev">← 上一章</a>
+  <a href="https://znlgis.github.io/cad/FreeCAD/" class="chapter-nav__dir">目录</a>
+  <a href="https://znlgis.github.io/cad/FreeCAD/第07章-参数化表达式与Spreadsheet/" class="chapter-nav__next">下一章 →</a>
 </div>
 
 <!-- /NAVIGATION -->
