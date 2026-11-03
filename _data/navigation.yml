@@ -108,6 +108,9 @@
     - title: 自然资源“一张图”应用全景
       icon: 📁
       url: /gis/bpc/yzt/
+    - title: GIS 与 CAD 融合应用全景
+      icon: 📁
+      url: /gis/bpc/giscad/
 
 - title: 博客翻译
   id: translation
