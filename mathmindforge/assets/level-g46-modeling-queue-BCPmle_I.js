@@ -1,0 +1,1 @@
+import{t as e}from"./simulate-d5KyMwm5.js";var t=e({id:`g46-modeling-queue`,band:`g46`,thread:`modeling`,template:`simulate`,designSize:{width:0,height:0},estimatedMinutes:7,hasCanvas:!1});export{t as default};

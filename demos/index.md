@@ -23,12 +23,13 @@ title: 演示项目
 
 ## 🎮 在线试玩
 
-下面两个项目都是直接可玩的静态产物（打包后的 Vite 站点，不需要后端），手机 / 平板浏览器打开即玩；对应源码与教程见「其他教程」。
+下面三个项目都是直接可玩的静态产物（打包后的 Vite 站点，不需要后端），手机 / 平板浏览器打开即玩；对应源码与教程见「其他教程」。
 
 | 项目 | 内容 | 入口 |
 |------|------|------|
 | BambooBuddy 熊猫宝宝的一天 | 10 个生活小任务；完成 4 件后出现竹林小门，另有 3 款隐藏小游戏与「竹林小路」彩蛋 | [znlgis.github.io/bamboobuddy/](https://znlgis.github.io/bamboobuddy/) |
 | 历史典故游戏（CHAGS） | 53 个游戏 = 17 个典故 + 三十六计全 36 计；含到期复习与家长页 | [znlgis.github.io/chags/](https://znlgis.github.io/chags/) |
+| 数思工坊（Math Mind Forge） | 20 关 / 6 个模板 / 6 件思维工具；证据 → 画像 → 徽章 → 日志 → 家长报告闭环，中英文切换，进度只存本机 | [znlgis.github.io/mathmindforge/](https://znlgis.github.io/mathmindforge/) |
 
 ---
 
@@ -37,5 +38,6 @@ title: 演示项目
 - [ai-water-front](https://znlgis.github.io/demos/ai-water-front/)
 - [gistools-tutorial](https://znlgis.github.io/demos/gistools-tutorial/)
 - [map-360-demo](https://znlgis.github.io/demos/map-360-demo/)
+- [数思工坊在线试玩](https://znlgis.github.io/mathmindforge/)
 - [vue3-openlayers](https://znlgis.github.io/demos/vue3-openlayers/)
 - [vue3-map-dashboard](https://znlgis.github.io/demos/vue3-map-dashboard/)

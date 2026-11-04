@@ -1,0 +1,1 @@
+import{n as e,t}from"./pattern-Ry3H5Wcm.js";var n=t({id:`g13-structure-symmetry`,band:`g13`,thread:`structure`,template:`pattern`,designSize:e,estimatedMinutes:6,hasCanvas:!0});export{n as default};

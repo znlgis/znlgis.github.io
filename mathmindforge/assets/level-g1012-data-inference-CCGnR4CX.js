@@ -1,0 +1,1 @@
+import{t as e}from"./experiment-CBA9E4GA.js";var t=e({id:`g1012-data-inference`,band:`g1012`,thread:`data`,template:`experiment`,designSize:{width:0,height:0},estimatedMinutes:8,hasCanvas:!1});export{t as default};

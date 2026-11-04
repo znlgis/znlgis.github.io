@@ -1,0 +1,1 @@
+import{t as e}from"./construct-Btf64E6v.js";var t=e({id:`g1012-algorithm-frontier`,band:`g1012`,thread:`algorithm`,template:`construct`,designSize:{width:0,height:0},estimatedMinutes:8,hasCanvas:!1});export{t as default};

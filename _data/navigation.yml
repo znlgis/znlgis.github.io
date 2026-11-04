@@ -316,6 +316,9 @@
     - title: BambooBuddy
       icon: 📁
       url: /others/BambooBuddy/
+    - title: 数思工坊
+      icon: 📁
+      url: /others/MathMindForge/
 
 - title: 项目演示
   id: demos
@@ -342,3 +345,6 @@
     - title: BambooBuddy 熊猫养成（在线试玩）
       icon: 🎮
       url: /bamboobuddy/
+    - title: 数思工坊（在线试玩）
+      icon: 🧮
+      url: /mathmindforge/
