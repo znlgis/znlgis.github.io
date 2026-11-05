@@ -120,6 +120,9 @@
     - title: 三维 GIS 技术与业务全景
       icon: 📁
       url: /gis/bpc/gis3d/
+    - title: GIS 与 AI 结合全景
+      icon: 📁
+      url: /gis/bpc/gisai/
 
 - title: 博客翻译
   id: translation

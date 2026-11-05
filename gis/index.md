@@ -19,3 +19,4 @@ title: GIS 教程
 - [GIS 数据分析技术与业务全景教程](https://znlgis.github.io/gis/bpc/gisfx/)
 - [GIS 数据质检全景教程](https://znlgis.github.io/gis/bpc/giszj/)
 - [三维 GIS 技术与业务全景教程](https://znlgis.github.io/gis/bpc/gis3d/)
+- [GIS 与 AI 结合全景教程](https://znlgis.github.io/gis/bpc/gisai/)
