@@ -16,3 +16,6 @@ title: GIS 教程
 - [应急管理 GIS 应用全景教程](https://znlgis.github.io/gis/bpc/yingji/)
 - [自然资源“一张图”应用全景教程](https://znlgis.github.io/gis/bpc/yzt/)
 - [GIS 与 CAD 融合应用全景教程](https://znlgis.github.io/gis/bpc/giscad/)
+- [GIS 数据分析技术与业务全景教程](https://znlgis.github.io/gis/bpc/gisfx/)
+- [GIS 数据质检全景教程](https://znlgis.github.io/gis/bpc/giszj/)
+- [三维 GIS 技术与业务全景教程](https://znlgis.github.io/gis/bpc/gis3d/)

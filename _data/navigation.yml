@@ -111,6 +111,15 @@
     - title: GIS 与 CAD 融合应用全景
       icon: 📁
       url: /gis/bpc/giscad/
+    - title: GIS 数据分析技术与业务全景
+      icon: 📁
+      url: /gis/bpc/gisfx/
+    - title: GIS 数据质检全景
+      icon: 📁
+      url: /gis/bpc/giszj/
+    - title: 三维 GIS 技术与业务全景
+      icon: 📁
+      url: /gis/bpc/gis3d/
 
 - title: 博客翻译
   id: translation

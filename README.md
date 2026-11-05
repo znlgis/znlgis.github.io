@@ -1,6 +1,6 @@
 # znlgis 博客
 
-GIS 开发与技术分享博客，涵盖 GIS、CAD、C#、3D、AI 等领域，共 **90 个教程系列、1250 篇文章**。
+GIS 开发与技术分享博客，涵盖 GIS、CAD、C#、3D、AI 等领域，共 **99 个教程系列、1420 篇文章**。
 
 在线访问：[https://znlgis.github.io](https://znlgis.github.io)
 
@@ -10,8 +10,8 @@ GIS 开发与技术分享博客，涵盖 GIS、CAD、C#、3D、AI 等领域，�
 |------|--------|--------|----------|
 | 🌍 GIS 教程 | 21 | 341 | GDAL · GeoServer · PostGIS · QGIS · GeoLibre · OpenLayers · CesiumJS |
 | 📖 GIS 基础 | 4 | 12 | 数据格式 · 地图服务 · 开发环境 · 开发技巧 |
-| 🏘️ GIS 业务全景 | 2 | 47 | 房产测绘业务全景 · CAD 图纸翻模三维模型全景 |
-| 📝 博客翻译 | 1 | 31 | Lin.ear th.inking |
+| 🏘️ GIS 业务全景 | 10 | 216 | 房产测绘 · CAD 翻模 · 多测合一 · 水务 · 应急 · 一张图 · GIS 与 CAD · 数据分析 · 数据质检 · 三维 GIS |
+| 📝 博客翻译 | 1 | 32 | Lin.ear th.inking |
 | 📐 CAD 开发 | 19 | 258 | FreeCAD · OCCT · KiCad · OpenSCAD · CadQuery · Xbim |
 | 🧊 3D 开发 | 5 | 62 | SuperSplat · Ara3D-SDK · Photo-Sphere-Viewer · Elements |
 | 💻 C# 开发 | 8 | 126 | Admin.NET · Furion · NPOI · ReoGrid · SqlSugar |
@@ -19,7 +19,7 @@ GIS 开发与技术分享博客，涵盖 GIS、CAD、C#、3D、AI 等领域，�
 | 🔌 IoT 物联网 | 1 | 25 | KE3036-Keyes-Pico (Raspberry Pi Pico) |
 | 📖 源码解读 | 2 | 40 | Clipper2 · Clipper1 |
 | 📦 其他教程 | 9 | 140 | acme.sh · BillionMail · BambooBuddy · CHAGS · 数思工坊 · Go 语言 · RobotGo |
-| 🎯 项目演示 | 7 | 39 | Vue3+OpenLayers · Vue3 地图大屏 · AI 智慧水务 · 360 全景地图联动 · CHAGS · BambooBuddy · 数思工坊 |
+| 🎯 项目演示 | 8 | 39 | Vue3+OpenLayers · Vue3 地图大屏 · AI 智慧水务 · 360 全景地图联动 · CHAGS · BambooBuddy · 数思工坊 |
 
 ## ✨ 博客特性
 
