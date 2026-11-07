@@ -1,0 +1,1 @@
+import{n as e}from"./rule-T147jEHt.js";var t=e({id:`k-algorithm-train`,band:`k`,thread:`algorithm`,template:`rule`,designSize:{width:720,height:720},estimatedMinutes:5,hasCanvas:!0});export{t as default};

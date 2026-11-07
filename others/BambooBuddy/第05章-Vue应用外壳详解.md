@@ -83,7 +83,7 @@ watch(
 );
 ```
 
-- **五个页面懒加载**：`PlayView` 与 `ArcadePlayView` 是 Phaser 的入口，必须等孩子真的点开才下载；`ParentView`、`DiaryView`、`ArcadeView` 懒加载则是给首屏腾体积——绝大多数会话不会先进家长页，日记一天看一次，游戏厅更要先解锁。日记页那一次是 2026-10-20 加彩蛋时补的：入口与触发逻辑让首屏涨到 60.0 KB，把日记页改成路由懒加载后回到 58.9 KB。
+- **五个页面懒加载**：`PlayView` 与 `ArcadePlayView` 是 Phaser 的入口，必须等孩子真的点开才下载；`ParentView`、`DiaryView`、`ArcadeView` 懒加载则是给首屏腾体积——绝大多数会话不会先进家长页，日记一天看一次，游戏厅更要先解锁。日记页那一次是 2026-10-20 加彩蛋时补的：入口与触发逻辑让首屏涨到 60.0 KB，把日记页改成路由懒加载后回到 59.1 KB。
 - **`isFullScreen` 同时干掉顶栏与底栏**：游戏与小游戏是全屏 Canvas，家长页是一份长文档，三者都不该有「小屋 / 任务 / 装扮」三个大按钮在旁边晃。
 - **`PlayView` 的 key 是 `taskId + ':' + locale`**：切语言即重挂游戏、换任务即重建 Phaser 实例，避免出现半中半英的场景或两个 canvas 叠加。
 
@@ -192,8 +192,8 @@ function init(): Promise<void> {
 | `careAvailable` | `careAvailable(pet.careDays, action, dayKey(now))` | 摸头 / 抱抱 / 击掌每天各一次 |
 | `starsFor` / `streakFor` / `hasSticker` / `completedToday` / `completedBefore` | `save.tasks` 与 `pet.stickers` | 任务卡上的星、连续天数、贴纸、今日已完成 |
 | `owns` / `equippedId` / `roomId` | `findItem` + `ownsItem` / `pet.equipped` / `pet.room` | 装扮页的按钮三态 |
-| `arcadeUnlocked` / `arcadeUnlimited` / `arcadePlayed` | `arcadeStatus(save, now)` | 小门出不出、是否无限畅玩、今天玩过哪几款 |
-| `arcadeAvailable(id)` / `arcadeBest(id)` | `arcadeAvailable()` / `save.arcade[id].best` | 游戏厅卡片三态与最好成绩 |
+| `arcadeUnlocked` / `arcadeUnlimited` / `arcadePlaysToday` | `arcadeStatus(save, now)` | 小门出不出、是否无限畅玩、今天还剩几局 |
+| `arcadeAvailable(id)` / `arcadeBest(id)` / `arcadeLevel(id)` | `arcadeAvailable()` / `save.arcade[id].best` / `arcadeLevelFor(plays)` | 游戏厅卡片的可玩性、最好成绩与 Lv.N |
 
 `completeBefore` 这个名字值得单独说一句：玩法里用它决定要不要说「又做到啦」。`completeTask` 之前先取 `getTaskSummary(taskId)`，摘要缺失时返回 `null` 而不是抛错——内容被删掉一半的中间态不该让孩子看到崩溃页。
 
@@ -397,7 +397,7 @@ function playDiary(): void {
 3. **声音开关**（直接调 `settings.toggle()`）与**清除本机存档**（长按 3 秒）；
 4. **版本号**：`import sitePkg from '../../package.json'`，`version` 缺省 `'0.0.0'`。Vite 会把 JSON 内联进 chunk，不额外请求。
 
-第 5 条是 10-20 加的：**今天玩了几局小游戏**（`todayRecord.arcade.length`，文案「今天和竹竹玩了 {n} 局小游戏（每款每天一次）」）。它只报数量，不带成绩与排行——家长需要知道的是「今天玩了多久、玩了什么」，不是「排第几」。
+第 5 条是 10-20 加的：**今天玩了几局小游戏**（`todayRecord.arcadePlays`，文案「今天和竹竹玩了 {n} 局小游戏」）。它只报数量，不带成绩与排行——家长需要知道的是「今天玩了多久、玩了什么」，不是「排第几」。
 
 ## 5.8 shell 与 logic 里的小工具
 

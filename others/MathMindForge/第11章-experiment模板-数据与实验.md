@@ -7,6 +7,8 @@ title: 第11章 - experiment模板-数据与实验
 
 experiment 是「先采样、再下结论」的模板。它和 construct 的分工很清楚：construct 判定的是「你摆出来的东西对不对」，experiment 判定的是「你的结论有没有数据支撑」。这两个模板都会拒绝空答案，但拒绝的理由不同——construct 说「构造不满足约束」，experiment 说「你还没采样」。
 
+去卡片化之后，四关的采样动作也全部自动化了：tally 进面板自动倒出整筐、sampling 进面板自动抽两批、duel 的参数一凑满就自动跑出采样结果。玩家要做的只剩「看清数据、写下结论」——这也是 `answerComplete` 在 experiment 里的统一口径：**采样与结论三件齐备才让判，缺一样就不判**。
+
 实验模板在首发 20 关里占 5 关，是仅次于 construct 的第二大模板：
 
 | 关卡 | 学段/主线 | mode | 工具 | 判定核心 |
@@ -103,14 +105,23 @@ for (const category of script.categories) {
 
 这个「同一事实写两遍、再交叉校验」的做法在内容里很常见：`categories[].count` 是给人读的规格，`items` 是给运行时用的数据源，`scriptIssues` 保证两者不会悄悄漂移。
 
-交互简化后，玩家不需要真的点 20 次「抓一把」。`TallyTool` 上有一个「全部倒出来」按钮：
+交互简化后，玩家不需要真的点 20 次「抓一把」；第四轮之后连「全部倒出来」这个按钮也删了——**进入面板即自动倒出整筐**。实现上仍走 `probe/sample` 的 `payload.n`，只是由组件在挂载后自动派发一次：
 
 ```ts
-/** 一次点击把整筐倒出来：复用 probe/sample 的 payload.n（运行时按剩余量切片）。 */
+/** 一次派发把整筐倒出来：复用 probe/sample 的 payload.n（运行时按剩余量切片）。 */
 async function dumpAll(): Promise<void> {
   await dispatch({ type: 'probe/sample', payload: { n: remaining.value } });
 }
 ```
+
+自动倒筐有一个容易忽略的时序细节：它必须放在**宏任务**里（`setTimeout` / `queueMicrotask` 之外）。`TallyTool` 的注释写明了原因：
+
+```ts
+// 自动倒筐放在宏任务里：autoplay 调试路径整段在微任务里跑完，
+// 不能让它和自动倒筐抢同一个运行时（否则自动播放的第一次采集会被判「已采完」）。
+```
+
+「重来」把 `collected` 清回 0 之后，面板会再自动倒一次——玩家不用去找一个已经不存在的按钮。
 
 运行时按剩余量切片，所以 `n` 传大了也不会重复采：
 
@@ -160,6 +171,8 @@ async function answer(direction: 'most' | 'least', categoryId: string): Promise<
   await dispatch({ type: 'probe/claim', payload: { claim } });
 }
 ```
+
+`answerComplete` 在 tally 关是三件齐备：**整筐采完 + 统计条记下 + 结论选好**。少了任何一件都说明玩家还没答完；三件齐了，对错交给判定——统计条填错也会立刻看到"统计条和筐里的图形对不上"的具体原因。
 
 判定侧对并列的处理是严格的（`packages/templates/src/experiment/tally.ts`）：
 
@@ -289,6 +302,21 @@ if (!inInterval || Math.abs(claim.value - result.winRate) > 0.05) {
 
 「目标线」在这里是四个常量：55%、50%（区间下界）、52%（B 种子）、1000（局数）。界面上它们必须上屏——`KnobTool` 的注释写着「目标线必须上屏：这三条决定『多高才算过』，winrate 关尤其不能藏」。
 
+这一关的去按钮化最彻底：删掉「运行」「跑满 1000 局」之后，**三个数字框一凑满资源就自动采样**，玩家接着点一个结论 chip 就完事。交互预算是 target 4：三次输入 + 一次结论。`answerComplete` 的条件相应是「参数凑满 + 采样结果已出 + 结论已选」：
+
+```ts
+answerComplete(state): boolean {
+  // 只回答「答案填完了没有」，对错交给 validate：
+  // tally 要整筐采完 + 统计条记下 + 结论选好；duel 要参数、采样与结论三件齐（= artifact 非空）。
+  if (script.mode === 'tally') {
+    return state.collected.length >= script.items.length
+      && state.tallyCounts !== null
+      && state.claim !== null;
+  }
+  return state.params !== null && state.sample !== null && state.claim !== null;
+}
+```
+
 ## 11.4 种子与迁移门：为什么这条关有、抽样关没有
 
 experiment 是六个模板里**唯一在运行时保留迁移门**的模板之一（另一个是 pattern）。它的迁移门只对 duel 生效：
@@ -371,6 +399,17 @@ export function drawSample(script: SamplingScript, n: number, seed: number): Sam
 }
 ```
 
+玩家不需要点「抽两批」——**进入面板就自动抽两批**（同样放在宏任务里，避开 autoplay），面板直接把两批比例与合计摆出来：
+
+```ts
+// packages/toolkit-ui/src/SamplingTool.vue（节选）
+/** 进入工具卡就自动抽两批：两批比例差多少才是这一关要看的东西，玩家只需要看数据、写结论。 */
+```
+
+（这段源码注释里的「工具卡」是第五轮之前的旧叫法，指的就是现在的作答面板；组件名与注释未随去卡片化一起改名，属于代码里的遗留措辞。同类遗留还有 rule 的 `RuleTool` 注释与 `pattern` 的「模式卡」字样。）
+
+「重来」清空样本后会再自动抽两批。`answerComplete` 因此只差一件事：样本非空 + 结论已选（`state.total > 0 && state.claim !== null`）。交互预算 target 是 1，就是点一次结论。
+
 判定要过五关，顺序本身说明了「先有样本、再谈结论」：
 
 1. 有样本（`sampling-no-sample`）；
@@ -442,7 +481,7 @@ export function inferenceStats(script: InferenceScript): InferenceStats {
 }
 ```
 
-A 组 70%、B 组 30%，区间不重叠，真值是 `a-higher`。玩家要在三个选项里选一个，结论以 `difference` 形式提交：差值 + 差值区间 + 总样本量。
+A 组 70%、B 组 30%，区间不重叠，真值是 `a-higher`。玩家要在三个选项里选一个，结论以 `difference` 形式提交：差值 + 差值区间 + 总样本量。这是 experiment 里最轻的一关：两组样本与区间一直渲染在面板上，「结论已选」就是全部答案，`answerComplete` 判 `state.claim !== null`，交互预算 target 1。
 
 判定只认三件事：样本量达标、方向与真值一致、以及「方向明确时差值的区间下界要大于 0」：
 
@@ -483,6 +522,7 @@ experiment 的失败类里，「没采样就写结论」占了很大比重，但
 ## 11.8 本章要点
 
 - experiment 有四个真实 mode（tally / duel / sampling / inference），但主 schema 只登记前两个；完整清单要看 `experimentVerifier` 的分派。
+- 第四轮之后采样动作全部自动化：tally 自动倒筐、sampling 自动抽两批、duel 参数凑满即自动采样；`answerComplete` 统一是「采样 + 结论齐备」，缺一样都不判。
 - 结论必须写成三种可校验形状之一（`count-compare` / `stat` / `difference`），自由文本无法判定「结论与数据是否一致」。
 - tally 关的并列必须列全（`tiedWith` 多列漏列都算错），否则 `count-compare` 会退化成单项选择。
 - duel 关用确定性 `mulberry32` 噪声，1000 局跑出胜率与 Wilson 区间；三条目标线（55% / 50% 下界 / 52%B 种子）必须上屏。

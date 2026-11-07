@@ -21,6 +21,8 @@ title: 第12章 - simulate与argue模板
 
 simulate 的骨架是一句可以背下来的话：**参数动、模拟跑、指标算**。三层全部是纯函数，不读时钟、不用随机，所以同一个参数向量必然得到同一组指标。
 
+第四轮之后，「模拟跑」这一步不再需要玩家点按钮：**参数一改就自动运行**，指标立刻上屏。玩家只做一件事——把数字旋钮调到目标区间。归零 / 重来之后，面板会重新自动跑一次。
+
 最底层是引擎（`packages/templates/src/simulate/engine.ts`），文件头写着它的边界：
 
 ```ts
@@ -74,7 +76,7 @@ export function runSimulation(script: SimulateScript, params: SimParams): SimSee
 }
 ```
 
-玩家点一次「运行」，拿到的是 A、B 两行指标，判定按两行分别检查。失败类的归属规则是：**第一个种子日不达标算「这一个种子日不达标」；第二个种子日不达标算「过拟合一个种子」**。
+玩家改完参数（自动触发的）一次运行，拿到的是 A、B 两行指标，判定按两行分别检查。失败类的归属规则是：**第一个种子日不达标算「这一个种子日不达标」；第二个种子日不达标算「过拟合一个种子」**。
 
 ```ts
 const checks = targetChecks(script, runs);
@@ -98,7 +100,17 @@ for (const [index, check] of checks.entries()) {
 
 ## 12.3 不会变的道具：artifact 只证明「跑过」，指标永远重算
 
-simulate 的产物（`SimulateArtifact`）包含参数和两个种子日的运行记录。但判定器不信任记录里的数字：
+simulate 的产物（`SimulateArtifact`）包含参数和两个种子日的运行记录。自动判题的谓词也挂在「有没有运行产物」上，而不是「有没有点过运行」：
+
+```ts
+// 自动判题口径：只要「最近一次运行 + 参数没变」就有产物，说明答案填完了（对错交给 validate）。
+// 注意不能写成 state.lastRun !== null：改参数但还没重跑的中间态必须算未完成。
+answerComplete: (state) => artifactOf(state) !== null,
+```
+
+注释里那条「不能写成 `state.lastRun !== null`」是这一轮的真实踩坑：改完参数、新运行还没算出来的一瞬间，如果只看 `lastRun` 就非空，宿主会拿旧指标去判，玩家会看到「刚改完就报错」。用「参数与运行记录对得上」构成的 `artifactOf` 才不会误判（第 20 章）。
+
+判定器不信任记录里的数字：
 
 ```ts
 /**
@@ -147,7 +159,7 @@ if (!withinBudget(script, cost)) { /* sim-budget */ }
 
 ## 12.4 queue：另一套模型，同一套骨架
 
-排队关（`g46-modeling-queue`）和调度关共用一个模板，却几乎没有共享代码——这是 simulate 的「多 mode」面。排队模型是**离散事件模拟**：15 位顾客按固定到达时间进店，若干服务台并行接待。
+排队关（`g46-modeling-queue`）和调度关共用一个模板，却几乎没有共享代码——这是 simulate 的「多 mode」面。排队模型是**离散事件模拟**：15 位顾客按固定到达时间进店，若干服务台并行接待。它同样是「改一个旋钮就自动运行」，所以 20 关交互预算里排队关的 target 是 **1**（填完 `serviceTime` 就够）。
 
 ```ts
 /** 每个服务台记下一次空闲时间；到达时取最早空闲，等待 = max(0, free - arrival)。 */
@@ -196,6 +208,8 @@ export function evaluateQueue(script: QueueScript, params: QueueParams): QueueEv
 这是「删死失败类」的又一个例子：结构上不可达的失败类，留着只会让审计要求一个永远写不出来的负例。第 9 章 rule 删 `rule-not-general`、第 10 章 network 改 `minKeyEdges` 语义，都出自同一个判断标准——**失败类必须对应一条真实的拒绝路径**。
 
 ## 12.5 argue：一份论证证书的四个要素
+
+先说去卡片化对 argue 的影响：三关原本各有一块「多米诺沙盒」（`DominoTool`）与一块「不变量探测面板」（`InvariantProbeTool`），让玩家先铺几块骨牌、点点看哪些不变量成立，再回到论证板写证书。第五轮把这两块面板**从关卡里删掉了**——`AnswerDock` 的映射表对 argue 不返回任何面板，宿主只渲染 `ArgumentBoard`。论证板内部仍然自动采样 counts，所以证据链与证书内容没有变，变的只是「玩家不再需要先做一轮沙盒实验才能作答」。
 
 argue 的产物是一份结构化证书，形状在 `packages/templates/src/argue/schema.ts` 里：
 
@@ -265,7 +279,15 @@ function isCommitted(state: ArgueState): boolean {
 }
 ```
 
-保留 `argue/commit` 动作只是为了 autoplay 与审计能走旧路径，它是幂等的：论证齐了返回成功，没齐只报缺什么。
+保留 `argue/commit` 动作只是为了 autoplay 与审计能走旧路径，它是幂等的：论证齐了返回成功，没齐只报缺什么。同一段注释也说明了 `answerComplete` 为什么能和 `artifact` 共用判定：
+
+```ts
+// 自动判题口径：依据一选，证据/主张/范围都由运行时派生，证书当场成立 → 该判了。
+// 这里只回答「填完了没有」，依据选错（例如偶数格棋盘上选奇偶）仍由 validate 判错。
+answerComplete(state) {
+  return artifactOf(state) !== null;
+}
+```
 
 ## 12.6 判定：一条依据「能不能下结论」是可计算的
 
@@ -405,7 +427,9 @@ const decisive = computed<boolean | null>(() => {
 
 配套的解释文案直接把数学事实说出来：「黑 11 ≠ 白 12：每块 1×2 骨牌都盖住一黑一白，所以永远铺不满」，或者「总格 62 是偶数，每块骨牌盖 2 格，排除不了铺满，换一条依据」。玩家第一次点错依据就能理解为什么错，而不是等到「完成」被拒绝。
 
-交互次数从 10 击降到 3 击（`docs/12` 的 `3 关 10→3`），但真正的作答仍然只有一次：选依据。这叫**输入面收窄，判断力不变**——把 6 个零信息量入口压成 1 个真判断，才是这一轮改造的实质。
+交互次数先由 10 击降到 3 击（`docs/12` 的 `3 关 10→3`），第五轮删掉沙盒面板后进一步降到 **1 击**：三关的交互预算 target 都是 1，e2e 里就是 `page.getByTestId('argue-warrant-coloring').click()` 一次。但真正的作答仍然只有一次：选依据。这叫**输入面收窄，判断力不变**——把 6 个零信息量入口压成 1 个真判断，才是这一轮改造的实质。
+
+沙盒面板删除后留在代码里的痕迹也值得记一笔：`DominoTool.vue` 与 `InvariantProbeTool.vue` 已从 `packages/toolkit-ui/src/` 删除，`toolkit-ui` 的入口只剩 11 块作答面板 + `ArgumentBoard`；内容 JSON 里 argue 三关的 `tools` 仍登记着 `construct` 与 `probe`（星图、日志、报告的工具标签读它），但 `AnswerDock` 对这两种规格返回 `null`，所以不会重建面板。
 
 ## 12.8 迁移门删除的教训：恒真的门没有判别力
 
@@ -456,11 +480,11 @@ export function rotationFlipsColoring(script: ArgueScript, quarter: 1 | 2 | 3): 
 
 ## 12.9 本章要点
 
-- simulate 的三层（参数 → 模拟 → 指标）全是纯函数，不读时钟不用随机，所以同一组参数必然得到同一组指标、可以逐项对账。
+- simulate 的三层（参数 → 模拟 → 指标）全是纯函数，不读时钟不用随机，所以同一组参数必然得到同一组指标、可以逐项对账；第四轮之后参数一改就自动运行，`answerComplete` 看「最近一次运行与参数对得上」。
 - 「换种子稳健」不是额外的门，而是运行本身的一部分：一次 `knob/run` 同时算两个种子日，第二日不达标判 `sim-overfit-seed`。
 - simulate 的产物只证明「跑过」，指标全部从参数重算；写死一组越界参数会被 `normalizeParams` 拒绝。
 - queue 与 dispatch 共用模板但各写一套模型；`queue-unserved` 因结构上不可达被移出可达失败类清单。
-- argue 的证书四要素是 Claim / Warrant / Evidence / Scope，但真正由玩家填的只有 Warrant；其余三个由依据推导。
+- argue 的证书四要素是 Claim / Warrant / Evidence / Scope，但真正由玩家填的只有 Warrant；其余三个由依据推导。多米诺沙盒与不变量探测面板已在第五轮删除，关卡只剩论证板，1 击完成。
 - argue 的判定是可计算的：coloring 看黑白是否不等、parity/area 看总格数是否奇数；8×8 去同色角让 coloring 成为唯一可行依据，`area` 不再是假选项。
 - 迁移门的唯一价值是判别力。rule 与 argue 的旋转门都被证明恒真后删除，真正的迁移门只剩 pattern 的换表征与 experiment 的换种子。
 

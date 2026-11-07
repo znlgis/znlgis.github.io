@@ -5,7 +5,7 @@ title: 第10章 - construct模板-构造与优化
 
 # 第10章 - construct模板-构造与优化
 
-construct 是「约束满足」类模板：玩家不是选一个答案，而是摆出一个同时满足若干约束的构造；判定器不关心你怎么摆，只看最终状态是否满足全部约束。它在首发的 20 关里占 **6 关**，是六个模板中用量最大的一个。
+construct 是「约束满足」类模板：玩家不是选一个答案，而是摆出一个同时满足若干约束的构造；判定器不关心你怎么摆，只看最终状态是否满足全部约束。它在首发的 20 关里占 **6 关**，是六个模板中用量最大的一个。第五轮去卡片化之后，六关的作答面板全部平铺——不再有「构造块」卡头、不再需要展开卡片，`AnswerDock` 按 mode 直接渲染 payment / network / schedule / frontier / distribute 五种面板。
 
 | 关卡 | 学段/主线 | mode | 工具 | 核心约束 |
 |---|---|---|---|---|
@@ -62,6 +62,16 @@ export function createConstructRuntime(detail: LevelDetail, opts: RuntimeOptions
 这种「一个模板 id、多个 mode、按字段分派」的写法，和 pattern/rule 的「一个模板一套逻辑」不同：六个 construct 关的判定逻辑、产物形状、失败类**完全不同**，唯一共享的是契约（`LevelRuntime` / `Verdict` / `RuntimeAdapter`）和交互骨架（`construct/place` 与 `construct/remove` 两个动作）。
 
 一个副作用值得注意：`constructVerifier` 只实现了 `parseScript / validateArtifact / actionsFor / applyVariant / reachableFailureClasses` 五个方法，**没有实现 `transferVariants`**。所以这六关在运行时和 `audit:levels` 的 A6 里都没有真正的迁移门，内容里的两个变体只要求「补丁可被 `applyVariant` 解析」。这是有意为之：六关的变体全是 `representation` 轴（换标签、换单位、换预算数字），判定逻辑不变，做了也是恒真门——和第 9 章 rule 删掉旋转门是同一条理由。
+
+另一个本轮的共同点：六关的 `answerComplete` 各按 mode 写一条，只回答「填完了没有」。这一层是第四轮自动判题的基础，写法在后面各节展开，汇总如下：
+
+| mode | answerComplete=true 的条件 |
+|---|---|
+| payment | 反例已指出前提 + 台面硬币总额 ≥ 目标（或已放满 `maxCoins`） |
+| distribution | 每一类物品都分完（各容器件数之和 = 库存） |
+| network | 已选边数 ≥ 站点数 − 1 |
+| schedule | 每个课次都排进某个时段 |
+| frontier | 真的改过至少一条边（`state.edited`） |
 
 ## 10.2 payment：最少枚数支付的判定与贪心反例
 
@@ -165,7 +175,9 @@ async function commitEdit(): Promise<boolean> {
 }
 ```
 
-同时，面板上有实时读数「贪心 N 枚 / 最优 M 枚 / 差 +1」，这份读数在组件内自己算了一遍（`greedyCount` / `optimalCount`），不等运行时返回。玩家改一个数字，屏幕立刻告诉他这个例子是否让贪心失手。
+同时，面板上有实时读数「贪心 N 枚 / 最优 M 枚 / 差 +1」，这份读数在组件内自己算了一遍（`greedyCount` / `optimalCount`），不等运行时返回。玩家改一个数字，屏幕立刻告诉他这个例子是否让贪心失手。交互预算上 payment 的 target 是 **9**，而真实操作约 8 次——差额来自面额是 checkbox，click 之后浏览器还会派发一次 change，计量器各记一次。
+
+去卡片化之后，payment 的「硬币台」与「反例探测器」原本是两张需要来回展开的卡，现在是**两块面板直接平铺**，一次滚到底：上面放硬币，下面改面额与目标、点前提。
 
 前提就是最终答案。`selectPremise` 直接派发 `counter/annotate`：
 
@@ -240,6 +252,8 @@ export const distributionArtifactSchema = z.object({
 | `distribution-unequal` | `equalCounts` 打开时，各容器件数不等 |
 
 两关的差别全在脚本里：K 关是 4 个盘子分 8 块饼干 + 4 个苹果，`minKinds: 0`、`maxPerContainer: 4`；G1–3 关是 3 个盒子分积木/球/书各 3 件，`minKinds: 2`。一关只考「每份一样多」，另一关叠加「每份至少两类」。
+
+`answerComplete` 只看「每一类物品都分完了没有」——它对应的是「还有没有剩下的库存」，等量、每盒种类是否够，全部交给 `validate` 判。这条口径的意义在于：玩家把最后一件物品放下去的那一刻，宿主就会自动判题，不必等他意识到「我该提交了」。
 
 交互简化轮的 Tier 1 给分配关加了一个按钮：**「其余容器照这样分」**。它的实现完全在 UI 侧，运行时和 schema 一行没改（`packages/toolkit-ui/src/DistributeTool.vue`）：
 
@@ -358,7 +372,18 @@ export function evaluateFrontier(script: FrontierScript, costs: Record<string, n
 }
 ```
 
-这一关的默认值曾经离答案只差一步：把 `bt` 从 9 改成 1 就通关，等于送分。Tier 1 重设了四条边的默认值，并把交互压到「图上改一条边 + 完成」= 2 击。改完之后，玩家要自己找到「让第一步选错、第二步就贵」的那组权值。
+这一关的默认值曾经离答案只差一步：把 `bt` 从 9 改成 1 就通关，等于送分。Tier 1 重设了四条边的默认值；第四轮删掉「完成」之后，交互压到「图上改一条边」= **1 击**（`e2e/budget.spec.ts` 的 target 就是 1）。改完之后，玩家要自己找到「让第一步选错、第二步就贵」的那组权值。
+
+`answerComplete` 就落在「真的改过」上：
+
+```ts
+/** 答案填完整 = 玩家真的动过至少一条边；反例成不成立交给 validate。 */
+answerComplete(state: FrontierState): boolean {
+  return state.edited;
+}
+```
+
+这里也藏着去卡片化前后的一个行为差异：旧版（第四轮删「完成」之前）改完后点「完成」提交，玩家可以改回默认值再提交；现在「改过」就被判定为填完，改回默认值的那一刻会立刻拿到 `frontier-no-counterexample` 这类失败提示，然后继续改。
 
 ## 10.7 实时约束灯：同一套算法为什么要写两遍
 
@@ -393,13 +418,14 @@ const optimal = computed(() => { /* ... */ });
 
 ## 10.8 本章要点
 
-- construct 是「约束满足」模板：判定只看最终状态是否满足全部约束，不看构造顺序。
+- construct 是「约束满足」模板：判定只看最终状态是否满足全部约束，不看构造顺序；第五轮之后作答面板平铺，没有「构造块」卡头与展开动作。
 - 一个模板 id 下按 `mode` 分派五个真实子模式（payment / distribution / network / schedule / frontier），共享契约与两个摆放动作，判定逻辑各写一套。
 - payment 用 DP 求最优、贪心做对照，反例必须离开主任务参数（`minTargetGap`），否则抄题目就能过关。
 - distribution 按登记物品重算件数，不信任产物自报的 `total`——这是防绕过的关键一行。
 - network 的 `minKeyEdges` 从「数端点」改成「关键站点接入的唯一边数」，恒真门被改成了能拒绝新负例的真门。
 - schedule 与 frontier 分别考「硬冲突 + 偏好」和「让贪心走弯路」，后者的默认值被重设，避免送分。
 - 无画布三关靠 SVG + 实时约束灯把判定变成可观察的；代价是同一套算法在 `toolkit-ui` 里再写一份。
+- 六关的 `answerComplete` 各按 mode 一条：分完 / 边数够 / 排满 / 改过一条边 / 硬币够付且前提已指，只决定「什么时候判」，对错仍归 `validateArtifact`。
 - 「不可能证书」是 construct 的设计预留（`placement` 占位 mode 与 `g46-structure-tiling` 计划），首发 6 关未实现，真正的「证明不可能」在 argue 模板里。
 
 ---

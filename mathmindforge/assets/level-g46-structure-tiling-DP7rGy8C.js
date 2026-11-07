@@ -1,1 +1,0 @@
-import{t as e}from"./argue-C2J_pIJ9.js";var t=e({id:`g46-structure-tiling`,band:`g46`,thread:`structure`,template:`argue`,designSize:{width:0,height:0},estimatedMinutes:8,hasCanvas:!1});export{t as default};

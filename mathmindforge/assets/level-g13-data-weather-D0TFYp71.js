@@ -1,0 +1,1 @@
+import{t as e}from"./experiment-DvZR5z9c.js";var t=e({id:`g13-data-weather`,band:`g13`,thread:`data`,template:`experiment`,designSize:{width:0,height:0},estimatedMinutes:6,hasCanvas:!1});export{t as default};

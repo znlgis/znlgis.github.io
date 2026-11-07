@@ -89,7 +89,7 @@ export const SLOT_LABELS_EN: Record<TimeSlot, string> = { morning: 'Morning', no
 
 中文时段名给内容侧与调试输出用；界面上的时段标题走 `@bamboo/i18n` 的 `time.*` 键（第 12 章），所以英文界面里不会漏出「早上」。
 
-typecheck 能挡住这七处里的三处：`registry` 是 `Record<TaskId, GameLoader>`，少一行就报属性缺失；`TASKS` 在模块加载时自检 `task.id !== id`；`templateSchemas` 用 `satisfies Record<TemplateId, ZodType>` 要求模板键齐全。剩下四处（`package.json` 的 `exports` 子路径、`manifest.id`、存档键、testid）没有编译期关联，靠 `content:check` 与 e2e 兜底。这也解释了为什么一个十条内容的游戏愿意写 167 个单测加五套 e2e：**同一个字符串出现在七个地方，就必须有工具替人数。**
+typecheck 能挡住这七处里的三处：`registry` 是 `Record<TaskId, GameLoader>`，少一行就报属性缺失；`TASKS` 在模块加载时自检 `task.id !== id`；`templateSchemas` 用 `satisfies Record<TemplateId, ZodType>` 要求模板键齐全。剩下四处（`package.json` 的 `exports` 子路径、`manifest.id`、存档键、testid）没有编译期关联，靠 `content:check` 与 e2e 兜底。这也解释了为什么一个十条内容的游戏愿意写 191 个单测加六套 e2e：**同一个字符串出现在七个地方，就必须有工具替人数。**
 
 ## 6.3 tasks/<id>.json：一条摘要的 15 个字段
 

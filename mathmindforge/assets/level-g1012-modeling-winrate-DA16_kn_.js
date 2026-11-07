@@ -1,1 +1,0 @@
-import{t as e}from"./experiment-CBA9E4GA.js";var t=e({id:`g1012-modeling-winrate`,band:`g1012`,thread:`modeling`,template:`experiment`,designSize:{width:0,height:0},estimatedMinutes:10,hasCanvas:!1});export{t as default};

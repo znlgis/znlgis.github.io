@@ -1,0 +1,1 @@
+import{t as e}from"./construct-DFUecjN8.js";var t=e({id:`k-modeling-share`,band:`k`,thread:`modeling`,template:`construct`,designSize:{width:0,height:0},estimatedMinutes:5,hasCanvas:!1});export{t as default};

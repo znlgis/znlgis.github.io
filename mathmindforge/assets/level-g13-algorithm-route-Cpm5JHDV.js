@@ -1,0 +1,1 @@
+import{n as e,t}from"./rule-T147jEHt.js";var n=e({id:`g13-algorithm-route`,band:`g13`,thread:`algorithm`,template:`rule`,designSize:t,estimatedMinutes:8,hasCanvas:!0});export{n as default};

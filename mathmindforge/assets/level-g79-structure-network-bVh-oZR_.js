@@ -1,0 +1,1 @@
+import{t as e}from"./construct-DFUecjN8.js";var t=e({id:`g79-structure-network`,band:`g79`,thread:`structure`,template:`construct`,designSize:{width:0,height:0},estimatedMinutes:7,hasCanvas:!1});export{t as default};

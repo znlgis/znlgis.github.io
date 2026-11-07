@@ -1,1 +1,0 @@
-import{n as e,t}from"./pattern-Ry3H5Wcm.js";var n=t({id:`k-structure-pattern-path`,band:`k`,thread:`structure`,template:`pattern`,designSize:e,estimatedMinutes:5,hasCanvas:!0});export{n as default};

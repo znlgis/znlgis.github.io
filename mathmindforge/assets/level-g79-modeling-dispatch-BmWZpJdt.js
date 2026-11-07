@@ -1,1 +1,0 @@
-import{t as e}from"./simulate-d5KyMwm5.js";var t=e({id:`g79-modeling-dispatch`,band:`g79`,thread:`modeling`,template:`simulate`,designSize:{width:0,height:0},estimatedMinutes:10,hasCanvas:!1});export{t as default};

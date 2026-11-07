@@ -7,7 +7,7 @@ title: 第05章 - Vue应用外壳与路由
 
 ## 5.1 外壳的全貌：从 main.ts 到一条数据流
 
-`apps/site` 是《数思工坊》唯一的产品入口：一个 Vue 3 + Pinia 的单页应用，外面套一层 hash 路由，里面挂 Phaser 画布与工具台。它的职责边界很窄——**不实现任何玩法与判定**，只负责把「用户点到了哪一关」翻译成「加载哪个关卡模块、装配哪个运行时、把快照交给哪块界面」。
+`apps/site` 是《数思工坊》唯一的产品入口：一个 Vue 3 + Pinia 的单页应用，外面套一层 hash 路由，里面挂 Phaser 画布与作答面板。它的职责边界很窄——**不实现任何玩法与判定**，只负责把「用户点到了哪一关」翻译成「加载哪个关卡模块、装配哪个运行时、把快照交给哪块界面」。
 
 先看整个应用的启动文件，18 行，没有一个多余的初始化：
 
@@ -51,7 +51,7 @@ app.mount('#app');
 hashchange → parseRoute() → route ref → App.vue 的 v-if 分支
   → WorkshopView → registry[levelId]()（level-<id>.js）
   → loadLevel(levelId)（content-<id>.js）→ createRuntime(detail, opts)
-  → createLevelContext(...) → mount(ctx, runtime) → ToolDock 订阅快照
+  → createLevelContext(...) → mount(ctx, runtime) → AnswerDock 订阅快照 → 自动判题
 ```
 
 这条链上没有任何一环走「全局单例 + 隐式初始化」：语言、存档、平台能力都从 `shell/` 下的显式单例取，关卡与内容都从 `registry` / `loadLevel` 显式加载。写新功能的默认姿势是往这条链上挂，而不是新开一条。
@@ -64,7 +64,7 @@ hashchange → parseRoute() → route ref → App.vue 的 v-if 分支
 |---|---|---|
 | `#/` | 工坊大厅（HomeView） | 推荐关、六件工具墙、档案柜入口 |
 | `#/forge` | 思维星图（ForgeView） | 5 学段 × 4 主线，卡片列出 20 关 |
-| `#/play/<levelId>` | 关卡宿主（WorkshopView） | 全屏；画布 + 工具台 |
+| `#/play/<levelId>` | 关卡宿主（WorkshopView） | 全屏；画布 + 作答面板（pattern / rule 只有画布） |
 | `#/journal` | 思维日志（JournalView） | 最近 120 条日志 + 最近 80 条证据轨迹 |
 | `#/badges` | 徽章墙（BadgesView） | 已得/未得、进度环、条件回看 |
 | `#/report` | 成人报告（ReportView） | 长按 3 秒解锁；打印、证据包导入导出 |
@@ -194,19 +194,19 @@ chunkFileNames(chunk) {
 }
 ```
 
-于是产物里能直接看出「这一关的代码有多重」：`level-<id>-*.js`、`content-<id>-*.js`、`vendor-phaser-*.js`。但首屏只需要大厅与星图——这也是首屏 JS+CSS 能压到 69.5 KB gzip 的原因。
+于是产物里能直接看出「这一关的代码有多重」：`level-<id>-*.js`、`content-<id>-*.js`、`vendor-phaser-*.js`。但首屏只需要大厅与星图——这也是首屏 JS+CSS 能压到 69.2 KB gzip 的原因。
 
 一致性由两处守着：`Record` 的键类型（typecheck 阶段），以及 `games/forge/src/forge.test.ts` 里对 `package.json` 子路径与 `SHIPPED_LEVEL_IDS` 的集合比对（单测阶段）。两边都过了，才可能出现「表里有、chunk 里没有」以外的错误。
 
 ## 5.4 六个视图：大厅、星图、关卡宿主与三个档案页
 
-`App.vue` 用一个 `v-if` 链把路由映射到视图。大厅与星图是静态 import，关卡宿主与三个档案页用 `defineAsyncComponent` 按需加载（`WorkshopView` / `JournalView` / `BadgesView` / `ReportView` 各一行 `() => import(...)`）。`play` 路由上还有两处细节：`:key="route.levelId"` 让换关时组件强制重建，而不是复用同一个实例去 `watch` 参数；进入 `play` 时顶部导航整条隐藏（`v-if="route.name !== 'play'"`），把空间全部让给画布与工具台。
+`App.vue` 用一个 `v-if` 链把路由映射到视图。大厅与星图是静态 import，关卡宿主与三个档案页用 `defineAsyncComponent` 按需加载（`WorkshopView` / `JournalView` / `BadgesView` / `ReportView` 各一行 `() => import(...)`）。`play` 路由上还有两处细节：`:key="route.levelId"` 让换关时组件强制重建，而不是复用同一个实例去 `watch` 参数；进入 `play` 时顶部导航整条隐藏（`v-if="route.name !== 'play'"`），把空间全部让给画布与作答面板。
 
 | 视图 | 它到底画什么 | 关键实现 |
 |---|---|---|
 | HomeView | 工坊大厅：推荐关、六件工具墙、档案柜三个入口 | `recommendedLevelId(progress.save)` |
 | ForgeView | 思维星图：按学段横带或按主线纵列两种视角 | `bandGroups` / `threadLevels` 两个纯函数 |
-| WorkshopView | 关卡宿主：画布 + 工具台 + 完成面板（658 行，全项目最重的组件） | `registry` + `loadLevel` + `runtime` |
+| WorkshopView | 关卡宿主：画布 + 作答面板 + 自动判题 + 成功遮罩（730 行，全项目最重的组件） | `registry` + `loadLevel` + `runtime` + `answerComplete` |
 | JournalView | 思维日志：最近 120 条日志、最近 80 条轨迹 | `buildTrail` / `localizeTrail` |
 | BadgesView | 徽章墙：进度环 + 已得/未得 | `evaluateBadges` 按证据重算 |
 | ReportView | 成人报告：长按解锁、打印/PDF、证据包导入导出 | `buildReport` / `toReportPack` |
@@ -262,6 +262,35 @@ onBeforeUnmount(clearTimer);
 ```
 
 这不是防破解（前端没有真正的权限），而是防误触：报告页有打印按钮与导入入口，给 5 岁孩子随手点进去会毁掉「这是给大人的东西」这个约定。`onBeforeUnmount(clearTimer)` 也不能省：长按中切走页面，计时器还在跑，3 秒后会对已卸载的组件发事件。
+
+### 5.4.1 关卡宿主的三个状态与两处时序
+
+`WorkshopView` 是全项目最重的组件，因为它一个人管着「一关从加载到过关」的全部界面状态。第四、第五轮交互简化之后，它少了一整块（工具卡），却多了两段时序（自动判题、自动进下一关）。下面这张表是按状态读它的最短路径：
+
+| 状态 | 触发条件 | 界面上是什么 |
+|---|---|---|
+| 加载中 | `loading === true` | 全屏 `level.loading`，`role="status"` |
+| 失败横幅 | `failureCopy` 非空（最近一次判定失败） | 顶部红条 `failure-banner`，`role="alert"`，钉在作答区上方不随滚动消失 |
+| 作答中 | 默认 | 画布（有 `hasCanvas` 时）+ 作答区：`pattern` / `rule` 什么都不渲染，其余模板渲染 `AnswerDock` |
+| 成功遮罩 | `completed && !saveFailed` | `level-success`（`role="dialog"`，`aria-modal`），文案「答对啦！进入下一关…」/「…回星图…」，**没有按钮** |
+| 存档失败面板 | `completed && saveFailed` | `completion-panel`（红色警告 + 两个按钮），**不自动跳关** |
+
+**第一处时序：自动判题。** 宿主只订阅一份快照，判题决策读两个量：工具的累计使用数（证明玩家动过手）与 `snapshot.answerComplete`（模板宣布答案填满）。两者同时成立后起一个 500ms 的防抖计时器；期间玩家再动手就清掉重来，只判最后一次。判定仍然是那条老路——`dispatch({ type: 'submit' })` → `validate` → `Verdict`；`autoJudgedUsage` 记住判定时的工具使用数，避免同一份答案被反复判。
+
+```ts
+// apps/site/src/views/WorkshopView.vue（节选）
+const AUTO_JUDGE_DELAY_MS = 500;
+const AUTO_NEXT_DELAY_MS = 900;
+
+// 快照订阅里（autoplayRunning 期间整段跳过）：
+if (usage > 0 && usage > autoJudgedUsage && snapshot.answerComplete) scheduleAutoJudge(usage);
+```
+
+**第二处时序：成功后自动推进。** `submit()` 拿到 `verdict.passed` 后走 `completeNow()`：先 `progress.completeLevel` 写盘，再 `refreshBadges`，写盘成功才发 `level:complete`，然后 `scheduleAdvance()` 等 0.9 秒跳下一关（末关回星图）。`?instant=1` 时这个等待压到 120ms，e2e 用它提速——但**写盘顺序不能压**，事件必须晚于写盘。
+
+**为什么删掉按钮反而要更多代码？** 因为「点了按钮」本来是一个显式信号，删掉它之后宿主必须自己从快照里推断「这一下算不算做完」。所以要三个细节兜住：`usage > 0`（挂载那一刻不算）、`usage > autoJudgedUsage`（判过不重判）、`answerComplete`（模板说了才算填满）。少任何一个都会出现「还没开始就被判错」或「填完了没反应」。
+
+**失败提示为什么不属于作答面板？** 它被移出了可滚动容器、钉在作答区顶部（`failure-banner`），并只在「最近一次判定」期间存在：玩家一动工具，`verdictUsageAt` 与当前工具使用数对不上，旧提示立刻消失。这条修的是早期「改完答案横幅还粘着旧文案」的误导。
 
 ## 5.5 Pinia 的两份状态：存档快照与偏好
 
@@ -454,7 +483,7 @@ async function teardown(): Promise<void> {
 
 拆开看是六件事：
 
-1. **清计时器**（`exitTimer`）——否则离开后 300 ms 还会 `navigate('/forge')`，把玩家从别的页面拽回去；
+1. **清计时器**（`clearAutoJudge()` 与 `clearAdvanceTimer()`）——否则离开后那 500 ms 的自动判题与 0.9 s 的自动跳关还会触发，把玩家从别的页面重新拽进这一关；
 2. **解订阅**（`unsubscribe`）——运行时还会 `notify`，闭包持有已卸载组件的 `ref`；
 3. **解除前后台监听**（`offPause` / `offResume`）——页面切走再回来会 `resume()` 一个已经不存在的 `game`；
 4. **注销提交函数**（`registerSubmit(null)`）——调试桥是全局对象，留着闭包等于把整个已卸载的 runtime 钉在内存里；
@@ -478,7 +507,7 @@ Vue 不 `await` 生命周期钩子，所以「async 钩子」只是把工作排�
 
 ## 5.8 小结
 
-- 外壳只有一条数据流：hash → `parseRoute` → 视图 → `registry` 加载关卡 → `loadLevel` 加载内容 → `createRuntime` → `mount` → `ToolDock` 订阅快照。
+- 外壳只有一条数据流：hash → `parseRoute` → 视图 → `registry` 加载关卡 → `loadLevel` 加载内容 → `createRuntime` → `mount` → `AnswerDock` 订阅快照 → 停手 500ms 自动判题 → 成功遮罩 0.9s → 自动进下一关。
 - 路由逻辑与 window 分离：`shell/routePath.ts` 可在 Node 单测，三个守卫（未发布 id 回星图、坏编码不抛异常、query 不参与路由）各有断言。
 - `registry.ts` 用 `Record<ShippedLevelId, LevelLoader>` 把「内容发布」与「代码登记」绑成编译期错误，用子路径动态 import 把关卡与 Phaser 切成独立 chunk。
 - 六个视图职责单一：大厅、星图、关卡宿主、日志、徽章、报告；关卡宿主之外的视图都不碰运行时。

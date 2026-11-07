@@ -1,0 +1,1 @@
+import{t as e}from"./construct-DFUecjN8.js";var t=e({id:`g46-algorithm-payment`,band:`g46`,thread:`algorithm`,template:`construct`,designSize:{width:0,height:0},estimatedMinutes:8,hasCanvas:!1});export{t as default};

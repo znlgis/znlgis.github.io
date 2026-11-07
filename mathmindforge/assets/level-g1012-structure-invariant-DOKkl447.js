@@ -1,1 +1,0 @@
-import{t as e}from"./argue-C2J_pIJ9.js";var t=e({id:`g1012-structure-invariant`,band:`g1012`,thread:`structure`,template:`argue`,designSize:{width:0,height:0},estimatedMinutes:10,hasCanvas:!1});export{t as default};

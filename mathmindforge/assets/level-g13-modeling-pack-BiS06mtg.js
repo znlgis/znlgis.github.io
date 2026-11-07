@@ -1,1 +1,0 @@
-import{t as e}from"./construct-Btf64E6v.js";var t=e({id:`g13-modeling-pack`,band:`g13`,thread:`modeling`,template:`construct`,designSize:{width:0,height:0},estimatedMinutes:6,hasCanvas:!1});export{t as default};

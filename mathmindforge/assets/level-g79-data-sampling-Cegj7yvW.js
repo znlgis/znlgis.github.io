@@ -1,1 +1,0 @@
-import{t as e}from"./experiment-CBA9E4GA.js";var t=e({id:`g79-data-sampling`,band:`g79`,thread:`data`,template:`experiment`,designSize:{width:0,height:0},estimatedMinutes:7,hasCanvas:!1});export{t as default};

@@ -19,7 +19,7 @@ physics、tilemaps、sound、animations、particles、loader(image)、shader、m
 
 这笔账值得算，是因为十个玩法共用同一份 Phaser：首屏虽然不加载它（点开一个玩法才下载），但孩子每换一个玩法、每次清缓存回来都要重新下。少 36% 对移动网络与安卓 WebView 是实打实的差别。
 
-本次构建的 53 个文件把这条边界显示得很清楚：首屏只有 `index-<hash>.js` 137,128 字节 + `index-<hash>.css` 21,885 字节，加上 `index.html` 里两个 `modulepreload` 的共享 chunk（11,390 + 6,231 字节），gzip 合计 58.9 KB（原始 172.5 KB），与 `check-size.mjs` 的口径一致；`common-<hash>.js` 96,763 字节（gzip 27.8 KB）是进玩法前才拉起的共享 chunk；十个日常玩法的入口 chunk 在 340–8,225 字节之间（刷牙 / 洗手 / 洗澡只有 340–342 字节，场景代码在共享的 `scrub-<hash>.js` 里）；三款隐藏小游戏的入口 chunk 是 11,612–14,593 字节（gzip 4.2–5.5 KB），公共底座与确定性随机在共享的 `rng-<hash>.js`（4,447 字节）里；`vendor-phaser-<hash>.js` 876,874 字节（gzip 220.6 KB）只在 `PlayView` 或 `ArcadePlayView` 被拉起的那一刻才进入下载队列。也就是说，**一个不玩任何任务的孩子，永远不会为游戏引擎付流量。**
+本次构建的 53 个文件把这条边界显示得很清楚：首屏只有 `index-<hash>.js` 137,449 字节 + `index-<hash>.css` 21,885 字节，加上 `index.html` 里两个 `modulepreload` 的共享 chunk（11,582 + 6,231 字节），gzip 合计 60,511 B（约 59.1 KB，原始 177,147 字节），与 `check-size.mjs` 的口径一致；`common-<hash>.js` 96,763 字节（gzip 28.67 KB）是进玩法前才拉起的共享 chunk；十个日常玩法的入口 chunk 在 340–8,225 字节之间（刷牙 / 洗手 / 洗澡只有 340–342 字节，场景代码在共享的 `scrub-<hash>.js` 里）；三款隐藏小游戏的入口 chunk 是 10,919–13,386 字节（gzip 4.2–5.5 KB），公共底座与确定性随机在共享的 `rng-<hash>.js`（4,447 字节）里；`vendor-phaser-<hash>.js` 876,874 字节（gzip 220.6 KB）只在 `PlayView` 或 `ArcadePlayView` 被拉起的那一刻才进入下载队列。也就是说，**一个不玩任何任务的孩子，永远不会为游戏引擎付流量。**
 
 ## 8.2 裁剪的原理、清单与风险
 

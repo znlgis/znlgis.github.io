@@ -271,6 +271,30 @@ for (const text of EN_FIELDS.map((field) => data[field]).filter((v): v is string
 
 还有一条现实缺口必须说清：**模板与工具面板里仍有以中文句子当 key 的文案**。`@mmf/i18n` 的处理是加一张「中文源串 → 英文」兜底表 `zh-source.ts`，正式 `en.ts` 的 key 优先，查不到再去兜底表，再查不到回退中文（宁可中文也不白屏）。内容体检对这类 key 目前记警告而不是错误，等 i18n 收口后再升级。
 
+### 6.5.1 题面文案的对齐纪律（第五轮的一个副作用）
+
+第五轮「去卡片化」删除的是界面上的卡片层，内容层却**没有跟着删**——这是有意的。`tools[]` 里的 `titleKey` / `descriptionKey` 至今仍是 schema 的必填字段：
+
+```ts
+// packages/content/src/schema.ts（节选）
+const ToolSpecBase = {
+  titleKey: z.string().min(1).max(80),
+  descriptionKey: z.string().min(1).max(120),
+  requiredArtifacts: z.array(z.string().min(1)).min(1),
+};
+```
+
+`content:check` 会逐关检查这两个 key 非空（`if (!tool.titleKey || !tool.descriptionKey) fail(...)`）。原因不是「以后可能还要显示」，而是**外围仍然在显示旧称谓**，只是它们不再出现在关卡答题区：
+
+1. **星图关卡卡片**：每张卡会列出这一关要用的工具，渲染的是 `t('tool.' + tool + '.title')`（`ForgeView.vue`），即 i18n 表里的「模式卡 / 构造块」；
+2. **思维日志**：`JournalView` 把事件上的 `tool` 同样翻译成 `tool.<id>.title`，用于复盘「这一关用了哪几类思考」；
+3. **家长 / 教师报告**：走的是另一条路——`@mmf/content/ids` 里的常量表 `TOOL_LABELS`（中文）与 `TOOL_LABELS_EN`（英文），同样是旧称谓，不经过 i18n 表；
+4. **i18n 表本身**：`@mmf/i18n` 里 `tool.pattern.title` / `tool.pattern.desc` 等键仍在，中英都要有；模板侧新增中文整句没配英文会被 `i18n-coverage.test.ts` 拦下。
+
+所以正确的理解是：**这两个字段已经从「关卡设置层的卡片标题」降级成「记录与检索用的元数据」**，但没有失效，也不该在改内容时顺手删掉。删了会直接被 schema 与 content:check 拦下。`docs/14` 把「工具词汇还留在外围」列为已知限制，并给了后续可选项：把星图 / 日志 / 报告里的工具标签改成「能力」说法（找规律 / 画路线 / 摆一摆……），彻底去掉「卡」的隐喻——那是第六轮文案工作，不在本轮范围。
+
+这条规则对「改题面」提出了一个具体约束：**中英必须同一次提交改完**。`docs/14` 记了第五轮的一个实例——三关 `argue` 与 `k-algorithm-train` 的题面里还留着「先铺几块 / 先拼一条指令」这类过时说法（多米诺沙盒与积木面板都删了），于是 `intro` / `introEn`、`prompt` / `promptEn` 成对更新。漏掉英文不会在浏览器里立刻暴露（英文回退中文，看起来「有内容」），但 `content:check` 会红，或者在英文界面里留下一条中文句子。这条纪律在第六轮（星图/日志的工具标签改叫「能力」）之前都不会放松。
+
 ## 6.6 content:check：构建期唯一的内容质量门
 
 `pnpm content:check` 跑的是 `scripts/content-check.ts`，一个只用 Node 与 tsx 的 CLI。它的定位写在文件头：
@@ -404,8 +428,9 @@ if (requireAll && missingTarget.length > 0) {
 - 双语用内联的六个 `*En` 字段而不是补丁目录：省一次请求、消灭半截状态；齐全与质量由 `content:check` 强制。
 - `content:check` 只做通用检查（schema、一致性、可解性、反馈覆盖、禁词、矩阵完整度），不写死任何一关的答案数值。
 - 内容里「解 / 负例 / 变体 / 证据计划 / 人工复核」五件套齐全，才允许进 `content` 目录。
+- `tools[].titleKey` / `descriptionKey` 仍是必填元数据，但已从「关卡设置层的卡片标题」降级为「星图 / 日志 / 报告用的标签」——去卡片化没有删内容字段，改题面时必须中英同一次提交。
 
-下一章看这些内容声明的东西，怎么在界面上变成六件可操作、可校验、防点选的工具。
+下一章看这些内容声明的东西，怎么在界面上变成真正承载答案的输入。
 
 ---
 

@@ -5,9 +5,9 @@ title: 第09章 - rule模板-程序化规则
 
 # 第09章 - rule模板-程序化规则
 
-rule 是六个模板里唯一「产物本身就是一段可执行程序」的模板。pattern 让玩家声明一条规律，construct 让玩家摆出一个满足约束的构造，rule 则要求玩家交出一串积木，由执行器真正走一遍地图。这一章按数据模型、执行器、判定层、运行时、画布输入、变体门六个环节拆开讲，全部对照 `packages/templates/src/rule/` 的真实实现。
+rule 是六个模板里唯一「产物本身就是一段可执行程序」的模板。pattern 让玩家在画布上填字母、规律由填法反推；construct 让玩家摆出一个满足约束的构造；rule 则要求玩家把路线画成程序，由执行器真正走一遍地图。这一章按数据模型、执行器、判定层、运行时、画布输入、变体门六个环节拆开讲，全部对照 `packages/templates/src/rule/` 的真实实现。
 
-rule 在首发的 20 关里占 2 关：K 学段的 `k-algorithm-train`（规则小火车）与 G1–3 学段的 `g13-algorithm-route`（规则工程师·路线）。两关都是算法主线，都用 `rule` 工具（规则卡），都有 Phaser 画布。
+rule 在首发的 20 关里占 2 关：K 学段的 `k-algorithm-train`（规则小火车）与 G1–3 学段的 `g13-algorithm-route`（规则工程师·路线）。两关都是算法主线，都用 `rule` 工具，都有 Phaser 画布。第五轮去卡片化之后，两关都**没有「规则卡」面板了**：画布点格是唯一输入，右侧整列消失。
 
 | 项 | `k-algorithm-train` | `g13-algorithm-route` |
 |---|---|---|
@@ -20,7 +20,7 @@ rule 在首发的 20 关里占 2 关：K 学段的 `k-algorithm-train`（规则�
 | 执行步数上限 | 20 | 120 |
 | 定位 | 顺序指令入门 | 顺序 + 重复 + 收星 |
 
-两关的差异不在机制而在规模：K 关是一条直线，玩家放 5 块积木就能完成；G1–3 关要求玩家绕开墙、收齐三颗星再回到终点，手拼展开解是 17 块，压缩成重复解是 12 个顶层块。
+两关的差异不在机制而在规模：K 关是一条直线，在画布上点两格（先点星星格、再点终点格）就能写完；G1–3 关要求玩家绕开墙、收齐三颗星再回到终点，画布画出的展开解是 17 块，而内容里的压缩重复解是 12 个顶层块。画布路径拿不到「简洁印章」，这个取舍 9.5 节展开。
 
 ## 9.1 程序的数据模型：ProgramBlock 与 RuleScript
 
@@ -168,7 +168,7 @@ export function validateArtifact(source: ScriptSource, variant: RuleVariant, art
 
 注意 `rule-missed-item` 是个复合类：它同时收「停在半路」和「到了终点但少星星」两种情况，原因列表最多两条——一条列漏掉的星，一条指向终点。界面按 `causes` 逐条渲染，玩家看到的是「还差哪颗星」而不是一句笼统的失败。
 
-判定通过后发两枚印章：`constraint` 恒定发，`simple` 在顶层块数 `<= 14` 时发。要注意 `simple` 量的是顶层块数而不是展开后的格数：
+判定通过后发两枚印章：`constraint` 恒定发，`simple` 在顶层块数 `<= 14` 时发。`simple` 量的是顶层块数而不是展开后的格数——第五轮之后这条有了新含义：画布是唯一输入、产物永远是展开版，所以**`simple` 印章从 UI 不再可达**（见 9.5 节）：
 
 ```ts
 const stamps: Verdict['stamps'] = ['constraint'];
@@ -182,7 +182,7 @@ return {
 };
 ```
 
-g13 的 12 块重复解能拿 `simple`，而 17 块展开解拿不到；画布点格画路线得到的是 17 块展开版，同样拿不到。这不是 bug，是设计：简洁印章奖励的是「把路线折叠成重复」这个认知动作，不是「走通」这个结果。
+g13 的 12 块重复解能拿 `simple`，而 17 块展开解拿不到；画布点格画路线得到的是 17 块展开版，同样拿不到。这不是 bug，是设计：简洁印章奖励的是「把路线折叠成重复」这个认知动作，不是「走通」这个结果。去卡片化删掉了积木面板之后，玩家已经无法手拼重复块，因此这枚印章在关卡 UI 上不可达；审计不校验它，通关也不要求它。
 
 判定层还提供一个调试入口 `traceProgram(source, program)`，测试和场景都用它拿完整轨迹。`summarizeProgram` 则把程序压成一条产物摘要（`kind: 'program'`），摘要里同时写顶层块数和总格数：
 
@@ -194,7 +194,7 @@ summary: program.length + ' 块程序 / ' + countBlocks(program) + ' 个格子'
 
 ## 9.4 运行时：状态、动作与「提交」的合并
 
-rule 的运行时不是从零写的，它套在共享适配器 `createRuntimeWithAdapter` 上（`packages/templates/src/shared/runtime.ts`），自己只负责一份 `RuleState` 和四个工具动作：
+rule 的运行时不是从零写的，它套在共享适配器 `createRuntimeWithAdapter` 上（`packages/templates/src/shared/runtime.ts`），自己只负责一份 `RuleState` 和四个工具动作（其中 `rule/place` 是画布唯一派发的那个）：
 
 ```ts
 // packages/templates/src/rule/runtime.ts
@@ -229,7 +229,7 @@ case 'rule/place': {
 交互简化轮做的最重要的一件事，是删掉「提交程序」按钮，让程序拼好就是答案。适配器的 `artifact()` 只要求程序非空，不再检查 `committed`：
 
 ```ts
-// 程序拼好就是答案（docs/12 T1-rule）：「提交程序」按钮已删，宿主「完成」一次性校验，
+// 程序拼好就是答案（docs/12 T1-rule）：「提交程序」按钮已删，宿主自动判题，
 // 所以产物不再要求 committed —— 有程序就交给验证器判定。
 artifact(state: RuleState): unknown | null {
   if (state.program.length === 0) return null;
@@ -247,6 +247,25 @@ checkpoints(state: RuleState, ctx) {
   };
 }
 ```
+
+第四轮自动判题之后，适配器还多了一个 `answerComplete`：它回答「可以判了吗」，不回答对错：
+
+```ts
+/**
+ * 自动判题口径（docs/13）：程序非空，且执行结果已经「有话可说」——
+ * 撞墙/绕圈（failureClass 存在，已经能报错）或已经停在终点（漏收星星交给 validate 报）。
+ * 只回答「可以判了吗」，不回答对错；判定仍走 validateArtifact。
+ */
+answerComplete(state: RuleState): boolean {
+  if (state.program.length === 0) return false;
+  const trace = executeProgram(script, state.program);
+  const goal = script.grid.goal;
+  return Boolean(trace.failureClass)
+    || (trace.end.x === goal.x && trace.end.y === goal.y);
+}
+```
+
+这里有一条容易写错、但很关键的口径：**「漏收星星」不算没填完**。程序走到终点但漏了一颗星时，`answerComplete` 判 true——因为玩家已经把答案表达完整了，对错该由 `validateArtifact` 报 `rule-missed-item`。反过来，「程序停在中途、既没到终点也没撞墙」才是真的没填完，不会自动判题。
 
 ```ts
 // packages/templates/src/rule/index.ts
@@ -275,22 +294,16 @@ export function defineRuleLevel(manifest: LevelManifest): LevelModule {
 
 销毁时调用 `destroy(true)`，第二个参数表示连 canvas 一起移除。重进关卡不会留下旧场景，也就不会出现两个画布叠在一起、点击落到旧场景上的经典事故。
 
-`规则卡`（`packages/toolkit-ui/src/RuleTool.vue`）提供六个积木按钮：前进、左转、右转、收集、重复前进×2、遇墙右转。程序列表按行展示，选中一行后可以删除、上移、下移。面板顶部固定显示「程序格 n/maxBlocks（重复里的块也算）」，把预算可视化。
+上一段之后，原本该介绍「规则卡」面板了——`RuleTool.vue` 提供六个积木按钮（前进、左转、右转、收集、重复前进×2、遇墙右转）、一个可删除/上移/下移的程序列表、一行「程序格 n/maxBlocks」。**这个面板在第五轮被整个删除**，`RuleTool.vue` 与 `ConstructTool.vue` 一起从 `toolkit-ui` 里消失。删掉的理由很直接：它和画布是同一个答案的两条输入路径，而画布那条更短、更直观；两条路径并存只会让玩家先花时间理解「我该点哪边」。
 
-```vue
-<div class="flex flex-wrap items-center justify-between gap-2">
-  <p class="text-xs font-semibold text-ink-soft">
-    程序格 {{ blockTotal }}/{{ maxBlocks }}（重复里的块也算）
-  </p>
-  <span class="text-xs font-semibold text-ink-soft">拼好程序后直接点下面的「完成」</span>
-</div>
-```
+删除之后还留下两处历史痕迹，读代码时会遇到：
 
-这里两个细节值得注意：一是 `blockTotal` 用递归的 `countBlocks` 算，面板和验证器用的是同一套口径；二是按钮文案直接告诉玩家「拼好就直接点完成」，把原来三步仪式（提交程序 → 试一下 → 完成）压成了一步。
+- `blockTotal` / `countBlocks` 这套递归计数仍在 `logic.ts` 里，验证器照旧用它算程序格；只是不再有面板把它显示成「n/20」；
+- 内容 JSON 里 `maxBlocks` 仍是关卡预算（g13 是 20），画布编译时会检查「编译后是否超预算」，超了不派发并闪红环。
 
-## 9.5 第二条输入路径：在画布上点格画路线
+## 9.5 唯一输入：在画布上点格画路线
 
-交互简化轮的第三轮给 rule 加了第二个输入口：**点同一行或同一列的格子，把这条直线编译成程序块**。右侧积木按钮全部保留，两条路径产出同一个 `program`。
+去卡片化之后，rule 的画布点格是**唯一输入**：点同一行或同一列的格子，把这条直线编译成程序块。玩家不再需要在积木面板和画布之间做选择——关卡右栏整列消失，只剩下画布与底部「填完自动判题 / 重来」。
 
 编译函数 `planRouteClick` 在 `packages/templates/src/rule/logic.ts`，签名是纯函数：
 
@@ -350,14 +363,16 @@ private handlePointerDown(pointer: Phaser.Input.Pointer): void {
 
 一次点击会连发多个 `rule/place`，所以场景里有一个 `dispatching` 闸门，派发期间忽略新点击，避免 `at` 下标打架。坐标换算在 `cellAt` 和 `centerOf` 两个函数里，屏幕行 = `height - 1 - y`，和引擎的 y 轴向上约定对齐。
 
-带来的效果可以用单测里的两个数字概括：
+带来的效果可以用单测里的数字概括：
 
-| 关卡 | 手拼路径 | 画布画路线 |
+| 关卡 | 第三轮：积木面板 + 画布 | 第五轮：只有画布 |
 |---|---|---|
-| `k-algorithm-train` | 5 块 + 完成 = 6 击 | 1 次点格 + 完成 = 2 击 |
-| `g13-algorithm-route` | 12 块 + 完成 = 13 击 | 5 次点格 + 完成 = 6 击 |
+| `k-algorithm-train` | 手拼 5 块 + 完成 = 6 击 | **2 击**（点星星格 → 点终点格） |
+| `g13-algorithm-route` | 12 块 + 完成 = 13 击 | **5 击**（5 次点格） |
 
-测试里固定了这条对照（`packages/templates/src/rule/logic.test.ts`）：画路线得到的程序有 17 块、没有 `repeat` / `if-wall`、拿不到 `simple` 印章；手拼的 12 块重复解拿得到。交互次数降下来了，认知目标没有被自动化掉——这是这一轮交互改造愿意做的交易。
+测试里仍然固定着对照（`packages/templates/src/rule/logic.test.ts`）：画路线得到的程序有 17 块、没有 `repeat` / `if-wall`、拿不到 `simple` 印章；内容里手写的 12 块重复解拿得到。交互次数降下来了，认知目标没有被自动化掉——这是这一轮交互改造愿意做的交易，只是「手拼压缩解」这条路在 UI 上不可达了，`simple` 印章随之退居为内容层与判定层的概念。
+
+这条「漏收星星」的失败类也从 UI 不再可达：画路线时会自动收集路过的星星（`planRouteClick` 在 `forward` 之后自动追加 `collect`），所以玩家不可能画出「到终点但漏星」的程序。判定层的负例与 `rule-missed-item` 反馈仍保留，审计不受影响——这是去卡片化的一处主动取舍，写在 `docs/14` 的已知限制里。
 
 ## 9.6 变体与迁移门：一个恒真门是怎么被删掉的
 
@@ -434,8 +449,8 @@ if (trace.failureClass) {
 - rule 的产物是 `ProgramBlock[]`，一棵带容器的树；结构上限（`MAX_REPEAT` / `MAX_NESTING` / 64 块）与关卡预算（`maxBlocks`）是两回事。
 - `executeProgram` 是纯函数：先扣预算再执行、容器不计步、收齐且到终点立即停、收集必须显式。
 - 判定只认执行结果，四类失败各有定位信息；`simple` 印章量顶层块数，奖励的是折叠成重复的认知动作。
-- 交互简化后「程序拼好就是答案」，没有提交按钮，检查点退化成事实记录。
-- 画布点格是第二条输入路径，编译产物永远是展开版；`simple` 仍然只给手拼压缩解。
+- 交互简化后「程序拼好就是答案」，没有提交按钮，检查点退化成事实记录；`answerComplete` 判「程序非空且跑出结果」，漏收星星仍算填完、由 `validateArtifact` 报错。
+- 画布点格是唯一输入（积木面板与程序列表已在第五轮删除），编译产物永远是展开版；`simple` 印章在 UI 上不可达，「漏收星星」失败类也不可达。
 - 旋转变体门是恒真的，已删除；变体数据还在做内容校验，但不再当迁移证据。真正的迁移门只剩 pattern 的换表征那一处。
 
 rule 关想教的东西，其实不是「写对一段 17 块的程序」，而是「用重复把 17 块压成 12 块」这个动作。程序只是它留下的证据。

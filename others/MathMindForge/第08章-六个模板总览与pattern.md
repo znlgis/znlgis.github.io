@@ -9,16 +9,16 @@ title: 第08章 - 六个模板总览与pattern
 
 模板决定「画布长什么样、工具有哪些、判定怎么做」，内容 JSON 决定「这一关的具体参数」。这条边界的硬要求是**数据完备**：同一个模板要能承载编辑器生成的新关卡，不需要为每关写新代码。
 
-| 模板 | 画布 | 典型工具 | 判定核心 | 主线 |
-|---|---|---|---|---|
-| `pattern` | 序列带（Phaser） | pattern + construct | 规则补全 + 换表征迁移门 | 结构 |
-| `rule` | 网格地图（Phaser） | rule + counter | 程序执行 + 变体泛化 | 算法 |
-| `construct` | 无（纯工具台） | construct +（按关）counter | 约束满足 + 多解 + 不可能证书 | 结构 / 算法 / 建模 |
-| `simulate` | 无（指标表） | knob + probe | 预算内指标 + 换种子稳健 | 建模 |
-| `experiment` | 无（数据面板） | probe +（按关）knob / construct / rule | 大样本胜率 / 模型 + 证据充分 | 数据 / 算法 |
-| `argue` | 无（棋盘由工具渲染） | counter + probe + 论证板 | 证书可检验 + 边界解释 | 边界 |
+| 模板 | 画布 | 作答面（第五轮去卡片化后） | 判定核心 | 主线 | answerComplete（自动判题） |
+|---|---|---|---|---|---|
+| `pattern` | 序列带（Phaser） | 画布即答案 | 规律反推 + 补块 + 换表征迁移门 | 结构 | 所有缺口都填上 |
+| `rule` | 网格地图（Phaser） | 画布即答案 | 程序执行 + 变体泛化 | 算法 | 程序非空且跑出结果 |
+| `construct` | 无 | payment / network / schedule / frontier / distribute 面板 | 约束满足 + 多解 | 结构 / 算法 / 建模 | 按 mode：分完 / 边数够 / 排满 / 改过一条边 / 硬币够付且前提已指 |
+| `simulate` | 无 | knob → sample | 预算内指标 + 换种子稳健 | 建模 | 自动运行结果就绪 |
+| `experiment` | 无 | tally / sampling / inference / sample 面板 | 大样本胜率 / 模型 + 证据充分 | 数据 / 算法 | 采样 + 统计/结论齐备 |
+| `argue` | 无 | 论证板（宿主单挂） | 证书可检验 + 边界解释 | 边界 | 依据已选 |
 
-「画布」一列只有两格是 Phaser：`pattern` 与 `rule`。这条不是文档口径，而是单测钉住的——`games/forge/src/forge.test.ts` 用 `const canvasTemplates = new Set(['pattern', 'rule'])` 逐关比对 `manifest.hasCanvas`，模板形态一改就红。
+「画布」一列只有两格是 Phaser：`pattern` 与 `rule`。最后两列合起来读，就是这一轮交互简化的骨架：**作答面越窄，判定越靠模板自己说「填完了没有」**。这条不是文档口径，而是单测钉住的——`games/forge/src/forge.test.ts` 用 `const canvasTemplates = new Set(['pattern', 'rule'])` 逐关比对 `manifest.hasCanvas`，模板形态一改就红。
 
 模板入口的形状因此分成两类。有画布的两个模板真正创建/销毁 Phaser 实例：
 
@@ -44,7 +44,7 @@ export function definePatternLevel(manifest: LevelManifest): LevelModule {
 }
 ```
 
-无画布的四个模板把 `mount` / `unmount` / `pause` / `resume` 一律写成空实现，并逐条注释说明「为什么可以空」：`simulate/index.ts` 里的原话是「交互全在 ToolDock（KnobTool + MetricsTool）里，宿主把工具区拉满宽度即可，所以 mount 故意什么都不挂，只保留 LevelModule 的形状」。
+无画布的四个模板把 `mount` / `unmount` / `pause` / `resume` 一律写成空实现，并逐条注释说明「为什么可以空」。第五轮去卡片化之前，这句注释写的是「交互全在 ToolDock（KnobTool + MetricsTool）里，宿主把工具区拉满宽度即可」；现在 ToolDock 与 MetricsTool 都已删除，同样的位置由 `AnswerDock` 接管：它只渲染承载答案的面板，宿主把作答区拉满宽度。
 
 六个模板共用一套契约（第 4 章讲过 `LevelModule`），但实现路径分两条：
 
@@ -67,9 +67,13 @@ export interface RuntimeAdapter<S> {
   toolState(state: S): Partial<ToolStateMap>;
   validate(detail: LevelDetail, variant: RuntimeVariant, artifact: unknown): Verdict;
   actionsFor(detail: LevelDetail, variant: RuntimeVariant, artifact: unknown): LevelAction[];
+  /** 自动判题口径：玩家「填完了没有」，不判对错（缺省 false） */
+  answerComplete?(state: S): boolean;
   // …artifactSummaries / 可选的 argumentState / transferVariants / transferFailureClass
 }
 ```
+
+最后那个 `answerComplete` 是 2026-11 第四轮加进来的：宿主不再有「完成」按钮，只能靠模板自己回答「答案填完整了没有」，再由宿主停手 500ms 后自动提交。它和 `validate` 是两件事：前者决定「什么时候判」，后者决定「判得对不对」。
 
 「只处理工具动作；run/submit/reset 由共享运行时统一处理」这句话很重要：三个宿主动作的判定顺序（无产物 → 缺证据 / 有产物先结构校验 → 再缺证据 → 最后迁移门）只写一遍，走适配器的五个模板不会各写一套；`pattern` 因为要多维护一份「预览」状态而自管运行时，但 `submit` 里的判定顺序与共享路径同语义（第 8.4 节）。
 
@@ -110,7 +114,7 @@ export const patternArtifactSchema = z.object({
 ```
 
 - `scenario.visible` 用 `null` 表示缺口，**缺口位置就是玩法本身**（12 格里有 3 个 null）；
-- `allowedPeriods` 与 `allowedTransforms` 是「这一关允许的规律空间」，玩家声明超出范围的规则会被 `validateRule` 判 `pattern-rule-invalid`；
+- `allowedPeriods` 与 `allowedTransforms` 是「这一关允许的规律空间」：画布填法反推出来的候选规律只能落在这个空间里，超出范围会判 `pattern-rule-invalid`；
 - `ambiguous` 是本关是否接受多种读法（对称墙那关同时接受「重复」与「镜像」两种规则）；
 - `scenario.symbols` 是可选字段——它就是**换表征迁移门**的入口，第 8.6 节展开。
 
@@ -154,8 +158,10 @@ export function validateArtifact(
 | 产物状态 | 走哪条判定 | 典型失败类 |
 |---|---|---|
 | 没有规律也没有补块 | 直接判空产物 | `pattern-rule-invalid` |
-| 有规律（`patternRule`） | `validatePattern(world, artifact)` | `pattern-cycle-wrong` / `pattern-repair-incomplete` / `pattern-mismatch` |
-| 只有补块 | `validateRepairOnly(script, repair)` | `pattern-repair-incomplete` / `pattern-mismatch` / `pattern-cycle-wrong` |
+| 有规律（`patternRule`，反推命中） | `validatePattern(world, artifact)` | `pattern-cycle-wrong` / `pattern-repair-incomplete` / `pattern-mismatch` |
+| 只有补块（反推不中，`rule = null`） | `validateRepairOnly(script, repair)` | `pattern-repair-incomplete` / `pattern-mismatch` / `pattern-cycle-wrong` |
+
+去卡片化之后，第二条路径是常态：玩家只往缺口填字母，运行时每填一格就调 `deriveRuleFromRepairs` 反推一次规律；只要填法能被某条候选规律解释，规律就会被写进产物、并标记 `committed`。第三条路径是「填法解释不了」的兜底——规律留空，submit 走 repair-only，报的仍是具体错格。
 
 第二条路径是主判定，实现在纯逻辑包 `@mmf/toolkit/pattern` 里，四步顺序固定：
 
@@ -229,6 +235,35 @@ export function validateRepairOnly(script: PatternScript, repair: unknown): { �
 
 注意「候选规律只由可见格推出」：`candidateRules` 遍历 `allowedPeriods`，用带子前 `period` 个**可见**格组成候选，再用 `explainsVisible` 过滤掉与任何可见格冲突的候选。这条约束保证了「只填不声明」不会变成「随便填都能过」——填法仍然要符合一条能解释整条带子的规律。
 
+反推函数就建在同一份 `candidateRules` 上，因此**反推出来的规律天然满足迁移门的可翻译要求**：
+
+```ts
+/**
+ * 从已经填进去的缺口反推一条能解释它们的候选规律（画布自动声明规律用）。
+ * candidateRules 只由可见格推出，所以反推出来的规则天然满足迁移门的可翻译要求；
+ * 填法对不上任何候选时返回 null —— 交给 validateRepairOnly 去报具体错在哪。
+ */
+export function deriveRuleFromRepairs(
+  script: PatternScript,
+  repairs: ReadonlyMap<number, string>,
+): PatternRule | null {
+  if (repairs.size === 0) return null;
+  for (const rule of candidateRules(script)) {
+    let explains = true;
+    for (const [index, token] of repairs) {
+      if (!sameTokenShape(tokenAt(rule, index), token)) {
+        explains = false;
+        break;
+      }
+    }
+    if (explains) return rule;
+  }
+  return null;
+}
+```
+
+这段代码回答了去卡片化最关键的问题：**删掉「先声明规律」这个步骤之后，迁移门靠什么还能成立？** 靠的是同一条规律不再由玩家口头声明，而是由画布上的填法反推出来——反推的候选池与判定用的候选池是同一份，所以「反推得出的规律」必然可翻译、可换表征验证。
+
 ## 8.4 runtime：四个工具动作 + 三个宿主动作
 
 `createPatternRuntime` 是少数自管运行时的模板（不走共享适配器）。它处理的动作可以分成两栏：
@@ -236,14 +271,16 @@ export function validateRepairOnly(script: PatternScript, repair: unknown): { �
 | 动作 | 状态影响 | 证据相位 |
 |---|---|---|
 | `pattern/inspect` | 记录被点过的格、相位转 `observing` | `observe` |
-| `pattern/setCycle` | 写入 `rule`、`committed = false`、清掉旧预览 | `hypothesize` |
-| `pattern/preview` | 生成 `preview`（预测格），不参与判定 | `observe` |
-| `pattern/commit` | `committed = true`、`checkpoints.hypothesis = true` | `hypothesize` |
-| `construct/place` | 在缺口写块、刷新 `fill` / `repair` 检查点 | `construct` |
-| `construct/remove` | 删块、刷新检查点 | `construct` |
+| `pattern/setCycle` | 写入 `rule`、`committed = false`、清掉旧预览（契约保留；画布已不再派发） | `hypothesize` |
+| `pattern/preview` | 生成 `preview`（预测格），不参与判定（契约保留；画布已不再派发） | `observe` |
+| `pattern/commit` | `committed = true`、`checkpoints.hypothesis = true`（契约保留；画布已不再派发） | `hypothesize` |
+| `construct/place` | 在缺口写块、**用填法反推规律**、刷新 `fill` / `repair` 检查点 | `construct` |
+| `construct/remove` | 删块、重新反推规律、刷新检查点 | `construct` |
 | `run` / `submit` / `reset` | 宿主动作：判定、出 Verdict、重置 | `run` / `result` |
 
-两个动作的细节值得抄下来。第一，**`pattern/commit` 会先做一次规则合法性校验，失败不写状态**：
+表里「契约保留」那三行是历史动作：去卡片化之后画布只派发 `construct/place` 与 `construct/remove`，规律由 `refreshDerivedRule` 自动反推并写入 `rule` / `committed`；旧动作留在运行时里，是为了 `autoplay` 与审计仍能走同一条路径，不是给界面留入口。
+
+两个动作的细节值得抄下来。第一，**`pattern/commit` 会先做一次规则合法性校验，失败不写状态**（这个动作现在只由 autoplay/审计触发）：
 
 ```ts
 case 'pattern/commit': {
@@ -262,7 +299,7 @@ case 'pattern/commit': {
 }
 ```
 
-第二，**`pattern/preview` 与「已提交」的关系很微妙**：预览的规则与已提交规则一致时不能打掉 `committed`，否则玩家「先点用这条规律、再点预览一下」会把提交状态弄丢，之后的 run/submit 全部失败：
+第二，**`pattern/preview` 与「已提交」的关系很微妙**：预览的规则与已提交规则一致时不能打掉 `committed`，否则玩家「先确认这条规律、再点预览一下」会把提交状态弄丢，之后的 run/submit 全部失败。这段逻辑在去卡片化后仍留在运行时里（画布不再调用 `pattern/preview`，但 autoplay 路径与旧内容仍可能触发）：
 
 ```ts
 case 'pattern/preview': {
@@ -277,7 +314,7 @@ case 'pattern/preview': {
 }
 ```
 
-`preview` 的全部意义是「看得见」：它被写进快照的 `toolState.pattern.preview`，画布据此把预测格画成半透明 ghost。为了让它「连点也能重跑」，`buildPreview` 带一个单调递增的 `seq`，并带 `ruleKey`——周期或变换一改，旧预览立刻作废。`ruleKey` 的定义只有一行，但注释说明了为什么 `tokens` 顺序与变换都要算进去：
+`preview` 的全部意义是「看得见」：它被写进快照的 `toolState.pattern.preview`，画布据此把预测格画成半透明 ghost。去卡片化之后，玩家看不到「预览」这个入口了，但预测字母并没有消失——它变成了「第一次点空格时默认填什么」的提示：`refreshDerivedRule` 反推出的规律会参与 `nextFillToken`，所以点下去的第一笔就落在规律预测的字母上。为了让它「连点也能重跑」，`buildPreview` 带一个单调递增的 `seq`，并带 `ruleKey`——周期或变换一改，旧预览立刻作废。`ruleKey` 的定义只有一行，但注释说明了为什么 `tokens` 顺序与变换都要算进去：
 
 ```ts
 /** 规则指纹：tokens 顺序与变换都要算进去，否则换变换后旧预览会被误认成同一条规则。 */
@@ -294,7 +331,7 @@ export function patternRuleKey(rule: Pick<PatternRule, 'tokens' | 'transform'>):
 
 `pattern/scene.ts` 是这个模板唯一碰 Phaser 的文件（736 行）。它做四件事：画带子、处理指针、画 ghost/裂纹、把通过状态画成「小人走过去」。
 
-布局是纯常量，住在 `layout.ts` 里，不 import Phaser——e2e 或后续真实指针测试可以安全引用。两样东西：`DESIGN = { width: 900, height: 560 }`（横向工坊台，手机竖屏时画布在上、工具台在下）与 `PATH_LAYOUT`（`startX: 70`、`y: 320`、`cellW: 56`、`cellH: 76`、`gap: 8`、`headerH: 84`）。
+布局是纯常量，住在 `layout.ts` 里，不 import Phaser——e2e 或后续真实指针测试可以安全引用。两样东西：`DESIGN = { width: 900, height: 560 }`（横向工坊台，手机竖屏时画布在上、作答面板在下）与 `PATH_LAYOUT`（`startX: 70`、`y: 320`、`cellW: 56`、`cellH: 76`、`gap: 8`、`headerH: 84`）。
 
 渲染入口只做一件事：**先比签名，没变就返回**。`render(snapshot)` 的头三行是 `const signature = this.signatureOf(snapshot); if (signature === this.lastSignature) return; this.lastSignature = signature;`，之后才 `killTweensOf` 清空容器并逐格重画。签名把「会影响画面的一切」拼成一个字符串，包括相位、revision、观察过的格、规则、补块、最近一次运行结果、失败原因，以及预览：
 
@@ -325,7 +362,7 @@ private signatureOf(snapshot: RunSnapshot): string {
 |---|---|---|
 | 点了一格 | 该格出现观察环 | `snapshot.toolState.pattern.inspected` |
 | 补错了一块 | 裂纹/红圈，但**不写进 verdict** | `mismatchedPlacements(committedRule, pieces)` |
-| 点「预览一下」 | 空格上出现半透明 ghost，冲突格标出不一致 | `pattern.preview` + `sameTokenShape` |
+| 点空格填字母 | 填入的字母来自「规律预测 > 循环表第一位」，填完即反推规律 | `nextFillToken` + `deriveRuleFromRepairs` |
 
 第二行有一条重要纪律：**已提交规律下放错的块只做即时提示，不能写进判定**。玩家先放错再改是允许的学习过程，画布若因此报错，就变成了「边填边判」，把探索杀死了。真正判定只在 `submit` 时发生。
 
@@ -463,11 +500,13 @@ export default definePatternLevel(manifest);
 
 ## 8.8 小结
 
-- 六个模板 = 两种形态（Phaser 画布 / 纯工具台）× 两条实现路径（自管运行时 / 共享适配器）；`hasCanvas` 只有 pattern 与 rule 为真，并由 `forge.test.ts` 钉住。
+- 六个模板 = 两种形态（Phaser 画布 / 无画布作答面板）× 两条实现路径（自管运行时 / 共享适配器）；`hasCanvas` 只有 pattern 与 rule 为真，并由 `forge.test.ts` 钉住。第五轮之后，「工具台」这个说法已过时——无画布模板的作答面是 `AnswerDock` 渲染的平铺面板。
 - 模板只决定「怎么判定」，内容决定「判定什么」：两关 pattern 的模块各 15 行，差异全在 JSON。
 - `patternScriptSchema` 只有 `scenario` 与 `pattern` 两个对象；`visible` 里的 `null` 就是缺口，`symbols` 是迁移门开关。
+- 规律不再由玩家声明：`deriveRuleFromRepairs` 用可见格推出的候选规律解释已填缺口，命中即写 `rule` 并标 `committed`；反推不中则 `rule = null`，submit 走 repair-only 报具体错格。
 - 判定三分支：空产物 / 有规律 / 只补块；四步顺序是「规则合法 → 与可见格一致 → 缺口补齐 → 补块与规则一致」，每种失败都有独立失败类与定位索引。
-- `tokenAt` 支持 `none/mirror/rotate/shift/reflect` 五种变换，`reflect` 是周期翻倍的往返，对称墙靠它读成 `ABCCBA`。
+- `tokenAt` 支持 `none/mirror/rotate/shift/reflect` 五种变换，`reflect` 是周期翻倍的往返，对称墙靠它读成 `ABCCBA`；`nextFillToken` 让第一次点击落在规律预测的字母上（没有规律就从循环表第一位起）。
+- `answerComplete` 只看「缺口填满没有」，不判对错；填错也能在停手 500ms 后拿到 `pattern-mismatch` 这类具体原因，而不是卡在「没反应」。
 - runtime 的 `preview` 只是「看得见的预测」：不进判定、改规则即作废、连点靠 `seq` 重跑；`committed` 不能被「预览同一条规则」误打掉。
 - 场景渲染先比 signature 再重画；放错块只画裂纹不进 verdict，判定只在 `submit` 发生。
 - 换表征门是真门：带 `scenario.symbols` 的变体逐条要过，只补块不声明规律会落 `pattern-transfer-failed`，通过多一枚 `transfer` 印章。
