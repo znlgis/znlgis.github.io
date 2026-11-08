@@ -43,7 +43,7 @@ export { loadTask } from './loadTask';
 
 `package.json` 的 `exports` 把这三条路径锁死，外壳侧的 eslint 规则再把 `/full` 这条封掉（第 2 章、第 5 章都提过）。
 
-把账算一遍就更清楚了。本次构建的产物里，首屏 `index-<hash>.js` 是 137,128 字节（另加 CSS 与两个 `modulepreload` 共享 chunk）、共享的 `common-<hash>.js` 是 96,763 字节、英文补丁 `en-<hash>.js` 是 8,985 字节，而十个详情 chunk（`content-<id>-<hash>.js`）在 209–720 字节之间。zod 4.6.7 如果被主入口带进来，按 CHAGS 的实测是 24.7 KB gzip —— 那会是一笔超过首屏三分之一的单点支出，而它换来的东西（在浏览器里校验十条已经在构建期校验过的 JSON）一次都不会失败。
+把账算一遍就更清楚了。本次构建的产物里，首屏 `index-<hash>.js` 是 136,550 字节（另加 CSS 与两个 `modulepreload` 共享 chunk）、共享的 `common-<hash>.js` 是 96,956 字节、英文补丁 `en-<hash>.js` 是 9,205 字节，而十个详情 chunk（`content-<id>-<hash>.js`）在 209–720 字节之间。zod 4.6.7 如果被主入口带进来，按 CHAGS 的实测是 24.7 KB gzip —— 那会是一笔超过首屏三分之一的单点支出，而它换来的东西（在浏览器里校验十条已经在构建期校验过的 JSON）一次都不会失败。
 
 拆两半还有第二个好处：`content:check` 变成了唯一的内容门禁。因为详情不在首屏路径上，它就可以「贵」一点 —— 递归校验关卡脚本、递归找残留中文、要求每个模板都被真实内容用到。这些检查放在浏览器里是负担，放在 CI 里是资产。
 
@@ -89,7 +89,7 @@ export const SLOT_LABELS_EN: Record<TimeSlot, string> = { morning: 'Morning', no
 
 中文时段名给内容侧与调试输出用；界面上的时段标题走 `@bamboo/i18n` 的 `time.*` 键（第 12 章），所以英文界面里不会漏出「早上」。
 
-typecheck 能挡住这七处里的三处：`registry` 是 `Record<TaskId, GameLoader>`，少一行就报属性缺失；`TASKS` 在模块加载时自检 `task.id !== id`；`templateSchemas` 用 `satisfies Record<TemplateId, ZodType>` 要求模板键齐全。剩下四处（`package.json` 的 `exports` 子路径、`manifest.id`、存档键、testid）没有编译期关联，靠 `content:check` 与 e2e 兜底。这也解释了为什么一个十条内容的游戏愿意写 191 个单测加六套 e2e：**同一个字符串出现在七个地方，就必须有工具替人数。**
+typecheck 能挡住这七处里的三处：`registry` 是 `Record<TaskId, GameLoader>`，少一行就报属性缺失；`TASKS` 在模块加载时自检 `task.id !== id`；`templateSchemas` 用 `satisfies Record<TemplateId, ZodType>` 要求模板键齐全。剩下四处（`package.json` 的 `exports` 子路径、`manifest.id`、存档键、testid）没有编译期关联，靠 `content:check` 与 e2e 兜底。这也解释了为什么一个十条内容的游戏愿意写 243 个单测（11 个测试文件）加六套 e2e（36 条用例）：**同一个字符串出现在七个地方，就必须有工具替人数。**
 
 ## 6.3 tasks/<id>.json：一条摘要的 15 个字段
 
@@ -125,7 +125,7 @@ typecheck 能挡住这七处里的三处：`registry` 是 `Record<TaskId, GameLo
 | `timeSlots` | `TIME_SLOTS` 数组，1–3 个 | 时段推荐、任务页分组 |
 | `template` | `z.enum(TEMPLATE_IDS)` | 选哪个模板场景、`content:check` 选哪份 schema |
 | `durationHintSec` | 整数 20–120 | 卡片上「约 45 秒」 |
-| `ageRange` | 元组 `[3..9, 3..9]`，内容用 `[4, 8]` | manifest、家长页可读性说明 |
+| `ageRange` | 元组 `[3..9, 3..9]` 且最小 ≤ 最大（`refine` 拦 `[8, 4]` 这种写反），内容用 `[4, 8]` | manifest、家长页可读性说明 |
 | `unlockLevel` | 整数 1–4，默认 1 | 任务页锁定态、小屋深链校验 |
 | `stats` | `partialRecord(STAT_KEYS, 1..30)` | 完成后五维增量（只增不减） |
 | `reward.shoots` | 整数 1–5 | 竹笋奖励 |
@@ -188,7 +188,7 @@ typecheck 能挡住这七处里的三处：`registry` 是 `Record<TaskId, GameLo
 | `tidy` | `room` / `bins[]` / `items[]` | bins 2–4，items 4–10 | tidy |
 | `rhythm` | `room` / `bpm` / `jumps` / `zone` | bpm 60–120，jumps 5–15，zone 0.15–0.5 | sport |
 | `pick` | `room` / `rounds[]` | rounds 2–3，options 恰好 3 个 | emotion |
-| `learn` | `room` / `rounds[]` | rounds 2–4，options 2–4，answer 为下标 | learn |
+| `learn` | `room` / `rounds[]` | rounds 2–4，options 2–4，answer 为下标且必须落在选项范围内 | learn |
 
 所有坐标都是 **0–1 的相对值**，由 `packages/templates/src/common.ts` 里的 `normalized` 校验：
 
@@ -268,6 +268,8 @@ export const templateSchemas = {
 
 `satisfies` 而不是 `: Record<...>` 是关键：它同时要求「键齐全」并保留每个值的具体类型，所以 `templateSchemas.scrub` 仍然是 `ZodObject<...>` 而不是 `ZodType`，下游 `safeParse(...).data` 的类型不会退化成 `unknown`。
 
+跨字段的约束得靠 `superRefine`。`learnLevelSchema` 的 `answer` 只有一个 `min(0)`：越界的 `answer` 会让 `chooseOption` 永远判错，孩子点什么都没反应、整局卡死（软锁）。所以 schema 在 `superRefine` 里逐题比对 `answer < options.length`；`content-rules.ts` 的语义层再兜一次；`chooseOption` 自己也不信任数据——`answer` 越界时任何一下都算对，宁可「这一题白送」，也不让孩子卡在一局永远打不完的游戏里。三道防线各有分工：schema 管形状与跨字段，构建期检查管「这一关讲不讲得通」，运行时逻辑只求不死锁。
+
 三个「不跑 zod」的位置同样重要：
 
 - **运行时的 `packages/content/src/tasks.ts` 不跑**。摘要直接 `RAW[id] as TaskSummary`，只核一条 `task.id !== id` 就抛错。跑 schema 会把 zod 拖进首屏，而内容在构建期已经被校验过了。
@@ -335,7 +337,9 @@ export function mergeTaskDetail(
 
 ## 6.7 content:check：构建期的内容门禁
 
-`pnpm content:check` 跑的是 `tsx packages/templates/src/cli/check-content.ts`，193 行，输出是一份人读的报告加一份错误清单。它不是「schema 的二次运行」，而是 schema **管不到**的那部分：
+`pnpm content:check` 跑的是 `tsx packages/templates/src/cli/check-content.ts`，97 行，输出是一份人读的报告加一份错误清单。它不是「schema 的二次运行」，而是 schema **管不到**的那部分：
+
+这次审查把判定从 CLI 里拆了出来：`packages/templates/src/cli/content-rules.ts`（240 行）只返回 issue 列表，不打印、不退码；`check-content.ts` 缩到 97 行，只负责把 issue 变成 `console.error` 与退出码。好处是规则层可以直接被单测喂假数据——`content-rules.test.ts` 有 24 条用例，不必起一个 CLI 进程去断言字符串输出。
 
 | 类别 | 检查项 | 失败示例 |
 |---|---|---|
@@ -345,6 +349,7 @@ export function mergeTaskDetail(
 | 语义 | pick 每轮的 `options` 必须包含 `target`、不能重复 | 「第 2 轮的选项里没有正确答案 angry」 |
 | 语义 | dress 的 `slot` 不能重复（一件衣服不能有两个位置） | 「同一件衣服被安排了两个位置」 |
 | 语义 | order 的 `steps.id` 不能重复 | 「睡前步骤 id 重复」 |
+| 语义 | learn 每轮的 `answer` 必须落在选项下标范围内 | 「第 2 题的 answer 越界（3，选项 3 个）」 |
 | 文案 | 中文禁用词：失败、惩罚、笨蛋、输了、淘汰 | 「刷牙的提示文案出现「失败」」 |
 | 文案 | 英文禁用词：fail、stupid、loser、punish | 同上 |
 | 完整性 | 任务数量 == `TASK_IDS.length`，英文数量 == 中文数量 | 「任务数量不对：期望 10，实际 9」 |
@@ -430,7 +435,7 @@ export const EN_SUMMARY_PATCHES: Record<TaskId, SummaryPatch> = {
 };
 ```
 
-打包结果里这份就是 `en-<hash>.js`，实测 6,260 字节。中文用户永远不下载它——`ensureSummaries('zh-CN')` 直接 `Promise.resolve()`；`ensureSummaries('en')` 才动态 `import('./i18n/en/summaries')`，并且用 `enLoading ??=` 做 single-flight、失败时置空缓存以便重试：
+打包结果里这份就是 `en-<hash>.js`，实测 9,205 字节。中文用户永远不下载它——`ensureSummaries('zh-CN')` 直接 `Promise.resolve()`；`ensureSummaries('en')` 才动态 `import('./i18n/en/summaries')`，并且用 `enLoading ??=` 做 single-flight、失败时置空缓存以便重试：
 
 ```ts
 export function ensureSummaries(locale: Locale): Promise<void> {

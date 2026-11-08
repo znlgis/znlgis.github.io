@@ -35,7 +35,7 @@ BambooBuddy（《熊猫宝宝的一天》，英文名 **Bamboo Buddy**，副标�
 | 5 | 装扮页与小窝 | `packages/progress/src/catalog.ts`、`apps/site/src/views/DressView.vue`、`packages/progress/src/manager.ts` 的 `feed()` |
 | 6 | 阶段名与下一阶段进度 | `packages/progress/src/growth.ts`（0 / 60 / 160 / 300 成长值） |
 
-六步之外还有一条不给孩子的线：**家长页**。它从标题的长按进入，展示最近七天的记录、本周练习过的习惯、声音开关与清档入口。这条线故意做得「不好点」——孩子不该在玩到一半时误入一个满是数字的表格，而家长需要能确认「今天到底做没做」。
+六步之外还有一条不给孩子的线：**家长页**。它从标题的长按进入，展示最近七天的记录、本周练习过的习惯、声音开关与清档入口。这条线故意做得「不好点」——孩子不该在玩到一半时误入一个满是数字的表格，而家长需要能确认「今天到底做没做」。长按成功后才会发一枚一次性的会话令牌（`PARENT_UNLOCK_KEY = 'bamboo.parentUnlock'`，sessionStorage，有效期 30 分钟），直接输 `#/parent` 或按浏览器后退都会因为没有令牌回落到小屋，离开家长页立刻吊销。
 
 这里有一个刻意的产品判断：**奖励不是终点，习惯才是**。所以第 4 步的奖励永远为正——重复玩同一天的任务只把奖励减半，最低仍有 1 根竹笋与 3 点成长值（`rewards.ts` 的 `completionReward()`）；第 6 步的成长线也不设失败，只设时间。
 
@@ -108,7 +108,7 @@ function pickVariant(level: ScrubLevel): Variant {
 
 ### 三款隐藏小游戏
 
-十条任务之外还有一枚彩蛋：当天完成 **4 件不同**的小事后，小屋墙上会出现一扇小竹门，门后是「竹林游戏厅」——三款按 4–8 岁重做的街机小游戏，普通模式三款合计每天最多 21 局，每款另有独立的难度等级 Lv.1–12（按累计局数成长、跨天保留），一局就是一轮；另有隐藏触发「竹林小路」：在小屋里**连续点竹竹 7 次（5 秒内）**，当天小门直接打开、三款**无限畅玩、不限局数**。
+十条任务之外还有一枚彩蛋：当天完成 **4 件不同**的小事后，小屋墙上会出现一扇小竹门，门后是「竹林游戏厅」——三款按 4–8 岁重做的街机小游戏，普通模式三款合计每天最多 21 局，每款另有独立的难度等级 Lv.1–12（按累计局数成长、跨天保留），一局就是一轮：完成目标 → `arcade:complete` → 写档 → **回游戏厅**，再开下一局；另有隐藏触发「竹林小路」：在小屋里**连续点竹竹 7 次（5 秒内）**，当天小门直接打开、三款**无限畅玩、不限局数**。无限畅玩下每局仍然发 `arcade:complete` 并照常累计局数，但外壳收到 `mode: 'continuous'` 后不弹结算卡、不返回游戏厅，约 0.9 秒后换上同一款的新一局，难度按新累计局数重算，直到孩子自己按返回或关掉。
 
 | 游戏 | 保留的核心乐趣 | 低龄化改造 | 不失败的处理 |
 |---|---|---|---|
@@ -116,7 +116,7 @@ function pickVariant(level: ScrubLevel): Variant {
 | 弹一弹 | 瞄准 → 弹射 → 反弹 → 方块一串碎 | 任意位置拖拽瞄准、虚线 + 反弹点预测 | 每 6 发下沉一格；贴底时「开出小花」飞走，本轮算完成 |
 | 俄罗斯方块 | 拼、消行、越堆越高 | 8×14、四个大按钮 + 2 个预览、不做 hold | 堆到顶变「彩虹」，清掉最下 4 行继续玩 |
 
-它不在那十条任务里，也不复用 8 个模板：三款是实时街机（自己的帧循环、反弹物理、消行与 AI），硬套「内容 JSON + 模板 + 星星」会把模板层撑坏，还会把任务概念漏进彩蛋系统。所以它另起一套契约（`packages/game-kit/src/arcade.ts`）与一个独立的包（`games/arcade`），不发竹笋 / 成长值 / 贴纸、不写 `task:complete`，因此不污染任务经济、连续天数与家长页统计。规则的单测（99 条）同样跑在 Node 里。完整实现见第 17 章。
+它不在那十条任务里，也不复用 8 个模板：三款是实时街机（自己的帧循环、反弹物理、消行与 AI），硬套「内容 JSON + 模板 + 星星」会把模板层撑坏，还会把任务概念漏进彩蛋系统。所以它另起一套契约（`packages/game-kit/src/arcade.ts`）与一个独立的包（`games/arcade`），不发竹笋 / 成长值 / 贴纸、不写 `task:complete`，因此不污染任务经济、连续天数与家长页统计。规则的单测（101 条）同样跑在 Node 里。完整实现见第 17 章。
 
 ## 1.4 儿童向设计原则如何落进代码
 
@@ -127,9 +127,10 @@ function pickVariant(level: ScrubLevel): Variant {
 | 无失败惩罚、无 0 星 | `rewards.ts` 的 `starsFor()`：失误 ≤1 给 3 颗、≤3 给 2 颗、其余 1 颗，**没有 0 颗** |
 | 无倒计时、无扣命 | 契约里没有任何计时器字段；`task:retry` 只是观测事件，不改状态 |
 | 可点区域 ≥88×88 逻辑像素 | `packages/templates/src/layout.ts` 的 `UI.minTap = 96`；`BaseScene.addButton` 默认高度 112 |
-| 不靠颜色单独传达信息 | `packages/templates/src/tidy.ts` 的注释与实现：玩具颜色与箱子故意错开，逼孩子看形状 |
+| 不靠颜色单独传达信息 | `packages/templates/src/tidy.ts` 的注释与实现：玩具颜色与箱子故意错开，逼孩子看形状；`learn` 的颜色卡另给花纹通道（实心 / 圆环 / 十字 / 中心圆点），色盲孩子也能认 |
 | 静音立即停语音 | `apps/site/src/stores/settings.ts` 的 `setMuted(true)` 会调用 `platform.audio.stopSpeech()` |
-| 家长锁 | `apps/site/src/App.vue` 长按标题 3000ms 才进家长页，孩子点不到 |
+| 家长锁 | `apps/site/src/App.vue` 长按标题 3000ms 才发一次性令牌；`apps/site/src/router.ts` 校验 30 分钟有效期，直链与后退无令牌回小屋 |
+| 弹层是模态、按钮有状态语义 | `apps/site/src/views/HomeView.vue` 的彩蛋浮层 `role="dialog"` + Esc 关闭；静音与日记朗读按钮带 `aria-pressed` |
 | 20 分钟休息提醒 | `apps/site/src/stores/progress.ts` 的 `REST_SECONDS = 20 * 60`，一天只提醒一次 |
 | 尊重减少动效 | `GameContext.reducedMotion` 来自 `matchMedia('(prefers-reduced-motion: reduce)')`，场景据此关掉闪光与补间 |
 | 文案里不出现失败词汇 | `packages/templates/src/cli/check-content.ts` 对中英文各有一组禁词：失败 / 惩罚 / 笨蛋 / 输了 / 淘汰，以及 fail / stupid / loser / punish |
@@ -150,26 +151,33 @@ export function starsFor(mistakes: number): Stars {
 }
 ```
 
-家长锁的实现同样只有十几行，但三个细节缺一不可：按下开始计时、抬起 / 离开 / 取消都要清掉计时器、长按触发后浏览器补的那一次 `click` 不能把小屋又盖回去：
+家长锁的实现同样只有十几行，但四个细节缺一不可：按下开始计时、抬起 / 离开 / 取消都要清掉计时器、长按触发后浏览器补的那一次 `click` 不能把小屋又盖回去、长按成功还要发一枚一次性令牌：
 
 ```ts
 // apps/site/src/App.vue（节选）
+let holdTimer: ReturnType<typeof setTimeout> | null = null;
+/** 长按真正生效的时刻：只用来吃掉紧随其后的那一次 click */
+let holdFiredAt = 0;
+const HOLD_CLICK_WINDOW_MS = 800;
+
 function startParentHold(): void {
   if (holdTimer !== null) return;
-  holdFired = false;
   holdTimer = setTimeout(() => {
     holdTimer = null;
-    holdFired = true;
+    holdFiredAt = platform.now();
+    // 家长页要一次性令牌：没有它，#/parent 直接输地址或浏览器后退都进不去
+    grantParentUnlock(platform.now());
     navigate('/parent');
   }, 3000);
 }
 
 /** 长按结束后浏览器还会补一次 click：那一次不能再把小屋盖过去 */
 function onTitleClick(): void {
-  if (holdFired) {
-    holdFired = false;
+  if (holdFiredAt !== 0 && platform.now() - holdFiredAt < HOLD_CLICK_WINDOW_MS) {
+    holdFiredAt = 0;
     return;
   }
+  holdFiredAt = 0;
   navigate('/');
 }
 ```
@@ -216,42 +224,43 @@ BambooBuddy/
 │  ├─ progress/             # 纯 TS：推荐、状态、奖励、成长、连续天数、亲密度、存档迁移
 │  ├─ platform/             # Web 实现：IndexedDB / 合成音效 / TTS / 生命周期 / telemetry
 │  ├─ phaser-kit/           # 主题、绘制、竹竹、拖拽、BaseScene、Phaser 裁剪版
-│  └─ templates/            # 8 个模板：*.logic.ts（判定）+ *.ts（场景）+ 关卡 schema
+│  └─ templates/            # 8 个模板：*.logic.ts（判定）+ *.ts（场景）+ 关卡 schema + 共用生命周期 + 内容校验规则
 ├─ games/daily/             # 10 个玩法入口（一个任务 = 一个动态 import 的子路径）
 ├─ games/arcade/            # 3 款隐藏小游戏：popstar / bounce / tetris（逻辑 + 场景 + 入口）
-├─ e2e/                     # Playwright：冒烟、真实操作、家长页、双语、彩蛋、生产产物
+├─ e2e/                     # Playwright：冒烟、真实操作、家长页（含令牌门禁）、双语、彩蛋、生产产物
 ├─ scripts/                 # verify / 体积门禁 / 图标 / APK / keystore / 打包体检
+├─ .gitattributes           # 全仓 eol=lf，二进制资源不转换
 └─ docs/                    # 技术方案、隐藏小游戏方案、打包与分发
 ```
 
-内容被刻意拆成两半：`packages/content/src/tasks/<id>.json` 是摘要（标题、emoji、颜色、时段、模板、收益、奖励、习惯、日记一行、提示），小屋 / 任务 / 装扮 / 日记四个页面只读它；`packages/content/src/details/<id>.game.json` 是详情（intro / done / retry 语音文案 + 关卡脚本），只有进入那个玩法时才由 `loadTask()` 动态 import。这条拆分是首屏能压在 58.9 KB 的直接原因，也是 ESLint 要禁止外壳 import `@bamboo/content/full` 的原因。
+内容被刻意拆成两半：`packages/content/src/tasks/<id>.json` 是摘要（标题、emoji、颜色、时段、模板、收益、奖励、习惯、日记一行、提示），小屋 / 任务 / 装扮 / 日记四个页面只读它；`packages/content/src/details/<id>.game.json` 是详情（intro / done / retry 语音文案 + 关卡脚本），只有进入那个玩法时才由 `loadTask()` 动态 import。这条拆分是首屏能压在 59.4 KB 的直接原因，也是 ESLint 要禁止外壳 import `@bamboo/content/full` 的原因。
 
-依赖方向是这个结构的关键：`game-kit` 与 `content` 不 import Phaser，所以外壳可以安全地直接引用它们；Phaser 只出现在 `games/*`、`packages/templates` 与 `packages/phaser-kit` 里；外壳甚至连 `@bamboo/templates` 都不在依赖列表里（第 2 章会给出完整的包依赖图）。这条边界带来的直接结果是：**首屏永远不会下载那 876 KB 的引擎**。
+依赖方向是这个结构的关键：`game-kit` 与 `content` 不 import Phaser，所以外壳可以安全地直接引用它们；Phaser 只出现在 `games/*`、`packages/templates` 与 `packages/phaser-kit` 里；外壳甚至连 `@bamboo/templates` 都不在依赖列表里（第 2 章会给出完整的包依赖图）。这条边界带来的直接结果是：**首屏永远不会下载那 856 KB 的引擎**。
 
 ## 1.7 当前验收与产物现状
 
-以下数字都是 2026-11-07 在本机实测的基线，也是后续章节反复引用的对照值：
+以下数字都是 2026-11-08 在本机实测的基线，也是后续章节反复引用的对照值：
 
 | 项目 | 实测值 |
 |---|---|
-| 单元测试 | 191 个（Vitest，Node 环境；9 个测试文件，其中 99 个属于隐藏小游戏） |
-| 端到端 | 32 passed / 2 skipped / 0 failed（共 34 条，Playwright，Pixel 5 模拟） |
+| 单元测试 | 243 个（Vitest，Node 环境；11 个测试文件，其中 101 个属于隐藏小游戏） |
+| 端到端 | 34 passed / 2 skipped / 0 failed（共 36 条，Playwright，Pixel 5 模拟） |
 | 生产产物懒加载 | `pnpm e2e:dist` 2 passed（首屏不下载任何重 chunk） |
 | `pnpm verify` | 七阶段全绿：typecheck / lint / test / content:check / pack:check / build / size |
-| dist 体积 | 53 个文件 / 1,312,440 B（约 1281.7 KB） |
-| 首屏 JS + CSS | gzip 60,511 B（约 59.1 KB，预算 60 KB） |
-| Phaser 裁剪版 | 876.87 KB（gzip 226.98 KB），只在第一次进玩法 / 小游戏时下载 |
+| dist 体积 | 54 个文件 / 1,321,393 B（约 1290.4 KB） |
+| 首屏 JS + CSS | gzip 60,846 B（约 59.4 KB，预算 60 KB；原始 172.3 KB） |
+| Phaser 裁剪版 | 856.3 KB（gzip 220.6 KB），只在第一次进玩法 / 小游戏时下载 |
 | Windows 便携 exe | 3.27 MB（Tauri 2，系统 WebView2） |
 | 安卓 apk | 4.69 MB（Capacitor 8，debug 签名） |
 | 非代码资源 | 0（全部几何绘制 + WebAudio 合成） |
 
-验收这条线有一条不成文的规矩：**数字要能被复现**。所以第 14 章会把这里的每一项都对应到具体的脚本与断言——191 个单测来自哪些 `*.test.ts`、34 条端到端分别覆盖什么、体积的 59.1 KB 是怎么算出来的（首屏 = `index.html` 实际引用含 `modulepreload` + 内联脚本，不是「所有 js 加起来」）。没有对应的断言，数字就只是上一次跑出来的巧合。
+验收这条线有一条不成文的规矩：**数字要能被复现**。所以第 14 章会把这里的每一项都对应到具体的脚本与断言——243 个单测来自哪些 `*.test.ts`、36 条端到端分别覆盖什么、体积的 59.4 KB 是怎么算出来的（首屏 = `index.html` 实际引用含 `modulepreload` + 内联脚本，不是「所有 js 加起来」）。没有对应的断言，数字就只是上一次跑出来的巧合。
 
 两个跳过项不是失败：`preview.spec.ts` 是生产产物用例，只在 `pnpm e2e:dist`（端口 5191）下运行，在开发配置（端口 5190）里按设计跳过。
 
 打包与发布同样有实测记录：GitHub Actions 的 Release 工作流在推 `v*` tag 时构建两个平台并挂到 Release，也可以手动 Run workflow 只出产物。产物都是「一份站点 + 一个壳」——Tauri 走系统 WebView2，Capacitor 走内置本地服务 `https://localhost`，所以 ES module、IndexedDB、WebGL 全部按浏览器标准工作，游戏代码不知道自己在哪个壳里跑。
 
-体积这一项值得单独强调，因为它决定了很多写法。首屏 59.1 KB 意味着：不能为了省事把 zod 拖进外壳（`@bamboo/content` 主入口刻意不导出 schema 的运行时对象），不能让英文文案静态进主包，也不能让任何一句 `import '@bamboo/content/full'` 混进 `apps/site/src`——ESLint 直接禁止最后这条。
+体积这一项值得单独强调，因为它决定了很多写法。首屏 59.4 KB 意味着：不能为了省事把 zod 拖进外壳（`@bamboo/content` 主入口刻意不导出 schema 的运行时对象），不能让英文文案静态进主包，也不能让任何一句 `import '@bamboo/content/full'` 混进 `apps/site/src`——ESLint 直接禁止最后这条。
 
 ## 1.8 本教程的章节安排
 
@@ -268,7 +277,7 @@ BambooBuddy/
 
 1. **产品定位是技术约束的来源**：无失败、无倒计时、零外部资源、本地存档，不是「顺手做的好事」，而是「一个任务一个小游戏」这个形态能成立的前提；
 2. **模板库复用交互原语，不复用关卡**：8 个模板撑 10 个任务，靠的是 `*.logic.ts` 与关卡 JSON 的分工；
-3. **验收是一串可复现的数字**：191 个单测、34 条端到端、59.1 KB 首屏、1281.7 KB 产物，每一项背后都有一个脚本，而不是一次人工检查。
+3. **验收是一串可复现的数字**：243 个单测、36 条端到端、59.4 KB 首屏、1290.4 KB 产物，每一项背后都有一个脚本，而不是一次人工检查。
 
 下一章把视角拉近一层：这套东西到底由哪些包组成、版本为什么锁在这些数字上、Vite 配置里那几条 `chunkFileNames` 规则各自解决什么问题。
 

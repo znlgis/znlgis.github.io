@@ -15,7 +15,7 @@ title: 其他教程
 |----------|:------:|:----:|----------|
 | [acme.sh](https://znlgis.github.io/others/acme.sh/) | 10章 | ⭐⭐ | SSL证书自动化 |
 | [BillionMail](https://znlgis.github.io/others/BillionMail/) | 10章 | ⭐⭐ | 邮件营销系统 |
-| [BambooBuddy](https://znlgis.github.io/others/BambooBuddy/) | 17章 | ⭐⭐⭐ | Phaser 4 + Vue 3.5 儿童日常养成游戏（含隐藏小游戏：每日 21 局、难度 Lv.1–12） |
+| [BambooBuddy](https://znlgis.github.io/others/BambooBuddy/) | 17章 | ⭐⭐⭐ | Phaser 4 + Vue 3.5 儿童日常养成游戏（含隐藏小游戏：每日 21 局、难度 Lv.1–12、无限畅玩自动续局） |
 | [历史典故游戏（CHAGS）](https://znlgis.github.io/others/CHAGS/) | 16章 | ⭐⭐⭐ | Phaser 4 + Vue 3.5 历史典故游戏合集 |
 | [数思工坊（Math Mind Forge）](https://znlgis.github.io/others/MathMindForge/) | 20章 | ⭐⭐⭐ | Vue 3.5 + Phaser 4 数学思维闯关（直接作答 + 自动判题，含在线试玩） |
 | [Go 语言](https://znlgis.github.io/others/go/) | 18章 | ⭐⭐ | Go 语言学习与开发 |

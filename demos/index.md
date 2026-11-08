@@ -27,7 +27,7 @@ title: 演示项目
 
 | 项目 | 内容 | 入口 |
 |------|------|------|
-| BambooBuddy 熊猫宝宝的一天 | 10 个生活小任务；完成 4 件后出现竹林小门，3 款隐藏小游戏（普通模式每天 21 局、每款难度 Lv.1–12 跨天成长、一局即一轮）与「竹林小路」彩蛋 | [znlgis.github.io/bamboobuddy/](https://znlgis.github.io/bamboobuddy/) |
+| BambooBuddy 熊猫宝宝的一天 | 10 个生活小任务；完成 4 件后出现竹林小门，3 款隐藏小游戏（普通模式每天 21 局、每款难度 Lv.1–12 跨天成长、一局即一轮且结算后回游戏厅）与「竹林小路」彩蛋（无限畅玩自动续局） | [znlgis.github.io/bamboobuddy/](https://znlgis.github.io/bamboobuddy/) |
 | 历史典故游戏（CHAGS） | 53 个游戏 = 17 个典故 + 三十六计全 36 计；含到期复习与家长页 | [znlgis.github.io/chags/](https://znlgis.github.io/chags/) |
 | 数思工坊（Math Mind Forge） | 20 关 / 6 个模板；题目直接作答、停手即自动判题、答对自动进下一关；证据 → 画像 → 徽章 → 日志 → 家长报告闭环，中英文切换，进度只存本机 | [znlgis.github.io/mathmindforge/](https://znlgis.github.io/mathmindforge/) |
 

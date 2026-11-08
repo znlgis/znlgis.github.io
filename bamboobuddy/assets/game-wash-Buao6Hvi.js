@@ -1,0 +1,1 @@
+import{r as e}from"./src-f3eP-ZW_.js";import{g as t,x as n}from"./common-DcvKC3ze.js";import{t as r}from"./scrub-D0GS1_5m.js";var i=e(`wash`),a=n({manifest:{id:`wash`,title:i.title,version:`0.1.0`,template:i.template,designSize:{width:t.width,height:t.height},ageRange:i.ageRange},scenes:e=>[r(e,e.task.levelScript)]});export{a as default};

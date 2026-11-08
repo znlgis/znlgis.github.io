@@ -15,11 +15,11 @@ title: 第08章 - Phaser渲染工具箱
 - `GameObjects` 里的 `Container` / `Graphics` / `Text` / `Zone` / `Rectangle`
 - `Input` / `Tweens` / `Time` / `Math` / `Geom` / `Structs` / `Utils` / `Display` / `Events`
 
-physics、tilemaps、sound、animations、particles、loader(image)、shader、mesh、renderTexture 这些系统一个都没用到——声音由自研的 WebAudio 层负责（第 9 章），所有美术都是 `Graphics` 画出来的，没有一个位图要加载。于是 `scripts/build-phaser-trim.mjs` 把 Phaser 按这份清单重新打包，结果 880,506 字节原始 / 227,189 字节 gzip（记录在 `vendor/.version`），**gzip 减少约 36%**；本次构建产物里那份 `apps/site/dist/assets/vendor-phaser-zPpKQHLK.js` 是 876,874 字节（gzip 220.6 KB，rolldown 又做了一遍摇树与压缩）。
+physics、tilemaps、sound、animations、particles、loader(image)、shader、mesh、renderTexture 这些系统一个都没用到——声音由自研的 WebAudio 层负责（第 9 章），所有美术都是 `Graphics` 画出来的，没有一个位图要加载。于是 `scripts/build-phaser-trim.mjs` 把 Phaser 按这份清单重新打包，结果 880,506 字节原始 / 227,189 字节 gzip（记录在 `vendor/.version`），**gzip 减少约 36%**；本次构建产物里那份 `apps/site/dist/assets/vendor-phaser-zPpKQHLK.js` 是 876,874 B（856.3 KB）原始 / 220.6 KB gzip（rolldown 又做了一遍摇树与压缩）。
 
 这笔账值得算，是因为十个玩法共用同一份 Phaser：首屏虽然不加载它（点开一个玩法才下载），但孩子每换一个玩法、每次清缓存回来都要重新下。少 36% 对移动网络与安卓 WebView 是实打实的差别。
 
-本次构建的 53 个文件把这条边界显示得很清楚：首屏只有 `index-<hash>.js` 137,449 字节 + `index-<hash>.css` 21,885 字节，加上 `index.html` 里两个 `modulepreload` 的共享 chunk（11,582 + 6,231 字节），gzip 合计 60,511 B（约 59.1 KB，原始 177,147 字节），与 `check-size.mjs` 的口径一致；`common-<hash>.js` 96,763 字节（gzip 28.67 KB）是进玩法前才拉起的共享 chunk；十个日常玩法的入口 chunk 在 340–8,225 字节之间（刷牙 / 洗手 / 洗澡只有 340–342 字节，场景代码在共享的 `scrub-<hash>.js` 里）；三款隐藏小游戏的入口 chunk 是 10,919–13,386 字节（gzip 4.2–5.5 KB），公共底座与确定性随机在共享的 `rng-<hash>.js`（4,447 字节）里；`vendor-phaser-<hash>.js` 876,874 字节（gzip 220.6 KB）只在 `PlayView` 或 `ArcadePlayView` 被拉起的那一刻才进入下载队列。也就是说，**一个不玩任何任务的孩子，永远不会为游戏引擎付流量。**
+本次构建的 54 个文件把这条边界显示得很清楚：首屏只有 `index-<hash>.js` 136,550 字节 + `index-<hash>.css` 22,000 字节，加上 `index.html` 里两个 `modulepreload` 的共享 chunk（11,606 + 6,231 字节），gzip 合计 59.4 KB（原始 176,387 字节），与 `check-size.mjs` 的 60 KB 预算口径一致；`common-<hash>.js` 96,956 字节（gzip 27.8 KB）是进玩法前才拉起的共享 chunk；十个日常玩法的入口 chunk 在 340–8,006 字节之间（刷牙 / 洗手 / 洗澡只有 342 / 340 / 340 字节，场景代码在共享的 `scrub-<hash>.js` 里）；三款隐藏小游戏的入口 chunk 是 10,922 / 13,700 / 11,863 字节（gzip 4.1 / 5.3 / 4.4 KB），公共底座与确定性随机在共享的 `rng-<hash>.js`（4,816 字节）里；`vendor-phaser-<hash>.js` 876,874 B（856.3 KB）原始 / 220.6 KB gzip 只在 `PlayView` 或 `ArcadePlayView` 被拉起的那一刻才进入下载队列。也就是说，**一个不玩任何任务的孩子，永远不会为游戏引擎付流量。**
 
 ## 8.2 裁剪的原理、清单与风险
 
@@ -140,7 +140,7 @@ export function textStyle(size: number, color: string = CSS.ink, bold = false) {
 
 ## 8.4 卡通绘制原语
 
-`packages/phaser-kit/src/cartoon.ts`（316 行）是整套美术的地基，一共十来个小函数，全部只依赖 `Graphics`：
+`packages/phaser-kit/src/cartoon.ts`（341 行）是整套美术的地基，一共十来个小函数，全部只依赖 `Graphics`：
 
 | 函数 | 作用 |
 |---|---|
@@ -154,7 +154,7 @@ export function textStyle(size: number, color: string = CSS.ink, bold = false) {
 | `sparkleAt(scene, x, y, color, count)` | 星光扩散，替代「答对了」这类文字 |
 | `tapRipple(scene, x, y, radius, color)` | 「点这里」的扩散涟漪，替代提示文字 |
 | `drawHand` / `createHand` | 卡通小手（会上下浮动），表示「可以拖我 / 点这里」 |
-| `starPath` / `heartPath` / `cloud` | 五角星、爱心、云朵 |
+| `starPath` / `heartPath` / `cloud` | 五角星、爱心、云朵；`heartPath` 用一条 48 点的闭合曲线，填充与描边走同一条路径 |
 
 两个函数的实现细节决定了整个视觉风格：
 
@@ -177,7 +177,7 @@ export function shade(color: number, factor: number): number {
 }
 ```
 
-「先填充再描边」是固定顺序，而且描边永远在内侧对齐——`fillRoundedRect` 与 `strokeRoundedRect` 用同一个矩形，视觉上就是一圈等宽的边。`shade` 用乘法而不是加法，所以 `shade(THEME.warmRed, 0.72)` 得到的是一个更暗的同色相，任意颜色都能安全地做「厚底」而不需要为每个颜色准备第二个常量。
+「先填充再描边」是固定顺序，而且描边永远在内侧对齐——`fillRoundedRect` 与 `strokeRoundedRect` 用同一个矩形，视觉上就是一圈等宽的边。`heartPath` 是这条规则的例外：它先把 48 个点连成一条 `beginPath → lineTo → closePath` 的闭合心形曲线描边、再沿同一条路径填充，因为原先「两个圆 + 一个三角形」的拼法只给两个圆描了边，每颗心都是「两个带描边的圆浮在一块无描边的心体上」，底下的尖角没有轮廓——完成卡片的 `hearts` 与 `pick` 模板的情绪图标都会露馅。一条曲线一次填充、一次描边，轮廓完整，也不会留下内部交线。`shade` 用乘法而不是加法，所以 `shade(THEME.warmRed, 0.72)` 得到的是一个更暗的同色相，任意颜色都能安全地做「厚底」而不需要为每个颜色准备第二个常量。
 
 三个动效函数构成一套反馈层次：`popIn` 用于「东西出现了」（按钮、道具、完成卡），`sparkleAt` 用于「你做对了」（清掉一个点、放对一个玩具、答对一题），`tapRipple` 与 `createHand` 用于「还不知道该点什么」（开局的小手、卡住时的涟漪）。三条线分别对应「出现 / 成功 / 引导」，都不需要孩子读一个字的提示。
 
@@ -185,7 +185,7 @@ export function shade(color: number, factor: number): number {
 
 ## 8.5 竹竹与道具：零位图
 
-`packages/phaser-kit/src/panda.ts` 与 `packages/phaser-kit/src/props.ts` 是两个大文件（13 KB / 25 KB），它们把「所有会出现在屏幕上的东西」都画成了几何图形。竹竹的入口是：
+`packages/phaser-kit/src/panda.ts` 与 `packages/phaser-kit/src/props.ts` 是两个大文件（13 KB / 26 KB），它们把「所有会出现在屏幕上的东西」都画成了几何图形。竹竹的入口是：
 
 ```ts
 /**
@@ -226,11 +226,15 @@ function accessoryColor(id: string | undefined, fallback: number): number {
 | 家具与器物 | `drawWindow` / `drawRug` / `drawShelf` / `drawBed` / `drawTable` / `drawPlate` / `drawSink` / `drawTub` / `drawLamp` / `drawCurtain` / `drawBlanket` / `drawBambooStalk` / `drawMoon` / `drawCloudPill` | 每个都是几行到几十行 `Graphics` 调用 |
 | 玩法道具 | `drawFood`（六类）/ `drawClothing`（五类）/ `drawToy`（四类）/ `drawBin` / `drawOrderIcon`（七种）/ `drawEmotionFace`（五种）/ `drawShape`（五种）/ `drawToothbrush` / `drawSponge` / `drawTowel` / `drawBubbles` / `drawWaterStream` / `drawTooth` | 内容里的枚举值在这里各有一笔画法 |
 
+两个函数这一轮各修了一处「画了但画错」的 bug。`drawRoom` 里那层极淡的墙纸颗粒原本用 `(x + y) % 220 === 0` 判定要不要画：`x` 从 60 起、`y` 从 90 起、步长都是 110，`x + y` 对 220 取模只可能是 40 或 150，这个条件恒不成立——所有房间的墙纸纹理从来没画出来过，视觉比设计稿更空。改成按格点的行列奇偶交错（`(col + row) % 2 === 0`）才真的看见纹理。`drawMoon` 挖月牙用的是硬编码的夜天色 `0x4b5a78`，画在浅色卡片上（`drawOrderIcon('moon')`）就成了一枚深蓝实心圆；现在挖掉的那块颜色改成参数 `cutout`，默认对齐夜晚窗色，卡片上则传卡片底色。
+
 零位图带来的三个好处都很实在：包体积里没有图片资源（`dist` 里唯一的非 JS/CSS 文件是 `index.html`）、离线与弱网下不会出现「先白块后出图」、截图比对的基准在任何设备上都一致。
+
+代价是「每帧重画」必须自己管住。隐藏小游戏「弹一弹」的棋盘是五层 `Graphics` 加 HUD 文字，60fps 下每帧无条件重建：18 块方块的 `roundRect`、球、瞄准虚线、发射器、两个 HUD 文本，一帧就是几十条绘制命令。这一轮把它拆成**静态层与动态层**：方块层只在碎块、开花、发射（可能触发整排下沉）与结算时置位一个 `blocksDirty` 标记，其余帧直接跳过；HUD 的星星与目标数缓存上一次的文本，内容没变就不调 `setText`。球、瞄准线与装弹环属于真的每帧都在变的部分，留在动态层。分离之后，静止等待发射的那些帧不再重画整块棋盘——低端安卓上这是实打实的电与帧率。
 
 ## 8.6 BaseScene：儿童向交互基线
 
-`BaseScene`（332 行）是八个场景的共同父类，它把「所有玩法都必须做到的事」写死成一处：
+`BaseScene`（351 行）是八个场景的共同父类，它把「所有玩法都必须做到的事」写死成一处：
 
 ```ts
 export abstract class BaseScene extends Phaser.Scene {
@@ -277,8 +281,18 @@ protected addButton(x, y, label, onClick, opts: ButtonOptions = {}): Phaser.Game
 
   // 命中区按「左上角原点」给整颗按钮；传居中矩形会缩到左上 1/4（8.8 详述）
   setContainerHitArea(container, w, h);
+  if (opts.disabled) {
+    // 禁用态必须「看得见」：只 return 不响应的话，按钮还是完整的彩色厚底
+    container.setAlpha(0.45);
+    container.disableInteractive();
+    return container;
+  }
+  // 每个按钮自己一把连点锁：和 tapAnywhere 共用 lastAdvanceAt 会误伤
+  let lastTapAt = Number.NEGATIVE_INFINITY;
   container.on('pointerdown', () => {
-    if (opts.disabled) return;
+    const now = this.ctx.services.now();
+    if (!isTapArmed(now, lastTapAt)) return;
+    lastTapAt = now;
     this.sfx('tap');
     this.tweens.add({ targets: [face, text], y: 8, duration: 60, yoyo: true });
     onClick();
@@ -288,6 +302,10 @@ protected addButton(x, y, label, onClick, opts: ButtonOptions = {}): Phaser.Game
 ```
 
 厚底是「同一个圆角矩形往下偏 8px、颜色 `shade(color, 0.72)`」；按下时把面板与文字一起向下移 8px，正好贴到厚底上。不需要额外状态、不需要九宫格图，两行代码换来一个明确的按压反馈。
+
+这一轮给按钮补了两处防护。一是**禁用态**：以前 `opts.disabled` 只在 `pointerdown` 里 `return`，按钮外观还是完整的彩色厚底，孩子会以为没点中而反复戳；现在禁用时整体降到 0.45 透明度并 `disableInteractive()`，看得见的禁用才是真禁用。二是**每个按钮自己的连点锁**：`tapAnywhere()` 的 `isTapArmed(now, lastAdvanceAt)` 保护的是「点任意处继续」，而完成卡片刚弹出时，孩子上一局的最后一次点击可能还在 350ms 内，共用那把锁会误伤——所以 `addButton` 内部用闭包里的 `lastTapAt` 单独计。
+
+出口那一侧同样加了一次性守卫。完成卡片的「再玩一次」与「收下」两个按钮在同一个场景里都还活着，双击「再玩一次」会发两次 `session:exit:replay`，宿主就会并发重启两局、叠出两个 canvas。所以 `exit()` 里先判 `this.exited`，发完一次事件就置位；这是「按钮级连点锁」之外的第二道闸——显式按钮与自动退出（`autoplay` 的 `delayedCall`）走的是同一条出口。
 
 `finishTask()` 是**一局的唯一收尾**，所有模板都调它，所以不存在「某个模板忘了发事件或忘了奖励」：
 
@@ -339,17 +357,7 @@ export function createPhaserGame(ctx: GameContext, opts: CreateGameOptions): Pha
 
 四个参数各有理由：`parent: ctx.container` 让 Vue 决定画布挂在哪个 DOM 节点上；`width/height` 是逻辑分辨率（`DESIGN = { width: 750, height: 1334 }`，竖屏）；`Scale.FIT` + `CENTER_BOTH` 让同一份布局在 375×812、430×932 与桌面窗口里等比铺满并居中，模板因此可以一直用 0–750 / 0–1334 的绝对坐标；`audio: { noAudio: true }` 明确关掉 Phaser 的音频系统——声音由 `ctx.services.audio` 负责（第 9 章），这也是裁剪能省掉 Sound 模块的前提。
 
-缩放导致的一个直接后果是**逻辑像素与 CSS 像素不是 1:1**。设计尺寸 750 宽铺到 375 宽的屏幕上是一半，所以「88×88 逻辑像素」正好等于 44 CSS px——正好踩在可点区域的下限上。`packages/templates/src/layout.ts` 因此把上限单独列出来：
-
-```ts
-export const UI = {
-  headerH: 140,
-  hintY: 260,
-  buttonH: 112,
-  /** 可点区域下限（88 逻辑像素 ≈ 44 CSS px 的两倍） */
-  minTap: 96,
-} as const;
-```
+缩放导致的一个直接后果是**逻辑像素与 CSS 像素不是 1:1**。设计尺寸 750 宽铺到 375 宽的屏幕上是一半，所以「88×88 逻辑像素」正好等于 44 CSS px——正好踩在可点区域的下限上。`packages/templates/src/layout.ts` 里原先还有一个 `UI` 常量（`headerH` / `hintY` / `buttonH` / `minTap: 96`），但全仓库没有任何引用：场景的按钮尺寸各自写在 `addButton(...)` 的参数里，可点区域下限由 `phaser-kit` 的 `addButton` 与 `setContainerHitArea` 直接保证。一个「改了也不生效」的常量只会误导后来人，这一轮把它删了，原位置留了一条注释说明「可点区域 ≥ 96 逻辑像素」这条原则的归属。
 
 约定是 96 而不是 88：模板一律按「比下限宽一点」做，因为手指落在边缘时的实际命中会比视觉小一圈。八个模板里的判定半径（130、150）也遵循同一思路。
 

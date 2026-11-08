@@ -7,20 +7,20 @@ title: 第05章 - Vue应用外壳详解
 
 ## 5.1 外壳的边界
 
-`apps/site` 是整个仓库里唯一的产品界面代码，也是唯一「知道 Phaser 存在、但只在少数几处提起它」的包：`registry.ts` 与 `arcade/registry.ts` 两张动态 import 表、`views/PlayView.vue` 与 `views/ArcadePlayView.vue` 两个宿主组件、`shell/createGameContext.ts` 与 `shell/createArcadeContext.ts` 里的上下文组装（后者第 4 章已拆过）。除此之外的三十来个文件——八个视图、三个 store、七个 shell 工具、六个 logic 纯函数、两个 SVG 组件——完全不认识游戏引擎。
+`apps/site` 是整个仓库里唯一的产品界面代码，也是唯一「知道 Phaser 存在、但只在少数几处提起它」的包：`registry.ts` 与 `arcade/registry.ts` 两张动态 import 表、`views/PlayView.vue` 与 `views/ArcadePlayView.vue` 两个宿主组件、`shell/createGameContext.ts` 与 `shell/createArcadeContext.ts` 里的上下文组装（后者第 4 章已拆过）。除此之外的三十来个文件——八个视图、三个 store、八个 shell 工具、六个 logic 纯函数、两个 SVG 组件——完全不认识游戏引擎。
 
 目录速查：
 
 | 文件（相对 `apps/site/src/`） | 内容 | 行数 |
 |---|---|---|
-| `main.ts` | 启动链：调试桥 → 语言 chunk → 挂载 | 25 |
-| `App.vue` | 顶栏 / 主滚动区 / 底栏，家长页长按入口 | 223 |
-| `router.ts` | hash 路由，8 条 | 71 |
+| `main.ts` | 启动链：调试桥 → 语言 chunk → 挂载 | 41 |
+| `App.vue` | 顶栏 / 主滚动区 / 底栏，家长页长按入口 | 236 |
+| `router.ts` | hash 路由，8 条 + 家长页令牌 | 136 |
 | `registry.ts` / `arcade/registry.ts` | 任务 id / 小游戏 id → 动态 import | 22 / 13 |
-| `arcade/catalog.ts` | 三款小游戏的展示元数据（emoji / 底色 / 文案键） | 43 |
-| `views/` | Home 379 / Tasks 146 / Play 323 / Dress 186 / Diary 176 / Parent 178 / Arcade 135 / ArcadePlay 246 | — |
-| `stores/` | progress 253 / settings 47 / locale 37 | — |
-| `shell/` | platform、progress、debug、createGameContext、createArcadeContext、useI18n、backButton | 7–89 |
+| `arcade/catalog.ts` | 三款小游戏的展示元数据（emoji / 底色 / 文案键） | 50 |
+| `views/` | Home 426 / Tasks 149 / Play 353 / Dress 206 / Diary 206 / Parent 224 / Arcade 154 / ArcadePlay 309 | — |
+| `stores/` | progress 295 / settings 47 / locale 43 | — |
+| `shell/` | platform、progress、debug、createGameContext、createArcadeContext、useI18n、backButton、playClock | 7–89 |
 | `logic/` | locale、labels、taskGroups、diary、dressGroups、pandaLook | 22–76 |
 | `components/` | PandaBuddy（SVG 熊猫）、RoomScene（SVG 小屋） | 312 / 146 |
 
@@ -32,7 +32,7 @@ title: 第05章 - Vue应用外壳详解
 
 这条边界带来的直接好处是：外壳可以原封不动地塞进 Tauri 的 WebView2 和 Capacitor 的安卓 WebView（第 15 章），因为除了 `shell/backButton.ts` 里那一次 `nativeApp()` 探测，它没有任何宿主假设。
 
-## 5.2 启动链：25 行里的四个决定
+## 5.2 启动链：41 行里的五个决定
 
 `main.ts` 很短，但每一个 `await` 都有代价与理由：
 
@@ -41,19 +41,30 @@ title: 第05章 - Vue应用外壳详解
 initDebugBridge();
 
 const initial = initialLocale();
-void Promise.all([ensureSummaries(initial.locale), ensureMessages(initial.locale)]).finally(() => {
-  if (initial.fromUrl) persistLocale(initial.locale);
-  applyLocaleDocument(initial.locale);
-  createApp(App).use(createPinia()).mount('#app');
-});
+void (async () => {
+  let locale: Locale = initial.locale;
+  try {
+    const messagesReady = await ensureMessages(initial.locale);
+    await ensureSummaries(initial.locale);
+    if (initial.locale === 'en' && !messagesReady) locale = 'zh-CN';
+  } catch {
+    // 加载异常不该挡住启动：回落到中文，界面照常可用
+    locale = 'zh-CN';
+  } finally {
+    if (initial.fromUrl) persistLocale(locale);
+    applyLocaleDocument(locale);
+    createApp(App).use(createPinia()).mount('#app');
+  }
+})();
 ```
 
-四个决定：
+五个决定：
 
 - **调试桥先于挂载**。`initDebugBridge()` 在 `createApp` 之前跑，因为 e2e 可能一打开页面就读 `window.__bamboo.save`，不等用户点任何东西；它只有事件名和存档快照，不含个人信息，生产环境同样开着。
-- **英文内容补丁先就位再挂载**。`ensureSummaries`（摘要补丁）与 `ensureMessages`（界面文案）并行等待，然后才 `mount`。否则英文用户会先看到一屏中文标题再「跳」成英文；中文用户因为 `ensureSummaries` 对 `zh-CN` 直接 `Promise.resolve()`，一个字节都不多下载。
-- **`finally` 而不是 `then`**。任何一份 chunk 加载失败（离线、资源被清）也要能把应用挂起来——补丁缺失时 `ensureSummaries` 内部会置空缓存并回落中文，界面不会白屏。
-- **`fromUrl` 才写 localStorage**。`?lang=en` 是分享链接语义：只有 URL 明确指定时才把选择记下来，免得自动化测试跑完把测试机的默认语言改掉。
+- **英文内容补丁先就位再挂载**。`ensureMessages`（界面文案）先落地，再等 `ensureSummaries`（摘要补丁），然后才 `mount`。否则英文用户会先看到一屏中文标题再「跳」成英文；中文用户因为两个 `ensure*` 对 `zh-CN` 都直接 `Promise.resolve()`，一个字节都不多下载。两步之所以改成串行，是因为要拿 `ensureMessages` 的返回值判断英文是否真的生效。
+- **英文加载失败不能假装成功**。`ensureMessages` 返回 false（英文 chunk 加载失败）或整段加载抛错时，`locale` 回落到 `zh-CN`，`<html lang>` 与 localStorage 都只记真正生效的语言——以前这里失败也算成功，于是出现「`lang="en"` + 中文界面 + 下次打开还是假英文」，没有任何入口能发现。
+- **`finally` 而不是 `then`**。无论加载成功与否都要 `mount`——任何一份 chunk 加载失败（离线、资源被清）也要能把应用挂起来；补丁缺失时 `ensureSummaries` 内部会置空缓存并回落中文，界面不会白屏。白屏是比「语言没切过去」严重得多的事故。
+- **`fromUrl` 才写 localStorage**。`?lang=en` 是分享链接语义：只有 URL 明确指定时才把选择记下来，免得自动化测试跑完把测试机的默认语言改掉；而且写进去的是最终生效的 `locale`，不是 URL 里那个——回落到中文时不会再存一个「en」。
 
 `App.vue` 的 `<script setup>` 只做四件事：
 
@@ -61,6 +72,8 @@ void Promise.all([ensureSummaries(initial.locale), ensureMessages(initial.locale
 const PlayView = defineAsyncComponent(() => import('./views/PlayView.vue'));
 const ParentView = defineAsyncComponent(() => import('./views/ParentView.vue'));
 const DiaryView = defineAsyncComponent(() => import('./views/DiaryView.vue'));
+// 装扮页也是「点开才看」：它不在首屏可视区，挪出首屏预算（首屏 gzip 已贴着 60 KB 上限）
+const DressView = defineAsyncComponent(() => import('./views/DressView.vue'));
 const ArcadeView = defineAsyncComponent(() => import('./views/ArcadeView.vue'));
 const ArcadePlayView = defineAsyncComponent(() => import('./views/ArcadePlayView.vue'));
 
@@ -73,9 +86,15 @@ const isFullScreen = computed(
 
 // 路由切换把主滚动区拉回顶部：从滚到一半的小屋点「任务」，
 // 新页面若保持旧 scrollTop，会直接停在半张卡片上
+let previousRouteName = route.value.name;
 watch(
   () => route.value.name + ':' + (route.value.taskId ?? ''),
   () => {
+    // 离开家长页就吊销令牌：浏览器后退键再回来时没有令牌，回落小屋
+    if (previousRouteName === 'parent' && route.value.name !== 'parent') {
+      revokeParentUnlock();
+    }
+    previousRouteName = route.value.name;
     void nextTick(() => {
       mainRef.value?.scrollTo({ top: 0 });
     });
@@ -83,7 +102,7 @@ watch(
 );
 ```
 
-- **五个页面懒加载**：`PlayView` 与 `ArcadePlayView` 是 Phaser 的入口，必须等孩子真的点开才下载；`ParentView`、`DiaryView`、`ArcadeView` 懒加载则是给首屏腾体积——绝大多数会话不会先进家长页，日记一天看一次，游戏厅更要先解锁。日记页那一次是 2026-10-20 加彩蛋时补的：入口与触发逻辑让首屏涨到 60.0 KB，把日记页改成路由懒加载后回到 59.1 KB。
+- **六个页面懒加载**：`PlayView` 与 `ArcadePlayView` 是 Phaser 的入口，必须等孩子真的点开才下载；`ParentView`、`DiaryView`、`DressView`、`ArcadeView` 懒加载则是给首屏腾体积——绝大多数会话不会先进家长页，日记一天看一次，装扮页也不在首屏可视区，游戏厅更要先解锁。日记页那一次是 2026-10-20 加彩蛋时补的：入口与触发逻辑让首屏涨到 60.0 KB，把日记页改成路由懒加载后降回去；2026-11 的审查又把装扮页也挪成 `defineAsyncComponent`——它一度把首屏推到 60.4 KB、超过 60 KB 预算，挪走后回到现在的 59.4 KB。
 - **`isFullScreen` 同时干掉顶栏与底栏**：游戏与小游戏是全屏 Canvas，家长页是一份长文档，三者都不该有「小屋 / 任务 / 装扮」三个大按钮在旁边晃。
 - **`PlayView` 的 key 是 `taskId + ':' + locale`**：切语言即重挂游戏、换任务即重建 Phaser 实例，避免出现半中半英的场景或两个 canvas 叠加。
 
@@ -99,12 +118,21 @@ watch(
 
 `onBeforeUnmount` 把定时器、事件监听、生命周期订阅逐一撤掉。这一层没有 `onUnmounted` 兜底——单页应用里 `App.vue` 不会卸载，写在这里是为了 HMR 时不叠监听。
 
-## 5.3 hash 路由表：71 行，没有 vue-router
+## 5.3 hash 路由表：136 行，没有 vue-router
 
-`router.ts` 只有两个导出：`useRoute()` 返回一个 `Ref<Route>`，`navigate(path)` 改 `window.location.hash`。路由表是 `if` 串联：
+`router.ts` 的对外接口很小：`useRoute()` 返回一个 `Ref<Route>`，`navigate(path)` 改 `window.location.hash`，再加上家长页令牌的 `grantParentUnlock()` / `revokeParentUnlock()`。路由表是 `if` 串联：
 
 ```ts
 // apps/site/src/router.ts
+/** 畸形百分号序列（'#/play/%E0%A4%A'）会让 decodeURIComponent 抛 URIError：解不开就当没有这个 id */
+function safeDecode(value: string): string | null {
+  try {
+    return decodeURIComponent(value);
+  } catch {
+    return null;
+  }
+}
+
 export function parseRoute(hash: string): Route {
   // 调试参数也允许挂在 hash 里（'#/play/brush?autoplay=1'）：路由只看 '?' 之前的部分
   const clean = hash.split('?')[0] ?? hash;
@@ -123,8 +151,8 @@ export function parseRoute(hash: string): Route {
   if (head === 'tasks') return { name: 'tasks' };
   if (head === 'dress') return { name: 'dress' };
   if (head === 'diary') return { name: 'diary' };
-  // 家长页：长按标题 3 秒进入（孩子点不到），与孩子的主线完全分开
-  if (head === 'parent') return { name: 'parent' };
+  // 家长页：长按标题 3 秒进入（孩子点不到）；没有一次性令牌（后退键 / 直接输地址）一律回小屋
+  if (head === 'parent') return isParentUnlocked() ? { name: 'parent' } : { name: 'home' };
   return { name: 'home' };
 }
 ```
@@ -138,21 +166,23 @@ export function parseRoute(hash: string): Route {
 | `#/play/<id>` | `player` | `PlayView` | 带 `taskId`，id 必须在 `TASK_IDS` 里 |
 | `#/dress` | `dress` | `DressView` | 衣服 / 小窝两个 tab |
 | `#/diary` | `diary` | `DiaryView` | 竹竹的一天 + 贴纸册 + 最近七天 |
-| `#/parent` | `parent` | `ParentView` | 家长页，长按 3 秒进入 |
+| `#/parent` | `parent` | `ParentView` | 家长页，长按 3 秒 + 会话内一次性令牌 |
 | `#/arcade` | `arcade` | `ArcadeView` | 竹林游戏厅；未解锁回小屋 |
 | `#/arcade/<id>` | `arcadePlay` | `ArcadePlayView` | 带 `arcadeId`，只认 `popstar` / `bounce` / `tetris` |
 
-三个细节决定了这套路由能不能撑住真实使用：
+五个细节决定了这套路由能不能撑住真实使用：
 
 - **`?query` 先切掉**。分享链接 `#/play/brush?autoplay=1` 比 `?autoplay=1#/play/brush` 干净，两种都要能跑；不切的话 `brush?autoplay=1` 会被当成一个任务 id，`asTaskId` 校验不过，直接掉回小屋——这种「分享链接打不开」的 bug 只在家长之间传链接时才暴露。
+- **解 id 之前先 `safeDecode()`**：`decodeURIComponent` 遇到畸形百分号序列（`#/play/%E0%A4%A`）会抛 `URIError`，而 `hashchange` 回调里抛异常会直接中断路由更新——孩子看到的是一屏白。`safeDecode` 解不开就返回 `null`，`asTaskId` / `asArcadeGameId` 当作「没有这个 id」处理，回落小屋或游戏厅，不白屏也不崩。
 - **`asTaskId` 用 `TASK_IDS` 做白名单**：`(TASK_IDS as readonly string[]).includes(decoded)` 之后才 `as TaskId`。这行断言是整个外壳唯一允许的 id 收窄，因为 `registry` 用 `Record<TaskId, GameLoader>` 挡住漏登记，路由这边只需挡住脏输入。
+- **`#/parent` 要令牌，不是只要地址**：家长页的承诺是「孩子点不到」，可它本身是个可书写的 hash。`parseRoute` 解析到 parent 时校验 `PARENT_UNLOCK_KEY`（`sessionStorage`，有效期 30 分钟），没有令牌就返回小屋。令牌只由长按标题成功时 `grantParentUnlock()` 写入，且 `App.vue` 的路由 watch 在离开家长页时立刻 `revokeParentUnlock()`——后退键、直接输地址都进不去（5.9 展开）。
 - **为什么是 hash 而不是 history**：静态托管（GitHub Pages、对象存储）不需要任何 rewrite 规则；Tauri 与 Capacitor 的本地协议下 hash 一定可用；自动化测试可以直接 `page.goto('/#/play/brush')` 直达。翻案条件是「路由需要嵌套或需要参数校验之外的守卫」——现在 8 条，全部平级，仍然不值得引入路由库（两条彩蛋路由的守卫写在视图挂载时，见 17.12）。
 
 ## 5.4 三个 Pinia store
 
 ### progress：存档的唯一门面
 
-`stores/progress.ts` 是外壳里最长的一个文件（253 行），它的三条纪律写在文件头的注释里，也真的落实在代码里：
+`stores/progress.ts` 是外壳里最长的一个文件（295 行），它的三条纪律写在文件头的注释里，也真的落实在代码里：
 
 ```ts
 const save = ref<SaveData>(progressManager.snapshot());
@@ -177,9 +207,11 @@ function init(): Promise<void> {
 }
 ```
 
-- **读档 single-flight**：`inflight ??=` 让并发的 `init()` 共用同一个 Promise。深链直达玩法时，`PlayView` 会先 `await progress.init()` 再挂游戏；否则「秒通关」的写入可能早于读档完成，被旧快照盖掉——这是 CHAGS 那一代留下的真实故障。
-- **所有写操作走 `run()`**：成功清 `unsaved`、失败置位并只 `console.warn`，`finally` 里 `syncSave()` 把新快照同时交给界面与 `window.__bamboo.save`。写盘失败不打断当前这一局的反馈——孩子刚喂完竹竹，不该看到红色错误框。
+- **读档 single-flight**：`inflight ??=` 让并发的 `init()` 共用同一个 Promise。深链直达玩法时，`PlayView` 会先 `await progress.init()` 再挂游戏；否则「秒通关」的写入可能早于读档完成，被旧快照盖掉——这是 CHAGS 那一代留下的真实故障。读档失败不再被吞成空档：`initError` 记下原因，小屋页用 `role="status"` 提示 `save.initFailed`，而 `ProgressManager` 会继续让写操作失败，原档留在 IndexedDB 里不动（未来版本的存档同样如此，不静默覆盖）。这里要分清两层：`ProgressManager.load()` 自己不 catch，`store.load()` 只要 reject 就一路抛到外壳；而 Web 平台的 IndexedDB 读取异常在平台层已经降级为空档（第 9 章 9.4），所以真正会让它 reject 的是内存 store、以及将来接 IPC / 云存档的实现。
+- **所有写操作走 `run()`，且 `run()` 先 `await init()`**：成功清 `unsaved`、失败置位并只 `console.warn`，`finally` 里 `syncSave()` 把新快照同时交给界面与 `window.__bamboo.save`。先 `init()` 是因为 App 挂载时只是 `void progress.init()`，界面在 IndexedDB 读档完成前就能点；这时直接写会以 `emptySave` 为底算出新档并落盘，把真正的旧档覆盖掉——界面看不出异常，下次刷新才发现进度没了。`init()` 是 single-flight 的，已经读完时这里只是等一个已 resolve 的 Promise；manager 侧另有 `writtenBeforeLoad` 兜底：读档期间若已经发生过写入（家长清档、没等 init 就调的写方法），以内存为准，绝不拿读出来的旧快照回写。写盘失败不打断当前这一局的反馈——孩子刚喂完竹竹，不该看到红色错误框。
 - **快照每次都是新对象**：`progressManager.snapshot()` 返回新对象，`save.value = snapshot` 触发重渲染，调试桥也换成新对象，e2e 读到的永远是当前值。
+
+派生数据的时钟也换了：`todayRecord` / `weekSummary` / `restDue` / `careAvailable` 之前都在 computed 里调 `platform.now()`，而它不是响应式的——平板插着电挂一夜，第二天打开还是「晚上好」、昨天的完成勾与推荐批次。现在 store 里有一个 `useNow()`：每分钟一次 `setInterval` 加一次 `platform.lifecycle.onResume`，把 `now.value` 推一格，派生数据自己过期；`onScopeDispose` 里清掉定时器与订阅。视图里凡是要读「现在」的地方都用 `progress.now`，只有长按进度条这类必须逐帧准确的场景继续用 `platform.now()`。
 
 派生数据全部是 `computed`，视图层不自己算：
 
@@ -187,7 +219,8 @@ function init(): Promise<void> {
 |---|---|---|
 | `pet` | `save.value.pet` | 五维状态、竹笋、碎片、装扮、贴纸 |
 | `stage` / `nextStage` / `xpToNext` | `stageForXp` / `nextStageForXp` / `xpToNextStage` | 小屋的阶段徽章与「还差多少」 |
-| `todayRecord` / `weekSummary` | `todayRecord()` / `weekSummary()`（注入 `platform.now()`） | 日记页、家长页 |
+| `now` | 每分钟一次 tick + `platform.lifecycle.onResume` | 时间派生的唯一时钟源：跨天、问候语、今日推荐都靠它自己过期 |
+| `todayRecord` / `weekSummary` | `todayRecord()` / `weekSummary()`（注入响应式 `now`） | 日记页、家长页 |
 | `todaySeconds` / `restDue` | `REST_SECONDS = 20 * 60` + `restDismissed` | 20 分钟休息提醒，一天只出现一次 |
 | `careAvailable` | `careAvailable(pet.careDays, action, dayKey(now))` | 摸头 / 抱抱 / 击掌每天各一次 |
 | `starsFor` / `streakFor` / `hasSticker` / `completedToday` / `completedBefore` | `save.tasks` 与 `pet.stickers` | 任务卡上的星、连续天数、贴纸、今日已完成 |
@@ -301,6 +334,8 @@ export const PANDA_COLORS = {
 | 竹林小门 | `progress.arcadeUnlocked` / `arcadeUnlimited` | 未解锁时 DOM 里没有；彩蛋当天显示「∞ 无限畅玩」 |
 | 连点竹竹 7 次 | `onPandaTap()` + `SECRET_TAPS` / `SECRET_WINDOW_MS` | 触发竹林小路：小门直接打开、三款畅玩（17.4） |
 
+彩蛋浮层是一次真正的模态：`role="dialog"` + `aria-modal` + `aria-labelledby`，打开时把焦点交给主按钮，`Escape` 能关，所有关闭路径统一走 `closeSecret()`；`onBeforeUnmount` 里撤掉 keydown 监听。竹竹本身也从 `div` 换成了 `button`——键盘与读屏也能「摸摸头」，连点 7 次的彩蛋照旧。
+
 五维状态条的颜色也不是随便挑的：
 
 ```ts
@@ -394,7 +429,7 @@ function playDiary(): void {
 
 1. **安全边界**三条固定文案（不联网 / 无广告内购 / 存档只在本机）；
 2. **这周完成了几件小事**：`weekCompletedCount(save, now)`，以及去重后的习惯列表——遍历 `weekSummary` 的 `completed`，取摘要里的 `habit`，用 `Set` 去重并保持首次出现顺序；
-3. **声音开关**（直接调 `settings.toggle()`）与**清除本机存档**（长按 3 秒）；
+3. **声音开关**（直接调 `settings.toggle()`）与**清除本机存档**（长按 3 秒）。清档这次补了两道保护：长按到 100% 之后要检查 `progress.unsaved`——写盘失败不能显示「已清除」，否则刷新后旧档又回来，失败时用 `role="alert"` 显示 `save.unsaved`；「离开按钮」改用坐标判断（容差 24px），因为触屏上 `pointerleave` 受指针隐式捕获影响并不可靠，按住时滑出去也会把档清掉；
 4. **版本号**：`import sitePkg from '../../package.json'`，`version` 缺省 `'0.0.0'`。Vite 会把 JSON 内联进 chunk，不额外请求。
 
 第 5 条是 10-20 加的：**今天玩了几局小游戏**（`todayRecord.arcadePlays`，文案「今天和竹竹玩了 {n} 局小游戏」）。它只报数量，不带成绩与排行——家长需要知道的是「今天玩了多久、玩了什么」，不是「排第几」。
@@ -409,10 +444,13 @@ function playDiary(): void {
 | `shell/debug.ts` | `{ events, save, lastError? }` 三字段观测窗口，`MAX_EVENTS = 600` |
 | `shell/backButton.ts` | 安卓返回键桥，接口可注入，因此能单测（`arcadePlay` 先回游戏厅） |
 | `shell/createArcadeContext.ts` | 小游戏的上下文：与 `createGameContext` 同一套平台出口与调试开关，但没有任务内容 |
+| `shell/playClock.ts` | 玩耍计时：30 秒采样、5 分钟合并落盘、只在前台计时 |
 | `logic/locale.ts` | 语言优先级、`persistLocale`、`applyLocaleDocument` |
 | `logic/labels.ts` | id → 文案键映射表，`Record<联合类型, MessageKey>` 把漏一条变成编译错误 |
 | `logic/pandaLook.ts` | 状态 → 表情、装扮 id → 颜色与帽子形态 |
 | `logic/taskGroups.ts` / `logic/diary.ts` / `logic/dressGroups.ts` | 三个纯函数，全部可单测 |
+
+`shell/playClock.ts` 是这次审查新加的（66 行）。玩耍时长原来由 `PlayView` 每 30 秒 `progress.addSeconds(30)` 直接落一次 IndexedDB，20 分钟就是 40 次整档序列化与写入。现在秒数先累加在内存里，每 5 分钟合并落一次盘，切后台与卸载时再各补一次；tick 只在 `document.visibilityState !== 'hidden'` 时累加，后台标签页被节流的时间不算游戏时间。写档失败时这批秒数会放回去，等下一次 flush 再补。
 
 `shell/progress.ts` 全文值得抄一遍，因为它只有十几行却承担了「启动即观测」：
 
@@ -470,26 +508,36 @@ export function installBackButtonHandler(
 
 ```ts
 let holdTimer: ReturnType<typeof setTimeout> | null = null;
-let holdFired = false;
+/** 长按真正生效的时刻：只用来吃掉紧随其后的那一次 click */
+let holdFiredAt = 0;
+/** 长按后浏览器补的 click 通常在同一帧/下一帧内；给足余量但别吃掉下一次正常点击 */
+const HOLD_CLICK_WINDOW_MS = 800;
 
 function startParentHold(): void {
   if (holdTimer !== null) return;
-  holdFired = false;
   holdTimer = setTimeout(() => {
     holdTimer = null;
-    holdFired = true;
+    holdFiredAt = platform.now();
+    // 家长页要一次性令牌：没有它，#/parent 直接输地址或浏览器后退都进不去
+    grantParentUnlock(platform.now());
     navigate('/parent');
   }, 3000);
 }
 
 /** 长按结束后浏览器还会补一次 click：那一次不能再把小屋盖过去 */
 function onTitleClick(): void {
-  if (holdFired) { holdFired = false; return; }
+  if (holdFiredAt !== 0 && platform.now() - holdFiredAt < HOLD_CLICK_WINDOW_MS) {
+    holdFiredAt = 0;
+    return;
+  }
+  holdFiredAt = 0;
   navigate('/');
 }
 ```
 
-四个 `pointer` 事件（`pointerdown` 开始、`pointerup` / `pointerleave` / `pointercancel` 取消）覆盖了手指滑出按钮与系统打断两种中止。`holdFired` 挡住长按之后紧跟的那次 `click`——不挡的话，家长刚好不容易进了家长页，又被同一次手势送回小屋。
+四个 `pointer` 事件（`pointerdown` 开始、`pointerup` / `pointerleave` / `pointercancel` 取消）覆盖了手指滑出按钮与系统打断两种中止。`holdFiredAt` 加一个 800ms 窗口挡住长按之后紧跟的那次 `click`——不挡的话，家长刚好不容易进了家长页，又被同一次手势送回小屋；用时间戳而不是布尔标记，是因为布尔标记一旦漏掉一次 `click` 就会污染下一次正常点击。
+
+长按只是入口的一半。家长页那一屏有「长按 3 秒清档」，而 `#/parent` 本身是个可书写的 hash：长按进来之后按浏览器后退、或者直接把地址发给别人，都能回到这一页。所以进入家长页还需要一个**一次性的会话令牌**：`PARENT_UNLOCK_KEY = 'bamboo.parentUnlock'` 存在 `sessionStorage`，有效期 30 分钟，`parseRoute` 解析到 parent 时校验它；`App.vue` 的路由 watch 在「离开家长页」时立刻 `revokeParentUnlock()`，后退键再回来时令牌已吊销，回落小屋。令牌只存时间戳，不含任何用户信息，关掉标签页自然失效。
 
 家长页的「清除本机存档」是第二处长按，做法不同：按住时有可见进度，每 80ms 更新一次百分比，到 100% 才真的清：
 
@@ -515,7 +563,9 @@ ticker = setInterval(() => {
 | 可点高度 `min-h-12`（48px）以上，底部三入口 `min-h-14`，游戏内按钮 `min-h-14 min-w-14` | 全站按钮 |
 | 每个只有图标或 emoji 的按钮都带 `aria-label` | `nav-lang` / `nav-sound` / `play-leave` / `play-sound` |
 | 装饰性 emoji 一律 `aria-hidden="true"` | 全站 |
-| 动态反馈用 `role="status"` | 存档提示、toast、日记贴纸说明 |
+| 动态反馈用 `role="status"`，阻断性提示用 `role="alert"` | 存档提示、toast、日记贴纸说明、家长页清档失败 |
+| 模态浮层 `role="dialog"` + `aria-modal` + Esc 关闭 | 小屋彩蛋浮层（打开时焦点移到主按钮） |
+| 只有图标的状态按钮补 `aria-pressed` | 顶栏静音按钮（`nav-sound`）、玩法页静音按钮、日记朗读按钮 |
 | `prefers-reduced-motion` 下停掉 DOM 动画，游戏内相机淡入由 `ctx.reducedMotion` 单独处理 | `style.css` + `BaseScene.fadeIn` |
 
 到这一章为止，外壳的所有零件都摆出来了：怎么启动、怎么路由、状态存在哪、六个页面与两个游戏宿主各管什么。日常页面读的每一份数据都来自 `@bamboo/content`——下一章把那份内容拆开，看一份 481 字节的任务 JSON 里到底有什么。
