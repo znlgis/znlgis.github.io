@@ -1,0 +1,1 @@
+function e(e){return Math.min(12,1+Math.floor((e===1/0?2**53-1:Number.isFinite(e)?Math.max(0,Math.floor(e)):0)/2))}export{e as t};

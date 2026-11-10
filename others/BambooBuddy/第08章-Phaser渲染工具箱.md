@@ -19,7 +19,7 @@ physics、tilemaps、sound、animations、particles、loader(image)、shader、m
 
 这笔账值得算，是因为十个玩法共用同一份 Phaser：首屏虽然不加载它（点开一个玩法才下载），但孩子每换一个玩法、每次清缓存回来都要重新下。少 36% 对移动网络与安卓 WebView 是实打实的差别。
 
-本次构建的 54 个文件把这条边界显示得很清楚：首屏只有 `index-<hash>.js` 136,550 字节 + `index-<hash>.css` 22,000 字节，加上 `index.html` 里两个 `modulepreload` 的共享 chunk（11,606 + 6,231 字节），gzip 合计 59.4 KB（原始 176,387 字节），与 `check-size.mjs` 的 60 KB 预算口径一致；`common-<hash>.js` 96,956 字节（gzip 27.8 KB）是进玩法前才拉起的共享 chunk；十个日常玩法的入口 chunk 在 340–8,006 字节之间（刷牙 / 洗手 / 洗澡只有 342 / 340 / 340 字节，场景代码在共享的 `scrub-<hash>.js` 里）；三款隐藏小游戏的入口 chunk 是 10,922 / 13,700 / 11,863 字节（gzip 4.1 / 5.3 / 4.4 KB），公共底座与确定性随机在共享的 `rng-<hash>.js`（4,816 字节）里；`vendor-phaser-<hash>.js` 876,874 B（856.3 KB）原始 / 220.6 KB gzip 只在 `PlayView` 或 `ArcadePlayView` 被拉起的那一刻才进入下载队列。也就是说，**一个不玩任何任务的孩子，永远不会为游戏引擎付流量。**
+本次构建的 64 个文件把这条边界显示得很清楚：首屏是 7 个文件——入口 `index-<hash>.js` 70.4 KB（gzip 23.5）、`index-<hash>.css` 21.8 KB（gzip 5），加上 `index.html` 里五个 `modulepreload` 的共享 chunk：`useI18n-<hash>.js` 65.2 KB（gzip 25.4）、`src-D1ldZ1hG.js` 5.7 KB（gzip 3）、`src-g9r8y9G4.js` 6.6 KB（gzip 2.6）、`arcade-<hash>.js` 0.1 KB、`contract-<hash>.js` 0.1 KB；gzip 合计 59.7 KB（原始 173,925 字节），与 `check-size.mjs` 的 60 KB 预算口径一致；`common-<hash>.js` 97,555 字节（gzip 28.1 KB）是进玩法前才拉起的共享 chunk；十个日常玩法的入口 chunk 在 340–8,006 字节之间（刷牙 / 洗手 / 洗澡只有 342 / 340 / 340 字节，场景代码在共享的 `scrub-<hash>.js` 里）；三款隐藏小游戏的入口 chunk 是 10,912 / 13,700 / 11,814 字节（gzip 4.1 / 5.3 / 4.4 KB），公共底座与确定性随机在共享的 `rng-<hash>.js`（4,881 字节）里；`vendor-phaser-<hash>.js` 876,874 B（856.3 KB）原始 / 220.6 KB gzip 只在 `PlayView` 或 `ArcadePlayView` 被拉起的那一刻才进入下载队列。也就是说，**一个不玩任何任务的孩子，永远不会为游戏引擎付流量。**
 
 ## 8.2 裁剪的原理、清单与风险
 
@@ -140,7 +140,7 @@ export function textStyle(size: number, color: string = CSS.ink, bold = false) {
 
 ## 8.4 卡通绘制原语
 
-`packages/phaser-kit/src/cartoon.ts`（341 行）是整套美术的地基，一共十来个小函数，全部只依赖 `Graphics`：
+`packages/phaser-kit/src/cartoon.ts`（349 行）是整套美术的地基，一共十来个小函数，全部只依赖 `Graphics`：
 
 | 函数 | 作用 |
 |---|---|
@@ -153,7 +153,7 @@ export function textStyle(size: number, color: string = CSS.ink, bold = false) {
 | `popIn(scene, target, delay)` | `alpha 0 → 1` 的 240ms 出场 |
 | `sparkleAt(scene, x, y, color, count)` | 星光扩散，替代「答对了」这类文字 |
 | `tapRipple(scene, x, y, radius, color)` | 「点这里」的扩散涟漪，替代提示文字 |
-| `drawHand` / `createHand` | 卡通小手（会上下浮动），表示「可以拖我 / 点这里」 |
+| `drawHand` / `createHand` | 卡通小手（默认上下浮动），表示「可以拖我 / 点这里」；`createHand(scene, x, y, s, animate)` 传 `animate=false` 时只画手、不建补间 |
 | `starPath` / `heartPath` / `cloud` | 五角星、爱心、云朵；`heartPath` 用一条 48 点的闭合曲线，填充与描边走同一条路径 |
 
 两个函数的实现细节决定了整个视觉风格：
@@ -179,7 +179,7 @@ export function shade(color: number, factor: number): number {
 
 「先填充再描边」是固定顺序，而且描边永远在内侧对齐——`fillRoundedRect` 与 `strokeRoundedRect` 用同一个矩形，视觉上就是一圈等宽的边。`heartPath` 是这条规则的例外：它先把 48 个点连成一条 `beginPath → lineTo → closePath` 的闭合心形曲线描边、再沿同一条路径填充，因为原先「两个圆 + 一个三角形」的拼法只给两个圆描了边，每颗心都是「两个带描边的圆浮在一块无描边的心体上」，底下的尖角没有轮廓——完成卡片的 `hearts` 与 `pick` 模板的情绪图标都会露馅。一条曲线一次填充、一次描边，轮廓完整，也不会留下内部交线。`shade` 用乘法而不是加法，所以 `shade(THEME.warmRed, 0.72)` 得到的是一个更暗的同色相，任意颜色都能安全地做「厚底」而不需要为每个颜色准备第二个常量。
 
-三个动效函数构成一套反馈层次：`popIn` 用于「东西出现了」（按钮、道具、完成卡），`sparkleAt` 用于「你做对了」（清掉一个点、放对一个玩具、答对一题），`tapRipple` 与 `createHand` 用于「还不知道该点什么」（开局的小手、卡住时的涟漪）。三条线分别对应「出现 / 成功 / 引导」，都不需要孩子读一个字的提示。
+几个动效函数构成一套反馈层次：`popIn` 用于「东西出现了」（按钮、道具、完成卡），`sparkleAt` 用于「你做对了」（清掉一个点、放对一个玩具、答对一题），`tapRipple` 与 `createHand` 用于「还不知道该点什么」（开局的小手、卡住时的涟漪）。三条线分别对应「出现 / 成功 / 引导」，都不需要孩子读一个字的提示。`createHand` 的第五个参数是 `animate`：默认无限上下浮动，`prefers-reduced-motion` 打开时场景传 `false`，手还在原位（孩子仍看得到「从这里拖」），只是不再摆——位置是信息，循环动画不是。
 
 `sparkleAt` 与 `tapRipple` 是两条「不用文字也能反馈」的路子：前者在答对时炸出一圈星星（8 个，延迟 `i * 36ms`，560ms 内扩散到 120px 并淡出），后者在需要引导时画两圈不断扩散的涟漪。4–8 岁的孩子不一定会读提示文字，但一定看得懂星光与涟漪。
 
@@ -234,7 +234,7 @@ function accessoryColor(id: string | undefined, fallback: number): number {
 
 ## 8.6 BaseScene：儿童向交互基线
 
-`BaseScene`（351 行）是八个场景的共同父类，它把「所有玩法都必须做到的事」写死成一处：
+`BaseScene`（352 行）是八个场景的共同父类，它把「所有玩法都必须做到的事」写死成一处：
 
 ```ts
 export abstract class BaseScene extends Phaser.Scene {
@@ -331,7 +331,7 @@ protected finishTask(opts: CompletionOptions = {}): void {
 
 `starsForSession()` 把 mistakes 折成星数：0–1 次失误 3 星、2–3 次 2 星、更多则 1 星。注意它**不是**「全对才 3 星」——孩子第一次点歪不该只拿一颗星。完成卡片是一张 600×720 的圆角卡：中间一只 `excited` + `hearts` 的竹竹、三颗半径 44 的星星（未点亮用 `paperDeep` 底 + `grey` 边）、一句夸奖、以及两个出口（「再玩一次」= `exit('replay')`、「收下」= `exit('complete')`）。两个按钮各 270×108、中心在 `W/2 ± 150`（`W = 750`，即 525 / 225），中间留 30px 间隙——**不能更宽**：它们原先各 300 宽、中心只隔 220，重叠的 80px 里上层按钮会抢走下层按钮右半边的点击，孩子点「再来一局」却回了任务页。坐标同样必须与 `@bamboo/templates/layout` 的 `COMPLETE_LAYOUT`（`accept: { x: 525, y: 1093 }`、`replay: { x: 225, y: 1093 }`）保持一致，因为 **e2e 要点它们**——完成卡片是 Phaser 内绘的，没有 DOM testid，只能靠坐标。
 
-音效键在契约里一共十二个（`tap` / `correct` / `retry` / `pop` / `bubble` / `water` / `chew` / `jump` / `sleep` / `unlock` / `complete` / `sparkle`），场景只写「发生了什么」而不是「播哪个音」，具体波形由平台层合成（第 9 章）；需要音高变化的场合则走 `audio.tone(freq, durationMs)`，例如节奏模板里 `registerTap` 算出的 `440 + streak * 45`。`reducedMotion` 是另一个贯穿基类的能力：它同时关掉相机淡入（`fadeIn`）、完成时的白闪（`cameras.main.flash`）与各种补间——系统开了「减少动态效果」的设备上，一局游戏仍然完整可玩，只是不再晃。
+音效键在契约里一共十二个（`tap` / `correct` / `retry` / `pop` / `bubble` / `water` / `chew` / `jump` / `sleep` / `unlock` / `complete` / `sparkle`），场景只写「发生了什么」而不是「播哪个音」，具体波形由平台层合成（第 9 章）；需要音高变化的场合则走 `audio.tone(freq, durationMs)`，例如节奏模板里 `registerTap` 算出的 `440 + streak * 45`。`reducedMotion` 是另一个贯穿基类的能力：它同时关掉相机淡入（`fadeIn`）、完成时的白闪（`cameras.main.flash`）与 `createHand` 的无限摆动（`createHandAt()` 里统一传 `animate = !this.reducedMotion`）——系统开了「减少动态效果」的设备上，一局游戏仍然完整可玩，只是不再晃。`cartoon.test.ts` 的 5 条用例把这条锁住：`heartPath` 只有一条闭合路径（两个圆 + 三角形的旧拼法会让底部尖角没有描边）、`createHand(animate=false)` 只画手不建补间。
 
 场景侧还有四个小工具：`tapAnywhere()`（整屏一个大 `Zone`，配 `isTapArmed(now, lastAdvanceAt)` 的 350ms 连点锁）、`showHint()`（一个自适应宽度的药丸气泡，默认停留 2.6 秒）、`say(text, hintMs, hintY)`（念一句 + 屏幕上给同一句，听不见的孩子也能读）、`tr(key)`（缓存一份取词器）。最后 `onShutdownCleanup(fn)` 把清理注册到场景的 `shutdown` 事件上，每个场景都靠它撤掉自己的输入监听与定时器。
 

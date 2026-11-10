@@ -7,7 +7,7 @@ title: 第06章 - 内容数据模型与任务JSON
 
 ## 6.1 为什么把一条内容拆成两半
 
-十条日常任务，每条内容被切成两个文件：`tasks/<id>.json`（摘要，481 字节量级）和 `details/<id>.game.json`（详情，含关卡脚本与三句语音文案）。拆的依据不是「好不好看」，而是**谁在什么时候读它**：
+十条日常任务，每条内容被切成两个文件：`tasks/<id>.json`（摘要，480–547 字节量级）和 `details/<id>.game.json`（详情，含两套关卡脚本与三句语音文案）。拆的依据不是「好不好看」，而是**谁在什么时候读它**：
 
 | 读的人 | 需要什么 | 时机 |
 |---|---|---|
@@ -17,7 +17,7 @@ title: 第06章 - 内容数据模型与任务JSON
 
 摘要必须同步可用，因为首屏没有「加载中」这种状态——小屋一出现就要有五维条和两个推荐入口。详情可以异步，因为进入玩法本来就有一次页面切换，孩子在等 200 毫秒和等 20 毫秒之间没有感知差别。
 
-拆开之后首屏省掉的不是 10 份 JSON 的体积（那加起来不到 12 KB），而是**一条更贵的依赖**：zod。`@bamboo/content` 的主入口宁可只导出常量与摘要，也不导出 `schema.ts` 里的运行时对象：
+拆开之后首屏省掉的不是 10 份 JSON 的体积（那加起来约 19 KB），而是**一条更贵的依赖**：zod。`@bamboo/content` 的主入口宁可只导出常量与摘要，也不导出 `schema.ts` 里的运行时对象：
 
 ```ts
 // packages/content/src/index.ts
@@ -29,8 +29,15 @@ title: 第06章 - 内容数据模型与任务JSON
 export * from './ids';
 export type { TaskDetail, TaskDetailExtra, TaskSummary } from './schema';
 export type { DetailPatch, SummaryPatch } from './localize';
-export { TASKS, getTaskSummary, taskSummaries, ensureSummaries, allTaskIds } from './tasks';
+export {
+  TASKS,
+  getTaskSummary,
+  taskSummaries,
+  ensureSummaries,
+  allTaskIds,
+} from './tasks';
 export { loadTask } from './loadTask';
+export type { LoadTaskOptions, VariantSource } from './loadTask';
 ```
 
 注意第二行：`export type`。类型在编译后消失，运行时不会留下任何 `import 'zod'`；真正需要 `TaskSummarySchema` 的只有 `@bamboo/content/full`（Node CLI 与单测）和 `packages/templates/src/cli/check-content.ts`。三份入口对应三种读者：
@@ -43,7 +50,7 @@ export { loadTask } from './loadTask';
 
 `package.json` 的 `exports` 把这三条路径锁死，外壳侧的 eslint 规则再把 `/full` 这条封掉（第 2 章、第 5 章都提过）。
 
-把账算一遍就更清楚了。本次构建的产物里，首屏 `index-<hash>.js` 是 136,550 字节（另加 CSS 与两个 `modulepreload` 共享 chunk）、共享的 `common-<hash>.js` 是 96,956 字节、英文补丁 `en-<hash>.js` 是 9,205 字节，而十个详情 chunk（`content-<id>-<hash>.js`）在 209–720 字节之间。zod 4.6.7 如果被主入口带进来，按 CHAGS 的实测是 24.7 KB gzip —— 那会是一笔超过首屏三分之一的单点支出，而它换来的东西（在浏览器里校验十条已经在构建期校验过的 JSON）一次都不会失败。
+把账算一遍就更清楚了。本次构建的产物里，首屏 `index-<hash>.js` 是 72,068 字节（另加 22,358 字节的 CSS 与五个 `modulepreload` 共享 chunk，合计 169.8 KB 原始 / 59.7 KB gzip）、共享的 `common-<hash>.js` 是 97,555 字节、英文摘要补丁 `en-<hash>.js` 是 12,121 字节，而十个详情 chunk（`content-<id>-<hash>.js`）在 259–1,360 字节之间。zod 4.6.7 如果被主入口带进来，按 CHAGS 的实测是 24.7 KB gzip —— 那会是一笔超过首屏三分之一的单点支出，而它换来的东西（在浏览器里校验十条已经在构建期校验过的 JSON）一次都不会失败。
 
 拆两半还有第二个好处：`content:check` 变成了唯一的内容门禁。因为详情不在首屏路径上，它就可以「贵」一点 —— 递归校验关卡脚本、递归找残留中文、要求每个模板都被真实内容用到。这些检查放在浏览器里是负担，放在 CI 里是资产。
 
@@ -89,11 +96,11 @@ export const SLOT_LABELS_EN: Record<TimeSlot, string> = { morning: 'Morning', no
 
 中文时段名给内容侧与调试输出用；界面上的时段标题走 `@bamboo/i18n` 的 `time.*` 键（第 12 章），所以英文界面里不会漏出「早上」。
 
-typecheck 能挡住这七处里的三处：`registry` 是 `Record<TaskId, GameLoader>`，少一行就报属性缺失；`TASKS` 在模块加载时自检 `task.id !== id`；`templateSchemas` 用 `satisfies Record<TemplateId, ZodType>` 要求模板键齐全。剩下四处（`package.json` 的 `exports` 子路径、`manifest.id`、存档键、testid）没有编译期关联，靠 `content:check` 与 e2e 兜底。这也解释了为什么一个十条内容的游戏愿意写 243 个单测（11 个测试文件）加六套 e2e（36 条用例）：**同一个字符串出现在七个地方，就必须有工具替人数。**
+typecheck 能挡住这七处里的三处：`registry` 是 `Record<TaskId, GameLoader>`，少一行就报属性缺失；`TASKS` 在模块加载时自检 `task.id !== id`；`templateSchemas` 用 `satisfies Record<TemplateId, ZodType>` 要求模板键齐全。剩下四处（`package.json` 的 `exports` 子路径、`manifest.id`、存档键、testid）没有编译期关联，靠 `content:check` 与 e2e 兜底。这也解释了为什么一个十条内容的游戏愿意写 387 个单测（20 个测试文件）加七套 e2e（43 条用例）：**同一个字符串出现在七个地方，就必须有工具替人数。**
 
 ## 6.3 tasks/<id>.json：一条摘要的 15 个字段
 
-`packages/content/src/tasks/brush.json` 是最典型的一条（481 字节）：
+`packages/content/src/tasks/brush.json` 是最典型的一条（509 字节）：
 
 ```json
 {
@@ -136,7 +143,7 @@ typecheck 能挡住这七处里的三处：`registry` 是 `Record<TaskId, GameLo
 
 有两条注释比约束本身更有信息量：
 
-- `durationHintSec` 的注释写「单局目标时长：30–90 秒（儿童注意力）」，而 schema 实际允许 20–120。**注释是设计目标，schema 是护栏**——留出宽一点的边界，是为了让「给 4 岁做的 25 秒版本」和「给 8 岁做的 100 秒版本」都不必改 schema。当前十条内容落在 40–70 秒之间。
+- `durationHintSec` 的注释现在直接写明「硬约束 20–120 秒（儿童注意力），内容里按 30–90 秒设计，改内容时以 schema 的 min/max 为准」。**注释是设计目标，schema 是护栏**——留出宽一点的边界，是为了让「给 4 岁做的 25 秒版本」和「给 8 岁做的 100 秒版本」都不必改 schema。当前十条内容落在 40–70 秒之间。
 - `stats` 的注释写「只增不减，纯正向」。schema 只校验 `min(1)`——它没法表达「不许出现负数」，这条靠约定和 code review；`stats` 的键也是可选的，一条任务可以只加 `clean` 不加 `mood`。
 
 为什么是这三个上限：`title` 24 字对应任务卡上一行 `truncate` 的宽度，再长就会被裁成「帮竹竹…」；`emoji` 上限 8 个码点，是因为组合 emoji（带肤色或 ZWJ 序列）在 UTF-16 里会超过 2 个 `length`，用码点计比用字符计更稳；`color` 只做卡片装饰，从不承担语义 —— 色盲友好这条约束在小屋与玩法里都反复出现（第 7 章的整理模板、第 11 章的装扮页）。
@@ -159,23 +166,25 @@ typecheck 能挡住这七处里的三处：`registry` 是 `Record<TaskId, GameLo
 
 `feed` 是三个时段都能玩的一条，收益也最高（竹笋 3、成长 14）；`learn` 只在 `morning` / `noon` 出现，收益是竹笋 2、成长 13。这些数字不是随手填的：`content:check` 会临时段覆盖（每个时段至少 2 个任务）和状态覆盖（五个维度都有任务能加），而收益的量级要保证「一天玩三件小事」大约能攒下 6–8 根竹笋——刚好够在装扮页买一件便宜的衣服。
 
-## 6.4 details/<id>.game.json：三句语音 + 一段关卡脚本
+## 6.4 details/<id>.game.json：三句语音 + 两套关卡脚本
 
-详情文件在前四个字段上所有模板都一样：
+详情文件的三个语音字段（`intro` / `done` / `retry`）所有模板都一样，`levelScript` 与 `variants` 的形状由模板决定：
 
 ```json
 {
   "intro": "来帮竹竹刷牙吧！",
   "done": "牙齿亮晶晶，竹竹笑啦！",
   "retry": "慢慢刷，再试一次。",
-  "levelScript": { "room": "bathroom", "tool": "brush", "rubs": 2, "spots": [], "finish": {} }
+  "levelScript": { "room": "bathroom", "tool": "brush", "rubs": 2, "spots": [], "finish": {} },
+  "variants": [{ "room": "bathroom", "tool": "brush", "rubs": 2, "spots": [], "finish": {} }]
 }
 ```
 
 - `intro`：进关时念的一句（≤120 字），孩子不用读；
 - `done`：完成卡上的夸奖（≤120 字），同时也是 TTS 念的内容；
 - `retry`：做错时的温柔提示（≤100 字），全仓库没有一句「失败」「错了」；
-- `levelScript`：`z.unknown()`。**摘要 schema 故意不校验它**——它的形状由所选模板决定，校验器在 `packages/templates/src/schemas.ts`。
+- `levelScript`：`z.unknown()`。**摘要 schema 故意不校验它**——它的形状由所选模板决定，校验器在 `packages/templates/src/schemas.ts`；
+- `variants`：第 2 套及以后的关卡脚本（可选，最多 3 套）。`levelScript` 永远是第 1 套，旧格式（只有一份脚本）不改也能读；十条任务现在中英各 2 套，由 `loadTask()` 按「日期 + 任务 id」确定性挑一套（6.6）。
 
 八个模板的关卡脚本字段差异（全部来自各 `*.logic.ts` 的 zod schema）：
 
@@ -190,7 +199,7 @@ typecheck 能挡住这七处里的三处：`registry` 是 `Record<TaskId, GameLo
 | `pick` | `room` / `rounds[]` | rounds 2–3，options 恰好 3 个 | emotion |
 | `learn` | `room` / `rounds[]` | rounds 2–4，options 2–4，answer 为下标且必须落在选项范围内 | learn |
 
-所有坐标都是 **0–1 的相对值**，由 `packages/templates/src/common.ts` 里的 `normalized` 校验：
+八个模板的 schema 都不变，变的是「每条任务有两份脚本」：`content:check` 对第 2 套跑同一套 schema 与语义规则，并额外要求两套不能完全相同（否则变体没有意义）。同一套坐标约定仍然适用于两套：都是 **0–1 的相对值**，由 `packages/templates/src/common.ts` 里的 `normalized` 校验：
 
 ```ts
 /** 关卡脚本里的相对坐标一律 0–1（相对模板给定的交互区域），换美术不用改内容 */
@@ -230,6 +239,8 @@ export const hexSchema = z.string().regex(/^#[0-9a-fA-F]{6}$/, '颜色必须是 
   ]
 }
 ```
+
+第 2 套脚本放在 `variants[0]` 里，形状与上面完全一样，只是点位 / 顺序不同：brush 的第二套是 5 个点、`rinse ×4`；emotion 的第二套换到 `playroom`，三道题全换，还多用到 `scared` / `sleepy` 两种脸；sport 的第二套把 `bpm` 从 84 提到 96、`jumps` 从 8 提到 10、`zone` 从 0.3 收到 0.34。
 
 三个模板共用一条内容的例子是 `scrub`：brush（`tool: brush`、6 个 `germ`、`finish: rinse 5 `）、wash（`tool: hands`、6 个 `foam`、`rinse 6`）、bath（`tool: sponge`、8 个 `dirt`、`wipe 5`）。内容只换数据，场景一份，所以刷牙是牙齿近景、洗手是水池、洗澡是浴缸——由 `tool` 决定，不由模板决定（第 7 章）。
 
@@ -278,9 +289,9 @@ export const templateSchemas = {
 
 这套分工的边界很清楚：**构建期可以慢、可以严格，运行期只能快、只能宽容。** `TaskDetailSchema` 的 `safeParse` 只出现在 `full.ts` 里，而 `full.ts` 被 eslint 挡在外壳之外；浏览器里唯一的校验是 `task.id !== id` 这一行。代价是：如果有人在 CI 之外改了 `details/*.json` 又没跑 `content:check`，坏数据会一直到运行时才暴露成一次场景绘制异常 —— 所以 `pnpm verify` 把 `content:check` 放在靠前的位置，而不是只在发布前跑。
 
-## 6.6 loadTask()：两张表、一次 merge、两条兜底
+## 6.6 loadTask()：两张表、一次 merge、两次兜底、一次选套
 
-详情加载只有 54 行，核心是两张 `Record<TaskId, () => Promise<...>>` 表：
+详情加载只有 101 行，核心是两张 `Record<TaskId, () => Promise<...>>` 表：
 
 ```ts
 // packages/content/src/loadTask.ts
@@ -290,21 +301,33 @@ const ZH_LOADERS: Record<TaskId, () => Promise<TaskDetailExtra>> = {
   // …共十条，一条一行
 };
 
+export interface LoadTaskOptions {
+  /** 本地日期键 YYYY-MM-DD：同一天 + 同一任务永远同一套 */
+  dayKey?: string;
+  /** 显式指定变体下标（0 起）：越界按取模回落；非法值回落 dayKey / 第 1 套 */
+  variantIndex?: number;
+}
+
 export async function loadTask(
   id: TaskId,
   locale: Locale = DEFAULT_LOCALE,
+  options: LoadTaskOptions = {},
 ): Promise<TaskDetail | null> {
   const summary = getTaskSummary(id, locale);
   if (!summary) return null;
+  // 中文详情是关卡本体：加载失败必须继续抛错，让外壳进「没打开，再试一次」的重试态
   const extra = await ZH_LOADERS[id]();
-  if (locale !== 'en') return mergeTaskDetail(summary, extra, undefined);
-  try {
-    const patch = await EN_LOADERS[id]();
-    return mergeTaskDetail(summary, extra, patch);
-  } catch {
+  let detail: TaskDetail;
+  if (locale === 'en') {
     // 英文详情缺失时不阻塞游戏：用中文关卡继续（content:check 会在构建期拦住这种漏翻）
-    return mergeTaskDetail(summary, extra, undefined);
+    const patch = await EN_LOADERS[id]().catch(() => undefined);
+    detail = mergeTaskDetail(summary, extra, patch);
+  } else {
+    detail = mergeTaskDetail(summary, extra, undefined);
   }
+  // 选中的那套写回 levelScript：玩法代码（ctx.task.levelScript）不需要知道变体存在
+  const levelScript = selectLevelScript(detail, id, options);
+  return levelScript === detail.levelScript ? detail : { ...detail, levelScript };
 }
 ```
 
@@ -333,17 +356,20 @@ export function mergeTaskDetail(
 
 4. **摘要缺失返回 `null` 而不是抛错**。`createGameContext` 拿到 `null` 才抛「找不到玩法内容」，错误只在这一处产生，而它会被 `PlayView` 捕获成一句人话加两个出口（第 4 章）。
 
+5. **选套是纯函数**。`selectLevelScript(source, taskId, options)` 的优先级是「显式下标 → `dayKey` + 任务 id 哈希 → 第 1 套」：显式下标越界按取模回落；`dayKey` 走一次 32 位滚动哈希（`Math.imul`），跨平台一致；两者都没有就永远第 1 套。它绝不读时钟、绝不随机，所以 e2e 与家长复现都稳定。外壳把「这个任务做过几次」当 `variantIndex` 传进来（`createGameContext` 的第六个参数）：第一次玩第 1 套，第二次自动换一套，第三次再换回来。这套规则由 `loadTask.test.ts` 的 16 条用例锁住，含旧格式向后兼容与坏 `variants` 的兜底。
+
 `TaskDetailExtra` 的类型也很有意思：`Omit<TaskDetail, keyof TaskSummary>`。它把「详情里不属于摘要的那一半」写成了类型运算，所以以后给摘要加字段时，两张加载表里的 JSON 不需要补任何东西——`Omit` 自动把新字段归到摘要那边。
 
 ## 6.7 content:check：构建期的内容门禁
 
-`pnpm content:check` 跑的是 `tsx packages/templates/src/cli/check-content.ts`，97 行，输出是一份人读的报告加一份错误清单。它不是「schema 的二次运行」，而是 schema **管不到**的那部分：
+`pnpm content:check` 跑的是 `tsx packages/templates/src/cli/check-content.ts`，103 行，输出是一份人读的报告加一份错误清单。它不是「schema 的二次运行」，而是 schema **管不到**的那部分：
 
-这次审查把判定从 CLI 里拆了出来：`packages/templates/src/cli/content-rules.ts`（240 行）只返回 issue 列表，不打印、不退码；`check-content.ts` 缩到 97 行，只负责把 issue 变成 `console.error` 与退出码。好处是规则层可以直接被单测喂假数据——`content-rules.test.ts` 有 24 条用例，不必起一个 CLI 进程去断言字符串输出。
+这次审查把判定从 CLI 里拆了出来：`packages/templates/src/cli/content-rules.ts`（324 行）只返回 issue 列表，不打印、不退码；`check-content.ts` 缩到 103 行，只负责把 issue 变成 `console.error` 与退出码。好处是规则层可以直接被单测喂假数据——`content-rules.test.ts` 有 32 条用例，不必起一个 CLI 进程去断言字符串输出。
 
 | 类别 | 检查项 | 失败示例 |
 |---|---|---|
-| 结构 | 每个任务的 `levelScript` 过对应模板 schema | 「brush（zh-CN）/ scrub 脚本 spots.0.x：...」 |
+| 结构 | 每个任务的 `levelScript` 与 `variants` 里每一套都过对应模板 schema | 「brush（zh-CN）/ scrub 脚本 spots.0.x：...」 |
+| 结构 | 两套关卡不能完全相同（属性书写顺序不同也算重复），英文套数必须与中文一致 | 「brush 的第 2 套与第 1 套一模一样」 |
 | 语义 | feed 的 `needKinds` 必须有对应食物 | 「均衡目标里有 veg，但没有任何这种食物」 |
 | 语义 | tidy 的每个玩具类别必须有箱子、箱子类别不能重复 | 「玩具 ball1（ball）没有对应的箱子」 |
 | 语义 | pick 每轮的 `options` 必须包含 `target`、不能重复 | 「第 2 轮的选项里没有正确答案 angry」 |
@@ -386,12 +412,13 @@ export function findCjk(value: unknown, path = ''): string[] {
 ```text
 · 🪥 刷牙 (brush)
   · scrub / 早晚 / 45 秒 / clean+16 mood+5 / 竹笋+2 成长+12
+  · 关卡套数：2 套（loadTask 按日期确定性选一套）
   · 习惯：早晚都要刷牙｜语音：来帮竹竹刷牙吧！
 
 时间段覆盖：
-  · morning：4 个（刷牙、洗手、吃饭、学习）
-  · noon：5 个（…）
-  · evening：6 个（…）
+  · morning：7 个（…）
+  · noon：6 个（…）
+  · evening：7 个（…）
 
 内容校验通过 ✅
 ```
@@ -435,29 +462,31 @@ export const EN_SUMMARY_PATCHES: Record<TaskId, SummaryPatch> = {
 };
 ```
 
-打包结果里这份就是 `en-<hash>.js`，实测 9,205 字节。中文用户永远不下载它——`ensureSummaries('zh-CN')` 直接 `Promise.resolve()`；`ensureSummaries('en')` 才动态 `import('./i18n/en/summaries')`，并且用 `enLoading ??=` 做 single-flight、失败时置空缓存以便重试：
+打包结果里这份就是 `en-<hash>.js`，实测 12,121 字节。中文用户永远不下载它——`ensureSummaries('zh-CN')` 直接 `Promise.resolve(true)`；`ensureSummaries('en')` 才动态 `import('./i18n/en/summaries')`，并且用 `enLoading ??=` 做 single-flight、失败时置空缓存以便重试：
 
 ```ts
-export function ensureSummaries(locale: Locale): Promise<void> {
-  if (locale !== 'en' || enSummaries !== null) return Promise.resolve();
+export function ensureSummaries(locale: Locale): Promise<boolean> {
+  if (locale !== 'en' || enSummaries !== null) return Promise.resolve(true);
   enLoading ??= import('./i18n/en/summaries')
     .then((module) => {
       enSummaries = module.EN_SUMMARY_PATCHES;
       const localized = TASKS.map((task) => localizeSummary(task, enSummaries?.[task.id]));
       cache.en = localized;
       maps.en = new Map(localized.map((task) => [task.id, task]));
+      return true;
     })
     .catch(() => {
-      // 英文补丁加载失败（离线/资源被清）时回落到中文，比空白页好
+      // 英文补丁加载失败（离线/资源被清）时回落到中文，比空白页好；下次调用会重试
       enLoading = null;
+      return false;
     });
   return enLoading;
 }
 ```
 
-注意 `cache` 与 `maps` 两张表都是按语言缓存的：`cache` 给列表页（`taskSummaries(locale)`），`maps` 给按 id 取（`getTaskSummary(id, locale)`）。中文的两张表在模块加载时就建好，所以首屏一次 `Map` 查找都没有额外成本。
+返回值是「英文摘要是否已就位」：加载失败返回 `false` 并保留中文，调用方据此决定要不要真把语言切到 `en`，而不是把失败当成功。`cache` 与 `maps` 两张表都是按语言缓存的：`cache` 给列表页（`taskSummaries(locale)`），`maps` 给按 id 取（`getTaskSummary(id, locale)`）。中文的两张表在模块加载时就建好，所以首屏一次 `Map` 查找都没有额外成本。
 
-英文详情补丁则是整份关卡脚本的镜像——每一句 `question`、`label` 都要翻，`content:check` 的 `findCjk` 会逐字段确认。这也是为什么 `detail` 的英文补丁比摘要补丁大得多（1,000 字节 vs 170 字节）。
+英文详情补丁则是整份关卡脚本的镜像——每一句 `question`、`label` 都要翻，`content:check` 的 `findCjk` 会逐字段确认；两套关卡都要翻，所以补丁也跟着变大了。这也是为什么 `detail` 的英文补丁比摘要补丁大得多（399–3,247 字节 vs 163–208 字节）。
 
 英文详情的加载表也值得看一眼：`EN_LOADERS` 与 `ZH_LOADERS` 是两张并排的 `Record<TaskId, () => Promise<...>>`，十条一眼能对出「哪个文件对应哪个任务」。它们刻意没有合并成一张表，因为两者返回的类型不同（`TaskDetailExtra` vs `DetailPatch`），合并会让 `loadTask` 里多一次类型断言 —— 而那张表是十个任务里唯一需要人手维护的「登记点」，宁可让它难写错一点、好读一点。
 

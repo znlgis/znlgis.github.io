@@ -1,0 +1,1 @@
+function e(e){return e===`en`?`en-US`:`zh-CN`}var t=[`popstar`,`bounce`,`tetris`],n=[`pat`,`hug`,`highfive`];export{n,e as r,t};

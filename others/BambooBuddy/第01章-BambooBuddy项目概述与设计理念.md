@@ -24,7 +24,7 @@ BambooBuddy（《熊猫宝宝的一天》，英文名 **Bamboo Buddy**，副标�
 3. 进入 30–90 秒的小游戏；
 4. 完成后得到竹笋、星星、装扮碎片，偶尔得到一张贴纸；
 5. 用竹笋与碎片解锁衣服和小窝物件，也可以把竹笋喂给竹竹；
-6. 竹竹积累成长值，经历四个成长阶段，第四个阶段是「竹竹的小屋」与旅行日记。
+6. 竹竹积累成长值，经历四个成长阶段，第四个阶段是「竹竹的小屋」；日记从第 1 天起就开着，不靠成长值解锁。
 
 | 步骤 | 玩家看到什么 | 代码落点 |
 |---|---|---|
@@ -35,7 +35,7 @@ BambooBuddy（《熊猫宝宝的一天》，英文名 **Bamboo Buddy**，副标�
 | 5 | 装扮页与小窝 | `packages/progress/src/catalog.ts`、`apps/site/src/views/DressView.vue`、`packages/progress/src/manager.ts` 的 `feed()` |
 | 6 | 阶段名与下一阶段进度 | `packages/progress/src/growth.ts`（0 / 60 / 160 / 300 成长值） |
 
-六步之外还有一条不给孩子的线：**家长页**。它从标题的长按进入，展示最近七天的记录、本周练习过的习惯、声音开关与清档入口。这条线故意做得「不好点」——孩子不该在玩到一半时误入一个满是数字的表格，而家长需要能确认「今天到底做没做」。长按成功后才会发一枚一次性的会话令牌（`PARENT_UNLOCK_KEY = 'bamboo.parentUnlock'`，sessionStorage，有效期 30 分钟），直接输 `#/parent` 或按浏览器后退都会因为没有令牌回落到小屋，离开家长页立刻吊销。
+六步之外还有一条不给孩子的线：**家长页**。它从标题长按 3 秒后弹出的一道两位数加法成人门进入，展示最近七天的记录、本周练习过的习惯、今日与本周的游戏时长、一句每日亲子建议、声音开关、零收集隐私说明与清档入口。这条线故意做得「不好点」——孩子不该在玩到一半时误入一个满是数字的表格，而家长需要能确认「今天到底做没做」。长按只负责叫出成人门，答对加法后才发一枚一次性的会话令牌（`PARENT_UNLOCK_KEY = 'bamboo.parentUnlock'`，sessionStorage，有效期 30 分钟）；直接输 `#/parent` 或按浏览器后退都会因为没有令牌回落到小屋，离开家长页立刻吊销。清档是第一轮审查重点盯的位置：它同样要过这道成人门，再按住 3 秒。
 
 这里有一个刻意的产品判断：**奖励不是终点，习惯才是**。所以第 4 步的奖励永远为正——重复玩同一天的任务只把奖励减半，最低仍有 1 根竹笋与 3 点成长值（`rewards.ts` 的 `completionReward()`）；第 6 步的成长线也不设失败，只设时间。
 
@@ -79,6 +79,8 @@ BambooBuddy 的技术选型明确参考了同一位作者的另一个项目 CHAG
 
 「单局 30–90 秒」不是口号：`packages/content/src/schema.ts` 里 `durationHintSec` 被约束在 20–120，十条内容都落在 40–70 秒；时段覆盖由 `content:check` 强制——早、中、晚每个时段至少要有 2 个任务可选，否则报错。
 
+每条任务另有 **2 套关卡**：`levelScript` 是第 1 套，`variants[1]` 是第 2 套，中英各一套。`loadTask()` 的第三参 `variantIndex` 决定这一局用哪一套（外壳按「这个任务做过几次」传入，纯逻辑层取模），规则是确定性的——显式下标优先，其次按日期哈希，绝不读时钟、不用随机数；旧格式只有 `levelScript` 时永远第 1 套，向后兼容。换点位置、换目标顺序只改 JSON，玩法代码一行不动。
+
 八个模板是交互原语的集合，模板只提供「怎么玩」，关卡 JSON 决定「这一局画什么、目标是什么」：
 
 | 模板 | 交互原语 | 判定要点（`*.logic.ts`） | 用于 |
@@ -116,7 +118,7 @@ function pickVariant(level: ScrubLevel): Variant {
 | 弹一弹 | 瞄准 → 弹射 → 反弹 → 方块一串碎 | 任意位置拖拽瞄准、虚线 + 反弹点预测 | 每 6 发下沉一格；贴底时「开出小花」飞走，本轮算完成 |
 | 俄罗斯方块 | 拼、消行、越堆越高 | 8×14、四个大按钮 + 2 个预览、不做 hold | 堆到顶变「彩虹」，清掉最下 4 行继续玩 |
 
-它不在那十条任务里，也不复用 8 个模板：三款是实时街机（自己的帧循环、反弹物理、消行与 AI），硬套「内容 JSON + 模板 + 星星」会把模板层撑坏，还会把任务概念漏进彩蛋系统。所以它另起一套契约（`packages/game-kit/src/arcade.ts`）与一个独立的包（`games/arcade`），不发竹笋 / 成长值 / 贴纸、不写 `task:complete`，因此不污染任务经济、连续天数与家长页统计。规则的单测（101 条）同样跑在 Node 里。完整实现见第 17 章。
+它不在那十条任务里，也不复用 8 个模板：三款是实时街机（自己的帧循环、反弹物理、消行与 AI），硬套「内容 JSON + 模板 + 星星」会把模板层撑坏，还会把任务概念漏进彩蛋系统。所以它另起一套契约（`packages/game-kit/src/arcade.ts`）与一个独立的包（`games/arcade`），不发竹笋 / 成长值 / 贴纸、不写 `task:complete`，因此不污染任务经济、连续天数与家长页统计。规则的单测（102 条）同样跑在 Node 里。完整实现见第 17 章。
 
 ## 1.4 儿童向设计原则如何落进代码
 
@@ -126,12 +128,12 @@ function pickVariant(level: ScrubLevel): Variant {
 |---|---|
 | 无失败惩罚、无 0 星 | `rewards.ts` 的 `starsFor()`：失误 ≤1 给 3 颗、≤3 给 2 颗、其余 1 颗，**没有 0 颗** |
 | 无倒计时、无扣命 | 契约里没有任何计时器字段；`task:retry` 只是观测事件，不改状态 |
-| 可点区域 ≥88×88 逻辑像素 | `packages/templates/src/layout.ts` 的 `UI.minTap = 96`；`BaseScene.addButton` 默认高度 112 |
+| 可点区域 ≥88×88 逻辑像素 | `packages/phaser-kit/src/baseScene.ts` 的 `addButton` 默认高度 112，命中区统一由 `setContainerHitArea` 兜底；`layout.ts` 里曾经那个没人引用的 `UI.minTap` 常量早已删掉 |
 | 不靠颜色单独传达信息 | `packages/templates/src/tidy.ts` 的注释与实现：玩具颜色与箱子故意错开，逼孩子看形状；`learn` 的颜色卡另给花纹通道（实心 / 圆环 / 十字 / 中心圆点），色盲孩子也能认 |
 | 静音立即停语音 | `apps/site/src/stores/settings.ts` 的 `setMuted(true)` 会调用 `platform.audio.stopSpeech()` |
-| 家长锁 | `apps/site/src/App.vue` 长按标题 3000ms 才发一次性令牌；`apps/site/src/router.ts` 校验 30 分钟有效期，直链与后退无令牌回小屋 |
-| 弹层是模态、按钮有状态语义 | `apps/site/src/views/HomeView.vue` 的彩蛋浮层 `role="dialog"` + Esc 关闭；静音与日记朗读按钮带 `aria-pressed` |
-| 20 分钟休息提醒 | `apps/site/src/stores/progress.ts` 的 `REST_SECONDS = 20 * 60`，一天只提醒一次 |
+| 家长锁 | `apps/site/src/App.vue` 长按标题 3000ms 只叫出成人门，`apps/site/src/components/AdultGate.vue` 答对两位数加法才发一次性令牌（连错 3 次锁 30 秒）；`apps/site/src/router.ts` 校验 30 分钟有效期，直链与后退无令牌回小屋 |
+| 弹层是模态、按钮有状态语义 | `apps/site/src/shell/modal.ts` 的 `useModal` 统一给浮层接焦点移入、Esc 关闭与焦点还原；`SecretEgg.vue` 的彩蛋浮层与 `PlayView.vue` 的退出确认 / 小门 / 错误态都走它；静音与日记朗读按钮带 `aria-pressed` |
+| 20 分钟休息提醒、30 分钟收尾 | `apps/site/src/stores/progress.ts` 的 `REST_SECONDS = 20 * 60` 与 `REST_WRAP_SECONDS = 30 * 60`：两张卡片各一天只出现一次，收尾卡不锁、不惩罚 |
 | 尊重减少动效 | `GameContext.reducedMotion` 来自 `matchMedia('(prefers-reduced-motion: reduce)')`，场景据此关掉闪光与补间 |
 | 文案里不出现失败词汇 | `packages/templates/src/cli/check-content.ts` 对中英文各有一组禁词：失败 / 惩罚 / 笨蛋 / 输了 / 淘汰，以及 fail / stupid / loser / punish |
 | 语音不阻塞操作 | 场景先 `speak(intro)` 再立即可交互；同一句话同时上屏（`BaseScene.say()`），听不见的孩子也能读 |
@@ -151,7 +153,7 @@ export function starsFor(mistakes: number): Stars {
 }
 ```
 
-家长锁的实现同样只有十几行，但四个细节缺一不可：按下开始计时、抬起 / 离开 / 取消都要清掉计时器、长按触发后浏览器补的那一次 `click` 不能把小屋又盖回去、长按成功还要发一枚一次性令牌：
+家长锁的实现不长，但五个细节缺一不可：按下开始计时、抬起 / 离开 / 取消都要清掉计时器、长按触发后浏览器补的那一次 `click` 不能把小屋又盖回去、长按只负责叫出成人门、答对加法才发一次性令牌：
 
 ```ts
 // apps/site/src/App.vue（节选）
@@ -160,29 +162,32 @@ let holdTimer: ReturnType<typeof setTimeout> | null = null;
 let holdFiredAt = 0;
 const HOLD_CLICK_WINDOW_MS = 800;
 
+/** 成人门：长按只负责「叫出题目」，答对才发令牌（Apple 期望的 adult-level task） */
+const gateOpen = ref(false);
+const gateQuestion = ref('');
+const gateAnswer = ref(0);
+
 function startParentHold(): void {
-  if (holdTimer !== null) return;
+  if (holdTimer !== null || gateOpen.value) return;
   holdTimer = setTimeout(() => {
     holdTimer = null;
     holdFiredAt = platform.now();
-    // 家长页要一次性令牌：没有它，#/parent 直接输地址或浏览器后退都进不去
-    grantParentUnlock(platform.now());
-    navigate('/parent');
+    gateQuestion.value = randomGateQuestion();
+    gateOpen.value = true;
   }, 3000);
 }
 
-/** 长按结束后浏览器还会补一次 click：那一次不能再把小屋盖过去 */
-function onTitleClick(): void {
-  if (holdFiredAt !== 0 && platform.now() - holdFiredAt < HOLD_CLICK_WINDOW_MS) {
-    holdFiredAt = 0;
-    return;
-  }
-  holdFiredAt = 0;
-  navigate('/');
+function onGatePass(): void {
+  gateOpen.value = false;
+  // 家长页要一次性令牌：没有它，#/parent 直接输地址或浏览器后退都进不去
+  grantParentUnlock(platform.now());
+  navigate('/parent');
 }
 ```
 
-还有一个常被忽略的点：**孩子看得见的失败提示，往往是从存档写入失败开始的**。所以 `apps/site/src/stores/progress.ts` 把写盘失败显式建模成 `unsaved` 状态，小屋顶部会出现一句「这次可能没存上」，而不是静默丢进度。
+成人门本身在 `apps/site/src/components/AdultGate.vue`：两位数加法（a∈12–89，b∈11–88）答对才放行，连错 3 次锁 30 秒；键盘只按一下 Space / Enter 不会凭空弹门（`keyup` 取消长按，但仍然保留「按住 Enter 3 秒」）。
+
+还有一个常被忽略的点：**孩子看得见的失败提示，往往是从存档读写失败开始的**。所以 `apps/site/src/stores/progress.ts` 把写盘失败显式建模成 `unsaved` 状态、把读档失败单独记在 `initError` 上：小屋顶部会分别出现一句「这次可能没存上」或「存档读取失败」，而不是静默丢进度——第二轮审查把「读档失败」从「当成新玩家」里拆了出来，否则第一次写入就会用空档覆盖掉真实进度。
 
 ## 1.5 技术选型速览
 
@@ -219,48 +224,48 @@ BambooBuddy/
 │  └─ mobile/               # Capacitor 8 安卓壳（apk，android 工程已入库）
 ├─ packages/
 │  ├─ game-kit/             # 契约：GameModule / GameContext / ArcadeModule / 事件 / SaveData（无 Phaser）
-│  ├─ content/              # 10 条摘要 JSON + 10 份详情 JSON + loadTask() 动态加载
-│  ├─ i18n/                 # 界面文案表（键是联合类型，写错编译期报）
+│  ├─ content/              # 10 条摘要 JSON + 10 份详情 JSON（每条 2 套关卡）+ loadTask() 动态加载并确定性选套
+│  ├─ i18n/                 # 界面文案表：核心表常驻 + 懒加载页面的 surface 表（键是联合类型，写错编译期报）
 │  ├─ progress/             # 纯 TS：推荐、状态、奖励、成长、连续天数、亲密度、存档迁移
-│  ├─ platform/             # Web 实现：IndexedDB / 合成音效 / TTS / 生命周期 / telemetry
+│  ├─ platform/             # Web 实现：IndexedDB / 合成音效与 TTS（web-audio.ts 懒加载）/ 生命周期 / telemetry
 │  ├─ phaser-kit/           # 主题、绘制、竹竹、拖拽、BaseScene、Phaser 裁剪版
 │  └─ templates/            # 8 个模板：*.logic.ts（判定）+ *.ts（场景）+ 关卡 schema + 共用生命周期 + 内容校验规则
 ├─ games/daily/             # 10 个玩法入口（一个任务 = 一个动态 import 的子路径）
 ├─ games/arcade/            # 3 款隐藏小游戏：popstar / bounce / tetris（逻辑 + 场景 + 入口）
-├─ e2e/                     # Playwright：冒烟、真实操作、家长页（含令牌门禁）、双语、彩蛋、生产产物
+├─ e2e/                     # Playwright：冒烟、真实操作、家长页（含成人门）、双语、彩蛋、盲区、生产产物
 ├─ scripts/                 # verify / 体积门禁 / 图标 / APK / keystore / 打包体检
 ├─ .gitattributes           # 全仓 eol=lf，二进制资源不转换
-└─ docs/                    # 技术方案、隐藏小游戏方案、打包与分发
+└─ docs/                    # 技术方案、优化方案（P0/P1/P2 落地记录）、隐藏小游戏方案、打包与分发
 ```
 
-内容被刻意拆成两半：`packages/content/src/tasks/<id>.json` 是摘要（标题、emoji、颜色、时段、模板、收益、奖励、习惯、日记一行、提示），小屋 / 任务 / 装扮 / 日记四个页面只读它；`packages/content/src/details/<id>.game.json` 是详情（intro / done / retry 语音文案 + 关卡脚本），只有进入那个玩法时才由 `loadTask()` 动态 import。这条拆分是首屏能压在 59.4 KB 的直接原因，也是 ESLint 要禁止外壳 import `@bamboo/content/full` 的原因。
+内容被刻意拆成两半：`packages/content/src/tasks/<id>.json` 是摘要（标题、emoji、颜色、时段、模板、收益、奖励、习惯、日记一行、提示），小屋 / 任务 / 装扮 / 日记四个页面只读它；`packages/content/src/details/<id>.game.json` 是详情（intro / done / retry 语音文案 + 关卡脚本），只有进入那个玩法时才由 `loadTask()` 动态 import 并按 `variantIndex` 选一套。这条拆分是首屏能压在 59.7 KB 的直接原因，也是 ESLint 要禁止外壳 import `@bamboo/content/full` 的原因。
 
 依赖方向是这个结构的关键：`game-kit` 与 `content` 不 import Phaser，所以外壳可以安全地直接引用它们；Phaser 只出现在 `games/*`、`packages/templates` 与 `packages/phaser-kit` 里；外壳甚至连 `@bamboo/templates` 都不在依赖列表里（第 2 章会给出完整的包依赖图）。这条边界带来的直接结果是：**首屏永远不会下载那 856 KB 的引擎**。
 
 ## 1.7 当前验收与产物现状
 
-以下数字都是 2026-11-08 在本机实测的基线，也是后续章节反复引用的对照值：
+以下数字都是 2026-11-10 在本机实测的基线，也是后续章节反复引用的对照值：
 
 | 项目 | 实测值 |
 |---|---|
-| 单元测试 | 243 个（Vitest，Node 环境；11 个测试文件，其中 101 个属于隐藏小游戏） |
-| 端到端 | 34 passed / 2 skipped / 0 failed（共 36 条，Playwright，Pixel 5 模拟） |
+| 单元测试 | 387 个（Vitest，Node 环境；20 个测试文件，其中 102 个属于隐藏小游戏） |
+| 端到端 | 41 passed / 2 skipped / 0 failed（共 43 条 / 7 个文件，Playwright，Pixel 5 模拟） |
 | 生产产物懒加载 | `pnpm e2e:dist` 2 passed（首屏不下载任何重 chunk） |
 | `pnpm verify` | 七阶段全绿：typecheck / lint / test / content:check / pack:check / build / size |
-| dist 体积 | 54 个文件 / 1,321,393 B（约 1290.4 KB） |
-| 首屏 JS + CSS | gzip 60,846 B（约 59.4 KB，预算 60 KB；原始 172.3 KB） |
+| dist 体积 | 64 个文件 / 1,358,354 B（约 1326.5 KB） |
+| 首屏 JS + CSS | gzip 61,182 B（约 59.7 KB，预算 60 KB；原始 169.8 KB） |
 | Phaser 裁剪版 | 856.3 KB（gzip 220.6 KB），只在第一次进玩法 / 小游戏时下载 |
 | Windows 便携 exe | 3.27 MB（Tauri 2，系统 WebView2） |
 | 安卓 apk | 4.69 MB（Capacitor 8，debug 签名） |
 | 非代码资源 | 0（全部几何绘制 + WebAudio 合成） |
 
-验收这条线有一条不成文的规矩：**数字要能被复现**。所以第 14 章会把这里的每一项都对应到具体的脚本与断言——243 个单测来自哪些 `*.test.ts`、36 条端到端分别覆盖什么、体积的 59.4 KB 是怎么算出来的（首屏 = `index.html` 实际引用含 `modulepreload` + 内联脚本，不是「所有 js 加起来」）。没有对应的断言，数字就只是上一次跑出来的巧合。
+验收这条线有一条不成文的规矩：**数字要能被复现**。所以第 14 章会把这里的每一项都对应到具体的脚本与断言——387 个单测来自哪些 `*.test.ts`、43 条端到端分别覆盖什么、体积的 59.7 KB 是怎么算出来的（首屏 = `index.html` 实际引用含 `modulepreload` + 内联脚本，不是「所有 js 加起来」）。没有对应的断言，数字就只是上一次跑出来的巧合。
 
 两个跳过项不是失败：`preview.spec.ts` 是生产产物用例，只在 `pnpm e2e:dist`（端口 5191）下运行，在开发配置（端口 5190）里按设计跳过。
 
 打包与发布同样有实测记录：GitHub Actions 的 Release 工作流在推 `v*` tag 时构建两个平台并挂到 Release，也可以手动 Run workflow 只出产物。产物都是「一份站点 + 一个壳」——Tauri 走系统 WebView2，Capacitor 走内置本地服务 `https://localhost`，所以 ES module、IndexedDB、WebGL 全部按浏览器标准工作，游戏代码不知道自己在哪个壳里跑。
 
-体积这一项值得单独强调，因为它决定了很多写法。首屏 59.4 KB 意味着：不能为了省事把 zod 拖进外壳（`@bamboo/content` 主入口刻意不导出 schema 的运行时对象），不能让英文文案静态进主包，也不能让任何一句 `import '@bamboo/content/full'` 混进 `apps/site/src`——ESLint 直接禁止最后这条。
+体积这一项值得单独强调，因为它决定了很多写法。首屏 59.7 KB 意味着：不能为了省事把 zod 拖进外壳（`@bamboo/content` 主入口刻意不导出 schema 的运行时对象），不能让英文文案静态进主包，也不能让任何一句 `import '@bamboo/content/full'` 混进 `apps/site/src`——ESLint 直接禁止最后这条。
 
 ## 1.8 本教程的章节安排
 
@@ -277,7 +282,7 @@ BambooBuddy/
 
 1. **产品定位是技术约束的来源**：无失败、无倒计时、零外部资源、本地存档，不是「顺手做的好事」，而是「一个任务一个小游戏」这个形态能成立的前提；
 2. **模板库复用交互原语，不复用关卡**：8 个模板撑 10 个任务，靠的是 `*.logic.ts` 与关卡 JSON 的分工；
-3. **验收是一串可复现的数字**：243 个单测、36 条端到端、59.4 KB 首屏、1290.4 KB 产物，每一项背后都有一个脚本，而不是一次人工检查。
+3. **验收是一串可复现的数字**：387 个单测、43 条端到端、59.7 KB 首屏、1326.5 KB 产物，每一项背后都有一个脚本，而不是一次人工检查。
 
 下一章把视角拉近一层：这套东西到底由哪些包组成、版本为什么锁在这些数字上、Vite 配置里那几条 `chunkFileNames` 规则各自解决什么问题。
 

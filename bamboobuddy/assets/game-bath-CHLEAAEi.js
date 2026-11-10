@@ -1,0 +1,1 @@
+import{r as e}from"./src-g9r8y9G4.js";import{T as t,g as n}from"./common-BssEF291.js";import{t as r}from"./scrub-DSNt-ygV.js";var i=e(`bath`),a=t({manifest:{id:`bath`,title:i.title,version:`0.1.0`,template:i.template,designSize:{width:n.width,height:n.height},ageRange:i.ageRange},scenes:e=>[r(e,e.task.levelScript)]});export{a as default};
