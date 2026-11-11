@@ -1,0 +1,1012 @@
+{
+  "OSGeo/grass": {
+    "stars": 1187,
+    "pushedAt": "2026-11-09T11:03:09Z",
+    "desc": "GRASS - free and open-source geospatial processing engine"
+  },
+  "openjump/openjump": {
+    "error": "HTTP 404"
+  },
+  "jblindsay/whitebox-tools": {
+    "stars": 1221,
+    "pushedAt": "2026-05-26T15:31:03Z",
+    "desc": "An advanced geospatial data analysis platform"
+  },
+  "OrfeoToolbox/OTB": {
+    "stars": 393,
+    "pushedAt": "2026-11-05T20:02:50Z",
+    "desc": "Github mirror of https://gitlab.orfeo-toolbox.org/orfeotoolbox/otb"
+  },
+  "gvsig/gvsig": {
+    "error": "HTTP 404"
+  },
+  "MapWindow/MapWindow5": {
+    "stars": 309,
+    "pushedAt": "2022-12-08T10:56:19Z",
+    "desc": "MW5 is a desktop GIS which is extendable using the plug-in architecture. It is using the MapWinGIS mapping control and is created from scratch in 2015 using new technologies like MEF and Dependency Injection making it small in size, robust and fast."
+  },
+  "senbox-org/snap": {
+    "error": "HTTP 404"
+  },
+  "alicevision/Meshroom": {
+    "stars": 13076,
+    "pushedAt": "2026-11-10T02:14:36Z",
+    "desc": "Node-based Visual Programming Toolbox"
+  },
+  "MicMacIGN/MicMac": {
+    "stars": 937,
+    "pushedAt": "2026-10-21T13:42:54Z",
+    "desc": "Free open-source photogrammetry software tools"
+  },
+  "geoda/geoda": {
+    "error": "HTTP 404"
+  },
+  "mapillary/OpenSfM": {
+    "stars": 3818,
+    "pushedAt": "2026-11-02T09:15:57Z",
+    "desc": "Open source Structure-from-Motion pipeline"
+  },
+  "opendronemap/odm": {
+    "stars": 6597,
+    "pushedAt": "2026-10-29T16:38:00Z",
+    "desc": "A command line toolkit to generate maps, point clouds, 3D models and DEMs from drone, balloon or kite images. 📷"
+  },
+  "colmap/colmap": {
+    "stars": 13197,
+    "pushedAt": "2026-11-10T08:51:20Z",
+    "desc": "COLMAP - Structure-from-Motion and Multi-View Stereo"
+  },
+  "PDAL/PDAL": {
+    "stars": 1432,
+    "pushedAt": "2026-11-09T01:52:51Z",
+    "desc": "PDAL is Point Data Abstraction Library. GDAL for point cloud data."
+  },
+  "potree/potree": {
+    "stars": 5663,
+    "pushedAt": "2026-01-08T10:01:16Z",
+    "desc": "WebGL point cloud viewer for large datasets"
+  },
+  "CloudCompare/CloudCompare": {
+    "stars": 4851,
+    "pushedAt": "2026-11-08T12:11:04Z",
+    "desc": "CloudCompare main repository"
+  },
+  "pelicanmapping/osgearth": {
+    "stars": 1819,
+    "pushedAt": "2026-11-04T15:13:23Z",
+    "desc": "3D Maps & Terrain SDK (C++)"
+  },
+  "opendronemap/WebODM": {
+    "stars": 4263,
+    "pushedAt": "2026-11-09T20:29:31Z",
+    "desc": "User-friendly, commercial-grade software for processing aerial imagery. ✈️ Download it for free!"
+  },
+  "udig/udig": {
+    "error": "HTTP 404"
+  },
+  "openscenegraph/OpenSceneGraph": {
+    "stars": 3628,
+    "pushedAt": "2024-08-09T02:46:32Z",
+    "desc": "OpenSceneGraph git repository"
+  },
+  "isl-org/Open3D": {
+    "stars": 14187,
+    "pushedAt": "2026-11-05T18:33:08Z",
+    "desc": "Open3D: A Modern Library for 3D Data Processing"
+  },
+  "3dcitydb/3dcitydb": {
+    "stars": 487,
+    "pushedAt": "2026-11-08T19:16:56Z",
+    "desc": "3D City Database - The Open Source CityGML Database"
+  },
+  "Oslandia/py3dtiles": {
+    "stars": 234,
+    "pushedAt": "2025-07-15T13:15:57Z",
+    "desc": ":warning: Project migrated to : https://gitlab.com/py3dtiles/py3dtiles :warning:"
+  },
+  "mapbox/mapbox-gl-js": {
+    "stars": 12474,
+    "pushedAt": "2026-11-10T12:16:26Z",
+    "desc": "Interactive, thoroughly customizable maps in the browser, powered by vector tiles and WebGL"
+  },
+  "Leaflet/Leaflet": {
+    "stars": 45904,
+    "pushedAt": "2026-11-10T15:20:01Z",
+    "desc": "🍃 number one JavaScript library for interactive maps 🇺🇦"
+  },
+  "CGAL/cgal": {
+    "stars": 6120,
+    "pushedAt": "2026-11-05T16:32:49Z",
+    "desc": "The public CGAL repository, see the README below"
+  },
+  "keplergl/kepler.gl": {
+    "stars": 12086,
+    "pushedAt": "2026-11-10T04:58:49Z",
+    "desc": "Kepler.gl is a powerful open source geospatial analysis tool for large-scale data sets."
+  },
+  "Turfjs/turf": {
+    "stars": 10537,
+    "pushedAt": "2026-11-04T12:41:40Z",
+    "desc": "A modular geospatial engine written in JavaScript and TypeScript"
+  },
+  "pdal/entwine": {
+    "error": "HTTP 404"
+  },
+  "proj4js/proj4js": {
+    "stars": 2244,
+    "pushedAt": "2026-10-22T12:53:15Z",
+    "desc": "JavaScript library to transform coordinates from one coordinate system to another, including datum transformations"
+  },
+  "geotiffjs/geotiff.js": {
+    "stars": 1057,
+    "pushedAt": "2026-09-13T09:55:55Z",
+    "desc": "geotiff.js is a small library to parse TIFF files for visualization or analysis. It is written in pure JavaScript, and is usable in both the browser and node.js applications."
+  },
+  "apache/echarts": {
+    "stars": 67697,
+    "pushedAt": "2026-10-13T09:27:20Z",
+    "desc": "Apache ECharts is a powerful, interactive charting and data visualization library for browser"
+  },
+  "maptalks/maptalks.js": {
+    "stars": 4538,
+    "pushedAt": "2026-11-02T06:53:28Z",
+    "desc": "A light and plugable JavaScript library for integrated 2D/3D maps."
+  },
+  "maplibre/maplibre-gl-js": {
+    "stars": 12052,
+    "pushedAt": "2026-11-09T21:52:22Z",
+    "desc": "MapLibre GL JS - Interactive vector tile maps in the browser"
+  },
+  "visgl/deck.gl": {
+    "stars": 14745,
+    "pushedAt": "2026-11-10T11:34:09Z",
+    "desc": "WebGL2 powered visualization framework"
+  },
+  "marsgis/mars3d": {
+    "stars": 1087,
+    "pushedAt": "2026-11-01T14:18:45Z",
+    "desc": "【Mars3D平台 】主仓库，包含所有开源仓库清单导航"
+  },
+  "bjornharrtell/jsts": {
+    "stars": 1566,
+    "pushedAt": "2025-01-02T19:25:48Z",
+    "desc": "JavaScript Topology Suite"
+  },
+  "CesiumGS/cesium": {
+    "stars": 15933,
+    "pushedAt": "2026-11-09T21:55:04Z",
+    "desc": "An open-source JavaScript library for world-class 3D globes and maps :earth_americas:"
+  },
+  "antvis/L7": {
+    "stars": 4077,
+    "pushedAt": "2026-10-20T06:41:50Z",
+    "desc": "🌎 Large-scale WebGL-powered Geospatial Data Visualization analysis engine."
+  },
+  "NASA-AMMOS/3DTilesRendererJS": {
+    "stars": 2522,
+    "pushedAt": "2026-11-07T03:02:00Z",
+    "desc": "Renderer for 3D Tiles in Javascript using three.js, Babylon.js, and r3f"
+  },
+  "xbsj-xbsj/XbsjEarth": {
+    "error": "HTTP 404"
+  },
+  "dc-sdk/dc-sdk": {
+    "error": "HTTP 404"
+  },
+  "openlayers/ol-cesium": {
+    "stars": 1154,
+    "pushedAt": "2026-11-09T05:48:06Z",
+    "desc": "OpenLayers - Cesium integration"
+  },
+  "visgl/loaders.gl": {
+    "stars": 855,
+    "pushedAt": "2026-11-10T03:37:54Z",
+    "desc": "Loaders for big data visualization. Website:"
+  },
+  "openlayers/openlayers": {
+    "stars": 12648,
+    "pushedAt": "2026-11-07T10:34:10Z",
+    "desc": "OpenLayers"
+  },
+  "iTowns/itowns": {
+    "stars": 1280,
+    "pushedAt": "2026-11-10T14:02:22Z",
+    "desc": "A Three.js-based framework written in Javascript/WebGL for visualizing 3D geospatial data"
+  },
+  "geostyler/geostyler": {
+    "stars": 346,
+    "pushedAt": "2026-11-05T20:28:52Z",
+    "desc": "Generic Styler for geodata"
+  },
+  "mapbox/tippecanoe": {
+    "stars": 3143,
+    "pushedAt": "2026-06-29T15:20:27Z",
+    "desc": "Build vector tilesets from large collections of GeoJSON features."
+  },
+  "mourner/rbush": {
+    "stars": 2789,
+    "pushedAt": "2026-10-02T16:26:24Z",
+    "desc": "RBush — a high-performance JavaScript R-tree-based 2D spatial index for points and rectangles"
+  },
+  "pmtiles/pmtiles": {
+    "error": "HTTP 404"
+  },
+  "mapbox/maputnik": {
+    "error": "HTTP 404"
+  },
+  "protomaps/PMTiles": {
+    "stars": 3106,
+    "pushedAt": "2026-09-16T18:35:12Z",
+    "desc": "Pyramids of map tiles in a single file on static storage"
+  },
+  "maplibre/maplibre-native": {
+    "stars": 2308,
+    "pushedAt": "2026-11-10T22:00:24Z",
+    "desc": "MapLibre Native - Interactive vector tile maps for iOS, Android and other platforms."
+  },
+  "mapbox/tilemaker": {
+    "error": "HTTP 404"
+  },
+  "osmandapp/OsmAnd": {
+    "stars": 6136,
+    "pushedAt": "2026-11-09T12:33:33Z",
+    "desc": "OsmAnd"
+  },
+  "mapsforge/mapsforge": {
+    "stars": 1421,
+    "pushedAt": "2026-10-28T09:37:34Z",
+    "desc": "Vector map library and writer - running on Android and Desktop."
+  },
+  "react-leaflet/react-leaflet": {
+    "error": "HTTP 404"
+  },
+  "mourner/flatbush": {
+    "stars": 1611,
+    "pushedAt": "2026-11-06T22:56:07Z",
+    "desc": "A very fast static spatial index for 2D points and rectangles in JavaScript 🌱"
+  },
+  "organicmaps/organicmaps": {
+    "stars": 15916,
+    "pushedAt": "2026-11-09T12:45:43Z",
+    "desc": "🍃 Organic Maps is a free Android & iOS offline maps app for more than 12M travelers, tourists, hikers, and cyclists. It uses crowd-sourced OpenStreetMap data and is developed with love by the community. No ads, no tracking, no data collection, no crapware. Please donate to support the development!"
+  },
+  "zouyaoji/vue-cesium": {
+    "stars": 1919,
+    "pushedAt": "2026-07-30T16:59:10Z",
+    "desc": "🎉 Vue 3.x components for CesiumJS."
+  },
+  "fleaflet/flutter_map": {
+    "stars": 3028,
+    "pushedAt": "2026-11-03T18:00:25Z",
+    "desc": "Flutter's №1 non-commercially aimed map client: it's easy-to-use, versatile, vendor-free, fully cross-platform, and 100% pure-Flutter"
+  },
+  "MapServer/MapServer": {
+    "stars": 1230,
+    "pushedAt": "2026-10-28T11:23:22Z",
+    "desc": "Source code of the MapServer project.  Please submit pull requests to the 'main' branch."
+  },
+  "visgl/react-map-gl": {
+    "stars": 8513,
+    "pushedAt": "2026-10-24T00:58:37Z",
+    "desc": "React friendly API wrapper around MapboxGL JS"
+  },
+  "mapnik/mapnik": {
+    "stars": 3973,
+    "pushedAt": "2026-11-08T10:24:46Z",
+    "desc": "Mapnik is an open source toolkit for developing mapping applications"
+  },
+  "mourner/supercluster": {
+    "error": "HTTP 404"
+  },
+  "vue3-openlayers/vue3-openlayers": {
+    "error": "HTTP 404"
+  },
+  "deegree/deegree3": {
+    "stars": 170,
+    "pushedAt": "2026-11-07T14:46:46Z",
+    "desc": "Official deegree repository providing geospatial core libraries, data access and advanced OGC web service implementations"
+  },
+  "mapproxy/mapproxy": {
+    "stars": 675,
+    "pushedAt": "2026-11-09T04:53:28Z",
+    "desc": "MapProxy is a tile cache and WMS proxy"
+  },
+  "qgis/QGIS": {
+    "stars": 14797,
+    "pushedAt": "2026-11-09T00:32:59Z",
+    "desc": "QGIS is a free, open source, cross platform (lin/win/mac) geographical information system (GIS)"
+  },
+  "developmentseed/titiler": {
+    "stars": 1206,
+    "pushedAt": "2026-11-09T07:38:06Z",
+    "desc": "Build your own Raster dynamic map tile services"
+  },
+  "go-spatial/tegola": {
+    "stars": 1506,
+    "pushedAt": "2026-11-05T05:19:35Z",
+    "desc": "Tegola is a Mapbox Vector Tile server written in Go"
+  },
+  "CrunchyData/pg_tileserv": {
+    "stars": 1069,
+    "pushedAt": "2025-12-11T17:47:55Z",
+    "desc": "A very thin PostGIS-only tile server in Go. Takes in HTTP tile requests, executes SQL, returns MVT tiles."
+  },
+  "maplibre/martin": {
+    "stars": 4063,
+    "pushedAt": "2026-11-06T16:50:59Z",
+    "desc": "Blazing fast and lightweight PostGIS, MBtiles and PMtiles tile server, tile generation, and mbtiles tooling."
+  },
+  "TileServerGL/tileserver-gl": {
+    "error": "HTTP 404"
+  },
+  "GeoWebCache/geowebcache": {
+    "stars": 372,
+    "pushedAt": "2026-11-10T00:11:40Z",
+    "desc": "GeoWebCache is a tile caching server implemented in Java that provides various tile caching services like WMS-C, TMS, WMTS, Google Maps, MS Bing and more"
+  },
+  "geosolutions-it/MapStore2": {
+    "stars": 669,
+    "pushedAt": "2026-11-09T10:43:15Z",
+    "desc": "The solution to create and share maps, dashboards, geostories with 3D support on the web. And it is open-source too!"
+  },
+  "georchestra/georchestra": {
+    "stars": 147,
+    "pushedAt": "2026-10-22T15:43:53Z",
+    "desc": "This is the main geOrchestra Spatial Data Infrastructure repository, which hosts the source code."
+  },
+  "geoblacklight/geoblacklight": {
+    "stars": 154,
+    "pushedAt": "2026-11-04T01:36:44Z",
+    "desc": "Discovery platform for maps & GIS data."
+  },
+  "ckan/ckan": {
+    "stars": 5153,
+    "pushedAt": "2026-11-09T16:07:35Z",
+    "desc": "CKAN is an open-source DMS (data management system) for powering data hubs and data portals. CKAN makes it easy to publish, share and use data. It powers catalog.data.gov, open.canada.ca/data, data.humdata.org among many other sites."
+  },
+  "pycsw/pycsw": {
+    "error": "HTTP 404"
+  },
+  "GeoNode/geonode": {
+    "stars": 1736,
+    "pushedAt": "2026-11-10T09:46:45Z",
+    "desc": "GeoNode is an open source platform that facilitates the creation, sharing, and collaborative use of geospatial data."
+  },
+  "geopython/pygeoapi": {
+    "stars": 630,
+    "pushedAt": "2026-11-01T15:12:34Z",
+    "desc": "pygeoapi is a Python server implementation of the OGC API suite of standards. The project emerged as part of the next generation OGC API efforts in 2018 and provides the capability for organizations to deploy a RESTful OGC API endpoint using OpenAPI, GeoJSON, and HTML. pygeoapi is open source and released under an MIT license."
+  },
+  "GeoNetwork/geonetwork": {
+    "stars": 6,
+    "pushedAt": "2026-11-10T15:41:21Z",
+    "desc": null
+  },
+  "mapfish/mapfish-print": {
+    "stars": 198,
+    "pushedAt": "2026-10-30T17:56:25Z",
+    "desc": "A component of MapFish for printing templated cartographic maps. This module is the Java serverside module."
+  },
+  "stac-utils/stac-fastapi": {
+    "stars": 327,
+    "pushedAt": "2026-11-04T00:17:09Z",
+    "desc": "STAC API implementation with FastAPI. "
+  },
+  "stac-utils/stac-browser": {
+    "error": "HTTP 404"
+  },
+  "apache/sedona": {
+    "stars": 2427,
+    "pushedAt": "2026-11-07T06:22:50Z",
+    "desc": "A cluster computing framework for processing large-scale geospatial data"
+  },
+  "OpenScienceComputing/OpenDataCube": {
+    "error": "HTTP 404"
+  },
+  "locationtech/geomesa": {
+    "stars": 1499,
+    "pushedAt": "2026-11-10T21:39:05Z",
+    "desc": "GeoMesa is a suite of tools for working with big geo-spatial data in a distributed fashion."
+  },
+  "stac-utils/pgstac": {
+    "stars": 229,
+    "pushedAt": "2026-11-10T16:47:45Z",
+    "desc": "Schema, functions and a python library for storing and accessing STAC collections and items in PostgreSQL"
+  },
+  "interactive-instruments/ldproxy": {
+    "stars": 107,
+    "pushedAt": "2026-11-10T20:56:02Z",
+    "desc": "Share geospatial data via modern Web APIs"
+  },
+  "geotrellis/geotrellis": {
+    "stars": 1379,
+    "pushedAt": "2026-11-05T18:21:52Z",
+    "desc": "GeoTrellis is a geographic data processing engine for high performance applications."
+  },
+  "planetiler/planetiler": {
+    "error": "HTTP 404"
+  },
+  "mapbox/openmaptiles": {
+    "error": "HTTP 404"
+  },
+  "cogeotiff/rio-cogeo": {
+    "stars": 397,
+    "pushedAt": "2026-11-04T10:09:19Z",
+    "desc": "Cloud Optimized GeoTIFF creation and validation plugin for rasterio"
+  },
+  "apache/iceberg": {
+    "stars": 9416,
+    "pushedAt": "2026-11-09T09:27:39Z",
+    "desc": "Apache Iceberg"
+  },
+  "overturemaps/overturemaps": {
+    "error": "HTTP 404"
+  },
+  "geoarrow/geoarrow": {
+    "stars": 542,
+    "pushedAt": "2025-05-28T02:48:56Z",
+    "desc": "Specification for storing geospatial data in Apache Arrow"
+  },
+  "OSGeo/PROJ": {
+    "stars": 2034,
+    "pushedAt": "2026-11-05T18:49:21Z",
+    "desc": "PROJ - Cartographic Projections and Coordinate Transformations Library"
+  },
+  "google/s2geometry": {
+    "stars": 2748,
+    "pushedAt": "2026-10-27T00:06:20Z",
+    "desc": "Computational geometry and spatial indexing on the sphere"
+  },
+  "libgeos/geos": {
+    "stars": 1520,
+    "pushedAt": "2026-11-08T17:16:45Z",
+    "desc": "Geometry Engine, Open Source"
+  },
+  "locationtech/jts": {
+    "stars": 2245,
+    "pushedAt": "2026-10-29T21:43:56Z",
+    "desc": "The JTS Topology Suite is a Java library for creating and manipulating vector geometry."
+  },
+  "boostorg/geometry": {
+    "stars": 520,
+    "pushedAt": "2026-11-10T17:03:59Z",
+    "desc": "Boost.Geometry - Generic Geometry Library | Requires C++14 since Boost 1.75"
+  },
+  "libspatialindex/libspatialindex": {
+    "stars": 801,
+    "pushedAt": "2026-11-06T21:20:52Z",
+    "desc": "C++ implementation of R*-tree, an MVR-tree and a TPR-tree with C API"
+  },
+  "hibernate/hibernate-orm": {
+    "stars": 6485,
+    "pushedAt": "2026-11-10T11:49:03Z",
+    "desc": "Idiomatic persistence for Java and relational databases"
+  },
+  "SFCGAL/SFCGAL": {
+    "stars": 0,
+    "pushedAt": "2026-11-09T09:26:52Z",
+    "desc": "A C++ wrapper around CGAL providing robust 2D and 3D geometric operations based on OGC/SQL-MM standards. This GitHub repository is a read-only mirror of the main development hosted on GitLab. Please submit issues and contributions on GitLab."
+  },
+  "GeoAPI/GeoAPI": {
+    "error": "HTTP 404"
+  },
+  "apache/sis": {
+    "stars": 128,
+    "pushedAt": "2026-11-10T15:17:23Z",
+    "desc": "Java language library for developing geospatial applications following OGC/ISO standards."
+  },
+  "flatgeobuf/flatgeobuf": {
+    "stars": 829,
+    "pushedAt": "2026-11-02T05:39:20Z",
+    "desc": "A performant binary encoding for geographic data based on flatbuffers"
+  },
+  "geotools/geotools": {
+    "stars": 1934,
+    "pushedAt": "2026-11-06T20:45:50Z",
+    "desc": "Official GeoTools repository"
+  },
+  "shapely/shapely": {
+    "stars": 4540,
+    "pushedAt": "2026-11-06T21:19:33Z",
+    "desc": "Manipulation and analysis of geometric objects"
+  },
+  "NetTopologySuite/NetTopologySuite.IO": {
+    "error": "HTTP 404"
+  },
+  "MaxRev-Dev/MaxRev.Gdal.Core": {
+    "error": "HTTP 404"
+  },
+  "GMap.NET/GMap.NET": {
+    "error": "HTTP 404"
+  },
+  "NetTopologySuite/NetTopologySuite": {
+    "stars": 1727,
+    "pushedAt": "2026-11-03T18:58:56Z",
+    "desc": "A .NET GIS solution that is fast and reliable for the .NET platform."
+  },
+  "geopandas/geopandas": {
+    "stars": 5295,
+    "pushedAt": "2026-10-31T05:27:58Z",
+    "desc": "Python tools for geographic data"
+  },
+  "BruTile/BruTile": {
+    "stars": 376,
+    "pushedAt": "2026-05-18T09:00:28Z",
+    "desc": "BruTile is a .NET library to access tile services like those of OpenStreetMap, MapBox or GeodanMaps."
+  },
+  "rasterio/rasterio": {
+    "stars": 2593,
+    "pushedAt": "2026-11-03T16:56:49Z",
+    "desc": "Rasterio reads and writes geospatial raster datasets"
+  },
+  "DotSpatial/DotSpatial": {
+    "stars": 916,
+    "pushedAt": "2025-10-22T12:18:16Z",
+    "desc": "Geographic information system library written for .NET"
+  },
+  "Toblerity/Fiona": {
+    "stars": 1251,
+    "pushedAt": "2026-11-03T14:26:18Z",
+    "desc": "Fiona reads and writes geographic data files"
+  },
+  "pydata/xarray": {
+    "stars": 4222,
+    "pushedAt": "2026-11-09T17:13:11Z",
+    "desc": "N-D labeled arrays and datasets in Python"
+  },
+  "corteva/rioxarray": {
+    "stars": 628,
+    "pushedAt": "2026-10-29T16:09:06Z",
+    "desc": "geospatial xarray extension powered by rasterio"
+  },
+  "gboeing/osmnx": {
+    "stars": 5891,
+    "pushedAt": "2026-11-07T23:54:12Z",
+    "desc": "Download, model, analyze, and visualize street networks and other geospatial features from OpenStreetMap."
+  },
+  "libpysal/libpysal": {
+    "error": "HTTP 404"
+  },
+  "SciTools/cartopy": {
+    "stars": 1624,
+    "pushedAt": "2026-10-29T19:33:07Z",
+    "desc": "Cartopy - a cartographic python library with matplotlib support"
+  },
+  "pyproj4/pyproj": {
+    "stars": 1237,
+    "pushedAt": "2026-11-02T22:08:53Z",
+    "desc": "Python interface to PROJ (cartographic projections and coordinate transformations library)"
+  },
+  "geopandas/pyogrio": {
+    "stars": 343,
+    "pushedAt": "2026-11-04T15:07:34Z",
+    "desc": "Vectorized vector I/O using OGR"
+  },
+  "geopandas/contextily": {
+    "stars": 598,
+    "pushedAt": "2026-07-27T20:29:38Z",
+    "desc": "Context geo-tiles in Python"
+  },
+  "python-visualization/folium": {
+    "stars": 7415,
+    "pushedAt": "2026-11-04T11:31:44Z",
+    "desc": "Python Data. Leaflet.js Maps. "
+  },
+  "pysal/pysal": {
+    "stars": 1530,
+    "pushedAt": "2026-10-20T16:50:12Z",
+    "desc": "PySAL: Python Spatial Analysis Library Meta-Package"
+  },
+  "jupyter-widgets/ipyleaflet": {
+    "stars": 1546,
+    "pushedAt": "2026-05-07T12:49:17Z",
+    "desc": "A Jupyter - Leaflet.js bridge"
+  },
+  "opengeos/leafmap": {
+    "stars": 3797,
+    "pushedAt": "2026-11-06T00:00:25Z",
+    "desc": "A Python package for interactive mapping and geospatial analysis with minimal coding in a Jupyter environment"
+  },
+  "geopy/geopy": {
+    "stars": 4872,
+    "pushedAt": "2026-07-12T19:49:44Z",
+    "desc": "Geocoding library for Python."
+  },
+  "gee-community/geemap": {
+    "stars": 4070,
+    "pushedAt": "2026-11-05T18:56:41Z",
+    "desc": "A Python package for interactive geospatial analysis and visualization with Google Earth Engine."
+  },
+  "opengeos/segment-geospatial": {
+    "stars": 4201,
+    "pushedAt": "2026-11-09T07:05:34Z",
+    "desc": "A Python package for segmenting geospatial data with the Segment Anything Model (SAM)"
+  },
+  "torchgeo/torchgeo": {
+    "stars": 4237,
+    "pushedAt": "2026-11-06T21:52:13Z",
+    "desc": "TorchGeo: datasets, samplers, transforms, and pre-trained models for geospatial data"
+  },
+  "movingpandas/movingpandas": {
+    "stars": 1425,
+    "pushedAt": "2026-09-30T19:16:23Z",
+    "desc": "MovingPandas - a Python library for movement data exploration and analysis"
+  },
+  "uber/h3-py": {
+    "stars": 1044,
+    "pushedAt": "2026-10-19T23:28:42Z",
+    "desc": "Python bindings for H3, a hierarchical hexagonal geospatial indexing system"
+  },
+  "azavea/raster-vision": {
+    "stars": 2242,
+    "pushedAt": "2026-06-04T14:59:54Z",
+    "desc": "An open source library and framework for deep learning on satellite and aerial imagery."
+  },
+  "sentinel-hub/eo-learn": {
+    "stars": 1256,
+    "pushedAt": "2026-09-09T06:09:45Z",
+    "desc": "Earth observation processing framework for machine learning in Python"
+  },
+  "geoalchemy/geoalchemy2": {
+    "stars": 712,
+    "pushedAt": "2026-11-04T22:04:21Z",
+    "desc": "Geospatial extension to SQLAlchemy"
+  },
+  "opengeos/geoai": {
+    "stars": 3462,
+    "pushedAt": "2026-11-09T03:05:36Z",
+    "desc": "GeoAI: Artificial Intelligence for Geospatial Data"
+  },
+  "pysal/tobler": {
+    "stars": 172,
+    "pushedAt": "2026-11-08T21:51:42Z",
+    "desc": "Areal & Dasymetric Interpolation; Change of Support"
+  },
+  "pysal/spaghetti": {
+    "stars": 285,
+    "pushedAt": "2026-10-05T22:48:47Z",
+    "desc": "SPAtial GrapHs: nETworks, Topology, & Inference"
+  },
+  "r-spatial/sf": {
+    "stars": 1455,
+    "pushedAt": "2026-10-30T17:27:53Z",
+    "desc": "Simple Features for R"
+  },
+  "pysal/momepy": {
+    "stars": 638,
+    "pushedAt": "2026-10-29T13:27:18Z",
+    "desc": "Urban Morphology Measuring Toolkit"
+  },
+  "rspatial/terra": {
+    "stars": 623,
+    "pushedAt": "2026-10-29T23:27:25Z",
+    "desc": "R package for spatial data handling https://rspatial.github.io/terra/reference/terra-package.html"
+  },
+  "geopandas/dask-geopandas": {
+    "stars": 593,
+    "pushedAt": "2026-07-21T04:29:00Z",
+    "desc": "Parallel GeoPandas with Dask"
+  },
+  "developmentseed/lonboard": {
+    "stars": 977,
+    "pushedAt": "2026-11-09T15:29:47Z",
+    "desc": "Fast, interactive geospatial data visualization in Jupyter."
+  },
+  "r-tmap/tmap": {
+    "stars": 908,
+    "pushedAt": "2026-11-09T10:23:33Z",
+    "desc": "R package for thematic maps"
+  },
+  "overturemaps/overturemaps-py": {
+    "stars": 280,
+    "pushedAt": "2026-11-10T21:34:30Z",
+    "desc": "Overture's Python CLI"
+  },
+  "r-spatial/mapview": {
+    "stars": 554,
+    "pushedAt": "2026-10-14T06:01:05Z",
+    "desc": "Interactive viewing of spatial data in R"
+  },
+  "r-spatial/stars": {
+    "stars": 610,
+    "pushedAt": "2026-09-20T10:11:32Z",
+    "desc": "Spatiotemporal Arrays, Raster and Vector Data Cubes"
+  },
+  "evetion/GeoStats.jl": {
+    "error": "HTTP 404"
+  },
+  "r-lidar/lidR": {
+    "stars": 714,
+    "pushedAt": "2026-09-21T13:52:01Z",
+    "desc": "Airborne LiDAR data manipulation and visualisation for forestry application"
+  },
+  "JuliaGeo/ArchGDAL.jl": {
+    "error": "HTTP 404"
+  },
+  "georust/gdal": {
+    "stars": 457,
+    "pushedAt": "2026-10-14T09:20:48Z",
+    "desc": "Rust bindings for GDAL"
+  },
+  "rafaqz/Rasters.jl": {
+    "stars": 265,
+    "pushedAt": "2026-09-14T19:26:01Z",
+    "desc": "Raster manipulation for the Julia language "
+  },
+  "georust/geozero": {
+    "stars": 479,
+    "pushedAt": "2026-11-09T02:04:12Z",
+    "desc": "Zero-Copy reading and writing of geospatial data."
+  },
+  "duckdb/duckdb": {
+    "stars": 42953,
+    "pushedAt": "2026-11-09T23:58:03Z",
+    "desc": "DuckDB is a high-performance analytical database system"
+  },
+  "georust/geo": {
+    "stars": 1965,
+    "pushedAt": "2026-11-06T14:33:57Z",
+    "desc": "Rust geospatial primitives & algorithms"
+  },
+  "paulmach/orb": {
+    "stars": 1143,
+    "pushedAt": "2026-11-01T16:12:34Z",
+    "desc": "Types and utilities for working with 2d geometry in Golang"
+  },
+  "spatialite/spatialite": {
+    "error": "HTTP 404"
+  },
+  "duckdb/duckdb-spatial": {
+    "stars": 723,
+    "pushedAt": "2026-11-02T15:18:55Z",
+    "desc": null
+  },
+  "go-spatial/go-geom": {
+    "error": "HTTP 404"
+  },
+  "imposm/imposm3": {
+    "error": "HTTP 404"
+  },
+  "timescale/timescaledb": {
+    "stars": 23835,
+    "pushedAt": "2026-11-09T23:58:07Z",
+    "desc": "A time-series database for high-performance real-time analytics packaged as a Postgres extension"
+  },
+  "redis/redis": {
+    "stars": 77332,
+    "pushedAt": "2026-11-09T16:39:35Z",
+    "desc": "For developers, who are building real-time data-driven applications, Redis is the preferred, fastest, and most feature-rich cache, data structure server, and document and vector query engine."
+  },
+  "ClickHouse/ClickHouse": {
+    "stars": 50852,
+    "pushedAt": "2026-11-10T13:27:46Z",
+    "desc": "ClickHouse® is a real-time analytics database management system"
+  },
+  "osmcode/osmium-tool": {
+    "stars": 715,
+    "pushedAt": "2026-11-01T21:29:00Z",
+    "desc": "Command line tool for working with OpenStreetMap data based on the Osmium library."
+  },
+  "osm2pgsql-dev/osm2pgsql": {
+    "stars": 1688,
+    "pushedAt": "2026-10-25T09:14:41Z",
+    "desc": "Import OpenStreetMap data into a PostgreSQL/PostGIS database"
+  },
+  "uber/h3": {
+    "stars": 6718,
+    "pushedAt": "2026-11-06T16:54:50Z",
+    "desc": "Hexagonal hierarchical geospatial indexing system"
+  },
+  "osm-search/Nominatim": {
+    "stars": 4562,
+    "pushedAt": "2026-11-03T09:32:10Z",
+    "desc": "Open Source search based on OpenStreetMap data"
+  },
+  "MobilityDB/MobilityDB": {
+    "stars": 632,
+    "pushedAt": "2026-11-09T13:38:13Z",
+    "desc": "MobilityDB is a geospatial trajectory data management & analysis platform, built on PostgreSQL and PostGIS."
+  },
+  "pelias/pelias": {
+    "stars": 3601,
+    "pushedAt": "2026-07-24T17:51:08Z",
+    "desc": "Pelias is a modular open-source geocoder using Elasticsearch."
+  },
+  "valkey-io/valkey": {
+    "stars": 27662,
+    "pushedAt": "2026-11-09T02:16:36Z",
+    "desc": "A flexible distributed key-value database that is optimized for caching and other realtime workloads."
+  },
+  "komoot/photon": {
+    "stars": 3178,
+    "pushedAt": "2026-11-02T13:03:58Z",
+    "desc": "an open source geocoder for openstreetmap data"
+  },
+  "pgRouting/pgrouting": {
+    "stars": 1447,
+    "pushedAt": "2026-11-09T17:15:49Z",
+    "desc": "Repository contains pgRouting library. Development branch is \"develop\", stable branch is \"master\""
+  },
+  "Project-OSRM/osrm-backend": {
+    "stars": 8205,
+    "pushedAt": "2026-11-07T18:32:36Z",
+    "desc": "Open Source Routing Machine - C++ backend"
+  },
+  "opentripplanner/OpenTripPlanner": {
+    "stars": 2774,
+    "pushedAt": "2026-11-10T15:40:32Z",
+    "desc": "An open source multi-modal trip planner"
+  },
+  "graphhopper/graphhopper": {
+    "stars": 6802,
+    "pushedAt": "2026-11-10T06:26:34Z",
+    "desc": "Open source routing engine for OpenStreetMap. Use it as Java library or standalone web server."
+  },
+  "valhalla/valhalla": {
+    "stars": 6438,
+    "pushedAt": "2026-11-10T09:04:42Z",
+    "desc": "Open Source Routing Engine for OpenStreetMap"
+  },
+  "openstreetmap/iD": {
+    "stars": 3923,
+    "pushedAt": "2026-11-09T12:53:13Z",
+    "desc": "🆔 The easy-to-use OpenStreetMap editor in JavaScript."
+  },
+  "GIScience/openrouteservice": {
+    "stars": 1990,
+    "pushedAt": "2026-11-09T00:26:25Z",
+    "desc": "🌍 The open source route planner api with plenty of features."
+  },
+  "streetcomplete/StreetComplete": {
+    "stars": 5142,
+    "pushedAt": "2026-11-07T20:55:21Z",
+    "desc": "Easy to use OpenStreetMap editor for Android and iOS"
+  },
+  "OSGeo/gdal": {
+    "stars": 6136,
+    "pushedAt": "2026-11-07T14:06:36Z",
+    "desc": "GDAL is an open source MIT licensed translator library for raster and vector geospatial data formats."
+  },
+  "vespucci/vespucci": {
+    "error": "HTTP 404"
+  },
+  "JOSM/JOSM": {
+    "stars": 456,
+    "pushedAt": "2026-11-10T18:50:35Z",
+    "desc": "!!!Mirror!!! of JOSM Subversion repository"
+  },
+  "senbox-org/snap-engine": {
+    "stars": 216,
+    "pushedAt": "2026-11-09T13:02:41Z",
+    "desc": "ESA Earth Observation Toolbox and Java Development Platform"
+  },
+  "senbox-org/s3tbx": {
+    "stars": 48,
+    "pushedAt": "2026-10-17T13:59:04Z",
+    "desc": "A toolbox for the OLCI and SLSTR instruments on board of ESA's Sentinel-3 satellite"
+  },
+  "OpenJUMP/OpenJUMP": {
+    "error": "HTTP 404"
+  },
+  "GeoDaCenter/geoda": {
+    "stars": 812,
+    "pushedAt": "2026-10-24T00:24:55Z",
+    "desc": "GeoDa: An introduction to spatial data analysis"
+  },
+  "PDAL/Entwine": {
+    "error": "HTTP 404"
+  },
+  "DC-SDK/dc-sdk": {
+    "error": "HTTP 404"
+  },
+  "gvsig-desktop/gvsig-desktop": {
+    "error": "HTTP 404"
+  },
+  "mvtk/mvtk": {
+    "error": "HTTP 404"
+  },
+  "gvsig/gvsig-desktop": {
+    "error": "HTTP 404"
+  },
+  "felt/tippecanoe": {
+    "stars": 1627,
+    "pushedAt": "2026-09-26T17:33:53Z",
+    "desc": "Build vector tilesets from large collections of GeoJSON features."
+  },
+  "maputnik/maputnik": {
+    "error": "HTTP 404"
+  },
+  "tilemaker/tilemaker": {
+    "error": "HTTP 404"
+  },
+  "react-leaflet/react-leaflet-core": {
+    "error": "HTTP 404"
+  },
+  "udig/udig-platform": {
+    "stars": 200,
+    "pushedAt": "2026-11-10T12:22:05Z",
+    "desc": "uDig parent project containing all core components.  More plugins can be found in community repos: http://github.com/uDig-Community"
+  },
+  "tileserver-gl/tileserver-gl": {
+    "error": "HTTP 404"
+  },
+  "opendatacube/odc": {
+    "error": "HTTP 404"
+  },
+  "ogc/geoapi": {
+    "error": "HTTP 404"
+  },
+  "openmaptiles/openmaptiles": {
+    "stars": 3212,
+    "pushedAt": "2026-07-29T12:19:41Z",
+    "desc": "OpenMapTiles Vector Tile Schema Implementation"
+  },
+  "GMap.NET/GMap.NET.Core": {
+    "error": "HTTP 404"
+  },
+  "spatialite/spatialite-tools": {
+    "error": "HTTP 404"
+  },
+  "juliaearth/GeoStats.jl": {
+    "stars": 593,
+    "pushedAt": "2026-11-02T17:41:10Z",
+    "desc": "An extensible framework for geospatial data science and geostatistical modeling fully written in Julia"
+  },
+  "tumic0/GPXSee": {
+    "stars": 1257,
+    "pushedAt": "2026-11-08T06:41:19Z",
+    "desc": "GPS log file viewer and analyzer with support for GPX, TCX, KML, FIT, IGC, NMEA, SLF, SML, LOC, GPI, GeoJSON and OziExplorer files."
+  },
+  "NetTopologySuite/NetTopologySuite.IO.GeoJSON": {
+    "stars": 123,
+    "pushedAt": "2025-05-28T14:36:32Z",
+    "desc": "GeoJSON IO module for NTS. "
+  },
+  "spatialite/libspatialite": {
+    "error": "HTTP 404"
+  },
+  "opengeos/GeoLibre": {
+    "stars": 8537,
+    "pushedAt": "2026-11-10T05:20:10Z",
+    "desc": "A lightweight, cloud-native GIS platform for visualizing, exploring, and analyzing geospatial data. It runs in the web browser, on the desktop, on mobile, and inside Jupyter notebooks."
+  },
+  "ome/ome-imposm": {
+    "error": "HTTP 404"
+  },
+  "opendatacube/datacube-core": {
+    "stars": 595,
+    "pushedAt": "2026-11-02T23:45:57Z",
+    "desc": "Open Data Cube analyses continental scale Earth Observation data through time"
+  },
+  "datacube/odc-core": {
+    "error": "HTTP 404"
+  },
+  "CesiumGS/3d-tiles": {
+    "stars": 2636,
+    "pushedAt": "2026-10-23T18:35:08Z",
+    "desc": "Specification for streaming massive heterogeneous 3D geospatial datasets :earth_americas:"
+  },
+  "xy-c/echarts-gl": {
+    "error": "HTTP 404"
+  },
+  "marsgis/mars3d-vue": {
+    "error": "HTTP 404"
+  },
+  "3DGIS-Mars/Mars3D": {
+    "error": "HTTP 404"
+  },
+  "geo-data/cesium-terrain-builder": {
+    "stars": 888,
+    "pushedAt": "2023-03-05T20:14:33Z",
+    "desc": "A C++ library and associated command line tools designed to create terrain tiles for use in the Cesium JavaScript library"
+  },
+  "CesiumGS/cesium-terrain-builder": {
+    "error": "HTTP 404"
+  },
+  "DHI/GridModel": {
+    "error": "HTTP 404"
+  },
+  "h3geo/h3": {
+    "error": "HTTP 404"
+  }
+}
