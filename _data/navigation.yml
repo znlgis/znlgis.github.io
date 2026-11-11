@@ -20,6 +20,9 @@
     - title: GeoTools 教程
       icon: 📁
       url: /gis/tutorial/geotools/
+    - title: JTS 教程
+      icon: 📁
+      url: /gis/tutorial/jts/
     - title: QGIS 教程
       icon: 📁
       url: /gis/tutorial/qgis/

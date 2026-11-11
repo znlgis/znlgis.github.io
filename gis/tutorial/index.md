@@ -22,6 +22,7 @@ title: GIS 技术教程
 | [OpenLayers 教程](https://znlgis.github.io/gis/tutorial/openlayers/) | 18章 | ⭐⭐ | Web 地图库 |
 | [CesiumJS 教程](https://znlgis.github.io/gis/tutorial/cesium/) | 18章 | ⭐⭐⭐ | 3D 地球引擎 |
 | [GeoTools 教程](https://znlgis.github.io/gis/tutorial/geotools/) | 17章 | ⭐⭐⭐ | Java GIS 工具包 |
+| [JTS 教程](https://znlgis.github.io/gis/tutorial/jts/) | 24章 | ⭐⭐⭐ | Java 几何引擎 · OGC 简单要素参考实现 |
 | [NetTopologySuite](https://znlgis.github.io/gis/tutorial/NetTopologySuite/) | 15章 | ⭐⭐⭐ | .NET 空间计算 |
 | [SharpMap 教程](https://znlgis.github.io/gis/tutorial/SharpMap/) | 17章 | ⭐⭐ | .NET 地图渲染 |
 | [Mapsui 教程](https://znlgis.github.io/gis/tutorial/Mapsui/) | 16章 | ⭐⭐ | 跨平台 .NET 地图 |
@@ -49,10 +50,11 @@ title: GIS 技术教程
 5. [OpenLayers 教程](https://znlgis.github.io/gis/tutorial/openlayers/) — WebGIS 开发
 
 ### 🔧 Java GIS 开发路线
-1. [GeoTools 教程](https://znlgis.github.io/gis/tutorial/geotools/) — Java GIS 工具包
-2. [Geometry API Java](https://znlgis.github.io/gis/tutorial/geometry-api-java/) — Esri 几何操作
-3. [OpenGIS Utils Java](https://znlgis.github.io/gis/tutorial/opengis-utils-for-java/) — Java GIS 工具库
-4. [GeoServer 教程](https://znlgis.github.io/gis/tutorial/geoserver/) — 服务端开发
+1. [JTS 教程](https://znlgis.github.io/gis/tutorial/jts/) — Java 拓扑套件·几何引擎
+2. [GeoTools 教程](https://znlgis.github.io/gis/tutorial/geotools/) — Java GIS 工具包
+3. [Geometry API Java](https://znlgis.github.io/gis/tutorial/geometry-api-java/) — Esri 几何操作
+4. [OpenGIS Utils Java](https://znlgis.github.io/gis/tutorial/opengis-utils-for-java/) — Java GIS 工具库
+5. [GeoServer 教程](https://znlgis.github.io/gis/tutorial/geoserver/) — 服务端开发
 
 ### 💻 .NET GIS 开发路线
 1. [NetTopologySuite](https://znlgis.github.io/gis/tutorial/NetTopologySuite/) — .NET 空间计算
@@ -78,6 +80,7 @@ title: GIS 技术教程
 - [geoserver-cloud 教程](https://znlgis.github.io/gis/tutorial/geoserver-cloud/)
 - [geoserver-rest-api 教程](https://znlgis.github.io/gis/tutorial/geoserver-rest-api/)
 - [geotools 教程](https://znlgis.github.io/gis/tutorial/geotools/)
+- [jts 教程](https://znlgis.github.io/gis/tutorial/jts/)
 - [Mapsui 教程](https://znlgis.github.io/gis/tutorial/Mapsui/)
 - [NetTopologySuite 教程](https://znlgis.github.io/gis/tutorial/NetTopologySuite/)
 - [opengis-utils-for-java 教程](https://znlgis.github.io/gis/tutorial/opengis-utils-for-java/)
