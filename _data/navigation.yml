@@ -62,6 +62,21 @@
     - title: OpenLayers
       icon: 📁
       url: /gis/tutorial/openlayers/
+    - title: MapLibre GL JS
+      icon: 📁
+      url: /gis/tutorial/maplibre-gl-js/
+    - title: Leaflet
+      icon: 📁
+      url: /gis/tutorial/Leaflet/
+    - title: MapLibre Native
+      icon: 📁
+      url: /gis/tutorial/maplibre-native/
+    - title: PDAL
+      icon: 📁
+      url: /gis/tutorial/PDAL/
+    - title: 影像云原生全链路
+      icon: 📁
+      url: /gis/tutorial/STAC-COG-TiTiler/
     - title: GeoPipeAgent
       icon: 📁
       url: /gis/tutorial/GeoPipeAgent/
