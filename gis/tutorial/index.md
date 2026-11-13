@@ -40,6 +40,7 @@ title: GIS 技术教程
 | [MapLibre Native 教程](https://znlgis.github.io/gis/tutorial/maplibre-native/) | 20章 | ⭐⭐⭐⭐ | 跨平台原生渲染引擎 · C++ 核心 |
 | [PDAL 教程](https://znlgis.github.io/gis/tutorial/PDAL/) | 20章 | ⭐⭐⭐ | 点云界的 GDAL · Pipeline JSON |
 | [影像云原生全链路](https://znlgis.github.io/gis/tutorial/STAC-COG-TiTiler/) | 22章 | ⭐⭐⭐ | STAC + COG + TiTiler 影像云原生 |
+| [空间智能实战](https://znlgis.github.io/gis/tutorial/kjzn/) | 12章 | ⭐⭐⭐ | 低空 AI · 时空融合 · 智能体 · 3DGS · 微调 · 边缘部署 |
 
 > 难度说明：⭐ 入门 → ⭐⭐ 基础 → ⭐⭐⭐ 进阶 → ⭐⭐⭐⭐ 高级
 
@@ -81,6 +82,20 @@ title: GIS 技术教程
 3. [OpenGIS Utils .NET](https://znlgis.github.io/gis/tutorial/opengis-utils-for-net/) — GIS 工具库
 4. [SharpMap](https://znlgis.github.io/gis/tutorial/SharpMap/) / [Mapsui](https://znlgis.github.io/gis/tutorial/Mapsui/) — 地图渲染
 
+### 🛰️ 空间智能实战路线
+1. [第01章：Vibe Coding 与 DeepSeek Harness](https://znlgis.github.io/gis/tutorial/kjzn/第01章-Vibe-Coding基础与DeepSeek-Harness上手/) — 建立以 agent 为中心的开发方式
+2. [第02章：低空 AI 巡检实战](https://znlgis.github.io/gis/tutorial/kjzn/第02章-低空AI巡检实战/) — 上云 API 2 · YOLO26 · SAM 3.1
+3. [第03章：空地一体时空融合](https://znlgis.github.io/gis/tutorial/kjzn/第03章-空地一体时空融合/) — 时空基准 · AR 投影 · 3D Tiles / splat LOD
+4. [第04章：一张图「智能体」实战](https://znlgis.github.io/gis/tutorial/kjzn/第04章-一张图智能体实战/) — Function Calling 与 MCP 2026-07-28
+5. [第05章：自动驾驶实战](https://znlgis.github.io/gis/tutorial/kjzn/第05章-自动驾驶实战/) — YOLO26 导航线 · CARLA · Cesium 1.147 仿真
+6. [第06章：构建 3DGS](https://znlgis.github.io/gis/tutorial/kjzn/第06章-构建3DGS/) — COLMAP / VGGT-Omega → brush / gsplat → SuperSplat
+7. [第07章：大模型微调](https://znlgis.github.io/gis/tutorial/kjzn/第07章-大模型微调/) — SAM 3.1 · Qwen3-VL · 蒸馏小模型
+8. [第08章：空间数据底座与时空基准](https://znlgis.github.io/gis/tutorial/kjzn/第08章-空间数据底座与时空基准/) — PostGIS 3.7 · STAC 1.1 · GeoParquet / DuckDB
+9. [第09章：边缘推理与端云协同部署](https://znlgis.github.io/gis/tutorial/kjzn/第09章-边缘推理与端云协同部署/) — Jetson Thor · TensorRT 11 · 端云切分
+10. [第10章：智能体评测与生产上线](https://znlgis.github.io/gis/tutorial/kjzn/第10章-智能体评测与生产上线/) — 评测集 · 回归门禁 · 灰度与复盘
+11. [第11章：工程化交付与验收](https://znlgis.github.io/gis/tutorial/kjzn/第11章-工程化交付与验收/) — 交付物清单 · 验收指标 · SLA
+12. [第12章：空间智能技术路线与展望](https://znlgis.github.io/gis/tutorial/kjzn/第12章-空间智能技术路线与展望/) — 选型矩阵 · 趋势判断 · 行动建议
+
 ### 🐍 Python GIS 路线
 1. [GDAL Python](https://znlgis.github.io/gis/tutorial/gdal/) — 数据处理
 2. [Shapely 教程](https://znlgis.github.io/gis/tutorial/shapely/) — 几何操作
@@ -118,3 +133,4 @@ title: GIS 技术教程
 - [maplibre-native 教程](https://znlgis.github.io/gis/tutorial/maplibre-native/)
 - [PDAL 教程](https://znlgis.github.io/gis/tutorial/PDAL/)
 - [STAC-COG-TiTiler 教程](https://znlgis.github.io/gis/tutorial/STAC-COG-TiTiler/)
+- [kjzn 教程](https://znlgis.github.io/gis/tutorial/kjzn/)

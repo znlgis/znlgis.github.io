@@ -17,6 +17,9 @@
     - title: CesiumJS 教程
       icon: 📁
       url: /gis/tutorial/cesium/
+    - title: 空间智能实战
+      icon: 🛰️
+      url: /gis/tutorial/kjzn/
     - title: GeoTools 教程
       icon: 📁
       url: /gis/tutorial/geotools/
